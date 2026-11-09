@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Aspirant’s Desk | Anbuchelvan M S</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ef;--surface:#fff;--ink:#15262b;--muted:#53666b;--line:#cdd6d3;--accent:#d9480f;--accent-ink:#fff;--ok:#2b7a4b;--warn:#b7791f;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b1f;--surface:#17272c;--ink:#e8efed;--muted:#9db0b4;--line:#2c4147;--accent:#ff7a3d;--accent-ink:#1a0d05;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1b1f;--surface:#17272c;--ink:#e8efed;--muted:#9db0b4;--line:#2c4147;--accent:#ff7a3d;--accent-ink:#1a0d05;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 3.2rem);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.6 "Source Serif 4",Georgia,serif}
+h1,h2,h3,.sans{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 1.25rem 0 3.6rem}@media(min-width:700px){.wrap{padding-left:5rem}}
+.staff{position:fixed;left:0;top:0;bottom:0;width:2.4rem;border-right:2px solid var(--ink);opacity:.55;pointer-events:none;background:repeating-linear-gradient(to bottom,var(--ink) 0 2px,transparent 2px 10px) right/14px 100% no-repeat,repeating-linear-gradient(to bottom,var(--ink) 0 2px,transparent 2px 50px) right/26px 100% no-repeat}
+.staff i{position:absolute;right:0;width:2.4rem;height:3px;background:var(--accent);top:0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.2rem;overflow-x:auto;padding-top:.7rem;padding-bottom:.7rem;font:600 .95rem "Bricolage Grotesque",sans-serif;white-space:nowrap}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover,nav a.hot{color:var(--accent)}
+nav button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:.1rem .6rem;font:inherit;cursor:pointer}
+.hero{padding:3.6rem 0 2.6rem}
+.brand{font:800 1.1rem "Bricolage Grotesque",sans-serif;margin:0 0 .3rem}
+h1{font-weight:800;font-size:clamp(2.3rem,7vw,4.4rem);line-height:1;letter-spacing:-.02em;margin:0 0 1.1rem;max-width:14ch}
+.lede{font-size:1.2rem;max-width:38rem;color:var(--muted);margin:0 0 1.5rem}
+.btns{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{display:inline-block;padding:.6rem 1.1rem;border-radius:8px;border:2px solid var(--ink);font:700 .98rem "Bricolage Grotesque",sans-serif;text-decoration:none;background:none;color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+section{padding:2.6rem 0;border-top:1px solid var(--line)}
+section.band{background:var(--surface);border-top:4px solid var(--accent)}
+h2{font-weight:800;font-size:1.8rem;letter-spacing:-.01em;margin:0 0 .4rem}
+h3{font-size:1.1rem;margin:0 0 .3rem}
+.sub{color:var(--muted);margin:0 0 1.3rem;max-width:44rem}
+p{margin:0 0 1rem;max-width:44rem}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem 1.15rem}
+.band .card{background:var(--bg)}
+.card p{margin:0 0 .4rem;font-size:.97rem;color:var(--muted)}
+.card p b{color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-weight:600}
+.key{border-left:6px solid var(--accent)}
+.tag{display:inline-block;font:600 .82rem "Bricolage Grotesque",sans-serif;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:.05rem .65rem;margin:0 .3rem .4rem 0}
+ul.plain{margin:0;padding-left:1.1rem}ul.plain li{margin:.3rem 0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.95rem;background:var(--surface)}
+th,td{border:1px solid var(--line);padding:.5rem .65rem;text-align:left;vertical-align:top}
+th{font:700 .92rem "Bricolage Grotesque",sans-serif;background:var(--bg)}
+.pill{display:inline-block;border-radius:99px;padding:0 .6rem;font:700 .8rem "Bricolage Grotesque",sans-serif;border:1px solid currentColor;white-space:nowrap}
+.p-ok{color:var(--ok)}.p-warn{color:var(--warn)}.p-bad{color:var(--bad)}.p-mut{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:.25rem .85rem;font:600 .9rem "Bricolage Grotesque",sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden;margin:.4rem 0 .6rem}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.chk{display:flex;gap:.6rem;align-items:flex-start;margin:.3rem 0;font-size:.98rem}
+.chk input{width:1.1rem;height:1.1rem;margin-top:.3rem;accent-color:var(--accent)}
+.form{display:grid;gap:.7rem;grid-template-columns:1fr;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem}
+.band .form{background:var(--bg)}
+@media(min-width:640px){.form{grid-template-columns:1fr 1fr}.form.three{grid-template-columns:1fr 1fr 1fr}.form .full{grid-column:1/-1}}
+label{font:600 .88rem "Bricolage Grotesque",sans-serif;display:block;margin-bottom:.2rem}
+input[type=text],input[type=date],input[type=number],input[type=search],select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.45rem .6rem}
+.band input[type=text],.band input[type=date],.band input[type=number],.band select{background:var(--surface)}
+textarea{min-height:84px;resize:vertical}
+.save{justify-self:start;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:.55rem 1.1rem;font:700 .98rem "Bricolage Grotesque",sans-serif;cursor:pointer}
+.out{white-space:pre-wrap;background:var(--bg);border:1px dashed var(--line);border-radius:8px;padding:.8rem 1rem;min-height:4rem}
+.list{list-style:none;padding:0;margin:1rem 0 0}
+.list li{border-left:4px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0;padding:.65rem 1rem;margin-bottom:.6rem}
+.band .list li{background:var(--bg)}
+.meta{font:600 .85rem "Bricolage Grotesque",sans-serif;color:var(--muted)}
+.list button{float:right;background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;margin-left:.6rem}
+.list button.act{color:var(--accent);font-weight:700}
+.list select{width:auto;padding:.2rem .4rem;font-size:.9rem;margin-top:.4rem}
+.empty{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin:.9rem 0}
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem}
+.band .stat{background:var(--surface)}
+.stat b{display:block;font:800 1.5rem "Bricolage Grotesque",sans-serif}
+.stat span{font-size:.85rem;color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:.5rem;height:120px;margin:.5rem 0 1rem;border-bottom:2px solid var(--ink)}
+.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font:600 .75rem "Bricolage Grotesque",sans-serif}
+.bars i{display:block;width:100%;background:var(--accent);border-radius:4px 4px 0 0;min-height:2px}
+.sub2{font:700 1.05rem "Bricolage Grotesque",sans-serif;margin:1.6rem 0 .5rem}
+.az{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.az div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;font-size:.93rem;color:var(--muted)}
+.az b{font:800 1.5rem "Bricolage Grotesque",sans-serif;color:var(--accent);margin-right:.4rem}
+[hidden]{display:none!important}
+.list a{font-weight:600}
+footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="staff" aria-hidden="true"><i id="mark"></i></div>
+<nav aria-label="Sections"><div class="wrap">
+<a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
+<button id="theme" type="button" aria-label="Switch light or dark theme">Theme</button></div></nav>
+
+<main class="wrap">
+<header class="hero">
+<p class="brand">The Aspirant’s Desk</p>
+<h1>Everything a government exam aspirant needs, on one desk.</h1>
+<p class="lede">Built by Anbuchelvan M S, a B.Tech Civil Engineering graduate from Puducherry preparing for the UPSC Civil Services Examination. It brings together exam notifications, a personal preparation tracker, an exam directory, a study library, an A to Z topic index, and the mentors I want to learn from.</p>
+<div class="btns"><a class="btn primary" href="#tracker">Open my tracker</a><a class="btn" href="#updates">See latest exam dates</a><a class="btn" href="#mentors">Find mentors</a></div>
+</header>
+
+<section id="updates">
+<h2>Exam notifications and updates</h2>
+<p class="sub">Dates below were checked on 8 November 2026 against the calendars published by UPSC, SSC, IBPS and TNPSC. The countdown updates itself every time you open the page. Dates marked tentative can change, so always confirm on the official site before you apply. Notices for every state are in the State notifications section further down.</p>
+<div class="chips" id="nchips" role="group" aria-label="Filter notifications"></div>
+<label class="chk" for="nhide" style="margin-bottom:.8rem"><input type="checkbox" id="nhide" checked><span>Hide finished events</span></label>
+<div class="scroll"><table><thead><tr><th>Exam</th><th>Event</th><th>Date</th><th>Status</th></tr></thead><tbody id="ntable"></tbody></table></div>
+
+<h3 class="sub2">Notifications I am watching</h3>
+<div class="form three">
+<div><label for="wTitle">Exam or notice</label><input id="wTitle" type="text" placeholder="For example: Puducherry Group C recruitment"></div>
+<div><label for="wDate">Last date or exam date</label><input id="wDate" type="date"></div>
+<div><label for="wLink">Link (optional)</label><input id="wLink" type="text" placeholder="https://"></div>
+<button class="save" id="addW" type="button">Add to my watchlist</button></div>
+<ul class="list" id="wList"></ul>
+
+<h3 class="sub2">How I stay updated every week</h3>
+<div class="grid">
+<div class="card key"><h3>Weekly notification check</h3><p>Every Sunday I open the official sites below, read the new notices, and add any dates to my watchlist.</p>
+<p><button class="save" id="wkDone" type="button">I checked this week</button></p><p class="meta" id="wkText"></p></div>
+<div class="card key"><h3>Official sources to open</h3><p id="srcLinks"></p></div>
+<div class="card key"><h3>Rules I follow</h3><ul class="plain"><li>Trust only official sites for dates, fees and eligibility.</li><li>Read the full notification PDF, not a summary.</li><li>Apply at least three days before the last date.</li><li>Keep scanned photo, signature and certificates ready.</li></ul></div>
+</div>
+</section>
+
+<section id="live-state-updates">
+<h2>State-wise exam updates</h2>
+<p class="sub">Notices for every state and union territory. New updates are posted here by the site owner as they are found, and they appear live. Pick a state to see its updates, then use the table below to reach its commission.</p>
+<div class="form three">
+<div><label for="ustate">State or union territory</label><select id="ustate"></select></div>
+<div><label for="ucat">Type of update</label><select id="ucat"></select></div>
+<div><label for="uq">Search</label><input id="uq" type="search" placeholder="Post, department or exam"></div></div>
+<p class="meta" id="ustatus" aria-live="polite" style="margin-top:.8rem"></p>
+<ul class="list" id="ulist"></ul>
+<h3 class="sub2">Commissions and official sites</h3>
+<div class="scroll"><table><thead><tr><th>State or union territory</th><th>Main commission or board</th><th>Official site</th></tr></thead><tbody id="stable"></tbody></table></div>
+<p class="meta" style="margin-top:.6rem">Where the link says Find, I could not confirm a direct address, so it opens a web search for the official page. State police, teacher and subordinate selection boards also recruit, so check each state government portal as well.</p>
+</section>
+
+<section id="tracker" class="band">
+<h2>My preparation tracker</h2>
+<p class="sub">This is my personal dashboard: goal and countdown, syllabus progress, study hours, mock test scores and a revision planner. Your entries are saved in this browser and synchronised to your account when you sign in.</p>
+
+<h3 class="sub2" style="margin-top:.4rem">1. Goal and countdown</h3>
+<div class="form three">
+<div><label for="gExam">Target exam</label><input id="gExam" type="text" placeholder="UPSC Civil Services Prelims 2027"></div>
+<div><label for="gDate">Exam date</label><input id="gDate" type="date"></div>
+<div><label for="gDaily">Daily study target (hours)</label><input id="gDaily" type="number" min="1" max="16" step="0.5" value="6"></div>
+<button class="save" id="saveGoal" type="button">Save goal</button></div>
+<div class="stats" id="gStats"></div>
+
+<h3 class="sub2">2. Syllabus progress</h3>
+<div class="chips" id="schips" role="group" aria-label="Choose syllabus"></div>
+<div class="bar" role="progressbar" aria-label="Syllabus progress" aria-valuemin="0" aria-valuemax="100" id="pbar"><i id="pfill"></i></div>
+<p class="meta" id="ptext"></p>
+<div class="grid" id="syl"></div>
+
+<h3 class="sub2">3. Study hours</h3>
+<div class="form three">
+<div><label for="hDate">Date</label><input id="hDate" type="date"></div>
+<div><label for="hHours">Hours studied</label><input id="hHours" type="number" min="0.5" max="16" step="0.5" value="2"></div>
+<div><label for="hSubj">Subject</label><select id="hSubj"><option>Polity</option><option>History</option><option>Geography</option><option>Economy</option><option>Environment</option><option>Science and technology</option><option>Ethics</option><option>Current affairs</option><option>CSAT, quant and reasoning</option><option>English</option><option>Anthropology optional</option><option>Answer writing</option><option>Mock test</option></select></div>
+<button class="save" id="addH" type="button">Add study time</button></div>
+<div class="stats" id="hStats"></div>
+<p class="meta">Last 7 days against my daily target</p>
+<div class="bars" id="hChart" aria-hidden="true"></div>
+<ul class="list" id="hList"></ul>
+
+<h3 class="sub2">4. Mock tests</h3>
+<div class="form three">
+<div><label for="mName">Test name</label><input id="mName" type="text" placeholder="Prelims mock 1"></div>
+<div><label for="mScore">Score</label><input id="mScore" type="number" step="0.01"></div>
+<div><label for="mMax">Maximum marks</label><input id="mMax" type="number" value="200"></div>
+<button class="save" id="addM" type="button">Add test score</button></div>
+<div class="stats" id="mStats"></div>
+<div class="bars" id="mChart" aria-hidden="true"></div>
+<ul class="list" id="mList"></ul>
+
+<h3 class="sub2">5. Revision planner</h3>
+<p class="sub">Add a topic on the day you study it. The planner schedules revisions after 1, 3, 7, 21 and 45 days.</p>
+<div class="form">
+<div class="full"><label for="rTopic">Topic studied today</label><input id="rTopic" type="text" placeholder="For example: Fundamental Rights, Articles 12 to 35"></div>
+<button class="save" id="addR" type="button">Add to revision planner</button></div>
+<ul class="list" id="rList"></ul>
+</section>
+
+<section id="exams">
+<h2>Exam directory</h2>
+<p class="sub">A quick map of the main central and state government exams. Eligibility, age limits and vacancies change every year, so use this to choose, and the official notification to apply.</p>
+<div class="chips" id="dchips" role="group" aria-label="Filter exams"></div>
+<label for="dsearch" class="meta">Search by name, qualification or subject</label>
+<input id="dsearch" type="search" placeholder="Try: engineer, graduate, Class 10, Tamil" style="margin-bottom:1rem">
+<div class="grid" id="dgrid"></div>
+<p class="meta" id="dcount" style="margin-top:.8rem"></p>
+</section>
+
+<section id="states">
+<h2>State exam notifications</h2>
+<p class="sub">Every state has its own public service commission and recruitment boards, and each posts notices on its own site. Open a state’s site, read the latest notices, then mark it checked. Use the live updates board to view notices published by the site administrator, and verify every notice on the commission’s official website. Add any date you find to the watchlist above.</p>
+<div class="bar" role="progressbar" aria-label="States checked this week" aria-valuemin="0" aria-valuemax="100" id="stbar"><i id="stfill"></i></div>
+<p class="meta" id="sttext"></p>
+<div class="chips" id="stchips" role="group" aria-label="Filter states"></div>
+<input id="stsearch" type="search" placeholder="Search a state or commission" style="margin-bottom:1rem">
+<div class="grid" id="stgrid"></div>
+<p class="meta" style="margin-top:.8rem">Web addresses come from a published list of commission sites. If one does not open, search the commission’s name, because states sometimes change their addresses. Recruitment boards such as police, teachers and subordinate services often post on separate sites, so look for a recruitment or notifications link on each state’s home page.</p>
+</section>
+
+<section id="library">
+<h2>Study library</h2>
+<p class="sub">What to study and where to study it. I keep one trusted source per topic and revise it many times, rather than collecting many books.</p>
+<div class="scroll"><table><thead><tr><th>Group</th><th>Subject</th><th>Sources</th></tr></thead><tbody id="ltable"></tbody></table></div>
+<h3 class="sub2">Free and official portals</h3>
+<div class="grid" id="portals"></div>
+<h3 class="sub2">How I use the library</h3>
+<div class="grid">
+<div class="card key"><h3>Read</h3><p>One source per subject, with short notes in my own words.</p></div>
+<div class="card key"><h3>Practise</h3><p>Previous year papers first, then topic-wise tests, then full mocks.</p></div>
+<div class="card key"><h3>Revise</h3><p>Use the revision planner above. A topic is not finished until it has been revised five times.</p></div>
+<div class="card key"><h3>Link</h3><p>Connect each current affairs story to a syllabus topic, so the news becomes revision.</p></div>
+</div>
+</section>
+
+<section id="az">
+<h2>A to Z topic index</h2>
+<p class="sub">Key topics across General Studies, essay and general awareness, one letter at a time. Useful as a checklist and for quick revision.</p>
+<div class="az" id="azgrid"></div>
+</section>
+
+<section id="practice">
+<h2>Daily practice</h2>
+<h3 class="sub2" style="margin-top:0">Learning log</h3>
+<div class="form">
+<div><label for="subj">Subject</label><select id="subj"><option>Polity</option><option>History</option><option>Geography</option><option>Economy</option><option>Environment</option><option>Science and technology</option><option>Ethics</option><option>Current affairs</option><option>Anthropology optional</option><option>Answer writing</option><option>Other exams</option></select></div>
+<div><label for="topic">Topic</label><input id="topic" type="text" placeholder="For example: Article 21 and the right to housing"></div>
+<div class="full"><label for="note">What I learned</label><textarea id="note" placeholder="Two or three lines in my own words"></textarea></div>
+<button class="save" id="addlog" type="button">Add entry</button></div>
+<ul class="list" id="logs"></ul>
+
+<h3 class="sub2">Answer writing</h3>
+<div class="grid">
+<div class="card key"><h3>Structure</h3><p>Short introduction, two to four points with examples or data, and a forward-looking conclusion.</p></div>
+<div class="card key"><h3>My advantage</h3><p>On infrastructure, housing and urban questions I add a site-level example from my field work.</p></div>
+<div class="card key"><h3>Time</h3><p>About 7 minutes for 150 words and 11 minutes for 250 words, with a timer.</p></div>
+</div>
+<div class="form" style="margin-top:1rem">
+<div class="full"><label for="q">Question</label><input id="q" type="text" placeholder="Paste or type the question"></div>
+<div class="full"><label for="ans">My answer</label><textarea id="ans" style="min-height:140px"></textarea></div>
+<div class="meta full" id="wc">0 words</div>
+<button class="save" id="addans" type="button">Save answer for review</button></div>
+<ul class="list" id="answers"></ul>
+</section>
+
+<section id="mentors">
+<h2>Mentors and connections</h2>
+<p class="sub">A civil services journey is easier with people ahead of me. These are the people I want to learn from, and how I plan to reach them.</p>
+<div class="grid">
+<div class="card key"><h3>Serving and retired officers</h3><p>IAS, IPS, IFS, IRS and state service officers who can explain the real job and what interview panels value.</p></div>
+<div class="card key"><h3>Recent rankers</h3><p>People who cleared in the last two or three years, with fresh strategy and book lists.</p></div>
+<div class="card key"><h3>Engineers who became officers</h3><p>They know how to use a technical background and how to choose an optional subject.</p></div>
+<div class="card key"><h3>Subject and optional experts</h3><p>Teachers and authors who can review my notes and answers.</p></div>
+<div class="card key"><h3>Mock interview panelists</h3><p>Former officers and academics who can test me before the interview.</p></div>
+<div class="card key"><h3>Policy practitioners</h3><p>People in municipal bodies, housing boards, NGOs and think tanks.</p></div>
+<div class="card key"><h3>Writers and journalists</h3><p>Those who cover governance, economy and infrastructure.</p></div>
+<div class="card key"><h3>Peers and study partners</h3><p>Aspirants for exams of every kind, for accountability and shared notes.</p></div>
+</div>
+<p style="margin-top:1.2rem"><span class="tag">LinkedIn</span><span class="tag">X (Twitter)</span><span class="tag">Puducherry Technological University alumni</span><span class="tag">Telegram and Discord study groups</span><span class="tag">Webinars by officers</span><span class="tag">YouTube interviews and podcasts</span><span class="tag">Local libraries and study circles</span></p>
+<ul class="plain" style="margin-bottom:1.2rem"><li>Read their public work first and ask one specific question.</li><li>Show what I have already done, such as my plan or a practice answer.</li><li>Follow up once after a week, then respect their time.</li><li>Report back on how I used their advice, and share what I learn.</li></ul>
+
+<h3 class="sub2">Message builder</h3>
+<div class="form">
+<div><label for="mtype">I am writing to a</label><select id="mtype"><option>serving or retired officer</option><option>recent ranker</option><option>engineer-turned-officer</option><option>subject expert</option><option>interview panelist</option><option>fellow aspirant</option></select></div>
+<div><label for="mname2">Their name</label><input id="mname2" type="text" placeholder="For example: Ms. Priya"></div>
+<div class="full"><label for="mask">My one specific question</label><input id="mask" type="text" placeholder="For example: how did you choose your optional subject?"></div>
+<button class="save" id="build" type="button">Build message</button><button class="btn" id="copy" type="button">Copy message</button>
+<div class="out full" id="msg" aria-live="polite">Fill in the fields and choose Build message.</div></div>
+
+<h3 class="sub2">My network tracker</h3>
+<div class="form">
+<div><label for="nname">Name</label><input id="nname" type="text"></div>
+<div><label for="nrole">Who they are</label><input id="nrole" type="text" placeholder="For example: IAS officer, Tamil Nadu cadre"></div>
+<div class="full"><label for="nnote">Why I want to connect</label><input id="nnote" type="text"></div>
+<button class="save" id="addnet" type="button">Add to my network</button></div>
+<ul class="list" id="net"></ul>
+</section>
+
+<section id="about">
+<h2>About me</h2>
+<p>I am a B.Tech Civil Engineering graduate from Puducherry Technological University, schooled in Chennai, and I speak Tamil, English and Telugu. Most of my learning has happened on construction sites, where a design meets budgets, deadlines and the people who will live in the finished building. That is why I am drawn to civil services: every project I worked on existed because of a scheme, a department and an officer who approved it.</p>
+<h3 class="sub2">Field experience</h3>
+<div class="grid">
+<div class="card key"><h3>Affordable housing</h3><p>Five EWS sites, 1,154 dwelling units: Dubrayapet (80), Chinnayapuram (220), Lambert Saravanan Nagar (128), Kumaragurupallam (216) and Pavanar Nagar, Boomianpet (510). Links to PMAY and urban housing policy.</p></div>
+<div class="card key"><h3>Urban infrastructure</h3><p>Petit Canal municipal drain renovation, Salavaiyar Nagar (Dobhikhana) livelihood project, and Urban Entertainment Village at Old Port. Links to AMRUT, Smart Cities and urban flooding.</p></div>
+<div class="card key"><h3>Heritage restoration</h3><p>Restoration of the heritage VOC School building, and foundation work in buildings. Links to art and culture and conservation law.</p></div>
+<div class="card key"><h3>Metro rail</h3><p>KEC project under Chennai Metro Rail Limited, elevated section from Kattupakkam Dmart to Poonamallee. Links to infrastructure financing and land acquisition.</p></div>
+</div>
+<h3 class="sub2">Skills and credentials</h3>
+<p><span class="tag">AutoCAD</span><span class="tag">STAAD</span><span class="tag">Revit</span><span class="tag">SketchUp</span><span class="tag">Showcase</span><span class="tag">Structural analysis</span><span class="tag">Project planning basics</span><span class="tag">Tamil, English, Telugu</span></p>
+<div class="grid">
+<div class="card"><h3>Certifications</h3><ul class="plain"><li>L&amp;T: Advanced Technologies in Water and Wastewater Treatment</li><li>Vector Solutions: 3D Modelling and 3D Printing</li><li>Institution’s Innovation Council: How to be Financially Independent</li></ul></div>
+<div class="card"><h3>Achievements</h3><ul class="plain"><li>District rank holder, International Mathematics Olympiad, 2017</li><li>Third position, State-Level Mathematics Olympiad, Anna Planetarium Centre, Trichy</li></ul></div>
+<div class="card"><h3>Education</h3><ul class="plain"><li>B.Tech Civil Engineering, Puducherry Technological University</li><li>HSC 86% (2021), The Velammal International School, Chennai</li><li>SSLC 76.8% (2019), Dr. G.S. Kalyanasundaram Memorial School, Chennai</li></ul></div>
+</div>
+</section>
+
+<section id="connect">
+<h2>Let’s connect</h2>
+<p>If you are an officer, a ranker, an expert, a fellow aspirant, or work in public policy and infrastructure, I would be glad to hear from you. Even a short reply to one specific question helps me.</p>
+<div class="btns"><a class="btn primary" href="mailto:anbuchelvan082003@gmail.com">Email me</a><a class="btn" href="https://www.linkedin.com/in/anbu-chelvan-854b2429b" target="_blank" rel="noopener">LinkedIn</a></div>
+</section>
+<section id="notes">
+<h2>Subject notes</h2>
+<p class="sub">Revision notes for each UPSC subject. Pick a subject. The owner can add more notes for any topic, and they appear here for everyone.</p>
+<div class="chips" id="nsub" role="group" aria-label="Choose subject"></div>
+<div class="grid" id="ngrid"></div>
+<div class="form" id="nadmin" hidden style="margin-top:1rem">
+<div><label for="nS">Subject</label><input id="nS" type="text" placeholder="Polity"></div>
+<div><label for="nT">Topic</label><input id="nT" type="text"></div>
+<div class="full"><label for="nB">Notes</label><textarea id="nB" style="min-height:140px"></textarea></div>
+<button class="save" id="nPost" type="button">Publish note</button><span class="meta" id="nMsg"></span></div>
+</section>
+<section id="press" class="band">
+<h2>Daily press information</h2>
+<p class="sub">Daily news explained for the exam: what happened, the background, and the Prelims and Mains angle. Posted by the owner.</p>
+<div class="form three"><div><label for="pF">Paper</label><select id="pF"></select></div><div><label for="pS">Search</label><input id="pS" type="search"></div></div>
+<p class="meta" id="pStat" style="margin-top:.8rem"></p>
+<ul class="list" id="plist"></ul>
+<div class="form" id="padmin" hidden>
+<div><label for="pdD">News date</label><input id="pdD" type="date"></div>
+<div><label for="pdP">Paper</label><select id="pdP"></select></div>
+<div class="full"><label for="pdT">Headline</label><input id="pdT" type="text"></div>
+<div><label for="pdSrc">Source</label><input id="pdSrc" type="text" placeholder="The Hindu, PIB"></div>
+<div><label for="pdL">Link</label><input id="pdL" type="text" placeholder="https://"></div>
+<div class="full"><label for="pdW">What happened</label><textarea id="pdW"></textarea></div>
+<div class="full"><label for="pdE">Explanation and background</label><textarea id="pdE"></textarea></div>
+<div class="full"><label for="pdU">UPSC angle (Prelims facts, Mains points)</label><textarea id="pdU"></textarea></div>
+<button class="save" id="pdPost" type="button">Publish press note</button><span class="meta" id="pdMsg"></span></div>
+</section>
+<section id="pib">
+<h2>PIB current affairs</h2>
+<p class="sub">Releases from the Press Information Bureau, explained for the exam. Newest first. The owner posts new items daily, and the source link opens the official release list.</p>
+<div class="form three"><div><label for="bM">Ministry</label><input id="bM" type="search" placeholder="Search ministry or topic"></div></div>
+<p class="meta" id="bStat" style="margin-top:.8rem"></p>
+<ul class="list" id="pibl"></ul>
+<div class="form" id="badmin" hidden>
+<div><label for="bD">Release date</label><input id="bD" type="date"></div>
+<div><label for="bMin">Ministry</label><input id="bMin" type="text"></div>
+<div class="full"><label for="bT">Headline</label><input id="bT" type="text"></div>
+<div class="full"><label for="bL">PIB link</label><input id="bL" type="text" placeholder="https://"></div>
+<div class="full"><label for="bW">What the release says</label><textarea id="bW"></textarea></div>
+<div class="full"><label for="bE">Explanation and background</label><textarea id="bE"></textarea></div>
+<div class="full"><label for="bU">UPSC angle</label><textarea id="bU"></textarea></div>
+<button class="save" id="bPost" type="button">Publish PIB item</button><span class="meta" id="bMsg"></span></div>
+</section>
+<section id="myprog">
+<h2>Sign-in and progress</h2>
+<div class="card" id="authbox" style="margin:.8rem 0 1rem">
+<h3>Account access</h3>
+<p class="meta" id="authStatus" aria-live="polite">Checking account connection…</p>
+<div class="form three" id="authForm">
+<div><label for="authName">Display name (for new accounts)</label><input id="authName" type="text" autocomplete="name" maxlength="60" placeholder="Your name"></div>
+<div><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" required></div>
+<div><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" required></div>
+<button class="save" id="signIn" type="button">Sign in</button><button class="btn" id="signUp" type="button">Create learner account</button><button class="btn" id="signOut" type="button" hidden>Sign out</button>
+</div>
+<p class="meta">Use your own email. Never share your password. Your study data stays private to your account; the site administrator can view the shared progress summary. Your notes and written answers remain private to you.</p>
+</div>
+<p class="meta" id="who">Sign in to synchronise your progress across devices.</p>
+<div class="stats" id="mySum"></div>
+<div id="allbox" hidden><h3 class="sub2">All learners (owner only)</h3>
+<div class="scroll"><table><thead><tr><th>Learner</th><th>Syllabus</th><th>Hours total</th><th>Last 7 days</th><th>Mock average</th><th>Log entries</th><th>Last synced</th></tr></thead><tbody id="allrows"></tbody></table></div></div>
+</section>
+<section id="admin" class="band" hidden>
+<h2>Admin desk</h2>
+<p class="sub">Only the owner of this page sees this section, and only the owner’s account can write to the updates board. Everyone else sees the published updates read-only.</p>
+<h3 class="sub2" style="margin-top:.4rem">Post an update</h3>
+<div class="form three">
+<div><label for="aState">State or union territory</label><select id="aState"></select></div>
+<div><label for="aCat">Type of update</label><select id="aCat"></select></div>
+<div><label for="aDate">Key date (last date, exam or result)</label><input id="aDate" type="date"></div>
+<div class="full"><label for="aTitle">Title</label><input id="aTitle" type="text" placeholder="For example: UPPSC Assistant Architect Planner, 25 posts"></div>
+<div class="full"><label for="aNote">Details: posts, eligibility, fee, correction dates</label><textarea id="aNote"></textarea></div>
+<div class="full"><label for="aLink">Official link</label><input id="aLink" type="text" placeholder="https://"></div>
+<button class="save" id="aPost" type="button">Publish update</button><span class="meta" id="aMsg" aria-live="polite"></span></div>
+<h3 class="sub2">Published updates</h3>
+<ul class="list" id="aList"></ul>
+<h3 class="sub2">Private notes</h3>
+<p class="sub">Stored in the page database and readable only by the owner.</p>
+<div class="form"><div class="full"><textarea id="aPriv" style="min-height:120px" placeholder="Sources to check, reminders, drafts"></textarea></div><button class="save" id="aPrivSave" type="button">Save private notes</button><span class="meta" id="aPrivMsg" aria-live="polite"></span></div>
+<h3 class="sub2">Weekly update routine</h3>
+<ul class="plain"><li>Open each commission site in the directory and read new notices.</li><li>Post every new notification with its last date and official link.</li><li>Post results, admit cards and answer keys when they come out.</li><li>Delete notices that are old or wrong.</li></ul>
+</section>
+</main>
+<footer><div class="wrap">The Aspirant’s Desk. Anbuchelvan M S, Puducherry, India. The central exam snapshot was checked on 8 November 2026. Confirm every date on the official site.</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./config.js"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
+function load(k,def){try{var v=JSON.parse(localStorage.getItem(k));return v==null?def:v}catch(e){return def}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}if(typeof onSave==="function")onSave(k)}
+var NOW=new Date();
+function iso(d){var m=d.getMonth()+1,x=d.getDate();return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(x<10?'0':'')+x}
+function dnum(s){var p=s.split('-');return Date.UTC(+p[0],+p[1]-1,+p[2])/864e5}
+var TODAY=iso(NOW);
+function diff(s){return Math.round(dnum(s)-dnum(TODAY))}
+function fmt(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}
+function addDays(s,n){var p=s.split('-'),d=new Date(+p[0],+p[1]-1,+p[2]);d.setDate(d.getDate()+n);return iso(d)}
+function pill(d){var n=diff(d);if(n<0)return '<span class="pill p-mut">Finished</span>';if(n===0)return '<span class="pill p-bad">Today</span>';if(n===1)return '<span class="pill p-bad">Tomorrow</span>';return '<span class="pill '+(n<=14?'p-warn':'p-ok')+'">In '+n+' days</span>'}
+function safeUrl(u){return /^https?:\/\//i.test(u)?u:''}
+
+var mark=$('mark');function pos(){var h=document.documentElement.scrollHeight-innerHeight;mark.style.top=((h>0?scrollY/h:0)*(innerHeight-3))+'px'}
+addEventListener('scroll',pos,{passive:true});pos();
+var root=document.documentElement;
+$('theme').addEventListener('click',function(){var d=root.getAttribute('data-theme')==='dark'||(root.getAttribute('data-theme')!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);root.setAttribute('data-theme',d?'light':'dark')});
+
+function chips(el,names,cur,cb){el.innerHTML=names.map(function(n){return '<button type="button" class="chip" aria-pressed="'+(n===cur)+'">'+esc(n)+'</button>'}).join('');
+el.onclick=function(e){var b=e.target.closest('.chip');if(!b)return;var v=b.textContent;chips(el,names,v,cb);cb(v)}}
+
+/* official sources */
+var SITES={upsc:['UPSC','https://upsc.gov.in'],ssc:['SSC','https://ssc.gov.in'],ibps:['IBPS','https://www.ibps.in'],rbi:['RBI recruitment','https://www.rbi.org.in'],sbi:['SBI careers','https://sbi.co.in/web/careers'],rrb:['Railway Recruitment Boards','https://www.rrbcdg.gov.in'],tnpsc:['TNPSC','https://www.tnpsc.gov.in'],nta:['NTA','https://www.nta.ac.in'],py:['Puducherry Government','https://www.py.gov.in'],emp:['Employment News','https://employmentnews.gov.in'],ncs:['National Career Service','https://www.ncs.gov.in']};
+$('srcLinks').innerHTML=['upsc','ssc','ibps','rrb','tnpsc','py','emp','ncs'].map(function(k){return '<a class="tag" href="'+SITES[k][1]+'" target="_blank" rel="noopener">'+SITES[k][0]+'</a>'}).join('');
+
+/* notifications */
+var N=[
+['UPSC','Civil Services and IFS (Prelims) 2027','Notification','2027-01-13'],
+['UPSC','Civil Services and IFS (Prelims) 2027','Last date to apply','2027-02-02'],
+['UPSC','Civil Services (Prelims) 2027','Exam','2027-05-23'],
+['UPSC','Civil Services (Main) 2027','Exam starts, five days','2027-08-20'],
+['UPSC','NDA and NA (I) 2027','Notification','2026-12-02'],
+['UPSC','NDA and NA (I) 2027','Last date to apply','2026-12-22'],
+['UPSC','NDA and NA (I) and CDS (I) 2027','Exam','2027-04-11'],
+['UPSC','Combined Geo-Scientist (Prelims) 2027','Exam','2027-01-31'],
+['UPSC','CAPF (Assistant Commandants) 2027','Notification','2027-02-17'],
+['UPSC','CAPF (Assistant Commandants) 2027','Last date to apply','2027-03-09'],
+['UPSC','CAPF (Assistant Commandants) 2027','Exam','2027-07-04'],
+['UPSC','Combined Medical Services 2027','Exam','2027-07-18'],
+['Banking','IBPS SO','Mains','2026-11-01'],
+['Banking','IBPS RRB Officer Scale I (PO)','Prelims, 21 and 22 Nov','2026-11-21'],
+['Banking','IBPS RRB Office Assistant','Prelims, 6, 12 and 13 Dec','2026-12-06'],
+['Banking','IBPS RRB Officer Scale I, II and III','Mains and single exam','2026-12-20'],
+['Banking','IBPS Clerk','Mains','2026-12-27'],
+['Banking','IBPS RRB Office Assistant','Mains','2027-01-30'],
+['SSC','SSC CPO (Sub-Inspector)','Exam, Oct to Nov 2026 (tentative)','2026-11-30',1],
+['SSC','SSC GD Constable 2027','Exam, Jan to Mar 2027 (tentative)','2027-01-31',1],
+['Tamil Nadu','TNPSC Combined Technical Services (interview posts)','Exam, per planner','2026-11-14'],
+['Tamil Nadu','TNPSC Group 4','Exam, per planner','2026-12-20']
+];
+var ncat='All',nchipNames=['All','UPSC','Banking','SSC','Tamil Nadu'];
+function drawN(){var hide=$('nhide').checked;var rows=N.filter(function(r){return(ncat==='All'||r[0]===ncat)&&(!hide||r[4]||diff(r[3])>=0)}).sort(function(a,b){return dnum(a[3])-dnum(b[3])});
+$('ntable').innerHTML=rows.length?rows.map(function(r){return '<tr><td><b>'+esc(r[0])+'</b>: '+esc(r[1])+'</td><td>'+esc(r[2])+'</td><td>'+(r[4]?'Tentative':fmt(r[3]))+'</td><td>'+(r[4]?'<span class="pill p-warn">Tentative</span>':pill(r[3]))+'</td></tr>'}).join(''):'<tr><td colspan="4" class="empty">No upcoming events in this group.</td></tr>'}
+chips($('nchips'),nchipNames,ncat,function(v){ncat=v;drawN()});$('nhide').addEventListener('change',drawN);drawN();
+
+/* generic list helper */
+function mk(key,ul,render,empty,act){var items=load(key,[]);if(!Array.isArray(items))items=[];
+function draw(){ul.innerHTML=items.length?render(items):'<li class="empty">'+empty+'</li>'}
+ul.addEventListener('click',function(e){var b=e.target.closest('button[data-del],button[data-act]');if(!b)return;
+if(b.hasAttribute('data-del'))items.splice(+b.getAttribute('data-del'),1);else if(act)act(items,+b.getAttribute('data-act'));save(key,items);draw();if(api.after)api.after()});
+ul.addEventListener('change',function(e){var s=e.target.closest('select[data-st]');if(!s)return;items[+s.getAttribute('data-st')].status=s.value;save(key,items);draw()});
+var api={items:items,draw:draw,push:function(o){items.unshift(o);save(key,items);draw();if(api.after)api.after()}};draw();return api}
+
+/* watchlist */
+var W=mk('desk-watch',$('wList'),function(it){return it.map(function(x,i){var l=safeUrl(x.link);return '<li><button type="button" data-del="'+i+'">Delete</button><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</strong><div class="meta">'+(x.d?fmt(x.d)+' '+pill(x.d):'No date')+'</div></li>'}).join('')},'Nothing on the watchlist yet. Add a notice you want to track.');
+$('addW').addEventListener('click',function(){var t=$('wTitle');if(!t.value.trim()){t.focus();return}W.push({t:t.value.trim(),d:$('wDate').value,link:$('wLink').value.trim()});t.value='';$('wDate').value='';$('wLink').value=''});
+var wk=load('desk-week',''),wkT=$('wkText');function drawWk(){wkT.textContent=wk?'Last weekly check: '+fmt(wk)+' ('+(diff(wk)===0?'today':-diff(wk)+' days ago')+')':'No weekly check recorded yet.'}
+$('wkDone').addEventListener('click',function(){wk=TODAY;save('desk-week',wk);drawWk()});drawWk();
+
+/* goal */
+var G=load('desk-goal',{e:'',d:'',h:6});$('gExam').value=G.e||'';$('gDate').value=G.d||'';$('gDaily').value=G.h||6;
+function drawG(){var h='';if(G.d){var n=diff(G.d);h=n>=0?'<div class="stat"><b>'+n+'</b><span>days to '+esc(G.e||'my exam')+'</span></div><div class="stat"><b>'+Math.floor(n/7)+'</b><span>full weeks left</span></div><div class="stat"><b>'+Math.round(n*(G.h||6))+'</b><span>study hours possible at my target</span></div>':'<div class="stat"><b>Done</b><span>That date has passed. Set the next goal.</span></div>'}else h='<div class="stat"><b>No date</b><span>Add an exam date to see the countdown.</span></div>';$('gStats').innerHTML=h}
+$('saveGoal').addEventListener('click',function(){G={e:$('gExam').value.trim(),d:$('gDate').value,h:+$('gDaily').value||6};save('desk-goal',G);drawG();drawH()});drawG();
+
+/* syllabus */
+var SETS={'UPSC':{'Prelims and CSAT':['GS Paper I and current affairs','Comprehension and reasoning','Numeracy and data interpretation','Previous year Prelims papers'],'GS 1':['Ancient and medieval history','Modern Indian history','Art and culture','Indian and world geography','Indian society'],'GS 2':['Constitution and polity','Governance and welfare schemes','Social justice','International relations'],'GS 3':['Indian economy','Agriculture','Infrastructure and urban development','Science and technology','Environment and ecology','Disaster management','Internal security'],'GS 4 and Essay':['Ethics, integrity and aptitude','Case studies','Essay practice'],'Optional and Interview':['Anthropology optional: Paper I','Anthropology optional: Paper II','Detailed application form','Mock interviews']},
+'SSC and Banking':{'Quantitative aptitude':['Number system and simplification','Percentage, ratio and profit and loss','Time, work, speed and distance','Algebra, geometry and mensuration','Data interpretation'],'Reasoning':['Verbal reasoning','Non-verbal reasoning','Puzzles and seating arrangement'],'English':['Grammar and error spotting','Vocabulary','Reading comprehension','Cloze test and para jumbles'],'Awareness':['Static general knowledge','Current affairs','Banking and financial awareness','Computer knowledge']},
+'TNPSC':{'Language':['Tamil eligibility test','Tamil literature and grammar'],'General Studies':['Tamil Nadu history and culture','Tamil Nadu administration and schemes','Indian polity and economy','Geography of Tamil Nadu and India','General science'],'Aptitude':['Mental ability and reasoning','Arithmetic aptitude','Previous year TNPSC papers']}};
+var sel=load('desk-sel','UPSC');if(!SETS[sel])sel='UPSC';var st=load('desk-syl',{});
+function allTopics(){var a=[];Object.keys(SETS).forEach(function(s){Object.keys(SETS[s]).forEach(function(g){SETS[s][g].forEach(function(t){a.push(s+'|'+t)})})});return a}
+function drawS(){var box=$('syl'),i=0,tot=0,done=0;box.innerHTML='';var S=SETS[sel];
+Object.keys(S).forEach(function(g){var c=document.createElement('div');c.className='card';var h='<h3>'+esc(g)+'</h3>';S[g].forEach(function(t){i++;tot++;var k=sel+'|'+t;if(st[k])done++;h+='<label class="chk" for="s'+i+'"><input type="checkbox" id="s'+i+'" data-k="'+esc(k)+'"'+(st[k]?' checked':'')+'><span>'+esc(t)+'</span></label>'});c.innerHTML=h;box.appendChild(c)});
+var p=Math.round(done/tot*100);$('pfill').style.width=p+'%';$('pbar').setAttribute('aria-valuenow',p);$('ptext').textContent=done+' of '+tot+' areas finished in '+sel+' ('+p+'%)'}
+chips($('schips'),Object.keys(SETS),sel,function(v){sel=v;save('desk-sel',sel);drawS()});
+$('syl').addEventListener('change',function(e){var k=e.target.getAttribute('data-k');if(!k)return;st[k]=e.target.checked;save('desk-syl',st);drawS()});drawS();
+
+/* study hours */
+$('hDate').value=TODAY;
+var H=mk('desk-hours',$('hList'),function(it){return it.slice(0,8).map(function(x,i){return '<li><button type="button" data-del="'+i+'">Delete</button><strong>'+x.h+' h</strong> '+esc(x.s)+'<div class="meta">'+fmt(x.d)+'</div></li>'}).join('')},'No study time logged yet.');
+function drawH(){var by={};H.items.forEach(function(x){by[x.d]=(by[x.d]||0)+x.h});var tgt=G.h||6,wkT=0,all=0,days=[],mx=tgt,i,d;
+for(i=6;i>=0;i--){d=new Date(NOW);d.setDate(d.getDate()-i);var k=iso(d),v=by[k]||0;wkT+=v;if(v>mx)mx=v;days.push({v:v,l:d.toLocaleDateString('en-IN',{weekday:'short'})})}
+Object.keys(by).forEach(function(k){all+=by[k]});var s=0,c=new Date(NOW);if(!by[iso(c)])c.setDate(c.getDate()-1);while(by[iso(c)]>0){s++;c.setDate(c.getDate()-1)}
+$('hStats').innerHTML='<div class="stat"><b>'+(by[TODAY]||0)+'</b><span>hours today (target '+tgt+')</span></div><div class="stat"><b>'+wkT+'</b><span>hours in the last 7 days</span></div><div class="stat"><b>'+all+'</b><span>hours in total</span></div><div class="stat"><b>'+s+'</b><span>day streak</span></div>';
+$('hChart').innerHTML=days.map(function(x){return '<div><span>'+x.v+'</span><i style="height:'+Math.round(x.v/mx*100)+'%"></i><span>'+x.l+'</span></div>'}).join('')}
+H.after=drawH;drawH();
+$('addH').addEventListener('click',function(){var h=+$('hHours').value;if(!(h>0)||h>16||!$('hDate').value)return alert('Enter a date and study time between 0.5 and 16 hours.');H.push({d:$('hDate').value||TODAY,h:h,s:$('hSubj').value});H.items.sort(function(a,b){return a.d<b.d?1:-1});save('desk-hours',H.items);H.draw()});
+
+/* mock tests */
+var M=mk('desk-mocks',$('mList'),function(it){return it.map(function(x,i){return '<li><button type="button" data-del="'+i+'">Delete</button><strong>'+esc(x.n)+'</strong>: '+x.s+' out of '+x.m+' ('+x.p+'%)<div class="meta">'+fmt(x.d)+'</div></li>'}).join('')},'No mock tests recorded yet.');
+function drawM(){var it=M.items;if(!it.length){$('mStats').innerHTML='<div class="stat"><b>0</b><span>tests taken</span></div>';$('mChart').innerHTML='';return}
+var sum=0,best=0;it.forEach(function(x){sum+=x.p;if(x.p>best)best=x.p});var last=it.slice(0,6).reverse();
+$('mStats').innerHTML='<div class="stat"><b>'+it.length+'</b><span>tests taken</span></div><div class="stat"><b>'+Math.round(sum/it.length)+'%</b><span>average score</span></div><div class="stat"><b>'+best+'%</b><span>best score</span></div><div class="stat"><b>'+it[0].p+'%</b><span>latest score</span></div>';
+$('mChart').innerHTML=last.map(function(x){return '<div><span>'+x.p+'%</span><i style="height:'+Math.max(2,Math.min(100,x.p))+'%"></i><span>'+esc(x.n.slice(0,8))+'</span></div>'}).join('')}
+M.after=drawM;drawM();
+$('addM').addEventListener('click',function(){var n=$('mName'),s=+$('mScore').value,m=+$('mMax').value;if(!n.value.trim()||!(m>0)||$('mScore').value===''||s<0||s>m){n.focus();return alert('Enter a test name and a score between 0 and the maximum marks.')}M.push({n:n.value.trim(),s:s,m:m,p:Math.round(s/m*100),d:TODAY});n.value='';$('mScore').value=''});
+
+/* revision planner */
+var GAPS=[1,3,7,21,45];
+var R=mk('desk-rev',$('rList'),function(it){var o=it.map(function(x,i){return{x:x,i:i,due:x.n>=GAPS.length?null:addDays(x.l,GAPS[x.n])}});o.sort(function(a,b){return(a.due||'9999')<(b.due||'9999')?-1:1});
+return o.map(function(r){var s=r.due===null?'<span class="pill p-ok">Complete</span>':diff(r.due)<0?'<span class="pill p-bad">Overdue since '+fmt(r.due)+'</span>':diff(r.due)===0?'<span class="pill p-bad">Due today</span>':'<span class="pill p-ok">Next: '+fmt(r.due)+'</span>';
+return '<li><button type="button" data-del="'+r.i+'">Delete</button>'+(r.due!==null?'<button type="button" class="act" data-act="'+r.i+'">Mark revised</button>':'')+'<strong>'+esc(r.x.t)+'</strong><div class="meta">Revisions done: '+r.x.n+' of '+GAPS.length+'</div>'+s+'</li>'}).join('')},'No topics yet. Add what you studied today.',function(items,i){items[i].n++;items[i].l=TODAY});
+$('addR').addEventListener('click',function(){var t=$('rTopic');if(!t.value.trim()){t.focus();return}R.push({t:t.value.trim(),n:0,l:TODAY});t.value=''});
+
+/* exam directory */
+var D=[
+['Civil Services Examination (IAS, IPS, IFS and more)','UPSC','Graduate in any discipline','Prelims, Mains, Interview','General studies, CSAT, essay, optional subject','upsc'],
+['Indian Forest Service','UPSC','Graduate with subjects named in the notification','Same Prelims as the Civil Services, then its own Mains and interview','General studies and forestry-related subjects','upsc'],
+['Engineering Services Examination','Engineering and PSU','Engineering degree in civil, mechanical, electrical or electronics. Directly relevant to me.','Prelims, Mains, Interview','Engineering discipline, general studies, aptitude','upsc'],
+['Central Armed Police Forces (Assistant Commandants)','UPSC','Graduate','Written test, physical tests, interview','General ability, essay, comprehension','upsc'],
+['NDA and NA','Defence','Class 12, with age and other rules in the notification','Written test, SSB interview','Mathematics and general ability','upsc'],
+['Combined Defence Services','Defence','Graduate, as the notification states','Written test, SSB interview','English, general knowledge, elementary mathematics','upsc'],
+['SSC Combined Graduate Level','SSC','Graduate','Tier 1 and Tier 2 computer-based tests','Quantitative aptitude, reasoning, English, general awareness','ssc'],
+['SSC CHSL','SSC','Class 12','Tier 1 and Tier 2 tests, skill test for some posts','Quantitative aptitude, reasoning, English, general awareness','ssc'],
+['SSC MTS','SSC','Class 10','Computer-based test','Numerical, reasoning, English, general awareness','ssc'],
+['SSC Junior Engineer','SSC','Diploma or degree in civil, mechanical or electrical engineering, as the notification states. Relevant to me.','Paper 1 and Paper 2','Technical subject, general awareness, reasoning','ssc'],
+['SSC GD Constable','SSC','Class 10','Computer-based test, physical tests, medical','Reasoning, general knowledge, elementary mathematics, language','ssc'],
+['SSC CPO (Sub-Inspector)','SSC','Graduate','Paper 1, physical tests, Paper 2, medical','Reasoning, general awareness, quantitative aptitude, English','ssc'],
+['IBPS PO','Banking','Graduate','Prelims, Mains, Interview','Reasoning, quantitative aptitude, English, banking awareness','ibps'],
+['IBPS Clerk','Banking','Graduate','Prelims and Mains','Reasoning, quantitative aptitude, English, general and financial awareness','ibps'],
+['IBPS Specialist Officer','Banking','Degree in the specialist field of the post','Prelims, Mains, Interview','Professional knowledge, reasoning, English','ibps'],
+['IBPS RRB (Officers and Office Assistants)','Banking','Graduate','Officers: Prelims, Mains, Interview. Office Assistants: Prelims and Mains','Reasoning, quantitative aptitude, English or Hindi, computer knowledge','ibps'],
+['SBI PO and Clerk','Banking','Graduate','Prelims, Mains, Interview or language test','Reasoning, quantitative aptitude, English, banking awareness','sbi'],
+['RBI Grade B and Assistant','Banking','Graduate, with marks rules in the notification','Phase 1, Phase 2, Interview','Economic and social issues, finance, English, reasoning','rbi'],
+['RRB NTPC','Railways','Class 12 or graduate, depending on the post','Two computer-based tests, skill or typing test for some posts','Mathematics, reasoning, general awareness','rrb'],
+['RRB Junior Engineer','Railways','Engineering diploma or degree, as the notification states. Relevant to me.','Two computer-based tests, document check','Technical subject, mathematics, reasoning, general science','rrb'],
+['RRB Group D','Railways','Class 10 or ITI','Computer-based test, physical test','Mathematics, reasoning, general science, general awareness','rrb'],
+['TNPSC Group 1','Tamil Nadu and Puducherry','Graduate','Prelims, Mains, Interview','General studies, Tamil Nadu history and administration, aptitude','tnpsc'],
+['TNPSC Group 2 and 2A','Tamil Nadu and Puducherry','Graduate','Prelims, plus Mains for Group 2 interview posts','General studies, Tamil eligibility, aptitude','tnpsc'],
+['TNPSC Group 4','Tamil Nadu and Puducherry','Class 10','Written test','Tamil eligibility, general studies, aptitude','tnpsc'],
+['TNPSC Combined Technical Services','Tamil Nadu and Puducherry','Engineering or technical qualification for the post. Relevant to me.','Written test, interview for some posts','Technical subject and general studies','tnpsc'],
+['Puducherry government recruitment','Tamil Nadu and Puducherry','As each department notification states','Varies by post','Check each department notice','py'],
+['GATE and PSU recruitment','Engineering and PSU','Engineering degree. Relevant to me.','GATE score, then PSU test or interview','Technical subject and aptitude. Use the organising IIT’s official GATE site.',''],
+['UGC NET','Teaching and research','Postgraduate degree','Computer-based test','Teaching aptitude and subject paper','nta'],
+['Other State Public Service Commissions','Teaching and research','Mostly graduate','Prelims, Mains, Interview','State history and administration plus general studies','']
+];
+var dcat='All',dq='';var dnames=['All'];D.forEach(function(r){if(dnames.indexOf(r[1])<0)dnames.push(r[1])});
+function drawD(){var q=dq.toLowerCase(),c=0;var h=D.filter(function(r){return(dcat==='All'||r[1]===dcat)&&(!q||r.join(' ').toLowerCase().indexOf(q)>=0)}).map(function(r){c++;return '<div class="card key"><h3>'+esc(r[0])+'</h3><p><span class="tag">'+esc(r[1])+'</span></p><p><b>Who can apply:</b> '+esc(r[2])+'</p><p><b>Stages:</b> '+esc(r[3])+'</p><p><b>Subjects:</b> '+esc(r[4])+'</p>'+(r[5]?'<p><a class="tag" href="'+SITES[r[5]][1]+'" target="_blank" rel="noopener">Official site: '+SITES[r[5]][0]+'</a></p>':'')+'</div>'}).join('');
+$('dgrid').innerHTML=h||'<p class="empty">No exams match. Try a different word.</p>';$('dcount').textContent=c+' exams shown'}
+chips($('dchips'),dnames,dcat,function(v){dcat=v;drawD()});$('dsearch').addEventListener('input',function(){dq=this.value.trim();drawD()});drawD();
+
+/* state notifications */
+var STS=[['Andhra Pradesh','Andhra Pradesh PSC (APPSC)','psc.ap.gov.in'],['Arunachal Pradesh','Arunachal Pradesh PSC','appsc.gov.in'],['Assam','Assam PSC (APSC)','apsc.nic.in'],['Bihar','Bihar PSC (BPSC)','bpsc.bih.nic.in'],['Chhattisgarh','Chhattisgarh PSC (CGPSC)','psc.cg.gov.in'],['Goa','Goa PSC','gpsc.goa.gov.in'],['Gujarat','Gujarat PSC (GPSC)','gpsc.gujarat.gov.in'],['Haryana','Haryana PSC (HPSC)','hpsc.gov.in'],['Himachal Pradesh','Himachal Pradesh PSC (HPPSC)','hppsc.hp.gov.in'],['Jharkhand','Jharkhand PSC (JPSC)','jpsc.gov.in'],['Karnataka','Karnataka PSC (KPSC)','kpsc.kar.nic.in'],['Kerala','Kerala PSC','keralapsc.gov.in'],['Madhya Pradesh','Madhya Pradesh PSC (MPPSC)','mppsc.mp.gov.in'],['Maharashtra','Maharashtra PSC (MPSC)','mpsc.gov.in'],['Manipur','Manipur PSC','mpscmanipur.gov.in'],['Meghalaya','Meghalaya PSC','mpsc.nic.in'],['Mizoram','Mizoram PSC','mpsc.mizoram.gov.in'],['Nagaland','Nagaland PSC (NPSC)','npsc.nagaland.gov.in'],['Odisha','Odisha PSC (OPSC)','opsc.gov.in'],['Punjab','Punjab PSC (PPSC)','ppsc.gov.in'],['Rajasthan','Rajasthan PSC (RPSC)','rpsc.rajasthan.gov.in'],['Sikkim','Sikkim PSC (SPSC)','spscskm.gov.in'],['Tamil Nadu','Tamil Nadu PSC (TNPSC)','tnpsc.gov.in'],['Telangana','Telangana PSC','tspsc.gov.in'],['Tripura','Tripura PSC (TPSC)','tpsc.tripura.gov.in'],['Uttar Pradesh','Uttar Pradesh PSC (UPPSC)','uppsc.up.nic.in'],['Uttarakhand','Uttarakhand PSC (UKPSC)','ukpsc.gov.in'],['West Bengal','West Bengal PSC (WBPSC)','wbpsc.gov.in'],['Puducherry (UT)','Government of Puducherry recruitment','www.py.gov.in'],['Delhi (UT)','Delhi Subordinate Services Selection Board','dsssb.delhi.gov.in'],['Jammu and Kashmir (UT)','JKPSC and JKSSB','jkpsc.nic.in']];
+var stc=load('desk-states',{}),stf='All',stq='';
+function stFresh(n){var d=stc[n];return !!d&&diff(d)>-7}
+function drawSt(){var n=0;STS.forEach(function(r){if(stFresh(r[0]))n++});var p=Math.round(n/STS.length*100);$('stfill').style.width=p+'%';$('stbar').setAttribute('aria-valuenow',p);$('sttext').textContent=n+' of '+STS.length+' states and territories checked in the last 7 days';
+var q=stq.toLowerCase();var h=STS.filter(function(r){return(stf==='All'||!stFresh(r[0]))&&(!q||(r[0]+' '+r[1]).toLowerCase().indexOf(q)>=0)}).map(function(r){var d=stc[r[0]],f=stFresh(r[0]);return '<div class="card key"><h3>'+esc(r[0])+'</h3><p>'+esc(r[1])+'</p><p><a class="tag" href="https://'+esc(r[2])+'" target="_blank" rel="noopener">'+esc(r[2])+'</a></p><p class="meta">'+(d?'Last checked '+fmt(d):'Not checked yet')+' '+(f?'<span class="pill p-ok">Up to date</span>':'<span class="pill p-warn">Check now</span>')+'</p><p><button type="button" class="chip" data-state="'+esc(r[0])+'">Mark checked today</button></p></div>'}).join('');
+$('stgrid').innerHTML=h||'<p class="empty">Nothing to show. Every state in this view is up to date.</p>'}
+chips($('stchips'),['All','Not checked this week'],stf==='All'?'All':'Not checked this week',function(v){stf=v==='All'?'All':'due';drawSt()});
+$('stsearch').addEventListener('input',function(){stq=this.value.trim();drawSt()});
+$('stgrid').addEventListener('click',function(e){var b=e.target.closest('button[data-state]');if(!b)return;stc[b.getAttribute('data-state')]=TODAY;save('desk-states',stc);drawSt()});
+drawSt();
+
+/* library */
+var L=[
+['UPSC','Polity and governance','NCERT civics and political science, Class 9 to 12. Indian Polity by M. Laxmikanth. PRS India. Second ARC reports.'],
+['UPSC','Modern history','NCERT Class 8 and 12. A standard modern history book such as Spectrum.'],
+['UPSC','Ancient, medieval and culture','NCERT history, Class 6 to 12. Indian Art and Culture by Nitin Singhania.'],
+['UPSC','Geography','NCERT Class 6 to 12. Certificate Physical and Human Geography by G. C. Leong. A good atlas.'],
+['UPSC','Economy','NCERT economics. Indian Economy by Ramesh Singh. Economic Survey and Union Budget documents.'],
+['UPSC','Environment and ecology','NCERT biology ecology chapters. Environment by Shankar IAS Academy. Ministry of Environment website.'],
+['UPSC','Science and technology','NCERT science, Class 6 to 10. Science pages of the newspaper. ISRO and DST websites.'],
+['UPSC','Internal security and disasters','Challenges to Internal Security by Ashok Kumar and Vipul Singh. NDMA website.'],
+['UPSC','Ethics','Second ARC ethics report. Case studies. Past GS 4 papers.'],
+['UPSC','International relations','Ministry of External Affairs website. Newspaper editorials.'],
+['UPSC','Current affairs','The Hindu or The Indian Express, PIB releases, Yojana and Kurukshetra, monthly revision.'],
+['UPSC','CSAT','NCERT mathematics, Class 6 to 10. Past CSAT papers. Daily comprehension passages.'],
+['UPSC','Essay','Past essay topics. One essay a week, reviewed by a mentor.'],
+['UPSC','Optional: Civil Engineering','Standard undergraduate civil engineering textbooks, mapped to the optional syllabus on upsc.gov.in.'],
+['SSC, banking, railways','Quantitative aptitude','NCERT mathematics, Class 6 to 10. Topic-wise practice. Past papers.'],
+['SSC, banking, railways','Reasoning','Verbal and non-verbal practice sets. Past papers.'],
+['SSC, banking, railways','English','Wren and Martin grammar. Daily newspaper reading. A weekly vocabulary list.'],
+['SSC, banking, railways','General awareness','Lucent’s General Knowledge. Monthly current affairs. NCERT for static topics.'],
+['SSC, banking, railways','Banking awareness','RBI and SEBI websites. Monetary policy basics. Financial news.'],
+['SSC, banking, railways','Computer knowledge','Basics of computers and networks. Typing practice for skill tests.'],
+['Engineering exams','Technical subject (SSC JE, RRB JE, ESE, GATE)','Standard civil engineering textbooks, previous year technical papers, and IS code basics.'],
+['Tamil Nadu exams','Tamil eligibility','Tamil Nadu State Board Tamil textbooks, Class 6 to 10.'],
+['Tamil Nadu exams','Tamil Nadu history, culture and administration','Tamil Nadu State Board history textbooks, Class 6 to 12. The TNPSC syllabus.'],
+['Tamil Nadu exams','Aptitude and mental ability','Past TNPSC papers and arithmetic practice.']];
+$('ltable').innerHTML=L.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td><b>'+esc(r[1])+'</b></td><td>'+esc(r[2])+'</td></tr>'}).join('');
+var P=[['UPSC','https://upsc.gov.in','Notifications, syllabus, past papers'],['NCERT','https://ncert.nic.in','Free textbooks'],['PIB','https://pib.gov.in','Government press releases'],['PRS India','https://prsindia.org','Bills, laws and parliament data'],['SWAYAM','https://swayam.gov.in','Free online courses'],['NPTEL','https://nptel.ac.in','Free engineering courses'],['Union Budget','https://www.indiabudget.gov.in','Budget documents and Economic Survey'],['NITI Aayog','https://www.niti.gov.in','Policy reports'],['Ministry of External Affairs','https://www.mea.gov.in','International relations'],['Election Commission','https://eci.gov.in','Elections and electoral law'],['Employment News','https://employmentnews.gov.in','Weekly government job notices'],['National Career Service','https://www.ncs.gov.in','Jobs and career resources']];
+$('portals').innerHTML=P.map(function(p){return '<div class="card"><h3><a href="'+p[1]+'" target="_blank" rel="noopener">'+esc(p[0])+'</a></h3><p>'+esc(p[2])+'</p></div>'}).join('');
+
+/* A to Z */
+var AZ={A:'Agriculture, Art and culture, Article 21, AMRUT, Atmanirbhar Bharat',B:'Budget, Banking, Biodiversity, Bhakti and Sufi movements',C:'Constitution, Climate change, CSAT, Cooperative federalism, Census',D:'Disaster management, Directive Principles, Demography, Delimitation',E:'Economy, Ethics, Environment laws, Elections, Energy security',F:'Federalism, Fiscal policy, Fundamental Rights, Foreign policy, FDI',G:'Governance, GST, Geography, Globalisation, Green hydrogen',H:'Health policy, Human rights, Himalayas, Housing for all',I:'Inflation, International relations, Indian Ocean, Infrastructure, ISRO',J:'Judiciary, Judicial review, Jal Jeevan Mission, Jainism and Buddhism',K:'Kharif and Rabi seasons, Kautilya’s Arthashastra, Kyoto and Paris agreements',L:'Legislature, Land reforms, Labour codes, Linguistic states',M:'Monetary policy, Mughal and Maratha history, Monsoon, Mains answer writing',N:'NITI Aayog, NEP 2020, National security, Non-Alignment, NGOs',O:'Oceans, OBC and reservation, Optional subject, Open market operations',P:'Parliament, Panchayati Raj, PIL, Poverty and welfare schemes, PMAY',Q:'Quad grouping, Quantum technology, Quasi-judicial bodies',R:'RBI, Rivers, Renewable energy, Right to Information, RERA',S:'Social justice, Space technology, States reorganisation, Soils, SDGs',T:'Technology, Trade and WTO, Tribes, Treaties, Tamil Nadu history',U:'Urbanisation, United Nations, Union Budget, UPSC syllabus, UCC debate',V:'Vedic age, Vulnerable sections, Viksit Bharat goals, Vegetation',W:'Water resources, Women empowerment, WTO, Wildlife protection, Wetlands',X:'Xerophytic vegetation and desertification, X-ray and imaging technology',Y:'Yojana magazine, Youth policy, Yoga and AYUSH, Yamuna and river pollution',Z:'Zonal councils, Zero-based budgeting, Zoological Survey of India, Zero Hunger (SDG 2)'};
+$('azgrid').innerHTML=Object.keys(AZ).map(function(k){return '<div><b>'+k+'</b>'+esc(AZ[k])+'</div>'}).join('');
+
+/* practice */
+var logs=mk('desk-log',$('logs'),function(it){return it.map(function(x,i){return '<li><button type="button" data-del="'+i+'">Delete</button><div class="meta">'+esc(x.subj)+', '+fmt(x.date)+'</div><strong>'+esc(x.topic)+'</strong><div>'+esc(x.note)+'</div></li>'}).join('')},'No entries yet. Add your first topic above.');
+$('addlog').addEventListener('click',function(){var t=$('topic');if(!t.value.trim()){t.focus();return}logs.push({subj:$('subj').value,topic:t.value.trim(),note:$('note').value.trim(),date:TODAY});t.value='';$('note').value=''});
+function words(s){var m=s.trim().match(/\S+/g);return m?m.length:0}
+var answers=mk('desk-ans',$('answers'),function(it){return it.map(function(x,i){return '<li><button type="button" data-del="'+i+'">Delete</button><div class="meta">'+fmt(x.date)+', '+x.words+' words, waiting for review</div><strong>'+esc(x.q)+'</strong><div>'+esc(x.a)+'</div></li>'}).join('')},'No answers saved yet.');
+$('ans').addEventListener('input',function(){$('wc').textContent=words(this.value)+' words'});
+$('addans').addEventListener('click',function(){var a=$('ans');if(!a.value.trim()){a.focus();return}answers.push({q:$('q').value.trim()||'Untitled question',a:a.value.trim(),words:words(a.value),date:TODAY});a.value='';$('q').value='';$('wc').textContent='0 words'});
+
+/* mentors */
+var ST=['To contact','Messaged','In conversation','Mentor'];
+var net=mk('desk-net',$('net'),function(it){return it.map(function(x,i){var o=ST.map(function(s){return '<option'+(s===x.status?' selected':'')+'>'+s+'</option>'}).join('');return '<li><button type="button" data-del="'+i+'">Delete</button><strong>'+esc(x.name)+'</strong><div class="meta">'+esc(x.role)+'</div><div>'+esc(x.why)+'</div><select data-st="'+i+'" aria-label="Status">'+o+'</select></li>'}).join('')},'No one added yet. Start with three people you admire.');
+$('addnet').addEventListener('click',function(){var n=$('nname');if(!n.value.trim()){n.focus();return}net.push({name:n.value.trim(),role:$('nrole').value.trim(),why:$('nnote').value.trim(),status:'To contact'});n.value='';$('nrole').value='';$('nnote').value=''});
+var CTX={'serving or retired officer':'I am preparing for the Civil Services Examination and admire your work in public service.','recent ranker':'I am a civil engineering graduate preparing for the Civil Services Examination, and your recent success motivated me.','engineer-turned-officer':'I am a civil engineer preparing for the Civil Services Examination, and your move from engineering into the services is the path I hope to follow.','subject expert':'I am preparing for the Civil Services Examination and have been following your work in this subject.','interview panelist':'I am preparing for the Civil Services Examination and hope to practise for the interview stage.','fellow aspirant':'I am also preparing for government exams and would like to study together.'};
+$('build').addEventListener('click',function(){var t=$('mtype').value,n=$('mname2').value.trim()||'there',q=$('mask').value.trim()||'[my question]';
+$('msg').textContent='Hello '+n+',\n\nMy name is Anbuchelvan M S, a B.Tech Civil Engineering graduate from Puducherry Technological University. '+CTX[t]+' I have worked on housing, drainage, heritage and metro projects, and I am now studying to move into public service.\n\nMay I ask one question: '+q+'?\n\nEven a short reply would help me a great deal. I keep my progress at The Aspirant’s Desk and am happy to share it.\n\nThank you for your time,\nAnbuchelvan M S'});
+$('copy').addEventListener('click',function(){var b=this,t=$('msg').textContent;try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied'},function(){b.textContent='Select and copy manually'})}catch(e){b.textContent='Select and copy manually'}setTimeout(function(){b.textContent='Copy message'},2000)});
+
+/* state-wise updates and admin */
+var ST_LIST=[['Andhra Pradesh','APPSC','https://psc.ap.gov.in'],['Arunachal Pradesh','Arunachal Pradesh PSC',''],['Assam','APSC','https://apsc.nic.in'],['Bihar','BPSC','https://bpsc.bihar.gov.in'],['Chhattisgarh','CGPSC','https://psc.cg.gov.in'],['Goa','Goa PSC',''],['Gujarat','GPSC','https://gpsc.gujarat.gov.in'],['Haryana','HPSC','https://hpsc.gov.in'],['Himachal Pradesh','HPPSC','https://hppsc.hp.gov.in'],['Jharkhand','JPSC','https://www.jpsc.gov.in'],['Karnataka','KPSC','https://kpsc.kar.nic.in'],['Kerala','Kerala PSC','https://www.keralapsc.gov.in'],['Madhya Pradesh','MPPSC','https://mppsc.mp.gov.in'],['Maharashtra','MPSC','https://mpsc.gov.in'],['Manipur','Manipur PSC',''],['Meghalaya','Meghalaya PSC',''],['Mizoram','Mizoram PSC',''],['Nagaland','Nagaland PSC',''],['Odisha','OPSC','https://www.opsc.gov.in'],['Punjab','PPSC','https://ppsc.gov.in'],['Rajasthan','RPSC','https://rpsc.rajasthan.gov.in'],['Sikkim','Sikkim PSC',''],['Tamil Nadu','TNPSC','https://www.tnpsc.gov.in'],['Telangana','TGPSC',''],['Tripura','TPSC','https://tpsc.tripura.gov.in'],['Uttar Pradesh','UPPSC','https://uppsc.up.nic.in'],['Uttarakhand','UKPSC','https://psc.uk.gov.in'],['West Bengal','WBPSC','https://wbpsc.gov.in'],
+['Andaman and Nicobar Islands','Andaman and Nicobar recruitment',''],['Chandigarh','Chandigarh recruitment',''],['Dadra and Nagar Haveli and Daman and Diu','UT administration recruitment',''],['Delhi','DSSSB (subordinate services)','https://dsssb.delhi.gov.in'],['Jammu and Kashmir','JKPSC','https://jkpsc.nic.in'],['Ladakh','Ladakh recruitment',''],['Lakshadweep','Lakshadweep recruitment',''],['Puducherry','Puducherry government departments','https://www.py.gov.in']];
+var UCATS=['Recruitment notification','Last date reminder','Exam date','Admit card','Answer key','Result','Syllabus or pattern change','Correction or extension','Other'];
+function optsOf(list){return list.map(function(x){return '<option>'+esc(x)+'</option>'}).join('')}
+var stNames=ST_LIST.map(function(r){return r[0]});
+$('ustate').innerHTML='<option value="">All states and territories</option>'+optsOf(stNames);
+$('ucat').innerHTML='<option value="">All types</option>'+optsOf(UCATS);
+var savedSt=load('desk-ustate','');if(stNames.indexOf(savedSt)>=0)$('ustate').value=savedSt;
+$('stable').innerHTML=ST_LIST.map(function(r){var u=r[2]||('https://www.google.com/search?q='+encodeURIComponent(r[1]+' '+r[0]+' official website'));return '<tr><td><b>'+esc(r[0])+'</b></td><td>'+esc(r[1])+'</td><td><a class="tag" href="'+u+'" target="_blank" rel="noopener">'+(r[2]?'Official site':'Find official site')+'</a></td></tr>'}).join('');
+
+var LIVE=[],liveState='wait',isOwner=false;
+function drawLive(){var s=$('ustate').value,c=$('ucat').value,q=$('uq').value.trim().toLowerCase();
+var rows=LIVE.filter(function(x){return(!s||x.state===s||x.state==='All India')&&(!c||x.cat===c)&&(!q||((x.title||'')+' '+(x.note||'')).toLowerCase().indexOf(q)>=0)});
+var msg={wait:'Connecting to live notifications…',none:'Live notifications are not connected yet. Official commission links remain available below.',error:'Live notifications could not be refreshed. Please retry later.',ok:LIVE.length+' live updates posted. Showing '+rows.length+'.'}[liveState];
+$('ustatus').textContent=msg;
+$('ulist').innerHTML=rows.length?rows.map(function(x){var l=safeUrl(x.link||'');var posted=(x.posted||'').slice(0,10);
+return '<li><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.title)+'</a>':esc(x.title))+'</strong><div class="meta">'+esc(x.state)+', '+esc(x.cat)+(posted?', posted '+fmt(posted):'')+'</div>'+(x.d?'<div class="meta">Key date: '+fmt(x.d)+' '+pill(x.d)+'</div>':'')+(x.note?'<div>'+esc(x.note)+'</div>':'')+'</li>'}).join(''):'<li class="empty">'+(liveState==='ok'?'No updates match yet. Check back soon or open the commission site below.':'Nothing to show yet.')+'</li>'}
+['ustate','ucat'].forEach(function(i){$(i).addEventListener('change',function(){if(i==='ustate')save('desk-ustate',this.value);drawLive()})});$('uq').addEventListener('input',drawLive);drawLive();
+
+/* notes, daily press, progress sync */
+var NOTES={
+'Polity':[['Preamble and basic structure','The Preamble calls India a sovereign, socialist, secular, democratic republic. Socialist and secular came with the 42nd Amendment (1976). Kesavananda Bharati (1973) set the basic structure doctrine: Parliament can amend the Constitution under Article 368 but cannot destroy its basic features, such as judicial review, federalism and free elections.'],['Fundamental Rights, Articles 12 to 35','Equality (14 to 18), freedom (19 to 22), against exploitation (23 and 24), religion (25 to 28), cultural and educational rights (29 and 30), constitutional remedies (32). Property is no longer a fundamental right; it is Article 300A. Article 21 now covers privacy (Puttaswamy, 2017) and Article 21A gives education to ages 6 to 14.'],['Parliament and money bills','A money bill (Article 110) starts only in the Lok Sabha, and the Rajya Sabha can only recommend changes within 14 days. Amendments need a special majority, and some need ratification by half the states. The Tenth Schedule (anti-defection) disqualifies members who defect, with the Speaker or Chairman deciding.']],
+'Modern history':[['1857 and Crown rule','The Revolt of 1857 led to the Government of India Act 1858, which ended Company rule and brought the Crown in with a Viceroy. Doctrine of Lapse, land revenue pressure and the greased cartridge rumour were among the causes.'],['Gandhian phase','Champaran (1917), Non-Cooperation (1920 to 22, ended after Chauri Chaura), Civil Disobedience and Dandi March (1930), Quit India (1942). Know the cause, leaders, methods and outcome of each.'],['Constitutional reforms','Morley-Minto 1909 gave separate electorates. Montagu-Chelmsford 1919 introduced dyarchy in provinces. Government of India Act 1935 gave provincial autonomy and proposed a federation. The Cabinet Mission (1946) proposed a three-tier union.']],
+'Geography':[['Indian monsoon','Caused by differential heating of land and sea, the shift of the ITCZ, heating of the Tibetan plateau and the jet streams. Onset over Kerala is around 1 June. El Nino usually weakens it and a positive Indian Ocean Dipole supports it.'],['Rivers','Himalayan rivers are perennial and form large deltas. Peninsular rivers are seasonal and rain-fed. The Narmada and Tapti flow west through rift valleys into the Arabian Sea. Know river basins, major dams and interstate disputes.'],['Soils and agriculture','Black (regur) soil suits cotton. Alluvial soil is the most widespread and fertile. Kharif crops are sown with the monsoon and rabi in winter. Link soils to cropping patterns and MSP.']],
+'Economy':[['Inflation and RBI','India follows flexible inflation targeting: 4 percent CPI with a band of plus or minus 2 percent, and a six-member Monetary Policy Committee sets the repo rate. Higher repo rate makes borrowing costlier and cools demand.'],['Budget and deficits','Fiscal deficit is total expenditure minus total receipts excluding borrowings. Revenue deficit is revenue expenditure minus revenue receipts. The FRBM Act 2003 sets deficit targets.'],['GST','Introduced by the 101st Amendment (2016). Dual structure: CGST, SGST and IGST. The GST Council under Article 279A decides rates. Petroleum and alcohol for human consumption are largely outside it.']],
+'Environment':[['Biodiversity','India has four hotspots: Himalaya, Indo-Burma, Western Ghats and Sri Lanka, and Sundaland (Nicobar Islands). Protected areas include national parks, sanctuaries and biosphere reserves under the Wildlife Protection Act 1972. Project Tiger began in 1973.'],['Climate agreements','UNFCCC (1992), Kyoto Protocol, Paris Agreement (2015) with a goal of well below 2 degrees C and efforts for 1.5. Each country submits NDCs. India announced net zero by 2070 at COP26 (2021).']],
+'Science and technology':[['Space','ISRO: Chandrayaan-3 landed near the lunar south pole on 23 August 2023, Aditya-L1 studies the Sun, Gaganyaan is the human spaceflight programme. Know launch vehicles (PSLV, GSLV) and the purpose of each mission.'],['Biotechnology','CRISPR-Cas9 edits genes precisely. mRNA vaccines teach cells to make a harmless antigen. Know GM crops, biosafety rules and bioethics questions.']],
+'Ethics':[['Core ideas','Ethics, integrity, probity and empathy. Public service values include the Nolan principles: selflessness, integrity, objectivity, accountability, openness, honesty and leadership. Emotional intelligence includes self-awareness, self-regulation, motivation, empathy and social skill.'],['Case study method','List the stakeholders, state the dilemma, give two or three options with their consequences, choose one and justify it with law, values and the public interest, then say how you would prevent a repeat.']]};
+var PAP=['GS 1','GS 2','GS 3','GS 4','Prelims','Essay'];
+var KEYS=['desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net','desk-watch','desk-week','desk-sel','desk-ustate'];
+var NDB=null,ME=null,ISOWN=false,syncT=0,dataSyncT=0,nSub='Polity',DBN=[],DBP=[],USER=null,adminRows=[],rtStarted=false;
+function allLocalData(){var o={};KEYS.forEach(function(k){var v=localStorage.getItem(k);if(v!==null){try{o[k]=JSON.parse(v)}catch(e){}}});return o}
+function applyCloudData(o){KEYS.forEach(function(k){if(Object.prototype.hasOwnProperty.call(o||{},k)){try{localStorage.setItem(k,JSON.stringify(o[k]))}catch(e){}}})}
+function onSave(k){if(KEYS.indexOf(k)<0)return;try{localStorage.setItem('desk_cloud_dirty','1')}catch(e){};if(NDB&&ME){clearTimeout(dataSyncT);dataSyncT=setTimeout(syncPersonalData,900);clearTimeout(syncT);syncT=setTimeout(sync,1400)}}
+function summary(){var syl=load('desk-syl',{}),ks=Object.keys(syl).filter(function(k){return syl[k]}),hs=load('desk-hours',[]),ms=load('desk-mocks',[]),t=0,w=0,a=0,cut=addDays(TODAY,-6);
+hs.forEach(function(x){t+=Number(x.h)||0;if(x.d>=cut)w+=Number(x.h)||0});ms.forEach(function(x){a+=Number(x.p)||0});
+return{syl:ks.length,n:allTopics().length,hours:Math.round(t*10)/10,wk:Math.round(w*10)/10,mocks:ms.length,avg:ms.length?Math.round(a/ms.length):0,logs:load('desk-log',[]).length,upd:new Date().toISOString()}}
+function drawMy(){var s=summary();$('mySum').innerHTML='<div class="stat"><b>'+Math.round(s.syl/Math.max(1,s.n)*100)+'%</b><span>syllabus done</span></div><div class="stat"><b>'+s.hours+'</b><span>hours total</span></div><div class="stat"><b>'+s.wk+'</b><span>hours, last 7 days</span></div><div class="stat"><b>'+s.avg+'%</b><span>mock average</span></div>'}
+async function sync(){if(!NDB||!ME)return;var s=summary();var r=await NDB.from('progress').upsert({user_id:ME,summary:s,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(r.error)throw r.error;drawMy()}
+async function syncPersonalData(){if(!NDB||!ME)return;var r=await NDB.from('user_data').upsert({user_id:ME,payload:allLocalData(),updated_at:new Date().toISOString()},{onConflict:'user_id'});if(r.error){$('authStatus').textContent='Signed in, but private data sync failed: '+r.error.message;return}localStorage.removeItem('desk_cloud_dirty');$('authStatus').textContent='Account connected. Your private study data is synced.'}
+function ncard(t,b,id){return '<div class="card key"><h3>'+esc(t)+'</h3><p style="white-space:pre-wrap;color:var(--ink)">'+esc(b)+'</p>'+(id&&ISOWN?'<button type="button" class="chip" data-nid="'+esc(id)+'">Delete</button>':'')+'</div>'}
+function drawNotes(){var names=Object.keys(NOTES);DBN.forEach(function(x){if(names.indexOf(x.s)<0)names.push(x.s)});if(names.indexOf(nSub)<0)nSub=names[0];
+chips($('nsub'),names,nSub,function(v){nSub=v;drawNotes()});
+$('ngrid').innerHTML=(NOTES[nSub]||[]).map(function(n){return ncard(n[0],n[1])}).join('')+DBN.filter(function(x){return x.s===nSub}).map(function(x){return ncard(x.t,x.b,x.id)}).join('')}
+$('pF').innerHTML='<option value="">All papers</option>'+optsOf(PAP);$('pdP').innerHTML=optsOf(PAP);$('pdD').value=TODAY;
+function drawPress(){var f=$('pF').value,q=$('pS').value.trim().toLowerCase();var r=DBP.filter(function(x){return x.k!=='pib'&&(!f||x.p===f)&&(!q||((x.t||'')+' '+(x.w||'')+' '+(x.e||'')).toLowerCase().indexOf(q)>=0)});
+$('pStat').textContent=NDB?r.length+' press notes shown.':'Connect an account to load the shared press library.';
+$('plist').innerHTML=r.length?r.map(function(x){var l=safeUrl(x.l||'');return '<li><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</strong><div class="meta">'+esc(x.p)+(x.s?', '+esc(x.s):'')+(x.d?', '+fmt(x.d):'')+'</div><p style="white-space:pre-wrap;margin:.4rem 0 0"><b>What happened:</b> '+esc(x.w)+'\n<b>Explanation:</b> '+esc(x.e)+'\n<b>UPSC angle:</b> '+esc(x.u)+'</p>'+(ISOWN?'<button type="button" data-pid="'+esc(x.id)+'">Delete</button>':'')+'</li>'}).join(''):'<li class="empty">No press notes published yet.</li>'}
+function drawPib(){var q=$('bM').value.trim().toLowerCase();var r=DBP.filter(function(x){return x.k==='pib'&&(!q||((x.s||'')+' '+(x.t||'')+' '+(x.w||'')).toLowerCase().indexOf(q)>=0)}).sort(function(a,b){return(b.d||'')<(a.d||'')?-1:1});
+$('bStat').textContent=NDB?r.length+' PIB items shown.':'Connect an account to load the shared PIB library.';
+$('pibl').innerHTML=r.length?r.map(function(x){var l=safeUrl(x.l||'');return '<li><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</strong><div class="meta">'+esc(x.s||'PIB')+(x.d?', '+fmt(x.d):'')+'</div><p style="white-space:pre-wrap;margin:.4rem 0 0"><b>The release:</b> '+esc(x.w)+'\n<b>Explanation:</b> '+esc(x.e)+'\n<b>UPSC angle:</b> '+esc(x.u)+'</p>'+(ISOWN?'<button type="button" data-pid="'+esc(x.id)+'">Delete</button>':'')+'</li>'}).join(''):'<li class="empty">No PIB items published yet.</li>'}
+$('bM').addEventListener('input',drawPib);$('bD').value=TODAY;
+$('pibl').addEventListener('click',function(e){var b=e.target.closest('button[data-pid]');if(b)deleteContent('press',b.getAttribute('data-pid'),b)});
+$('bPost').addEventListener('click',async function(){var t=$('bT').value.trim();if(!t||!NDB||!ISOWN)return;$('bMsg').textContent=' Publishing…';var r=await NDB.from('press').insert({kind:'pib',date:$('bD').value||null,section:$('bMin').value.trim()||'PIB',title:t,link:safeUrl($('bL').value.trim()),what_happened:$('bW').value.trim(),explanation:$('bE').value.trim(),upsc_angle:$('bU').value.trim(),paper:'PIB'});$('bMsg').textContent=r.error?'Could not publish: '+r.error.message:'Published. Everyone can now see this PIB item.';if(!r.error)['bT','bW','bE','bU','bL'].forEach(function(i){$(i).value=''})});
+$('pF').addEventListener('change',drawPress);$('pS').addEventListener('input',drawPress);drawNotes();drawPress();drawMy();
+async function deleteContent(table,id,b){if(!NDB||!ISOWN)return;if(b.getAttribute('data-arm')!=='1'){b.setAttribute('data-arm','1');b.textContent='Click again to delete';return}var r=await NDB.from(table).delete().eq('id',id);if(r.error)b.textContent='Could not delete'}
+$('ngrid').addEventListener('click',function(e){var b=e.target.closest('button[data-nid]');if(b)deleteContent('notes',b.getAttribute('data-nid'),b)});
+$('plist').addEventListener('click',function(e){var b=e.target.closest('button[data-pid]');if(b)deleteContent('press',b.getAttribute('data-pid'),b)});
+$('nPost').addEventListener('click',async function(){var sub=$('nS').value.trim(),t=$('nT').value.trim(),b=$('nB').value.trim();if(!sub||!t||!b||!ISOWN||!NDB)return;$('nMsg').textContent=' Publishing…';var r=await NDB.from('notes').insert({subject:sub,title:t,body:b});$('nMsg').textContent=r.error?'Could not publish: '+r.error.message:'Published.';if(!r.error){$('nT').value='';$('nB').value=''}});
+$('pdPost').addEventListener('click',async function(){var t=$('pdT').value.trim();if(!t||!ISOWN||!NDB)return;$('pdMsg').textContent=' Publishing…';var r=await NDB.from('press').insert({kind:'press',date:$('pdD').value||null,paper:$('pdP').value,section:$('pdSrc').value.trim(),title:t,link:safeUrl($('pdL').value.trim()),what_happened:$('pdW').value.trim(),explanation:$('pdE').value.trim(),upsc_angle:$('pdU').value.trim()});$('pdMsg').textContent=r.error?'Could not publish: '+r.error.message:'Published.';if(!r.error)['pdT','pdW','pdE','pdU','pdL'].forEach(function(i){$(i).value=''})});
+
+function drawAdminList(){if(!ISOWN)return;$('aList').innerHTML=LIVE.length?LIVE.map(function(x){return '<li><button type="button" data-id="'+esc(x.id)+'">Delete</button><strong>'+esc(x.title)+'</strong><div class="meta">'+esc(x.state)+', '+esc(x.cat)+(x.d?', key date '+fmt(x.d):'')+'</div></li>'}).join(''):'<li class="empty">Nothing published yet.</li>'}
+async function loadAdminPrivate(){var r=await NDB.from('admin_private_notes').select('content').eq('id',1).maybeSingle();if(!r.error&&r.data)$('aPriv').value=r.data.content||''}
+function initAdmin(){isOwner=true;ISOWN=true;$('admin').hidden=false;$('adminLink').hidden=false;$('nadmin').hidden=false;$('badmin').hidden=false;$('padmin').hidden=false;
+$('aState').innerHTML='<option>All India</option>'+optsOf(stNames);$('aCat').innerHTML=optsOf(UCATS);
+$('aPost').addEventListener('click',async function(){var t=$('aTitle'),m=$('aMsg');if(!t.value.trim())return t.focus();var o={state:$('aState').value,category:$('aCat').value,title:t.value.trim(),note:$('aNote').value.trim(),link:safeUrl($('aLink').value.trim()),key_date:$('aDate').value||null};m.textContent=' Publishing…';var r=await NDB.from('updates').insert(o);m.textContent=r.error?'Could not publish: '+r.error.message:'Published. Everyone sees it now.';if(!r.error){t.value='';$('aNote').value='';$('aLink').value='';$('aDate').value=''}});
+$('aList').addEventListener('click',async function(e){var b=e.target.closest('button[data-id]');if(!b)return;if(b.getAttribute('data-arm')!=='1'){b.setAttribute('data-arm','1');b.textContent='Click again to delete';return}var r=await NDB.from('updates').delete().eq('id',b.getAttribute('data-id'));if(r.error)b.textContent='Could not delete'});
+$('aPrivSave').addEventListener('click',async function(){var m=$('aPrivMsg');var r=await NDB.from('admin_private_notes').upsert({id:1,content:$('aPriv').value,updated_at:new Date().toISOString()});m.textContent=r.error?'Could not save: '+r.error.message:'Saved privately.'});
+loadAdminPrivate();drawAdminList()}
+function setAuthStatus(t){$('authStatus').textContent=t}
+async function loadSharedTables(){var u=await NDB.from('updates').select('*').order('created_at',{ascending:false}).limit(300);if(!u.error){LIVE=u.data.map(function(x){return{id:x.id,state:x.state,cat:x.category,title:x.title,note:x.note,link:x.link,d:x.key_date||'',posted:x.created_at}});liveState='ok';drawLive();drawAdminList()}else{liveState='error';drawLive()}
+var n=await NDB.from('notes').select('*').order('created_at',{ascending:false}).limit(300);if(!n.error){DBN=n.data.map(function(x){return{id:x.id,s:x.subject,t:x.title,b:x.body}});drawNotes()}
+var p=await NDB.from('press').select('*').order('created_at',{ascending:false}).limit(300);if(!p.error){DBP=p.data.map(function(x){return{id:x.id,k:x.kind,d:x.date,p:x.paper,s:x.section,t:x.title,l:x.link,w:x.what_happened,e:x.explanation,u:x.upsc_angle}});drawPress();drawPib()}}
+function subscribeRealtime(){if(rtStarted)return;rtStarted=true;NDB.channel('desk-live-updates').on('postgres_changes',{event:'*',schema:'public',table:'updates'},function(){loadSharedTables()}).subscribe();NDB.channel('desk-content').on('postgres_changes',{event:'*',schema:'public',table:'notes'},function(){loadSharedTables()}).on('postgres_changes',{event:'*',schema:'public',table:'press'},function(){loadSharedTables()}).subscribe();if(ISOWN){NDB.channel('desk-progress').on('postgres_changes',{event:'*',schema:'public',table:'progress'},function(){loadAllProgress()}).subscribe()}}
+async function loadAllProgress(){if(!ISOWN)return;var r=await NDB.from('progress').select('user_id,summary,updated_at').order('updated_at',{ascending:false});if(r.error)return;var ids=r.data.map(function(x){return x.user_id});var prof=ids.length?await NDB.from('profiles').select('id,display_name').in('id',ids):{data:[]};var names={};(prof.data||[]).forEach(function(p){names[p.id]=p.display_name});$('allrows').innerHTML=r.data.length?r.data.map(function(x){var v=x.summary||{};return '<tr><td><b>'+esc(names[x.user_id]||'Learner')+'</b></td><td>'+(v.n?Math.round(v.syl/v.n*100):0)+'% ('+(v.syl||0)+' of '+(v.n||0)+')</td><td>'+(v.hours||0)+'</td><td>'+(v.wk||0)+'</td><td>'+(v.avg||0)+'% over '+(v.mocks||0)+' tests</td><td>'+(v.logs||0)+'</td><td>'+(x.updated_at?new Date(x.updated_at).toLocaleString('en-IN'):'')+'</td></tr>'}).join(''):'<tr><td colspan="7" class="empty">No learner has synced progress yet.</td></tr>'}
+async function handleSession(session){if(!session){NDB=null;ME=null;ISOWN=false;$('signOut').hidden=true;$('signIn').hidden=false;$('signUp').hidden=false;$('authName').disabled=false;$('authEmail').disabled=false;$('authPassword').disabled=false;$('who').textContent='Not signed in. Your browser-based trackers still work on this device.';$('allbox').hidden=true;$('admin').hidden=true;$('adminLink').hidden=true;return}
+if(!NDB)NDB=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY);ME=session.user.id;USER=session.user;$('signOut').hidden=false;$('signIn').hidden=true;$('signUp').hidden=true;$('authName').disabled=true;$('authEmail').disabled=true;$('authPassword').disabled=true;
+var pr=await NDB.from('profiles').select('display_name,role').eq('id',ME).maybeSingle();if(pr.error){setAuthStatus('Signed in, but profile setup is incomplete. Run supabase-schema.sql in your project SQL editor.');return}
+ISOWN=!!(pr.data&&pr.data.role==='admin');$('who').textContent='Signed in as '+((pr.data&&pr.data.display_name)||session.user.email)+(ISOWN?' (administrator).':' Your private notes and answers sync to this account.');
+if(ISOWN){$('allbox').hidden=false;initAdmin();await loadAllProgress()}else{$('allbox').hidden=true;$('admin').hidden=true;$('adminLink').hidden=true;$('nadmin').hidden=true;$('badmin').hidden=true;$('padmin').hidden=true}
+// Keep browser data isolated when a different learner signs in on the same device.
+var previousOwner=localStorage.getItem('desk_local_owner');if(previousOwner&&previousOwner!==ME){KEYS.forEach(function(k){localStorage.removeItem(k)});localStorage.removeItem('desk_cloud_dirty')}
+// Restore the cloud copy on a fresh page load. A one-shot marker prevents a reload loop.
+var hydrateKey='desk_hydrated_'+ME,justHydrated=sessionStorage.getItem(hydrateKey)==='1';if(justHydrated)sessionStorage.removeItem(hydrateKey);
+var remote=await NDB.from('user_data').select('payload').eq('user_id',ME).maybeSingle();if(!remote.error&&remote.data&&remote.data.payload&&!justHydrated&&localStorage.getItem('desk_cloud_dirty')!=='1'){
+applyCloudData(remote.data.payload);localStorage.setItem('desk_local_owner',ME);sessionStorage.setItem(hydrateKey,'1');location.reload();return}
+if(!remote.error&&!remote.data){await syncPersonalData()}else if(localStorage.getItem('desk_cloud_dirty')==='1'){await syncPersonalData()}
+localStorage.setItem('desk_local_owner',ME);await loadSharedTables();subscribeRealtime();try{await sync()}catch(e){setAuthStatus('Signed in, but progress sync failed: '+e.message)}if(!remote.data)setAuthStatus('Account connected. Your browser data has been uploaded.');else setAuthStatus('Account connected. Private study data is synced.')}
+
+async function startBackend(){
+if(!window.supabase||!window.DESK_SUPABASE_URL||!window.DESK_SUPABASE_ANON_KEY||window.DESK_SUPABASE_URL.indexOf('YOUR_PROJECT')>=0){setAuthStatus('Cloud features need your Supabase project URL and public anon key in config.js. Browser-based trackers are ready now.');$('who').textContent='Local mode: trackers, revision planner, notes and answers save in this browser.';drawLive();return}
+var client=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY);NDB=client;await loadSharedTables();subscribeRealtime();
+$('signIn').addEventListener('click',async function(){var email=$('authEmail').value.trim(),password=$('authPassword').value;if(!email||!password)return setAuthStatus('Enter your email and password.');setAuthStatus('Signing in…');var r=await client.auth.signInWithPassword({email:email,password:password});if(r.error)setAuthStatus(r.error.message);else setAuthStatus('Sign-in successful. Loading your account…')});
+$('signUp').addEventListener('click',async function(){var email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<8)return setAuthStatus('Enter a valid email and a password of at least 8 characters.');if(!name)return setAuthStatus('Enter a display name for your new learner account.');setAuthStatus('Creating account…');var r=await client.auth.signUp({email:email,password:password,options:{data:{display_name:name}}});if(r.error)setAuthStatus(r.error.message);else if(r.data.session)setAuthStatus('Account created. Loading your learner account…');else setAuthStatus('Account created. Check your email to confirm the address, then sign in.')});
+$('signOut').addEventListener('click',async function(){await client.auth.signOut();location.reload()});
+var sess=await client.auth.getSession();if(sess.data&&sess.data.session)await handleSession(sess.data.session);else{setAuthStatus('Ready. Create an account or sign in to enable shared features.');drawLive()}
+client.auth.onAuthStateChange(function(event,session){if(event==='SIGNED_OUT'){setTimeout(function(){handleSession(null)},0)}else if(event==='SIGNED_IN'&&session){setTimeout(function(){handleSession(session)},0)}})
+}
+startBackend().catch(function(e){setAuthStatus('Cloud setup error: '+e.message+' — check config.js and the database setup.')});
+})();
+</script>
+</body>
+</html>
