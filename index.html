@@ -5,10 +5,16 @@
   <meta name="google-site-verification" content="P8o26j7gSYC-v5n6DG1t9gWxLhCKKHzjwzLYR9MUP5s" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Aspirant’s Desk | Anbuchelvan M S</title>
-<meta name="description" content="The Aspirant's Desk is a UPSC preparation platform offering study trackers, mock tests, revision planning and answer writing practice.">
-<meta property="og:title" content="The Aspirant's Desk">
+<meta name="description" content="The Aspirant’s Desk by Anbuchelvan M S: free UPSC Civil Services preparation with subject notes, study planner, daily tests, previous year questions, PIB and daily press explained.">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta name="author" content="Anbuchelvan M S">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Aspirant’s Desk | Anbuchelvan M S">
+<meta property="og:title" content="The Aspirant’s Desk by Anbuchelvan M S">
+<meta property="og:site_name" content="The Aspirant’s Desk">
 <meta property="og:description" content="Your companion for UPSC preparation, study planning, mock tests and answer writing.">
 <meta property="og:type" content="website">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "The Aspirant’s Desk", "alternateName": "Aspirants Desk", "description": "UPSC Civil Services preparation: notes, study planner, daily tests, PYQs and current affairs.", "inLanguage": "en"}, {"@type": "Person", "name": "Anbuchelvan M S", "description": "Creator of The Aspirant’s Desk, a UPSC preparation website.", "knowsAbout": ["UPSC Civil Services Examination", "Current affairs", "Study planning"]}]}</script>
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -99,7 +105,8 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted)
 <body>
 <div class="staff" aria-hidden="true"><i id="mark"></i></div>
 <nav aria-label="Sections"><div class="wrap">
-<a href="#start">Start here</a><a href="#planner" class="hot">Study planner</a><a href="#dailytest" class="hot">Daily test</a><a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#pyq" class="hot">PYQ library</a><a href="#weekly">Weekly PYQ report</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
+<a href="#start">Start here</a><a href="#planner" class="hot">Study planner</a><a href="#notes" class="hot">Subject notes</a><a href="#dailytest" class="hot">Daily test</a><a href="#pyq" class="hot">PYQ library</a><a href="#press">Daily press</a><a href="#pib">PIB</a><a href="#tracker">My tracker</a><a href="#myprog">Progress</a><a href="#live-state-updates">State notifications</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#exams">Exam directory</a><a href="#library">Study library</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#weekly">Weekly PYQ report</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
+<button id="fsDn" type="button" aria-label="Smaller text">A−</button><button id="fsUp" type="button" aria-label="Larger text">A+</button>
 <button id="theme" type="button" aria-label="Switch light or dark theme">Theme</button></div></nav>
 
 <main class="wrap">
@@ -772,6 +779,8 @@ $('dt_check').addEventListener('click',function(){var sc=0;DQ.forEach(function(q
 var pc=Math.round(sc/DQ.length*100);$('dt_res').textContent='Score: '+sc+' of '+DQ.length+' ('+pc+'%).';
 try{var h=JSON.parse(localStorage.getItem('desk-dtests')||'[]');h.push({d:TODAY,p:pc});localStorage.setItem('desk-dtests',JSON.stringify(h.slice(-60)))}catch(e){}});
 drawRead();
+var FS=+(localStorage.getItem('desk-fs')||100);function setFS(v){FS=Math.max(85,Math.min(140,v));document.documentElement.style.fontSize=FS+'%';try{localStorage.setItem('desk-fs',FS)}catch(e){}}
+setFS(FS);$('fsUp').addEventListener('click',function(){setFS(FS+10)});$('fsDn').addEventListener('click',function(){setFS(FS-10)});
 var PAP=['GS 1','GS 2','GS 3','GS 4','Prelims','Essay'];
 var KEYS=['desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net','desk-watch','desk-week','desk-sel','desk-ustate'];
 var NDB=null,ME=null,ISOWN=false,syncT=0,dataSyncT=0,nSub='Polity',DBN=[],DBP=[],USER=null,adminRows=[],rtStarted=false;
