@@ -99,7 +99,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted)
 <body>
 <div class="staff" aria-hidden="true"><i id="mark"></i></div>
 <nav aria-label="Sections"><div class="wrap">
-<a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#pyq" class="hot">PYQ library</a><a href="#weekly">Weekly PYQ report</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
+<a href="#start">Start here</a><a href="#planner" class="hot">Study planner</a><a href="#dailytest" class="hot">Daily test</a><a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#pyq" class="hot">PYQ library</a><a href="#weekly">Weekly PYQ report</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
 <button id="theme" type="button" aria-label="Switch light or dark theme">Theme</button></div></nav>
 
 <main class="wrap">
@@ -345,6 +345,39 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted)
 <h2>Let’s connect</h2>
 <p>If you are an officer, a ranker, an expert, a fellow aspirant, or work in public policy and infrastructure, I would be glad to hear from you. Even a short reply to one specific question helps me.</p>
 <div class="btns"><a class="btn primary" href="mailto:theaspirantsdesk0@gmail.com">Email me</a><a class="btn" href="https://www.linkedin.com/in/anbuchelvan-anbuchelvan-3a081139b/" target="_blank" rel="noopener">LinkedIn</a></div>
+</section>
+<section id="start">
+<h2>How The Aspirant’s Desk works</h2>
+<p class="sub">Follow these four steps every day. The whole site is built around them.</p>
+<div class="grid">
+<div class="card key"><h3>1. Plan</h3><p>Open the Study planner, enter your exam date and daily hours, and get a weekly timetable.</p></div>
+<div class="card key"><h3>2. Read</h3><p>Read the Subject notes and the day’s PIB and press items.</p></div>
+<div class="card key"><h3>3. Test</h3><p>Tick what you read today and take the daily test the site generates from those notes.</p></div>
+<div class="card key"><h3>4. Practise and track</h3><p>Solve PYQs, log hours in My tracker, and revise weak topics on your revision day.</p></div>
+</div>
+</section>
+<section id="planner" class="band">
+<h2>Study planner</h2>
+<p class="sub">Tell the site how much time you have. It builds a weekly timetable with a news slot, subject blocks, a daily test and a revision day.</p>
+<div class="form three">
+<div><label for="pl_date">Exam date</label><input id="pl_date" type="date"></div>
+<div><label for="pl_h">Hours per day</label><input id="pl_h" type="number" min="1" max="14" step="0.5" value="4"></div>
+<div><label for="pl_d">Study days per week</label><select id="pl_d"><option value="5">5 days</option><option value="6" selected>6 days</option><option value="7">7 days</option></select></div>
+<div><label for="pl_f">Focus subject (gets extra time)</label><select id="pl_f"></select></div>
+</div>
+<div class="btns" style="margin-top:1rem"><button class="btn primary" id="pl_go" type="button">Build my timetable</button></div>
+<p class="meta" id="pl_left" aria-live="polite" style="margin-top:.8rem"></p>
+<div class="grid" id="pl_out"></div>
+</section>
+<section id="dailytest">
+<h2>Daily test</h2>
+<p class="sub">Tick the topics you read today. The site makes a quick test from those notes. These are practice questions made from the notes, not official UPSC questions.</p>
+<div id="dt_list" class="chips" role="group" aria-label="Topics read today"></div>
+<div class="btns" style="margin-top:1rem"><button class="btn primary" id="dt_go" type="button">Generate today’s test</button></div>
+<p class="meta" id="dt_msg" aria-live="polite" style="margin-top:.8rem"></p>
+<div id="dt_out"></div>
+<div class="btns" style="margin-top:1rem"><button class="btn" id="dt_check" type="button" hidden>Check answers</button></div>
+<p id="dt_res" class="meta"></p>
 </section>
 <section id="notes">
 <h2>Subject notes</h2>
@@ -703,6 +736,42 @@ var NOTES={
 'Environment':[['Biodiversity','India has four hotspots: Himalaya, Indo-Burma, Western Ghats and Sri Lanka, and Sundaland (Nicobar Islands). Protected areas include national parks, sanctuaries and biosphere reserves under the Wildlife Protection Act 1972. Project Tiger began in 1973.'],['Climate agreements','UNFCCC (1992), Kyoto Protocol, Paris Agreement (2015) with a goal of well below 2 degrees C and efforts for 1.5. Each country submits NDCs. India announced net zero by 2070 at COP26 (2021).']],
 'Science and technology':[['Space','ISRO: Chandrayaan-3 landed near the lunar south pole on 23 August 2023, Aditya-L1 studies the Sun, Gaganyaan is the human spaceflight programme. Know launch vehicles (PSLV, GSLV) and the purpose of each mission.'],['Biotechnology','CRISPR-Cas9 edits genes precisely. mRNA vaccines teach cells to make a harmless antigen. Know GM crops, biosafety rules and bioethics questions.']],
 'Ethics':[['Core ideas','Ethics, integrity, probity and empathy. Public service values include the Nolan principles: selflessness, integrity, objectivity, accountability, openness, honesty and leadership. Emotional intelligence includes self-awareness, self-regulation, motivation, empathy and social skill.'],['Case study method','List the stakeholders, state the dilemma, give two or three options with their consequences, choose one and justify it with law, values and the public interest, then say how you would prevent a repeat.']]};
+/* academy: more notes, planner, daily test */
+NOTES['Indian society']=[['Diversity and social structure','India has many castes, religions, languages and regions. Unity in diversity is a constitutional value and shows in Articles 29 and 30, which protect cultural and educational rights. Census 2011 recorded literacy at about 74 percent. Urbanisation, migration and a young population shape social policy.'],['Social justice and reservation','Article 17 abolishes untouchability. The Protection of Civil Rights Act 1955 and the SC and ST Prevention of Atrocities Act 1989 give legal protection. Indra Sawhney (1992) upheld 27 percent OBC reservation, set a 50 percent ceiling and required the creamy layer exclusion. The 103rd Amendment (2019) added 10 percent reservation for the economically weaker sections.'],['Women and empowerment','The Women’s Reservation Act 2023, the 106th Amendment, reserves one-third of seats in the Lok Sabha and state assemblies. It takes effect after the next census and delimitation. Other key laws include the Dowry Prohibition Act 1961 and the POSH Act 2013.']];
+NOTES['International relations']=[['Neighbourhood and Act East','Neighbourhood First is India’s policy for its immediate neighbours. Act East grew out of the Look East policy of 1991. SAARC has been largely inactive, so India gives more weight to BIMSTEC. Know the Indus Waters Treaty 1960, the Ganga water sharing treaty with Bangladesh and the Land Boundary Agreement 2015.'],['Groupings and forums','The Quad includes India, the United States, Japan and Australia. BRICS began with Brazil, Russia, India and China and has expanded since 2024. India held the G20 presidency in 2023 and the African Union became a permanent member at the New Delhi summit. Know where each group is headquartered and what it does.']];
+NOTES['Internal security']=[['Threats and laws','Main challenges are terrorism, left-wing extremism, insurgency in parts of the North East and cyber threats. Key laws: Armed Forces Special Powers Act 1958, Unlawful Activities Prevention Act 1967 and the NIA Act 2008, which created the National Investigation Agency after the 2008 Mumbai attacks.'],['Cyber security','The Information Technology Act 2000 is the main cyber law. CERT-In is the national agency for cyber incidents. The Digital Personal Data Protection Act 2023 governs how personal data is processed. Know the role of the Indian Cyber Crime Coordination Centre.']];
+var SUBJ=Object.keys(NOTES);
+function plan(){var H=+$('pl_h').value||4,dy=+$('pl_d').value,foc=$('pl_f').value,list=[];SUBJ.forEach(function(s){list.push(s);if(s===foc)list.push(s,s)});
+var b=Math.max(1,Math.floor(H-0.5)),nm=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],k=0,o='';
+for(var i=0;i<7;i++){var h='<li>30 min: newspaper and PIB items</li>';
+if(i>=dy)h='<li>Rest day. Light reading or a walk.</li>';
+else if(i===dy-1)h+='<li>Revise the week’s weak topics</li><li>Full-length practice test</li>';
+else{for(var j=0;j<b;j++)h+='<li>1 h: '+esc(list[k++%list.length])+'</li>';h+='<li>20 min: daily test</li>'}
+o+='<div class="card key"><h3>'+nm[i]+'</h3><ul class="list">'+h+'</ul></div>'}
+$('pl_out').innerHTML=o;try{localStorage.setItem('desk-plan',JSON.stringify({d:$('pl_date').value,h:H,n:dy,f:foc}))}catch(e){}
+var d=$('pl_date').value,n=d?Math.ceil((new Date(d)-new Date(TODAY))/864e5):0;$('pl_left').textContent=d?(n>0?n+' days left until your exam date.':'Choose a future exam date.'):'Add your exam date to see the days left.'}
+$('pl_f').innerHTML='<option value="">None</option>'+optsOf(SUBJ);
+try{var sp=JSON.parse(localStorage.getItem('desk-plan')||'null');if(sp){$('pl_date').value=sp.d||'';$('pl_h').value=sp.h;$('pl_d').value=sp.n;$('pl_f').value=sp.f||'';plan()}}catch(e){}
+$('pl_go').addEventListener('click',plan);
+var DQ=[];
+function readKeys(){var r={};try{r=JSON.parse(localStorage.getItem('desk-read')||'{}')}catch(e){}return r}
+function drawRead(){var r=readKeys(),t=r[TODAY]||[],h='';Object.keys(NOTES).forEach(function(s){NOTES[s].forEach(function(n,i){var k=s+'|'+i;h+='<label class="chk"><input type="checkbox" value="'+esc(k)+'"'+(t.indexOf(k)>=0?' checked':'')+'> '+esc(s)+': '+esc(n[0])+'</label>'})});$('dt_list').innerHTML=h}
+$('dt_list').addEventListener('change',function(){var r=readKeys(),t=[];$('dt_list').querySelectorAll('input:checked').forEach(function(c){t.push(c.value)});r[TODAY]=t;try{localStorage.setItem('desk-read',JSON.stringify(r))}catch(e){}});
+function terms(s){return s.match(/Article \d+[A-Z]?|\b1[5-9]\d\d\b|\b20\d\d\b|\b[A-Z][a-z][a-zA-Z-]{2,}(?: [A-Z][a-zA-Z-]+)*/g)||[]}
+function kind(x){return /^Article/.test(x)?'a':/^\d/.test(x)?'y':'w'}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function makeQs(keys){var pool={a:[],y:[],w:[]},c=[];
+Object.keys(NOTES).forEach(function(s){NOTES[s].forEach(function(n){terms(n[1]).forEach(function(x){if(pool[kind(x)].indexOf(x)<0)pool[kind(x)].push(x)})})});
+keys.forEach(function(k){var p=k.split('|'),n=NOTES[p[0]][+p[1]];if(!n)return;n[1].split('. ').forEach(function(s){s=s.replace(/\.$/,'');var ts=terms(s).filter(function(x){return s.indexOf(x)>3});if(!ts.length)return;var a=shuf(ts)[0],d=shuf(pool[kind(a)].filter(function(x){return x!==a&&s.indexOf(x)<0})).slice(0,3);if(d.length<3)return;c.push({q:s.replace(a,'_____'),a:a,o:shuf(d.concat(a)),e:s+'. (Notes: '+p[0]+', '+n[0]+')'})})});
+return shuf(c).slice(0,10)}
+$('dt_go').addEventListener('click',function(){var t=(readKeys()[TODAY]||[]);if(!t.length){$('dt_msg').textContent='Tick at least one topic you read today.';return}
+DQ=makeQs(t);if(!DQ.length){$('dt_msg').textContent='Not enough material in those topics. Tick more topics.';return}
+$('dt_msg').textContent=DQ.length+' questions generated from today’s topics.';$('dt_res').textContent='';
+$('dt_out').innerHTML=DQ.map(function(q,i){return '<div class="card"><p><b>'+(i+1)+'.</b> Fill in the blank: '+esc(q.q)+'</p>'+q.o.map(function(x,j){return '<label class="chk"><input type="radio" name="dq'+i+'" value="'+j+'"> '+esc(x)+'</label>'}).join('')+'<p class="meta" id="dx'+i+'"></p></div>'}).join('');$('dt_check').hidden=false});
+$('dt_check').addEventListener('click',function(){var sc=0;DQ.forEach(function(q,i){var s=document.querySelector('input[name="dq'+i+'"]:checked'),ok=s&&q.o[+s.value]===q.a;if(ok)sc++;$('dx'+i).textContent=(ok?'Correct. ':'Answer: '+q.a+'. ')+q.e});
+var pc=Math.round(sc/DQ.length*100);$('dt_res').textContent='Score: '+sc+' of '+DQ.length+' ('+pc+'%).';
+try{var h=JSON.parse(localStorage.getItem('desk-dtests')||'[]');h.push({d:TODAY,p:pc});localStorage.setItem('desk-dtests',JSON.stringify(h.slice(-60)))}catch(e){}});
+drawRead();
 var PAP=['GS 1','GS 2','GS 3','GS 4','Prelims','Essay'];
 var KEYS=['desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net','desk-watch','desk-week','desk-sel','desk-ustate'];
 var NDB=null,ME=null,ISOWN=false,syncT=0,dataSyncT=0,nSub='Polity',DBN=[],DBP=[],USER=null,adminRows=[],rtStarted=false;
