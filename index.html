@@ -12,9 +12,9 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef1ef;--surface:#fff;--ink:#15262b;--muted:#53666b;--line:#cdd6d3;--accent:#d9480f;--accent-ink:#fff;--ok:#2b7a4b;--warn:#b7791f;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b1f;--surface:#17272c;--ink:#e8efed;--muted:#9db0b4;--line:#2c4147;--accent:#ff7a3d;--accent-ink:#1a0d05;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0f1b1f;--surface:#17272c;--ink:#e8efed;--muted:#9db0b4;--line:#2c4147;--accent:#ff7a3d;--accent-ink:#1a0d05;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}
+:root{--bg:#f6f3ec;--surface:#fff;--ink:#14213d;--muted:#4f5b76;--line:#d9d3c3;--accent:#1d3a8a;--accent-ink:#fff;--ok:#1f7a4d;--warn:#a15c07;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1424;--surface:#151e33;--ink:#e9edf7;--muted:#a3aec8;--line:#29344f;--accent:#f2b84b;--accent-ink:#1a1203;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1424;--surface:#151e33;--ink:#e9edf7;--muted:#a3aec8;--line:#29344f;--accent:#f2b84b;--accent-ink:#1a1203;--ok:#5fc88a;--warn:#e8b04a;--bad:#ff8a80;color-scheme:dark}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 3.2rem);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.6 "Source Serif 4",Georgia,serif}
@@ -99,7 +99,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted)
 <body>
 <div class="staff" aria-hidden="true"><i id="mark"></i></div>
 <nav aria-label="Sections"><div class="wrap">
-<a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#pyq" class="hot">PYQ library</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
+<a href="#notes">Subject notes</a><a href="#press">Daily press</a><a href="#pib">PIB current affairs</a><a href="#myprog">Progress</a><a href="#updates">Updates</a><a href="#states">State updates</a><a href="#tracker" class="hot">My tracker</a><a href="#exams">Exam directory</a><a href="#live-state-updates" class="hot">State notifications</a><a href="#library">Study library</a><a href="#pyq" class="hot">PYQ library</a><a href="#weekly">Weekly PYQ report</a><a href="#az">A to Z topics</a><a href="#practice">Daily practice</a><a href="#mentors">Mentors</a><a href="#about">About me</a><a href="#connect">Connect</a><a href="#admin" id="adminLink" hidden>Admin</a>
 <button id="theme" type="button" aria-label="Switch light or dark theme">Theme</button></div></nav>
 
 <main class="wrap">
@@ -249,6 +249,16 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--line);color:var(--muted)
 <p class="meta" id="pyqSaveStatus" aria-live="polite" style="margin-top:.8rem">Sign in to save your practice history across devices. You can browse published questions without signing in.</p>
 </section>
 
+<section id="weekly">
+<h2>Weekly PYQ report</h2>
+<p class="sub">Each week a batch of previous-year questions from 2001 to 2025 is checked against official UPSC question papers before it is added to the PYQ library above. This page explains how the batch is labelled.</p>
+<div class="grid">
+<div class="card key"><h3>Verified official PYQ</h3><p>Exam year, stage, paper and exact wording were checked against the official UPSC question paper. The source link is shown with the question.</p></div>
+<div class="card key"><h3>Practice question</h3><p>Written or adapted for practice. It is never shown as an official question.</p></div>
+<div class="card key"><h3>Answers and guidance</h3><p>MCQ answer keys and explanations are added only when they can be verified. Mains guidance is editorial help, not an official answer.</p></div>
+<div class="card key"><h3>Coverage</h3><p>Prelims GS Paper I and CSAT, Mains Essay and GS I to IV, and all optional subjects including literature optionals. Gaps and unverified items are listed in each weekly report.</p></div>
+</div>
+</section>
 <section id="az">
 <h2>A to Z topic index</h2>
 <p class="sub">Key topics across General Studies, essay and general awareness, one letter at a time. Useful as a checklist and for quick revision.</p>
