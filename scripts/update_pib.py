@@ -3,8 +3,18 @@ With an ANTHROPIC_API_KEY secret it also writes a short explanation for each ite
 Without the key it saves the headline and link only."""
 import datetime, html, json, os, re, sys
 import feedparser
+import requests
 
-FEED = os.environ.get("PIB_FEED", "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3")
+FEEDS = [u for u in [
+    os.environ.get("PIB_FEED", ""),
+    "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3&reg=48",
+] if u]
+HEAD = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Accept": "application/rss+xml, application/xml, text/xml, */*",
+    "Accept-Language": "en-IN,en;q=0.9",
+}
 OUT = "data/pib.json"
 MAX_NEW = 10      # new items handled per run
 KEEP = 300        # items kept in the file
@@ -35,18 +45,31 @@ def explain(title, summary):
         print("AI step skipped:", e)
         return None
 
+def get_entries():
+    for u in FEEDS:
+        try:
+            r = requests.get(u, headers=HEAD, timeout=30, allow_redirects=True)
+            print(u, "->", r.status_code, r.headers.get("content-type"), len(r.content), "bytes")
+            f = feedparser.parse(r.content)
+            if f.entries:
+                return f.entries
+            print("Start of reply:", r.text[:200].replace("\n", " "))
+        except Exception as e:
+            print(u, "failed:", e)
+    return []
+
 def main():
     try:
         old = json.load(open(OUT, encoding="utf-8"))
     except Exception:
         old = []
     seen = {x.get("l") for x in old}
-    feed = feedparser.parse(FEED)
-    if not feed.entries:
-        print("No entries returned. Check the feed address:", FEED)
+    entries = get_entries()
+    if not entries:
+        print("No entries returned from any feed address. See the lines above for the reason.")
         sys.exit(1)
     new = []
-    for e in feed.entries:
+    for e in entries:
         link = e.get("link", "")
         if not link or link in seen:
             continue
