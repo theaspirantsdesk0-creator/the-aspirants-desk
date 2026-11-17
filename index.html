@@ -698,7 +698,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
 </section>
 <section id="pib">
 <h2>PIB current affairs</h2>
-<p class="sub">Releases from the Press Information Bureau, explained for the exam. Newest first. The owner posts new items daily, and the source link opens the official release list.</p>
+<p class="sub">Releases from the Press Information Bureau, explained for the exam. Newest first. This list updates automatically every evening at about 6 pm IST from the official PIB feed. Explanations are AI-assisted, so always read the full release at the source link.</p>
 <div class="form three"><div><label for="bM">Ministry</label><input id="bM" type="search" placeholder="Search ministry or topic"></div></div>
 <p class="meta" id="bStat" style="margin-top:.8rem"></p>
 <ul class="list" id="pibl"></ul>
@@ -1091,6 +1091,7 @@ else if(b.hasAttribute('data-c')){nCh=+b.getAttribute('data-c');top=true}
 else if(b.hasAttribute('data-step')){var n=chs(nSub).length;nCh=Math.max(0,Math.min(n-1,nCh+ +b.getAttribute('data-step')));top=true}
 else if(b.hasAttribute('data-read')){var r=readKeys(),t=r[TODAY]||[],k=nSub+'|'+nCh,i=t.indexOf(k);if(i>=0)t.splice(i,1);else t.push(k);r[TODAY]=t;try{localStorage.setItem('desk-read',JSON.stringify(r))}catch(x){}drawRead()}
 else return;drawNotes();if(top)$('notes').scrollIntoView({behavior:'smooth'})});
+['pib','press'].forEach(function(n){fetch('data/'+n+'.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).then(function(a){a.forEach(function(x){if(n==='pib')x.k='pib';DBP.push(x)});drawPress();drawPib()}).catch(function(){})});
 var PAP=['GS 1','GS 2','GS 3','GS 4','Prelims','Essay'];
 var KEYS=['desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net','desk-watch','desk-week','desk-sel','desk-ustate'];
 var NDB=null,ME=null,ISOWN=false,syncT=0,dataSyncT=0,nSub='',DBN=[],DBP=[],USER=null,adminRows=[],rtStarted=false;
@@ -1132,10 +1133,10 @@ chips($('nsub'),names,nSub,function(v){nSub=v;drawNotes()});
 $('ngrid').innerHTML=(NOTES[nSub]||[]).map(function(n){return ncard(n[0],n[1])}).join('')+DBN.filter(function(x){return x.s===nSub}).map(function(x){return ncard(x.t,x.b,x.id)}).join('')}
 $('pF').innerHTML='<option value="">All papers</option>'+optsOf(PAP);$('pdP').innerHTML=optsOf(PAP);$('pdD').value=TODAY;
 function drawPress(){var f=$('pF').value,q=$('pS').value.trim().toLowerCase();var r=DBP.filter(function(x){return x.k!=='pib'&&(!f||x.p===f)&&(!q||((x.t||'')+' '+(x.w||'')+' '+(x.e||'')).toLowerCase().indexOf(q)>=0)});
-$('pStat').textContent=NDB?r.length+' press notes shown.':'Connect an account to load the shared press library.';
+$('pStat').textContent=r.length+' press notes shown.';
 $('plist').innerHTML=r.length?r.map(function(x){var l=safeUrl(x.l||'');return '<li><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</strong><div class="meta">'+esc(x.p)+(x.s?', '+esc(x.s):'')+(x.d?', '+fmt(x.d):'')+'</div><p style="white-space:pre-wrap;margin:.4rem 0 0"><b>What happened:</b> '+esc(x.w)+'\n<b>Explanation:</b> '+esc(x.e)+'\n<b>UPSC angle:</b> '+esc(x.u)+'</p>'+(ISOWN?'<button type="button" data-pid="'+esc(x.id)+'">Delete</button>':'')+'</li>'}).join(''):'<li class="empty">No press notes published yet.</li>'}
 function drawPib(){var q=$('bM').value.trim().toLowerCase();var r=DBP.filter(function(x){return x.k==='pib'&&(!q||((x.s||'')+' '+(x.t||'')+' '+(x.w||'')).toLowerCase().indexOf(q)>=0)}).sort(function(a,b){return(b.d||'')<(a.d||'')?-1:1});
-$('bStat').textContent=NDB?r.length+' PIB items shown.':'Connect an account to load the shared PIB library.';
+$('bStat').textContent=r.length+' PIB items shown.';
 $('pibl').innerHTML=r.length?r.map(function(x){var l=safeUrl(x.l||'');return '<li><strong>'+(l?'<a href="'+esc(l)+'" target="_blank" rel="noopener">'+esc(x.t)+'</a>':esc(x.t))+'</strong><div class="meta">'+esc(x.s||'PIB')+(x.d?', '+fmt(x.d):'')+'</div><p style="white-space:pre-wrap;margin:.4rem 0 0"><b>The release:</b> '+esc(x.w)+'\n<b>Explanation:</b> '+esc(x.e)+'\n<b>UPSC angle:</b> '+esc(x.u)+'</p>'+(ISOWN?'<button type="button" data-pid="'+esc(x.id)+'">Delete</button>':'')+'</li>'}).join(''):'<li class="empty">No PIB items published yet.</li>'}
 $('bM').addEventListener('input',drawPib);$('bD').value=TODAY;
 $('pibl').addEventListener('click',function(e){var b=e.target.closest('button[data-pid]');if(b)deleteContent('press',b.getAttribute('data-pid'),b)});
