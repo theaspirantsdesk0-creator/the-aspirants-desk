@@ -1136,12 +1136,13 @@ $('saveGoal').addEventListener('click',function(){G={e:$('gExam').value.trim(),d
 var SETS={'UPSC':{'Prelims and CSAT':['GS Paper I and current affairs','Comprehension and reasoning','Numeracy and data interpretation','Previous year Prelims papers'],'GS 1':['Ancient and medieval history','Modern Indian history','Art and culture','Indian and world geography','Indian society'],'GS 2':['Constitution and polity','Governance and welfare schemes','Social justice','International relations'],'GS 3':['Indian economy','Agriculture','Infrastructure and urban development','Science and technology','Environment and ecology','Disaster management','Internal security'],'GS 4 and Essay':['Ethics, integrity and aptitude','Case studies','Essay practice'],'Optional and Interview':['Anthropology optional: Paper I','Anthropology optional: Paper II','Detailed application form','Mock interviews']},
 'SSC and Banking':{'Quantitative aptitude':['Number system and simplification','Percentage, ratio and profit and loss','Time, work, speed and distance','Algebra, geometry and mensuration','Data interpretation'],'Reasoning':['Verbal reasoning','Non-verbal reasoning','Puzzles and seating arrangement'],'English':['Grammar and error spotting','Vocabulary','Reading comprehension','Cloze test and para jumbles'],'Awareness':['Static general knowledge','Current affairs','Banking and financial awareness','Computer knowledge']},
 'TNPSC':{'Language':['Tamil eligibility test','Tamil literature and grammar'],'General Studies':['Tamil Nadu history and culture','Tamil Nadu administration and schemes','Indian polity and economy','Geography of Tamil Nadu and India','General science'],'Aptitude':['Mental ability and reasoning','Arithmetic aptitude','Previous year TNPSC papers']}};
-var sel=load('desk-sel','UPSC');if(!SETS[sel])sel='UPSC';var st=load('desk-syl',{});
+SETS['NDA and CDS']={'English':['Comprehension and vocabulary','Grammar and sentence correction','Synonyms, antonyms and idioms'],'General knowledge':['History and freedom struggle','Geography and environment','Polity and economy','Physics, chemistry and biology basics','Current affairs and defence awareness'],'Elementary mathematics':['Number system and arithmetic','Algebra and trigonometry','Geometry and mensuration','Statistics and probability'],'Selection stages':['Written test','SSB interview (psychological tests, group tasks, interview)','Medical examination']};var sel=load('desk-sel','UPSC');if(!SETS[sel])sel='UPSC';var st=load('desk-syl',{});
 function allTopics(){var a=[];Object.keys(SETS).forEach(function(s){Object.keys(SETS[s]).forEach(function(g){SETS[s][g].forEach(function(t){a.push(s+'|'+t)})})});return a}
 function drawS(){var box=$('syl'),i=0,tot=0,done=0;box.innerHTML='';var S=SETS[sel];
 Object.keys(S).forEach(function(g){var c=document.createElement('div');c.className='card';var h='<h3>'+esc(g)+'</h3>';S[g].forEach(function(t){i++;tot++;var k=sel+'|'+t;if(st[k])done++;h+='<label class="chk" for="s'+i+'"><input type="checkbox" id="s'+i+'" data-k="'+esc(k)+'"'+(st[k]?' checked':'')+'><span>'+esc(t)+'</span></label>'});c.innerHTML=h;box.appendChild(c)});
 var p=Math.round(done/tot*100);$('pfill').style.width=p+'%';$('pbar').setAttribute('aria-valuenow',p);$('ptext').textContent=done+' of '+tot+' areas finished in '+sel+' ('+p+'%)'}
 chips($('schips'),Object.keys(SETS),sel,function(v){sel=v;save('desk-sel',sel);drawS()});
+window.__setExam=function(name){if(!SETS[name])return false;sel=name;save('desk-sel',sel);chips($('schips'),Object.keys(SETS),sel,function(v){sel=v;save('desk-sel',sel);drawS()});drawS();return true};
 $('syl').addEventListener('change',function(e){var k=e.target.getAttribute('data-k');if(!k)return;st[k]=e.target.checked;save('desk-syl',st);drawS()});drawS();
 
 /* study hours */
@@ -2059,18 +2060,6 @@ function updateTodayDashboard() {
   }
 }
 
-// Global exam switcher hook
-window.__setExam = function(examName) {
-  if (typeof SETS !== 'undefined' && SETS[examName]) {
-    sel = examName;
-    save('desk-sel', sel);
-    if (typeof drawS === 'function') drawS();
-    location.hash = '#tracker';
-    var tr = $('tracker');
-    if (tr) tr.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 // Initialize Phase 1 modules on window load
 setTimeout(function() {
   try {
@@ -2112,7 +2101,7 @@ var FC_DECK = [
 
   // Ethics
   { s: "Ethics", b: "Ethics · GS Paper IV", q: "What are Nolan's Seven Principles of Public Life?", a: "1) Selflessness, 2) Integrity, 3) Objectivity, 4) Accountability, 5) Openness, 6) Honesty, and 7) Leadership." },
-  { s: "Ethics", b: "Ethics · Administrative Integrity", q: "What is the ethical difference between Probity and Honesty?", a: "Honesty is telling the truth and not lying or stealing. Probity is active, uncompromising adherence to highest ethical standards, incorruptibility, and institutional uprightness in public action even when unobserved." }
+  { s: "Ethics", b: "Ethics · Administrative Integrity", q: "What is the ethical difference between Probity and Honesty?", a: "Honesty is telling the truth and not lying or stealing. Probity is active, uncompromising adherence to highest ethical standards, incorruptibility, and institutional uprightness in public action even when unobserved." },
 
   // Additional Polity Cards
   { s: "Polity", b: "Polity · Fundamental Rights", q: "What is the distinction between Fundamental Rights (Part III) and Directive Principles (Part IV)?", a: "Fundamental Rights are justiciable (enforceable by courts) and negative in character (restrain the state). Directive Principles are non-justiciable, positive obligations on the state for socio-economic justice. Article 37 states they are fundamental in the governance of the country." },
@@ -2518,7 +2507,7 @@ function initMainsWorkspace() {
       var q = $('mains_question').textContent;
       var p = $('mains_paper').value;
       var d = new Date().toISOString().slice(0, 10);
-      var content = 'The Aspirant''s Desk - UPSC Mains Answer\n' +
+      var content = 'The Aspirant\u2019s Desk - UPSC Mains Answer\n' +
         'Date: ' + d + '\n' +
         'Paper: ' + p + '\n' +
         '========================================\n' +
@@ -2563,5 +2552,77 @@ setTimeout(function() {
   }
 }, 400);
 </script>
+<style id="phase4-multiexam-css">
+.exam-off{display:none!important}
+.hub-tag{border:0;cursor:pointer}
+.hub-tag[aria-pressed="false"]{background:rgba(255,255,255,.1);color:#d7dcf0;border:1px solid rgba(255,255,255,.2)}
+.hub-tag[aria-pressed="true"]{background:linear-gradient(135deg,var(--gold),#ffb300);color:#16120a;font-weight:800}
+.exam-note{font-size:.88rem;margin:.4rem 0 .2rem;opacity:.85}
+.mod-tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 0 .6rem;margin:.3rem 0 .6rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
+.mod-tabs a{flex:0 0 auto;text-decoration:none;font:700 .85rem "Bricolage Grotesque",sans-serif;padding:.35rem .8rem;border-radius:99px;border:1px solid var(--line);background:var(--surface)}
+.mod-tabs a:hover,.mod-tabs a:focus-visible{border-color:var(--accent)}
+</style>
+<script id="phase4-multiexam">
+/* PHASE 4: multi-exam selector and modular tabs */
+(function(){
+  var EXAMS=[
+    {id:'UPSC',label:'🏛️ UPSC Civil Services',set:'UPSC',off:[]},
+    {id:'TNPSC',label:'📍 TNPSC / Group 1',set:'TNPSC',off:['pyq']},
+    {id:'SSC',label:'💼 SSC CGL',set:'SSC and Banking',off:['mains','pyq']},
+    {id:'BANK',label:'🏦 Banking / IBPS',set:'SSC and Banking',off:['mains','pyq']},
+    {id:'DEF',label:'⚔️ Defence / NDA and CDS',set:'NDA and CDS',off:['mains','pyq']}
+  ];
+  var MODULES=[['today','Today'],['pomodoro','Focus timer'],['planner','Planner'],['tracker','Tracker'],['notes','Notes'],['dailytest','Daily test'],['flashcards','Flashcards'],['mains','Mains writing'],['pyq','PYQs'],['exams','Exam directory']];
+  var NAMES={mains:'Mains writing',pyq:'PYQ library'};
+  function g(i){return document.getElementById(i)}
+  function getSaved(){try{return localStorage.getItem('desk-exam')||'UPSC'}catch(e){return 'UPSC'}}
+  function setSaved(v){try{localStorage.setItem('desk-exam',v)}catch(e){}}
+  function find(id){for(var i=0;i<EXAMS.length;i++)if(EXAMS[i].id===id)return EXAMS[i];return EXAMS[0]}
+  function toggle(el,off){if(el)el.classList[off?'add':'remove']('exam-off')}
+  function apply(id,fromUser){
+    var ex=find(id),i;
+    setSaved(ex.id);
+    document.documentElement.setAttribute('data-exam',ex.id);
+    if(window.__setExam)window.__setExam(ex.set);
+    var pills=document.querySelectorAll('#exam-pills button');
+    for(i=0;i<pills.length;i++)pills[i].setAttribute('aria-pressed',String(pills[i].getAttribute('data-exam')===ex.id));
+    MODULES.forEach(function(m){
+      var off=ex.off.indexOf(m[0])>=0;
+      toggle(g(m[0]),off);
+      toggle(document.querySelector('#side a[href="#'+m[0]+'"]'),off);
+      toggle(document.querySelector('.tiles a[href="#'+m[0]+'"]'),off);
+      toggle(document.querySelector('#modtabs a[href="#'+m[0]+'"]'),off);
+    });
+    var q=g('td_mains_qotd');toggle(q&&q.closest?q.closest('.card'):null,ex.off.indexOf('mains')>=0);
+    var note=g('exam-note');
+    if(note){
+      var hid=ex.off.map(function(k){return NAMES[k]}).join(' and ');
+      note.textContent='Showing tools for '+ex.label.replace(/^\S+\s/,'')+'.'+(hid?' '+hid+' are UPSC-focused and hidden for this exam.':'');
+    }
+    if(fromUser){var t=g('tracker');if(t&&t.scrollIntoView)t.scrollIntoView({behavior:'smooth'})}
+  }
+  function build(){
+    var host=document.querySelector('.exam-hub-pills');
+    if(!host||!host.parentNode)return;
+    host.id='exam-pills';
+    host.setAttribute('role','group');
+    var h='<span style="font:800 .78rem \'Bricolage Grotesque\',sans-serif;color:var(--gold);letter-spacing:.09em;text-transform:uppercase">Exam hub:</span>';
+    EXAMS.forEach(function(e){h+='<button type="button" class="hub-tag" data-exam="'+e.id+'" aria-pressed="false">'+e.label+'</button>'});
+    host.innerHTML=h;
+    host.addEventListener('click',function(ev){
+      var b=ev.target.closest?ev.target.closest('button[data-exam]'):null;
+      if(b)apply(b.getAttribute('data-exam'),true);
+    });
+    var note=document.createElement('p');note.id='exam-note';note.className='exam-note';note.setAttribute('aria-live','polite');
+    var nav=document.createElement('nav');nav.id='modtabs';nav.className='mod-tabs';nav.setAttribute('aria-label','Study modules');
+    nav.innerHTML=MODULES.map(function(m){return '<a href="#'+m[0]+'">'+m[1]+'</a>'}).join('');
+    host.parentNode.insertBefore(note,host.nextSibling);
+    host.parentNode.insertBefore(nav,note.nextSibling);
+  }
+  function init(){build();apply(getSaved(),false)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
 </body>
 </html>
