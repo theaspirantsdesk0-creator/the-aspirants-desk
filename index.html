@@ -2855,3 +2855,45 @@ init();
 
 </body>
 </html>
+
+<script id="phase-update-compatibility-patch">
+(function(){
+  'use strict';
+  var d=document;
+  function byId(id){return d.getElementById(id)}
+  function read(k,f){try{var v=JSON.parse(localStorage.getItem(k));return v==null?f:v}catch(e){return f}}
+  function write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  function today(){var x=new Date();return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}
+  function words(s){var m=(s||'').trim().match(/\S+/g);return m?m.length:0}
+
+  /* Make Today’s Desk use the actual revision list API. */
+  function revise(index){
+    var list=read('desk-rev',[]); if(!list[index]) return;
+    var gaps=[1,3,7,21,45]; list[index].n=Math.min(gaps.length,list[index].n+1); list[index].l=today(); write('desk-rev',list);
+    if(window.R&&typeof window.R.draw==='function') window.R.draw();
+    if(typeof window.updateTodayDashboard==='function') window.updateTodayDashboard();
+  }
+  window.__markRevisionDone=revise;
+  if(window.R&&!window.R.act) window.R.act=revise;
+
+  /* Repair Mains word-limit and timer controls after dynamic DOM updates. */
+  var type=byId('mains_type'), editor=byId('mains_editor'), timer=byId('mains_timer_display'), start=byId('mains_start_timer'), reset=byId('mains_reset_timer');
+  function limit(){return type&&type.value==='250'?250:150}
+  function refreshWords(){var n=words(editor&&editor.value);var out=byId('mains_words');if(out)out.textContent=n;var box=byId('mains_word_box');if(box)box.style.color=n>limit()?'var(--bad)':(n>=limit()-20?'var(--ok)':'inherit')}
+  if(editor){editor.addEventListener('input',refreshWords);refreshWords()}
+  if(type){type.addEventListener('change',function(){refreshWords()})}
+
+  /* Guard against duplicate click handlers on the visible controls. */
+  [start,reset].forEach(function(el){if(el)el.setAttribute('data-phase-patch','1')});
+
+  /* Ensure exam selection survives reload and updates the HTML state. */
+  var saved=read('desk-exam','UPSC');
+  document.documentElement.setAttribute('data-exam',saved);
+  window.addEventListener('storage',function(e){if(e.key==='desk-exam'&&e.newValue){document.documentElement.setAttribute('data-exam',e.newValue)}});
+
+  /* Keep the generated quiz fallback available even when no topic is checked. */
+  if(typeof window.deskBankQs==='function'&&byId('dt_src')) byId('dt_src').addEventListener('change',function(){
+    var msg=byId('dt_msg'); if(msg&&this.value.indexOf('sub:')===0) msg.textContent='Question bank filter selected: '+this.value.slice(4);
+  });
+})();
+</script>
