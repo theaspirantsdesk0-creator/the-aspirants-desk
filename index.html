@@ -2897,3 +2897,30 @@ init();
   });
 })();
 </script>
+
+<style id="learner-dashboard-style">
+.learner-dashboard{margin:2rem 0;padding:1.2rem;border:2px solid var(--ink);border-radius:14px;background:var(--surface)}
+.learner-dashboard h2{margin:.1rem 0 .3rem}.dashboard-sub{color:var(--muted);margin:0 0 1rem}
+.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:.75rem;margin:1rem 0}
+.dashboard-card{border:1px solid var(--line);border-radius:10px;padding:.8rem;background:var(--bg)}
+.dashboard-card strong{display:block;font:800 1.5rem "Bricolage Grotesque",sans-serif}.dashboard-card span{color:var(--muted);font-size:.9rem}
+.dashboard-week{display:flex;align-items:end;gap:.55rem;height:120px;border-bottom:1px solid var(--line);padding:.4rem 0}.dashboard-day{flex:1;text-align:center;font:600 .78rem "Bricolage Grotesque",sans-serif}.dashboard-bar{height:var(--bar-height);min-height:4px;background:var(--accent);border-radius:5px 5px 0 0;margin-bottom:.3rem}.dashboard-note{margin:1rem 0 0;padding:.7rem;border-left:4px solid var(--accent);background:var(--bg)}
+</style>
+<script id="learner-dashboard-script">
+(function(){
+  'use strict';
+  var d=document, today=new Date(), key='desk-dashboard-history';
+  function get(k,f){try{var x=JSON.parse(localStorage.getItem(k));return x==null?f:x}catch(e){return f}}
+  function totalHours(){var total=0;try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i),v=localStorage.getItem(k);if(/study|hour|time|session|pomodoro/i.test(k)){var n=parseFloat(v);if(isFinite(n)&&n>0&&n<100000)total+=n}}}catch(e){}return Math.round(total*10)/10}
+  function getData(){var h=get(key,{}), days=[];for(var i=6;i>=0;i--){var x=new Date(today);x.setDate(today.getDate()-i);var id=x.toISOString().slice(0,10);days.push({id:id,value:Number(h[id]||0)})}return days}
+  function saveToday(v){var h=get(key,{}),id=today.toISOString().slice(0,10);h[id]=Math.max(Number(h[id]||0),Number(v||0));try{localStorage.setItem(key,JSON.stringify(h))}catch(e){}}
+  function make(){if(d.querySelector('.learner-dashboard'))return;var anchor=d.querySelector('.hero')||d.querySelector('main')||d.body,box=d.createElement('section');box.className='learner-dashboard';box.id='learner-dashboard';box.setAttribute('aria-labelledby','learner-dashboard-title');
+    var hist=getData(), sum=hist.reduce(function(a,b){return a+b.value},0), max=Math.max.apply(null,hist.map(function(x){return x.value}).concat([1]));
+    var revision=get('desk-rev',[]), attempts=get('desk-tests',[]), drafts=get('desk-drafts',[]);
+    box.innerHTML='<h2 id="learner-dashboard-title">My Study Dashboard</h2><p class="dashboard-sub">A private, local progress view. Your data stays in this browser.</p><div class="dashboard-grid"><div class="dashboard-card"><strong>'+Math.round(sum*10)/10+'h</strong><span>This week</span></div><div class="dashboard-card"><strong>'+revision.length+'</strong><span>Revision cards</span></div><div class="dashboard-card"><strong>'+((attempts&&attempts.length)||0)+'</strong><span>Tests attempted</span></div><div class="dashboard-card"><strong>'+((drafts&&drafts.length)||0)+'</strong><span>Mains drafts</span></div></div><h3>Last 7 days</h3><div class="dashboard-week">'+hist.map(function(x){var dt=new Date(x.id+'T00:00:00');return '<div class="dashboard-day"><div class="dashboard-bar" style="--bar-height:'+Math.max(4,Math.round(x.value/max*85))+'px" title="'+x.value+' hours"></div>'+dt.toLocaleDateString(undefined,{weekday:'short'})+'</div>'}).join('')+'</div><p class="dashboard-note"><strong>Next step:</strong> Set one focused study goal today, then record your completed session in the Study Tracker.</p>';
+    if(anchor.parentNode)anchor.parentNode.insertBefore(box,anchor.nextSibling);else d.body.appendChild(box);
+  }
+  function init(){saveToday(0);make()}
+  if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
