@@ -738,6 +738,20 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
   <a href="#notes"><b>03</b><span>Subject Notes</span><small>Core UPSC chapters</small></a>
   <a href="#press"><b>04</b><span>Daily Press & PIB</span><small>Current affairs explained</small></a>
 </div>
+
+<h3 class="sub2" style="margin-top:1.5rem">📚 Today: Flashcards + Mains Writing</h3>
+<div class="tiles" style="margin: 0 0 1.2rem">
+  <a href="#flashcards"><b>05</b><span>Flashcards</span><small id="td_fc_target">Review 10 cards today</small></a>
+  <a href="#mains"><b>06</b><span>Mains Writing</span><small>Write 1 answer today</small></a>
+</div>
+
+<div class="card key" style="margin-bottom:1rem">
+  <h3>✍️ Mains Question of the Day</h3>
+  <p class="meta" style="margin-bottom:.5rem">Practice this GS question today (loads randomly on page load):</p>
+  <p id="td_mains_qotd" style="font-style:italic;line-height:1.5;color:var(--txt,#111)">Loading question...</p>
+  <div class="btns" style="margin-top:.8rem"><a class="btn primary" href="#mains">Open Mains Workspace →</a></div>
+</div>
+
 </section>
 
 <section id="pomodoro" class="band">
@@ -902,6 +916,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
       <span class="meta">Target: 7 Minutes</span>
     </div>
     <h3 id="mains_question" style="font-size:1.15rem;line-height:1.4">Examine the constitutional role and discretionary powers of the Governor. How have Supreme Court judgments addressed controversies surrounding Article 200?</h3>
+    <div id="mains_hint_box" style="display:none;margin-top:.8rem;padding:.7rem 1rem;background:var(--accent-bg,#eff6ff);border-left:3px solid var(--accent,#2563eb);border-radius:6px;font-size:.88rem;color:var(--txt-m,#374151);line-height:1.5"></div>
   </div>
 
   <div class="mains-hud">
@@ -929,6 +944,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
   <div class="btns" style="margin:1rem 0">
     <button type="button" class="save" id="mains_save_draft">💾 Save Answer Draft</button>
     <button type="button" class="btn" id="mains_copy_btn">📋 Copy Answer</button>
+    <button type="button" class="btn" id="mains_download_btn">⬇️ Download .txt</button>
     <button type="button" class="btn" id="mains_clear_btn">Clear Pad</button>
   </div>
   <p class="meta" id="mains_status_msg"></p>
@@ -2097,6 +2113,58 @@ var FC_DECK = [
   // Ethics
   { s: "Ethics", b: "Ethics · GS Paper IV", q: "What are Nolan's Seven Principles of Public Life?", a: "1) Selflessness, 2) Integrity, 3) Objectivity, 4) Accountability, 5) Openness, 6) Honesty, and 7) Leadership." },
   { s: "Ethics", b: "Ethics · Administrative Integrity", q: "What is the ethical difference between Probity and Honesty?", a: "Honesty is telling the truth and not lying or stealing. Probity is active, uncompromising adherence to highest ethical standards, incorruptibility, and institutional uprightness in public action even when unobserved." }
+
+  // Additional Polity Cards
+  { s: "Polity", b: "Polity · Fundamental Rights", q: "What is the distinction between Fundamental Rights (Part III) and Directive Principles (Part IV)?", a: "Fundamental Rights are justiciable (enforceable by courts) and negative in character (restrain the state). Directive Principles are non-justiciable, positive obligations on the state for socio-economic justice. Article 37 states they are fundamental in the governance of the country." },
+  { s: "Polity", b: "Polity · Emergency", q: "What are the three types of Emergencies in India and their constitutional Articles?", a: "1. National Emergency (Article 352) - external aggression or armed rebellion; 2. State Emergency / Presidents Rule (Article 356) - failure of constitutional machinery in a state; 3. Financial Emergency (Article 360) - threat to financial stability." },
+  { s: "Polity", b: "Polity · Parliament", q: "What is the Anti-Defection Law and under which Schedule is it placed?", a: "10th Schedule (added by 52nd Amendment, 1985). A member is disqualified if they voluntarily give up party membership, or vote/abstain against the party whip. Exception: merger of at least 2/3rd members. Disqualification is decided by the Speaker/Chairman." },
+  { s: "Polity", b: "Polity · Judiciary", q: "What is Judicial Review? How does it differ from Judicial Activism?", a: "Judicial Review (Article 13) is the power of courts to examine the constitutionality of legislative/executive action. Judicial Activism is proactive judicial intervention (through PIL, suo motu) beyond traditional adversarial roles to protect public interest - e.g., Vishaka guidelines, MC Mehta environment cases." },
+  { s: "Polity", b: "Polity · Rights", q: "Explain the Right to Information (RTI) Act 2005 - key provisions and exemptions.", a: "RTI empowers citizens to request information from public authorities within 30 days. Central/State Information Commissions adjudicate appeals. Exemptions under Section 8: national security, Cabinet papers, personal information, parliamentary privilege. SIC/CIC can impose penalties up to Rs. 25,000." },
+  { s: "Polity", b: "Polity · DPSP", q: "Name any 5 Directive Principles and their corresponding Articles.", a: "Article 39(b/c) - Distribution of material resources for common good; Article 44 - Uniform Civil Code; Article 45 - Free and compulsory education (now Fundamental Right via 86th Amendment); Article 48 - Prohibition of cow slaughter; Article 51 - Promotion of international peace and security." },
+  { s: "Polity", b: "Polity · Amendment", q: "What was the significance of the 42nd Constitutional Amendment (1976)?", a: "Called the Mini-Constitution. Added the words socialist and secular to the Preamble; added Fundamental Duties (Part IV-A, Article 51A); curtailed Judicial Review; gave primacy to Directive Principles over Fundamental Rights (partly reversed by 44th Amendment 1978)." },
+  { s: "Polity", b: "Polity · Elections", q: "What is the NOTA option and when was it introduced in India?", a: "NOTA (None of the Above) was introduced in 2013 following the Supreme Court PUCL judgment directing ECI to include it on EVMs. It is a voter right to reject all candidates. Even if NOTA receives the highest votes, the candidate with the highest valid votes wins (NOTA is not legally binding on the outcome)." },
+
+  // Additional History Cards
+  { s: "History", b: "History · Revolt of 1857", q: "Name the main centres of the 1857 Revolt and their leaders.", a: "Delhi - Bahadur Shah Zafar (symbolic head); Kanpur - Nana Sahib; Lucknow - Begum Hazrat Mahal; Jhansi - Rani Lakshmibai; Bihar - Kunwar Singh; Bareilly - Khan Bahadur Khan. The revolt was suppressed by 1858, leading to the end of the East India Company rule." },
+  { s: "History", b: "History · Independence Movement", q: "What was the significance of the Dandi March (1930) and Civil Disobedience Movement?", a: "Gandhis 241-mile march from Sabarmati (12 March) to Dandi (6 April) to defy the Salt Law. It launched the Civil Disobedience Movement (1930-34). First mass movement with womens participation. Significance: it demonstrated Satyagraha as a potent political weapon and drew global attention to India freedom struggle." },
+  { s: "History", b: "History · Social Reform", q: "What were the key contributions of Raja Ram Mohan Roy to Indian social reform?", a: "Founded Brahmo Samaj (1828). Campaigned against Sati (abolished 1829 by Regulation XVII). Advocated widow remarriage, womens education, abolition of purdah. Supported English education and reason over blind faith. Founded Sambad Kaumudi newspaper. Called the Father of the Indian Renaissance." },
+  { s: "History", b: "History · Art Culture", q: "What was the Gandhara School of Art and how did it differ from the Mathura School?", a: "Gandhara (1st-5th century CE, NW India): Greco-Roman influence, grey schist stone, realistic depiction of Buddha with curly hair and thin robe. Mathura School: indigenous Kushana-era style, red sandstone, bald or thin-haired Buddha, more spiritual expression. Gandhara depicted Buddha in human form first." },
+  { s: "History", b: "History · Medieval", q: "What was the administrative system of the Mughal Empire under Akbar?", a: "Akbar introduced the Mansabdari system (ranks of 10 to 10,000 Zat and Sawar). Provinces (Subahs) were administered by Subahdars. Revenue system: Todar Mals Zabti/Ain-i-Dahsala (10-year average based on productivity zones). Din-i-Ilahi promoted religious harmony. Abul Fazl documented it in Ain-i-Akbari." },
+
+  // Additional Economy Cards
+  { s: "Economy", b: "Economy · National Income", q: "What is the difference between GDP, GNP, NDP and NNP?", a: "GDP: Total output within territorial borders. GNP = GDP + Net Factor Income from Abroad. NDP = GDP - Depreciation. NNP = GNP - Depreciation. At market prices (MP) includes indirect taxes net of subsidies; at factor cost (FC) is the base. Base Year for India: 2011-12 (new series)." },
+  { s: "Economy", b: "Economy · Monetary Policy", q: "What is the Monetary Policy Committee (MPC) and what is its mandate?", a: "MPC was constituted in 2016 under the amended RBI Act, 1934. 6-member committee (3 RBI nominees + 3 government nominees). Mandate: maintain Consumer Price Index (CPI) inflation at 4% plus/minus 2% (band: 2-6%). Decisions by majority; Governor has casting vote. Reviews policy every 2 months." },
+  { s: "Economy", b: "Economy · Banking", q: "What is Priority Sector Lending (PSL) and what are the prescribed targets?", a: "RBI mandates banks to lend to priority sectors. Overall target: 40% of ANBC (Adjusted Net Bank Credit) for domestic banks. Sub-targets: Agriculture 18% (8% to small/marginal farmers); Micro Enterprises 7.5%; Weaker Sections 12%. Foreign banks with 20+ branches: 40% target. Shortfall directed to RIDF/PSL funds." },
+  { s: "Economy", b: "Economy · Fiscal Policy", q: "What is FRBM Act 2003 and what are its main targets?", a: "Fiscal Responsibility and Budget Management Act aims to eliminate fiscal deficit through statutory rules. Targets: Fiscal Deficit at or below 3% of GDP; Revenue Deficit to be eliminated; Debt-to-GDP at 60% (40% Centre + 20% States). NK Singh Committee (2017) recommended replacing Revenue Deficit with Operative Revenue Deficit." },
+  { s: "Economy", b: "Economy · Trade", q: "What is RoDTEP and what replaced MEIS?", a: "MEIS (Merchandise Exports from India Scheme) provided duty scrips as incentive for exports. It was replaced by RoDTEP (Remission of Duties and Taxes on Exported Products) from January 2021 to comply with WTO rules. RoDTEP rebates embedded taxes at the manufacturing stage not rebated elsewhere." },
+  { s: "Economy", b: "Economy · Financial Inclusion", q: "What are the 3 pillars of Pradhan Mantri Jan Dhan Yojana (PMJDY)?", a: "Launched August 2014. Pillars: 1. Banking: Zero-balance savings account for all; 2. Remittance: RuPay debit card + accidental insurance of Rs. 1 lakh; 3. Insurance and Pension: Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY) and Atal Pension Yojana linkage. Over 50 crore accounts opened." },
+  { s: "Economy", b: "Economy · Poverty Measurement", q: "What is the multidimensional approach to measuring poverty? Name key indices.", a: "Beyond income: MPI (Multidimensional Poverty Index) by UNDP/OPHI measures deprivation in health, education, and living standards (10 indicators). India NITI Aayog National MPI (2023): 11.28% multidimensionally poor. Other measures: Tendulkar Committee poverty line (2009), Rangarajan Committee (2014)." },
+  { s: "Economy", b: "Economy · Industry", q: "What is the Production Linked Incentive (PLI) Scheme and which sectors does it cover?", a: "PLI offers incentives of 4-6% on incremental sales from India-manufactured products for 5 years. Covers 14 sectors including Mobile phones, Pharmaceuticals, Auto components, Textiles, Food processing, White goods, Specialty steel, Solar PV modules, Advanced chemistry cell batteries. Target: Rs. 5 lakh crore additional output." },
+  { s: "Economy", b: "Economy · International", q: "What is the QUAD and what economic significance does it have for India?", a: "Quadrilateral Security Dialogue: India, USA, Japan, Australia. Significance: Supply chain resilience, semiconductor cooperation, infrastructure investment, climate finance, vaccine diplomacy (COVAX). Aligns with India Indo-Pacific strategy and trusted partner brand. QUAD Infrastructure Coordination Group is a key initiative." },
+
+  // Additional Environment Cards
+  { s: "Environment", b: "Environment · Climate Agreements", q: "What is the difference between UNFCCC, Kyoto Protocol, and Paris Agreement?", a: "UNFCCC (1992): Framework convention - common but differentiated responsibilities. Kyoto Protocol (1997): Binding emission cuts for Annex-I (developed) countries; Clean Development Mechanism for developing nations. Paris Agreement (2015): NDCs for all parties, 1.5 degree C target, Loss and Damage mechanism. USA withdrew and re-joined under Biden." },
+  { s: "Environment", b: "Environment · Biodiversity", q: "What is the Convention on Biological Diversity (CBD) and what are its three objectives?", a: "CBD (1992, Rio Earth Summit): 1. Conservation of biological diversity; 2. Sustainable use of its components; 3. Fair and equitable sharing of benefits from genetic resources. Protocols: Cartagena Protocol (biosafety of GMOs) and Nagoya Protocol (access and benefit sharing). COP15 Kunming-Montreal Framework (2022): 30x30 target." },
+  { s: "Environment", b: "Environment · Legislation", q: "What are the key provisions of the Environment Protection Act 1986 and when was it enacted?", a: "EPA 1986 was enacted in the wake of Bhopal Gas Tragedy (December 1984). It is an umbrella legislation giving the Central Government power to protect and improve environmental quality. Key provisions: power to issue directions, lay down environmental standards, regulate hazardous substances, and constitute authorities." },
+  { s: "Environment", b: "Environment · Forest Rights", q: "What is the Forest Rights Act 2006 and who does it benefit?", a: "Scheduled Tribes and Other Traditional Forest Dwellers (Recognition of Forest Rights) Act recognizes 13 types of rights including 1. Individual Rights (IFR) over land cultivated before 13 December 2005; 2. Community Forest Rights (CFR); 3. Right to protect and conserve forests. Gram Sabhas are the key authority." },
+  { s: "Environment", b: "Environment · Water Policy", q: "What is the National Water Policy (NWP) and what are its key principles?", a: "India NWP 2012 emphasizes: 1. Water as a national asset, not state property; 2. Demand management over supply augmentation; 3. Integrated water resource management (IWRM); 4. Regulated groundwater extraction; 5. River basin-based planning; 6. Priority to drinking water and ecosystem needs before irrigation." },
+  { s: "Environment", b: "Environment · NAPCC", q: "What is NAPCC (National Action Plan on Climate Change) and name its 8 missions?", a: "NAPCC (2008) has 8 Missions: 1. National Solar Mission; 2. Enhanced Energy Efficiency; 3. Sustainable Habitat; 4. National Water Mission; 5. Sustaining the Himalayan Ecosystem; 6. Green India; 7. Sustainable Agriculture; 8. Strategic Knowledge for Climate Change. India domestic climate action framework." },
+  { s: "Environment", b: "Environment · Mangroves", q: "What are mangroves and why are they ecologically significant?", a: "Salt-tolerant trees/shrubs found in tropical coastal intertidal zones. Significance: 1. Carbon storage - Blue carbon (10x more carbon per hectare than tropical forests); 2. Nursery for marine species; 3. Coastal protection from storms/tsunamis; 4. Livelihoods for coastal communities. India: Sundarbans is largest mangrove (UNESCO WHS)." },
+  { s: "Environment", b: "Environment · Protected Areas", q: "What is the distinction between National Parks, Wildlife Sanctuaries, and Biosphere Reserves?", a: "National Parks: Highest protection; no human activity except tourism. Boundaries fixed by law. Wildlife Sanctuaries: Private land rights/activities allowed; human activities permitted with restrictions. Biosphere Reserves (UNESCO-MAB): 3-zone model - Core (fully protected), Buffer (research), Transition (human settlements). India: 18 Biosphere Reserves." },
+  { s: "Environment", b: "Environment · NDC", q: "What are India NDC targets under the Paris Agreement (updated 2022)?", a: "India enhanced NDCs (2022): 1. Reduce GDP emissions intensity by 45% from 2005 levels by 2030; 2. Achieve 50% cumulative electric power installed capacity from non-fossil fuels by 2030; 3. Net zero by 2070. LiFE (Lifestyle for Environment) mission added as behavioral pillar." },
+  { s: "Environment", b: "Environment · Coastal Regulation", q: "What is the Coastal Regulation Zone (CRZ) Notification and why is it significant?", a: "CRZ 2019 regulates development in coastal areas to protect fragile ecosystems. Classifies coast into CRZ I (ecologically sensitive - mangroves, corals), CRZ II (developed), CRZ III (rural), CRZ IV (Andaman and Lakshadweep). It balances development with conservation. Fisherfolk livelihoods are protected. No construction within 50-200m from HTL." },
+
+  // Additional Ethics Cards
+  { s: "Ethics", b: "Ethics · Theory", q: "Compare Utilitarianism and Deontological ethics with examples from public administration.", a: "Utilitarianism (Bentham, Mill): Greatest good for greatest number. E.g., distributing vaccines to most vulnerable. Deontological ethics (Kant Categorical Imperative): duty-based, action judged by intention not consequence. E.g., not accepting bribe even if it would fund a good cause. Public service uses both: consequentialist outcomes with rule-based constraints." },
+  { s: "Ethics", b: "Ethics · ARC Values", q: "What are the foundational values of civil services as identified by the 2nd ARC report?", a: "2nd ARC (12th Report, 2008) on Citizen Centric Administration identifies: Integrity, Impartiality, Neutrality, Accountability, Transparency, Efficiency, Responsiveness, Commitment to public interest, Compassion, Respect for law. These form the Ethical Charter for public servants." },
+  { s: "Ethics", b: "Ethics · Governance", q: "What is the concept of Conflict of Interest in public administration? Give examples.", a: "When a public official personal interests could improperly influence their official duties. Types: Financial (share-holding in regulated company), Personal (awarding contract to relative), Political (partisan implementation of government schemes). Mitigation: Disclosure, Recusal, Structural separation. India: CVC guidelines and Service Rules address this." },
+  { s: "Ethics", b: "Ethics · Accountability", q: "What is the distinction between accountability and responsibility in governance?", a: "Responsibility: Obligation to perform a task (assigned duty). Accountability: Obligation to explain and justify actions taken (answerability to a superior or institution). Accountability can be: 1. Political (to Parliament); 2. Administrative (to superior officers); 3. Legal (to judiciary); 4. Social (to civil society/media)." },
+  { s: "Ethics", b: "Ethics · Leadership", q: "What is Servant Leadership and how is it relevant to Indian civil services?", a: "Coined by Robert Greenleaf (1970): Leaders serve others first; power flows from service, not position. Attributes: Listening, Empathy, Healing, Awareness, Persuasion. Relevance: IAS/IPS officers serve citizens, not rulers. Field administrators in tribal/remote areas embody this. Contrasts with Command and Control colonial model." },
+  { s: "Ethics", b: "Ethics · Integrity", q: "Explain the concept of Intellectual Integrity and why it matters for a civil servant.", a: "Intellectual integrity means honesty in reasoning, basing conclusions on evidence not bias, acknowledging uncertainty, being open to changing ones view. For civil servants: preparing objective policy notes even if politically inconvenient, giving honest feedback to ministers, resisting pressure to doctor reports. Upholds the advisory role of bureaucracy." },
+  { s: "Ethics", b: "Ethics · Compassion", q: "How does compassion differ from sympathy in the context of public service delivery?", a: "Sympathy is feeling pity for someone suffering (passive). Compassion is feeling empathy plus acting to alleviate it (active). In public service: Compassion = designing inclusive schemes (MGNREGA for rural poor), humane grievance redressal, treating marginalized citizens with dignity. Example: Distress helplines for farmers as compassion in administration." },
+  { s: "Ethics", b: "Ethics · Whistleblowing", q: "What is the ethical case for and against whistleblowing in government service?", a: "For: Public interest over organizational loyalty, transparency, accountability, checks on power abuse (Satyendra Dubey, IES officer). Against: Breach of confidentiality, potential harm to innocent colleagues, destabilization of governance. Ethical framework: Whistleblowing is justified when wrongdoing is clear, internal channels exhausted, harm is serious, intent is public interest (not personal gain)." },
+  { s: "Ethics", b: "Ethics · AI Governance", q: "What are the key ethical principles that should govern use of AI in government decision-making?", a: "1. Transparency and Explainability - decisions must be auditable; 2. Non-discrimination - algorithms must not embed caste/gender/religious bias; 3. Accountability - clear human responsibility; 4. Privacy - data minimisation; 5. Human oversight - no fully autonomous decisions on welfare/justice. India AI governance framework: NITI Aayog Responsible AI for All (2021)." }
+
 ];
 
 var fcCurrentIndex = 0;
@@ -2193,23 +2261,43 @@ function initFlashcards() {
 /* --- Mains Writing Workspace --- */
 var MAINS_QUESTIONS = {
   "GS 1": [
-    "Evaluate the socio-economic impact of the British land revenue settlements on the Indian peasantry in the 19th century. (150 words / 10 marks)",
-    "Explain the factors that determine the location of the cotton textile industry in India. Why did it shift from Bombay to other centres? (150 words / 10 marks)",
-    "Examine how the Bhakti movement served as an instrument of social reform and cultural synthesis in medieval India. (250 words / 15 marks)"
+    { q: "Evaluate the socio-economic impact of the British land revenue settlements on the Indian peasantry in the 19th century. (150 words / 10 marks)", hint: "Intro: Pre-British land rights. Body: Permanent Settlement (Bengal), Ryotwari (Madras/Bombay), Mahalwari (NW). Impact: Commercialisation, landlordism, famines. Conclusion: Seeds of nationalism." },
+    { q: "Explain the factors that determine the location of the cotton textile industry in India. Why did it shift from Bombay to other centres? (150 words / 10 marks)", hint: "Intro: India as 2nd largest textile exporter. Body: Factors - raw material, power, labour, market. Shift reasons: power costs, labour militancy, Ahmedabad expansion. Conclusion: Decentralisation impact." },
+    { q: "Examine how the Bhakti movement served as an instrument of social reform and cultural synthesis in medieval India. (250 words / 15 marks)", hint: "Intro: 6th-17th century devotional movement. Body: Anti-caste stance (Kabir, Ravidas), women empowerment (Mirabai, Akkamahadevi), Hindu-Muslim synthesis (Dadu Dayal), literary contribution. Critique: Limited structural change. Conclusion: Precursor to modern reform." },
+    { q: "Discuss the significance of wetlands in India and the challenges they face. How does the Ramsar Convention aid their conservation? (250 words / 15 marks)", hint: "Intro: India has 75+ Ramsar sites. Body: Ecological functions - carbon sink, biodiversity, water purification. Challenges: encroachment, pollution, invasive species. Ramsar: Montreux Record, wise use principle. Conclusion: Need integrated wetland policy." },
+    { q: "Critically examine the nature and extent of gender inequality in India as reflected in census data and global indices. (250 words / 15 marks)", hint: "Intro: India ranks 127/146 in GGI 2023. Body: Sex ratio, education gap, workforce participation, political representation. Indices: GII, GDI, GGI. Policy gaps: POSH Act, Maternity Benefit Act. Conclusion: Need structural reform beyond schemes." },
+    { q: "How has the concept of creative geography been used in Indian cinema? Does it shape or distort cultural identity? (150 words / 10 marks)", hint: "Intro: Cinema as soft power and identity mirror. Body: Bollywood's pan-India settings, stereotyping of regional cultures, language homogenisation. Positive: cultural exchange. Negative: erasure of diversity. Conclusion: Need regional language film ecosystem." },
+    { q: "The Partition of 1947 was not merely territorial but deeply psychological and cultural. Elaborate. (250 words / 15 marks)", hint: "Intro: Two-nation theory and its limits. Body: 1 crore displaced, mass violence, Punjab/Bengal partition memory. Literature: Manto, Amrita Pritam. Cultural rupture: music, language, cuisine. Conclusion: Shared heritage cannot be partitioned." },
+    { q: "Analyze the factors responsible for the rise of populism and nativism in democracies worldwide. What are the lessons for India? (250 words / 15 marks)", hint: "Intro: Brexit, Trumpism, global trend. Body: Economic inequality, immigration anxiety, media echo chambers, erosion of institutions. India angle: linguistic chauvinism, sons of the soil movements. Lesson: Inclusive federalism." }
   ],
   "GS 2": [
-    "Examine the constitutional role and discretionary powers of the Governor. How have Supreme Court judgments addressed controversies surrounding Article 200? (150 words / 10 marks)",
-    "The Representation of the People Act 1951 must balance election transparency with candidate privacy. Critically evaluate with recent judicial directives. (250 words / 15 marks)",
-    "Digital public infrastructure (DPI) has emerged as an instrument of citizen empowerment in India. Discuss with examples of JAM and UPI. (150 words / 10 marks)"
+    { q: "Examine the constitutional role and discretionary powers of the Governor. How have Supreme Court judgments addressed controversies surrounding Article 200? (150 words / 10 marks)", hint: "Intro: Governor as constitutional head under Article 153. Body: Discretionary powers - Article 163, 174, 356; Article 200 withholding assent. SC: Nabam Rebia (2016), Rameshwar Prasad (2006). Conclusion: Need binding guidelines." },
+    { q: "The Representation of the People Act 1951 must balance election transparency with candidate privacy. Critically evaluate with recent judicial directives. (250 words / 15 marks)", hint: "Intro: Free and fair elections as basic structure. Body: Disclosure of criminal antecedents, wealth declarations, ADR judgments. Privacy: Puttaswamy judgment. ECI role. Issues: proxy candidates, non-disclosure penalties. Conclusion: Stronger enforcement over new legislation." },
+    { q: "Digital public infrastructure (DPI) has emerged as an instrument of citizen empowerment in India. Discuss with examples of JAM and UPI. (150 words / 10 marks)", hint: "Intro: India Stack as global model. Body: JAM trinity - Jan Dhan, Aadhaar, Mobile; UPI transaction volumes; DigiLocker; ONDC. Outcomes: DBT savings, financial inclusion. Challenges: last-mile, data privacy. Conclusion: DPI exports (G20 priority)." },
+    { q: "Analyze the structural reforms needed in Indian Parliament to address low legislative productivity and weak scrutiny of executive. (250 words / 15 marks)", hint: "Intro: Parliament as supreme deliberative body. Body: Declining session days, anti-defection law weakening debate, budget scrutiny gaps, Parliamentary committee underuse. Reforms: Standing committee strengthening, pre-legislative consultation, Question Hour reform. Conclusion: Legislature-executive balance." },
+    { q: "India's federal architecture has been tested by Centre-State disputes over legislative competence. Examine with examples from the 7th Schedule. (250 words / 15 marks)", hint: "Intro: Quasi-federal with strong centre (K.C. Wheare critique). Body: Concurrent list conflicts, residuary powers with Centre, Article 254 repugnancy doctrine. Examples: GST, agricultural laws 2020. Inter-State Council. Conclusion: Cooperative federalism model." },
+    { q: "NHRC has been criticised as a toothless tiger. Do you agree? Examine its mandate and limitations. (150 words / 10 marks)", hint: "Intro: NHRC established under PHRA 1993. Body: Powers - inquiry, summon, compensation recommendation. Limitations: cannot act against armed forces, recommendations non-binding, 1-year bar on complaints. Positive: Annual reports, awareness. Conclusion: Need legislative teeth." },
+    { q: "India's bilateral relations with Bangladesh have strategic and humanitarian dimensions. Critically examine the challenges and opportunities. (250 words / 15 marks)", hint: "Intro: Neighbourhood First and India-Bangladesh gold era. Body: Teesta dispute, border killings, NRC anxiety, Farakka Barrage. Opportunities: BBIN connectivity, power trade, blue economy. Post-2024 political shift. Conclusion: Mutual interests over grievances." },
+    { q: "Discuss the role of civil society organizations in deepening democracy. What regulatory challenges do they face in India today? (150 words / 10 marks)", hint: "Intro: Civil society as 4th pillar of democracy. Body: FCRA amendments 2020, UAPA implications, shrinking space. Positive contributions: RTI movement, MGNREGA enforcement, anti-corruption. Conclusion: Vibrant civil society is security, not threat." }
   ],
   "GS 3": [
-    "Explain the role of Farmer Producer Organisations (FPOs) in addressing the structural vulnerabilities of small and marginal farmers. (150 words / 10 marks)",
-    "What are the major challenges facing the deployment of Green Hydrogen in India? How does the National Green Hydrogen Mission address them? (250 words / 15 marks)",
-    "Analyze the twin threats of cyber warfare and deepfakes to India’s internal security architecture. Suggest regulatory remedies. (250 words / 15 marks)"
+    { q: "Explain the role of Farmer Producer Organisations (FPOs) in addressing the structural vulnerabilities of small and marginal farmers. (150 words / 10 marks)", hint: "Intro: 86% of Indian farmers are small/marginal. Body: FPO structure under Companies Act 2013, government target of 10,000 FPOs, benefits - collective bargaining, credit access, market linkage. Challenges: governance, working capital. Conclusion: Cooperatives 2.0 model." },
+    { q: "What are the major challenges facing the deployment of Green Hydrogen in India? How does the National Green Hydrogen Mission address them? (250 words / 15 marks)", hint: "Intro: India 5 MMT green hydrogen target by 2030. Body: Challenges - electrolysis cost, renewable energy intermittency, storage, lack of demand. Mission: strategic interventions, SIGHT programme, export focus. Global context: EU, Japan. Conclusion: Long-term industrial decarbonisation." },
+    { q: "Analyze the twin threats of cyber warfare and deepfakes to India's internal security architecture. Suggest regulatory remedies. (250 words / 15 marks)", hint: "Intro: India 3rd most targeted nation for cyber attacks. Body: State-sponsored attacks, deepfake electoral interference, critical infrastructure vulnerabilities. Framework gaps: IT Act 2000 inadequacies, no cyber warfare doctrine. Remedies: NCIIPC strengthening, Digital India Security Act. Conclusion: Whole-of-government approach." },
+    { q: "India's semiconductor mission is considered a strategic necessity. Examine the rationale, current status, and challenges. (150 words / 10 marks)", hint: "Intro: 2021 chip shortage impact on India. Body: India Semiconductor Mission, DLI scheme, INM fab approval, design-linked incentive. Challenges: capex intensity, talent gap, water/power needs. Opportunities: Trusted partner, China+1. Conclusion: 10-year patient capital needed." },
+    { q: "What is Mission LiFE (Lifestyle for Environment)? Evaluate its potential to mainstream sustainable consumption in India. (150 words / 10 marks)", hint: "Intro: PM Modi COP26 initiative, Pro-Planet People. Body: 75 individual actions across energy, water, waste, food. Linkage to SDG 12. Challenges: aspiration gap in growing middle class, greenwashing. Opportunities: cultural alignment (Vasudhaiva Kutumbakam). Conclusion: Behaviour change requires incentives." },
+    { q: "Examine how space technology is being leveraged for agriculture, disaster management, and urban planning in India. (250 words / 15 marks)", hint: "Intro: ISRO societal mandate alongside scientific. Body: Agriculture - FASAL (crop forecast), soil moisture mapping; Disaster - RISAT for flood mapping, Bhuvan; Urban - LULC mapping for master plans. Challenges: data accessibility, ground-truthing. Conclusion: Spatial democracy." },
+    { q: "India's energy transition requires a just transition framework for coal-dependent states. Explain the concept and implementation challenges. (250 words / 15 marks)", hint: "Intro: India 2070 net zero target, 220+ million coal dependents. Body: States - Jharkhand, Chhattisgarh, Odisha concerns; ILO Just Transition Guidelines; REIA (Responsible energy investment). Challenges: fiscal federalism, skill gaps. Models: Germany coal exit fund. Conclusion: Climate justice framework." },
+    { q: "Discuss the significance of e-RUPI and Central Bank Digital Currency (CBDC) in reshaping India's payment ecosystem. (150 words / 10 marks)", hint: "Intro: India UPI global success story. Body: e-RUPI as voucher-based purposeful payment, CBDC as digital rupee. Differences from crypto. RBI wholesale/retail CBDC pilot. Benefits: programmable money, DBT efficiency. Risks: privacy, disintermediation. Conclusion: Phased responsible rollout." }
   ],
   "GS 4": [
-    "What do you understand by 'probity in governance'? Differentiate it from mere adherence to financial rules with real-world administrative examples. (150 words / 10 marks)",
-    "Case Study: As a District Magistrate, you notice illegal sand mining by a politically influential cartel endangering a river bridge. Outline your course of action. (250 words / 15 marks)"
+    { q: "What do you understand by probity in governance? Differentiate it from mere adherence to financial rules with real-world administrative examples. (150 words / 10 marks)", hint: "Intro: Probity = complete honesty + strong moral principles (ARC II). Body: vs financial rules - rules are floor, probity is ceiling. Examples: Ashok Khemka (Haryana land records), RTI proactive disclosure, Whistleblower Protection Act. Conclusion: Culture over compliance." },
+    { q: "Case Study: As a District Magistrate, you notice illegal sand mining by a politically influential cartel endangering a river bridge. Outline your course of action. (250 words / 15 marks)", hint: "Issues identified: rule of law, public safety, political pressure. Stakeholders: public, politicians, contractors, environment. Actions: immediate enforcement (Section 144), FIR, NGT complaint, media briefing (transparency), inform superior. Ethical basis: Constitutional oath, ARC principles. Conclusion: Courage of conviction." },
+    { q: "Emotional intelligence is considered more important than IQ for effective civil service leadership. Do you agree? Justify with examples. (150 words / 10 marks)", hint: "Intro: Daniel Goleman 5 components. Body: Self-awareness, empathy, social skills crucial for field administration. Example: T.N. Seshan (ECI reforms), E. Sreedharan (Delhi Metro culture). IQ role: technical competence. Conclusion: EI as multiplier, not substitute." },
+    { q: "Examine the ethical dimensions of using artificial intelligence in judicial decision-making and administrative adjudication. (250 words / 15 marks)", hint: "Intro: COMPAS algorithm and bias controversy. Body: Benefits - speed, consistency, case prediction. Risks - algorithmic bias, lack of empathy, accountability vacuum. India: eCourts, NeSL. Principles: human oversight, explainability, non-discrimination. Conclusion: AI as assistant, judge as authority." },
+    { q: "What are the ethical challenges of whistleblowing in India? Critically examine the legal framework protecting whistleblowers. (150 words / 10 marks)", hint: "Intro: Satyendra Dubey, Manjunath cases. Body: Whistleblower Protection Act 2014 - provisions, limitations. Challenges: identity protection gaps, victimisation, slow investigation. CVC role. International: SEC bounty programme. Conclusion: Culture of speaking up needs safe channels." },
+    { q: "Case Study: As Block Development Officer, local NGOs allege MGNREGA funds are being misappropriated by gram panchayat officials. How will you proceed? (250 words / 15 marks)", hint: "Issues: corruption, accountability, community trust. Actions: Social audit facilitation (Sec 17, MGNREGA), independent verification of muster rolls, Ombudsman notification, state government report. Protect informants. Positive steps: Digital MIS, real-time wage payment. Conclusion: Systemic solution over individual punishment." },
+    { q: "Analyze the tension between national interest and humanitarian obligations in India's refugee policy. What ethical framework should guide it? (150 words / 10 marks)", hint: "Intro: India not signatory to 1951 Refugee Convention. Body: Rohingya, Tibetan, Chakma cases. National interest: security, resources. Humanitarian: Article 21, non-refoulement principle. Ethical framework: Cosmopolitan ethics vs Communitarian ethics. Conclusion: Customary international law obligations." }
   ]
 };
 
@@ -2360,14 +2448,30 @@ function initMainsWorkspace() {
     qBtn.addEventListener('click', function() {
       var p = $('mains_paper').value;
       var list = MAINS_QUESTIONS[p] || [];
+      var entry = null;
       if (list.length) {
-        var randomQ = list[Math.floor(Math.random() * list.length)];
-        $('mains_question').textContent = randomQ;
+        entry = list[Math.floor(Math.random() * list.length)];
+        var qText = (typeof entry === 'object') ? entry.q : entry;
+        $('mains_question').textContent = qText;
         $('mains_q_meta').textContent = 'UPSC ' + p + ' · Practice Prompt';
+        // Show answer framework hint
+        var hintBox = $('mains_hint_box');
+        if (hintBox) {
+          var hint = (typeof entry === 'object' && entry.hint) ? entry.hint : '';
+          if (hint) {
+            hintBox.innerHTML = '<strong>&#128161; Answer Framework Hint:</strong> ' + hint;
+            hintBox.style.display = 'block';
+          } else {
+            hintBox.style.display = 'none';
+          }
+        }
       } else {
         var custom = prompt('Enter custom Mains question prompt:');
         if (custom) $('mains_question').textContent = custom;
       }
+      // reset timer
+      var timerDisp = $('mains_timer_display');
+      if (timerDisp) timerDisp.textContent = '⏱️ 00:00';
     });
   }
 
@@ -2402,6 +2506,35 @@ function initMainsWorkspace() {
         document.execCommand('copy');
         $('mains_status_msg').innerHTML = '<span class="pill p-ok">✓ Copied to clipboard!</span>';
       }
+    });
+  }
+
+  // Download Answer as .txt
+  var dlBtn = $('mains_download_btn');
+  if (dlBtn) {
+    dlBtn.addEventListener('click', function() {
+      var editorEl = $('mains_editor');
+      if (!editorEl || !editorEl.value.trim()) return alert('Please write an answer first.');
+      var q = $('mains_question').textContent;
+      var p = $('mains_paper').value;
+      var d = new Date().toISOString().slice(0, 10);
+      var content = 'The Aspirant''s Desk - UPSC Mains Answer\n' +
+        'Date: ' + d + '\n' +
+        'Paper: ' + p + '\n' +
+        '========================================\n' +
+        'QUESTION:\n' + q + '\n\n' +
+        '========================================\n' +
+        'MY ANSWER:\n' + editorEl.value + '\n';
+      var blob = new Blob([content], { type: 'text/plain' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'upsc-mains-' + p.replace(/ /g, '-').toLowerCase() + '-' + d + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      $('mains_status_msg').innerHTML = '<span class="pill p-ok">⬇️ Answer downloaded!</span>';
     });
   }
 
