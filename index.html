@@ -660,7 +660,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
 <h3 class="sub2">1. Who we are</h3>
 <p>The Aspirant’s Desk is run by Anbuchelvan M S, Puducherry, India. Contact: <a href="mailto:theaspirantsdesk0@gmail.com">theaspirantsdesk0@gmail.com</a>.</p>
 <h3 class="sub2">2. What we collect</h3>
-<ul class="plain"><li>Account details you give when you sign in, such as your name and email address.</li><li>Study data you enter, such as syllabus progress, study hours, test scores, goals and logs.</li><li>Messages you send us. The contact form opens your own email app, so we receive only what you send.</li><li>Technical data such as IP address and browser details, which our hosting and database providers record as part of running the service.</li><li>Items saved in your own browser, such as your study plan, daily test results, reading history, text size and theme.</li></ul>
+<ul class="plain"><li>Account details you give when you sign in, such as your name and email address.</li><li>Study data you enter, such as syllabus progress, study hours, test scores, goals and logs.</li><li>Messages you send us. The contact form opens your own email app, so we receive only what you send.</li><li>Technical data such as IP address and browser details, which our hosting and database providers record as part of running the service.</li><li>Items saved locally or synced to your account, such as your study plan, daily test results, mistake notebook, reading history, mock history, revision records and written answers. Display preferences such as theme and text size stay on the device.</li><li>If you enable push reminders, the app stores that device's push endpoint, encryption keys, reminder time and time zone so the reminder service can deliver notifications. You can disable a device subscription in App Settings.</li></ul>
 <h3 class="sub2">3. How we use it</h3>
 <p>We use your data to run your account, show you your own progress, keep the website working and secure, and answer your messages. The site owner, as administrator, can see learners’ progress summaries.</p>
 <h3 class="sub2">4. Consent</h3>
@@ -1005,7 +1005,12 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
 <p><label for="rm_time">Reminder time</label><input type="time" id="rm_time" value="19:00"></p>
 <p><button class="btn" type="button" id="rm_test">Send a test reminder</button></p>
 <p class="meta" id="rm_msg" aria-live="polite"></p>
-<p class="meta">Reminders appear while the app or its browser tab is open or running in the background. They cannot wake a closed phone; that needs the sign-in and sync stage.</p></div>
+<div style="display:flex;gap:.55rem;flex-wrap:wrap;margin-top:.65rem">
+<button class="btn primary" type="button" id="rm_push_enable">Enable push on this device</button>
+<button class="btn" type="button" id="rm_push_disable" hidden>Disable push on this device</button>
+</div>
+<p class="meta" id="rm_push_msg" role="status" aria-live="polite">Sign in first, then enable push notifications on each device you want to receive reminders on.</p>
+<p class="meta">In-page reminders work while the app is open. Push reminders can arrive while it is closed after you sign in, enable notifications and keep a valid device subscription.</p></div>
 </div>
 </section>
 <section id="mocktest" class="band">
@@ -1067,7 +1072,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
 <div><label for="authName">Display name (for new accounts)</label><input id="authName" type="text" autocomplete="name" maxlength="60" placeholder="Your name"></div>
 <div><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" required></div>
 <div><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" required></div>
-<button class="save" id="signIn" type="button">Sign in</button><button class="btn" id="signUp" type="button">Create learner account</button><button class="btn" id="signOut" type="button" hidden>Sign out</button>
+<button class="save" id="signIn" type="button">Sign in</button><button class="btn" id="signUp" type="button">Create learner account</button><button class="btn" id="signOut" type="button" hidden>Sign out</button><button class="btn" id="syncNow" type="button" hidden>Sync my data now</button>
 </div>
 <p class="meta">Use your own email. Never share your password. Your study data stays private to your account; the site administrator can view the shared progress summary. Your notes and written answers remain private to you.</p>
 </div>
@@ -1445,8 +1450,21 @@ else if(b.hasAttribute('data-read')){var r=readKeys(),t=r[TODAY]||[],k=nSub+'|'+
 else return;drawNotes();if(top)$('notes').scrollIntoView({behavior:'smooth'})});
 ['pib','press'].forEach(function(n){fetch('data/'+n+'.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).then(function(a){a.forEach(function(x){if(n==='pib')x.k='pib';DBP.push(x)});drawPress();drawPib()}).catch(function(){})});
 var PAP=['GS 1','GS 2','GS 3','GS 4','Prelims','Essay'];
-var KEYS=['desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net','desk-watch','desk-week','desk-sel','desk-ustate'];
+/* Private learner data. Keep display preferences (theme, palette and font size) local to each device. */
+var KEYS=[
+'desk-goal','desk-syl','desk-hours','desk-mocks','desk-rev','desk-log','desk-ans','desk-net',
+'desk-watch','desk-week','desk-sel','desk-ustate','desk-dtests','desk-mains-drafts','desk-mistakes',
+'desk-mission','desk-mockrun','desk-read','desk-plan','desk-states','desk-reminder'
+];
 var NDB=null,ME=null,ISOWN=false,syncT=0,dataSyncT=0,nSub='',DBN=[],DBP=[],USER=null,adminRows=[],rtStarted=false;
+window.__deskBackendBridge={getClient:function(){return NDB},getUserId:function(){return ME},getUser:function(){return USER},isOwner:function(){return ISOWN}};
+var DIRTY_KEYS='desk_cloud_dirty_keys',cloudApplying=false,dirtySequence=0;
+function readDirtyMap(){try{var v=JSON.parse(localStorage.getItem(DIRTY_KEYS)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+function dirtyKeyNames(){var m=readDirtyMap(),a=Object.keys(m).filter(function(k){return KEYS.indexOf(k)>=0});if(!a.length&&localStorage.getItem('desk_cloud_dirty')==='1')return KEYS.slice();return a}
+function scheduleCloudSync(){if(!NDB||!ME)return;clearTimeout(dataSyncT);dataSyncT=setTimeout(function(){syncPersonalData(false).catch(function(e){setAuthStatus('Signed in, but cloud backup failed: '+(e.message||e))})},850);clearTimeout(syncT);syncT=setTimeout(function(){sync().catch(function(e){setAuthStatus('Study summary sync failed: '+(e.message||e))})},1450)}
+function recordDirtyKey(k){if(cloudApplying||KEYS.indexOf(k)<0)return;var m=readDirtyMap();m[k]=String(Date.now())+'-'+String(++dirtySequence);try{localStorage.setItem(DIRTY_KEYS,JSON.stringify(m));localStorage.setItem('desk_cloud_dirty','1')}catch(e){}scheduleCloudSync()}
+function watchLocalStorage(){if(window.__deskLocalStorageWatched||!window.Storage)return;window.__deskLocalStorageWatched=true;var p=Storage.prototype,oldSet=p.setItem,oldRemove=p.removeItem;p.setItem=function(k,v){var r=oldSet.call(this,k,v);if(this===window.localStorage)recordDirtyKey(String(k));return r};p.removeItem=function(k){var r=oldRemove.call(this,k);if(this===window.localStorage)recordDirtyKey(String(k));return r}}
+watchLocalStorage();
 
 /* PYQ library and practice */
 var PYQ_OPTIONALS=[
@@ -1470,15 +1488,19 @@ async function pyqReveal(q){var box=$('pyqAnswer');box.innerHTML='<p class="meta
 function initPyq(){fillPyqOptionals();['pyqStage','pyqYear','pyqPaper','pyqOptional'].forEach(function(id){$(id).addEventListener('change',function(){PYQ_FILTERS[{pyqStage:'stage',pyqYear:'year',pyqPaper:'paper',pyqOptional:'optional'}[id]]=this.value;PYQ_INDEX=0;pyqDraw()})});$('pyqSubject').addEventListener('input',function(){PYQ_FILTERS.subject=this.value.trim();PYQ_INDEX=0;pyqDraw()});$('pyqSearch').addEventListener('input',function(){PYQ_FILTERS.search=this.value.trim();PYQ_INDEX=0;pyqDraw()});$('pyqPrev').addEventListener('click',function(){if(PYQ_INDEX>0){PYQ_INDEX--;pyqDraw()}});$('pyqNext').addEventListener('click',function(){if(PYQ_INDEX<pyqFiltered().length-1){PYQ_INDEX++;pyqDraw()}});pyqDraw()}
 function initPyqAdmin(){if($('paSave').getAttribute('data-ready')==='1')return;$('paSave').setAttribute('data-ready','1');$('paSave').addEventListener('click',async function(){if(!NDB||!ISOWN)return;var question=$('paQuestion').value.trim(),paper=$('paPaper').value.trim(),year=+$('paYear').value,stage=$('paStage').value,type=$('paType').value;if(!question||!paper||year<1950||year>2100){$('paMsg').textContent='Enter the question, paper and a valid year.';return}var opts={};['A','B','C','D'].forEach(function(k){var v=$('paOpt'+k).value.trim();if(v)opts[k]=v});if(type==='mcq'&&Object.keys(opts).length<2){$('paMsg').textContent='Enter at least two options for an MCQ.';return}var row={stage:stage,exam_year:year,paper:paper,subject:$('paSubject').value.trim()||null,topic:$('paTopic').value.trim()||null,optional_subject:$('paOptional').value||null,question_type:type,question_text:question,options:type==='mcq'?opts:null,marks:$('paMarks').value===''?null:+$('paMarks').value,source_reference:$('paSource').value.trim()||null,source_verified:$('paVerified').checked,is_published:false};$('paMsg').textContent='Saving question…';var ins=await NDB.from('pyq_questions').insert(row).select('id').single();if(ins.error){$('paMsg').textContent='Could not save question: '+ins.error.message;return}var key={question_id:ins.data.id,correct_option:type==='mcq'?($('paCorrect').value||null):null,correct_answer:$('paCorrectText').value.trim()||null,explanation:$('paExplanation').value.trim()||null,model_answer:$('paModel').value.trim()||null};var ar=await NDB.from('pyq_answer_keys').insert(key);if(ar.error){$('paMsg').textContent='Question saved, but answer key failed: '+ar.error.message+' — the question remains unpublished.';return}if($('paPublish').checked){var pub=await NDB.from('pyq_questions').update({is_published:true}).eq('id',ins.data.id);if(pub.error){$('paMsg').textContent='Question and answer key saved, but publishing failed: '+pub.error.message;return}} $('paMsg').textContent='Question and answer key saved.';['paPaper','paSubject','paTopic','paQuestion','paOptA','paOptB','paOptC','paOptD','paCorrectText','paExplanation','paModel','paSource','paMarks'].forEach(function(id){$(id).value=''});$('paVerified').checked=false;$('paPublish').checked=false;await pyqLoad()})}
 
-function allLocalData(){var o={};KEYS.forEach(function(k){var v=localStorage.getItem(k);if(v!==null){try{o[k]=JSON.parse(v)}catch(e){}}});return o}
-function applyCloudData(o){KEYS.forEach(function(k){if(Object.prototype.hasOwnProperty.call(o||{},k)){try{localStorage.setItem(k,JSON.stringify(o[k]))}catch(e){}}})}
-function onSave(k){if(KEYS.indexOf(k)<0)return;try{localStorage.setItem('desk_cloud_dirty','1')}catch(e){};if(NDB&&ME){clearTimeout(dataSyncT);dataSyncT=setTimeout(syncPersonalData,900);clearTimeout(syncT);syncT=setTimeout(sync,1400)}}
+function allLocalData(){var o={};KEYS.forEach(function(k){var v=localStorage.getItem(k);if(v!==null){try{o[k]=JSON.parse(v)}catch(e){o[k]=null}}});return o}
+function localDataForKeys(keys){var o={};keys.forEach(function(k){var v=localStorage.getItem(k);if(v===null)o[k]=null;else{try{o[k]=JSON.parse(v)}catch(e){o[k]=null}}});return o}
+function applyCloudData(o){cloudApplying=true;try{KEYS.forEach(function(k){if(Object.prototype.hasOwnProperty.call(o||{},k)){if(o[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(o[k]))}})}finally{cloudApplying=false}}
+function applyLocalKeys(o,keys){cloudApplying=true;try{keys.forEach(function(k){if(!Object.prototype.hasOwnProperty.call(o||{},k)||o[k]===null||o[k]===undefined)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(o[k]))})}finally{cloudApplying=false}}
+function onSave(k){recordDirtyKey(k)}
 function summary(){var syl=load('desk-syl',{}),ks=Object.keys(syl).filter(function(k){return syl[k]}),hs=load('desk-hours',[]),ms=load('desk-mocks',[]),t=0,w=0,a=0,cut=addDays(TODAY,-6);
 hs.forEach(function(x){t+=Number(x.h)||0;if(x.d>=cut)w+=Number(x.h)||0});ms.forEach(function(x){a+=Number(x.p)||0});
 return{syl:ks.length,n:allTopics().length,hours:Math.round(t*10)/10,wk:Math.round(w*10)/10,mocks:ms.length,avg:ms.length?Math.round(a/ms.length):0,logs:load('desk-log',[]).length,upd:new Date().toISOString()}}
 function drawMy(){var s=summary();$('mySum').innerHTML='<div class="stat"><b>'+Math.round(s.syl/Math.max(1,s.n)*100)+'%</b><span>syllabus done</span></div><div class="stat"><b>'+s.hours+'</b><span>hours total</span></div><div class="stat"><b>'+s.wk+'</b><span>hours, last 7 days</span></div><div class="stat"><b>'+s.avg+'%</b><span>mock average</span></div>'}
 async function sync(){if(!NDB||!ME)return;var s=summary();var r=await NDB.from('progress').upsert({user_id:ME,summary:s,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(r.error)throw r.error;drawMy()}
-async function syncPersonalData(){if(!NDB||!ME)return;var r=await NDB.from('user_data').upsert({user_id:ME,payload:allLocalData(),updated_at:new Date().toISOString()},{onConflict:'user_id'});if(r.error){$('authStatus').textContent='Signed in, but private data sync failed: '+r.error.message;return}localStorage.removeItem('desk_cloud_dirty');$('authStatus').textContent='Account connected. Your private study data is synced.'}
+var privatePullBusy=false,privatePullQueued=false;
+async function syncPersonalData(forceAll){if(!NDB||!ME)return;var dirty=readDirtyMap(),keys=forceAll?KEYS.slice():Object.keys(dirty).filter(function(k){return KEYS.indexOf(k)>=0});if(!keys.length&&localStorage.getItem('desk_cloud_dirty')==='1')keys=KEYS.slice();if(!keys.length)return;var versions={};keys.forEach(function(k){versions[k]=dirty[k]===undefined?null:dirty[k]});var payload=localDataForKeys(keys);var r=await NDB.rpc('save_my_user_data',{p_payload:payload});if(r.error){$('authStatus').textContent='Signed in, but private data sync failed: '+r.error.message+' — check that the Stage 4 SQL has been run.';throw r.error}var latest=readDirtyMap();keys.forEach(function(k){if((latest[k]===undefined?null:latest[k])===versions[k])delete latest[k]});cloudApplying=true;try{if(Object.keys(latest).length){localStorage.setItem(DIRTY_KEYS,JSON.stringify(latest));localStorage.setItem('desk_cloud_dirty','1')}else{localStorage.removeItem(DIRTY_KEYS);localStorage.removeItem('desk_cloud_dirty')}}finally{cloudApplying=false}$('authStatus').textContent='Account connected. Private study data is backed up.'}
+async function pullPrivateData(){if(!NDB||!ME)return;if(privatePullBusy){privatePullQueued=true;return}privatePullBusy=true;try{do{privatePullQueued=false;var localBefore=allLocalData(),dirtyBefore=dirtyKeyNames();var remote=await NDB.from('user_data').select('payload').eq('user_id',ME).maybeSingle();if(remote.error)throw remote.error;if(!remote.data){await syncPersonalData(true);continue}var payload=remote.data.payload||{},before=JSON.stringify(allLocalData());var localOnly=KEYS.filter(function(k){return Object.prototype.hasOwnProperty.call(localBefore,k)&&!Object.prototype.hasOwnProperty.call(payload,k)});var keep=dirtyBefore.concat(localOnly.filter(function(k){return dirtyBefore.indexOf(k)<0}));applyCloudData(payload);if(keep.length){applyLocalKeys(localBefore,keep);localOnly.forEach(function(k){if(dirtyBefore.indexOf(k)<0)recordDirtyKey(k)});await syncPersonalData(false)}if(JSON.stringify(allLocalData())!==before){window.dispatchEvent(new Event('storage'));try{drawMy()}catch(e){}}}while(privatePullQueued)}finally{privatePullBusy=false}}
 function ncard(t,b,id){return '<div class="card key"><h3>'+esc(t)+'</h3><p style="white-space:pre-wrap;color:var(--ink)">'+esc(b)+'</p>'+(id&&ISOWN?'<button type="button" class="chip" data-nid="'+esc(id)+'">Delete</button>':'')+'</div>'}
 function drawNotesOld(){var names=Object.keys(NOTES);DBN.forEach(function(x){if(names.indexOf(x.s)<0)names.push(x.s)});if(names.indexOf(nSub)<0)nSub=names[0];
 chips($('nsub'),names,nSub,function(v){nSub=v;drawNotes()});
@@ -1513,29 +1535,41 @@ function setAuthStatus(t){$('authStatus').textContent=t}
 async function loadSharedTables(){var u=await NDB.from('updates').select('*').order('created_at',{ascending:false}).limit(300);if(!u.error){LIVE=u.data.map(function(x){return{id:x.id,state:x.state,cat:x.category,title:x.title,note:x.note,link:x.link,d:x.key_date||'',posted:x.created_at}});liveState='ok';drawLive();drawAdminList()}else{liveState='error';drawLive()}
 var n=await NDB.from('notes').select('*').order('created_at',{ascending:false}).limit(300);if(!n.error){DBN=n.data.map(function(x){return{id:x.id,s:x.subject,t:x.title,b:x.body}});drawNotes()}
 var p=await NDB.from('press').select('*').order('created_at',{ascending:false}).limit(300);if(!p.error){DBP=p.data.map(function(x){return{id:x.id,k:x.kind,d:x.date,p:x.paper,s:x.section,t:x.title,l:x.link,w:x.what_happened,e:x.explanation,u:x.upsc_angle}});drawPress();drawPib()}}
-function subscribeRealtime(){if(rtStarted)return;rtStarted=true;NDB.channel('desk-live-updates').on('postgres_changes',{event:'*',schema:'public',table:'updates'},function(){loadSharedTables()}).subscribe();NDB.channel('desk-content').on('postgres_changes',{event:'*',schema:'public',table:'notes'},function(){loadSharedTables()}).on('postgres_changes',{event:'*',schema:'public',table:'press'},function(){loadSharedTables()}).subscribe();if(ISOWN){NDB.channel('desk-progress').on('postgres_changes',{event:'*',schema:'public',table:'progress'},function(){loadAllProgress()}).subscribe()}}
+function subscribeRealtime(){if(rtStarted)return;rtStarted=true;NDB.channel('desk-live-updates').on('postgres_changes',{event:'*',schema:'public',table:'updates'},function(){loadSharedTables()}).subscribe();NDB.channel('desk-content').on('postgres_changes',{event:'*',schema:'public',table:'notes'},function(){loadSharedTables()}).on('postgres_changes',{event:'*',schema:'public',table:'press'},function(){loadSharedTables()}).subscribe();if(ISOWN){NDB.channel('desk-progress').on('postgres_changes',{event:'*',schema:'public',table:'progress'},function(){loadAllProgress()}).subscribe()}if(ME){NDB.channel('desk-private-'+ME).on('postgres_changes',{event:'*',schema:'public',table:'user_data',filter:'user_id=eq.'+ME},function(){pullPrivateData().catch(function(e){setAuthStatus('Cloud refresh failed: '+(e.message||e))})}).subscribe()}}
 async function loadAllProgress(){if(!ISOWN)return;var r=await NDB.from('progress').select('user_id,summary,updated_at').order('updated_at',{ascending:false});if(r.error)return;var ids=r.data.map(function(x){return x.user_id});var prof=ids.length?await NDB.from('profiles').select('id,display_name').in('id',ids):{data:[]};var names={};(prof.data||[]).forEach(function(p){names[p.id]=p.display_name});$('allrows').innerHTML=r.data.length?r.data.map(function(x){var v=x.summary||{};return '<tr><td><b>'+esc(names[x.user_id]||'Learner')+'</b></td><td>'+(v.n?Math.round(v.syl/v.n*100):0)+'% ('+(v.syl||0)+' of '+(v.n||0)+')</td><td>'+(v.hours||0)+'</td><td>'+(v.wk||0)+'</td><td>'+(v.avg||0)+'% over '+(v.mocks||0)+' tests</td><td>'+(v.logs||0)+'</td><td>'+(x.updated_at?new Date(x.updated_at).toLocaleString('en-IN'):'')+'</td></tr>'}).join(''):'<tr><td colspan="7" class="empty">No learner has synced progress yet.</td></tr>'}
-async function handleSession(session){if(!session){NDB=null;ME=null;ISOWN=false;$('signOut').hidden=true;$('signIn').hidden=false;$('signUp').hidden=false;$('authName').disabled=false;$('authEmail').disabled=false;$('authPassword').disabled=false;$('who').textContent='Not signed in. Your browser-based trackers still work on this device.';$('allbox').hidden=true;$('admin').hidden=true;$('adminLink').hidden=true;return}
-if(!NDB)NDB=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY);ME=session.user.id;USER=session.user;$('signOut').hidden=false;$('signIn').hidden=true;$('signUp').hidden=true;$('authName').disabled=true;$('authEmail').disabled=true;$('authPassword').disabled=true;
-var pr=await NDB.from('profiles').select('display_name,role').eq('id',ME).maybeSingle();if(pr.error){setAuthStatus('Signed in, but profile setup is incomplete. Run supabase-schema.sql in your project SQL editor.');return}
+async function handleSession(session){
+if(!session){NDB=null;ME=null;USER=null;ISOWN=false;$('signOut').hidden=true;$('syncNow').hidden=true;$('signIn').hidden=false;$('signUp').hidden=false;$('authName').disabled=false;$('authEmail').disabled=false;$('authPassword').disabled=false;$('who').textContent='Not signed in. Your browser-based trackers still work on this device.';$('allbox').hidden=true;$('admin').hidden=true;$('adminLink').hidden=true;window.dispatchEvent(new CustomEvent('desk:auth-state',{detail:{userId:null}}));return}
+if(!NDB)NDB=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true,flowType:'pkce'}});
+ME=session.user.id;USER=session.user;$('signOut').hidden=false;$('syncNow').hidden=false;$('signIn').hidden=true;$('signUp').hidden=true;$('authName').disabled=true;$('authEmail').disabled=true;$('authPassword').disabled=true;
+var pr=await NDB.from('profiles').select('display_name,role').eq('id',ME).maybeSingle();if(pr.error){setAuthStatus('Signed in, but profile setup is incomplete. Run the Stage 4 SQL in your Supabase project SQL editor.');return}
 ISOWN=!!(pr.data&&pr.data.role==='admin');$('who').textContent='Signed in as '+((pr.data&&pr.data.display_name)||session.user.email)+(ISOWN?' (administrator).':' Your private notes and answers sync to this account.');
 if(ISOWN){$('allbox').hidden=false;initAdmin();await loadAllProgress()}else{$('allbox').hidden=true;$('admin').hidden=true;$('adminLink').hidden=true;$('nadmin').hidden=true;$('badmin').hidden=true;$('padmin').hidden=true}
-// Keep browser data isolated when a different learner signs in on the same device.
-var previousOwner=localStorage.getItem('desk_local_owner');if(previousOwner&&previousOwner!==ME){KEYS.forEach(function(k){localStorage.removeItem(k)});localStorage.removeItem('desk_cloud_dirty')}
-// Restore the cloud copy on a fresh page load. A one-shot marker prevents a reload loop.
+/* A shared browser must not expose the previous learner's local data to another account. */
+var previousOwner=localStorage.getItem('desk_local_owner');
+if(previousOwner&&previousOwner!==ME){cloudApplying=true;try{KEYS.forEach(function(k){localStorage.removeItem(k)});localStorage.removeItem(DIRTY_KEYS);localStorage.removeItem('desk_cloud_dirty')}finally{cloudApplying=false}}
 var hydrateKey='desk_hydrated_'+ME,justHydrated=sessionStorage.getItem(hydrateKey)==='1';if(justHydrated)sessionStorage.removeItem(hydrateKey);
-var remote=await NDB.from('user_data').select('payload').eq('user_id',ME).maybeSingle();if(!remote.error&&remote.data&&remote.data.payload&&!justHydrated&&localStorage.getItem('desk_cloud_dirty')!=='1'){
-applyCloudData(remote.data.payload);localStorage.setItem('desk_local_owner',ME);sessionStorage.setItem(hydrateKey,'1');location.reload();return}
-if(!remote.error&&!remote.data){await syncPersonalData()}else if(localStorage.getItem('desk_cloud_dirty')==='1'){await syncPersonalData()}
-localStorage.setItem('desk_local_owner',ME);await loadSharedTables();subscribeRealtime();try{await sync()}catch(e){setAuthStatus('Signed in, but progress sync failed: '+e.message)}if(!remote.data)setAuthStatus('Account connected. Your browser data has been uploaded.');else setAuthStatus('Account connected. Private study data is synced.')}
+var remote=await NDB.from('user_data').select('payload,updated_at').eq('user_id',ME).maybeSingle();
+if(remote.error){setAuthStatus('Signed in, but could not load your private backup: '+remote.error.message);return}
+if(remote.data&&remote.data.payload&&!justHydrated){
+  var localBefore=allLocalData(),dirtyBefore=dirtyKeyNames(),remotePayload=remote.data.payload||{};
+  var localOnly=KEYS.filter(function(k){return Object.prototype.hasOwnProperty.call(localBefore,k)&&!Object.prototype.hasOwnProperty.call(remotePayload,k)});
+  var keep=dirtyBefore.concat(localOnly.filter(function(k){return dirtyBefore.indexOf(k)<0}));
+  applyCloudData(remotePayload);
+  if(keep.length){applyLocalKeys(localBefore,keep);localOnly.forEach(function(k){if(dirtyBefore.indexOf(k)<0)recordDirtyKey(k)});await syncPersonalData(false)}
+  localStorage.setItem('desk_local_owner',ME);sessionStorage.setItem(hydrateKey,'1');location.reload();return;
+}
+if(!remote.data){await syncPersonalData(true)}else if(dirtyKeyNames().length){await syncPersonalData(false)}
+localStorage.setItem('desk_local_owner',ME);await loadSharedTables();subscribeRealtime();try{await sync()}catch(e){setAuthStatus('Signed in, but progress summary sync failed: '+e.message)}
+setAuthStatus('Account connected. Your private study data is backed up.');window.dispatchEvent(new CustomEvent('desk:auth-state',{detail:{userId:ME}}));
+}
 
 async function startBackend(){
 initPyq();
 if(!window.supabase||!window.DESK_SUPABASE_URL||!window.DESK_SUPABASE_ANON_KEY||window.DESK_SUPABASE_URL.indexOf('YOUR_PROJECT')>=0){setAuthStatus('Cloud features need your Supabase project URL and public anon key in config.js. Browser-based trackers are ready now.');$('who').textContent='Local mode: trackers, revision planner, notes and answers save in this browser.';drawLive();return}
-var client=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY);NDB=client;await loadSharedTables();await pyqLoad();subscribeRealtime();
+var client=window.supabase.createClient(window.DESK_SUPABASE_URL,window.DESK_SUPABASE_ANON_KEY,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true,flowType:'pkce'}});NDB=client;await loadSharedTables();await pyqLoad();subscribeRealtime();
 $('signIn').addEventListener('click',async function(){var email=$('authEmail').value.trim(),password=$('authPassword').value;if(!email||!password)return setAuthStatus('Enter your email and password.');setAuthStatus('Signing in…');var r=await client.auth.signInWithPassword({email:email,password:password});if(r.error)setAuthStatus(r.error.message);else setAuthStatus('Sign-in successful. Loading your account…')});
-$('signUp').addEventListener('click',async function(){var email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<8)return setAuthStatus('Enter a valid email and a password of at least 8 characters.');if(!name)return setAuthStatus('Enter a display name for your new learner account.');setAuthStatus('Creating account…');var r=await client.auth.signUp({email:email,password:password,options:{data:{display_name:name}}});if(r.error)setAuthStatus(r.error.message);else if(r.data.session)setAuthStatus('Account created. Loading your learner account…');else setAuthStatus('Account created. Check your email to confirm the address, then sign in.')});
-$('signOut').addEventListener('click',async function(){await client.auth.signOut();location.reload()});
+$('signUp').addEventListener('click',async function(){var email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim();if(!email||password.length<8)return setAuthStatus('Enter a valid email and a password of at least 8 characters.');if(!name)return setAuthStatus('Enter a display name for your new learner account.');setAuthStatus('Creating account…');var r=await client.auth.signUp({email:email,password:password,options:{data:{display_name:name},emailRedirectTo:window.location.origin+window.location.pathname}});if(r.error)setAuthStatus(r.error.message);else if(r.data.session)setAuthStatus('Account created. Loading your learner account…');else setAuthStatus('Account created. Check your email to confirm the address, then sign in.')});
+$('signOut').addEventListener('click',async function(){try{if(window.__deskBeforeSignOut)await window.__deskBeforeSignOut()}catch(e){setAuthStatus('Could not detach this device’s push reminder: '+(e.message||e));return}await client.auth.signOut();location.reload()});$('syncNow').addEventListener('click',async function(){try{setAuthStatus('Checking for updates and syncing your study data…');await pullPrivateData();await syncPersonalData(false);await sync();setAuthStatus('Sync complete. Your latest private data is up to date.')}catch(e){setAuthStatus('Sync failed: '+(e.message||e))}});
 var sess=await client.auth.getSession();if(sess.data&&sess.data.session)await handleSession(sess.data.session);else{setAuthStatus('Ready. Create an account or sign in to enable shared features.');drawLive()}
 client.auth.onAuthStateChange(function(event,session){if(event==='SIGNED_OUT'){setTimeout(function(){handleSession(null)},0)}else if(event==='SIGNED_IN'&&session){setTimeout(function(){handleSession(session)},0)}})
 }
@@ -3277,9 +3311,12 @@ init();
 
   /* reminders */
   function studiedToday(){
-    var t=iso(new Date()),h=0;
+    var t=iso(new Date()),h=0,read=rd('desk-read',{}),mission=rd('desk-mission',{}),drafts=rd('desk-mains-drafts',[]);
     rd('desk-hours',[]).forEach(function(r){if(r.d===t)h+=+r.h||0});
-    return h>0||rd('desk-dtests',[]).some(function(r){return r.d===t})||rd('desk-mocks',[]).some(function(r){return r.d===t});
+    var readToday=Array.isArray(read[t])&&read[t].length>0;
+    var missionDone=mission.d===t&&mission.done&&Object.keys(mission.done).some(function(k){return !!mission.done[k]});
+    var drafted=Array.isArray(drafts)&&drafts.some(function(x){return x.d===t&&String(x.text||'').trim().length>0});
+    return h>0||rd('desk-dtests',[]).some(function(r){return r.d===t})||rd('desk-mocks',[]).some(function(r){return r.d===t})||readToday||missionDone||drafted;
   }
   function notify(title,body){
     var opt={body:body,icon:'icon-192.png',badge:'icon-192.png',tag:'desk-reminder'};
@@ -3291,6 +3328,7 @@ init();
   }
   function check(){
     var r=rd(KR,{on:false,time:'19:00'});if(!r.on)return;
+    if(localStorage.getItem('desk-push-reminder-active')==='1')return;
     var now=new Date(),p=(r.time||'19:00').split(':'),due=new Date();due.setHours(+p[0],+p[1],0,0);
     if(now<due||r.last===iso(now)||studiedToday())return;
     r.last=iso(now);wr(KR,r);
@@ -3403,3 +3441,83 @@ init();
   if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
+
+<script id="stage4-push-sync">
+/* Stage 4: cross-device private-data sync is wired into the existing Supabase backend;
+   this module manages opt-in Web Push subscriptions for each signed-in device. */
+(function(){
+  'use strict';
+  var g=function(id){return document.getElementById(id)};
+  var bridge=window.__deskBackendBridge;
+  var VAPID=window.DESK_VAPID_PUBLIC_KEY||'';
+  function message(t){var x=g('rm_push_msg');if(x)x.textContent=t}
+  function client(){return bridge&&bridge.getClient?bridge.getClient():null}
+  function userId(){return bridge&&bridge.getUserId?bridge.getUserId():null}
+  function b64urlToBytes(s){var padding='='.repeat((4-s.length%4)%4);var b=atob((s+padding).replace(/-/g,'+').replace(/_/g,'/'));var out=new Uint8Array(b.length);for(var i=0;i<b.length;i++)out[i]=b.charCodeAt(i);return out}
+  function tz(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Kolkata'}catch(e){return 'Asia/Kolkata'}}
+  function localReminderTime(){var x=g('rm_time');return (x&&x.value?x.value:'19:00')+':00'}
+  function ready(){return 'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window&&window.isSecureContext}
+  async function registration(){var r=await navigator.serviceWorker.getRegistration('./');if(!r)r=await navigator.serviceWorker.register('./sw.js');return r.active?r:await navigator.serviceWorker.ready}
+  async function upsertCurrentSubscription(enabled){
+    var c=client(),uid=userId();if(!c||!uid)throw new Error('Sign in before saving this device subscription.');
+    var reg=await registration(),sub=await reg.pushManager.getSubscription();if(!sub)throw new Error('This device has not subscribed to push notifications yet.');
+    var json=sub.toJSON(),keys=json.keys||{};if(!keys.p256dh||!keys.auth)throw new Error('The browser returned an incomplete push subscription. Please disable and enable push again.');
+    var row={user_id:uid,endpoint:sub.endpoint,p256dh:keys.p256dh,auth:keys.auth,timezone:tz(),reminder_time:localReminderTime(),enabled:!!enabled};
+    var result=await c.from('push_subscriptions').upsert(row,{onConflict:'endpoint'});
+    if(result.error)throw result.error;
+    return sub;
+  }
+  async function refresh(){
+    var enable=g('rm_push_enable'),disable=g('rm_push_disable');if(!enable||!disable)return;
+    var signedIn=!!userId();
+    if(!signedIn){enable.disabled=true;disable.hidden=true;localStorage.removeItem('desk-push-reminder-active');message('Sign in to connect this device to your private reminder schedule.');return}
+    enable.disabled=false;
+    if(!ready()){disable.hidden=true;message('Push notifications are not supported in this browser context. Open the HTTPS site in a supported browser.');return}
+    try{var reg=await registration(),sub=await reg.pushManager.getSubscription();disable.hidden=!sub;enable.textContent=sub?'Update this device’s push reminder':'Enable push on this device';if(sub){var c=client(),record=await c.from('push_subscriptions').select('enabled').eq('user_id',userId()).eq('endpoint',sub.endpoint).maybeSingle();if(!record.error&&record.data&&record.data.enabled)localStorage.setItem('desk-push-reminder-active','1');else localStorage.removeItem('desk-push-reminder-active');message('This device has a push subscription. Reminder time: '+(g('rm_time').value||'19:00')+'.')}else{localStorage.removeItem('desk-push-reminder-active');message('Push is not enabled on this device yet.');}}
+    catch(e){disable.hidden=true;message('Could not check push status: '+(e.message||e))}
+  }
+  async function enablePush(){
+    try{
+      var c=client(),uid=userId();if(!c||!uid){message('Please sign in first.');return}
+      if(!ready()){message('This browser does not support Web Push here. Use the HTTPS site in a supported browser.');return}
+      if(!VAPID||VAPID.indexOf('PASTE_')===0){message('Add your VAPID public key to config.js before enabling push.');return}
+      var permission=Notification.permission;if(permission!=='granted')permission=await Notification.requestPermission();if(permission!=='granted'){message('Notification permission was not granted. You can change it in your browser settings.');return}
+      message('Registering this device…');var reg=await registration();var sub=await reg.pushManager.getSubscription();if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64urlToBytes(VAPID)});
+      if(g('rm_on')&&!g('rm_on').checked){g('rm_on').checked=true;g('rm_on').dispatchEvent(new Event('change',{bubbles:true}))}
+      await upsertCurrentSubscription(true);localStorage.setItem('desk-push-reminder-active','1');message('Push reminders are enabled for this device. Keep the reminder time set in App Settings.');await refresh();
+    }catch(e){message('Could not enable push: '+(e.message||e)+' — check the Stage 4 SQL, Edge Function secrets and VAPID keys.')}
+  }
+  async function disablePush(){
+    try{
+      var c=client(),uid=userId();if(!c||!uid){message('Sign in to manage this device subscription.');return}
+      var reg=await registration(),sub=await reg.pushManager.getSubscription();if(!sub){await refresh();return}
+      var result=await c.from('push_subscriptions').delete().eq('user_id',uid).eq('endpoint',sub.endpoint);if(result.error)throw result.error;
+      await sub.unsubscribe();localStorage.removeItem('desk-push-reminder-active');message('Push reminders have been disabled on this device.');await refresh();
+    }catch(e){message('Could not disable push: '+(e.message||e))}
+  }
+  window.__deskBeforeSignOut=async function(){
+    var c=client(),uid=userId();if(!c||!uid)return;
+    if(!('serviceWorker' in navigator)||!('PushManager' in window)){localStorage.removeItem('desk-push-reminder-active');return}
+    var reg=await registration(),sub=await reg.pushManager.getSubscription();if(!sub){localStorage.removeItem('desk-push-reminder-active');return}
+    var result=await c.from('push_subscriptions').delete().eq('user_id',uid).eq('endpoint',sub.endpoint);
+    if(result.error)throw result.error;
+    localStorage.removeItem('desk-push-reminder-active');
+  };
+  async function updateSavedSettings(){
+    try{var reg=await registration(),sub=await reg.pushManager.getSubscription();if(!sub||!userId())return;var enabled=!!(g('rm_on')&&g('rm_on').checked);await upsertCurrentSubscription(enabled);if(enabled)localStorage.setItem('desk-push-reminder-active','1');else localStorage.removeItem('desk-push-reminder-active');message(enabled?'Push reminder settings saved.':'Push reminders are paused on this device.');}
+    catch(e){message('Could not update this device’s reminder settings: '+(e.message||e))}
+  }
+  function init(){
+    if(g('rm_push_enable'))g('rm_push_enable').addEventListener('click',enablePush);
+    if(g('rm_push_disable'))g('rm_push_disable').addEventListener('click',disablePush);
+    if(g('rm_time'))g('rm_time').addEventListener('change',updateSavedSettings);
+    if(g('rm_on'))g('rm_on').addEventListener('change',function(){if(userId())updateSavedSettings()});
+    window.addEventListener('desk:auth-state',function(){refresh()});
+    setTimeout(refresh,1200);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+</body>
+</html>
