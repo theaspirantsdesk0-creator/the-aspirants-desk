@@ -1,0 +1,22 @@
+{
+  "name": "The Aspirant's Desk",
+  "short_name": "Aspirant's Desk",
+  "description": "Study planner, notes, daily tests, mock tests and revision for UPSC, TNPSC, SSC, Banking and Defence exams.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050c2b",
+  "theme_color": "#050c2b",
+  "lang": "en-IN",
+  "categories": ["education"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Daily test", "url": "./#dailytest"},
+    {"name": "Full mock test", "url": "./#mocktest"},
+    {"name": "Today's mission", "url": "./#mistakes"}
+  ]
+}
