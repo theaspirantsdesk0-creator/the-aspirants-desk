@@ -1,45 +1,75 @@
-/* The Aspirant's Desk service worker.
-   Bump VERSION whenever you publish a new index.html so every device refreshes its cache. */
-var VERSION = 'desk-v2';
-var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png'];
+/* The Aspirant's Desk service worker — offline shell and Web Push. */
+var VERSION = 'desk-v3-stage4';
+var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
 
-self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) {
-    return Promise.all(SHELL.map(function (u) { return c.add(new Request(u, { cache: 'reload' })).catch(function () {}); }));
+self.addEventListener('install', function (event) {
+  event.waitUntil(caches.open(VERSION).then(function (cache) {
+    return Promise.all(SHELL.map(function (url) {
+      return cache.add(new Request(url, { cache: 'reload' })).catch(function () {});
+    }));
   }).then(function () { return self.skipWaiting(); }));
 });
 
-self.addEventListener('activate', function (e) {
-  e.waitUntil(caches.keys().then(function (ks) {
-    return Promise.all(ks.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); }));
+self.addEventListener('activate', function (event) {
+  event.waitUntil(caches.keys().then(function (keys) {
+    return Promise.all(keys.filter(function (key) { return key !== VERSION; }).map(function (key) { return caches.delete(key); }));
   }).then(function () { return self.clients.claim(); }));
 });
 
-self.addEventListener('fetch', function (e) {
-  var r = e.request;
-  if (r.method !== 'GET' || new URL(r.url).origin !== location.origin) return;
-  if (r.mode === 'navigate') {
-    /* pages: network first so updates arrive, cached copy when offline */
-    e.respondWith(fetch(r).then(function (res) {
-      var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put('index.html', copy); });
-      return res;
-    }).catch(function () { return caches.match('index.html').then(function (m) { return m || caches.match('./'); }); }));
+self.addEventListener('fetch', function (event) {
+  var request = event.request;
+  if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+  if (request.mode === 'navigate') {
+    event.respondWith(fetch(request).then(function (response) {
+      var copy = response.clone();
+      caches.open(VERSION).then(function (cache) { cache.put('index.html', copy); });
+      return response;
+    }).catch(function () {
+      return caches.match('index.html').then(function (cached) { return cached || caches.match('./'); });
+    }));
     return;
   }
-  /* other same-origin files: serve cached, refresh in the background */
-  e.respondWith(caches.match(r).then(function (hit) {
-    var net = fetch(r).then(function (res) {
-      if (res && res.ok) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(r, copy); }); }
-      return res;
-    }).catch(function () { return hit; });
-    return hit || net;
+  event.respondWith(caches.match(request).then(function (cached) {
+    var network = fetch(request).then(function (response) {
+      if (response && response.ok) {
+        var copy = response.clone();
+        caches.open(VERSION).then(function (cache) { cache.put(request, copy); });
+      }
+      return response;
+    }).catch(function () { return cached; });
+    return cached || network;
   }));
 });
 
-self.addEventListener('notificationclick', function (e) {
-  e.notification.close();
-  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (cs) {
-    if (cs.length) { return cs[0].focus(); }
-    return self.clients.openWindow('./#mistakes');
+self.addEventListener('push', function (event) {
+  var data = {};
+  try { data = event.data ? event.data.json() : {}; }
+  catch (e) { data = { body: event.data ? event.data.text() : '' }; }
+  var title = data.title || "The Aspirant's Desk";
+  var options = {
+    body: data.body || 'Your daily study reminder is ready.',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
+    tag: data.tag || 'desk-daily-reminder',
+    renotify: false,
+    data: { url: data.url || './#mistakes' }
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function (event) {
+  event.notification.close();
+  var target;
+  try { target = new URL((event.notification.data && event.notification.data.url) || './#mistakes', self.location.href); }
+  catch (e) { target = new URL('./#mistakes', self.location.href); }
+  if (target.origin !== self.location.origin) target = new URL('./#mistakes', self.location.href);
+  event.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (clients) {
+    for (var i = 0; i < clients.length; i++) {
+      if (new URL(clients[i].url).origin === self.location.origin) {
+        if (clients[i].navigate) clients[i].navigate(target.href);
+        return clients[i].focus();
+      }
+    }
+    return self.clients.openWindow(target.href);
   }));
 });
