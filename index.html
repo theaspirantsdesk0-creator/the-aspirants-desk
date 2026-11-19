@@ -993,7 +993,7 @@ nav#side .logo b{font-size:1.02rem;white-space:nowrap}nav#side .logo small{font-
 <button class="save" id="bPost" type="button">Publish PIB item</button><span class="meta" id="bMsg"></span></div>
 </section>
 <section id="dashboard" class="band">
-<h2>My study dashboard</h2>
+<h2>Detailed progress</h2>
 <p class="sub">A live summary of what you have logged on this device: study hours, daily tests, mock scores and Mains answers. Nothing leaves your browser unless you sign in.</p>
 <div class="stats" id="db_stats"></div>
 <div class="card" style="margin-top:1rem"><h3>Study hours, last 7 days</h3><div class="db-bars" id="db_bars" role="list"></div></div>
@@ -1181,7 +1181,7 @@ M.after=drawM;drawM();
 $('addM').addEventListener('click',function(){var n=$('mName'),s=+$('mScore').value,m=+$('mMax').value;if(!n.value.trim()||!(m>0)||$('mScore').value===''||s<0||s>m){n.focus();return alert('Enter a test name and a score between 0 and the maximum marks.')}M.push({n:n.value.trim(),s:s,m:m,p:Math.round(s/m*100),d:TODAY});n.value='';$('mScore').value=''});
 
 /* revision planner */
-window.__desk={$:$,esc:esc,load:load,save:save,fmt:fmt,addDays:addDays,readKeys:readKeys,makeQs:makeQs,get TODAY(){return TODAY},get H(){return H},get M(){return M},get R(){return R}};
+window.__desk={get NOTES(){return NOTES},$:$,esc:esc,load:load,save:save,fmt:fmt,addDays:addDays,readKeys:readKeys,makeQs:makeQs,get TODAY(){return TODAY},get H(){return H},get M(){return M},get R(){return R}};
 var GAPS=[1,3,7,21,45];
 var R=mk('desk-rev',$('rList'),function(it){var o=it.map(function(x,i){return{x:x,i:i,due:x.n>=GAPS.length?null:addDays(x.l,GAPS[x.n])}});o.sort(function(a,b){return(a.due||'9999')<(b.due||'9999')?-1:1});
 return o.map(function(r){var s=r.due===null?'<span class="pill p-ok">Complete</span>':diff(r.due)<0?'<span class="pill p-bad">Overdue since '+fmt(r.due)+'</span>':diff(r.due)===0?'<span class="pill p-bad">Due today</span>':'<span class="pill p-ok">Next: '+fmt(r.due)+'</span>';
@@ -2767,21 +2767,111 @@ var BANK=[
 "Defence|The Indian Military Academy is at:|Dehradun|Pune|Gaya|Chennai|The IMA at Dehradun trains officers for the Army.",
 "Defence|The highest wartime gallantry award in India is:|Param Vir Chakra|Ashoka Chakra|Maha Vir Chakra|Vir Chakra|The Param Vir Chakra was instituted in 1950.",
 "Defence|India's first indigenously built aircraft carrier is:|INS Vikrant|INS Viraat|INS Vikramaditya|INS Arihant|INS Vikrant was commissioned in 2022 and built at Cochin Shipyard.",
-"Defence|The value of sin 30 degrees is:|1/2|1/root 2|root 3/2|1|sin 30 degrees = 1/2, a standard value to remember."
+"Defence|The value of sin 30 degrees is:|1/2|1/root 2|root 3/2|1|sin 30 degrees = 1/2, a standard value to remember.",
+"Environment|The Kyoto Protocol is about:|Cutting greenhouse gas emissions|Ozone depletion|Wetlands|Whale hunting|It was adopted in 1997 and set binding emission targets for developed countries.",
+"Environment|India's first national park, set up in 1936, is:|Jim Corbett National Park|Kaziranga|Bandipur|Gir|It was set up as Hailey National Park in present-day Uttarakhand.",
+"Environment|The Wildlife (Protection) Act was passed in:|1972|1986|1980|1992|It created the schedules of protected species and the sanctuary system.",
+"Environment|Biosphere reserves are designated under UNESCO's:|Man and the Biosphere Programme|Ramsar Convention|CITES|Convention on Biological Diversity|The Nilgiri was India's first biosphere reserve, in 1986.",
+"Environment|The Chipko Movement was started to protect:|Trees|Rivers|Tigers|Wetlands|It began in 1973 in Uttarakhand, where villagers hugged trees to stop felling.",
+"Science|The chemical formula of common salt is:|NaCl|KCl|CaCO3|NaOH|Sodium chloride is made of sodium and chlorine.",
+"Science|The speed of light is about:|300,000 km per second|30,000 km per second|3,000 km per second|3 million km per second|Light travels about 3 lakh kilometres per second in vacuum.",
+"Science|Which blood group is the universal donor?|O negative|AB positive|A positive|B negative|O negative red cells carry no A, B or Rh antigens.",
+"Science|Insulin is produced by the:|Pancreas|Liver|Thyroid|Adrenal gland|Insulin from the pancreas controls blood sugar.",
+"Science|ISRO has its headquarters in:|Bengaluru|Thiruvananthapuram|Sriharikota|Ahmedabad|Launches happen from Sriharikota, but the headquarters is in Bengaluru.",
+"Ancient history|The Harappan site Lothal is known for its:|Dockyard|Great Bath|Granary|Stupa|Lothal in Gujarat had a dockyard; the Great Bath is at Mohenjo-daro.",
+"Ancient history|The Rigveda was composed in the:|Early Vedic period|Later Vedic period|Mauryan period|Gupta period|The Rigveda belongs to the Early Vedic period, about 1500 to 1000 BCE.",
+"Ancient history|Who was the Greek ambassador at Chandragupta Maurya's court?|Megasthenes|Fa-Hien|Hiuen Tsang|Al-Biruni|Megasthenes, sent by Seleucus Nicator, wrote the Indica.",
+"Ancient history|Most of Ashoka's inscriptions in India were written in the:|Brahmi script|Kharosthi script|Devanagari script|Grantha script|Brahmi was used in most of India; Kharosthi in the north-west.",
+"Ancient history|Which Gupta ruler is called the Napoleon of India?|Samudragupta|Chandragupta II|Skandagupta|Kumaragupta|The historian V A Smith gave him this name for his conquests.",
+"Ancient history|The Chinese traveller Fa-Hien visited India in the reign of:|Chandragupta II|Ashoka|Harsha|Kanishka|Fa-Hien visited around 399 to 414 CE.",
+"Medieval history|Who founded the Slave dynasty of the Delhi Sultanate?|Qutbuddin Aibak|Iltutmish|Balban|Razia|Qutbuddin Aibak became Sultan in 1206.",
+"Medieval history|The First Battle of Panipat was fought in:|1526|1556|1761|1192|Babur defeated Ibrahim Lodi in 1526, which began Mughal rule.",
+"Medieval history|Who introduced the Mansabdari system in the Mughal Empire?|Akbar|Babur|Shah Jahan|Aurangzeb|Akbar ranked officers by zat and sawar.",
+"Medieval history|Qutub Minar was completed by:|Iltutmish|Alauddin Khalji|Firoz Shah Tughlaq|Balban|Aibak began it and Iltutmish completed it.",
+"Medieval history|Shivaji was crowned Chhatrapati at Raigad in:|1674|1664|1680|1707|His coronation took place in 1674.",
+"Medieval history|The Vijayanagara Empire was founded by:|Harihara and Bukka|Krishnadevaraya|Devaraya II|Narasimha Saluva|The brothers founded it in 1336 on the Tungabhadra.",
+"Art and culture|Which classical dance comes from Kerala?|Kathakali|Kuchipudi|Odissi|Manipuri|Kathakali is a dance-drama known for elaborate make-up.",
+"Art and culture|The Ajanta caves are most famous for their:|Paintings|Kailasa temple|Bronze images|Terracotta figures|Ajanta has Buddhist paintings; the Kailasa temple is at Ellora.",
+"Art and culture|The Konark Sun Temple is in:|Odisha|Gujarat|Tamil Nadu|Karnataka|It is a Nagara-style temple shaped like a chariot.",
+"Art and culture|Tansen was a court musician of:|Akbar|Babur|Jahangir|Shah Jahan|Tansen was one of the Navaratnas of Akbar's court.",
+"Art and culture|Madhubani painting comes from:|Bihar|Rajasthan|Odisha|Andhra Pradesh|It is a folk art of the Mithila region of Bihar.",
+"Art and culture|The Sangeet Natak Akademi promotes:|Music, dance and drama|Literature|Painting|Architecture|It was set up in 1952 as the national academy for performing arts.",
+"World history|The French Revolution began in:|1789|1776|1815|1848|The storming of the Bastille was on 14 July 1789.",
+"World history|The October Revolution of 1917 in Russia was led by:|Lenin|Stalin|Trotsky|Kerensky|Lenin and the Bolsheviks seized power in 1917.",
+"World history|The Treaty of Versailles (1919) ended:|World War I|World War II|The Napoleonic Wars|The Crimean War|It imposed heavy terms on Germany.",
+"World history|The League of Nations was set up after:|World War I|World War II|The Cold War|The French Revolution|It was founded in 1920 and replaced by the UN in 1945.",
+"World history|The Industrial Revolution began in:|Britain|France|Germany|The USA|It began in Britain in the mid-18th century.",
+"World history|The American Declaration of Independence was adopted in:|1776|1789|1783|1812|It was adopted on 4 July 1776.",
+"Ethics|The categorical imperative was put forward by:|Immanuel Kant|J S Mill|Aristotle|Plato|Kant said to act only on rules that could become universal laws.",
+"Ethics|Utilitarianism is associated with:|Bentham and Mill|Kant|Gandhi|Rawls|It judges actions by the greatest good of the greatest number.",
+"Ethics|A situation where one must choose between two ethical duties is a:|Dilemma|Probity|Empathy|Aptitude|An ethical dilemma has no option that satisfies every duty.",
+"Ethics|Emotional intelligence was popularised by:|Daniel Goleman|Abraham Maslow|Sigmund Freud|Ivan Pavlov|Goleman's model has self-awareness, self-regulation, motivation, empathy and social skills.",
+"Ethics|The Nolan principle that officials must accept scrutiny is:|Accountability|Selflessness|Leadership|Honesty|Holders of public office are accountable for their decisions.",
+"Ethics|Gandhian ethics holds that:|Means are as important as ends|The ends justify the means|Only results matter|Power is the goal|Gandhi insisted on pure means for pure ends.",
+"Indian society|The Census of India is held every:|10 years|5 years|7 years|15 years|The decennial Census began in 1881.",
+"Indian society|Which Article protects the cultural rights of minorities?|Article 29|Article 14|Article 19|Article 32|Articles 29 and 30 protect minority culture and educational institutions.",
+"Indian society|The Protection of Civil Rights Act, 1955 deals with:|Untouchability|Dowry|Child marriage|Domestic violence|It prescribes punishment for practising untouchability.",
+"Indian society|Sex ratio is the number of:|Females per 1000 males|Males per 1000 females|Births per 1000 people|Literate females per 1000|Census 2011 recorded 943 females per 1000 males.",
+"Indian society|The term Sanskritisation was coined by:|M N Srinivas|G S Ghurye|A R Desai|Irawati Karve|Srinivas used it for lower groups adopting upper-caste customs.",
+"Indian society|The Protection of Women from Domestic Violence Act was passed in:|2005|1995|2013|1986|It gives civil remedies such as protection orders and residence rights.",
+"International relations|The SAARC Secretariat is in:|Kathmandu|Dhaka|New Delhi|Colombo|SAARC was founded in 1985 and its secretariat is in Kathmandu.",
+"International relations|India's Act East Policy grew out of the:|Look East Policy|Gujral Doctrine|Panchsheel|Non-Alignment|Look East began in 1991 and was upgraded in 2014.",
+"International relations|The Panchsheel agreement of 1954 was signed with:|China|Pakistan|Russia|Bangladesh|It was signed over Tibet trade and set five principles of coexistence.",
+"International relations|The Quad includes India, the USA, Japan and:|Australia|The UK|South Korea|France|The Quad is a strategic dialogue on the Indo-Pacific.",
+"International relations|The Indus Waters Treaty was signed in:|1960|1947|1972|1965|It was signed with Pakistan in 1960 with World Bank help.",
+"International relations|The United Nations headquarters is in:|New York|Geneva|Paris|Vienna|The UN was founded in 1945 and sits in New York.",
+"Internal security|The NIA was created after:|The 2008 Mumbai attacks|The 2001 Parliament attack|The Kargil War|The 1993 blasts|The NIA Act was passed in 2008.",
+"Internal security|The Unlawful Activities (Prevention) Act was enacted in:|1967|1958|2002|1985|UAPA has since been amended several times.",
+"Internal security|The Armed Forces (Special Powers) Act was enacted in:|1958|1967|1971|1990|It applies to notified disturbed areas.",
+"Internal security|Which force guards the Indo-Pakistan and Indo-Bangladesh borders?|BSF|ITBP|CRPF|SSB|The Border Security Force was raised in 1965.",
+"Internal security|Which force mainly guards the Indo-China border?|ITBP|BSF|CISF|Assam Rifles|The Indo-Tibetan Border Police was raised in 1962.",
+"Internal security|CERT-In is the national agency for:|Cyber security incidents|Terror financing|Border management|Coastal security|It works under the Ministry of Electronics and IT.",
+"Environment|The Wildlife (Protection) Act was passed in:|1972|1986|1980|2002|It created schedules of protected species and the sanctuary system.",
+"Environment|Which gas is the main cause of global warming?|Carbon dioxide|Oxygen|Nitrogen|Argon|Carbon dioxide from fossil fuels is the largest contributor; methane is more potent per molecule.",
+"Environment|The Kyoto Protocol deals with:|Greenhouse gas emission cuts|Wetland protection|Ozone-depleting substances|Trade in wildlife|It set binding emission targets for developed countries.",
+"Environment|India's first National Park, set up in 1936, is:|Jim Corbett National Park|Kaziranga|Bandipur|Gir|It was first called Hailey National Park.",
+"Science|Which gas do plants take in for photosynthesis?|Carbon dioxide|Oxygen|Nitrogen|Hydrogen|Plants use carbon dioxide and water, with sunlight, to make glucose.",
+"Science|The pH of pure water at room temperature is:|7|1|14|0|A pH of 7 is neutral; below 7 is acidic and above 7 is basic.",
+"Science|India's first satellite, launched in 1975, was:|Aryabhata|Bhaskara|INSAT-1A|Rohini|Aryabhata was launched with a Soviet rocket.",
+"Science|Which organ produces insulin?|Pancreas|Liver|Kidney|Stomach|Insulin lowers blood sugar; its lack causes diabetes."
 ];
-var ALLOW={UPSC:['Polity','History','Geography','Economy','Environment','Science','CSAT'],TNPSC:['Polity','History','Geography','Economy','Environment','Science','CSAT','TNPSC'],SSC:['Polity','History','Geography','Economy','Science','CSAT','SSC'],BANK:['Economy','Science','CSAT','SSC','Geography','Polity'],DEF:['History','Geography','Science','CSAT','Defence']};
+var SMALL=['Ancient history','Medieval history','Art and culture','World history','Ethics','Indian society','International relations','Internal security'];
+var ALLOW={UPSC:['Polity','History','Geography','Economy','Environment','Science','CSAT'].concat(SMALL),TNPSC:['Polity','History','Geography','Economy','Environment','Science','CSAT','TNPSC','Ancient history','Medieval history','Art and culture','Indian society','International relations'],SSC:['Polity','History','Geography','Economy','Science','CSAT','SSC','Ancient history','Medieval history','Art and culture','World history','International relations'],BANK:['Economy','Science','CSAT','SSC','Geography','Polity','International relations'],DEF:['History','Geography','Science','CSAT','Defence','Ancient history','Medieval history','World history','International relations','Internal security']};
 var Q=BANK.map(function(r){var f=r.split('|');return{t:f[0],q:f[1],a:f[2],w:[f[3],f[4],f[5]],e:f[6]}});
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function pick(pool,n){
+  var g={},tags,out=[],i=0;
+  pool.forEach(function(x){(g[x.t]=g[x.t]||[]).push(x)});
+  tags=shuf(Object.keys(g));tags.forEach(function(t){g[t]=shuf(g[t])});
+  while(out.length<n&&tags.some(function(t){return g[t].length})){var t=tags[i%tags.length];if(g[t].length)out.push(g[t].shift());i++}
+  return out;
+}
+function fmtQ(x){return{q:x.q,a:x.a,o:shuf([x.a].concat(x.w)),e:x.e}}
+function thinSubjects(){
+  var D=window.__desk,ks,tot=0;if(!D||!D.NOTES)return[];
+  ks=Object.keys(D.NOTES);ks.forEach(function(k){tot+=D.NOTES[k].length});
+  return ks.filter(function(k){return k!=='CSAT'&&D.NOTES[k].length<tot/ks.length});
+}
 window.deskBankQs=function(src){
-  var ex=document.documentElement.getAttribute('data-exam')||'UPSC',ok=ALLOW[ex]||ALLOW.UPSC;
+  var ex=document.documentElement.getAttribute('data-exam')||'UPSC',ok=ALLOW[ex]||ALLOW.UPSC,D=window.__desk;
+  if(src==='thin'){
+    var th=thinSubjects(),inThin=function(x){return th.indexOf(x.t)>=0||(x.t==='Science'&&th.indexOf('Science and technology')>=0)};
+    var gen=[],keys=[];
+    th.forEach(function(s){var n=D.NOTES[s].length;keys.push(s+'|'+Math.floor(Math.random()*n),s+'|'+Math.floor(Math.random()*n))});
+    try{gen=D.makeQs(keys).slice(0,5)}catch(e){}
+    return shuf(gen.concat(pick(Q.filter(inThin),10).map(fmtQ))).slice(0,10);
+  }
   var pool=Q.filter(function(x){return src&&src.indexOf('sub:')===0?x.t===src.slice(4):ok.indexOf(x.t)>=0});
-  return shuf(pool).slice(0,10).map(function(x){return{q:x.q,a:x.a,o:shuf([x.a].concat(x.w)),e:x.e}});
+  return pick(pool,10).map(fmtQ);
 };
 function addSource(){
   var sch=document.getElementById('dt_scheme');if(!sch||!sch.parentNode||document.getElementById('dt_src'))return;
   var d=document.createElement('div');
-  d.innerHTML='<label for="dt_src">Question source</label><select id="dt_src"><option value="auto">My topics, or question bank</option><option value="bank">Question bank (mixed, 10 questions)</option><option value="topics">Only topics I read today</option>'+['Polity','History','Geography','Economy','Environment','Science','CSAT','TNPSC','SSC','Defence'].map(function(s){return '<option value="sub:'+s+'">Bank: '+s+'</option>'}).join('')+'</select>';
+  d.innerHTML='<label for="dt_src">Question source</label><select id="dt_src"><option value="auto">My topics, or balanced bank</option><option value="thin">Smaller subjects boost (fewer chapters)</option><option value="bank">Balanced bank (all subjects equally)</option><option value="topics">Only topics I read today</option>'+['Polity','History','Geography','Economy','Environment','Science','CSAT','Ancient history','Medieval history','Art and culture','World history','Ethics','Indian society','International relations','Internal security','TNPSC','SSC','Defence'].map(function(s){return '<option value="sub:'+s+'">Bank: '+s+'</option>'}).join('')+'</select>';
   sch.parentNode.parentNode.insertBefore(d,sch.parentNode);
+  var th=thinSubjects(),n=document.createElement('p');n.className='meta';n.id='dt_thin_note';
+  if(th.length){n.textContent='Smaller subjects (fewer chapters than average): '+th.map(function(k){return k+' ('+window.__desk.NOTES[k].length+')'}).join(', ')+'.';
+    var m=document.getElementById('dt_msg');if(m&&m.parentNode)m.parentNode.insertBefore(n,m)}
 }
 /* Flashcards: Subject|Badge|Question|Answer */
 var CARDS=[
@@ -2892,7 +2982,7 @@ init();
   [start,reset].forEach(function(el){if(el)el.setAttribute('data-phase-patch','1')});
 
   /* Ensure exam selection survives reload and updates the HTML state. */
-  var saved=read('desk-exam','UPSC');
+  var saved='UPSC';try{saved=localStorage.getItem('desk-exam')||'UPSC'}catch(e){}
   document.documentElement.setAttribute('data-exam',saved);
   window.addEventListener('storage',function(e){if(e.key==='desk-exam'&&e.newValue){document.documentElement.setAttribute('data-exam',e.newValue)}});
 
@@ -2914,18 +3004,26 @@ init();
 <script id="learner-dashboard-script">
 (function(){
   'use strict';
-  var d=document, today=new Date(), key='desk-dashboard-history';
+  var d=document;
   function get(k,f){try{var x=JSON.parse(localStorage.getItem(k));return x==null?f:x}catch(e){return f}}
-  function totalHours(){var total=0;try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i),v=localStorage.getItem(k);if(/study|hour|time|session|pomodoro/i.test(k)){var n=parseFloat(v);if(isFinite(n)&&n>0&&n<100000)total+=n}}}catch(e){}return Math.round(total*10)/10}
-  function getData(){var h=get(key,{}), days=[];for(var i=6;i>=0;i--){var x=new Date(today);x.setDate(today.getDate()-i);var id=x.toISOString().slice(0,10);days.push({id:id,value:Number(h[id]||0)})}return days}
-  function saveToday(v){var h=get(key,{}),id=today.toISOString().slice(0,10);h[id]=Math.max(Number(h[id]||0),Number(v||0));try{localStorage.setItem(key,JSON.stringify(h))}catch(e){}}
-  function make(){if(d.querySelector('.learner-dashboard'))return;var anchor=d.querySelector('.hero')||d.querySelector('main')||d.body,box=d.createElement('section');box.className='learner-dashboard';box.id='learner-dashboard';box.setAttribute('aria-labelledby','learner-dashboard-title');
-    var hist=getData(), sum=hist.reduce(function(a,b){return a+b.value},0), max=Math.max.apply(null,hist.map(function(x){return x.value}).concat([1]));
-    var revision=get('desk-rev',[]), attempts=get('desk-tests',[]), drafts=get('desk-drafts',[]);
-    box.innerHTML='<h2 id="learner-dashboard-title">My Study Dashboard</h2><p class="dashboard-sub">A private, local progress view. Your data stays in this browser.</p><div class="dashboard-grid"><div class="dashboard-card"><strong>'+Math.round(sum*10)/10+'h</strong><span>This week</span></div><div class="dashboard-card"><strong>'+revision.length+'</strong><span>Revision cards</span></div><div class="dashboard-card"><strong>'+((attempts&&attempts.length)||0)+'</strong><span>Tests attempted</span></div><div class="dashboard-card"><strong>'+((drafts&&drafts.length)||0)+'</strong><span>Mains drafts</span></div></div><h3>Last 7 days</h3><div class="dashboard-week">'+hist.map(function(x){var dt=new Date(x.id+'T00:00:00');return '<div class="dashboard-day"><div class="dashboard-bar" style="--bar-height:'+Math.max(4,Math.round(x.value/max*85))+'px" title="'+x.value+' hours"></div>'+dt.toLocaleDateString(undefined,{weekday:'short'})+'</div>'}).join('')+'</div><p class="dashboard-note"><strong>Next step:</strong> Set one focused study goal today, then record your completed session in the Study Tracker.</p>';
+  function pad(n){return n<10?'0'+n:''+n}
+  function iso(x){return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())}
+  function getData(){
+    var hrs=get('desk-hours',[]),by={},days=[],i;
+    hrs.forEach(function(r){by[r.d]=(by[r.d]||0)+(+r.h||0)});
+    for(i=6;i>=0;i--){var x=new Date();x.setDate(x.getDate()-i);var id=iso(x);days.push({id:id,value:Math.round((by[id]||0)*10)/10})}
+    return days;
+  }
+  function make(){
+    if(d.querySelector('.learner-dashboard'))return;
+    var anchor=d.querySelector('.hero')||d.querySelector('main')||d.body,box=d.createElement('section');
+    box.className='learner-dashboard';box.id='learner-dashboard';box.setAttribute('aria-labelledby','learner-dashboard-title');
+    var hist=getData(),sum=hist.reduce(function(a,b){return a+b.value},0),max=Math.max.apply(null,hist.map(function(x){return x.value}).concat([1]));
+    var revision=get('desk-rev',[]),attempts=get('desk-dtests',[]),drafts=get('desk-mains-drafts',[]);
+    box.innerHTML='<h2 id="learner-dashboard-title">My Study Dashboard</h2><p class="dashboard-sub">A private, local progress view. Your data stays in this browser. <a href="#dashboard">See the detailed view</a>.</p><div class="dashboard-grid"><div class="dashboard-card"><strong>'+Math.round(sum*10)/10+'h</strong><span>This week</span></div><div class="dashboard-card"><strong>'+revision.length+'</strong><span>Revision cards</span></div><div class="dashboard-card"><strong>'+attempts.length+'</strong><span>Daily tests taken</span></div><div class="dashboard-card"><strong>'+drafts.length+'</strong><span>Mains drafts</span></div></div><h3>Last 7 days</h3><div class="dashboard-week">'+hist.map(function(x){var dt=new Date(x.id+'T00:00:00');return '<div class="dashboard-day"><div class="dashboard-bar" style="--bar-height:'+Math.max(4,Math.round(x.value/max*85))+'px" title="'+x.value+' hours"></div>'+dt.toLocaleDateString(undefined,{weekday:'short'})+'</div>'}).join('')+'</div><p class="dashboard-note"><strong>Next step:</strong> Set one focused study goal today, then record your completed session in the Study Tracker.</p>';
     if(anchor.parentNode)anchor.parentNode.insertBefore(box,anchor.nextSibling);else d.body.appendChild(box);
   }
-  function init(){saveToday(0);make()}
+  function init(){make()}
   if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
