@@ -3,4 +3,4 @@
    NEVER put a Supabase service-role/secret key or the VAPID PRIVATE key here. */
 window.DESK_SUPABASE_URL = 'https://sqnpxlsprzbgnmgljigg.supabase.co';
 window.DESK_SUPABASE_ANON_KEY = 'sb_publishable_BMiQuR3Wk3WYHIqQyceJbw_9qJBXumC';
-window.DESK_VAPID_PUBLIC_KEY = 'PASTE_VAPID_PUBLIC_KEY_HERE';
+window.DESK_VAPID_PUBLIC_KEY = 'BHngsRfrbcIqIgPhx59K7UKJzDu1FSlDlpA-xWRRg2pLqs4RANPXOE4NFHfV59JEzfN-or3qRhpgC4jWVqJJZ84';
