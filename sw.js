@@ -1,6 +1,12 @@
 /* The Aspirant's Desk service worker — offline shell and Web Push. */
-var VERSION = 'desk-v3-stage4';
+var VERSION = 'desk-v4-stage4';
 var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
+
+/* Files that must never be served stale: config (keys), and data feeds. */
+function isFresh(url) {
+  var p = new URL(url).pathname;
+  return /\/config\.js$/.test(p) || /\/data\/[^/]+\.json$/.test(p) || /\/sw\.js$/.test(p);
+}
 
 self.addEventListener('install', function (event) {
   event.waitUntil(caches.open(VERSION).then(function (cache) {
@@ -19,6 +25,7 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   var request = event.request;
   if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).then(function (response) {
       var copy = response.clone();
@@ -29,6 +36,19 @@ self.addEventListener('fetch', function (event) {
     }));
     return;
   }
+
+  /* Network-first for config.js and data/*.json: always the latest when online, cached copy only offline. */
+  if (isFresh(request.url)) {
+    event.respondWith(fetch(request, { cache: 'no-store' }).then(function (response) {
+      if (response && response.ok) {
+        var copy = response.clone();
+        caches.open(VERSION).then(function (cache) { cache.put(request, copy); });
+      }
+      return response;
+    }).catch(function () { return caches.match(request); }));
+    return;
+  }
+
   event.respondWith(caches.match(request).then(function (cached) {
     var network = fetch(request).then(function (response) {
       if (response && response.ok) {
