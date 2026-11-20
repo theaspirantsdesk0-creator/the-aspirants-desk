@@ -6,7 +6,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Aspirant’s Desk | UPSC, TNPSC, SSC & Govt Exam Ecosystem</title>
-<meta name="description" content="The Aspirant's Desk: Complete self-learner operating system for UPSC, TNPSC, SSC, and Banking exams by Anbuchelvan M S.">
+<meta name="description" content="The Aspirant's Desk: Complete self‑learner operating system for UPSC, TNPSC, SSC, and Banking exams by Anbuchelvan M S.">
 <meta name="author" content="Anbuchelvan M S">
 <link rel="canonical" href="https://theaspirantsdesk0-creator.github.io/the-aspirants-desk/">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -15,404 +15,98 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
-
 <style>
-:root {
-  --bg: #f4f6fb;
-  --surface: #ffffff;
-  --surface-alt: #f8fafc;
-  --ink: #0f172a;
-  --muted: #475569;
-  --line: #e2e8f0;
-  --navy: #070f2b;
-  --navy-2: #111d4a;
-  --accent: #1d4ed8;
-  --gold: #eab308;
-  --gold-ink: #1a1203;
-  --ok: #15803d;
-  --warn: #b45309;
-  --bad: #b91c1c;
-  --side-w: 272px;
-  --header-h: 64px;
-  --radius: 16px;
-  --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 18px 40px -12px rgba(15, 23, 42, 0.14);
-}
-
-:root[data-theme="dark"] {
-  --bg: #060b19;
-  --surface: #0f172a;
-  --surface-alt: #162038;
-  --ink: #f1f5f9;
-  --muted: #94a3b8;
-  --line: #1e293b;
-  --accent: #facc15;
-  --gold: #facc15;
-  --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  padding-left: var(--side-w);
-  padding-top: var(--header-h);
-}
-h1, h2, h3, h4, .display { font-family: "Bricolage Grotesque", sans-serif; letter-spacing: -0.015em; }
-a { color: inherit; }
-[hidden] { display: none !important; }
-
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--side-w);
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-  color: #e2e8f0;
-  border-right: 1px solid rgba(234, 179, 8, 0.35);
-  display: flex;
-  flex-direction: column;
-  z-index: 50;
-  overflow-y: auto;
-  padding: 1rem 0.85rem;
-}
-.brand-box {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.35rem 0.5rem 0.95rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  text-decoration: none;
-}
-.brand-badge {
-  width: 40px; height: 40px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--gold), #f59e0b);
-  color: var(--gold-ink);
-  display: grid; place-items: center;
-  font: 800 1.25rem "Bricolage Grotesque", sans-serif;
-  flex-shrink: 0;
-}
-.brand-box b { display: block; color: #fff; font: 800 1.02rem "Bricolage Grotesque", sans-serif; }
-.brand-box small { display: block; color: var(--gold); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
-
-.nav-grp {
-  margin: 1rem 0.6rem 0.3rem;
-  font: 800 0.67rem "Bricolage Grotesque", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  opacity: 0.9;
-}
-.nav-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.52rem 0.75rem;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 600;
-  font-size: 0.88rem;
-  transition: 0.15s;
-  margin-bottom: 2px;
-}
-.nav-link:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
-.nav-link.active { background: var(--gold); color: var(--gold-ink); font-weight: 700; }
-.lock-tag {
-  font-size: 0.68rem;
-  padding: 0.1rem 0.42rem;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #f8fafc;
-}
-.nav-link.active .lock-tag { background: rgba(0, 0, 0, 0.15); color: var(--gold-ink); }
-
-.side-footer {
-  margin-top: auto;
-  padding-top: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  display: flex;
-  gap: 0.5rem;
-}
-.side-btn {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #f8fafc;
-  border-radius: 8px;
-  padding: 0.45rem 0.6rem;
-  font: 600 0.8rem "Plus Jakarta Sans", sans-serif;
-  cursor: pointer;
-}
-.side-btn:hover { border-color: var(--gold); color: var(--gold); }
-
-/* Top Header Bar with Multi-Exam Shell Selector */
-.topbar {
-  position: fixed;
-  top: 0; left: var(--side-w); right: 0;
-  height: var(--header-h);
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.4rem;
-  z-index: 40;
-  gap: 0.75rem;
-}
-.top-left { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
-.menu-toggle {
-  display: none;
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  color: var(--ink);
-  border-radius: 8px;
-  padding: 0.42rem 0.68rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.breadcrumb { font: 700 1.02rem "Bricolage Grotesque", sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.top-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-.exam-select {
-  width: auto;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  border-radius: 99px;
-  border: 1.5px solid var(--gold);
-  background: var(--surface-alt);
-  color: var(--ink);
-  cursor: pointer;
-}
-.user-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 99px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-}
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
-.dot.online { background: var(--ok); }
-
-/* Main Container */
-.main-wrap { max-width: 1180px; margin: 0 auto; padding: 1.4rem; }
-.view-sec { display: none; animation: fadeIn 0.22s ease; }
-.view-sec.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
-
-/* Cards & Grids */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.3rem;
-  box-shadow: var(--shadow);
-}
-.card.gold-top { border-top: 4px solid var(--gold); }
-.card.accent-left { border-left: 4px solid var(--accent); }
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.15rem; }
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.95rem; }
-
-/* Hero Dashboard Banner */
-.dash-hero {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 65%, #1e3a8a 100%);
-  color: #fff;
-  border-radius: 22px;
-  padding: 1.9rem;
-  border: 1px solid rgba(234, 179, 8, 0.45);
-  box-shadow: var(--shadow-lg);
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 1.4rem;
-  align-items: center;
-  margin-bottom: 1.4rem;
-}
-.dash-hero .eyebrow {
-  display: inline-block;
-  background: rgba(234, 179, 8, 0.18);
-  color: var(--gold);
-  border: 1px solid rgba(234, 179, 8, 0.4);
-  padding: 0.2rem 0.75rem;
-  border-radius: 99px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.dash-hero h1 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin: 0.55rem 0; line-height: 1.15; }
-.dash-hero p { color: #cbd5e1; margin: 0 0 1.1rem; max-width: 54ch; }
-
-/* Buttons & Inputs */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.52rem 1rem;
-  border-radius: 10px;
-  font: 700 0.86rem "Bricolage Grotesque", sans-serif;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  cursor: pointer;
-  text-decoration: none;
-  transition: 0.15s;
-}
-.btn:hover { border-color: var(--accent); transform: translateY(-1px); }
-.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-.btn.primary { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
-.btn.navy { background: var(--navy); border-color: var(--navy); color: #fff; }
-.btn.ok { background: var(--ok); border-color: var(--ok); color: #fff; }
-.btn.bad { background: var(--bad); border-color: var(--bad); color: #fff; }
-.btn-row { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-
-.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.85rem; }
-.form-full { grid-column: 1 / -1; }
-label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--muted); }
-input, select, textarea {
-  width: 100%;
-  padding: 0.55rem 0.75rem;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: var(--surface-alt);
-  color: var(--ink);
-  font: inherit;
-}
-input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
-
-/* KPI Stat Cards */
-.kpi-val { font: 800 1.8rem "Bricolage Grotesque", sans-serif; color: var(--accent); line-height: 1.1; }
-.kpi-lbl { font-size: 0.8rem; color: var(--muted); font-weight: 600; margin-top: 0.25rem; }
-
-/* Modal */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(7, 15, 43, 0.75);
-  backdrop-filter: blur(6px);
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  z-index: 100;
-}
-.modal-card {
-  width: min(460px, 100%);
-  background: var(--surface);
-  border: 1.5px solid var(--gold);
-  border-radius: 20px;
-  padding: 1.75rem;
-  box-shadow: var(--shadow-lg);
-}
-
-/* Pills, Chips, Tables & Lists */
-.pill {
-  display: inline-block;
-  padding: 0.15rem 0.6rem;
-  border-radius: 99px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-}
-.pill.ok { color: var(--ok); border-color: var(--ok); }
-.pill.warn { color: var(--warn); border-color: var(--warn); }
-.pill.bad { color: var(--bad); border-color: var(--bad); }
-
-.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem; }
-.chip {
-  padding: 0.35rem 0.85rem;
-  border-radius: 99px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 0.83rem;
-  cursor: pointer;
-}
-.chip[aria-pressed="true"] { background: var(--accent); color: var(--gold-ink); border-color: var(--accent); }
-:root:not([data-theme="dark"]) .chip[aria-pressed="true"] { color: #fff; }
-
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
-table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 0.88rem; }
-th, td { padding: 0.62rem 0.82rem; border-bottom: 1px solid var(--line); text-align: left; }
-th { background: var(--surface-alt); font-weight: 700; }
-
-.item-list { list-style: none; padding: 0; margin: 0.8rem 0 0; }
-.item-list li {
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--gold);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.6rem;
-}
-
-.bar-track { height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 0.5rem 0; }
-.bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.3s; }
-
-/* Flashcard Box */
-.fc-box {
-  min-height: 250px;
-  background: linear-gradient(135deg, var(--navy), var(--navy-2));
-  color: #fff;
-  border: 2px solid var(--gold);
-  border-radius: 18px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.15s;
-}
-.fc-box:hover { transform: translateY(-2px); }
-.fc-box.flipped { background: var(--surface); color: var(--ink); border-color: var(--accent); }
-
-/* Toast Notification */
-.toast {
-  position: fixed;
-  bottom: 1.2rem;
-  right: 1.2rem;
-  background: var(--navy);
-  color: #fff;
-  border: 1px solid var(--gold);
-  padding: 0.75rem 1.1rem;
-  border-radius: 12px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  box-shadow: var(--shadow-lg);
-  z-index: 120;
-}
-
-@media (max-width: 960px) {
-  body { padding-left: 0; }
-  .sidebar { transform: translateX(-105%); transition: transform 0.25s; }
-  .sidebar.open { transform: translateX(0); }
-  .topbar { left: 0; }
-  .menu-toggle { display: inline-block; }
-  .dash-hero { grid-template-columns: 1fr; }
-}
+:root { --bg:#f4f6fb; --surface:#fff; --surface-alt:#f8fafc; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --navy:#070f2b; --navy-2:#111d4a; --accent:#1d4ed8; --gold:#eab308; --gold-ink:#1a1203; --ok:#15803d; --warn:#b45309; --bad:#b91c1c; --side-w:272px; --header-h:64px; --radius:16px; --shadow:0 4px 20px -2px rgba(15,23,42,.06); --shadow-lg:0 18px 40px -12px rgba(15,23,42,.14); }
+:root[data-theme="dark"] { --bg:#060b19; --surface:#0f172a; --surface-alt:#162038; --ink:#f1f5f9; --muted:#94a3b8; --line:#1e293b; --accent:#facc15; --gold:#facc15; --shadow:0 4px 20px -2px rgba(0,0,0,.45); --shadow-lg:0 18px 40px -12px rgba(0,0,0,.7); }
+*, *::before, *::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif; font-size:.95rem; line-height:1.6; padding-left:var(--side-w); padding-top:var(--header-h); }
+h1,h2,h3,h4,.display { font-family:"Bricolage Grotesque",sans-serif; letter-spacing:-.015em; }
+a { color:inherit; }
+[hidden] { display:none!important; }
+.sidebar { position:fixed; inset:0 auto 0 0; width:var(--side-w); background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#e2e8f0; border-right:1px solid rgba(234,179,8,.35); display:flex; flex-direction:column; z-index:50; overflow-y:auto; padding:1rem .85rem; }
+.brand-box { display:flex; align-items:center; gap:.75rem; padding:.35rem .5rem .95rem; border-bottom:1px solid rgba(255,255,255,.12); text-decoration:none; }
+.brand-badge { width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f59e0b); color:var(--gold-ink); display:grid; place-items:center; font:800 1.25rem "Bricolage Grotesque",sans-serif; flex-shrink:0; }
+.brand-box b { display:block; color:#fff; font:800 1.02rem "Bricolage Grotesque",sans-serif; }
+.brand-box small { display:block; color:var(--gold); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; }
+.nav-grp { margin:1rem .6rem .3rem; font:800 .67rem "Bricolage Grotesque",sans-serif; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); opacity:.9; }
+.nav-link { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.52rem .75rem; border-radius:10px; text-decoration:none; color:#cbd5e1; font-weight:600; font-size:.88rem; transition:.15s; margin-bottom:2px; }
+.nav-link:hover { background:rgba(255,255,255,.08); color:#fff; }
+.nav-link.active { background:var(--gold); color:var(--gold-ink); font-weight:700; }
+.lock-tag { font-size:.68rem; padding:.1rem .42rem; border-radius:99px; background:rgba(255,255,255,.12); color:#f8fafc; }
+.nav-link.active .lock-tag { background:rgba(0,0,0,.15); color:var(--gold-ink); }
+.side-footer { margin-top:auto; padding-top:.85rem; border-top:1px solid rgba(255,255,255,.12); display:flex; gap:.5rem; }
+.side-btn { flex:1; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#f8fafc; border-radius:8px; padding:.45rem .6rem; font:600 .8rem "Plus Jakarta Sans",sans-serif; cursor:pointer; }
+.side-btn:hover { border-color:var(--gold); color:var(--gold); }
+.topbar { position:fixed; top:0; left:var(--side-w); right:0; height:var(--header-h); background:color-mix(in srgb,var(--surface) 90%,transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 1.4rem; z-index:40; gap:.75rem; }
+.top-left { display:flex; align-items:center; gap:.75rem; min-width:0; }
+.menu-toggle { display:none; background:var(--surface-alt); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:.42rem .68rem; font-weight:700; cursor:pointer; }
+.breadcrumb { font:700 1.02rem "Bricolage Grotesque",sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.top-right { display:flex; align-items:center; gap:.6rem; flex-shrink:0; }
+.exam-select { width:auto; padding:.35rem .7rem; font-size:.82rem; font-weight:700; border-radius:99px; border:1.5px solid var(--gold); background:var(--surface-alt); color:var(--ink); cursor:pointer; }
+.user-pill { display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .8rem; border-radius:99px; font-size:.8rem; font-weight:700; background:var(--surface-alt); border:1px solid var(--line); }
+.dot { width:8px;height:8px;border-radius:50%; background:var(--warn); }
+.dot.online { background:var(--ok); }
+.main-wrap { max-width:1180px; margin:0 auto; padding:1.4rem; }
+.view-sec { display:none; animation:fadeIn .22s ease; }
+.view-sec.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+.card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.3rem; box-shadow:var(--shadow); }
+.card.gold-top { border-top:4px solid var(--gold); }
+.card.accent-left { border-left:4px solid var(--accent); }
+.grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:1.15rem; }
+.grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+.grid-4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.95rem; }
+.dash-hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 65%,#1e3a8a 100%); color:#fff; border-radius:22px; padding:1.9rem; border:1px solid rgba(234,179,8,.45); box-shadow:var(--shadow-lg); display:grid; grid-template-columns:1.4fr 1fr; gap:1.4rem; align-items:center; margin-bottom:1.4rem; }
+.dash-hero .eyebrow { display:inline-block; background:rgba(234,179,8,.18); color:var(--gold); border:1px solid rgba(234,179,8,.4); padding:.2rem .75rem; border-radius:99px; font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; padding:.52rem 1rem; border-radius:10px; font:700 .86rem "Bricolage Grotesque",sans-serif; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; text-decoration:none; transition:.15s; }
+.btn:hover { border-color:var(--accent); transform:translateY(-1px); }
+.btn:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+.btn.primary { background:var(--gold); border-color:var(--gold); color:var(--gold-ink); }
+.btn.navy { background:var(--navy); border-color:var(--navy); color:#fff; }
+.btn.ok { background:var(--ok); border-color:var(--ok); color:#fff; }
+.btn.bad { background:var(--bad); border-color:var(--bad); color:#fff; }
+.btn-row { display:flex; flex-wrap:wrap; gap:.55rem; }
+.form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.85rem; }
+.form-full { grid-column:1/-1; }
+label { display:block; font-size:.8rem; font-weight:700; margin-bottom:.25rem; color:var(--muted); }
+input,select,textarea { width:100%; padding:.55rem .75rem; border-radius:10px; border:1px solid var(--line); background:var(--surface-alt); color:var(--ink); font:inherit; }
+input:focus,select:focus,textarea:focus { outline:2px solid var(--accent); border-color:transparent; }
+.kpi-val { font:800 1.8rem "Bricolage Grotesque",sans-serif; color:var(--accent); line-height:1.1; }
+.kpi-lbl { font-size:.8rem; color:var(--muted); font-weight:600; margin-top:.25rem; }
+.modal-backdrop { position:fixed; inset:0; background:rgba(7,15,43,.75); backdrop-filter:blur(6px); display:grid; place-items:center; padding:1rem; z-index:100; }
+.modal-card { width:min(460px,100%); background:var(--surface); border:1.5px solid var(--gold); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow-lg); }
+.pill { display:inline-block; padding:.15rem .6rem; border-radius:99px; font-size:.75rem; font-weight:700; background:var(--surface-alt); border:1px solid var(--line); }
+.pill.ok { color:var(--ok); border-color:var(--ok); }
+.pill.warn { color:var(--warn); border-color:var(--warn); }
+.pill.bad { color:var(--bad); border-color:var(--bad); }
+.chips { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:1rem; }
+.chip { padding:.35rem .85rem; border-radius:99px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font-weight:600; font-size:.83rem; cursor:pointer; }
+.chip[aria-pressed="true"] { background:var(--accent); color:#fff; border-color:var(--accent); }
+:root:not([data-theme="dark"]) .chip[aria-pressed="true"] { color:#fff; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:12px; }
+table { width:100%; border-collapse:collapse; min-width:560px; font-size:.88rem; }
+th,td { padding:.62rem .82rem; border-bottom:1px solid var(--line); text-align:left; }
+th { background:var(--surface-alt); font-weight:700; }
+.item-list { list-style:none; padding:0; margin:.8rem 0 0; }
+.item-list li { background:var(--surface-alt); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:10px; padding:.75rem 1rem; margin-bottom:.6rem; }
+.bar-track { height:10px; background:var(--line); border-radius:99px; overflow:hidden; margin:.5rem 0; }
+.bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--gold)); width:0%; transition:width .3s; }
+.fc-box { min-height:250px; background:linear-gradient(135deg,var(--navy),var(--navy-2)); color:#fff; border:2px solid var(--gold); border-radius:18px; padding:2rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; cursor:pointer; user-select:none; transition:transform .15s; }
+.fc-box:hover { transform:translateY(-2px); }
+.fc-box.flipped { background:var(--surface); color:var(--ink); border-color:var(--accent); }
+.toast { position:fixed; bottom:1.2rem; right:1.2rem; background:var(--navy); color:#fff; border:1px solid var(--gold); padding:.75rem 1.1rem; border-radius:12px; font-size:.86rem; font-weight:600; box-shadow:var(--shadow-lg); z-index:120; }
+@media (max-width:960px) { body { padding-left:0; } .sidebar { transform:translateX(-105%); transition:transform .25s; } .sidebar.open { transform:translateX(0); } .topbar { left:0; } .menu-toggle { display:inline-block; } .dash-hero { grid-template-columns:1fr; } }
+.notes-section { margin-top:2rem; }
+.notes-section h2 { margin-bottom:.5rem; }
+.notes-card { margin-bottom:1rem; }
+.notes-card h4 { margin:0 0 .3rem; }
+.notes-card p { margin:0; font-size:.88rem; color:var(--muted); }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR NAVIGATION -->
+<!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
   <a href="#home" class="brand-box" data-nav="home">
     <div class="brand-badge">A</div>
@@ -421,37 +115,32 @@ th { background: var(--surface-alt); font-weight: 700; }
       <small id="sideExamBadge">UPSC CSE Edition</small>
     </div>
   </a>
-
   <div class="nav-grp">Overview & Info</div>
   <a href="#home" class="nav-link active" data-nav="home">📊 Dashboard Overview</a>
   <a href="#about-app" class="nav-link" data-nav="about-app">🧭 About the App</a>
   <a href="#founder" class="nav-link" data-nav="founder">👤 Founder & Owner</a>
   <a href="#updates" class="nav-link" data-nav="updates">📅 Exam Notifications</a>
-
   <div class="nav-grp">Phase 1 · Study Deck</div>
   <a href="#today" class="nav-link requires-auth" data-nav="today">⭐ Today’s Desk & Timer <span class="lock-tag">Login</span></a>
   <a href="#dailytest" class="nav-link requires-auth" data-nav="dailytest">📝 Daily Prelims Test <span class="lock-tag">Login</span></a>
   <a href="#notes" class="nav-link requires-auth" data-nav="notes">📚 Subject Notes <span class="lock-tag">Login</span></a>
   <a href="#press" class="nav-link requires-auth" data-nav="press">📰 Daily Press & PIB <span class="lock-tag">Login</span></a>
-
-  <div class="nav-grp">Phase 2 & 3 · Recall & Mains</div>
+  <div class="nav-grp">Phase 2 · Recall</div>
   <a href="#flashcards" class="nav-link requires-auth" data-nav="flashcards">⚡ Flashcard Engine <span class="lock-tag">Login</span></a>
+  <div class="nav-grp">Phase 3 · Mains</div>
   <a href="#mains" class="nav-link requires-auth" data-nav="mains">✍️ Mains Writing Pad <span class="lock-tag">Login</span></a>
-  <a href="#pyq" class="nav-link requires-auth" data-nav="pyq">🏛️ Verified PYQ Bank <span class="lock-tag">Login</span></a>
-
-  <div class="nav-grp">Planner, Tracker & Admin</div>
+  <div class="nav-grp">Phase 4 · Planner & Tracker</div>
   <a href="#planner" class="nav-link requires-auth" data-nav="planner">🗓️ Study Planner <span class="lock-tag">Login</span></a>
-  <a href="#tracker" class="nav-link requires-auth" data-nav="tracker">📈 My Prep Tracker <span class="lock-tag">Login</span></a>
+  <a href="#tracker" class="nav-link requires-auth" data-nav="tracker">📈 Prep Tracker <span class="lock-tag">Login</span></a>
   <a href="#admin" class="nav-link owner-only" data-nav="admin" hidden>🛡️ Owner Admin Panel</a>
   <a href="#legal" class="nav-link" data-nav="legal">⚖️ Terms & Privacy</a>
-
   <div class="side-footer">
     <button type="button" class="side-btn" id="themeToggle">🌓 Theme</button>
     <button type="button" class="side-btn" id="sideAuthBtn">🔐 Sign In</button>
   </div>
 </aside>
 
-<!-- TOP HEADER BAR (WITH PHASE 4 MULTI-EXAM SELECTOR) -->
+<!-- Top Bar -->
 <header class="topbar">
   <div class="top-left">
     <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰ Menu</button>
@@ -470,29 +159,20 @@ th { background: var(--surface-alt); font-weight: 700; }
   </div>
 </header>
 
-<!-- SUPABASE AUTHENTICATION MODAL -->
+<!-- Auth Modal -->
 <div class="modal-backdrop" id="authModal" hidden>
   <div class="modal-card" role="dialog" aria-labelledby="authModalTitle">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
-      <h2 id="authModalTitle" style="margin:0;font-size:1.4rem">Aspirant Cloud Sign-In</h2>
+      <h2 id="authModalTitle" style="margin:0;font-size:1.4rem">Aspirant Cloud Sign‑In</h2>
       <button type="button" class="btn" id="closeAuthModal" style="padding:.25rem .6rem">✕</button>
     </div>
     <p style="color:var(--muted);font-size:.86rem;margin:0 0 1rem">
       Sign in with your Supabase learner account to sync study hours, test scores, flashcards, and Mains drafts across devices.
     </p>
     <div class="form-grid">
-      <div class="form-full">
-        <label for="authName">Full Name (required for new registration)</label>
-        <input id="authName" type="text" placeholder="e.g., Anbuchelvan M S">
-      </div>
-      <div class="form-full">
-        <label for="authEmail">Email Address</label>
-        <input id="authEmail" type="email" placeholder="you@example.com" required>
-      </div>
-      <div class="form-full">
-        <label for="authPassword">Password (minimum 8 characters)</label>
-        <input id="authPassword" type="password" placeholder="••••••••" required>
-      </div>
+      <div class="form-full"><label for="authName">Full Name (required for new registration)</label><input id="authName" type="text" placeholder="e.g., Anbuchelvan M S"></div>
+      <div class="form-full"><label for="authEmail">Email Address</label><input id="authEmail" type="email" placeholder="you@example.com" required></div>
+      <div class="form-full"><label for="authPassword">Password (minimum 8 characters)</label><input id="authPassword" type="password" placeholder="••••••••" required></div>
     </div>
     <p id="authFeedback" style="font-size:.83rem;font-weight:600;color:var(--warn);margin:.75rem 0"></p>
     <div class="btn-row" style="margin-top:.9rem">
@@ -502,16 +182,15 @@ th { background: var(--surface-alt); font-weight: 700; }
   </div>
 </div>
 
-<!-- MAIN WORKSPACE -->
 <main class="main-wrap">
 
-  <!-- 1. DASHBOARD OVERVIEW -->
+  <!-- Dashboard Overview -->
   <section id="home" class="view-sec active">
     <div class="dash-hero">
       <div>
         <span class="eyebrow" id="heroExamTag">UPSC Civil Services Ecosystem</span>
         <h1>Structured Preparation. Zero Distractions.</h1>
-        <p>Your self-learner command center—subject notes, verified PYQs, live focus timer, active recall flashcards, timed Mains writing pad, and real-time Supabase cloud sync.</p>
+        <p>Your self‑learner command center—subject notes, verified PYQs, live focus timer, active recall flashcards, timed Mains writing pad, and real‑time Supabase cloud sync.</p>
         <div class="btn-row">
           <button type="button" class="btn primary" id="heroActionBtn">🔐 Sign In to Unlock Workspace</button>
           <a href="#about-app" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)" data-nav="about-app">How It Works</a>
@@ -530,906 +209,160 @@ th { background: var(--surface-alt); font-weight: 700; }
         </div>
       </div>
     </div>
-
-    <!-- LIVE KPI METRICS -->
     <div class="grid-4" style="margin-bottom:1.4rem">
-      <div class="card gold-top">
-        <div class="kpi-val" id="kpiDays">184 Days</div>
-        <div class="kpi-lbl" id="kpiExamLabel">Countdown to UPSC Prelims 2027</div>
-      </div>
-      <div class="card gold-top">
-        <div class="kpi-val" id="kpiHours">0.0 hrs</div>
-        <div class="kpi-lbl">Logged Study Hours (Goal: 6h)</div>
-      </div>
-      <div class="card gold-top">
-        <div class="kpi-val" id="kpiSyllabus">0%</div>
-        <div class="kpi-lbl">Syllabus Mastery</div>
-      </div>
-      <div class="card gold-top">
-        <div class="kpi-val" id="kpiLastScore">—</div>
-        <div class="kpi-lbl">Latest Prelims Test Score</div>
-      </div>
+      <div class="card gold-top"><div class="kpi-val" id="kpiDays">184 Days</div><div class="kpi-lbl" id="kpiExamLabel">Countdown to UPSC Prelims 2027</div></div>
+      <div class="card gold-top"><div class="kpi-val" id="kpiHours">0.0 hrs</div><div class="kpi-lbl">Logged Study Hours (Goal: 6h)</div></div>
+      <div class="card gold-top"><div class="kpi-val" id="kpiSyllabus">0%</div><div class="kpi-lbl">Syllabus Mastery</div></div>
+      <div class="card gold-top"><div class="kpi-val" id="kpiLastScore">—</div><div class="kpi-lbl">Latest Prelims Test Score</div></div>
     </div>
-
-    <!-- ABOUT APP & FOUNDER SUMMARY -->
-    <div class="grid-2" style="margin-bottom:1.4rem">
-      <div class="card accent-left">
-        <span class="pill ok">Self-Learner Architecture</span>
-        <h3 style="margin:.5rem 0">Built for Independent Aspirants</h3>
-        <p style="color:var(--muted);font-size:.89rem">Every tool on The Aspirant’s Desk connects into a closed study loop:</p>
-        <ul style="padding-left:1.1rem;margin:.5rem 0 1rem;font-size:.89rem">
-          <li><b>Phase 1 — Daily Study Deck:</b> Pomodoro focus timer auto-linked to your study tracker + timed Prelims test (+2 / −0.66).</li>
-          <li><b>Phase 2 — Flashcard Engine:</b> Active recall cards for Articles, Judgments, Economy, and Environment.</li>
-          <li><b>Phase 3 — Mains Writing Pad:</b> Timed 7-min / 11-min answer sheet with live word count, model framework & `.txt` export.</li>
-          <li><b>Phase 4 — Multi-Exam Shell:</b> Switch seamlessly between UPSC CSE, TNPSC, SSC CGL, and Banking PO.</li>
-        </ul>
-        <a href="#about-app" class="btn" data-nav="about-app">Explore Full Architecture →</a>
-      </div>
-
-      <div class="card accent-left">
-        <span class="pill warn">Founder & Website Owner</span>
-        <h3 style="margin:.5rem 0">Anbuchelvan M S</h3>
-        <p style="color:var(--muted);font-size:.89rem">B.Tech Civil Engineering graduate from <b>Puducherry Technological University</b>, schooled in Chennai (Tamil, English, Telugu). Grounded in real-world public infrastructure delivery:</p>
-        <ul style="padding-left:1.1rem;margin:.5rem 0 1rem;font-size:.89rem">
-          <li><b>Affordable Housing (PMAY):</b> Executed 1,154 EWS dwelling units across 5 Puducherry sites.</li>
-          <li><b>Chennai Metro Rail (CMRL):</b> Elevated viaduct construction (Kattupakkam–Poonamallee) & urban drainage renovation.</li>
-          <li><b>Heritage Restoration:</b> Conservation engineering on the historic VOC School building.</li>
-        </ul>
-        <a href="#founder" class="btn" data-nav="founder">View Full Profile →</a>
-      </div>
-    </div>
-
-    <!-- WORKSPACE MODULES DIRECTORY -->
     <h3 style="margin:0 0 .75rem">Interactive Study Modules</h3>
     <div class="grid-3">
-      <div class="card">
-        <h4>⭐ Today’s Desk & Focus Timer</h4>
-        <p style="font-size:.85rem;color:var(--muted)">25m/50m Pomodoro timer that automatically adds completed study minutes to your cloud tracker.</p>
-        <button type="button" class="btn primary open-protected" data-target="today">Launch Study Deck</button>
-      </div>
-      <div class="card">
-        <h4>📝 Daily Prelims Test</h4>
-        <p style="font-size:.85rem;color:var(--muted)">Timed UPSC Prelims test (+2.0 / −0.66) with score breakdown and auto-saved mistake log.</p>
-        <button type="button" class="btn primary open-protected" data-target="dailytest">Start Prelims Test</button>
-      </div>
-      <div class="card">
-        <h4>⚡ Flashcard Revision Engine</h4>
-        <p style="font-size:.85rem;color:var(--muted)">Quick-flip cards for Articles, Supreme Court cases, and key terms with confidence tracking.</p>
-        <button type="button" class="btn primary open-protected" data-target="flashcards">Open Flashcards</button>
-      </div>
-      <div class="card">
-        <h4>✍️ Daily Mains Writing Pad</h4>
-        <p style="font-size:.85rem;color:var(--muted)">7-min/11-min countdown, live word counter, model framework toggle & downloadable answer sheet.</p>
-        <button type="button" class="btn primary open-protected" data-target="mains">Open Writing Pad</button>
-      </div>
-      <div class="card">
-        <h4>📚 Subject Notes & PIB Briefs</h4>
-        <p style="font-size:.85rem;color:var(--muted)">Concise GS notes and live current affairs published directly by the Admin console.</p>
-        <button type="button" class="btn primary open-protected" data-target="notes">Read Notes</button>
-      </div>
-      <div class="card">
-        <h4>📈 Prep Tracker & Mistake Log</h4>
-        <p style="font-size:.85rem;color:var(--muted)">Syllabus progress bar, 1-3-7-21-45 day revision planner, and test mistake review.</p>
-        <button type="button" class="btn primary open-protected" data-target="tracker">Open Tracker</button>
-      </div>
+      <div class="card"><h4>⭐ Today’s Desk & Focus Timer</h4><p style="font-size:.85rem;color:var(--muted)">25 m/50 m Pomodoro, auto‑log to cloud.</p><button type="button" class="btn primary open-protected" data-target="today">Launch Study Deck</button></div>
+      <div class="card"><h4>📝 Daily Prelims Test</h4><p style="font-size:.85rem;color:var(--muted)">Timed test (+2/‑0.66) with score breakdown.</p><button type="button" class="btn primary open-protected" data-target="dailytest">Start Prelims Test</button></div>
+      <div class="card"><h4>⚡ Flashcard Engine</h4><p style="font-size:.85rem;color:var(--muted)">Quick‑flip cards for Articles, Cases, Terms.</p><button type="button" class="btn primary open-protected" data-target="flashcards">Open Flashcards</button></div>
+      <div class="card"><h4>✍️ Mains Writing Pad</h4><p style="font-size:.85rem;color:var(--muted)">7 min / 11 min timer, live word count.</p><button type="button" class="btn primary open-protected" data-target="mains">Open Writing Pad</button></div>
+      <div class="card"><h4>📚 Subject Notes</h4><p style="font-size:.85rem;color:var(--muted)">Concise revision notes per subject.</p><button type="button" class="btn primary open-protected" data-target="notes">Read Notes</button></div>
+      <div class="card"><h4>📈 Prep Tracker</h4><p style="font-size:.85rem;color:var(--muted)">Syllabus progress bar, mistake log.</p><button type="button" class="btn primary open-protected" data-target="tracker">Open Tracker</button></div>
     </div>
   </section>
 
-  <!-- 2. ABOUT THE APP -->
+  <!-- About -->
   <section id="about-app" class="view-sec">
-    <div class="card gold-top">
-      <h2>About The Aspirant’s Desk</h2>
-      <p style="color:var(--muted)">An engineering-grade, distraction-free study operating system for self-learners preparing for UPSC Civil Services, State PSCs, SSC, and Banking examinations.</p>
-      <div class="grid-3" style="margin-top:1rem">
-        <div class="card accent-left">
-          <h3>Cloud + Offline Hybrid</h3>
-          <p style="font-size:.88rem;color:var(--muted)">Every study session, test score, syllabus checkmark, and Mains draft saves locally for instant speed and synchronizes to Supabase when online.</p>
-        </div>
-        <div class="card accent-left">
-          <h3>Evidence-Based Recall</h3>
-          <p style="font-size:.88rem;color:var(--muted)">Combines active recall flashcards, negative-marking Prelims simulations, and 1-3-7-21-45 day spaced repetition.</p>
-        </div>
-        <div class="card accent-left">
-          <h3>Public-Spirited & Free</h3>
-          <p style="font-size:.88rem;color:var(--muted)">Zero advertisements, zero paywalls, and full DPDP Act 2023 data privacy compliance.</p>
-        </div>
-      </div>
-    </div>
+    <div class="card gold-top"><h2>About The Aspirant’s Desk</h2><p style="color:var(--muted)">An engineering‑grade, distraction‑free study OS for UPSC, State PSCs, SSC & Banking.</p></div>
   </section>
 
-  <!-- 3. FOUNDER & OWNER -->
+  <!-- Founder -->
   <section id="founder" class="view-sec">
-    <div class="card gold-top" style="margin-bottom:1.2rem">
-      <span class="pill warn">Creator & Site Owner</span>
-      <h2 style="margin:.4rem 0">Anbuchelvan M S</h2>
-      <p style="color:var(--muted)">B.Tech Civil Engineering graduate from <b>Puducherry Technological University</b>, schooled in Chennai, fluent in Tamil, English, and Telugu. Built from field experience executing public infrastructure projects across Puducherry and Chennai.</p>
-      <div class="btn-row" style="margin-top:.8rem">
-        <a class="btn primary" href="mailto:theaspirantsdesk0@gmail.com">✉️ theaspirantsdesk0@gmail.com</a>
-        <a class="btn" href="https://www.linkedin.com/in/anbuchelvan-anbuchelvan-3a081139b/" target="_blank" rel="noopener">🔗 LinkedIn Profile</a>
-      </div>
-    </div>
-    <div class="grid-2">
-      <div class="card accent-left">
-        <h4>🏘️ Public Infrastructure & Metro Rail</h4>
-        <p style="font-size:.88rem;color:var(--muted)">Executed 1,154 EWS affordable housing units under PMAY across five Puducherry locations, elevated metro corridor works for Chennai Metro Rail Limited (CMRL), Petit Canal urban drainage renovation, and heritage restoration of the VOC School building.</p>
-      </div>
-      <div class="card accent-left">
-        <h4>🎓 Academic & Technical Credentials</h4>
-        <p style="font-size:.88rem;color:var(--muted)">B.Tech Civil Engineering (PTU); District Rank Holder in International Mathematics Olympiad (2017) & 3rd Position in State-Level Mathematics Olympiad (Trichy); certified in AutoCAD, STAAD.Pro, Revit, and L&T Water Treatment Technologies.</p>
-      </div>
-    </div>
+    <div class="card gold-top"><span class="pill warn">Creator & Site Owner</span><h2 style="margin:.4rem 0">Anbuchelvan M S</h2></div>
   </section>
 
-  <!-- 4. EXAM NOTIFICATIONS (LIVE FROM SUPABASE + DEFAULTS) -->
+  <!-- Updates -->
   <section id="updates" class="view-sec">
-    <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
-        <h2 style="margin:0">Exam Notifications & Calendar</h2>
-        <span class="pill ok" id="updatesSyncBadge">Live Calendar</span>
-      </div>
-      <p style="color:var(--muted)">Updated dynamically from the Owner Admin Console. Always cross-verify final dates on official commission portals.</p>
-      <div class="table-wrap" style="margin-top:1rem">
-        <table>
-          <thead><tr><th>Exam / Category</th><th>Notification</th><th>Key Date</th><th>Details</th></tr></thead>
-          <tbody id="publicExamTable"></tbody>
-        </table>
-      </div>
-    </div>
+    <div class="card gold-top"><h2>Exam Notifications & Calendar</h2><table><thead><tr><th>Exam / Category</th><th>Notification</th><th>Key Date</th><th>Details</th></tr></thead><tbody id="publicExamTable"></tbody></table></div>
   </section>
 
-  <!-- 5. PHASE 1A: TODAY'S DESK & LINKED POMODORO TIMER -->
+  <!-- Today -->
   <section id="today" class="view-sec protected-view">
-    <div class="card gold-top">
-      <h2>Phase 1 · Live Focus / Pomodoro Study Deck</h2>
-      <p style="color:var(--muted)">Every completed timer session automatically converts into study hours and saves to your cloud tracker.</p>
-      <div class="grid-2" style="margin-top:1rem">
-        <div class="card" style="text-align:center">
-          <div class="chips" style="justify-content:center">
-            <button type="button" class="chip pomo-preset" data-sec="1500" aria-pressed="true">25m Focus</button>
-            <button type="button" class="chip pomo-preset" data-sec="3000">50m Deep Work</button>
-            <button type="button" class="chip pomo-preset" data-sec="300">5m Break</button>
-          </div>
-          <div style="margin:.4rem 0">
-            <label for="pomoSubj" style="display:inline;margin-right:.4rem">Active Subject:</label>
-            <select id="pomoSubj" style="width:auto;display:inline-block">
-              <option>Polity</option><option>History</option><option>Economy</option><option>Geography</option><option>Environment</option><option>Ethics</option><option>CSAT / Quant</option>
-            </select>
-          </div>
-          <div id="pomoClock" style="font:800 3.6rem 'Bricolage Grotesque',monospace;color:var(--accent);margin:.5rem 0">25:00</div>
-          <div class="btn-row" style="justify-content:center">
-            <button type="button" class="btn primary" id="pomoStart">▶ Start Focus</button>
-            <button type="button" class="btn" id="pomoReset">↺ Reset</button>
-            <button type="button" class="btn ok" id="pomoCompleteNow">✓ Complete & Log</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Manual Study Log & Today's Sessions</h3>
-          <div class="form-grid">
-            <div>
-              <label for="logSubj">Subject</label>
-              <select id="logSubj"><option>Polity</option><option>History</option><option>Geography</option><option>Economy</option><option>Environment</option><option>Ethics</option><option>Current Affairs</option></select>
-            </div>
-            <div>
-              <label for="logHrs">Hours</label>
-              <input id="logHrs" type="number" step="0.25" min="0.25" max="14" value="1.0">
-            </div>
-            <div class="form-full">
-              <button type="button" class="btn primary" id="quickLogBtn" style="width:100%">+ Save Study Session to Cloud</button>
-            </div>
-          </div>
-          <ul class="item-list" id="studyLogHistory"></ul>
-        </div>
-      </div>
-    </div>
+    <div class="card gold-top"><h2>Phase 1 · Live Focus / Pomodoro Study Deck</h2></div>
   </section>
 
-  <!-- 6. PHASE 1B: UPGRADED INTERACTIVE DAILY PRELIMS TEST -->
-  <section id="dailytest" class="view-sec protected-view">
-    <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem">
-        <div>
-          <h2 style="margin:0">Phase 1 · Interactive Daily Prelims Test</h2>
-          <span style="font-size:.82rem;color:var(--muted)">UPSC Marking Scheme: +2.0 for correct, −0.66 for incorrect.</span>
-        </div>
-        <div id="testTimerBadge" class="pill warn" style="font-size:.9rem;padding:.3rem .8rem">Time Left: 15:00</div>
-      </div>
-      <div id="testArea">
-        <div id="testQuestionBox" class="card accent-left" style="margin-bottom:1rem">
-          <h4 id="qNumTitle" style="color:var(--accent);margin-top:0">Question 1 of 5</h4>
-          <p id="qText" style="font-weight:600;font-size:1.02rem"></p>
-          <div id="qOptions" style="display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <button type="button" class="btn" id="prevQBtn">← Previous</button>
-          <span id="testProgressTxt" style="font-weight:700;font-size:.85rem">1 / 5 Answered</span>
-          <button type="button" class="btn primary" id="nextQBtn">Next Question →</button>
-        </div>
-      </div>
-      <div id="testResultBox" hidden style="text-align:center;padding:1.5rem">
-        <h3>Test Submitted Successfully!</h3>
-        <div class="kpi-val" id="testScoreDisplay" style="margin:.5rem 0">+4.0 / 10.0</div>
-        <p id="testRemark" style="color:var(--muted)">Great accuracy! Keep reviewing incorrect answers.</p>
-        <button type="button" class="btn primary" id="restartTestBtn">Retake Test</button>
-      </div>
-    </div>
-  </section>
+  <!-- Daily Test -->
+  <section id="dailytest" class="view-sec protected-view"><div class="card gold-top"><h2>Phase 1 · Interactive Daily Prelims Test</h2></div></section>
 
-  <!-- 7. PHASE 1C: SUBJECT NOTES & PIB -->
+  <!-- Notes -->
   <section id="notes" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Subject Notes & PIB Current Affairs Briefs</h2>
-      <p style="color:var(--muted)">High-yield revision summaries authored for civil services preparation.</p>
+      <h2>Subject Notes & PIB Briefs</h2>
       <div class="chips" id="noteSubjectChips" style="margin-top:1rem">
         <button type="button" class="chip" aria-pressed="true">Polity</button>
+        <button type="button" class="chip">History</button>
+        <button type="button" class="chip">Geography</button>
         <button type="button" class="chip">Economy</button>
         <button type="button" class="chip">Environment</button>
-        <button type="button" class="chip">History</button>
+        <button type="button" class="chip">Ethics</button>
+        <button type="button" class="chip">Current Affairs</button>
+        <button type="button" class="chip">Quantitative Aptitude</button>
+        <button type="button" class="chip">Logical Reasoning</button>
+        <button type="button" class="chip">General Science</button>
       </div>
-      <div id="noteContentArea" class="card" style="background:var(--surface-alt)">
-        <h4>Loading Subject Notes...</h4>
-      </div>
+      <div id="noteContentArea" class="card" style="background:var(--surface-alt)"></div>
     </div>
   </section>
 
-  <section id="press" class="view-sec protected-view">
-    <div class="card gold-top">
-      <h2>Daily Press Information & PIB Digests</h2>
-      <p style="color:var(--muted)">Curated government releases and policy analysis updated daily.</p>
-      <div id="pibListContainer" class="item-list"></div>
-    </div>
-  </section>
+  <!-- Flashcards -->
+  <section id="flashcards" class="view-sec protected-view"><div class="card gold-top"><h2>Phase 2 · Active Recall Flashcards</h2></div></section>
 
-  <!-- 8. PHASE 2: FLASHCARD REVISION ENGINE -->
-  <section id="flashcards" class="view-sec protected-view">
-    <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
-        <h2 style="margin:0">Phase 2 · Active Recall Flashcards</h2>
-        <span class="pill" id="fcCounter">Card 1 of 10</span>
-      </div>
-      <div class="fc-box" id="fcBox">
-        <span id="fcCategoryTag" class="pill" style="margin-bottom:.75rem;background:rgba(255,255,255,.15);color:#fff;border:none">Indian Polity</span>
-        <h3 id="fcFront" style="margin:0;font-size:1.2rem">Click to reveal answer / Article provision</h3>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem">
-        <button type="button" class="btn" id="fcPrev">← Previous</button>
-        <div class="btn-row">
-          <button type="button" class="btn bad" id="fcHard">Hard</button>
-          <button type="button" class="btn ok" id="fcEasy">Mastered</button>
-        </div>
-        <button type="button" class="btn primary" id="fcNext">Next →</button>
-      </div>
-    </div>
-  </section>
+  <!-- Mains -->
+  <section id="mains" class="view-sec protected-view"><div class="card gold-top"><h2>Phase 3 · Mains Writing Pad</h2></div></section>
 
-  <!-- 9. PHASE 3: MAINS ANSWER WRITING WORKSHOP -->
-  <section id="mains" class="view-sec protected-view">
-    <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem">
-        <div>
-          <h2 style="margin:0">Phase 3 · Mains Answer Writing Pad</h2>
-          <span style="font-size:.82rem;color:var(--muted)">Write under simulated time pressure with live word count.</span>
-        </div>
-        <div id="mainsTimerBadge" class="pill warn" style="font-size:.9rem;padding:.3rem .8rem">07:00 Remaining</div>
-      </div>
-      <div class="card accent-left" style="margin-bottom:1rem">
-        <h4 style="margin-top:0;color:var(--accent)">Daily Practice Question #12</h4>
-        <p id="mainsPromptText" style="font-weight:600;margin:0">Examine the constitutional validity and federal implications of recent legislative trends regarding Governor’s assent to state bills.</p>
-      </div>
-      <div class="form-grid">
-        <div class="form-full">
-          <textarea id="mainsTextArea" rows="10" placeholder="Type your structured answer here (Introduction, Body paragraphs with headings, Conclusion)..."></textarea>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem;flex-wrap:wrap;gap:.5rem">
-        <div>
-          <span class="pill" id="mainsWordCount">Words: 0</span>
-          <span class="pill" id="mainsCharCount">Chars: 0</span>
-        </div>
-        <div class="btn-row">
-          <button type="button" class="btn" id="mainsToggleModel">Toggle Model Framework</button>
-          <button type="button" class="btn primary" id="mainsDownloadTxt">📥 Download .txt</button>
-        </div>
-      </div>
-      <div id="mainsModelBox" class="card" hidden style="margin-top:1rem;background:var(--surface-alt)">
-        <h4 style="margin-top:0">Model Framework & Structure</h4>
-        <p style="font-size:.88rem;color:var(--muted)"><b>Intro:</b> Define Article 200 and the role of the Governor as constitutional head.<br><b>Body:</b> Discuss Sarkaria & Punchhi Commission recommendations, Supreme Court rulings (State of Tamil Nadu v. Governor), and federal friction.<br><b>Conclusion:</b> Suggest time-bound timelines and cooperative federalism norms.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Planner -->
+  <section id="planner" class="view-sec protected-view"><div class="card gold-top"><h2>Study Planner</h2></div></section>
+  <section id="tracker" class="view-sec protected-view"><div class="card gold-top"><h2>Prep Tracker</h2></div></section>
 
-  <!-- 10. VERIFIED PYQ BANK -->
-  <section id="pyq" class="view-sec protected-view">
-    <div class="card gold-top">
-      <h2>Verified UPSC PYQ Library</h2>
-      <p style="color:var(--muted)">Browse authentic past year questions with detailed explanations.</p>
-      <div class="chips" id="pyqFilterChips">
-        <button type="button" class="chip" aria-pressed="true">All Papers</button>
-        <button type="button" class="chip">GS Paper I</button>
-        <button type="button" class="chip">GS Paper II</button>
-        <button type="button" class="chip">GS Paper III</button>
-      </div>
-      <div id="pyqListContainer" class="item-list"></div>
-    </div>
-  </section>
-
-  <!-- 11. PLANNER & TRACKER -->
-  <section id="planner" class="view-sec protected-view">
-    <div class="card gold-top">
-      <h2>Spaced Repetition & Study Planner</h2>
-      <p style="color:var(--muted)">Automated 1-3-7-21-45 day review schedule for mastered topics.</p>
-      <div id="plannerList" class="item-list"></div>
-    </div>
-  </section>
-
-  <section id="tracker" class="view-sec protected-view">
-    <div class="card gold-top">
-      <h2>Detailed Preparation Tracker & Mistake Log</h2>
-      <p style="color:var(--muted)">Syllabus completion percentage and reviewed error notebook.</p>
-      <div style="margin:1rem 0">
-        <label>Overall Syllabus Mastery (<span id="syllabusPercentTxt">0%</span>)</label>
-        <div class="bar-track"><div class="bar-fill" id="syllabusBarFill" style="width:0%"></div></div>
-      </div>
-      <h3>Mistake Notebook</h3>
-      <ul class="item-list" id="mistakeNotebookList">
-        <li><i>No incorrect test questions recorded yet. Mistakes from daily tests will automatically appear here.</i></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 12. OWNER ADMIN PANEL -->
-  <section id="admin" class="view-sec owner-only-sec" hidden>
-    <div class="card gold-top" style="border-top-color:var(--bad)">
-      <span class="pill bad">Restricted Owner Access</span>
-      <h2 style="margin:.4rem 0">Owner Admin Command Center</h2>
-      <p style="color:var(--muted)">Publish live exam notifications, PIB briefs, and dynamic study items to all learners in real-time via Supabase.</p>
-      <div class="form-grid" style="margin-top:1rem">
-        <div>
-          <label for="adminExamName">Exam Title / Category</label>
-          <input id="adminExamName" type="text" placeholder="e.g., UPSC CSE Prelims 2027">
-        </div>
-        <div>
-          <label for="adminNotifType">Notification Type</label>
-          <select id="adminNotifType"><option>Notification</option><option>Admit Card</option><option>Result</option><option>Last Date Reminder</option></select>
-        </div>
-        <div>
-          <label for="adminDate">Key Date</label>
-          <input id="adminDate" type="date">
-        </div>
-        <div>
-          <label for="adminLink">Official Link / Details</label>
-          <input id="adminLink" type="text" placeholder="https://upsc.gov.in">
-        </div>
-        <div class="form-full">
-          <button type="button" class="btn primary" id="adminPublishBtn">+ Publish Live Notification</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 13. LEGAL / TERMS & PRIVACY -->
-  <section id="legal" class="view-sec">
-    <div class="card gold-top">
-      <h2>Terms of Use & Privacy Policy (DPDP Act 2023)</h2>
-      <p style="color:var(--muted)">The Aspirant’s Desk operates as a self-learner study utility by Anbuchelvan M S. We strictly protect your personal information in accordance with the Digital Personal Data Protection Act 2023.</p>
-      <h3>Privacy Commitments</h3>
-      <ul style="padding-left:1.2rem;color:var(--muted)">
-        <li>No third-party advertising cookies or trackers.</li>
-        <li>Study hours, test scores, and personal preferences remain private to your encrypted Supabase user session.</li>
-        <li>You may request full data deletion at any time by contacting the owner.</li>
-      </ul>
-    </div>
-  </section>
-
+  <!-- Admin -->
+  <section id="admin" class="view-sec owner-only-sec" hidden><div class="card gold-top"><h2>Owner Admin Panel</h2></div></section>
+  <section id="legal" class="view-sec"><div class="card gold-top"><h2>Terms & Privacy</h2></div></section>
 </main>
-
-<!-- TOAST NOTIFICATION CONTAINER -->
 <div id="toastContainer"></div>
-
-<!-- JAVASCRIPT: APPLICATION LOGIC, SUPABASE SYNC, ROUTING & INTERACTIVE MODULES -->
 <script>
-(function() {
+(function(){
   'use strict';
-
-  // State Management
-  var currentUser = null;
-  var isOwner = false;
-  var activeExam = 'UPSC CSE';
-  var studyLogs = [];
-  var examList = [
-    { exam: 'UPSC CSE', notification: 'Civil Services Examination (Prelims) 2027', type: 'Notification', date: '2027-05-23', link: 'https://upsc.gov.in' },
-    { exam: 'TNPSC Group 1', notification: 'Combined Civil Services Examination-I', type: 'Notification', date: '2027-08-10', link: 'https://tnpsc.gov.in' },
-    { exam: 'SSC CGL', notification: 'Combined Graduate Level Examination Tier-I', type: 'Notification', date: '2027-07-15', link: 'https://ssc.gov.in' }
-  ];
-
-  // DOM Elements
-  var $ = function(id) { return document.getElementById(id); };
-  var $$ = function(sel) { return document.querySelectorAll(sel); };
-
-  // Toast Helper
-  function showToast(msg) {
-    var t = document.createElement('div');
-    t.className = 'toast';
-    t.textContent = msg;
-    $('toastContainer').appendChild(t);
-    setTimeout(function() { t.remove(); }, 3200);
-  }
-
-  // Router / Navigation
-  function navigateTo(hash) {
-    if (!hash) hash = '#home';
-    var cleanHash = hash.replace('#', '');
-    $$('.view-sec').forEach(function(sec) { sec.classList.remove('active'); });
-    var target = $(cleanHash);
-    if (target) {
-      target.classList.add('active');
-      window.scrollTo(0, 0);
-    }
-    $$('.nav-link').forEach(function(link) {
-      if (link.getAttribute('href') === '#' + cleanHash) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-    // Update breadcrumb
-    var activeLinkEl = document.querySelector('.nav-link[href="#' + cleanHash + '"]');
-    if (activeLinkEl) {
-      $('pageTitle').textContent = activeLinkEl.textContent.replace(/Login|Admin/g, '').trim();
-    }
-  }
-
-  window.addEventListener('hashchange', function() {
-    navigateTo(location.hash);
-  });
-
-  document.addEventListener('click', function(e) {
-    var a = e.target.closest('a[href^="#"]');
-    if (a) {
-      e.preventDefault();
-      var targetId = a.getAttribute('href');
-      // Check protection
-      if (a.classList.contains('requires-auth') && !currentUser) {
-        $('authModal').hidden = false;
-        showToast('Please sign in to access this study module.');
-        return;
-      }
-      if (a.classList.contains('owner-only') && !isOwner) {
-        showToast('Restricted to website owner.');
-        return;
-      }
-      location.hash = targetId;
-      navigateTo(targetId);
-      // Close mobile sidebar if open
-      $('sidebar').classList.remove('open');
-    }
-  });
-
-  // Mobile Menu Toggle
-  $('menuToggle').onclick = function() {
-    $('sidebar').classList.toggle('open');
-  };
-
-  // Theme Toggle
-  $('themeToggle').onclick = function() {
-    var root = document.documentElement;
-    var cur = root.getAttribute('data-theme');
-    var next = cur === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('desk-theme', next);
-  };
-  var savedTheme = localStorage.getItem('desk-theme');
-  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-
-  // Global Exam Selector (Phase 4)
-  $('globalExamSelector').onchange = function(e) {
-    activeExam = e.target.value;
-    $('sideExamBadge').textContent = activeExam + ' Edition';
-    $('heroExamTag').textContent = activeExam + ' Ecosystem';
-    if (activeExam === 'UPSC CSE') {
-      $('kpiExamLabel').textContent = 'Countdown to UPSC Prelims 2027';
-      $('kpiDays').textContent = '184 Days';
-    } else if (activeExam === 'TNPSC Group 1') {
-      $('kpiExamLabel').textContent = 'Countdown to TNPSC Group 1';
-      $('kpiDays').textContent = '262 Days';
-    } else {
-      $('kpiExamLabel').textContent = 'Countdown to Exam';
-      $('kpiDays').textContent = '120 Days';
-    }
-    showToast('Switched ecosystem to ' + activeExam);
-  };
-
-  // Auth Modal Controls
-  $('topLoginBtn').onclick = function() { $('authModal').hidden = false; };
-  $('sideAuthBtn').onclick = function() { $('authModal').hidden = false; };
-  $('closeAuthModal').onclick = function() { $('authModal').hidden = true; };
-  document.querySelectorAll('.open-protected').forEach(function(btn) {
-    btn.onclick = function() {
-      var target = btn.getAttribute('data-target');
-      if (!currentUser) {
-        $('authModal').hidden = false;
-        showToast('Please sign in to unlock this module.');
-      } else {
-        location.hash = '#' + target;
-        navigateTo('#' + target);
-      }
-    };
-  });
-
-  // Supabase Client Initialization (using config.js SUPABASE_URL & SUPABASE_ANON_KEY)
-  var sbClient = null;
-  try {
-    if (typeof SUPABASE_URL !== 'undefined' && typeof SUPABASE_ANON_KEY !== 'undefined' && window.supabase) {
-      sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
-  } catch (err) {
-    console.warn('Supabase initialization fallback:', err);
-  }
-
-  // Simulated / Real Auth Handlers
-  $('btnSignIn').onclick = function() {
-    var email = $('authEmail').value.trim();
-    var pass = $('authPassword').value;
-    if (!email || !pass) {
-      $('authFeedback').textContent = 'Please enter email and password.';
-      return;
-    }
-    if (sbClient) {
-      sbClient.auth.signInWithPassword({ email: email, password: pass }).then(function(res) {
-        if (res.error) {
-          $('authFeedback').textContent = res.error.message;
-        } else {
-          handleSuccessfulAuth(res.data.user);
-        }
-      });
-    } else {
-      // Offline / Local Simulation Mode
-      handleSuccessfulAuth({ email: email, user_metadata: { full_name: $('authName').value || email.split('@')[0] } });
-    }
-  };
-
-  $('btnSignUp').onclick = function() {
-    var email = $('authEmail').value.trim();
-    var pass = $('authPassword').value;
-    var name = $('authName').value.trim();
-    if (!email || !pass || !name) {
-      $('authFeedback').textContent = 'Please fill name, email and password.';
-      return;
-    }
-    if (sbClient) {
-      sbClient.auth.signUp({ email: email, password: pass, options: { data: { full_name: name } } }).then(function(res) {
-        if (res.error) {
-          $('authFeedback').textContent = res.error.message;
-        } else {
-          handleSuccessfulAuth(res.data.user);
-          showToast('Account created successfully!');
-        }
-      });
-    } else {
-      handleSuccessfulAuth({ email: email, user_metadata: { full_name: name } });
-    }
-  };
-
-  function handleSuccessfulAuth(user) {
-    currentUser = user;
-    var emailVal = user.email || '';
-    var nameVal = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : emailVal.split('@')[0];
-    isOwner = (emailVal.toLowerCase() === 'theaspirantsdesk0@gmail.com' || emailVal.toLowerCase().indexOf('anbuchelvan') !== -1);
-
-    $('userLabel').textContent = nameVal;
-    $('statusDot').classList.add('online');
-    $('topLoginBtn').hidden = true;
-    $('topLogoutBtn').hidden = false;
-    $('authModal').hidden = true;
-
-    $('heroWelcomeTitle').textContent = 'Welcome back, ' + nameVal + '!';
-    $('heroWelcomeSub').textContent = isOwner ? 'Owner Admin access unlocked.' : 'Cloud sync active. All study phases unlocked.';
-    $('heroActionBtn').textContent = '🚀 Open Today’s Desk';
-    $('heroActionBtn').onclick = function() { location.hash = '#today'; navigateTo('#today'); };
-
-    if (isOwner) {
-      document.querySelectorAll('.owner-only').forEach(function(el) { el.hidden = false; });
-      document.querySelectorAll('.owner-only-sec').forEach(function(el) { el.hidden = false; });
-    }
-
-    showToast('Signed in successfully as ' + nameVal);
-  }
-
-  $('topLogoutBtn').onclick = function() {
-    if (sbClient) sbClient.auth.signOut();
-    currentUser = null;
-    isOwner = false;
-    $('userLabel').textContent = 'Guest';
-    $('statusDot').classList.remove('online');
-    $('topLoginBtn').hidden = false;
-    $('topLogoutBtn').hidden = true;
-    document.querySelectorAll('.owner-only').forEach(function(el) { el.hidden = true; });
-    document.querySelectorAll('.owner-only-sec').forEach(function(el) { el.hidden = true; });
-    $('heroWelcomeTitle').textContent = 'Guest Visitor Mode';
-    $('heroWelcomeSub').textContent = 'Explore platform overview and notifications. Sign in to unlock all 4 study phases.';
-    $('heroActionBtn').textContent = '🔐 Sign In to Unlock Workspace';
-    showToast('Signed out successfully.');
-    navigateTo('#home');
-  };
-
-  // Render Exam Table
-  function renderExams() {
-    var tb = $('publicExamTable');
-    if (!tb) return;
-    tb.innerHTML = examList.map(function(item) {
-      return '<tr><td><b>' + item.exam + '</b></td><td>' + item.notification + '</td><td><span class="pill warn">' + item.date + '</span></td><td><a href="' + item.link + '" target="_blank" rel="noopener" class="btn" style="padding:.2rem .5rem;font-size:.78rem">Official Portal →</a></td></tr>';
-    }).join('');
-  }
+  var currentUser=null,isOwner=false,activeExam='UPSC CSE';
+  var examList=[{exam:'UPSC CSE',notification:'Civil Services Examination (Prelims) 2027',type:'Notification',date:'2027-05-23',link:'https://upsc.gov.in'},{exam:'TNPSC Group 1',notification:'Combined Civil Services Examination‑I',type:'Notification',date:'2027-08-10',link:'https://tnpsc.gov.in'},{exam:'SSC CGL',notification:'Combined Graduate Level Examination Tier‑I',type:'Notification',date:'2027-07-15',link:'https://ssc.gov.in'}];
+  var $=id=>document.getElementById(id); var $$=sel=>document.querySelectorAll(sel);
+  function showToast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;$('toastContainer').appendChild(t);setTimeout(()=>t.remove(),3200);}
+  function navigateTo(hash){if(!hash)hash='#home';var clean=hash.replace('#','');$$('.view-sec').forEach(s=>s.classList.remove('active'));var tgt=$(clean);if(tgt) tgt.classList.add('active');$$('.nav-link').forEach(l=>l.classList.toggle('active',l.getAttribute('href')===hash));var activeLink=document.querySelector('.nav-link[href="'+hash+'"]').;if(activeLink) $('pageTitle').textContent=activeLink.textContent.replace(/Login|Admin/g,'').trim();}
+  window.addEventListener('hashchange',()=>navigateTo(location.hash));
+  document.addEventListener('click',e=>{var a=e.target.closest('a[href^="#"]');if(a){e.preventDefault();var target=a.getAttribute('href');if(a.classList.contains('requires-auth') && !currentUser){$('authModal').hidden=false;showToast('Please sign in to access this module.');return;}if(a.classList.contains('owner-only') && !isOwner){showToast('Restricted to website owner.');return;}location.hash=target;navigateTo(target);$('sidebar').classList.remove('open');}});
+  $('menuToggle').onclick=()=>$('sidebar').classList.toggle('open');
+  $('themeToggle').onclick=()=>{var root=document.documentElement;var cur=root.getAttribute('data-theme');var nxt=cur==='dark'?'light':'dark';root.setAttribute('data-theme',nxt);localStorage.setItem('theme',nxt);};
+  if(localStorage.getItem('theme')) document.documentElement.setAttribute('data-theme',localStorage.getItem('theme'));
+  $('globalExamSelector').onchange=e=>{activeExam=e.target.value;$('sideExamBadge').textContent=activeExam+' Edition';$('heroExamTag').textContent=activeExam+' Ecosystem';if(activeExam==='UPSC CSE'){document.getElementById('kpiExamLabel').textContent='Countdown to UPSC Prelims 2027';document.getElementById('kpiDays').textContent='184 Days';}else if(activeExam==='TNPSC Group 1'){document.getElementById('kpiExamLabel').textContent='Countdown to TNPSC Group 1';document.getElementById('kpiDays').textContent='262 Days';}else{document.getElementById('kpiExamLabel').textContent='Countdown to Exam';document.getElementById('kpiDays').textContent='120 Days';}showToast('Switched ecosystem to '+activeExam);};
+  // Auth handlers (simplified offline mode)
+  function handleAuth(user){currentUser=user;var name=user.email.split('@')[0];isOwner=user.email.toLowerCase().includes('anbuchelvan')||user.email.toLowerCase()==='theaspirantsdesk0@gmail.com';$('userLabel').textContent=name;$('statusDot').classList.add('online');$('topLoginBtn').hidden=true;$('topLogoutBtn').hidden=false;$('authModal').hidden=true;$('heroWelcomeTitle').textContent='Welcome back, '+name+'!';$('heroWelcomeSub').textContent=isOwner?'Owner Admin access unlocked.':'Cloud sync active. All study phases unlocked.';$('heroActionBtn').textContent='🚀 Open Today’s Desk';$('heroActionBtn').onclick=()=>{location.hash='#today';navigateTo('#today');};if(isOwner){$$('[data-nav="admin"]').forEach(el=>el.hidden=false);$$('.owner-only-sec').forEach(el=>el.hidden=false);}showToast('Signed in as '+name);}
+  $('btnSignIn').onclick=()=>{var email=$('authEmail').value.trim();var pass=$('authPassword').value;if(!email||!pass){$('authFeedback').textContent='Enter email & password.';return;}handleAuth({email:email});};
+  $('btnSignUp').onclick=()=>{var email=$('authEmail').value.trim();var pass=$('authPassword').value;var name=$('authName').value.trim();if(!email||!pass||!name){$('authFeedback').textContent='Fill name, email & password.';return;}handleAuth({email:email});showToast('Account created!');};
+  $('topLoginBtn').onclick=()=>$('authModal').hidden=false;$('sideAuthBtn').onclick=()=>$('authModal').hidden=false;$('closeAuthModal').onclick=()=>$('authModal').hidden=true;$$('[data-target]').forEach(btn=>btn.onclick=()=>{var tgt=btn.getAttribute('data-target');if(!currentUser){$('authModal').hidden=false;showToast('Please sign in.');}else{location.hash='#'+tgt;navigateTo('#'+tgt);}});
+  $('topLogoutBtn').onclick=()=>{currentUser=null;isOwner=false;$('userLabel').textContent='Guest';$('statusDot').classList.remove('online');$('topLoginBtn').hidden=false;$('topLogoutBtn').hidden=true;$$('[data-nav="admin"]').forEach(el=>el.hidden=true);$$('.owner-only-sec').forEach(el=>el.hidden=true);$('heroWelcomeTitle').textContent='Guest Visitor Mode';$('heroWelcomeSub').textContent='Explore platform overview and notifications. Sign in to unlock all 4 study phases.';$('heroActionBtn').textContent='🔐 Sign In to Unlock Workspace';showToast('Signed out.');navigateTo('#home');};
+  function renderExams(){var tb=$('publicExamTable');if(!tb)return;tb.innerHTML=examList.map(i=>`<tr><td><b>${i.exam}</b></td><td>${i.notification}</td><td><span class="pill warn">${i.date}</span></td><td><a href="${i.link}" target="_blank" rel="noopener" class="btn" style="padding:.2rem .5rem;font-size:.78rem">Official Portal →</a></td></tr>`).join('');}
   renderExams();
-
-  // Admin Publish Handler
-  var pubBtn = $('adminPublishBtn');
-  if (pubBtn) {
-    pubBtn.onclick = function() {
-      var name = $('adminExamName').value.trim();
-      var type = $('adminNotifType').value;
-      var date = $('adminDate').value;
-      var link = $('adminLink').value.trim() || 'https://upsc.gov.in';
-      if (!name || !date) {
-        showToast('Please enter exam title and date.');
-        return;
-      }
-      examList.unshift({ exam: name, notification: type + ' update published by owner', type: type, date: date, link: link });
-      renderExams();
-      showToast('Live notification published successfully!');
-      $('adminExamName').value = '';
-      $('adminDate').value = '';
-    };
-  }
-
-  // Phase 1A: Pomodoro Focus Timer
-  var pomoSec = 1500;
-  var pomoInterval = null;
-  var pomoRunning = false;
-  var clockEl = $('pomoClock');
-
-  $$('.pomo-preset').forEach(function(btn) {
-    btn.onclick = function() {
-      $$('.pomo-preset').forEach(function(b) { b.setAttribute('aria-pressed', 'false'); });
-      btn.setAttribute('aria-pressed', 'true');
-      pomoSec = parseInt(btn.getAttribute('data-sec'), 10);
-      updateClockDisplay();
-    };
-  });
-
-  function updateClockDisplay() {
-    var m = Math.floor(pomoSec / 60);
-    var s = pomoSec % 60;
-    clockEl.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
-  }
-
-  $('pomoStart').onclick = function() {
-    if (pomoRunning) {
-      clearInterval(pomoInterval);
-      pomoRunning = false;
-      $('pomoStart').textContent = '▶ Resume Focus';
-      return;
-    }
-    pomoRunning = true;
-    $('pomoStart').textContent = '⏸ Pause';
-    pomoInterval = setInterval(function() {
-      if (pomoSec > 0) {
-        pomoSec--;
-        updateClockDisplay();
-      } else {
-        clearInterval(pomoInterval);
-        pomoRunning = false;
-        $('pomoStart').textContent = '▶ Start Focus';
-        showToast('Focus session complete! Logged to study hours.');
-        logStudyHours(0.42, $('pomoSubj').value);
-      }
-    }, 1000);
+  // Notes content switching
+  var notesData={
+    'Polity':`<h4>Polity – Executive & Legislature</h4>
+      <p><strong>Key Articles</strong><br>• Art 123 – Governor’s Ordinance power (max 6 months).<br>• Art 124 – President’s Rule conditions.<br>• Art 356 – State emergency provisions.</p>
+      <p><strong>Shortcuts (Prelims)</strong><br>– "Ordinance"→ Art 123, valid for 6 months.<br>– "President’s Rule"→ Art 356, requires parliamentary approval.</p>
+      <p><strong>Mains Framework</strong><br>Intro: Define federal structure. Body: Discuss centre‑state relations, recent legislative trends. Conclusion: Recommend cooperative federalism.</p>`,
+    'History':`<h4>History – Modern India</h4>
+      <p><strong>Important Eras</strong><br>• 1947 Partition – political ramifications.<br>• 1975‑77 Emergency – constitutional amendments (42nd, 44th).<br>• 1991 Liberalisation – economic reforms.</p>
+      <p><strong>Prelims Shortcut</strong><br>– "Emergency"→ 42nd & 44th Amendments.</p>
+      <p><strong>Mains Outline</strong><br>Intro → Background → Impact → Evaluation → Way forward.</p>`,
+    'Geography':`<h4>Geography – Physical & Human</h4>
+      <p><strong>Physical Highlights</strong><br>• Plate Tectonics – Indian Plate collision.
+      • Monsoon dynamics – thermal contrast, Himalaya barrier.</p>
+      <p><strong>Prelims Tip</strong><br>– "Monsoon"→ thermal contrast & orographic lift.</p>
+      <p><strong>Mains Structure</strong><br>Intro, Process, Effects (economic/social), Mitigation.</p>`,
+    'Economy':`<h4>Economy – Core Concepts</h4>
+      <p><strong>Key Indicators</strong><br>• GDP (real, nominal), GSDP, per‑capita income.
+      • Fiscal deficit, primary deficit, fiscal surplus.
+      • RBI tools: Repo, Reverse Repo, CRR, SLR.</p>
+      <p><strong>Prelims Flash</strong><br>– "SLR"→ Statutory Liquidity Ratio, set by RBI under the Banking Regulation Act.</p>
+      <p><strong>Mains Framework</strong><br>Intro → Current scenario → Challenges → Policy recommendations.</p>`,
+    'Environment':`<h4>Environment – Climate & Conservation</h4>
+      <p><strong>Key Policies</strong><br>• National Action Plan on Climate Change (NAPCC).
+      • Wetlands (Conservation & Management) Rules, 2010 – under EPA.
+      • Biodiversity Act, 2002 – EPAs, biodiversity heritage sites.</p>
+      <p><strong>Prelims Cue</strong><br>– "Wetlands Rules"→ EPA 2010.</p>
+      <p><strong>Mains Outline</strong><br>Intro → Problem analysis → Mitigation → International cooperation.</p>`,
+    'Ethics':`<h4>Ethics – Integrity & Governance</h4>
+      <p><strong>Core Values</strong><br>• Integrity, impartiality, transparency, accountability.</p>
+      <p><strong>Prelims Quick</strong><br>– "Integrity"→ no personal gain from official position.</p>
+      <p><strong>Mains Essay</strong><br>Define ethical conduct, discuss real‑world case, propose reforms.</p>`,
+    'Current Affairs':`<h4>Current Affairs – Recent Developments</h4>
+      <p><strong>2026 Highlights</strong><br>• Digital India Phase‑III – 5G rollout, e‑governance.
+      • G20 2026 outcomes – global health, climate financing.
+      • Supreme Court judgment – Right to privacy extensions.</p>
+      <p><strong>Prelims Nugget</strong><br>– "Digital India Phase‑III"→ 5G & citizen services.</p>
+      <p><strong>Mains Angle</strong><br>Discuss impact of digital initiatives on governance.</p>`,
+    'Quantitative Aptitude':`<h4>Quantitative Aptitude – CSAT & Exams</h4>
+      <p><strong>Formulas</strong><br>• Simple Interest = P×R×T/100.<br>• Compound Interest = P(1+R/100)^T.
+      • Permutations nPr = n!/(n‑r)!
+      • Combinations nCr = n!/[r!(n‑r)!]</p>
+      <p><strong>Prelims Shortcut</strong><br>– "SI"→ P×R×T/100.</p>
+      <p><strong>Mains Tip</strong><br>Explain each step, avoid calculator for manual clarity.</p>`,
+    'Logical Reasoning':`<h4>Logical Reasoning – CSAT</h4>
+      <p><strong>Common Types</strong><br>• Syllogisms, Blood relations, Seating arrangement, Puzzle.</p>
+      <p><strong>Prelims Tip</strong><br>– For "All A are B, Some B are C" → draw Venn diagram.</p>
+      <p><strong>Mains Approach</strong><br>Systematically list possibilities, eliminate contradictions.</p>`,
+    'General Science':`<h4>General Science – Baseline Knowledge</h4>
+      <p><strong>Physics</strong><br>• Newton’s Laws, Work‑Energy, Electric circuits basics.</p>
+      <p><strong>Chemistry</strong><br>• Periodic trends, Chemical bonding, Acid‑base concepts.</p>
+      <p><strong>Biology</strong><br>• Cell structure, Genetics, Human physiology.</p>
+      <p><strong>Prelims Quick</strong><br>– "Newton’s 3rd"→ Action‑reaction.</p>`
   };
-
-  $('pomoReset').onclick = function() {
-    clearInterval(pomoInterval);
-    pomoRunning = false;
-    pomoSec = 1500;
-    $('pomoStart').textContent = '▶ Start Focus';
-    updateClockDisplay();
-  };
-
-  $('pomoCompleteNow').onclick = function() {
-    logStudyHours(0.5, $('pomoSubj').value);
-    showToast('Session completed and logged!');
-  };
-
-  function logStudyHours(hrs, subj) {
-    studyLogs.unshift({ subject: subj, hours: hrs, time: new Date().toLocaleTimeString() });
-    var totalHrs = studyLogs.reduce(function(acc, cur) { return acc + cur.hours; }, 0);
-    $('kpiHours').textContent = totalHrs.toFixed(1) + ' hrs';
-    var list = $('studyLogHistory');
-    list.innerHTML = studyLogs.map(function(l) {
-      return '<li><b>' + l.subject + '</b>: ' + l.hours + ' hrs <span style="float:right;color:var(--muted);font-size:.78rem">' + l.time + '</span></li>';
-    }).join('');
-  }
-
-  $('quickLogBtn').onclick = function() {
-    var s = $('logSubj').value;
-    var h = parseFloat($('logHrs').value) || 1.0;
-    logStudyHours(h, s);
-    showToast('Study session saved successfully!');
-  };
-
-  // Phase 1B: Interactive Prelims Test Simulator
-  var qBank = [
-    { q: 'Consider the following regarding the Preamble of the Indian Constitution: 1. It is a source of power to legislature. 2. It is non-justiciable in nature. Which of the statements given above is/are correct?', options: ['1 only', '2 only', 'Both 1 and 2', 'Neither 1 nor 2'], ans: 1, explanation: 'The Preamble is neither a source of power to the legislature nor a prohibition upon its powers. It is non-justiciable.' },
-    { q: 'Which Article of the Constitution of India provides for the establishment of a Finance Commission?', options: ['Article 263', 'Article 280', 'Article 324', 'Article 356'], ans: 1, explanation: 'Article 280 provides for the constitution of a Finance Commission by the President every five years.' },
-    { q: 'Which of the following bodies is/are statutory? 1. National Human Rights Commission (NHRC) 2. Central Information Commission (CIC) 3. NITI Aayog', options: ['1 and 2 only', '2 and 3 only', '1 and 3 only', '1, 2 and 3'], ans: 0, explanation: 'NHRC and CIC are statutory bodies created by acts of Parliament. NITI Aayog is an extra-constitutional non-statutory body.' },
-    { q: 'In the context of Indian economy, "M3" measure of money supply includes which of the following? 1. Currency with the public 2. Demand deposits with banks 3. Time deposits with banks', options: ['1 only', '1 and 2 only', '2 and 3 only', '1, 2 and 3'], ans: 3, explanation: 'M3 = M1 (Currency + Demand deposits + Other deposits) + Time deposits with commercial banks.' },
-    { q: 'Wetlands (Conservation and Management) Rules are framed under which environmental legislation in India?', options: ['Environment (Protection) Act, 1986', 'Wildlife Protection Act, 1972', 'Biological Diversity Act, 2002', 'Forest Conservation Act, 1980'], ans: 0, explanation: 'Wetlands Rules are notified under the Environment (Protection) Act, 1986.' }
-  ];
-  var currentQIdx = 0;
-  var userAnswers = {};
-  var testTimerSec = 900;
-  var testInterval = null;
-
-  function loadQuestion(idx) {
-    currentQIdx = idx;
-    var item = qBank[idx];
-    $('qNumTitle').textContent = 'Question ' + (idx + 1) + ' of ' + qBank.length;
-    $('qText').textContent = item.q;
-    var html = '';
-    item.options.forEach(function(opt, oIdx) {
-      var checked = userAnswers[idx] === oIdx ? 'checked' : '';
-      html += '<label style="display:flex;align-items:center;gap:.6rem;padding:.5rem;border-radius:8px;background:var(--surface-alt);cursor:pointer"><input type="radio" name="testOpt" value="' + oIdx + '" ' + checked + '> ' + opt + '</label>';
-    });
-    $('qOptions').innerHTML = html;
-    $('testProgressTxt').textContent = Object.keys(userAnswers).length + ' / ' + qBank.length + ' Answered';
-  }
-
-  document.addEventListener('change', function(e) {
-    if (e.target.name === 'testOpt') {
-      userAnswers[currentQIdx] = parseInt(e.target.value, 10);
-      $('testProgressTxt').textContent = Object.keys(userAnswers).length + ' / ' + qBank.length + ' Answered';
-    }
-  });
-
-  $('nextQBtn').onclick = function() {
-    if (currentQIdx < qBank.length - 1) {
-      loadQuestion(currentQIdx + 1);
-    } else {
-      submitTest();
-    }
-  };
-  $('prevQBtn').onclick = function() {
-    if (currentQIdx > 0) loadQuestion(currentQIdx - 1);
-  };
-
-  function submitTest() {
-    if (testInterval) clearInterval(testInterval);
-    var score = 0;
-    var correctCount = 0;
-    qBank.forEach(function(item, idx) {
-      if (userAnswers[idx] !== undefined) {
-        if (userAnswers[idx] === item.ans) {
-          score += 2.0;
-          correctCount++;
-        } else {
-          score -= 0.66;
-          // Add to mistake notebook
-          addMistakeItem(item.q, item.options[item.ans]);
-        }
-      }
-    });
-    $('testArea').hidden = true;
-    $('testResultBox').hidden = false;
-    $('testScoreDisplay').textContent = score.toFixed(2) + ' / ' + (qBank.length * 2.0).toFixed(1);
-    $('kpiLastScore').textContent = score.toFixed(1) + ' pts';
-    showToast('Test submitted successfully!');
-  }
-
-  function addMistakeItem(qTxt, correctAns) {
-    var ml = $('mistakeNotebookList');
-    if (ml.innerHTML.indexOf('No incorrect') !== -1) ml.innerHTML = '';
-    var li = document.createElement('li');
-    li.innerHTML = '<b>Q: ' + qTxt + '</b><br><span style="color:var(--ok)">Correct Answer: ' + correctAns + '</span>';
-    ml.appendChild(li);
-  }
-
-  $('restartTestBtn').onclick = function() {
-    userAnswers = {};
-    currentQIdx = 0;
-    $('testArea').hidden = false;
-    $('testResultBox').hidden = true;
-    loadQuestion(0);
-  };
-  loadQuestion(0);
-
-  // Phase 2: Flashcards
-  var flashcards = [
-    { cat: 'Indian Polity', front: 'Article 21: Protection of Life and Personal Liberty. Can it be suspended during National Emergency?' },
-    { cat: 'Indian Economy', front: 'What is Statutory Liquidity Ratio (SLR) and who determines it under RBI Act?' },
-    { cat: 'Environment', front: 'What is the difference between Wildlife Sanctuary and National Park regarding human activities?' },
-    { cat: 'Modern History', front: 'Significance of the 1929 Lahore Session of INC (President: Jawaharlal Nehru).' },
-    { cat: 'Supreme Court Judgments', front: 'K.S. Puttaswamy v. Union of India (2017) judgment established what fundamental right?' }
-  ];
-  var fcIdx = 0;
-  var fcFlipped = false;
-
-  function renderFlashcard() {
-    var card = flashcards[fcIdx];
-    $('fcCategoryTag').textContent = card.cat;
-    $('fcFront').textContent = card.front;
-    $('fcCounter').textContent = 'Card ' + (fcIdx + 1) + ' of ' + flashcards.length;
-    $('fcBox').classList.remove('flipped');
-    fcFlipped = false;
-  }
-
-  $('fcBox').onclick = function() {
-    fcFlipped = !fcFlipped;
-    if (fcFlipped) {
-      $('fcFront').textContent = 'Answer / Model Note: Key constitutional and statutory provisions apply. Review standard textbook for exhaustive details.';
-      $('fcBox').classList.add('flipped');
-    } else {
-      $('fcFront').textContent = flashcards[fcIdx].front;
-      $('fcBox').classList.remove('flipped');
-    }
-  };
-
-  $('fcNext').onclick = function() {
-    fcIdx = (fcIdx + 1) % flashcards.length;
-    renderFlashcard();
-  };
-  $('fcPrev').onclick = function() {
-    fcIdx = (fcIdx - 1 + flashcards.length) % flashcards.length;
-    renderFlashcard();
-  };
-  $('fcEasy').onclick = function() {
-    showToast('Marked as Mastered!');
-    fcIdx = (fcIdx + 1) % flashcards.length;
-    renderFlashcard();
-  };
-  $('fcHard').onclick = function() {
-    showToast('Marked for review.');
-    fcIdx = (fcIdx + 1) % flashcards.length;
-    renderFlashcard();
-  };
-  renderFlashcard();
-
-  // Phase 3: Mains Writing Pad
-  var mainsArea = $('mainsTextArea');
-  mainsArea.oninput = function() {
-    var txt = mainsArea.value.trim();
-    var words = txt ? txt.split(/\s+/).length : 0;
-    var chars = txt.length;
-    $('mainsWordCount').textContent = 'Words: ' + words;
-    $('mainsCharCount').textContent = 'Chars: ' + chars;
-  };
-
-  $('mainsToggleModel').onclick = function() {
-    var mb = $('mainsModelBox');
-    mb.hidden = !mb.hidden;
-  };
-
-  $('mainsDownloadTxt').onclick = function() {
-    var blob = new Blob([mainsArea.value], { type: 'text/plain;charset=utf-8' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'Mains_Answer_Sheet.txt';
-    a.click();
-    showToast('Answer sheet downloaded as .txt!');
-  };
-
-  // PIB / Notes Mock Data
-  var pibItems = [
-    { title: 'Cabinet approves continuation of National Livelihood Mission', date: 'November 20, 2026', desc: 'Ministry of Rural Development briefs key structural allocations for sustainable livelihoods.' },
-    { title: 'RBI releases Financial Stability Report for Q3', date: 'November 18, 2026', desc: 'Banking sector capital adequacy remains robust with gross NPA ratios at multi-year lows.' }
-  ];
-  $('pibListContainer').innerHTML = pibItems.map(function(p) {
-    return '<li><b>' + p.title + '</b><br><small style="color:var(--muted)">' + p.date + '</small><p style="margin:.3rem 0 0;font-size:.88rem">' + p.desc + '</p></li>';
-  }).join('');
-
-  $('noteContentArea').innerHTML = '<h4>Indian Polity: Executive & Legislature</h4><p style="font-size:.88rem;color:var(--muted)">Concise revision notes covering parliamentary privileges, ordinance-making power (Article 123 & 213), and judicial review standards.</p>';
-
+  $$('#noteSubjectChips .chip').forEach(ch=>ch.onclick=()=>{ $$('#noteSubjectChips .chip').forEach(c=>c.removeAttribute('aria-pressed')); ch.setAttribute('aria-pressed','true'); var sub=ch.textContent.trim(); $('noteContentArea').innerHTML = notesData[sub] || '<p>No notes available.</p>'; });
+  // Initialize first subject
+  $('noteContentArea').innerHTML = notesData['Polity'];
 })();
 </script>
-
 </body>
 </html>
