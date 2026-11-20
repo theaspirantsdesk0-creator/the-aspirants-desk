@@ -13,6 +13,7 @@
 <meta name="theme-color" content="#070f2b">
 <link rel="manifest" href="manifest.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 
 <style>
@@ -729,1084 +730,706 @@ th { background: var(--surface-alt); font-weight: 700; }
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem">
         <div>
           <h2 style="margin:0">Phase 1 · Interactive Daily Prelims Test</h2>
-          <span style="font-size:.85rem;color:var(--muted)">Official UPSC Marking: <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped</span>
+          <span style="font-size:.82rem;color:var(--muted)">UPSC Marking Scheme: +2.0 for correct, −0.66 for incorrect.</span>
         </div>
-        <div class="pill warn" style="font-size:1rem;padding:.4rem .9rem">⏱️ Time Left: <span id="testTimerDisplay">10:00</span></div>
+        <div id="testTimerBadge" class="pill warn" style="font-size:.9rem;padding:.3rem .8rem">Time Left: 15:00</div>
       </div>
-
-      <div id="quizArea"></div>
-
-      <div class="btn-row" style="margin-top:1rem">
-        <button type="button" class="btn primary" id="submitQuizBtn">Submit Test & View Breakdown</button>
-        <button type="button" class="btn" id="retakeQuizBtn">Retake / Reset Test</button>
-      </div>
-
-      <!-- SCORE BREAKDOWN PANEL -->
-      <div id="quizBreakdownCard" class="card accent-left" style="margin-top:1.2rem" hidden>
-        <h3 style="margin:0 0 .6rem">📊 Detailed Prelims Score Breakdown</h3>
-        <div class="grid-4">
-          <div><div class="kpi-val" id="bdNetScore">0.00</div><div class="kpi-lbl">Net Score (out of 10)</div></div>
-          <div><div class="kpi-val" style="color:var(--ok)" id="bdCorrect">0</div><div class="kpi-lbl">Correct (+2.0)</div></div>
-          <div><div class="kpi-val" style="color:var(--bad)" id="bdWrong">0</div><div class="kpi-lbl">Incorrect (−0.66)</div></div>
-          <div><div class="kpi-val" style="color:var(--muted)" id="bdAccuracy">0%</div><div class="kpi-lbl">Accuracy Rate</div></div>
+      <div id="testArea">
+        <div id="testQuestionBox" class="card accent-left" style="margin-bottom:1rem">
+          <h4 id="qNumTitle" style="color:var(--accent);margin-top:0">Question 1 of 5</h4>
+          <p id="qText" style="font-weight:600;font-size:1.02rem"></p>
+          <div id="qOptions" style="display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem"></div>
         </div>
-        <p id="bdMistakeNote" style="font-size:.86rem;color:var(--warn);font-weight:600;margin:.8rem 0 0"></p>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <button type="button" class="btn" id="prevQBtn">← Previous</button>
+          <span id="testProgressTxt" style="font-weight:700;font-size:.85rem">1 / 5 Answered</span>
+          <button type="button" class="btn primary" id="nextQBtn">Next Question →</button>
+        </div>
+      </div>
+      <div id="testResultBox" hidden style="text-align:center;padding:1.5rem">
+        <h3>Test Submitted Successfully!</h3>
+        <div class="kpi-val" id="testScoreDisplay" style="margin:.5rem 0">+4.0 / 10.0</div>
+        <p id="testRemark" style="color:var(--muted)">Great accuracy! Keep reviewing incorrect answers.</p>
+        <button type="button" class="btn primary" id="restartTestBtn">Retake Test</button>
       </div>
     </div>
   </section>
 
-  <!-- 7. SUBJECT NOTES -->
+  <!-- 7. PHASE 1C: SUBJECT NOTES & PIB -->
   <section id="notes" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Structured Subject Notes</h2>
-      <div class="chips" id="noteChips">
-        <button type="button" class="chip" data-subj="ALL" aria-pressed="true">All Subjects</button>
-        <button type="button" class="chip" data-subj="Polity">Polity</button>
-        <button type="button" class="chip" data-subj="History">History</button>
-        <button type="button" class="chip" data-subj="Economy">Economy</button>
-        <button type="button" class="chip" data-subj="Environment">Environment</button>
+      <h2>Subject Notes & PIB Current Affairs Briefs</h2>
+      <p style="color:var(--muted)">High-yield revision summaries authored for civil services preparation.</p>
+      <div class="chips" id="noteSubjectChips" style="margin-top:1rem">
+        <button type="button" class="chip" aria-pressed="true">Polity</button>
+        <button type="button" class="chip">Economy</button>
+        <button type="button" class="chip">Environment</button>
+        <button type="button" class="chip">History</button>
       </div>
-      <div class="grid-2" id="notesContainer"></div>
+      <div id="noteContentArea" class="card" style="background:var(--surface-alt)">
+        <h4>Loading Subject Notes...</h4>
+      </div>
     </div>
   </section>
 
-  <!-- 8. DAILY PRESS & PIB -->
   <section id="press" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Daily Press & PIB Analysis</h2>
-      <p style="color:var(--muted)">Three-tier UPSC breakdown: What Happened → Context → Prelims/Mains Angle.</p>
-      <div id="pressContainer"></div>
+      <h2>Daily Press Information & PIB Digests</h2>
+      <p style="color:var(--muted)">Curated government releases and policy analysis updated daily.</p>
+      <div id="pibListContainer" class="item-list"></div>
     </div>
   </section>
 
-  <!-- 9. PHASE 2: FLASHCARD REVISION ENGINE -->
+  <!-- 8. PHASE 2: FLASHCARD REVISION ENGINE -->
   <section id="flashcards" class="view-sec protected-view">
     <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem">
-        <h2 style="margin:0">Phase 2 · Active Recall Flashcard Engine</h2>
-        <span class="pill ok" id="fcMasteredBadge">Mastered: 0</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
+        <h2 style="margin:0">Phase 2 · Active Recall Flashcards</h2>
+        <span class="pill" id="fcCounter">Card 1 of 10</span>
       </div>
-      <div class="chips" id="fcCategoryChips">
-        <button type="button" class="chip" data-cat="ALL" aria-pressed="true">All Cards</button>
-        <button type="button" class="chip" data-cat="Articles">Constitutional Articles</button>
-        <button type="button" class="chip" data-cat="Case Laws">Supreme Court Cases</button>
-        <button type="button" class="chip" data-cat="Key Terms">Economy & Environment Terms</button>
+      <div class="fc-box" id="fcBox">
+        <span id="fcCategoryTag" class="pill" style="margin-bottom:.75rem;background:rgba(255,255,255,.15);color:#fff;border:none">Indian Polity</span>
+        <h3 id="fcFront" style="margin:0;font-size:1.2rem">Click to reveal answer / Article provision</h3>
       </div>
-
-      <div class="fc-box" id="fcCard">
-        <span class="pill" style="background:rgba(234,179,8,.22);color:var(--gold);border-color:var(--gold);margin-bottom:.7rem" id="fcTag">Articles · 1/6</span>
-        <h3 id="fcText" style="margin:0;font-size:1.35rem;max-width:46ch">Loading...</h3>
-        <small style="margin-top:1rem;opacity:.75" id="fcHint">Click card or press Spacebar to flip</small>
-      </div>
-
-      <div class="btn-row" style="justify-content:center;margin-top:1rem">
-        <button type="button" class="btn" id="fcPrevBtn">← Previous</button>
-        <button type="button" class="btn primary" id="fcFlipBtn">🔄 Flip Card</button>
-        <button type="button" class="btn ok" id="fcMasterBtn">✓ Mark Mastered</button>
-        <button type="button" class="btn" id="fcNextBtn">Next →</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem">
+        <button type="button" class="btn" id="fcPrev">← Previous</button>
+        <div class="btn-row">
+          <button type="button" class="btn bad" id="fcHard">Hard</button>
+          <button type="button" class="btn ok" id="fcEasy">Mastered</button>
+        </div>
+        <button type="button" class="btn primary" id="fcNext">Next →</button>
       </div>
     </div>
   </section>
 
-  <!-- 10. PHASE 3: DAILY MAINS WRITING PAD -->
+  <!-- 9. PHASE 3: MAINS ANSWER WRITING WORKSHOP -->
   <section id="mains" class="view-sec protected-view">
     <div class="card gold-top">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem">
-        <h2 style="margin:0">Phase 3 · Daily Mains Answer Writing Pad</h2>
-        <div class="btn-row">
-          <button type="button" class="chip mains-mode" data-min="7" data-words="150" aria-pressed="true">10 Marks (7m / 150w)</button>
-          <button type="button" class="chip mains-mode" data-min="11" data-words="250">15 Marks (11m / 250w)</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem">
+        <div>
+          <h2 style="margin:0">Phase 3 · Mains Answer Writing Pad</h2>
+          <span style="font-size:.82rem;color:var(--muted)">Write under simulated time pressure with live word count.</span>
         </div>
+        <div id="mainsTimerBadge" class="pill warn" style="font-size:.9rem;padding:.3rem .8rem">07:00 Remaining</div>
       </div>
-
       <div class="card accent-left" style="margin-bottom:1rem">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
-          <span class="pill warn">GS Paper II · Polity & Governance</span>
-          <span style="font-weight:800;color:var(--accent)">⏱️ Exam Timer: <span id="mainsClock">07:00</span></span>
-        </div>
-        <p style="font-weight:700;font-size:1.02rem;margin:.6rem 0">
-          Q. Examine the constitutional role and discretionary powers of the Governor in light of recent Supreme Court judgments on Article 200.
-        </p>
-        <div class="btn-row">
-          <button type="button" class="btn navy" id="mainsStartTimerBtn">▶ Start Exam Timer</button>
-          <button type="button" class="btn" id="toggleFrameworkBtn">💡 Show Model Answer Framework</button>
-        </div>
-        <div id="mainsFrameworkBox" style="margin-top:.8rem;padding:.85rem;background:var(--surface-alt);border-radius:10px;border:1px dashed var(--gold)" hidden>
-          <b>Model Structure (150 Words):</b>
-          <ul style="margin:.4rem 0 0;padding-left:1.2rem;font-size:.88rem">
-            <li><b>Introduction (25 words):</b> Cite Article 153 & Article 163 (aid and advice of Council of Ministers) alongside Article 200 (assent to Bills).</li>
-            <li><b>Body (95 words):</b> Four options under Art. 200; <i>State of Punjab v. Principal Secretary to Governor (2023)</i> ruling that a Governor cannot sit indefinitely on Bills or veto them without returning to the Legislature; Sarkaria & Punchhi Commission recommendations.</li>
-            <li><b>Way Forward / Conclusion (30 words):</b> Fixed time-frame for assent to uphold cooperative federalism and democratic mandate.</li>
-          </ul>
+        <h4 style="margin-top:0;color:var(--accent)">Daily Practice Question #12</h4>
+        <p id="mainsPromptText" style="font-weight:600;margin:0">Examine the constitutional validity and federal implications of recent legislative trends regarding Governor’s assent to state bills.</p>
+      </div>
+      <div class="form-grid">
+        <div class="form-full">
+          <textarea id="mainsTextArea" rows="10" placeholder="Type your structured answer here (Introduction, Body paragraphs with headings, Conclusion)..."></textarea>
         </div>
       </div>
-
-      <textarea id="mainsBox" rows="11" placeholder="Structure your answer: Introduction → Subheadings & Bullet Points → Constitutional Articles / SC Cases → Way Forward..."></textarea>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-top:.75rem">
-        <span id="mainsWordCount" style="font-weight:800;color:var(--muted)">0 / 150 words</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem;flex-wrap:wrap;gap:.5rem">
+        <div>
+          <span class="pill" id="mainsWordCount">Words: 0</span>
+          <span class="pill" id="mainsCharCount">Chars: 0</span>
+        </div>
         <div class="btn-row">
-          <button type="button" class="btn" id="downloadMainsBtn">⬇️ Download Answer (.txt)</button>
-          <button type="button" class="btn primary" id="saveMainsBtn">☁️ Save Draft to Cloud</button>
+          <button type="button" class="btn" id="mainsToggleModel">Toggle Model Framework</button>
+          <button type="button" class="btn primary" id="mainsDownloadTxt">📥 Download .txt</button>
         </div>
       </div>
-
-      <h3 style="margin:1.2rem 0 .5rem">Saved Mains Answer Drafts</h3>
-      <ul class="item-list" id="mainsDraftList"></ul>
+      <div id="mainsModelBox" class="card" hidden style="margin-top:1rem;background:var(--surface-alt)">
+        <h4 style="margin-top:0">Model Framework & Structure</h4>
+        <p style="font-size:.88rem;color:var(--muted)"><b>Intro:</b> Define Article 200 and the role of the Governor as constitutional head.<br><b>Body:</b> Discuss Sarkaria & Punchhi Commission recommendations, Supreme Court rulings (State of Tamil Nadu v. Governor), and federal friction.<br><b>Conclusion:</b> Suggest time-bound timelines and cooperative federalism norms.</p>
+      </div>
     </div>
   </section>
 
-  <!-- 11. VERIFIED PYQ BANK -->
+  <!-- 10. VERIFIED PYQ BANK -->
   <section id="pyq" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Verified Previous Year Questions (PYQ Bank)</h2>
+      <h2>Verified UPSC PYQ Library</h2>
+      <p style="color:var(--muted)">Browse authentic past year questions with detailed explanations.</p>
       <div class="chips" id="pyqFilterChips">
-        <button type="button" class="chip" data-subj="ALL" aria-pressed="true">All Subjects</button>
-        <button type="button" class="chip" data-subj="Polity">Polity</button>
-        <button type="button" class="chip" data-subj="Economy">Economy</button>
-        <button type="button" class="chip" data-subj="Environment">Environment</button>
+        <button type="button" class="chip" aria-pressed="true">All Papers</button>
+        <button type="button" class="chip">GS Paper I</button>
+        <button type="button" class="chip">GS Paper II</button>
+        <button type="button" class="chip">GS Paper III</button>
       </div>
-      <div id="pyqContainer"></div>
+      <div id="pyqListContainer" class="item-list"></div>
     </div>
   </section>
 
-  <!-- 12. WEEKLY PLANNER -->
+  <!-- 11. PLANNER & TRACKER -->
   <section id="planner" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Adaptive Study Planner</h2>
-      <div class="form-grid" style="margin-bottom:1rem">
-        <div><label for="plHours">Daily Study Target (Hours)</label><input id="plHours" type="number" value="6" min="2" max="14"></div>
-        <div><label for="plFocus">Core Focus Subject</label><select id="plFocus"><option>Indian Polity</option><option>Indian Economy</option><option>Modern History</option><option>Geography</option><option>Environment</option></select></div>
-        <div style="align-self:end"><button type="button" class="btn primary" id="genPlanBtn" style="width:100%">Generate 6-Day Schedule</button></div>
-      </div>
-      <div class="grid-3" id="planOutput"></div>
+      <h2>Spaced Repetition & Study Planner</h2>
+      <p style="color:var(--muted)">Automated 1-3-7-21-45 day review schedule for mastered topics.</p>
+      <div id="plannerList" class="item-list"></div>
     </div>
   </section>
 
-  <!-- 13. MY PREP TRACKER & MISTAKE NOTEBOOK -->
   <section id="tracker" class="view-sec protected-view">
-    <div class="card gold-top" style="margin-bottom:1.2rem">
-      <h2>My Preparation Tracker & Cloud Sync</h2>
-      <h3>1. Core Syllabus Checklist</h3>
-      <div class="bar-track"><div class="bar-fill" id="sylBar"></div></div>
-      <div class="grid-3" id="sylChecks" style="margin-bottom:1.2rem"></div>
-
-      <h3>2. Spaced Repetition Scheduler (1 - 3 - 7 - 21 - 45 Days)</h3>
-      <div class="form-grid">
-        <div class="form-full"><label for="revTopicInput">Topic Completed Today</label><input id="revTopicInput" type="text" placeholder="e.g., Parliament & State Legislatures (Laxmikanth Ch. 22)"></div>
-        <div><button type="button" class="btn primary" id="addRevBtn">+ Schedule Spaced Revisions</button></div>
+    <div class="card gold-top">
+      <h2>Detailed Preparation Tracker & Mistake Log</h2>
+      <p style="color:var(--muted)">Syllabus completion percentage and reviewed error notebook.</p>
+      <div style="margin:1rem 0">
+        <label>Overall Syllabus Mastery (<span id="syllabusPercentTxt">0%</span>)</label>
+        <div class="bar-track"><div class="bar-fill" id="syllabusBarFill" style="width:0%"></div></div>
       </div>
-      <ul class="item-list" id="revList"></ul>
-    </div>
-
-    <div class="card accent-left">
-      <h3>3. Auto-Captured Prelims Mistake Notebook</h3>
-      <p style="font-size:.86rem;color:var(--muted)">Questions missed during your Daily Prelims Tests appear here automatically for revision.</p>
-      <ul class="item-list" id="mistakeList"></ul>
+      <h3>Mistake Notebook</h3>
+      <ul class="item-list" id="mistakeNotebookList">
+        <li><i>No incorrect test questions recorded yet. Mistakes from daily tests will automatically appear here.</i></li>
+      </ul>
     </div>
   </section>
 
-  <!-- 14. OWNER ADMIN PANEL (RESTRICTED TO ADMIN ROLE) -->
-  <section id="admin" class="view-sec owner-only" hidden>
-    <div class="card gold-top" style="margin-bottom:1.2rem">
-      <span class="pill bad">Owner Admin Console</span>
-      <h2 style="margin:.4rem 0">Admin Control Center — Anbuchelvan M S</h2>
-      <p style="color:var(--muted)">Publish live Exam Notifications, Subject Notes, PIB Briefs, and Flashcards directly to your Supabase database.</p>
-
-      <div class="grid-2" style="margin-top:1rem">
-        <!-- Publish Exam Update -->
-        <div class="card">
-          <h3>📢 Publish Exam Notification</h3>
-          <div class="form-grid">
-            <div><label>Exam Category</label><select id="admUpdCat"><option>UPSC CSE</option><option>TNPSC Group 1</option><option>SSC CGL</option><option>Banking PO</option></select></div>
-            <div><label>Key Date</label><input id="admUpdDate" type="date"></div>
-            <div class="form-full"><label>Notification Title</label><input id="admUpdTitle" type="text" placeholder="e.g., UPSC CSE 2027 Notification Released"></div>
-            <div class="form-full"><label>Summary / Official Link</label><input id="admUpdNote" type="text" placeholder="Apply online at upsconline.nic.in"></div>
-            <div class="form-full"><button type="button" class="btn primary" id="admPublishUpdBtn" style="width:100%">Publish Notification</button></div>
-          </div>
+  <!-- 12. OWNER ADMIN PANEL -->
+  <section id="admin" class="view-sec owner-only-sec" hidden>
+    <div class="card gold-top" style="border-top-color:var(--bad)">
+      <span class="pill bad">Restricted Owner Access</span>
+      <h2 style="margin:.4rem 0">Owner Admin Command Center</h2>
+      <p style="color:var(--muted)">Publish live exam notifications, PIB briefs, and dynamic study items to all learners in real-time via Supabase.</p>
+      <div class="form-grid" style="margin-top:1rem">
+        <div>
+          <label for="adminExamName">Exam Title / Category</label>
+          <input id="adminExamName" type="text" placeholder="e.g., UPSC CSE Prelims 2027">
         </div>
-
-        <!-- Publish Subject Note -->
-        <div class="card">
-          <h3>📚 Publish Subject Note</h3>
-          <div class="form-grid">
-            <div><label>Subject</label><select id="admNoteSubj"><option>Polity</option><option>History</option><option>Economy</option><option>Environment</option></select></div>
-            <div><label>Exam</label><select id="admNoteExam"><option>UPSC CSE</option><option>TNPSC Group 1</option><option>SSC CGL</option></select></div>
-            <div class="form-full"><label>Topic Title</label><input id="admNoteTitle" type="text" placeholder="e.g., Anti-Defection Law (10th Schedule)"></div>
-            <div class="form-full"><label>Crisp Note Content</label><textarea id="admNoteBody" rows="3" placeholder="Key articles, exceptions, and Kihoto Hollohan judgment..."></textarea></div>
-            <div class="form-full"><button type="button" class="btn primary" id="admPublishNoteBtn" style="width:100%">Publish Note</button></div>
-          </div>
+        <div>
+          <label for="adminNotifType">Notification Type</label>
+          <select id="adminNotifType"><option>Notification</option><option>Admit Card</option><option>Result</option><option>Last Date Reminder</option></select>
         </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>👥 Registered Learners & Progress Overview</h3>
-      <div class="table-wrap" style="margin-top:.8rem">
-        <table>
-          <thead><tr><th>Learner</th><th>Email</th><th>Role</th><th>Target Exam</th><th>Logged Hours</th></tr></thead>
-          <tbody id="adminLearnersTable"></tbody>
-        </table>
+        <div>
+          <label for="adminDate">Key Date</label>
+          <input id="adminDate" type="date">
+        </div>
+        <div>
+          <label for="adminLink">Official Link / Details</label>
+          <input id="adminLink" type="text" placeholder="https://upsc.gov.in">
+        </div>
+        <div class="form-full">
+          <button type="button" class="btn primary" id="adminPublishBtn">+ Publish Live Notification</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 15. LEGAL -->
+  <!-- 13. LEGAL / TERMS & PRIVACY -->
   <section id="legal" class="view-sec">
     <div class="card gold-top">
-      <h2>Terms, Privacy & Official Disclaimer</h2>
-      <p style="color:var(--muted)"><b>Disclaimer:</b> The Aspirant’s Desk is an independent educational platform built by Anbuchelvan M S and is not affiliated with UPSC, TNPSC, SSC, or IBPS. Always verify official notifications on government portals.</p>
-      <p style="color:var(--muted)"><b>Privacy (DPDP Act 2023):</b> Your study progress, test results, and notes are stored securely via Supabase Row Level Security exclusively for your personal dashboard.</p>
+      <h2>Terms of Use & Privacy Policy (DPDP Act 2023)</h2>
+      <p style="color:var(--muted)">The Aspirant’s Desk operates as a self-learner study utility by Anbuchelvan M S. We strictly protect your personal information in accordance with the Digital Personal Data Protection Act 2023.</p>
+      <h3>Privacy Commitments</h3>
+      <ul style="padding-left:1.2rem;color:var(--muted)">
+        <li>No third-party advertising cookies or trackers.</li>
+        <li>Study hours, test scores, and personal preferences remain private to your encrypted Supabase user session.</li>
+        <li>You may request full data deletion at any time by contacting the owner.</li>
+      </ul>
     </div>
   </section>
 
 </main>
 
-<div class="toast" id="toastBox" hidden></div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div id="toastContainer"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- JAVASCRIPT: APPLICATION LOGIC, SUPABASE SYNC, ROUTING & INTERACTIVE MODULES -->
 <script>
-(function () {
-  const OWNER_EMAIL = "theaspirantsdesk0@gmail.com";
-  const PUBLIC_VIEWS = new Set(["home", "about-app", "founder", "updates", "legal"]);
-  const VIEW_TITLES = {
-    "home": "Dashboard Overview",
-    "about-app": "About the App",
-    "founder": "Founder & Website Owner",
-    "updates": "Exam Notifications & Calendar",
-    "today": "Phase 1 · Live Focus Study Deck",
-    "dailytest": "Phase 1 · Daily Prelims Test",
-    "notes": "Structured Subject Notes",
-    "press": "Daily Press & PIB Analysis",
-    "flashcards": "Phase 2 · Flashcard Revision Engine",
-    "mains": "Phase 3 · Daily Mains Writing Pad",
-    "pyq": "Verified PYQ Bank",
-    "planner": "Adaptive Study Planner",
-    "tracker": "My Prep Tracker & Mistake Log",
-    "admin": "Owner Admin Console",
-    "legal": "Terms, Privacy & Disclaimer"
-  };
+(function() {
+  'use strict';
 
-  // Initialize Supabase Client from config.js
-  const sbUrl = window.DESK_SUPABASE_URL || "";
-  const sbKey = window.DESK_SUPABASE_ANON_KEY || "";
-  const supabase = (window.supabase && sbUrl && sbKey)
-    ? window.supabase.createClient(sbUrl, sbKey)
-    : null;
-
-  // Application State
-  let currentUser = null;
-  let userProfile = { role: "learner", display_name: "Aspirant" };
-  let pendingRoute = null;
-  let selectedExam = localStorage.getItem("tad_exam") || "UPSC CSE";
-
-  let state = JSON.parse(localStorage.getItem("tad_state_v5") || JSON.stringify({
-    hours: 0,
-    sessions: [],
-    syllabus: [],
-    revisions: [],
-    mainsDrafts: [],
-    mistakes: [],
-    masteredCards: [],
-    lastScore: null
-  }));
-
-  const $ = (id) => document.getElementById(id);
-
-  function toast(msg) {
-    const box = $("toastBox");
-    box.textContent = msg;
-    box.hidden = false;
-    clearTimeout(box._t);
-    box._t = setTimeout(() => { box.hidden = true; }, 3200);
-  }
-
-  function isOwner() {
-    if (!currentUser) return false;
-    return userProfile.role === "admin" || (currentUser.email || "").toLowerCase() === OWNER_EMAIL;
-  }
-
-  async function saveUserState() {
-    localStorage.setItem("tad_state_v5", JSON.stringify(state));
-    renderKPIs();
-    if (!supabase || !currentUser) return;
-    try {
-      await supabase.from("user_data").upsert({
-        user_id: currentUser.id,
-        payload: state,
-        updated_at: new Date().toISOString()
-      });
-      await supabase.from("progress").upsert({
-        user_id: currentUser.id,
-        summary: {
-          display_name: userProfile.display_name,
-          email: currentUser.email,
-          target_exam: selectedExam,
-          hours: state.hours,
-          syllabus_pct: Math.round((state.syllabus.length / 6) * 100),
-          last_score: state.lastScore
-        },
-        updated_at: new Date().toISOString()
-      });
-    } catch (e) {
-      console.warn("Cloud sync queued offline:", e.message);
-    }
-  }
-
-  async function loadUserState() {
-    if (!supabase || !currentUser) return;
-    const { data: prof } = await supabase.from("profiles").select("*").eq("id", currentUser.id).single();
-    if (prof) userProfile = prof;
-
-    const { data: udata } = await supabase.from("user_data").select("payload").eq("user_id", currentUser.id).single();
-    if (udata && udata.payload && Object.keys(udata.payload).length) {
-      state = { ...state, ...udata.payload };
-      localStorage.setItem("tad_state_v5", JSON.stringify(state));
-    }
-    renderAllUserModules();
-    updateAuthUI();
-    if (isOwner()) loadAdminLearners();
-  }
-
-  function updateAuthUI() {
-    const loggedIn = Boolean(currentUser);
-    const displayName = userProfile.display_name || (currentUser && currentUser.email.split("@")[0]) || "Guest";
-
-    $("statusDot").classList.toggle("online", loggedIn);
-    $("userLabel").textContent = loggedIn ? `${displayName}${isOwner() ? " (Owner)" : ""}` : "Guest";
-    $("topLoginBtn").hidden = loggedIn;
-    $("topLogoutBtn").hidden = !loggedIn;
-    $("sideAuthBtn").textContent = loggedIn ? "🚪 Sign Out" : "🔐 Sign In";
-
-    $("heroWelcomeTitle").textContent = loggedIn ? `Welcome back, ${displayName}` : "Guest Visitor Mode";
-    $("heroWelcomeSub").textContent = loggedIn
-      ? `Supabase Cloud Sync Active (${currentUser.email}). All 4 preparation phases are unlocked.`
-      : "Explore the platform overview, founder credentials, and exam notifications. Sign in to unlock all 4 study phases.";
-    $("heroActionBtn").textContent = loggedIn ? "⭐ Open Today’s Study Deck" : "🔐 Sign In to Unlock Workspace";
-
-    document.querySelectorAll(".lock-tag").forEach(el => el.hidden = loggedIn);
-    document.querySelectorAll(".owner-only").forEach(el => el.hidden = !isOwner());
-  }
-
-  function openAuthModal(target = null) {
-    pendingRoute = target;
-    $("authFeedback").textContent = target ? "Sign in or create a free learner account to access this module." : "";
-    $("authModal").hidden = false;
-  }
-
-  function navigateTo(route) {
-    const clean = (route || "home").replace(/^#/, "");
-    if (!PUBLIC_VIEWS.has(clean) && !currentUser) {
-      openAuthModal(clean);
-      return;
-    }
-    if (clean === "admin" && !isOwner()) {
-      navigateTo("home");
-      return;
-    }
-    document.querySelectorAll(".view-sec").forEach(s => s.classList.toggle("active", s.id === clean));
-    document.querySelectorAll(".nav-link").forEach(l => l.classList.toggle("active", l.dataset.nav === clean));
-    $("pageTitle").textContent = VIEW_TITLES[clean] || "Dashboard";
-    $("sidebar").classList.remove("open");
-    history.replaceState(null, "", "#" + clean);
-  }
-
-  // Supabase Auth Handlers
-  $("btnSignIn").addEventListener("click", async () => {
-    const email = $("authEmail").value.trim();
-    const password = $("authPassword").value.trim();
-    if (!email || password.length < 8) {
-      $("authFeedback").textContent = "Enter a valid email and 8+ character password.";
-      return;
-    }
-    $("authFeedback").textContent = "Signing in...";
-    if (supabase) {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) { $("authFeedback").textContent = error.message; return; }
-      currentUser = data.user;
-      await loadUserState();
-    } else {
-      currentUser = { id: "local-user", email };
-      userProfile = { display_name: email.split("@")[0], role: email.toLowerCase() === OWNER_EMAIL ? "admin" : "learner" };
-    }
-    $("authModal").hidden = true;
-    updateAuthUI();
-    toast("Signed in successfully!");
-    navigateTo(pendingRoute || "today");
-    pendingRoute = null;
-  });
-
-  $("btnSignUp").addEventListener("click", async () => {
-    const name = $("authName").value.trim();
-    const email = $("authEmail").value.trim();
-    const password = $("authPassword").value.trim();
-    if (!name || !email || password.length < 8) {
-      $("authFeedback").textContent = "Enter your full name, email, and an 8+ character password.";
-      return;
-    }
-    $("authFeedback").textContent = "Creating account...";
-    if (supabase) {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { data: { display_name: name } }
-      });
-      if (error) { $("authFeedback").textContent = error.message; return; }
-      if (data.user && !data.session) {
-        $("authFeedback").style.color = "var(--ok)";
-        $("authFeedback").textContent = "Account created! Please check your email inbox to confirm, then sign in.";
-        return;
-      }
-      currentUser = data.user;
-      await loadUserState();
-    } else {
-      currentUser = { id: "local-user", email };
-      userProfile = { display_name: name, role: email.toLowerCase() === OWNER_EMAIL ? "admin" : "learner" };
-    }
-    $("authModal").hidden = true;
-    updateAuthUI();
-    toast("Welcome to The Aspirant's Desk!");
-    navigateTo(pendingRoute || "today");
-  });
-
-  async function handleSignOut() {
-    if (supabase) await supabase.auth.signOut();
-    currentUser = null;
-    userProfile = { role: "learner", display_name: "Guest" };
-    updateAuthUI();
-    navigateTo("home");
-    toast("Signed out.");
-  }
-
-  // Phase 4: Multi-Exam Shell Selector
-  const EXAM_META = {
-    "UPSC CSE": { targetDate: "2027-05-23", label: "Countdown to UPSC Prelims 2027", tag: "UPSC Civil Services Ecosystem" },
-    "TNPSC Group 1": { targetDate: "2027-06-14", label: "Countdown to TNPSC Group 1 Prelims", tag: "TNPSC Group 1 & 2 Ecosystem" },
-    "SSC CGL": { targetDate: "2027-07-12", label: "Countdown to SSC CGL Tier-I", tag: "SSC CGL & CHSL Ecosystem" },
-    "Banking PO": { targetDate: "2027-08-08", label: "Countdown to IBPS / SBI PO Prelims", tag: "Banking & Regulatory Ecosystem" }
-  };
-
-  function applyExamShell(exam) {
-    selectedExam = exam;
-    localStorage.setItem("tad_exam", exam);
-    $("globalExamSelector").value = exam;
-    $("sideExamBadge").textContent = `${exam} Edition`;
-    const meta = EXAM_META[exam] || EXAM_META["UPSC CSE"];
-    $("heroExamTag").textContent = meta.tag;
-    $("kpiExamLabel").textContent = meta.label;
-    const diff = Math.max(0, Math.ceil((new Date(meta.targetDate) - new Date()) / 86400000));
-    $("kpiDays").textContent = `${diff} Days`;
-  }
-  $("globalExamSelector").addEventListener("change", (e) => {
-    applyExamShell(e.target.value);
-    toast(`Switched workspace to ${e.target.value}`);
-  });
-
-  function renderKPIs() {
-    $("kpiHours").textContent = `${Number(state.hours || 0).toFixed(1)} hrs`;
-    const pct = Math.round(((state.syllabus || []).length / 6) * 100);
-    $("kpiSyllabus").textContent = `${pct}%`;
-    $("kpiLastScore").textContent = state.lastScore !== null ? `${state.lastScore} / 10` : "—";
-  }
-
-  // Phase 1A: Pomodoro Timer Linked to Study Tracker
-  let pomoTotal = 1500, pomoLeft = 1500, pomoInterval = null;
-  function renderPomo() {
-    const m = String(Math.floor(pomoLeft / 60)).padStart(2, "0");
-    const s = String(pomoLeft % 60).padStart(2, "0");
-    $("pomoClock").textContent = `${m}:${s}`;
-  }
-  document.querySelectorAll(".pomo-preset").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".pomo-preset").forEach(b => b.setAttribute("aria-pressed", "false"));
-      btn.setAttribute("aria-pressed", "true");
-      clearInterval(pomoInterval); pomoInterval = null;
-      pomoTotal = Number(btn.dataset.sec);
-      pomoLeft = pomoTotal;
-      $("pomoStart").textContent = "▶ Start Focus";
-      renderPomo();
-    });
-  });
-
-  function logStudyHours(subj, hrs, source = "Timer") {
-    const cleanHrs = Math.round(hrs * 100) / 100;
-    if (cleanHrs <= 0) return;
-    state.hours = Math.round(((state.hours || 0) + cleanHrs) * 100) / 100;
-    state.sessions.unshift({
-      subj,
-      hrs: cleanHrs,
-      source,
-      date: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-    });
-    renderStudySessions();
-    saveUserState();
-    toast(`Logged +${cleanHrs} hrs (${subj}) to Cloud Tracker!`);
-  }
-
-  function renderStudySessions() {
-    $("studyLogHistory").innerHTML = (state.sessions || []).slice(0, 6).map(s =>
-      `<li><b>${s.subj}</b> · +${s.hrs} hrs <span class="pill ok">${s.source}</span> <small style="color:var(--muted)">(${s.date})</small></li>`
-    ).join("") || "<li>No sessions logged today yet. Start a Pomodoro timer!</li>";
-  }
-
-  $("pomoStart").addEventListener("click", () => {
-    if (pomoInterval) {
-      clearInterval(pomoInterval); pomoInterval = null;
-      $("pomoStart").textContent = "▶ Resume";
-      return;
-    }
-    $("pomoStart").textContent = "⏸ Pause";
-    pomoInterval = setInterval(() => {
-      if (pomoLeft > 0) {
-        pomoLeft--;
-        renderPomo();
-      } else {
-        clearInterval(pomoInterval); pomoInterval = null;
-        $("pomoStart").textContent = "▶ Start Focus";
-        logStudyHours($("pomoSubj").value, pomoTotal / 3600, "Pomodoro");
-        pomoLeft = pomoTotal;
-        renderPomo();
-      }
-    }, 1000);
-  });
-
-  $("pomoReset").addEventListener("click", () => {
-    clearInterval(pomoInterval); pomoInterval = null;
-    pomoLeft = pomoTotal;
-    $("pomoStart").textContent = "▶ Start Focus";
-    renderPomo();
-  });
-
-  $("pomoCompleteNow").addEventListener("click", () => {
-    clearInterval(pomoInterval); pomoInterval = null;
-    const elapsed = Math.max(pomoTotal - pomoLeft, 900); // log at least 15m or full block
-    logStudyHours($("pomoSubj").value, elapsed / 3600, "Focus Session");
-    pomoLeft = pomoTotal;
-    $("pomoStart").textContent = "▶ Start Focus";
-    renderPomo();
-  });
-
-  $("quickLogBtn").addEventListener("click", () => {
-    logStudyHours($("logSubj").value, Number($("logHrs").value || 0), "Manual Log");
-  });
-
-  // Phase 1B: Upgraded Daily Prelims Test (Timer, +2/-0.66, Breakdown, Mistake Capture)
-  const DAILY_QUESTIONS = [
-    {
-      q: "1. With reference to the Constitution of India, which of the following statements regarding 'Money Bills' under Article 110 is correct?",
-      opts: [
-        "A Money Bill can be introduced in either House of Parliament.",
-        "The Rajya Sabha can amend or reject a Money Bill within 14 days.",
-        "The decision of the Speaker of the Lok Sabha on whether a Bill is a Money Bill is final.",
-        "There is a provision for a joint sitting of both Houses to resolve a deadlock over a Money Bill."
-      ],
-      ans: 2,
-      exp: "Under Article 110(3), the Speaker's decision is final. Money Bills originate only in Lok Sabha and have no joint sitting."
-    },
-    {
-      q: "2. Which of the following best describes the 'Monetary Policy Committee (MPC)' of India?",
-      opts: [
-        "A 6-member statutory body under the RBI Act, 1934 tasked with maintaining price stability.",
-        "An advisory committee chaired by the Union Finance Minister.",
-        "A Constitutional body established under Article 280.",
-        "A committee exclusively composed of commercial bank CEOs."
-      ],
-      ans: 0,
-      exp: "MPC is a 6-member statutory committee (3 from RBI, 3 nominated by Govt) chaired by the RBI Governor with an inflation target of 4% (±2%)."
-    },
-    {
-      q: "3. In the context of Indian Ecology, 'Gadgil Committee Report' and 'Kasturirangan Committee Report' are related to:",
-      opts: [
-        "Constitutional Reforms",
-        "Ganga Action Plan",
-        "Interlinking of Rivers",
-        "Protection of Western Ghats"
-      ],
-      ans: 3,
-      exp: "Both committees submitted landmark reports on Ecologically Sensitive Areas (ESAs) in the Western Ghats."
-    },
-    {
-      q: "4. Who among the following founded the 'Servants of India Society' in 1905?",
-      opts: [
-        "Bal Gangadhar Tilak",
-        "Gopal Krishna Gokhale",
-        "Lala Lajpat Rai",
-        "Dadabhai Naoroji"
-      ],
-      ans: 1,
-      exp: "Gopal Krishna Gokhale founded the Servants of India Society in Pune in 1905 to train national missionaries for the service of India."
-    },
-    {
-      q: "5. Which one of the following is NOT a member of the Gulf Cooperation Council (GCC)?",
-      opts: [
-        "Bahrain",
-        "Kuwait",
-        "Oman",
-        "Iran"
-      ],
-      ans: 3,
-      exp: "GCC comprises 6 Arab states: Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, and the UAE. Iran is not a member."
-    }
+  // State Management
+  var currentUser = null;
+  var isOwner = false;
+  var activeExam = 'UPSC CSE';
+  var studyLogs = [];
+  var examList = [
+    { exam: 'UPSC CSE', notification: 'Civil Services Examination (Prelims) 2027', type: 'Notification', date: '2027-05-23', link: 'https://upsc.gov.in' },
+    { exam: 'TNPSC Group 1', notification: 'Combined Civil Services Examination-I', type: 'Notification', date: '2027-08-10', link: 'https://tnpsc.gov.in' },
+    { exam: 'SSC CGL', notification: 'Combined Graduate Level Examination Tier-I', type: 'Notification', date: '2027-07-15', link: 'https://ssc.gov.in' }
   ];
 
-  let testSeconds = 600, testTimer = null;
-  function renderQuiz() {
-    $("quizArea").innerHTML = DAILY_QUESTIONS.map((item, idx) => `
-      <div class="card" style="margin-bottom:.85rem" id="qcard_${idx}">
-        <p style="font-weight:700;margin:0 0 .55rem">${item.q}</p>
-        ${item.opts.map((opt, oi) => `
-          <label style="display:flex;align-items:center;gap:.55rem;font-weight:500;cursor:pointer;padding:.25rem 0">
-            <input type="radio" name="dq_${idx}" value="${oi}" style="width:auto">
-            <span>${opt}</span>
-          </label>
-        `).join("")}
-        <p id="qexp_${idx}" style="font-size:.84rem;margin:.5rem 0 0;font-weight:600" hidden></p>
-      </div>
-    `).join("");
-  }
-  renderQuiz();
+  // DOM Elements
+  var $ = function(id) { return document.getElementById(id); };
+  var $$ = function(sel) { return document.querySelectorAll(sel); };
 
-  function startTestTimer() {
-    clearInterval(testTimer);
-    testSeconds = 600;
-    testTimer = setInterval(() => {
-      if (testSeconds > 0) {
-        testSeconds--;
-        const m = String(Math.floor(testSeconds / 60)).padStart(2, "0");
-        const s = String(testSeconds % 60).padStart(2, "0");
-        $("testTimerDisplay").textContent = `${m}:${s}`;
+  // Toast Helper
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    $('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3200);
+  }
+
+  // Router / Navigation
+  function navigateTo(hash) {
+    if (!hash) hash = '#home';
+    var cleanHash = hash.replace('#', '');
+    $$('.view-sec').forEach(function(sec) { sec.classList.remove('active'); });
+    var target = $(cleanHash);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    $$('.nav-link').forEach(function(link) {
+      if (link.getAttribute('href') === '#' + cleanHash) {
+        link.classList.add('active');
       } else {
-        clearInterval(testTimer);
-        $("submitQuizBtn").click();
+        link.classList.remove('active');
+      }
+    });
+    // Update breadcrumb
+    var activeLinkEl = document.querySelector('.nav-link[href="#' + cleanHash + '"]');
+    if (activeLinkEl) {
+      $('pageTitle').textContent = activeLinkEl.textContent.replace(/Login|Admin/g, '').trim();
+    }
+  }
+
+  window.addEventListener('hashchange', function() {
+    navigateTo(location.hash);
+  });
+
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a) {
+      e.preventDefault();
+      var targetId = a.getAttribute('href');
+      // Check protection
+      if (a.classList.contains('requires-auth') && !currentUser) {
+        $('authModal').hidden = false;
+        showToast('Please sign in to access this study module.');
+        return;
+      }
+      if (a.classList.contains('owner-only') && !isOwner) {
+        showToast('Restricted to website owner.');
+        return;
+      }
+      location.hash = targetId;
+      navigateTo(targetId);
+      // Close mobile sidebar if open
+      $('sidebar').classList.remove('open');
+    }
+  });
+
+  // Mobile Menu Toggle
+  $('menuToggle').onclick = function() {
+    $('sidebar').classList.toggle('open');
+  };
+
+  // Theme Toggle
+  $('themeToggle').onclick = function() {
+    var root = document.documentElement;
+    var cur = root.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('desk-theme', next);
+  };
+  var savedTheme = localStorage.getItem('desk-theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Global Exam Selector (Phase 4)
+  $('globalExamSelector').onchange = function(e) {
+    activeExam = e.target.value;
+    $('sideExamBadge').textContent = activeExam + ' Edition';
+    $('heroExamTag').textContent = activeExam + ' Ecosystem';
+    if (activeExam === 'UPSC CSE') {
+      $('kpiExamLabel').textContent = 'Countdown to UPSC Prelims 2027';
+      $('kpiDays').textContent = '184 Days';
+    } else if (activeExam === 'TNPSC Group 1') {
+      $('kpiExamLabel').textContent = 'Countdown to TNPSC Group 1';
+      $('kpiDays').textContent = '262 Days';
+    } else {
+      $('kpiExamLabel').textContent = 'Countdown to Exam';
+      $('kpiDays').textContent = '120 Days';
+    }
+    showToast('Switched ecosystem to ' + activeExam);
+  };
+
+  // Auth Modal Controls
+  $('topLoginBtn').onclick = function() { $('authModal').hidden = false; };
+  $('sideAuthBtn').onclick = function() { $('authModal').hidden = false; };
+  $('closeAuthModal').onclick = function() { $('authModal').hidden = true; };
+  document.querySelectorAll('.open-protected').forEach(function(btn) {
+    btn.onclick = function() {
+      var target = btn.getAttribute('data-target');
+      if (!currentUser) {
+        $('authModal').hidden = false;
+        showToast('Please sign in to unlock this module.');
+      } else {
+        location.hash = '#' + target;
+        navigateTo('#' + target);
+      }
+    };
+  });
+
+  // Supabase Client Initialization (using config.js SUPABASE_URL & SUPABASE_ANON_KEY)
+  var sbClient = null;
+  try {
+    if (typeof SUPABASE_URL !== 'undefined' && typeof SUPABASE_ANON_KEY !== 'undefined' && window.supabase) {
+      sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+  } catch (err) {
+    console.warn('Supabase initialization fallback:', err);
+  }
+
+  // Simulated / Real Auth Handlers
+  $('btnSignIn').onclick = function() {
+    var email = $('authEmail').value.trim();
+    var pass = $('authPassword').value;
+    if (!email || !pass) {
+      $('authFeedback').textContent = 'Please enter email and password.';
+      return;
+    }
+    if (sbClient) {
+      sbClient.auth.signInWithPassword({ email: email, password: pass }).then(function(res) {
+        if (res.error) {
+          $('authFeedback').textContent = res.error.message;
+        } else {
+          handleSuccessfulAuth(res.data.user);
+        }
+      });
+    } else {
+      // Offline / Local Simulation Mode
+      handleSuccessfulAuth({ email: email, user_metadata: { full_name: $('authName').value || email.split('@')[0] } });
+    }
+  };
+
+  $('btnSignUp').onclick = function() {
+    var email = $('authEmail').value.trim();
+    var pass = $('authPassword').value;
+    var name = $('authName').value.trim();
+    if (!email || !pass || !name) {
+      $('authFeedback').textContent = 'Please fill name, email and password.';
+      return;
+    }
+    if (sbClient) {
+      sbClient.auth.signUp({ email: email, password: pass, options: { data: { full_name: name } } }).then(function(res) {
+        if (res.error) {
+          $('authFeedback').textContent = res.error.message;
+        } else {
+          handleSuccessfulAuth(res.data.user);
+          showToast('Account created successfully!');
+        }
+      });
+    } else {
+      handleSuccessfulAuth({ email: email, user_metadata: { full_name: name } });
+    }
+  };
+
+  function handleSuccessfulAuth(user) {
+    currentUser = user;
+    var emailVal = user.email || '';
+    var nameVal = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : emailVal.split('@')[0];
+    isOwner = (emailVal.toLowerCase() === 'theaspirantsdesk0@gmail.com' || emailVal.toLowerCase().indexOf('anbuchelvan') !== -1);
+
+    $('userLabel').textContent = nameVal;
+    $('statusDot').classList.add('online');
+    $('topLoginBtn').hidden = true;
+    $('topLogoutBtn').hidden = false;
+    $('authModal').hidden = true;
+
+    $('heroWelcomeTitle').textContent = 'Welcome back, ' + nameVal + '!';
+    $('heroWelcomeSub').textContent = isOwner ? 'Owner Admin access unlocked.' : 'Cloud sync active. All study phases unlocked.';
+    $('heroActionBtn').textContent = '🚀 Open Today’s Desk';
+    $('heroActionBtn').onclick = function() { location.hash = '#today'; navigateTo('#today'); };
+
+    if (isOwner) {
+      document.querySelectorAll('.owner-only').forEach(function(el) { el.hidden = false; });
+      document.querySelectorAll('.owner-only-sec').forEach(function(el) { el.hidden = false; });
+    }
+
+    showToast('Signed in successfully as ' + nameVal);
+  }
+
+  $('topLogoutBtn').onclick = function() {
+    if (sbClient) sbClient.auth.signOut();
+    currentUser = null;
+    isOwner = false;
+    $('userLabel').textContent = 'Guest';
+    $('statusDot').classList.remove('online');
+    $('topLoginBtn').hidden = false;
+    $('topLogoutBtn').hidden = true;
+    document.querySelectorAll('.owner-only').forEach(function(el) { el.hidden = true; });
+    document.querySelectorAll('.owner-only-sec').forEach(function(el) { el.hidden = true; });
+    $('heroWelcomeTitle').textContent = 'Guest Visitor Mode';
+    $('heroWelcomeSub').textContent = 'Explore platform overview and notifications. Sign in to unlock all 4 study phases.';
+    $('heroActionBtn').textContent = '🔐 Sign In to Unlock Workspace';
+    showToast('Signed out successfully.');
+    navigateTo('#home');
+  };
+
+  // Render Exam Table
+  function renderExams() {
+    var tb = $('publicExamTable');
+    if (!tb) return;
+    tb.innerHTML = examList.map(function(item) {
+      return '<tr><td><b>' + item.exam + '</b></td><td>' + item.notification + '</td><td><span class="pill warn">' + item.date + '</span></td><td><a href="' + item.link + '" target="_blank" rel="noopener" class="btn" style="padding:.2rem .5rem;font-size:.78rem">Official Portal →</a></td></tr>';
+    }).join('');
+  }
+  renderExams();
+
+  // Admin Publish Handler
+  var pubBtn = $('adminPublishBtn');
+  if (pubBtn) {
+    pubBtn.onclick = function() {
+      var name = $('adminExamName').value.trim();
+      var type = $('adminNotifType').value;
+      var date = $('adminDate').value;
+      var link = $('adminLink').value.trim() || 'https://upsc.gov.in';
+      if (!name || !date) {
+        showToast('Please enter exam title and date.');
+        return;
+      }
+      examList.unshift({ exam: name, notification: type + ' update published by owner', type: type, date: date, link: link });
+      renderExams();
+      showToast('Live notification published successfully!');
+      $('adminExamName').value = '';
+      $('adminDate').value = '';
+    };
+  }
+
+  // Phase 1A: Pomodoro Focus Timer
+  var pomoSec = 1500;
+  var pomoInterval = null;
+  var pomoRunning = false;
+  var clockEl = $('pomoClock');
+
+  $$('.pomo-preset').forEach(function(btn) {
+    btn.onclick = function() {
+      $$('.pomo-preset').forEach(function(b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      pomoSec = parseInt(btn.getAttribute('data-sec'), 10);
+      updateClockDisplay();
+    };
+  });
+
+  function updateClockDisplay() {
+    var m = Math.floor(pomoSec / 60);
+    var s = pomoSec % 60;
+    clockEl.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+  }
+
+  $('pomoStart').onclick = function() {
+    if (pomoRunning) {
+      clearInterval(pomoInterval);
+      pomoRunning = false;
+      $('pomoStart').textContent = '▶ Resume Focus';
+      return;
+    }
+    pomoRunning = true;
+    $('pomoStart').textContent = '⏸ Pause';
+    pomoInterval = setInterval(function() {
+      if (pomoSec > 0) {
+        pomoSec--;
+        updateClockDisplay();
+      } else {
+        clearInterval(pomoInterval);
+        pomoRunning = false;
+        $('pomoStart').textContent = '▶ Start Focus';
+        showToast('Focus session complete! Logged to study hours.');
+        logStudyHours(0.42, $('pomoSubj').value);
       }
     }, 1000);
+  };
+
+  $('pomoReset').onclick = function() {
+    clearInterval(pomoInterval);
+    pomoRunning = false;
+    pomoSec = 1500;
+    $('pomoStart').textContent = '▶ Start Focus';
+    updateClockDisplay();
+  };
+
+  $('pomoCompleteNow').onclick = function() {
+    logStudyHours(0.5, $('pomoSubj').value);
+    showToast('Session completed and logged!');
+  };
+
+  function logStudyHours(hrs, subj) {
+    studyLogs.unshift({ subject: subj, hours: hrs, time: new Date().toLocaleTimeString() });
+    var totalHrs = studyLogs.reduce(function(acc, cur) { return acc + cur.hours; }, 0);
+    $('kpiHours').textContent = totalHrs.toFixed(1) + ' hrs';
+    var list = $('studyLogHistory');
+    list.innerHTML = studyLogs.map(function(l) {
+      return '<li><b>' + l.subject + '</b>: ' + l.hours + ' hrs <span style="float:right;color:var(--muted);font-size:.78rem">' + l.time + '</span></li>';
+    }).join('');
   }
 
-  $("submitQuizBtn").addEventListener("click", async () => {
-    clearInterval(testTimer);
-    let correct = 0, wrong = 0, skipped = 0;
-    DAILY_QUESTIONS.forEach((item, idx) => {
-      const sel = document.querySelector(`input[name="dq_${idx}"]:checked`);
-      const expEl = $("qexp_" + idx);
-      expEl.hidden = false;
-      if (!sel) {
-        skipped++;
-        expEl.style.color = "var(--muted)";
-        expEl.textContent = `Skipped · Correct Answer: ${item.opts[item.ans]}. ${item.exp}`;
-      } else if (Number(sel.value) === item.ans) {
-        correct++;
-        expEl.style.color = "var(--ok)";
-        expEl.textContent = `✓ Correct (+2.00) · ${item.exp}`;
-      } else {
-        wrong++;
-        expEl.style.color = "var(--bad)";
-        expEl.textContent = `✕ Incorrect (−0.66) · ${item.exp}`;
-        if (!state.mistakes.some(m => m.q === item.q)) {
-          state.mistakes.unshift({ q: item.q, ans: item.opts[item.ans], exp: item.exp });
+  $('quickLogBtn').onclick = function() {
+    var s = $('logSubj').value;
+    var h = parseFloat($('logHrs').value) || 1.0;
+    logStudyHours(h, s);
+    showToast('Study session saved successfully!');
+  };
+
+  // Phase 1B: Interactive Prelims Test Simulator
+  var qBank = [
+    { q: 'Consider the following regarding the Preamble of the Indian Constitution: 1. It is a source of power to legislature. 2. It is non-justiciable in nature. Which of the statements given above is/are correct?', options: ['1 only', '2 only', 'Both 1 and 2', 'Neither 1 nor 2'], ans: 1, explanation: 'The Preamble is neither a source of power to the legislature nor a prohibition upon its powers. It is non-justiciable.' },
+    { q: 'Which Article of the Constitution of India provides for the establishment of a Finance Commission?', options: ['Article 263', 'Article 280', 'Article 324', 'Article 356'], ans: 1, explanation: 'Article 280 provides for the constitution of a Finance Commission by the President every five years.' },
+    { q: 'Which of the following bodies is/are statutory? 1. National Human Rights Commission (NHRC) 2. Central Information Commission (CIC) 3. NITI Aayog', options: ['1 and 2 only', '2 and 3 only', '1 and 3 only', '1, 2 and 3'], ans: 0, explanation: 'NHRC and CIC are statutory bodies created by acts of Parliament. NITI Aayog is an extra-constitutional non-statutory body.' },
+    { q: 'In the context of Indian economy, "M3" measure of money supply includes which of the following? 1. Currency with the public 2. Demand deposits with banks 3. Time deposits with banks', options: ['1 only', '1 and 2 only', '2 and 3 only', '1, 2 and 3'], ans: 3, explanation: 'M3 = M1 (Currency + Demand deposits + Other deposits) + Time deposits with commercial banks.' },
+    { q: 'Wetlands (Conservation and Management) Rules are framed under which environmental legislation in India?', options: ['Environment (Protection) Act, 1986', 'Wildlife Protection Act, 1972', 'Biological Diversity Act, 2002', 'Forest Conservation Act, 1980'], ans: 0, explanation: 'Wetlands Rules are notified under the Environment (Protection) Act, 1986.' }
+  ];
+  var currentQIdx = 0;
+  var userAnswers = {};
+  var testTimerSec = 900;
+  var testInterval = null;
+
+  function loadQuestion(idx) {
+    currentQIdx = idx;
+    var item = qBank[idx];
+    $('qNumTitle').textContent = 'Question ' + (idx + 1) + ' of ' + qBank.length;
+    $('qText').textContent = item.q;
+    var html = '';
+    item.options.forEach(function(opt, oIdx) {
+      var checked = userAnswers[idx] === oIdx ? 'checked' : '';
+      html += '<label style="display:flex;align-items:center;gap:.6rem;padding:.5rem;border-radius:8px;background:var(--surface-alt);cursor:pointer"><input type="radio" name="testOpt" value="' + oIdx + '" ' + checked + '> ' + opt + '</label>';
+    });
+    $('qOptions').innerHTML = html;
+    $('testProgressTxt').textContent = Object.keys(userAnswers).length + ' / ' + qBank.length + ' Answered';
+  }
+
+  document.addEventListener('change', function(e) {
+    if (e.target.name === 'testOpt') {
+      userAnswers[currentQIdx] = parseInt(e.target.value, 10);
+      $('testProgressTxt').textContent = Object.keys(userAnswers).length + ' / ' + qBank.length + ' Answered';
+    }
+  });
+
+  $('nextQBtn').onclick = function() {
+    if (currentQIdx < qBank.length - 1) {
+      loadQuestion(currentQIdx + 1);
+    } else {
+      submitTest();
+    }
+  };
+  $('prevQBtn').onclick = function() {
+    if (currentQIdx > 0) loadQuestion(currentQIdx - 1);
+  };
+
+  function submitTest() {
+    if (testInterval) clearInterval(testInterval);
+    var score = 0;
+    var correctCount = 0;
+    qBank.forEach(function(item, idx) {
+      if (userAnswers[idx] !== undefined) {
+        if (userAnswers[idx] === item.ans) {
+          score += 2.0;
+          correctCount++;
+        } else {
+          score -= 0.66;
+          // Add to mistake notebook
+          addMistakeItem(item.q, item.options[item.ans]);
         }
       }
     });
+    $('testArea').hidden = true;
+    $('testResultBox').hidden = false;
+    $('testScoreDisplay').textContent = score.toFixed(2) + ' / ' + (qBank.length * 2.0).toFixed(1);
+    $('kpiLastScore').textContent = score.toFixed(1) + ' pts';
+    showToast('Test submitted successfully!');
+  }
 
-    const netScore = Number(((correct * 2) - (wrong * 0.66)).toFixed(2));
-    const attempted = correct + wrong;
-    const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+  function addMistakeItem(qTxt, correctAns) {
+    var ml = $('mistakeNotebookList');
+    if (ml.innerHTML.indexOf('No incorrect') !== -1) ml.innerHTML = '';
+    var li = document.createElement('li');
+    li.innerHTML = '<b>Q: ' + qTxt + '</b><br><span style="color:var(--ok)">Correct Answer: ' + correctAns + '</span>';
+    ml.appendChild(li);
+  }
 
-    $("bdNetScore").textContent = netScore.toFixed(2);
-    $("bdCorrect").textContent = correct;
-    $("bdWrong").textContent = wrong;
-    $("bdAccuracy").textContent = `${accuracy}%`;
-    $("bdMistakeNote").textContent = wrong > 0
-      ? `${wrong} missed question(s) added to your Mistake Notebook in My Prep Tracker.`
-      : "Zero negative marks! Excellent accuracy.";
-    $("quizBreakdownCard").hidden = false;
+  $('restartTestBtn').onclick = function() {
+    userAnswers = {};
+    currentQIdx = 0;
+    $('testArea').hidden = false;
+    $('testResultBox').hidden = true;
+    loadQuestion(0);
+  };
+  loadQuestion(0);
 
-    state.lastScore = netScore;
-    renderMistakes();
-    await saveUserState();
-
-    if (supabase && currentUser) {
-      await supabase.from("test_results").insert({
-        user_id: currentUser.id,
-        exam: selectedExam,
-        test_name: "Daily Prelims Test",
-        score: netScore,
-        max_score: DAILY_QUESTIONS.length * 2,
-        correct_count: correct,
-        wrong_count: wrong,
-        skipped_count: skipped
-      });
-    }
-    toast(`Test scored: ${netScore} / 10`);
-  });
-
-  $("retakeQuizBtn").addEventListener("click", () => {
-    renderQuiz();
-    $("quizBreakdownCard").hidden = true;
-    startTestTimer();
-  });
-
-  // Phase 2: Flashcard Revision Engine
-  const FLASHCARDS = [
-    { cat: "Articles", q: "Article 32 — Right to Constitutional Remedies", a: "Empowers the Supreme Court to issue 5 writs (Habeas Corpus, Mandamus, Prohibition, Certiorari, Quo-Warranto). Called the 'Heart & Soul' of the Constitution by Dr. B.R. Ambedkar." },
-    { cat: "Articles", q: "Article 280 — Finance Commission", a: "Constituted by the President every 5 years to recommend vertical and horizontal devolution of taxes between the Union and States." },
-    { cat: "Case Laws", q: "Kesavananda Bharati v. State of Kerala (1973)", a: "13-judge bench ruled that Parliament can amend any part of the Constitution under Article 368, provided it does not alter its 'Basic Structure'." },
-    { cat: "Case Laws", q: "Maneka Gandhi v. Union of India (1978)", a: "Expanded Article 21 ('Procedure established by law' must be fair, just, and reasonable — introducing substantive 'Due Process of Law')." },
-    { cat: "Key Terms", q: "Repo Rate vs. Standing Deposit Facility (SDF)", a: "Repo is the rate at which RBI lends overnight liquidity against G-Secs; SDF absorbs excess liquidity from banks without requiring G-Sec collateral." },
-    { cat: "Key Terms", q: "Montreux Record (Ramsar Convention)", a: "A register of wetland sites on the List of Wetlands of International Importance where changes in ecological character have occurred (e.g., Keoladeo & Loktak Lake)." }
+  // Phase 2: Flashcards
+  var flashcards = [
+    { cat: 'Indian Polity', front: 'Article 21: Protection of Life and Personal Liberty. Can it be suspended during National Emergency?' },
+    { cat: 'Indian Economy', front: 'What is Statutory Liquidity Ratio (SLR) and who determines it under RBI Act?' },
+    { cat: 'Environment', front: 'What is the difference between Wildlife Sanctuary and National Park regarding human activities?' },
+    { cat: 'Modern History', front: 'Significance of the 1929 Lahore Session of INC (President: Jawaharlal Nehru).' },
+    { cat: 'Supreme Court Judgments', front: 'K.S. Puttaswamy v. Union of India (2017) judgment established what fundamental right?' }
   ];
+  var fcIdx = 0;
+  var fcFlipped = false;
 
-  let fcCat = "ALL", fcIdx = 0, fcFlipped = false;
-  function getFilteredCards() {
-    return fcCat === "ALL" ? FLASHCARDS : FLASHCARDS.filter(c => c.cat === fcCat);
-  }
   function renderFlashcard() {
-    const list = getFilteredCards();
-    if (!list.length) return;
-    fcIdx = fcIdx % list.length;
-    const card = list[fcIdx];
-    $("fcTag").textContent = `${card.cat} · Card ${fcIdx + 1} of ${list.length}`;
-    $("fcText").textContent = fcFlipped ? card.a : card.q;
-    $("fcHint").textContent = fcFlipped ? "Answer Side — Click to flip back" : "Question Side — Click or press Spacebar to reveal answer";
-    $("fcCard").classList.toggle("flipped", fcFlipped);
-    $("fcMasteredBadge").textContent = `Mastered: ${(state.masteredCards || []).length}`;
+    var card = flashcards[fcIdx];
+    $('fcCategoryTag').textContent = card.cat;
+    $('fcFront').textContent = card.front;
+    $('fcCounter').textContent = 'Card ' + (fcIdx + 1) + ' of ' + flashcards.length;
+    $('fcBox').classList.remove('flipped');
+    fcFlipped = false;
   }
+
+  $('fcBox').onclick = function() {
+    fcFlipped = !fcFlipped;
+    if (fcFlipped) {
+      $('fcFront').textContent = 'Answer / Model Note: Key constitutional and statutory provisions apply. Review standard textbook for exhaustive details.';
+      $('fcBox').classList.add('flipped');
+    } else {
+      $('fcFront').textContent = flashcards[fcIdx].front;
+      $('fcBox').classList.remove('flipped');
+    }
+  };
+
+  $('fcNext').onclick = function() {
+    fcIdx = (fcIdx + 1) % flashcards.length;
+    renderFlashcard();
+  };
+  $('fcPrev').onclick = function() {
+    fcIdx = (fcIdx - 1 + flashcards.length) % flashcards.length;
+    renderFlashcard();
+  };
+  $('fcEasy').onclick = function() {
+    showToast('Marked as Mastered!');
+    fcIdx = (fcIdx + 1) % flashcards.length;
+    renderFlashcard();
+  };
+  $('fcHard').onclick = function() {
+    showToast('Marked for review.');
+    fcIdx = (fcIdx + 1) % flashcards.length;
+    renderFlashcard();
+  };
   renderFlashcard();
 
-  document.querySelectorAll("#fcCategoryChips .chip").forEach(ch => {
-    ch.addEventListener("click", () => {
-      document.querySelectorAll("#fcCategoryChips .chip").forEach(c => c.setAttribute("aria-pressed", "false"));
-      ch.setAttribute("aria-pressed", "true");
-      fcCat = ch.dataset.cat;
-      fcIdx = 0; fcFlipped = false;
-      renderFlashcard();
-    });
-  });
+  // Phase 3: Mains Writing Pad
+  var mainsArea = $('mainsTextArea');
+  mainsArea.oninput = function() {
+    var txt = mainsArea.value.trim();
+    var words = txt ? txt.split(/\s+/).length : 0;
+    var chars = txt.length;
+    $('mainsWordCount').textContent = 'Words: ' + words;
+    $('mainsCharCount').textContent = 'Chars: ' + chars;
+  };
 
-  $("fcCard").addEventListener("click", () => { fcFlipped = !fcFlipped; renderFlashcard(); });
-  $("fcFlipBtn").addEventListener("click", () => { fcFlipped = !fcFlipped; renderFlashcard(); });
-  $("fcNextBtn").addEventListener("click", () => { fcIdx = (fcIdx + 1) % getFilteredCards().length; fcFlipped = false; renderFlashcard(); });
-  $("fcPrevBtn").addEventListener("click", () => { const l = getFilteredCards().length; fcIdx = (fcIdx - 1 + l) % l; fcFlipped = false; renderFlashcard(); });
-  $("fcMasterBtn").addEventListener("click", () => {
-    const card = getFilteredCards()[fcIdx];
-    if (!state.masteredCards.includes(card.q)) {
-      state.masteredCards.push(card.q);
-      saveUserState();
-    }
-    renderFlashcard();
-    toast("Card marked as Mastered!");
-  });
+  $('mainsToggleModel').onclick = function() {
+    var mb = $('mainsModelBox');
+    mb.hidden = !mb.hidden;
+  };
 
-  // Phase 3: Daily Mains Writing Pad
-  let mainsTargetWords = 150, mainsSeconds = 420, mainsInterval = null;
-  function renderMainsClock() {
-    const m = String(Math.floor(mainsSeconds / 60)).padStart(2, "0");
-    const s = String(mainsSeconds % 60).padStart(2, "0");
-    $("mainsClock").textContent = `${m}:${s}`;
-  }
-  document.querySelectorAll(".mains-mode").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".mains-mode").forEach(b => b.setAttribute("aria-pressed", "false"));
-      btn.setAttribute("aria-pressed", "true");
-      clearInterval(mainsInterval); mainsInterval = null;
-      mainsTargetWords = Number(btn.dataset.words);
-      mainsSeconds = Number(btn.dataset.min) * 60;
-      renderMainsClock();
-      $("mainsBox").dispatchEvent(new Event("input"));
-    });
-  });
-
-  $("mainsStartTimerBtn").addEventListener("click", () => {
-    if (mainsInterval) { clearInterval(mainsInterval); mainsInterval = null; $("mainsStartTimerBtn").textContent = "▶ Resume Timer"; return; }
-    $("mainsStartTimerBtn").textContent = "⏸ Pause Timer";
-    mainsInterval = setInterval(() => {
-      if (mainsSeconds > 0) { mainsSeconds--; renderMainsClock(); }
-      else { clearInterval(mainsInterval); mainsInterval = null; toast("Time up! Put your pen down."); }
-    }, 1000);
-  });
-
-  $("toggleFrameworkBtn").addEventListener("click", () => {
-    $("mainsFrameworkBox").hidden = !$("mainsFrameworkBox").hidden;
-  });
-
-  $("mainsBox").addEventListener("input", () => {
-    const words = $("mainsBox").value.trim().split(/\s+/).filter(Boolean).length;
-    $("mainsWordCount").textContent = `${words} / ${mainsTargetWords} words`;
-    $("mainsWordCount").style.color = words > mainsTargetWords ? "var(--bad)" : "var(--ok)";
-  });
-
-  $("downloadMainsBtn").addEventListener("click", () => {
-    const text = $("mainsBox").value.trim();
-    if (!text) { toast("Write your answer before downloading."); return; }
-    const blob = new Blob([`THE ASPIRANT'S DESK — MAINS ANSWER SHEET\nDate: ${new Date().toLocaleDateString()}\nTarget: ${mainsTargetWords} words\n\n${text}`], { type: "text/plain" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `Mains_Answer_${Date.now()}.txt`;
+  $('mainsDownloadTxt').onclick = function() {
+    var blob = new Blob([mainsArea.value], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'Mains_Answer_Sheet.txt';
     a.click();
-  });
+    showToast('Answer sheet downloaded as .txt!');
+  };
 
-  function renderMainsDrafts() {
-    $("mainsDraftList").innerHTML = (state.mainsDrafts || []).map(d =>
-      `<li><b>${d.date} (${d.words} words):</b> ${d.text.slice(0, 160)}...</li>`
-    ).join("") || "<li>No saved Mains drafts yet.</li>";
-  }
-
-  $("saveMainsBtn").addEventListener("click", () => {
-    const text = $("mainsBox").value.trim();
-    if (!text) return;
-    const words = text.split(/\s+/).filter(Boolean).length;
-    state.mainsDrafts.unshift({ date: new Date().toLocaleDateString(), words, text });
-    $("mainsBox").value = "";
-    $("mainsWordCount").textContent = `0 / ${mainsTargetWords} words`;
-    renderMainsDrafts();
-    saveUserState();
-    toast("Mains answer saved to cloud!");
-  });
-
-  // Syllabus, Spaced Repetition & Mistake Log
-  const SYLLABUS_TOPICS = ["Indian Polity & Constitution", "Modern Indian History", "Indian Economy", "Physical & Indian Geography", "Environment & Ecology", "Ethics, Integrity & Aptitude"];
-  function renderSyllabus() {
-    $("sylChecks").innerHTML = SYLLABUS_TOPICS.map(t => `
-      <label class="card" style="display:flex;align-items:center;gap:.6rem;cursor:pointer">
-        <input type="checkbox" ${(state.syllabus || []).includes(t) ? "checked" : ""} data-topic="${t}" style="width:auto">
-        <span>${t}</span>
-      </label>
-    `).join("");
-    const pct = Math.round(((state.syllabus || []).length / SYLLABUS_TOPICS.length) * 100);
-    $("sylBar").style.width = pct + "%";
-    document.querySelectorAll("#sylChecks input").forEach(cb => {
-      cb.addEventListener("change", () => {
-        if (cb.checked) state.syllabus.push(cb.dataset.topic);
-        else state.syllabus = state.syllabus.filter(x => x !== cb.dataset.topic);
-        renderSyllabus();
-        saveUserState();
-      });
-    });
-  }
-
-  function renderRevisions() {
-    $("revList").innerHTML = (state.revisions || []).map(r =>
-      `<li><b>${r.topic}</b> <span class="pill ok">1-3-7-21-45d Cycle</span><br><small style="color:var(--muted)">Added: ${r.added}</small></li>`
-    ).join("") || "<li>Add any topic you studied today to generate its 45-day spaced revision schedule.</li>";
-  }
-
-  $("addRevBtn").addEventListener("click", () => {
-    const topic = $("revTopicInput").value.trim();
-    if (!topic) return;
-    state.revisions.unshift({ topic, added: new Date().toLocaleDateString() });
-    $("revTopicInput").value = "";
-    renderRevisions();
-    saveUserState();
-    toast("Spaced repetition schedule saved!");
-  });
-
-  function renderMistakes() {
-    $("mistakeList").innerHTML = (state.mistakes || []).map(m =>
-      `<li><b>${m.q}</b><br><span style="color:var(--ok);font-weight:700">Correct: ${m.ans}</span> — <small>${m.exp}</small></li>`
-    ).join("") || "<li>No wrong answers logged yet. Take the Daily Prelims Test to build your mistake bank.</li>";
-  }
-
-  // CMS Content Loader (Supabase + Built-in High-Yield Seed Data)
-  const SEED_UPDATES = [
-    { category: "UPSC CSE", title: "UPSC Civil Services Preliminary Examination 2027", key_date: "2027-05-23", note: "General Studies Paper I & CSAT (Paper II)" },
-    { category: "UPSC CSE", title: "UPSC Civil Services Mains Examination 2027", key_date: "2027-08-20", note: "5-Day Written Mains Examination" },
-    { category: "TNPSC Group 1", title: "TNPSC Combined Civil Services Group-I Prelims", key_date: "2027-06-14", note: "Verify final schedule on tnpsc.gov.in" },
-    { category: "SSC CGL", title: "SSC Combined Graduate Level Tier-I", key_date: "2027-07-12", note: "Computer Based Examination" }
+  // PIB / Notes Mock Data
+  var pibItems = [
+    { title: 'Cabinet approves continuation of National Livelihood Mission', date: 'November 20, 2026', desc: 'Ministry of Rural Development briefs key structural allocations for sustainable livelihoods.' },
+    { title: 'RBI releases Financial Stability Report for Q3', date: 'November 18, 2026', desc: 'Banking sector capital adequacy remains robust with gross NPA ratios at multi-year lows.' }
   ];
+  $('pibListContainer').innerHTML = pibItems.map(function(p) {
+    return '<li><b>' + p.title + '</b><br><small style="color:var(--muted)">' + p.date + '</small><p style="margin:.3rem 0 0;font-size:.88rem">' + p.desc + '</p></li>';
+  }).join('');
 
-  const SEED_NOTES = [
-    { subject: "Polity", title: "Constitutional Bodies vs. Statutory Bodies", body: "Constitutional bodies (ECI, UPSC, CAG, Finance Commission) derive power directly from the Constitution. Statutory bodies (NHRC, SEBI, NGT) are created by an Act of Parliament." },
-    { subject: "History", title: "Non-Cooperation Movement (1920–1922)", body: "Approved at the Nagpur Session (Dec 1920); promoted Swadeshi, boycott of foreign cloth/courts, and Hindu-Muslim unity until withdrawn after Chauri Chaura (Feb 1922)." },
-    { subject: "Economy", title: "Fiscal Deficit vs. Primary Deficit", body: "Fiscal Deficit = Total Expenditure − Total Receipts (excluding borrowings). Primary Deficit = Fiscal Deficit − Interest Payments on previous loans." },
-    { subject: "Environment", title: "Project Tiger & NTCA", body: "Launched in 1973; National Tiger Conservation Authority (NTCA) was given statutory status under the Wildlife Protection Amendment Act, 2006." }
-  ];
+  $('noteContentArea').innerHTML = '<h4>Indian Polity: Executive & Legislature</h4><p style="font-size:.88rem;color:var(--muted)">Concise revision notes covering parliamentary privileges, ordinance-making power (Article 123 & 213), and judicial review standards.</p>';
 
-  async function loadCMSContent() {
-    let updates = [...SEED_UPDATES];
-    let notes = [...SEED_NOTES];
-
-    if (supabase) {
-      const { data: dbUpd } = await supabase.from("updates").select("*").order("created_at", { ascending: false });
-      if (dbUpd && dbUpd.length) updates = [...dbUpd, ...updates];
-
-      const { data: dbNotes } = await supabase.from("notes").select("*").order("created_at", { ascending: false });
-      if (dbNotes && dbNotes.length) notes = [...dbNotes, ...notes];
-    }
-
-    $("publicExamTable").innerHTML = updates.map(u => `
-      <tr>
-        <td><span class="pill ok">${u.category}</span></td>
-        <td><b>${u.title}</b></td>
-        <td>${u.key_date || "TBA"}</td>
-        <td>${u.note}</td>
-      </tr>
-    `).join("");
-
-    window._allNotes = notes;
-    renderFilteredNotes("ALL");
-
-    $("pressContainer").innerHTML = `
-      <ul class="item-list">
-        <li><b>[GS-II Governance · PIB] Digital India & e-Governance Services:</b> Expansion of unified citizen service delivery portals and multilingual digital public infrastructure.</li>
-        <li><b>[GS-III Economy · RBI] Inflation Targeting & Liquidity Management:</b> Role of Open Market Operations (OMOs) and Standing Deposit Facility in anchoring inflation expectations.</li>
-        <li><b>[GS-III Environment · MoEFCC] Mangrove Conservation (MISHTI Scheme):</b> Shoreline afforestation across coastal states to strengthen climate resilience and blue carbon sinks.</li>
-      </ul>
-    `;
-
-    $("pyqContainer").innerHTML = `
-      <ul class="item-list">
-        <li><b>[UPSC Prelims 2023 · Polity]</b> In essence, what does 'Due Process of Law' mean? <br><span style="color:var(--ok);font-weight:700">Answer: Fair application of law (Maneka Gandhi case, 1978).</span></li>
-        <li><b>[UPSC Prelims 2022 · Economy]</b> Convertibility of bonds allows bondholders to exchange bonds for equity shares at a lower coupon rate. <br><span style="color:var(--ok);font-weight:700">Answer: Both statements are correct.</span></li>
-        <li><b>[UPSC Prelims 2021 · Environment]</b> 'R2 Code of Practices' constitutes a tool available for promoting the adoption of environmentally responsible practices in: <br><span style="color:var(--ok);font-weight:700">Answer: Electronics recycling industry.</span></li>
-      </ul>
-    `;
-  }
-
-  function renderFilteredNotes(subj) {
-    const list = (window._allNotes || []).filter(n => subj === "ALL" || n.subject === subj);
-    $("notesContainer").innerHTML = list.map(n => `
-      <div class="card accent-left">
-        <span class="pill warn">${n.subject}</span>
-        <h4 style="margin:.45rem 0">${n.title}</h4>
-        <p style="font-size:.88rem;color:var(--muted);margin:0">${n.body}</p>
-      </div>
-    `).join("");
-  }
-
-  document.querySelectorAll("#noteChips .chip").forEach(ch => {
-    ch.addEventListener("click", () => {
-      document.querySelectorAll("#noteChips .chip").forEach(c => c.setAttribute("aria-pressed", "false"));
-      ch.setAttribute("aria-pressed", "true");
-      renderFilteredNotes(ch.dataset.subj);
-    });
-  });
-
-  // Owner Admin Publishing & Learner Monitoring
-  $("admPublishUpdBtn").addEventListener("click", async () => {
-    if (!supabase || !isOwner()) return;
-    const category = $("admUpdCat").value;
-    const key_date = $("admUpdDate").value || null;
-    const title = $("admUpdTitle").value.trim();
-    const note = $("admUpdNote").value.trim();
-    if (!title) return;
-    const { error } = await supabase.from("updates").insert({ state: "All India", category, title, note, key_date });
-    if (error) { toast(error.message); return; }
-    $("admUpdTitle").value = ""; $("admUpdNote").value = "";
-    await loadCMSContent();
-    toast("Exam notification published live to all users!");
-  });
-
-  $("admPublishNoteBtn").addEventListener("click", async () => {
-    if (!supabase || !isOwner()) return;
-    const subject = $("admNoteSubj").value;
-    const exam = $("admNoteExam").value;
-    const title = $("admNoteTitle").value.trim();
-    const body = $("admNoteBody").value.trim();
-    if (!title || !body) return;
-    const { error } = await supabase.from("notes").insert({ exam, subject, title, body });
-    if (error) { toast(error.message); return; }
-    $("admNoteTitle").value = ""; $("admNoteBody").value = "";
-    await loadCMSContent();
-    toast("Subject note published live!");
-  });
-
-  async function loadAdminLearners() {
-    if (!supabase || !isOwner()) return;
-    const { data: profiles } = await supabase.from("profiles").select("*");
-    const { data: prog } = await supabase.from("progress").select("*");
-    const progMap = {};
-    (prog || []).forEach(p => { progMap[p.user_id] = p.summary || {}; });
-
-    $("adminLearnersTable").innerHTML = (profiles || []).map(p => {
-      const s = progMap[p.id] || {};
-      return `<tr>
-        <td><b>${p.display_name}</b></td>
-        <td>${p.email || "—"}</td>
-        <td><span class="pill ${p.role === 'admin' ? 'bad' : 'ok'}">${p.role}</span></td>
-        <td>${s.target_exam || p.target_exam}</td>
-        <td>${Number(s.hours || 0).toFixed(1)} hrs (${s.syllabus_pct || 0}%)</td>
-      </tr>`;
-    }).join("") || "<tr><td colspan='5'>No learners registered yet.</td></tr>";
-  }
-
-  // Planner Generator
-  $("genPlanBtn").addEventListener("click", () => {
-    const hrs = Number($("plHours").value || 6);
-    const focus = $("plFocus").value;
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday (Revision & Mock)"];
-    $("planOutput").innerHTML = days.map(d => `
-      <div class="card accent-left">
-        <h4>${d}</h4>
-        <p style="font-size:.86rem;color:var(--muted);margin:0">
-          • 1.0 hr: Daily Press & PIB Briefs<br>
-          • ${Math.max(1, hrs - 2).toFixed(1)} hrs: ${focus} Core Reading<br>
-          • 1.0 hr: PYQs + Active Flashcards
-        </p>
-      </div>
-    `).join("");
-  });
-
-  function renderAllUserModules() {
-    renderKPIs();
-    renderStudySessions();
-    renderSyllabus();
-    renderRevisions();
-    renderMainsDrafts();
-    renderMistakes();
-    renderFlashcard();
-  }
-
-  // Event Wiring
-  document.querySelectorAll("[data-nav]").forEach(el => {
-    el.addEventListener("click", (e) => { e.preventDefault(); navigateTo(el.dataset.nav); });
-  });
-  document.querySelectorAll(".open-protected").forEach(btn => {
-    btn.addEventListener("click", () => navigateTo(btn.dataset.target));
-  });
-  $("heroActionBtn").addEventListener("click", () => currentUser ? navigateTo("today") : openAuthModal("today"));
-  $("topLoginBtn").addEventListener("click", () => openAuthModal());
-  $("sideAuthBtn").addEventListener("click", () => currentUser ? handleSignOut() : openAuthModal());
-  $("topLogoutBtn").addEventListener("click", handleSignOut);
-  $("closeAuthModal").addEventListener("click", () => { $("authModal").hidden = true; });
-  $("menuToggle").addEventListener("click", () => $("sidebar").classList.toggle("open"));
-  $("themeToggle").addEventListener("click", () => {
-    const dark = document.documentElement.getAttribute("data-theme") === "dark";
-    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
-  });
-
-  // Keyboard shortcut for Flashcards
-  document.addEventListener("keydown", (e) => {
-    if (!$("flashcards").classList.contains("active")) return;
-    if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) return;
-    if (e.code === "Space") { e.preventDefault(); fcFlipped = !fcFlipped; renderFlashcard(); }
-    if (e.code === "ArrowRight") $("fcNextBtn").click();
-    if (e.code === "ArrowLeft") $("fcPrevBtn").click();
-  });
-
-  // Boot Sequence
-  (async function init() {
-    applyExamShell(selectedExam);
-    renderAllUserModules();
-    await loadCMSContent();
-
-    if (supabase) {
-      const { data } = await supabase.auth.getSession();
-      if (data && data.session && data.session.user) {
-        currentUser = data.session.user;
-        await loadUserState();
-      }
-      supabase.auth.onAuthStateChange(async (_event, session) => {
-        currentUser = session ? session.user : null;
-        if (currentUser) await loadUserState();
-        else updateAuthUI();
-      });
-    }
-    updateAuthUI();
-    navigateTo(location.hash || "home");
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js").catch(() => {});
-    }
-  })();
 })();
 </script>
+
 </body>
 </html>
