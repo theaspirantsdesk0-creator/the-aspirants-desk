@@ -5,7 +5,7 @@ var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.
 /* Files that must never be served stale: config (keys), and data feeds. */
 function isFresh(url) {
   var p = new URL(url).pathname;
-  return /\/config\.js$/.test(p) || /\/data\/[^/]+\.json$/.test(p) || /\/sw\.js$/.test(p);
+  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) || /\/sw\.js$/.test(p);
 }
 
 self.addEventListener('install', function (event) {
