@@ -1,0 +1,114 @@
+[
+ {
+  "id": "csat-0001",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "What is 20 percent of 250?",
+  "a": "50",
+  "w": [
+   "40",
+   "25",
+   "60"
+  ],
+  "e": "20 percent is 1/5, and 250/5 = 50.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0002",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "What is the average of 10, 20, 30 and 40?",
+  "a": "25",
+  "w": [
+   "30",
+   "20",
+   "35"
+  ],
+  "e": "The sum is 100, and 100/4 = 25.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0003",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "A 100 m train at 36 km/h crosses a pole in:",
+  "a": "10 seconds",
+  "w": [
+   "36 seconds",
+   "5 seconds",
+   "20 seconds"
+  ],
+  "e": "36 km/h = 10 m/s, so the time is 100/10 = 10 seconds.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0004",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "Find the next term: 2, 6, 12, 20, 30, ?",
+  "a": "42",
+  "w": [
+   "40",
+   "36",
+   "44"
+  ],
+  "e": "The differences are 4, 6, 8, 10, so the next difference is 12, giving 42.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0005",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "Two numbers are in the ratio 2 : 3 and add up to 50. The smaller is:",
+  "a": "20",
+  "w": [
+   "30",
+   "25",
+   "15"
+  ],
+  "e": "Five parts equal 50, so one part is 10 and the smaller number is 20.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0006",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "Simple interest on 1000 at 5 percent a year for 2 years is:",
+  "a": "100",
+  "w": [
+   "50",
+   "110",
+   "105"
+  ],
+  "e": "SI = 1000 x 5 x 2 / 100 = 100.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0007",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "Speed of 72 kmph in metres per second is",
+  "a": "20",
+  "w": [
+   "18",
+   "25",
+   "15"
+  ],
+  "e": "72 x 5/18 = 20 m/s.",
+  "status": "published"
+ },
+ {
+  "id": "csat-0008",
+  "subject": "CSAT",
+  "difficulty": "medium",
+  "q": "A man goes 60 kmph one way and returns at 40 kmph. Average speed is",
+  "a": "48 kmph",
+  "w": [
+   "50 kmph",
+   "45 kmph",
+   "52 kmph"
+  ],
+  "e": "2 x 60 x 40 / 100 = 48 kmph.",
+  "status": "published"
+ }
+]

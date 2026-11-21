@@ -1,0 +1,114 @@
+[
+ {
+  "id": "indian-society-0001",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "The Census of India is held every:",
+  "a": "10 years",
+  "w": [
+   "5 years",
+   "7 years",
+   "15 years"
+  ],
+  "e": "The decennial Census began in 1881.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0002",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which Article protects the cultural rights of minorities?",
+  "a": "Article 29",
+  "w": [
+   "Article 14",
+   "Article 19",
+   "Article 32"
+  ],
+  "e": "Articles 29 and 30 protect minority culture and educational institutions.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0003",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "The Protection of Civil Rights Act, 1955 deals with:",
+  "a": "Untouchability",
+  "w": [
+   "Dowry",
+   "Child marriage",
+   "Domestic violence"
+  ],
+  "e": "It prescribes punishment for practising untouchability.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0004",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Sex ratio is the number of:",
+  "a": "Females per 1000 males",
+  "w": [
+   "Males per 1000 females",
+   "Births per 1000 people",
+   "Literate females per 1000"
+  ],
+  "e": "Census 2011 recorded 943 females per 1000 males.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0005",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "The term Sanskritisation was coined by:",
+  "a": "M N Srinivas",
+  "w": [
+   "G S Ghurye",
+   "A R Desai",
+   "Irawati Karve"
+  ],
+  "e": "Srinivas used it for lower groups adopting upper-caste customs.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0006",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "The Protection of Women from Domestic Violence Act was passed in:",
+  "a": "2005",
+  "w": [
+   "1995",
+   "2013",
+   "1986"
+  ],
+  "e": "It gives civil remedies such as protection orders and residence rights.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0007",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "The replacement level Total Fertility Rate is",
+  "a": "2.1",
+  "w": [
+   "1.5",
+   "3.0",
+   "2.5"
+  ],
+  "e": "At about 2.1 children per woman, a population replaces itself.",
+  "status": "published"
+ },
+ {
+  "id": "indian-society-0008",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "India's sex ratio in Census 2011 was",
+  "a": "943",
+  "w": [
+   "940",
+   "933",
+   "919"
+  ],
+  "e": "943 females per 1000 males; 919 is the child sex ratio.",
+  "status": "published"
+ }
+]

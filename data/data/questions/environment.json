@@ -1,0 +1,226 @@
+[
+ {
+  "id": "environment-0001",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Ramsar Convention is about:",
+  "a": "Wetlands",
+  "w": [
+   "Ozone layer",
+   "Desertification",
+   "Whales"
+  ],
+  "e": "The Ramsar Convention was signed in 1971 to protect wetlands.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0002",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Montreal Protocol deals with:",
+  "a": "Ozone-depleting substances",
+  "w": [
+   "Carbon trading",
+   "Biodiversity",
+   "Plastic waste"
+  ],
+  "e": "It was agreed in 1987 to phase out CFCs and related chemicals.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0003",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "Project Tiger was launched in:",
+  "a": "1973",
+  "w": [
+   "1972",
+   "1980",
+   "1992"
+  ],
+  "e": "It was launched in 1973 and is run by the National Tiger Conservation Authority.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0004",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Kyoto Protocol is about:",
+  "a": "Cutting greenhouse gas emissions",
+  "w": [
+   "Ozone depletion",
+   "Wetlands",
+   "Whale hunting"
+  ],
+  "e": "It was adopted in 1997 and set binding emission targets for developed countries.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0005",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "India's first national park, set up in 1936, is:",
+  "a": "Jim Corbett National Park",
+  "w": [
+   "Kaziranga",
+   "Bandipur",
+   "Gir"
+  ],
+  "e": "It was set up as Hailey National Park in present-day Uttarakhand.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0006",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Wildlife (Protection) Act was passed in:",
+  "a": "1972",
+  "w": [
+   "1986",
+   "1980",
+   "1992"
+  ],
+  "e": "It created the schedules of protected species and the sanctuary system.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0007",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "Biosphere reserves are designated under UNESCO's:",
+  "a": "Man and the Biosphere Programme",
+  "w": [
+   "Ramsar Convention",
+   "CITES",
+   "Convention on Biological Diversity"
+  ],
+  "e": "The Nilgiri was India's first biosphere reserve, in 1986.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0008",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Chipko Movement was started to protect:",
+  "a": "Trees",
+  "w": [
+   "Rivers",
+   "Tigers",
+   "Wetlands"
+  ],
+  "e": "It began in 1973 in Uttarakhand, where villagers hugged trees to stop felling.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0009",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Wildlife (Protection) Act was passed in:",
+  "a": "1972",
+  "w": [
+   "1986",
+   "1980",
+   "2002"
+  ],
+  "e": "It created schedules of protected species and the sanctuary system.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0010",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "Which gas is the main cause of global warming?",
+  "a": "Carbon dioxide",
+  "w": [
+   "Oxygen",
+   "Nitrogen",
+   "Argon"
+  ],
+  "e": "Carbon dioxide from fossil fuels is the largest contributor; methane is more potent per molecule.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0011",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Kyoto Protocol deals with:",
+  "a": "Greenhouse gas emission cuts",
+  "w": [
+   "Wetland protection",
+   "Ozone-depleting substances",
+   "Trade in wildlife"
+  ],
+  "e": "It set binding emission targets for developed countries.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0012",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "India's first National Park, set up in 1936, is:",
+  "a": "Jim Corbett National Park",
+  "w": [
+   "Kaziranga",
+   "Bandipur",
+   "Gir"
+  ],
+  "e": "It was first called Hailey National Park.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0013",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Paris Agreement was adopted at which COP?",
+  "a": "COP21",
+  "w": [
+   "COP3",
+   "COP26",
+   "COP15"
+  ],
+  "e": "COP21 was held in Paris in 2015.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0014",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "India has announced a net zero target for the year",
+  "a": "2070",
+  "w": [
+   "2050",
+   "2060",
+   "2040"
+  ],
+  "e": "The 2070 target was announced at COP26 in Glasgow.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0015",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "The Kigali Amendment deals with",
+  "a": "Hydrofluorocarbons",
+  "w": [
+   "Ozone-depleting CFCs",
+   "Biodiversity",
+   "Desertification"
+  ],
+  "e": "Kigali (2016) amended the Montreal Protocol to phase down HFCs.",
+  "status": "published"
+ },
+ {
+  "id": "environment-0016",
+  "subject": "Environment",
+  "difficulty": "medium",
+  "q": "Which treaty is the parent treaty of the Paris Agreement?",
+  "a": "UNFCCC",
+  "w": [
+   "Kyoto Protocol",
+   "CBD",
+   "Ramsar Convention"
+  ],
+  "e": "The UNFCCC was adopted in 1992.",
+  "status": "published"
+ }
+]
