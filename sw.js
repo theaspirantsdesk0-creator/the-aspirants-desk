@@ -1,11 +1,11 @@
 /* The Aspirant's Desk service worker — offline shell and Web Push. */
-var VERSION = 'desk-v4-stage4';
+var VERSION = 'desk-v5-push';
 var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
 
 /* Files that must never be served stale: config (keys), and data feeds. */
 function isFresh(url) {
   var p = new URL(url).pathname;
-  return /\/config\.js$/.test(p) || /\/data\/[^/]+\.json$/.test(p) || /\/sw\.js$/.test(p);
+  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) || /\/sw\.js$/.test(p);
 }
 
 self.addEventListener('install', function (event) {

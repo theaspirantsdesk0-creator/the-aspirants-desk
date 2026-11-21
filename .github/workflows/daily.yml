@@ -2,6 +2,8 @@
 name: Daily content check and update
 
 on:
+  schedule:
+    - cron: "0 14 * * *" # 19:30 IST daily
   workflow_dispatch:
 
 permissions:

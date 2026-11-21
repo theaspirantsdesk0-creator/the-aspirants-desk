@@ -1,0 +1,610 @@
+[
+ {
+  "id": "indian-society-b2-001",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What does the term 'demographic dividend' describe?",
+  "a": "Potential economic benefit from a large working-age population",
+  "w": [
+   "A permanent fall in population",
+   "An increase only in the elderly population",
+   "A rise in infant mortality"
+  ],
+  "e": "A higher share of working-age people can support growth if education, health and jobs are available.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-002",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which indicator is commonly used to measure the average number of children born to a woman?",
+  "a": "Total fertility rate",
+  "w": [
+   "Infant mortality rate",
+   "Maternal mortality ratio",
+   "Dependency ratio"
+  ],
+  "e": "The total fertility rate estimates the average number of children a woman would have under current age-specific fertility rates.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-003",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What is social stratification?",
+  "a": "Structured inequalities between groups in a society",
+  "w": [
+   "Movement of people between countries",
+   "A method of crop rotation",
+   "A form of local self-government"
+  ],
+  "e": "Social stratification refers to patterned social inequalities, often based on class, caste, gender or status.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-004",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which concept refers to the process through which individuals learn society's norms and values?",
+  "a": "Socialisation",
+  "w": [
+   "Urbanisation",
+   "Industrialisation",
+   "Globalisation"
+  ],
+  "e": "Socialisation is the lifelong process of learning social norms, roles and values.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-005",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What is meant by urbanisation?",
+  "a": "Increasing share of a population living in urban areas",
+  "w": [
+   "Decline in the number of towns",
+   "Movement only from one country to another",
+   "Replacement of all villages by forests"
+  ],
+  "e": "Urbanisation refers to growth in the proportion of people living in urban settlements.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-006",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which constitutional article prohibits discrimination on grounds of religion, race, caste, sex or place of birth in specified contexts?",
+  "a": "Article 15",
+  "w": [
+   "Article 19",
+   "Article 25",
+   "Article 32"
+  ],
+  "e": "Article 15 prohibits specified forms of discrimination by the State and addresses access to certain public spaces.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-008",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What is the main purpose of affirmative action policies?",
+  "a": "Address historical and structural disadvantage",
+  "w": [
+   "Guarantee identical outcomes in every occupation",
+   "Remove all forms of social identity",
+   "Replace universal education"
+  ],
+  "e": "Affirmative action seeks to improve access and representation for disadvantaged groups.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-009",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which term describes a family consisting of parents and their unmarried children?",
+  "a": "Nuclear family",
+  "w": [
+   "Joint family",
+   "Lineage group",
+   "Clan federation"
+  ],
+  "e": "A nuclear family commonly consists of a couple and their dependent or unmarried children.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-010",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What is intergenerational mobility?",
+  "a": "Change in social or economic position across generations",
+  "w": [
+   "Movement between two cities in one year",
+   "Change in climate across decades",
+   "Transfer of employees between departments"
+  ],
+  "e": "Intergenerational mobility compares the status or position of children with that of their parents.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-011",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which of the following is a feature of a patriarchal social structure?",
+  "a": "Men hold disproportionate power and authority",
+  "w": [
+   "All family decisions are made by children",
+   "Gender roles are entirely absent",
+   "Women control every formal institution"
+  ],
+  "e": "Patriarchy refers to social systems in which men generally hold dominant power.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-012",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What does 'intersectionality' examine?",
+  "a": "How multiple forms of disadvantage can overlap and interact",
+  "w": [
+   "Only differences between rural and urban rainfall",
+   "The geometry of road intersections",
+   "A single cause of all social change"
+  ],
+  "e": "Intersectionality analyses how categories such as caste, gender and class interact in shaping experience.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-013",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "Which body conducts the decennial Population Census in India under the administrative framework of the Union Government?",
+  "a": "Office of the Registrar General and Census Commissioner, India",
+  "w": [
+   "Election Commission of India",
+   "National Green Tribunal",
+   "Finance Commission"
+  ],
+  "e": "The Registrar General and Census Commissioner is responsible for the Census of India.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-014",
+  "subject": "Indian society",
+  "difficulty": "easy",
+  "q": "What is the principal objective of the Protection of Women from Domestic Violence Act, 2005?",
+  "a": "Provide civil remedies and protection to women facing domestic violence",
+  "w": [
+   "Regulate marriage registration only",
+   "Create a separate criminal court for every district",
+   "Deal exclusively with workplace harassment"
+  ],
+  "e": "The Act provides protection orders, residence-related relief and other civil remedies.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-015",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which law in India addresses sexual harassment of women at their workplace?",
+  "a": "Sexual Harassment of Women at Workplace Act, 2013",
+  "w": [
+   "Dowry Prohibition Act, 1961",
+   "Child Marriage Restraint Act, 1929",
+   "Maternity Benefit Act, 1961"
+  ],
+  "e": "The 2013 law provides a framework for prevention, prohibition and redressal of workplace sexual harassment.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-016",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What is the central idea of the sociological concept of 'Sanskritisation' associated with M. N. Srinivas?",
+  "a": "A lower-status group adopts practices of a higher-status group to seek upward mobility",
+  "w": [
+   "A society abandons all religious practices",
+   "A village becomes a metropolitan city",
+   "A community shifts from agriculture to industry only"
+  ],
+  "e": "Srinivas used the term to describe a process of social mobility through adoption of practices associated with higher-status groups.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-017",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What does 'Westernisation' mean in M. N. Srinivas's sociological framework?",
+  "a": "Changes associated with contact with Western institutions, ideas and technology",
+  "w": [
+   "The spread of only western clothing",
+   "A decline in all forms of education",
+   "Migration from eastern to western India"
+  ],
+  "e": "Srinivas used Westernisation to describe broad changes linked to British rule and Western influence.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-018",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which constitutional provision directs the State to promote the educational and economic interests of weaker sections, especially Scheduled Castes and Scheduled Tribes?",
+  "a": "Article 46",
+  "w": [
+   "Article 44",
+   "Article 51A",
+   "Article 243G"
+  ],
+  "e": "Article 46 is a Directive Principle concerning the educational and economic interests of weaker sections.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-019",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What is the main function of the National Commission for Scheduled Castes?",
+  "a": "Investigate and monitor safeguards for Scheduled Castes",
+  "w": [
+   "Conduct national elections",
+   "Prepare the Union Budget",
+   "Regulate private universities only"
+  ],
+  "e": "The constitutional commission monitors safeguards and investigates complaints relating to Scheduled Castes.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-020",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which term refers to the movement of people from rural areas to towns and cities?",
+  "a": "Rural-to-urban migration",
+  "w": [
+   "Circular economy",
+   "Natural increase",
+   "Suburbanisation only"
+  ],
+  "e": "Rural-to-urban migration is movement from villages or rural areas to urban settlements.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-021",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What is meant by the 'dependency ratio'?",
+  "a": "Ratio of dependants to the working-age population",
+  "w": [
+   "Ratio of exports to imports",
+   "Ratio of urban to rural land area",
+   "Ratio of births to deaths only"
+  ],
+  "e": "The dependency ratio compares the population typically outside working ages with the working-age population.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-022",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which of the following is generally considered a social determinant of health?",
+  "a": "Education and living conditions",
+  "w": [
+   "Blood group alone",
+   "Eye colour",
+   "Fingerprint pattern"
+  ],
+  "e": "Social determinants include the conditions in which people are born, grow, live, work and age.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-023",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What is the principal objective of the Right of Children to Free and Compulsory Education Act, 2009?",
+  "a": "Provide free and compulsory elementary education to children aged 6 to 14",
+  "w": [
+   "Provide free university education to all adults",
+   "Regulate only private coaching centres",
+   "Make secondary education compulsory for all age groups"
+  ],
+  "e": "The RTE Act operationalises the constitutional right to elementary education for children aged 6–14.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-025",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What does 'ageing population' mean?",
+  "a": "A rising proportion of older persons in the population",
+  "w": [
+   "A rise in the average age of buildings",
+   "A decline in life expectancy in every group",
+   "A population consisting only of working-age adults"
+  ],
+  "e": "An ageing population has a growing share of older people, often due to longer life expectancy and lower fertility.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-026",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which concept describes prejudice or discrimination based on a person's age?",
+  "a": "Ageism",
+  "w": [
+   "Casteism",
+   "Linguism",
+   "Regionalism"
+  ],
+  "e": "Ageism involves stereotypes, prejudice or discrimination based on age.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-027",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "What is the principal purpose of self-help groups in rural development?",
+  "a": "Enable members to save, access credit and undertake collective activities",
+  "w": [
+   "Replace elected local governments",
+   "Provide only large corporate loans",
+   "Control all agricultural prices"
+  ],
+  "e": "SHGs promote savings, mutual support, financial inclusion and collective action.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-028",
+  "subject": "Indian society",
+  "difficulty": "medium",
+  "q": "Which institution is primarily responsible for promoting financial inclusion through banking and rural development initiatives in India?",
+  "a": "NABARD",
+  "w": [
+   "SEBI",
+   "TRAI",
+   "UGC"
+  ],
+  "e": "NABARD supports agriculture and rural development, including rural financial institutions and inclusion initiatives.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-029",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is 'social capital' in sociology?",
+  "a": "Resources available through social networks, trust and shared norms",
+  "w": [
+   "Only the financial assets owned by a company",
+   "The total number of buildings in a city",
+   "The money held by a central bank"
+  ],
+  "e": "Social capital refers to resources and cooperation facilitated by relationships, networks and trust.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-030",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which term describes discrimination against a person because of their caste?",
+  "a": "Caste-based discrimination",
+  "w": [
+   "Linguistic assimilation",
+   "Secularisation",
+   "Occupational mobility"
+  ],
+  "e": "Caste-based discrimination involves unequal treatment or exclusion linked to caste identity.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-031",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is the main aim of the Prohibition of Child Marriage Act, 2006?",
+  "a": "Prevent child marriages and provide legal remedies",
+  "w": [
+   "Regulate inter-state migration",
+   "Set the minimum retirement age",
+   "Provide free housing to all newly married couples"
+  ],
+  "e": "The Act prohibits child marriage and provides mechanisms for prevention and relief.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-032",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is meant by 'communalism' in the Indian social context?",
+  "a": "Political mobilisation around religious identity in ways that foster antagonism",
+  "w": [
+   "The peaceful practice of multiple religions",
+   "A system of village-level cooperative farming",
+   "A policy of linguistic federalism"
+  ],
+  "e": "Communalism treats religious communities as political blocs and can promote hostility between them.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-033",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which constitutional article protects the interests of minorities in conserving their language, script and culture?",
+  "a": "Article 29",
+  "w": [
+   "Article 16",
+   "Article 23",
+   "Article 300A"
+  ],
+  "e": "Article 29 protects the interests of sections of citizens with a distinct language, script or culture.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-034",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which constitutional article gives religious and linguistic minorities the right to establish and administer educational institutions of their choice?",
+  "a": "Article 30",
+  "w": [
+   "Article 20",
+   "Article 24",
+   "Article 280"
+  ],
+  "e": "Article 30 protects minority rights to establish and administer educational institutions.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-035",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is the main focus of the National Food Security Act, 2013?",
+  "a": "Access to subsidised foodgrains for eligible households and related nutrition entitlements",
+  "w": [
+   "Universal free electricity",
+   "Compulsory land redistribution",
+   "Regulation of international food exports only"
+  ],
+  "e": "The Act provides statutory food security entitlements, including subsidised foodgrains for eligible persons.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-036",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which of the following best describes gender budgeting?",
+  "a": "Assessing budget allocations and their effects on women and gender equality",
+  "w": [
+   "Preparing a separate national budget only for men",
+   "Allocating identical amounts to every ministry",
+   "Replacing the Union Budget with household budgets"
+  ],
+  "e": "Gender budgeting analyses how public expenditure and revenue policies affect gender equality.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-037",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is meant by the 'digital divide'?",
+  "a": "Unequal access to digital technologies, connectivity and skills",
+  "w": [
+   "Difference between two computer programming languages",
+   "A gap between two satellite orbits",
+   "Unequal access to printed newspapers only"
+  ],
+  "e": "The digital divide includes disparities in access, affordability, skills and meaningful use of digital technology.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-038",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which approach to development emphasises meeting present needs without compromising future generations' ability to meet their needs?",
+  "a": "Sustainable development",
+  "w": [
+   "Import substitution only",
+   "Unrestricted resource extraction",
+   "Short-term output maximisation"
+  ],
+  "e": "This widely used definition captures the intergenerational dimension of sustainable development.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-039",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "What is the purpose of the constitutional provision for reservation of seats for women in Panchayats and Municipalities?",
+  "a": "Improve women's representation in local self-government",
+  "w": [
+   "Abolish local elections",
+   "Transfer all state powers to village councils",
+   "Reserve every government job for women"
+  ],
+  "e": "The Constitution provides reservation for women in local bodies, supporting participation in grassroots governance.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "indian-society-b2-040",
+  "subject": "Indian society",
+  "difficulty": "hard",
+  "q": "Which term describes the movement of people from one social class to another within a society?",
+  "a": "Social mobility",
+  "w": [
+   "Social isolation",
+   "Social exclusion",
+   "Socialisation"
+  ],
+  "e": "Social mobility refers to changes in an individual's or group's position in a social hierarchy.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Class XII Sociology (Indian Society and Social Change), the Constitution and relevant India Code / government sources.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

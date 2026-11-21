@@ -1,0 +1,626 @@
+[
+ {
+  "id": "polity-b1-001",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Who was the permanent President of the Constituent Assembly?",
+  "a": "Dr Rajendra Prasad",
+  "w": [
+   "B R Ambedkar",
+   "Jawaharlal Nehru",
+   "Sardar Patel"
+  ],
+  "e": "Sachchidananda Sinha was interim chairman at the first meeting; Rajendra Prasad was elected President in December 1946.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-002",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "How many Schedules did the original Constitution have?",
+  "a": "8",
+  "w": [
+   "12",
+   "10",
+   "6"
+  ],
+  "e": "There are now 12 Schedules.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-003",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "On which date did the Constitution of India come into force?",
+  "a": "26 January 1950",
+  "w": [
+   "26 November 1949",
+   "15 August 1947",
+   "9 December 1946"
+  ],
+  "e": "It was adopted on 26 November 1949 and commenced on 26 January 1950, now celebrated as Republic Day.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-004",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Fundamental Rights are contained in which Part of the Constitution?",
+  "a": "Part III",
+  "w": [
+   "Part II",
+   "Part IV",
+   "Part IVA"
+  ],
+  "e": "Part III (Articles 12 to 35) has the Fundamental Rights; Part IV has the Directive Principles.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-005",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "What is the minimum age to contest a Lok Sabha election?",
+  "a": "25 years",
+  "w": [
+   "18 years",
+   "21 years",
+   "30 years"
+  ],
+  "e": "Article 84 sets 25 years for the Lok Sabha and 30 years for the Rajya Sabha.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-006",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Who appoints the Chief Justice of India?",
+  "a": "The President",
+  "w": [
+   "The Prime Minister",
+   "Parliament",
+   "The Law Minister"
+  ],
+  "e": "The President appoints judges under Article 124; by convention the senior-most judge becomes the CJI.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-007",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Which Article gives free and compulsory education to children aged 6 to 14?",
+  "a": "Article 21A",
+  "w": [
+   "Article 45",
+   "Article 24",
+   "Article 30"
+  ],
+  "e": "Article 21A was added by the 86th Amendment (2002).",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-008",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Who is the ex officio Chairman of the Rajya Sabha?",
+  "a": "The Vice-President",
+  "w": [
+   "The President",
+   "The Prime Minister",
+   "The Speaker"
+  ],
+  "e": "Article 89 makes the Vice-President the ex officio Chairman.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-009",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "What is the normal term of the Lok Sabha?",
+  "a": "Five years",
+  "w": [
+   "Four years",
+   "Six years",
+   "Seven years"
+  ],
+  "e": "Article 83(2) gives five years from its first meeting unless it is dissolved earlier.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-010",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Which writ is issued to free a person from unlawful detention?",
+  "a": "Habeas corpus",
+  "w": [
+   "Mandamus",
+   "Certiorari",
+   "Quo warranto"
+  ],
+  "e": "Habeas corpus means produce the body before the court.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-012",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Which Article provides for President's Rule in a state?",
+  "a": "Article 356",
+  "w": [
+   "Article 352",
+   "Article 360",
+   "Article 370"
+  ],
+  "e": "Article 352 is national emergency and Article 360 is financial emergency.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-013",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "Who can dissolve the Lok Sabha?",
+  "a": "The President",
+  "w": [
+   "The Speaker",
+   "The Vice-President",
+   "The Chief Justice of India"
+  ],
+  "e": "The President dissolves it, in practice on the advice of the Council of Ministers.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-014",
+  "subject": "Polity",
+  "difficulty": "easy",
+  "q": "At what age do Supreme Court judges retire?",
+  "a": "65 years",
+  "w": [
+   "62 years",
+   "60 years",
+   "70 years"
+  ],
+  "e": "High Court judges retire at 62.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-015",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Amendment added the words socialist, secular and integrity to the Preamble?",
+  "a": "42nd Amendment",
+  "w": [
+   "44th Amendment",
+   "52nd Amendment",
+   "73rd Amendment"
+  ],
+  "e": "Passed in 1976, it is the only amendment to the Preamble so far.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-016",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "The Tenth Schedule (anti-defection) was added by which Amendment?",
+  "a": "52nd Amendment",
+  "w": [
+   "42nd Amendment",
+   "61st Amendment",
+   "91st Amendment"
+  ],
+  "e": "The 52nd Amendment (1985) added it; the 91st (2003) strengthened it.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-017",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Article empowers the President to grant pardons?",
+  "a": "Article 72",
+  "w": [
+   "Article 74",
+   "Article 123",
+   "Article 161"
+  ],
+  "e": "Article 161 gives Governors a similar power for state laws.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-018",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "A joint sitting under Article 108 cannot be called for which of these?",
+  "a": "A constitutional amendment bill",
+  "w": [
+   "An ordinary bill rejected by the other House",
+   "An ordinary bill with disagreement on amendments",
+   "An ordinary bill not passed by the other House for six months"
+  ],
+  "e": "Joint sittings resolve deadlock on ordinary bills only, not on money bills or constitutional amendments.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-019",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Article declares laws that violate Fundamental Rights void?",
+  "a": "Article 13",
+  "w": [
+   "Article 12",
+   "Article 14",
+   "Article 32"
+  ],
+  "e": "Article 12 defines the State.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-020",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Article lets a Governor promulgate ordinances?",
+  "a": "Article 213",
+  "w": [
+   "Article 123",
+   "Article 200",
+   "Article 356"
+  ],
+  "e": "Article 123 is the President's ordinance power.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-021",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "An ordinance must be approved by Parliament within how long of its reassembling?",
+  "a": "Six weeks",
+  "w": [
+   "Six months",
+   "One month",
+   "Fourteen days"
+  ],
+  "e": "Under Article 123(2) it lapses six weeks after reassembly unless approved earlier.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-022",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Who decides whether a bill is a Money Bill?",
+  "a": "Speaker of the Lok Sabha",
+  "w": [
+   "The President",
+   "Chairman of the Rajya Sabha",
+   "The Finance Minister"
+  ],
+  "e": "The Speaker's decision is final under Article 110(3).",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-023",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "The Directive Principles of State Policy were borrowed from the Constitution of:",
+  "a": "Ireland",
+  "w": [
+   "USA",
+   "Canada",
+   "Australia"
+  ],
+  "e": "The idea came from Ireland; Fundamental Rights came from the USA.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-024",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Amendment gave constitutional status to Panchayati Raj?",
+  "a": "73rd Amendment",
+  "w": [
+   "74th Amendment",
+   "42nd Amendment",
+   "44th Amendment"
+  ],
+  "e": "The 74th Amendment covers municipalities.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-025",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Under which Article is the Finance Commission constituted?",
+  "a": "Article 280",
+  "w": [
+   "Article 148",
+   "Article 315",
+   "Article 324"
+  ],
+  "e": "It is constituted every five years.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-026",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "Which Article establishes the Election Commission?",
+  "a": "Article 324",
+  "w": [
+   "Article 280",
+   "Article 315",
+   "Article 148"
+  ],
+  "e": "Article 315 is the UPSC and Article 148 is the CAG.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-027",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "The GST Council is established under which Article?",
+  "a": "Article 279A",
+  "w": [
+   "Article 246A",
+   "Article 280",
+   "Article 324"
+  ],
+  "e": "Article 246A gives the power to legislate on GST.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-028",
+  "subject": "Polity",
+  "difficulty": "medium",
+  "q": "The writ of certiorari is issued to:",
+  "a": "Quash an order passed without jurisdiction by a lower court or tribunal",
+  "w": [
+   "Stop a lower court from proceeding",
+   "Command an official to perform a duty",
+   "Ask by what authority a person holds office"
+  ],
+  "e": "Prohibition acts while proceedings are on; certiorari quashes an order already passed.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-029",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "The Kesavananda Bharati case (1973) was decided by a bench of how many judges?",
+  "a": "13",
+  "w": [
+   "9",
+   "11",
+   "7"
+  ],
+  "e": "It was the largest bench, ruling 7 to 6 for the basic structure doctrine.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-030",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which case laid down the rarest of rare test for the death penalty?",
+  "a": "Bachan Singh (1980)",
+  "w": [
+   "Maneka Gandhi (1978)",
+   "Olga Tellis (1985)",
+   "Minerva Mills (1980)"
+  ],
+  "e": "Bachan Singh upheld the death penalty but limited it to the rarest of rare cases.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-031",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which change needs a special majority plus ratification by at least half of the states?",
+  "a": "Manner of election of the President",
+  "w": [
+   "Abolition of a state Legislative Council",
+   "Creation of a new state",
+   "Changes to the Fifth Schedule"
+  ],
+  "e": "Federal matters under Article 368(2) need ratification; the other three need only a simple majority.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-032",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Impeaching the President under Article 61 needs a resolution backed by:",
+  "a": "Two-thirds of the total membership of each House",
+  "w": [
+   "A majority of members present and voting",
+   "Two-thirds of members present and voting in the Lok Sabha only",
+   "Three-fourths of both Houses sitting jointly"
+  ],
+  "e": "Each House acts in turn, after 14 days' notice signed by one-fourth of the members.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-033",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which Article empowers a Governor to reserve a bill for the President?",
+  "a": "Article 200",
+  "w": [
+   "Article 201",
+   "Article 213",
+   "Article 163"
+  ],
+  "e": "Article 201 covers how the President acts on a reserved bill.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-034",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "How many subjects does the Twelfth Schedule list for Municipalities?",
+  "a": "18",
+  "w": [
+   "29",
+   "22",
+   "12"
+  ],
+  "e": "The Eleventh Schedule lists 29 subjects for Panchayats.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-035",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which Article provides for the Inter-State Council?",
+  "a": "Article 263",
+  "w": [
+   "Article 262",
+   "Article 261",
+   "Article 280"
+  ],
+  "e": "Article 262 deals with inter-state river disputes.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-036",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which judgment held that tribunals cannot replace judicial review by the High Courts and the Supreme Court?",
+  "a": "L Chandra Kumar (1997)",
+  "w": [
+   "Kihoto Hollohan (1992)",
+   "Indra Sawhney (1992)",
+   "Vishaka (1997)"
+  ],
+  "e": "It held judicial review to be part of the basic structure.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-037",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "The 91st Amendment capped the Council of Ministers at what share of the House?",
+  "a": "15 per cent",
+  "w": [
+   "10 per cent",
+   "20 per cent",
+   "25 per cent"
+  ],
+  "e": "The cap applies to the Lok Sabha and to each state Assembly, with a minimum of 12 ministers in a state.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-038",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which Article provides for the Attorney General of India?",
+  "a": "Article 76",
+  "w": [
+   "Article 148",
+   "Article 165",
+   "Article 124"
+  ],
+  "e": "Article 165 is the Advocate General of a state.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-039",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Zero Hour in the Indian Parliament is:",
+  "a": "An informal device not mentioned in the Rules of Procedure",
+  "w": [
+   "The first hour of a sitting for oral questions",
+   "The time reserved for the Budget vote",
+   "A motion to adjourn the House"
+  ],
+  "e": "It is an Indian innovation of the 1960s; Question Hour is the first hour.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "polity-b1-040",
+  "subject": "Polity",
+  "difficulty": "hard",
+  "q": "Which of these is NOT a constitutional body?",
+  "a": "NITI Aayog",
+  "w": [
+   "Finance Commission",
+   "UPSC",
+   "Election Commission"
+  ],
+  "e": "NITI Aayog was created in 2015 by a Cabinet resolution, replacing the Planning Commission.",
+  "status": "published",
+  "reference_hint": "Review with the Constitution of India, NCERT Political Science and M. Laxmikanth; verify article numbers and amendments.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

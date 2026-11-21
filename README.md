@@ -19,15 +19,43 @@ Local data is stored in the browser. Sign in after configuring Supabase to synch
 - Admin publishing/deleting of updates, subject notes, daily press and PIB items
 - Administrator-only private notes
 
-## Setup
-1. Create a Supabase project at https://supabase.com/.
-2. In Supabase, open SQL Editor > New query. Paste and run `supabase-schema.sql`.
-3. Open Project Settings > API (or API Keys). Copy the Project URL and the publishable/anon public key.
-4. Put those two values in `config.js`. Do not use a `service_role` or secret key in the browser.
-5. Create your learner account on the website and confirm your email if Supabase requests it.
-6. In Supabase > Authentication > Users, copy your user UUID.
-7. In SQL Editor run: `update public.profiles set role='admin' where id='YOUR-USER-UUID';` Replace the placeholder with your UUID. This gives only your account administrator permissions.
-8. Refresh the website and sign in. The Admin desk should appear for your account.
+## Supabase setup and operations
+
+**Important:** `supabase-schema.sql` is an older initial setup script and is not a complete bootstrap for the current release. Do not paste it over an existing live project. The current database also contains PYQ, answer-key, push-subscription and test-history tables that were added after that initial file was written.
+
+For the existing production project:
+- The database hardening migrations are recorded in `supabase/migrations/`:
+  - `20261121135933_harden_profiles_signup_and_rls.sql`
+  - `20261121140048_move_security_helpers_to_private_schema.sql`
+- These two migrations have already been applied to the existing `theaspirantsdesk` Supabase project. Do not apply them a second time manually.
+- The `public.test_results` table already exists. Do not run a separate table-creation script for it.
+- Keep the active `desk_on_auth_user_created` trigger. The obsolete duplicate signup trigger was removed.
+- The admin-check and answer-key helper functions live in the non-API `private` schema. Do not move them back to `public` or grant them to `anon`.
+
+For a future fresh Supabase project, first take a schema backup and create a reviewed, complete baseline from the current live database before applying migrations. Do not assume the legacy `supabase-schema.sql` file alone creates every table in the current application.
+
+## Browser configuration
+1. Open Project Settings > API (or API Keys). Use the Project URL and publishable key (legacy anon key is supported for compatibility).
+2. Put only those public values in `config.js`. The VAPID **public** key may also be in `config.js`.
+3. Never place a Supabase service-role/secret key, database password, cron secret, or VAPID **private** key in browser code or GitHub-tracked files.
+
+## Accounts and administrator access
+- Create learner accounts through the website and confirm email if Supabase requests it.
+- Administrator roles are stored in `public.profiles`. Do not expose a public admin-registration form.
+- Learners can update their own display name but cannot change their own `role` column.
+- The admin dashboard can read learner progress summaries; private learner state remains restricted by RLS.
+
+## Remaining dashboard / owner-only security checks
+
+- **Leaked-password protection:** Supabase Security Advisor currently reports this as the one remaining security warning. It can be enabled in the project's Authentication password-security settings if the subscription plan supports it. Supabase documents this protection as available on the Pro plan and above. See [Supabase password security](https://supabase.com/docs/guides/auth/password-security).
+- **Future object default grants:** the current database tool was not authorised to change the default ACLs owned by the database roles. This does not change the current tables: all 14 public tables have RLS enabled and the existing grants/policies have been tightened. Optional SQL for the project owner to review and run is in `supabase/manual/secure-public-default-privileges.sql`. Do not try to bypass a permission error.
+
+## Daily push reminders
+- The `send-study-reminders` Edge Function is deployed as version 3 and is called by an active `pg_cron` job.
+- The browser subscribes from the Dashboard's **Daily study reminder** card after a learner signs in and grants browser notification permission.
+- Each browser/device needs its own subscription. Reminders are sent at the selected local time and are skipped when the account has saved study activity that day.
+- The VAPID private key and cron secret must remain in Supabase Edge Function secrets. Never commit them.
+
 
 ## Publish on GitHub Pages
 - Extract the ZIP.
