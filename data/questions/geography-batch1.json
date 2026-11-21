@@ -1,0 +1,610 @@
+[
+ {
+  "id": "geography-b1-001",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which is the largest river basin in India?",
+  "a": "Ganga",
+  "w": [
+   "Indus",
+   "Godavari",
+   "Brahmaputra"
+  ],
+  "e": "The Ganga basin covers the largest area within India.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-003",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which soil is also known as regur?",
+  "a": "Black soil",
+  "w": [
+   "Red soil",
+   "Alluvial soil",
+   "Laterite soil"
+  ],
+  "e": "Regur is black cotton soil, formed from basalt.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-004",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Mawsynram, known for very heavy rainfall, is in which state?",
+  "a": "Meghalaya",
+  "w": [
+   "Assam",
+   "Kerala",
+   "Arunachal Pradesh"
+  ],
+  "e": "It lies in the Khasi Hills.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-005",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which is the largest Indian state by area?",
+  "a": "Rajasthan",
+  "w": [
+   "Madhya Pradesh",
+   "Maharashtra",
+   "Uttar Pradesh"
+  ],
+  "e": "Rajasthan has the largest area.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-006",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which river flows west into the Arabian Sea through a rift valley?",
+  "a": "Narmada",
+  "w": [
+   "Godavari",
+   "Krishna",
+   "Mahanadi"
+  ],
+  "e": "It drains the rift valley between the Vindhya and Satpura ranges and forms an estuary on the west coast.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-007",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Chilika Lake is a lagoon in which state?",
+  "a": "Odisha",
+  "w": [
+   "Andhra Pradesh",
+   "Tamil Nadu",
+   "Kerala"
+  ],
+  "e": "It is India's largest coastal lagoon.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-008",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which of these is a Kharif crop?",
+  "a": "Rice",
+  "w": [
+   "Wheat",
+   "Mustard",
+   "Gram"
+  ],
+  "e": "Rabi crops include wheat, barley, mustard and gram.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-009",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which is the oldest fold mountain range in India?",
+  "a": "Aravalli",
+  "w": [
+   "Himalaya",
+   "Vindhya",
+   "Western Ghats"
+  ],
+  "e": "The Aravallis are among the oldest fold mountains in the world.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-010",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "The Palk Strait separates India from:",
+  "a": "Sri Lanka",
+  "w": [
+   "Maldives",
+   "Myanmar",
+   "Indonesia"
+  ],
+  "e": "It links the Bay of Bengal with the Palk Bay.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-011",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which of these is a warm ocean current?",
+  "a": "Gulf Stream",
+  "w": [
+   "Humboldt",
+   "Benguela",
+   "Labrador"
+  ],
+  "e": "It keeps north-west Europe warmer than its latitude suggests.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-012",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "In which layer of the atmosphere is the ozone layer found?",
+  "a": "Stratosphere",
+  "w": [
+   "Troposphere",
+   "Mesosphere",
+   "Thermosphere"
+  ],
+  "e": "It absorbs ultraviolet rays.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-013",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "The Himalayas are what type of mountains?",
+  "a": "Young fold mountains",
+  "w": [
+   "Block mountains",
+   "Volcanic mountains",
+   "Residual mountains"
+  ],
+  "e": "They formed from the collision of the Indian and Eurasian plates.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-014",
+  "subject": "Geography",
+  "difficulty": "easy",
+  "q": "Which is the longest river of peninsular India?",
+  "a": "Godavari",
+  "w": [
+   "Krishna",
+   "Cauvery",
+   "Mahanadi"
+  ],
+  "e": "Godavari is called the Dakshin Ganga.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-015",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Western disturbances bring winter rain mainly to:",
+  "a": "North-west India",
+  "w": [
+   "South India",
+   "North-east India",
+   "The east coast"
+  ],
+  "e": "They help the rabi wheat crop.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-016",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Banihal Pass connects Jammu with:",
+  "a": "The Kashmir Valley",
+  "w": [
+   "Ladakh",
+   "Himachal Pradesh",
+   "Sikkim"
+  ],
+  "e": "Zoji La links the Kashmir Valley with Ladakh.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-017",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Anai Mudi, the highest peak of peninsular India, is in:",
+  "a": "Kerala",
+  "w": [
+   "Karnataka",
+   "Tamil Nadu",
+   "Maharashtra"
+  ],
+  "e": "It rises to 2,695 m in the Western Ghats.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-018",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Deccan Traps were formed by:",
+  "a": "Basaltic lava flows",
+  "w": [
+   "Glacial deposits",
+   "River silt",
+   "Wind deposits"
+  ],
+  "e": "Their weathering gives black soil.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-019",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Loo is:",
+  "a": "A hot dry summer wind of north-west India",
+  "w": [
+   "A violent evening thunderstorm in Bengal",
+   "A shower that helps mangoes ripen",
+   "A cold wave from Central Asia"
+  ],
+  "e": "Nor'westers are the Bengal thunderstorms.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-020",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Mango showers occur mainly in:",
+  "a": "Kerala and Karnataka",
+  "w": [
+   "Punjab and Haryana",
+   "Bengal and Assam",
+   "Rajasthan and Gujarat"
+  ],
+  "e": "These pre-monsoon showers help ripen mangoes.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-021",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Khadar refers to:",
+  "a": "Newer, fertile alluvium of floodplains",
+  "w": [
+   "Older alluvium above flood level",
+   "A pebble belt at the foothills",
+   "A marshy forested belt"
+  ],
+  "e": "Bhangar is the older alluvium.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-022",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Which of these is a cold ocean current?",
+  "a": "Humboldt (Peru) Current",
+  "w": [
+   "Kuroshio",
+   "Brazil Current",
+   "Gulf Stream"
+  ],
+  "e": "It flows along the west coast of South America.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-023",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "El Nino usually affects the Indian monsoon by:",
+  "a": "Weakening it",
+  "w": [
+   "Strengthening it",
+   "Delaying winter",
+   "Shifting rain to the north-west"
+  ],
+  "e": "A positive Indian Ocean Dipole usually helps the monsoon.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-024",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "Apart from the Narmada, which river flows west into the Arabian Sea through a rift valley?",
+  "a": "Tapti",
+  "w": [
+   "Mahanadi",
+   "Krishna",
+   "Cauvery"
+  ],
+  "e": "Both lie between the Vindhya and Satpura ranges.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-025",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Sundarbans mangroves are named after which tree?",
+  "a": "Sundari",
+  "w": [
+   "Teak",
+   "Sal",
+   "Mahogany"
+  ],
+  "e": "Sundari is a mangrove species of the delta.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-026",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "India's only active volcano, Barren Island, lies in which group?",
+  "a": "Andaman and Nicobar Islands",
+  "w": [
+   "Lakshadweep",
+   "Gulf of Mannar islands",
+   "Gulf of Kutch islands"
+  ],
+  "e": "It is in the Andaman Sea.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-027",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Ten Degree Channel separates:",
+  "a": "The Andaman Islands from the Nicobar Islands",
+  "w": [
+   "India from Sri Lanka",
+   "Lakshadweep from Minicoy",
+   "The Andamans from Myanmar"
+  ],
+  "e": "It lies along 10 degrees north latitude.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-028",
+  "subject": "Geography",
+  "difficulty": "medium",
+  "q": "The Palghat Gap connects:",
+  "a": "Tamil Nadu and Kerala",
+  "w": [
+   "Kerala and Karnataka",
+   "Goa and Maharashtra",
+   "Andhra Pradesh and Telangana"
+  ],
+  "e": "It is a break in the Western Ghats.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-029",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "The sudden onset of the south-west monsoon is linked to the shift of which jet stream?",
+  "a": "The subtropical westerly jet moving north of the Himalayas",
+  "w": [
+   "The polar front jet moving south",
+   "The tropical easterly jet moving west",
+   "An equatorial jet moving north"
+  ],
+  "e": "The tropical easterly jet then develops over the peninsula.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-031",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "The Terai is:",
+  "a": "A marshy, forested belt south of the Bhabar",
+  "w": [
+   "A pebble belt at the foot of the Shiwaliks",
+   "Older alluvium with kankar",
+   "Newer fertile alluvium"
+  ],
+  "e": "Streams disappear in the Bhabar and reappear in the Terai.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-032",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "The Karewas of the Kashmir Valley are:",
+  "a": "Lake deposits suited to saffron",
+  "w": [
+   "Glacial moraines",
+   "Coastal dunes",
+   "Volcanic plateaus"
+  ],
+  "e": "They are thick lacustrine deposits.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-033",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Barchans are:",
+  "a": "Crescent-shaped sand dunes",
+  "w": [
+   "Glacial valleys",
+   "Volcanic cones",
+   "Wave-cut platforms"
+  ],
+  "e": "Wind shapes them in deserts like the Thar.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-034",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "The Roaring Forties are strong westerlies found between:",
+  "a": "40 and 50 degrees south",
+  "w": [
+   "40 and 50 degrees north",
+   "0 and 10 degrees south",
+   "60 and 70 degrees north"
+  ],
+  "e": "The furious fifties lie further south.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-035",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Tropical cyclones typically form over sea surface temperatures of at least about:",
+  "a": "26.5 degrees C",
+  "w": [
+   "20 degrees C",
+   "15 degrees C",
+   "35 degrees C"
+  ],
+  "e": "Warm water supplies the energy for the storm.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-036",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "The Tehri Dam is built on which river?",
+  "a": "Bhagirathi",
+  "w": [
+   "Alaknanda",
+   "Sutlej",
+   "Yamuna"
+  ],
+  "e": "It is in Uttarakhand.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-037",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Sambhar, a large salt lake, is in:",
+  "a": "Rajasthan",
+  "w": [
+   "Gujarat",
+   "Haryana",
+   "Madhya Pradesh"
+  ],
+  "e": "It is India's largest inland saline lake.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-038",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Which plateau is called the Ruhr of India?",
+  "a": "Chotanagpur Plateau",
+  "w": [
+   "Malwa Plateau",
+   "Deccan Plateau",
+   "Bundelkhand"
+  ],
+  "e": "It is rich in coal, iron ore and mica.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-039",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Zoji La connects:",
+  "a": "Srinagar with Leh in Ladakh",
+  "w": [
+   "Jammu with Srinagar",
+   "Shimla with Kinnaur",
+   "Gangtok with Tibet"
+  ],
+  "e": "Nathu La and Jelep La are in Sikkim.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "geography-b1-040",
+  "subject": "Geography",
+  "difficulty": "hard",
+  "q": "Which of these is a cold current?",
+  "a": "Benguela Current",
+  "w": [
+   "Kuroshio",
+   "Agulhas Current",
+   "Brazil Current"
+  ],
+  "e": "It flows along the south-west coast of Africa and helps form the Namib Desert.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Geography, Survey of India / IMD / CGWB material where relevant; verify map-based facts.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

@@ -1,0 +1,642 @@
+[
+ {
+  "id": "internal-security-b2-001",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which constitutional subject is primarily concerned with 'Police' under the Seventh Schedule?",
+  "a": "State List",
+  "w": [
+   "Union List",
+   "Concurrent List",
+   "Residuary powers"
+  ],
+  "e": "Police is listed in the State List, although Union agencies and laws also have roles in internal security.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-002",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which central agency investigates offences under the National Investigation Agency Act, 2008 when the statutory conditions are met?",
+  "a": "National Investigation Agency",
+  "w": [
+   "Central Bureau of Investigation",
+   "National Disaster Management Authority",
+   "National Human Rights Commission"
+  ],
+  "e": "The NIA investigates and prosecutes scheduled offences under the NIA Act.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-003",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "What is the primary role of the Border Security Force?",
+  "a": "Guard India's international borders assigned to it and prevent trans-border crime",
+  "w": [
+   "Conduct monetary policy",
+   "Regulate civil aviation",
+   "Manage national highways"
+  ],
+  "e": "The BSF is a central armed police force tasked with border guarding on designated borders.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-004",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which organisation is India's primary external intelligence agency?",
+  "a": "Research and Analysis Wing",
+  "w": [
+   "Intelligence Bureau",
+   "National Investigation Agency",
+   "Central Vigilance Commission"
+  ],
+  "e": "The Research and Analysis Wing is India's external intelligence agency.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-005",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which organisation is primarily responsible for domestic intelligence in India?",
+  "a": "Intelligence Bureau",
+  "w": [
+   "Research and Analysis Wing",
+   "Indian Coast Guard",
+   "National Disaster Response Force"
+  ],
+  "e": "The Intelligence Bureau is the principal domestic intelligence organisation.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-006",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "What is the principal purpose of the Unlawful Activities (Prevention) Act, 1967?",
+  "a": "Prevent certain unlawful and terrorist activities and provide a legal framework to address them",
+  "w": [
+   "Regulate public sector banks",
+   "Govern forest conservation",
+   "Set rules for municipal elections"
+  ],
+  "e": "UAPA is India's principal legislation addressing specified unlawful and terrorist activities.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-007",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which force is specifically responsible for guarding India's coastline in coordination with other agencies?",
+  "a": "Indian Coast Guard",
+  "w": [
+   "Central Industrial Security Force",
+   "Indo-Tibetan Border Police",
+   "Railway Protection Force"
+  ],
+  "e": "The Coast Guard protects maritime interests and enforces relevant laws in India's maritime zones.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-008",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which central force is primarily tasked with security of specified critical industrial installations and infrastructure?",
+  "a": "Central Industrial Security Force",
+  "w": [
+   "Border Security Force",
+   "Assam Rifles",
+   "National Disaster Response Force"
+  ],
+  "e": "CISF provides security to designated public-sector and other critical installations.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-009",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "What is the main purpose of the National Critical Information Infrastructure Protection Centre?",
+  "a": "Protect critical information infrastructure from cyber threats",
+  "w": [
+   "Issue passports",
+   "Regulate television broadcasting",
+   "Conduct population census"
+  ],
+  "e": "NCIIPC is the national nodal agency for protecting critical information infrastructure.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-010",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which organisation is the national nodal agency for responding to cybersecurity incidents in India?",
+  "a": "CERT-In",
+  "w": [
+   "NITI Aayog",
+   "CPCB",
+   "NABARD"
+  ],
+  "e": "CERT-In performs incident response functions under the Information Technology Act framework.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-011",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "What does 'cyber hygiene' generally mean?",
+  "a": "Routine practices that reduce digital security risks",
+  "w": [
+   "A method of cleaning computer screens only",
+   "A form of online advertising",
+   "A process for increasing internet speed"
+  ],
+  "e": "Cyber hygiene includes practices such as updates, strong authentication and cautious handling of links.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-012",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which of the following is a common form of social engineering?",
+  "a": "Phishing",
+  "w": [
+   "Data compression",
+   "Disk defragmentation",
+   "Load balancing"
+  ],
+  "e": "Phishing attempts to trick people into disclosing information or taking unsafe actions.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-013",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "What is the main purpose of multi-factor authentication?",
+  "a": "Require more than one type of proof to verify identity",
+  "w": [
+   "Make passwords publicly visible",
+   "Disable encryption",
+   "Guarantee that a device cannot be stolen"
+  ],
+  "e": "MFA combines independent factors such as knowledge, possession or inherence.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-014",
+  "subject": "Internal security",
+  "difficulty": "easy",
+  "q": "Which Indian law provides the principal statutory framework for electronic records and many cyber offences?",
+  "a": "Information Technology Act, 2000",
+  "w": [
+   "Indian Easements Act, 1882",
+   "Forest Rights Act, 2006",
+   "Competition Act, 2002"
+  ],
+  "e": "The IT Act, 2000 provides legal recognition to electronic records and addresses specified cyber offences.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-015",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is meant by 'critical infrastructure' in national security discussions?",
+  "a": "Assets and systems essential to vital societal and economic functions",
+  "w": [
+   "Any privately owned building",
+   "Only military weapons",
+   "Every website on the internet"
+  ],
+  "e": "Critical infrastructure includes systems whose disruption can seriously affect essential services or national security.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-016",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which of the following is a non-traditional security threat?",
+  "a": "Cyberattack on essential services",
+  "w": [
+   "A conventional border deployment",
+   "A routine parliamentary debate",
+   "A normal seasonal migration"
+  ],
+  "e": "Non-traditional threats include cyber risks, pandemics, climate risks and other challenges beyond conventional military threats.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-017",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is the primary role of the National Disaster Management Authority?",
+  "a": "Lay down policies and guidelines for disaster management in India",
+  "w": [
+   "Conduct criminal investigations",
+   "Manage foreign exchange reserves",
+   "Regulate satellite frequencies"
+  ],
+  "e": "The NDMA is the apex body for disaster management policy under the Disaster Management Act, 2005.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-018",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which ministry is the nodal ministry for internal security matters in the Union Government of India?",
+  "a": "Ministry of Home Affairs",
+  "w": [
+   "Ministry of Finance",
+   "Ministry of External Affairs",
+   "Ministry of Education"
+  ],
+  "e": "The Ministry of Home Affairs handles internal security among its major responsibilities.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-019",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is the principal purpose of the National Security Guard?",
+  "a": "Specialised counter-terrorism and counter-hijacking operations under its mandate",
+  "w": [
+   "Routine traffic policing",
+   "Regulation of telecom tariffs",
+   "Protection of forests from fires"
+  ],
+  "e": "The NSG is a specialised federal contingency force with designated counter-terrorism roles.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-020",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which force is primarily associated with guarding the India-China border in designated areas?",
+  "a": "Indo-Tibetan Border Police",
+  "w": [
+   "Border Security Force",
+   "Central Industrial Security Force",
+   "Sashastra Seema Bal"
+  ],
+  "e": "ITBP is deployed along the India-China border and performs other assigned duties.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-021",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which force is primarily tasked with guarding the India-Nepal and India-Bhutan borders?",
+  "a": "Sashastra Seema Bal",
+  "w": [
+   "Indian Coast Guard",
+   "Central Reserve Police Force",
+   "National Security Guard"
+  ],
+  "e": "SSB guards India's borders with Nepal and Bhutan.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-022",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is the principal role of the Central Reserve Police Force in internal security?",
+  "a": "Assist states and Union Territories in maintaining public order and counter-insurgency duties",
+  "w": [
+   "Manage India's external diplomacy",
+   "Regulate stock exchanges",
+   "Operate all civil airports"
+  ],
+  "e": "CRPF supports state police and performs internal security duties, including counter-insurgency.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-023",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What does 'left-wing extremism' generally refer to in India's internal security context?",
+  "a": "Violent extremist activity associated with Maoist ideology",
+  "w": [
+   "All forms of peaceful labour protest",
+   "Any disagreement with government policy",
+   "Ordinary electoral campaigning"
+  ],
+  "e": "The term refers to armed extremist movements that seek political change through violence.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-024",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is the main purpose of community policing?",
+  "a": "Build cooperation and trust between police and local communities",
+  "w": [
+   "Transfer all policing powers to private firms",
+   "Replace criminal courts",
+   "Restrict public access to emergency services"
+  ],
+  "e": "Community policing emphasises partnership, communication and local problem-solving.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-025",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is meant by maritime domain awareness?",
+  "a": "Understanding activities and conditions in the maritime environment",
+  "w": [
+   "Monitoring only inland road traffic",
+   "Tracking satellite television subscriptions",
+   "Measuring rainfall over mountains"
+  ],
+  "e": "Maritime domain awareness integrates information about vessels, activities and conditions at sea.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-026",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which organisation is responsible for coordinating national cybercrime reporting and related law-enforcement support in India through its cybercrime portal framework?",
+  "a": "Indian Cyber Crime Coordination Centre",
+  "w": [
+   "National Green Tribunal",
+   "Central Board of Direct Taxes",
+   "University Grants Commission"
+  ],
+  "e": "I4C supports coordination among law-enforcement agencies and cybercrime response mechanisms.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-027",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "What is the key purpose of encryption in information security?",
+  "a": "Protect information by transforming it so unauthorised parties cannot readily read it",
+  "w": [
+   "Increase the physical size of files",
+   "Make every internet connection anonymous",
+   "Prevent all forms of malware"
+  ],
+  "e": "Encryption protects confidentiality by making information unreadable without the appropriate key.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-028",
+  "subject": "Internal security",
+  "difficulty": "medium",
+  "q": "Which of the following is an example of an insider threat?",
+  "a": "Misuse of authorised access by an employee or contractor",
+  "w": [
+   "A power outage caused by a storm",
+   "A public website receiving normal traffic",
+   "A software update from a trusted vendor"
+  ],
+  "e": "Insider threats arise when people with legitimate access misuse it or unintentionally create risk.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-029",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What does the principle of 'least privilege' mean in cybersecurity?",
+  "a": "Give users only the access necessary for their assigned tasks",
+  "w": [
+   "Give every user administrator rights",
+   "Share one password across a team",
+   "Disable all audit logs"
+  ],
+  "e": "Least privilege limits access rights to what is needed for a role.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-030",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What is the primary function of a security audit?",
+  "a": "Systematically assess controls, compliance and vulnerabilities",
+  "w": [
+   "Guarantee that no future incident can occur",
+   "Replace all cybersecurity training",
+   "Publish confidential credentials"
+  ],
+  "e": "A security audit evaluates whether safeguards and processes are appropriate and effective.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-031",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which of the following best describes disinformation?",
+  "a": "False information deliberately created or spread to mislead",
+  "w": [
+   "Incorrect information shared unintentionally",
+   "Verified public information",
+   "A routine government notification"
+  ],
+  "e": "Disinformation is intentionally deceptive, unlike misinformation which may be shared without intent to deceive.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-032",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What is the principal objective of the Official Secrets Act, 1923?",
+  "a": "Protect specified official information from unauthorised disclosure",
+  "w": [
+   "Regulate all social media accounts",
+   "Set the national education curriculum",
+   "Govern public procurement exclusively"
+  ],
+  "e": "The Act addresses unauthorised communication of specified official information and related offences.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-033",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which constitutional article provides for the establishment of an All India Service common to the Union and the States if the Rajya Sabha passes a resolution?",
+  "a": "Article 312",
+  "w": [
+   "Article 280",
+   "Article 356",
+   "Article 368"
+  ],
+  "e": "Article 312 provides for creation of All India Services under the specified parliamentary procedure.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-034",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What is the main purpose of intelligence-led policing?",
+  "a": "Use analysed information to guide prevention and investigation priorities",
+  "w": [
+   "Replace evidence with rumours",
+   "Eliminate judicial oversight",
+   "Restrict all public reporting of crime"
+  ],
+  "e": "Intelligence-led policing uses assessed information to allocate attention and resources more effectively.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-035",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which of the following is a key objective of border area development programmes?",
+  "a": "Improve infrastructure and living conditions in remote border areas",
+  "w": [
+   "Relocate every border village to a city",
+   "Replace local administration with military rule",
+   "Promote unregulated cross-border trade"
+  ],
+  "e": "Border-area programmes seek to improve essential infrastructure and livelihoods in strategically important remote areas.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-036",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What does 'radicalisation' mean in the context of violent extremism prevention?",
+  "a": "A process through which a person may come to support or use violence for ideological goals",
+  "w": [
+   "Any peaceful political disagreement",
+   "Learning about a different culture",
+   "Participating in a lawful election"
+  ],
+  "e": "In this context the term concerns movement toward support for violence, not ordinary political or religious belief.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-037",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which institution investigates corruption offences involving central government personnel under its statutory mandate?",
+  "a": "Central Bureau of Investigation",
+  "w": [
+   "National Disaster Response Force",
+   "Indian Meteorological Department",
+   "Central Zoo Authority"
+  ],
+  "e": "The CBI investigates specified corruption offences and other cases within its jurisdiction.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-038",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which of the following is a key democratic safeguard in internal security operations?",
+  "a": "Accountability under law and judicial oversight",
+  "w": [
+   "Indefinite detention without legal process",
+   "Blanket suspension of all civil institutions",
+   "Unreviewable use of force"
+  ],
+  "e": "Internal security measures must operate within constitutional and legal safeguards.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-039",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "What is the main purpose of a Computer Emergency Response Team?",
+  "a": "Coordinate response to computer security incidents",
+  "w": [
+   "Issue driving licences",
+   "Regulate insurance premiums",
+   "Conduct environmental impact assessments"
+  ],
+  "e": "CERT teams help coordinate detection, response and mitigation of cybersecurity incidents.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "internal-security-b2-040",
+  "subject": "Internal security",
+  "difficulty": "hard",
+  "q": "Which of the following best describes money laundering?",
+  "a": "Concealing the illicit origin of proceeds of crime",
+  "w": [
+   "Transferring salary through a bank",
+   "Paying taxes on business income",
+   "Converting one lawful currency into another"
+  ],
+  "e": "Money laundering disguises the source or ownership of proceeds from unlawful activity.",
+  "status": "published",
+  "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

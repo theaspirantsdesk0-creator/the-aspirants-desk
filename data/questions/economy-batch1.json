@@ -1,0 +1,610 @@
+[
+ {
+  "id": "economy-b1-001",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "In which year was the Reserve Bank of India established?",
+  "a": "1935",
+  "w": [
+   "1947",
+   "1949",
+   "1969"
+  ],
+  "e": "It was nationalised in 1949.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-002",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "The Statutory Liquidity Ratio is the share of deposits banks must hold in:",
+  "a": "Liquid assets such as government securities",
+  "w": [
+   "Cash with the RBI",
+   "Gold only",
+   "Foreign currency"
+  ],
+  "e": "The Cash Reserve Ratio is the share kept as cash with the RBI.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-003",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "GDP measures:",
+  "a": "The value of final goods and services produced within a country in a year",
+  "w": [
+   "Income earned by citizens abroad",
+   "Total government spending",
+   "The value of exports"
+  ],
+  "e": "GNP adds net income from abroad.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-004",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "India's inflation target under its monetary policy framework is:",
+  "a": "4 per cent CPI with a band of 2 to 6 per cent",
+  "w": [
+   "2 per cent WPI",
+   "6 per cent CPI",
+   "8 per cent CPI"
+  ],
+  "e": "The framework dates from 2016.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-005",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Which of these is a direct tax?",
+  "a": "Income tax",
+  "w": [
+   "GST",
+   "Customs duty",
+   "Excise duty"
+  ],
+  "e": "A direct tax is borne by the person who pays it.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-006",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "GST was introduced by which Constitutional Amendment?",
+  "a": "101st",
+  "w": [
+   "42nd",
+   "73rd",
+   "91st"
+  ],
+  "e": "It came into force on 1 July 2017.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-007",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "NITI Aayog replaced the Planning Commission in:",
+  "a": "2015",
+  "w": [
+   "2014",
+   "2010",
+   "2017"
+  ],
+  "e": "It was set up on 1 January 2015.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-008",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Where is the headquarters of the RBI?",
+  "a": "Mumbai",
+  "w": [
+   "New Delhi",
+   "Kolkata",
+   "Chennai"
+  ],
+  "e": "The RBI began in Calcutta and shifted to Bombay in 1937.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-009",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Which body regulates the National Pension System?",
+  "a": "PFRDA",
+  "w": [
+   "SEBI",
+   "IRDAI",
+   "NABARD"
+  ],
+  "e": "The Pension Fund Regulatory and Development Authority regulates pension funds.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-010",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Which institution issues Indian currency notes of Rs 2 and above?",
+  "a": "The Reserve Bank of India",
+  "w": [
+   "The Ministry of Finance",
+   "SEBI",
+   "NABARD"
+  ],
+  "e": "The one-rupee note is issued by the Ministry of Finance.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-012",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "IRDAI regulates:",
+  "a": "Insurance",
+  "w": [
+   "Banks",
+   "Pensions",
+   "Stock markets"
+  ],
+  "e": "PFRDA regulates pensions.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-013",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Which is India's domestic card payment network?",
+  "a": "RuPay",
+  "w": [
+   "Visa",
+   "Mastercard",
+   "Maestro"
+  ],
+  "e": "RuPay was launched by NPCI in 2012.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-014",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Revenue deficit equals:",
+  "a": "Revenue expenditure minus revenue receipts",
+  "w": [
+   "Total expenditure minus total receipts",
+   "Fiscal deficit minus interest payments",
+   "Capital expenditure minus capital receipts"
+  ],
+  "e": "It shows the government borrowing even to meet day-to-day expenses.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-015",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Primary deficit equals:",
+  "a": "Fiscal deficit minus interest payments",
+  "w": [
+   "Revenue deficit minus capital receipts",
+   "Fiscal deficit plus interest payments",
+   "Revenue expenditure minus tax revenue"
+  ],
+  "e": "It shows borrowing needed apart from interest.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-016",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "How many members does the Monetary Policy Committee have?",
+  "a": "Six",
+  "w": [
+   "Five",
+   "Seven",
+   "Nine"
+  ],
+  "e": "Three come from the RBI and three are nominated by the Government; the Governor has the casting vote.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-017",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The FRBM Act was passed in:",
+  "a": "2003",
+  "w": [
+   "1991",
+   "2008",
+   "2016"
+  ],
+  "e": "It set targets for reducing deficits.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-018",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Minimum Support Prices are recommended by:",
+  "a": "The Commission for Agricultural Costs and Prices",
+  "w": [
+   "NITI Aayog",
+   "The Food Corporation of India",
+   "NABARD"
+  ],
+  "e": "The Government announces MSP for 22 mandated crops.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-019",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The Fifteenth Finance Commission fixed the states' share of central taxes at:",
+  "a": "41 per cent",
+  "w": [
+   "42 per cent",
+   "32 per cent",
+   "50 per cent"
+  ],
+  "e": "The Fourteenth Commission had set 42 per cent.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-020",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The Lorenz curve is used to show:",
+  "a": "Income inequality",
+  "w": [
+   "Inflation",
+   "Unemployment",
+   "The poverty line"
+  ],
+  "e": "The Gini coefficient is derived from it.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-021",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The Cash Reserve Ratio is the share of deposits that banks must keep:",
+  "a": "With the RBI",
+  "w": [
+   "In government securities",
+   "In gold",
+   "With other banks"
+  ],
+  "e": "SLR is kept in liquid assets with the bank itself.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-022",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Stagflation means:",
+  "a": "High inflation with low growth and high unemployment",
+  "w": [
+   "Falling prices with high growth",
+   "Low inflation with high growth",
+   "Falling prices with falling output"
+  ],
+  "e": "Monetary policy finds it hard to fix.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-023",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Which sector contributes the largest share of India's GVA?",
+  "a": "Services",
+  "w": [
+   "Agriculture",
+   "Industry",
+   "Mining"
+  ],
+  "e": "Agriculture employs a larger share of workers than its share of GVA.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-024",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Which of these is a capital receipt of the Government?",
+  "a": "Borrowings",
+  "w": [
+   "Income tax",
+   "Corporation tax",
+   "Dividends from PSUs"
+  ],
+  "e": "Revenue receipts include taxes and dividends.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-025",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Which of these is NOT an instrument of the money market?",
+  "a": "Equity shares",
+  "w": [
+   "Treasury bills",
+   "Commercial paper",
+   "Certificates of deposit"
+  ],
+  "e": "The money market deals in short-term funds of up to a year.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-026",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "A loan becomes a Non-Performing Asset when it is unpaid for:",
+  "a": "90 days",
+  "w": [
+   "30 days",
+   "60 days",
+   "180 days"
+  ],
+  "e": "It is then classified as substandard, doubtful or loss.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-027",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Deposit insurance by the DICGC covers up to:",
+  "a": "Rs 5 lakh per depositor per bank",
+  "w": [
+   "Rs 1 lakh",
+   "Rs 10 lakh",
+   "Rs 2 lakh"
+  ],
+  "e": "The limit was raised to Rs 5 lakh in 2020.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-029",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Foreign Portfolio Investment is called hot money because it:",
+  "a": "Can flow out quickly",
+  "w": [
+   "Brings long-term ownership",
+   "Needs government approval",
+   "Is invested only in land"
+  ],
+  "e": "FDI is more stable.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-030",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Which of these is a merit good?",
+  "a": "Education",
+  "w": [
+   "Street lighting",
+   "Cigarettes",
+   "Luxury cars"
+  ],
+  "e": "Street lighting is a public good, being non-rival and non-excludable.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-031",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Cess and surcharge matter in federal debates because they:",
+  "a": "Are not shared with states",
+  "w": [
+   "Are shared equally with states",
+   "Are levied only by states",
+   "Replace GST"
+  ],
+  "e": "They sit outside the divisible pool of taxes.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-032",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "The floor of the RBI's rate corridor is the:",
+  "a": "Standing Deposit Facility rate",
+  "w": [
+   "Marginal Standing Facility rate",
+   "Bank rate",
+   "Repo rate"
+  ],
+  "e": "The MSF rate is the ceiling.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-033",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Which of these is part of the capital account of the balance of payments?",
+  "a": "FDI inflows",
+  "w": [
+   "Merchandise exports",
+   "Remittances",
+   "Software services exports"
+  ],
+  "e": "The current account covers goods, services, income and transfers.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-034",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Real GDP differs from nominal GDP because it:",
+  "a": "Is measured at constant base-year prices",
+  "w": [
+   "Excludes services",
+   "Includes net factor income from abroad",
+   "Is measured at current prices"
+  ],
+  "e": "It removes the effect of price changes.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-035",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "GDP at market prices equals:",
+  "a": "GVA plus product taxes minus product subsidies",
+  "w": [
+   "GVA minus product taxes",
+   "GNP minus depreciation",
+   "NNP plus subsidies"
+  ],
+  "e": "This is the relation used in India's national accounts.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-036",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Which committee recommended flexible inflation targeting for India in 2014?",
+  "a": "Urjit Patel Committee",
+  "w": [
+   "Tendulkar Committee",
+   "Rangarajan Committee",
+   "Chakravarty Committee"
+  ],
+  "e": "The framework was formalised in 2015 and 2016.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-037",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "When the RBI sells government securities in open market operations, liquidity:",
+  "a": "Falls",
+  "w": [
+   "Rises",
+   "Stays the same",
+   "Doubles"
+  ],
+  "e": "Banks pay cash to the RBI, so money leaves the system.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-038",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Which tribunal adjudicates corporate insolvency under the Insolvency and Bankruptcy Code 2016?",
+  "a": "NCLT",
+  "w": [
+   "SEBI",
+   "Competition Commission of India",
+   "Supreme Court directly"
+  ],
+  "e": "Insolvency of individuals and partnership firms goes to the Debt Recovery Tribunals.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-039",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "The twin balance sheet problem refers to stress in:",
+  "a": "Banks and corporates",
+  "w": [
+   "The Centre and states",
+   "Exports and imports",
+   "Households and the RBI"
+  ],
+  "e": "It means bad loans of banks and over-leveraged firms.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "economy-b1-040",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "The Tendulkar Committee (2009) is associated with:",
+  "a": "Estimation of poverty",
+  "w": [
+   "Banking reforms",
+   "Tax reform",
+   "Disinvestment"
+  ],
+  "e": "It used consumption-based estimates.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Economics, RBI publications and official budget / Ministry of Finance material; avoid outdated current figures.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

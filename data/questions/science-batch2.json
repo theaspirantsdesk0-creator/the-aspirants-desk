@@ -1,0 +1,642 @@
+[
+ {
+  "id": "science-b2-001",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What is the basic unit of heredity?",
+  "a": "Gene",
+  "w": [
+   "Cell membrane",
+   "Tissue",
+   "Enzyme"
+  ],
+  "e": "A gene is a segment of DNA associated with a functional product or hereditary trait.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-002",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which organelle is commonly called the powerhouse of the cell?",
+  "a": "Mitochondrion",
+  "w": [
+   "Ribosome",
+   "Golgi apparatus",
+   "Lysosome"
+  ],
+  "e": "Mitochondria generate much of the cell's usable energy through cellular respiration.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-003",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which type of electromagnetic radiation has the shortest wavelength among the options?",
+  "a": "Gamma rays",
+  "w": [
+   "Visible light",
+   "Microwaves",
+   "Radio waves"
+  ],
+  "e": "Gamma rays occupy the shortest-wavelength, highest-frequency part of the electromagnetic spectrum.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-004",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What is the primary role of a vaccine?",
+  "a": "Train the immune system to recognise a pathogen",
+  "w": [
+   "Directly replace red blood cells",
+   "Destroy all bacteria in the body",
+   "Provide permanent immunity in every case"
+  ],
+  "e": "Vaccines stimulate immune memory and reduce the risk or severity of specific infections.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-005",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which Indian organisation is responsible for the country's space programme?",
+  "a": "ISRO",
+  "w": [
+   "DRDO",
+   "CSIR",
+   "BARC"
+  ],
+  "e": "The Indian Space Research Organisation leads India's civilian space programme.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-006",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What does DNA stand for?",
+  "a": "Deoxyribonucleic acid",
+  "w": [
+   "Ribonuclear acid",
+   "Deoxyribose nitrogen atom",
+   "Dynamic nucleic acid"
+  ],
+  "e": "DNA is the molecule that carries hereditary information in most living organisms.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-007",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which instrument is used to detect and record earthquakes?",
+  "a": "Seismograph",
+  "w": [
+   "Barometer",
+   "Hygrometer",
+   "Anemometer"
+  ],
+  "e": "A seismograph records ground motion caused by seismic waves.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-008",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What is the SI unit of electric current?",
+  "a": "Ampere",
+  "w": [
+   "Volt",
+   "Ohm",
+   "Watt"
+  ],
+  "e": "The ampere is the SI base unit of electric current.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-009",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which phenomenon enables a solar cell to convert light into electricity?",
+  "a": "Photovoltaic effect",
+  "w": [
+   "Doppler effect",
+   "Photoelectric heating only",
+   "Hall effect"
+  ],
+  "e": "Photovoltaic cells generate electric voltage when light is absorbed by a semiconductor.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-010",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What is the main function of a semiconductor in electronic devices?",
+  "a": "Control the flow of electric current",
+  "w": [
+   "Store mechanical energy",
+   "Generate sound waves",
+   "Filter drinking water"
+  ],
+  "e": "Semiconductors have controllable electrical conductivity and form the basis of electronic components.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-011",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which gas is commonly used in MRI scanners to cool superconducting magnets?",
+  "a": "Helium",
+  "w": [
+   "Oxygen",
+   "Chlorine",
+   "Hydrogen"
+  ],
+  "e": "Liquid helium is widely used to cool superconducting MRI magnet systems.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-012",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What is the primary purpose of an antibiotic?",
+  "a": "Treat infections caused by susceptible bacteria",
+  "w": [
+   "Treat every viral infection",
+   "Prevent all allergies",
+   "Destroy human cancer cells in all cases"
+  ],
+  "e": "Antibiotics act against bacteria and are not effective against viruses.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-013",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "Which of the following is an example of a vector-borne disease?",
+  "a": "Malaria",
+  "w": [
+   "Diabetes",
+   "Scurvy",
+   "Haemophilia"
+  ],
+  "e": "Malaria parasites are transmitted to humans through infected female Anopheles mosquitoes.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-014",
+  "subject": "Science",
+  "difficulty": "easy",
+  "q": "What does the term 'quantum computing' refer to?",
+  "a": "Computing using quantum states such as superposition and entanglement",
+  "w": [
+   "Computing only with mechanical gears",
+   "A faster form of ordinary decimal arithmetic",
+   "Computing without physical hardware"
+  ],
+  "e": "Quantum computers use quantum bits and quantum phenomena to process information.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-015",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which component of a basic computer performs arithmetic and logical operations?",
+  "a": "Arithmetic Logic Unit",
+  "w": [
+   "Power supply unit",
+   "Hard disk drive",
+   "Monitor"
+  ],
+  "e": "The ALU is the CPU component responsible for arithmetic and logical operations.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-016",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which Indian mission was designed to study the Sun from a halo orbit around the Sun-Earth L1 point?",
+  "a": "Aditya-L1",
+  "w": [
+   "Chandrayaan-1",
+   "Mangalyaan",
+   "Astrosat"
+  ],
+  "e": "Aditya-L1 is India's solar observatory mission positioned near the Sun-Earth L1 point.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-017",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What is the main purpose of remote sensing satellites?",
+  "a": "Collect information about Earth's surface without direct contact",
+  "w": [
+   "Transmit electricity to homes",
+   "Replace all ground-based weather stations",
+   "Conduct deep-sea mining"
+  ],
+  "e": "Remote sensing satellites observe land, oceans and atmosphere using sensors.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-018",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which of the following is a greenhouse gas emitted by certain refrigerants and industrial processes?",
+  "a": "Hydrofluorocarbons",
+  "w": [
+   "Oxygen",
+   "Neon",
+   "Helium"
+  ],
+  "e": "Some hydrofluorocarbons are potent greenhouse gases used in refrigeration and other applications.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-019",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What does CRISPR-Cas technology primarily enable scientists to do?",
+  "a": "Edit genetic material at targeted locations",
+  "w": [
+   "Measure atmospheric pressure",
+   "Generate electricity from tides",
+   "Create magnetic resonance images"
+  ],
+  "e": "CRISPR-Cas systems can be adapted to target and modify specific DNA sequences.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-020",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which material is widely used as a semiconductor in conventional integrated circuits?",
+  "a": "Silicon",
+  "w": [
+   "Copper",
+   "Wood",
+   "Rubber"
+  ],
+  "e": "Silicon's electrical properties make it a widely used semiconductor material.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-021",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What is the purpose of a geostationary satellite orbit?",
+  "a": "Keep a satellite apparently fixed over one point on Earth's equator",
+  "w": [
+   "Make a satellite pass over both poles every orbit",
+   "Keep a satellite permanently outside Earth's gravity",
+   "Ensure a satellite completes one orbit in 90 minutes"
+  ],
+  "e": "A geostationary satellite has an orbital period matching Earth's rotation and appears stationary.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-022",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which agency operates India's regional navigation satellite system NavIC?",
+  "a": "ISRO",
+  "w": [
+   "Election Commission of India",
+   "CPCB",
+   "NITI Aayog"
+  ],
+  "e": "NavIC is India's regional satellite navigation system developed by ISRO.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-023",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What is the principal role of the World Health Organization in global health?",
+  "a": "Provide international leadership and coordination on health",
+  "w": [
+   "Approve every country's annual budget",
+   "Manufacture all vaccines worldwide",
+   "Operate national hospitals directly"
+  ],
+  "e": "WHO coordinates international public health work and provides technical guidance.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-024",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which physical principle explains why optical fibres can guide light over long distances?",
+  "a": "Total internal reflection",
+  "w": [
+   "Nuclear fission",
+   "Electromagnetic induction",
+   "Thermal expansion"
+  ],
+  "e": "Optical fibres guide light by repeated total internal reflection at the core-cladding boundary.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-025",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What is meant by 'artificial intelligence' in a broad technical sense?",
+  "a": "Computer systems performing tasks associated with human intelligence",
+  "w": [
+   "Any machine that uses electricity",
+   "A database containing only images",
+   "A computer without an operating system"
+  ],
+  "e": "AI refers to systems designed to perform tasks such as pattern recognition, prediction or language processing.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-026",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which of the following best describes machine learning?",
+  "a": "Systems learn patterns from data to make predictions or decisions",
+  "w": [
+   "A machine is repaired by hand",
+   "A computer stores data without processing it",
+   "A robot operates only through fixed mechanical switches"
+  ],
+  "e": "Machine learning is a subset of AI that uses data-driven methods to improve task performance.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-027",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "What is the main purpose of a firewall in computer networks?",
+  "a": "Control incoming and outgoing network traffic according to rules",
+  "w": [
+   "Increase screen brightness",
+   "Compress all files automatically",
+   "Replace the operating system"
+  ],
+  "e": "A firewall filters network traffic to reduce unauthorised access.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-028",
+  "subject": "Science",
+  "difficulty": "medium",
+  "q": "Which technology is the foundation of most cryptocurrencies' distributed ledgers?",
+  "a": "Blockchain",
+  "w": [
+   "Optical character recognition",
+   "Radar",
+   "Magnetic levitation"
+  ],
+  "e": "Blockchain maintains a shared ledger using cryptographic links between records.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-029",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What is the function of a catalyst in a chemical reaction?",
+  "a": "Increase reaction rate without being consumed overall",
+  "w": [
+   "Increase the mass of products",
+   "Change the identity of every reactant",
+   "Stop all side reactions"
+  ],
+  "e": "A catalyst provides an alternative reaction pathway with lower activation energy.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-030",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "Which particle carries a negative electric charge?",
+  "a": "Electron",
+  "w": [
+   "Proton",
+   "Neutron",
+   "Neutrino"
+  ],
+  "e": "Electrons carry a negative elementary electric charge.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-031",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What is nuclear fission?",
+  "a": "Splitting of a heavy atomic nucleus into lighter nuclei",
+  "w": [
+   "Combining two light nuclei",
+   "Emission of visible light by an LED",
+   "Conversion of sound into electricity"
+  ],
+  "e": "Fission releases energy when a heavy nucleus splits into smaller nuclei.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-032",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "Which of the following is a non-communicable disease?",
+  "a": "Hypertension",
+  "w": [
+   "Tuberculosis",
+   "Measles",
+   "Dengue"
+  ],
+  "e": "Hypertension is not transmitted from person to person.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-033",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What does the term 'antimicrobial resistance' mean?",
+  "a": "Microorganisms survive medicines that would normally kill or inhibit them",
+  "w": [
+   "Human cells become resistant to all vaccines",
+   "Medicines lose their expiry dates",
+   "All microbes become harmless"
+  ],
+  "e": "Resistance makes infections harder to treat because medicines become less effective.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-034",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "Which Indian mission made a successful soft landing near the Moon's south polar region in 2023?",
+  "a": "Chandrayaan-3",
+  "w": [
+   "Chandrayaan-2",
+   "Mangalyaan",
+   "Gaganyaan"
+  ],
+  "e": "Chandrayaan-3 achieved a soft landing in the lunar south polar region in August 2023.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-035",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What is the main purpose of the Large Hadron Collider?",
+  "a": "Study fundamental particles through high-energy collisions",
+  "w": [
+   "Map ocean currents",
+   "Measure earthquakes",
+   "Produce commercial nuclear fuel"
+  ],
+  "e": "The LHC accelerates and collides particles to investigate fundamental physics.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-036",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What is a distinguishing feature of a mRNA vaccine?",
+  "a": "It provides cells with instructions to produce an antigen",
+  "w": [
+   "It contains a complete live pathogen in every dose",
+   "It permanently alters the recipient's genome",
+   "It works only against bacterial infections"
+  ],
+  "e": "mRNA vaccines deliver temporary genetic instructions that prompt cells to make an antigen.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-037",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What does the term 'green hydrogen' generally mean?",
+  "a": "Hydrogen produced using renewable energy",
+  "w": [
+   "Hydrogen stored only in green-coloured tanks",
+   "Hydrogen extracted exclusively from coal",
+   "Hydrogen mixed with natural gas in every case"
+  ],
+  "e": "Green hydrogen is typically produced by electrolysis powered by renewable electricity.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-038",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "Which technology allows devices to exchange data over short distances using radio waves without cables?",
+  "a": "Bluetooth",
+  "w": [
+   "Optical disc",
+   "Ethernet cable",
+   "Inkjet printing"
+  ],
+  "e": "Bluetooth is a short-range wireless communication standard.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-039",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "What is the primary purpose of India's Gaganyaan programme?",
+  "a": "Demonstrate human spaceflight capability",
+  "w": [
+   "Explore the deep ocean",
+   "Build a permanent Moon base immediately",
+   "Launch a global navigation system"
+  ],
+  "e": "Gaganyaan aims to demonstrate India's capability to send humans to low Earth orbit and return them safely.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "science-b2-040",
+  "subject": "Science",
+  "difficulty": "hard",
+  "q": "Which of the following best describes a biosensor?",
+  "a": "A device that uses a biological component to detect a substance",
+  "w": [
+   "A device used only to measure wind speed",
+   "A satellite used for navigation",
+   "A machine that converts heat into sound"
+  ],
+  "e": "Biosensors combine a biological recognition element with a signal-transduction system.",
+  "status": "published",
+  "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]

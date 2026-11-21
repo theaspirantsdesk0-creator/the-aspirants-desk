@@ -1,0 +1,578 @@
+[
+ {
+  "id": "modern-history-b1-002",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who was the first Viceroy of India?",
+  "a": "Lord Canning",
+  "w": [
+   "Lord Dalhousie",
+   "Warren Hastings",
+   "Lord Cornwallis"
+  ],
+  "e": "The Government of India Act 1858 created the post of Viceroy.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-003",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who founded the Brahmo Samaj in 1828?",
+  "a": "Raja Rammohan Roy",
+  "w": [
+   "Dayananda Saraswati",
+   "Swami Vivekananda",
+   "Ishwar Chandra Vidyasagar"
+  ],
+  "e": "He also campaigned against sati.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-004",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who founded the Arya Samaj in 1875?",
+  "a": "Dayananda Saraswati",
+  "w": [
+   "Raja Rammohan Roy",
+   "Swami Vivekananda",
+   "Mahadev Govind Ranade"
+  ],
+  "e": "Its call was a return to the Vedas.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-005",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "In which year was the Indian National Congress founded?",
+  "a": "1885",
+  "w": [
+   "1876",
+   "1905",
+   "1906"
+  ],
+  "e": "The first session was in Bombay with W C Bonnerjee as president.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-006",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "The Jallianwala Bagh massacre took place in:",
+  "a": "1919",
+  "w": [
+   "1917",
+   "1920",
+   "1922"
+  ],
+  "e": "On 13 April 1919, troops under General Dyer fired on a crowd in Amritsar.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-007",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "The Dandi March was undertaken in which year?",
+  "a": "1930",
+  "w": [
+   "1920",
+   "1928",
+   "1942"
+  ],
+  "e": "Gandhi marched from 12 March to 6 April 1930 to break the salt law.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-008",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "The Quit India resolution was adopted by the AICC at Gowalia Tank, Bombay, on which date?",
+  "a": "8 August 1942",
+  "w": [
+   "9 August 1942",
+   "15 August 1942",
+   "26 January 1930"
+  ],
+  "e": "The resolution was passed on 8 August 1942; Gandhi gave the Do or Die call that day, and the mass movement began on 9 August after the leaders were arrested.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-009",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who gave the call of Do or Die during the Quit India Movement?",
+  "a": "Mahatma Gandhi",
+  "w": [
+   "Subhas Chandra Bose",
+   "Jawaharlal Nehru",
+   "Bal Gangadhar Tilak"
+  ],
+  "e": "Bose's slogan was Delhi Chalo.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-010",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Which Viceroy carried out the Partition of Bengal in 1905?",
+  "a": "Lord Curzon",
+  "w": [
+   "Lord Ripon",
+   "Lord Minto",
+   "Lord Lytton"
+  ],
+  "e": "It led to the Swadeshi and Boycott movements and was annulled in 1911.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-012",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who wrote Poverty and Un-British Rule in India?",
+  "a": "Dadabhai Naoroji",
+  "w": [
+   "R C Dutt",
+   "Gopal Krishna Gokhale",
+   "Bal Gangadhar Tilak"
+  ],
+  "e": "Naoroji explained the drain of wealth theory.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-013",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who led the Azad Hind Fauj (INA) from 1943?",
+  "a": "Subhas Chandra Bose",
+  "w": [
+   "Mohan Singh",
+   "Jawaharlal Nehru",
+   "Vallabhbhai Patel"
+  ],
+  "e": "Bose took over the INA in Singapore in 1943.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-014",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Why was the Simon Commission (1927) boycotted in India?",
+  "a": "It had no Indian member",
+  "w": [
+   "It proposed partition",
+   "It abolished the Councils",
+   "It ended separate electorates"
+  ],
+  "e": "All seven members were British.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-015",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Who introduced the Permanent Settlement in 1793?",
+  "a": "Lord Cornwallis",
+  "w": [
+   "Thomas Munro",
+   "Holt Mackenzie",
+   "Lord Wellesley"
+  ],
+  "e": "It fixed the revenue payable by zamindars in Bengal, Bihar and Orissa.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-016",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Which state was the first annexed under the Doctrine of Lapse?",
+  "a": "Satara",
+  "w": [
+   "Jhansi",
+   "Nagpur",
+   "Awadh"
+  ],
+  "e": "Satara lapsed in 1848, Jhansi in 1853 and Nagpur in 1854. Awadh was annexed in 1856 on grounds of misrule.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-017",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Treaty of Allahabad (1765) gave the East India Company the:",
+  "a": "Diwani of Bengal, Bihar and Orissa",
+  "w": [
+   "Right to trade duty-free in India",
+   "Control of Madras",
+   "Nizamat of Awadh"
+  ],
+  "e": "Diwani meant the right to collect revenue.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-018",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Which ruler was the first to accept the Subsidiary Alliance?",
+  "a": "The Nizam of Hyderabad",
+  "w": [
+   "The Peshwa",
+   "Tipu Sultan",
+   "The Nawab of Awadh"
+  ],
+  "e": "Hyderabad accepted it in 1798 under Wellesley.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-019",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Indigo Revolt of 1859 to 60 took place in:",
+  "a": "Bengal",
+  "w": [
+   "Punjab",
+   "Bombay",
+   "Madras"
+  ],
+  "e": "Peasants refused to grow indigo for European planters.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-020",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Lucknow Pact of 1916 was between:",
+  "a": "Congress and the Muslim League",
+  "w": [
+   "Gandhi and Irwin",
+   "Gandhi and Ambedkar",
+   "Moderates and Extremists"
+  ],
+  "e": "Congress accepted separate electorates for Muslims.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-022",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Cripps Mission came to India in:",
+  "a": "1942",
+  "w": [
+   "1940",
+   "1946",
+   "1932"
+  ],
+  "e": "It offered dominion status after the war and was rejected.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-024",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Swaraj Party was formed in 1923 by:",
+  "a": "C R Das and Motilal Nehru",
+  "w": [
+   "Tilak and Besant",
+   "Gandhi and Patel",
+   "Lajpat Rai and Bipin Chandra Pal"
+  ],
+  "e": "It wanted to contest council elections.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-025",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Which Act introduced separate electorates for Muslims?",
+  "a": "Indian Councils Act 1909",
+  "w": [
+   "Government of India Act 1919",
+   "Indian Councils Act 1892",
+   "Government of India Act 1935"
+  ],
+  "e": "It is also called the Morley-Minto Reforms.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-026",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "The Vernacular Press Act (1878) was passed under which Viceroy?",
+  "a": "Lord Lytton",
+  "w": [
+   "Lord Ripon",
+   "Lord Curzon",
+   "Lord Dufferin"
+  ],
+  "e": "Ripon repealed it in 1882.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-027",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Wood's Despatch of 1854 is associated with:",
+  "a": "Education",
+  "w": [
+   "Land revenue",
+   "Railways",
+   "Famine relief"
+  ],
+  "e": "It is called the Magna Carta of English education and led to the universities of 1857.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-028",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Who founded the Satyashodhak Samaj in 1873?",
+  "a": "Jyotiba Phule",
+  "w": [
+   "B R Ambedkar",
+   "Periyar",
+   "Narayana Guru"
+  ],
+  "e": "It worked for lower castes and women's education.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-029",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Hunter Committee (1919) inquired into:",
+  "a": "The Punjab disorders including Jallianwala Bagh",
+  "w": [
+   "The Rowlatt Act",
+   "The Chauri Chaura incident",
+   "The Partition of Bengal"
+  ],
+  "e": "It was appointed after the Jallianwala Bagh massacre.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-030",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Ilbert Bill controversy (1883) took place under which Viceroy?",
+  "a": "Lord Ripon",
+  "w": [
+   "Lord Lytton",
+   "Lord Dufferin",
+   "Lord Curzon"
+  ],
+  "e": "The bill let Indian judges try Europeans; European protest forced a compromise.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-031",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "Who led the Chittagong Armoury Raid of 1930?",
+  "a": "Surya Sen",
+  "w": [
+   "Bhagat Singh",
+   "Chandrashekhar Azad",
+   "Ram Prasad Bismil"
+  ],
+  "e": "Surya Sen was known as Master-da.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-032",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Kakori train action (1925) was carried out by which organisation?",
+  "a": "Hindustan Republican Association",
+  "w": [
+   "Hindustan Socialist Republican Association",
+   "Anushilan Samiti",
+   "Ghadar Party"
+  ],
+  "e": "The HSRA was formed in 1928.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-033",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "Which Congress session adopted the Purna Swaraj resolution?",
+  "a": "Lahore 1929",
+  "w": [
+   "Karachi 1931",
+   "Calcutta 1928",
+   "Nagpur 1920"
+  ],
+  "e": "Jawaharlal Nehru presided.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-034",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The August Offer of 1940 was made by:",
+  "a": "Lord Linlithgow",
+  "w": [
+   "Lord Wavell",
+   "Lord Mountbatten",
+   "Sir Stafford Cripps"
+  ],
+  "e": "It promised dominion status after the war and a constituent body; Congress rejected it.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-035",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Bardoli Satyagraha of 1928 was led by:",
+  "a": "Vallabhbhai Patel",
+  "w": [
+   "Mahatma Gandhi",
+   "Rajendra Prasad",
+   "J B Kripalani"
+  ],
+  "e": "It was against a revenue hike, and Patel earned the title Sardar.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-036",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Mahad Satyagraha (1927) led by Ambedkar was for:",
+  "a": "Access to a public water tank for Dalits",
+  "w": [
+   "Temple entry",
+   "Abolition of the salt tax",
+   "Reservation in jobs"
+  ],
+  "e": "It asserted the right to draw water from the Chavdar tank.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-037",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "Which Act provided for the Federal Court of India?",
+  "a": "Government of India Act 1935",
+  "w": [
+   "Government of India Act 1919",
+   "Indian Councils Act 1909",
+   "Regulating Act 1773"
+  ],
+  "e": "The Federal Court began functioning in 1937.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-038",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Simla Conference of 1945 was convened by:",
+  "a": "Lord Wavell",
+  "w": [
+   "Lord Mountbatten",
+   "Lord Linlithgow",
+   "Lord Irwin"
+  ],
+  "e": "It discussed the Wavell Plan and failed over Muslim League representation.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-039",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "Who was NOT a member of the Cabinet Mission of 1946?",
+  "a": "Lord Mountbatten",
+  "w": [
+   "Pethick-Lawrence",
+   "Stafford Cripps",
+   "A V Alexander"
+  ],
+  "e": "Mountbatten became Viceroy in 1947.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ },
+ {
+  "id": "modern-history-b1-040",
+  "subject": "Modern history",
+  "difficulty": "hard",
+  "q": "The Santhal rebellion of 1855 was led by:",
+  "a": "Sidhu and Kanhu",
+  "w": [
+   "Birsa Munda",
+   "Alluri Sitarama Raju",
+   "Tilka Manjhi"
+  ],
+  "e": "It is also called the Santhal Hool.",
+  "status": "published",
+  "reference_hint": "Review with NCERT history texts and a standard modern Indian history reference such as Spectrum; verify dates and chronology.",
+  "review_note": "Draft only: verify the answer and explanation against the reference before approval."
+ }
+]
