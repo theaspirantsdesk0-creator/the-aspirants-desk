@@ -1179,23 +1179,25 @@ th { background: var(--surface-alt); font-weight: 700; }
     if (window._tadKpi) window._tadKpi();
     if (!supabase || !currentUser) return;
     try {
-      await supabase.from("user_data").upsert({
+      const { error: userDataError } = await supabase.from("user_data").upsert({
         user_id: currentUser.id,
         payload: state,
         updated_at: new Date().toISOString()
       });
-      await supabase.from("progress").upsert({
+      if (userDataError) throw userDataError;
+      const { error: progressError } = await supabase.from("progress").upsert({
         user_id: currentUser.id,
         summary: {
           display_name: userProfile.display_name,
           email: currentUser.email,
           target_exam: selectedExam,
           hours: state.hours,
-          syllabus_pct: Math.round((state.syllabus.length / 6) * 100),
+          syllabus_pct: Math.round((state.syllabus.length / SYLLABUS_TOPICS.length) * 100),
           last_score: state.lastScore
         },
         updated_at: new Date().toISOString()
       });
+      if (progressError) throw progressError;
     } catch (e) {
       console.warn("Cloud sync queued offline:", e.message);
     }
@@ -1573,8 +1575,9 @@ th { background: var(--surface-alt); font-weight: 700; }
     renderMistakes();
     await saveUserState();
 
+    let testResultError = null;
     if (supabase && currentUser) {
-      await supabase.from("test_results").insert({
+      const { error } = await supabase.from("test_results").insert({
         user_id: currentUser.id,
         exam: selectedExam,
         test_name: "Daily Prelims Test",
@@ -1584,8 +1587,12 @@ th { background: var(--surface-alt); font-weight: 700; }
         wrong_count: wrong,
         skipped_count: skipped
       });
+      testResultError = error;
+      if (error) console.warn("Cloud test history save failed:", error.message);
     }
-    toast(`Test scored: ${netScore} / ${DAILY_QUESTIONS.length * 2}`);
+    toast(testResultError
+      ? `Score saved locally; cloud history could not be saved: ${testResultError.message}`
+      : `Test scored: ${netScore} / ${DAILY_QUESTIONS.length * 2}`);
   });
 
   $("retakeQuizBtn").addEventListener("click", () => {
@@ -1868,9 +1875,9 @@ th { background: var(--surface-alt); font-weight: 700; }
     $("adminLearnersTable").innerHTML = (profiles || []).map(p => {
       const s = progMap[p.id] || {};
       return `<tr>
-        <td><b>${p.display_name}</b></td>
-        <td>${p.email || "—"}</td>
-        <td><span class="pill ${p.role === 'admin' ? 'bad' : 'ok'}">${p.role}</span></td>
+        <td><b>${esc(p.display_name || "Learner")}</b></td>
+        <td>${esc(s.email || "—")}</td>
+        <td><span class="pill ${p.role === 'admin' ? 'bad' : 'ok'}">${esc(p.role)}</span></td>
         <td>${s.target_exam || p.target_exam}</td>
         <td>${Number(s.hours || 0).toFixed(1)} hrs (${s.syllabus_pct || 0}%)</td>
       </tr>`;
