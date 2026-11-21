@@ -2251,7 +2251,8 @@ var LIB=[
 ];
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function build(){
-var box=document.getElementById("libDeep"); if(!box) return;
+var box=document.getElementById("libDeep");
+if(!box){var sec=document.getElementById("library"); if(!sec) return; var host=sec.querySelector(".card"); if(!host) return; box=document.createElement("div"); box.id="libDeep"; var p0=host.querySelector("p"); if(p0) p0.insertAdjacentElement("afterend",box); else host.appendChild(box);}
 var html='<input id="libSearch" class="lib-search" type="search" placeholder="Search books, subjects or exams (e.g. Laxmikanth, Tamil, NCERT)" aria-label="Search the study library">';
 LIB.forEach(function(g,gi){
 html+='<details class="lib-g"'+(gi===0?' open':'')+'><summary>'+esc(g.exam)+'</summary><p class="lib-intro">'+esc(g.intro)+'</p><div class="lib-links">'+g.links.map(function(l){return '<a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>';}).join("")+'</div>';
@@ -2272,6 +2273,7 @@ g.hidden=!hit;if(hit){any=true;if(q)g.open=true;}
 document.getElementById("libNone").hidden=any||!q;
 });
 }
+console.log("Study Library loaded");
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",build);else build();
 })();
 </script>
