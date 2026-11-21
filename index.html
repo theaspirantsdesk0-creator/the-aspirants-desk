@@ -2059,26 +2059,26 @@ th { background: var(--surface-alt); font-weight: 700; }
       return;
     }
 
-    host.innerHTML = \`
+    host.innerHTML = `
       <p class="muted" style="font-size:.82rem">Feed-sourced headlines, newest first. Editorial UPSC analysis is shown only when it has been added; always verify details at the original source.</p>
       <div class="grid-2">
-        \${rows.slice(0, 24).map(item => {
+        ${rows.slice(0, 24).map(item => {
           const url = safeUrl(item.link);
-          return \`
+          return `
             <article class="card">
               <div class="btn-row" style="align-items:center;gap:.4rem">
-                <span class="pill ok">\${esc(item.kind)}</span>
-                <span class="pill">\${esc(item.topic)}</span>
+                <span class="pill ok">${esc(item.kind)}</span>
+                <span class="pill">${esc(item.topic)}</span>
               </div>
-              <h3 style="font-size:1rem;margin:.65rem 0 .3rem">\${esc(item.title)}</h3>
-              <p class="muted" style="font-size:.78rem;margin:.2rem 0 .5rem">\${esc(item.date)} · \${esc(item.source)}</p>
-              <p style="font-size:.86rem;margin:.4rem 0">\${esc(item.detail)}</p>
-              \${url ? \`<a href="\${esc(url)}" target="_blank" rel="noopener noreferrer">Read original source ↗</a>\` : ""}
+              <h3 style="font-size:1rem;margin:.65rem 0 .3rem">${esc(item.title)}</h3>
+              <p class="muted" style="font-size:.78rem;margin:.2rem 0 .5rem">${esc(item.date)} · ${esc(item.source)}</p>
+              <p style="font-size:.86rem;margin:.4rem 0">${esc(item.detail)}</p>
+              ${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Read original source ↗</a>` : ""}
             </article>
-          \`;
+          `;
         }).join("")}
       </div>
-    \`;
+    `;
   }
 
   function _legacyNotes(subj) {
