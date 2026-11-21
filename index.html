@@ -574,6 +574,27 @@ th { background: var(--surface-alt); font-weight: 700; }
       </div>
     </div>
 
+    <!-- DEVICE-LEVEL DAILY STUDY REMINDERS -->
+    <section class="card" id="pushReminderCard" aria-labelledby="pushReminderTitle" style="margin:0 0 1.4rem">
+      <div class="grid-2" style="align-items:center;gap:1rem">
+        <div>
+          <span class="pill ok">Optional browser notification</span>
+          <h3 id="pushReminderTitle" style="margin:.45rem 0">Daily study reminder</h3>
+          <p id="pushReminderStatus" class="muted" aria-live="polite" style="margin:0;font-size:.88rem">
+            Sign in to enable a reminder on this device. You can turn it off at any time.
+          </p>
+        </div>
+        <div>
+          <label for="pushReminderTime">Reminder time (your local time)</label>
+          <input id="pushReminderTime" type="time" value="19:00" style="max-width:12rem;margin:.25rem 0 .7rem">
+          <div style="display:flex;gap:.55rem;flex-wrap:wrap">
+            <button type="button" class="btn primary" id="enablePushBtn">Enable daily reminder</button>
+            <button type="button" class="btn" id="disablePushBtn" hidden>Turn off on this device</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- LIVE KPI METRICS -->
     <div class="grid-4" style="margin-bottom:1.4rem">
       <div class="card gold-top">
@@ -1034,7 +1055,7 @@ th { background: var(--surface-alt); font-weight: 700; }
 <h3 style="margin:1.3rem 0 .4rem">1. Who we are</h3>
 <p>The Aspirant’s Desk is run by Anbuchelvan M S, Puducherry, India. Contact: <a href="mailto:theaspirantsdesk0@gmail.com">theaspirantsdesk0@gmail.com</a>.</p>
 <h3 style="margin:1.3rem 0 .4rem">2. What we collect</h3>
-<ul ><li>Account details you give when you sign in, such as your name and email address.</li><li>Study data you enter, such as syllabus progress, study hours, test scores, goals and logs.</li><li>Messages you send us. The contact form opens your own email app, so we receive only what you send.</li><li>Technical data such as IP address and browser details, which our hosting and database providers record as part of running the service.</li><li>Items saved locally or synced to your account, such as your study plan, daily test results, mistake notebook, reading history, mock history, revision records and written answers. Display preferences such as theme and text size stay on the device.</li><li>If you enable push reminders, the app stores that device's push endpoint, encryption keys, reminder time and time zone so the reminder service can deliver notifications. You can disable a device subscription in App Settings.</li></ul>
+<ul ><li>Account details you give when you sign in, such as your name and email address.</li><li>Study data you enter, such as syllabus progress, study hours, test scores, goals and logs.</li><li>Messages you send us. The contact form opens your own email app, so we receive only what you send.</li><li>Technical data such as IP address and browser details, which our hosting and database providers record as part of running the service.</li><li>Items saved locally or synced to your account, such as your study plan, daily test results, mistake notebook, reading history, mock history, revision records and written answers. Display preferences such as theme and text size stay on the device.</li><li>If you enable push reminders, the app stores that device's push endpoint, encryption keys, reminder time and time zone so the reminder service can deliver notifications. You can turn reminders off from the Daily Study Reminder card on the Dashboard.</li></ul>
 <h3 style="margin:1.3rem 0 .4rem">3. How we use it</h3>
 <p>We use your data to run your account, show you your own progress, keep the website working and secure, and answer your messages. The site owner, as administrator, can see learners’ progress summaries.</p>
 <h3 style="margin:1.3rem 0 .4rem">4. Consent</h3>
@@ -1168,6 +1189,144 @@ th { background: var(--surface-alt); font-weight: 700; }
     box._t = setTimeout(() => { box.hidden = true; }, 3200);
   }
 
+  function urlBase64ToUint8Array(value) {
+    const padding = "=".repeat((4 - value.length % 4) % 4);
+    const base64 = (value + padding).replace(/-/g, "+").replace(/_/g, "/");
+    const raw = window.atob(base64);
+    return Uint8Array.from(raw, char => char.charCodeAt(0));
+  }
+
+  async function refreshPushReminderUI() {
+    const status = $("pushReminderStatus");
+    const enable = $("enablePushBtn");
+    const disable = $("disablePushBtn");
+    const timeInput = $("pushReminderTime");
+    if (!status || !enable || !disable || !timeInput) return;
+
+    disable.hidden = true;
+    enable.disabled = false;
+    timeInput.disabled = false;
+
+    if (!currentUser || !supabase) {
+      status.textContent = "Sign in to enable a reminder on this device. You can turn it off at any time.";
+      enable.disabled = !currentUser;
+      timeInput.disabled = !currentUser;
+      return;
+    }
+
+    if (!window.isSecureContext || !("serviceWorker" in navigator) ||
+        !("PushManager" in window) || !("Notification" in window)) {
+      status.textContent = "This browser or connection does not support secure push notifications.";
+      enable.disabled = true;
+      timeInput.disabled = true;
+      return;
+    }
+
+    const permissionBlocked = Notification.permission === "denied";
+    try {
+      const registration = await navigator.serviceWorker.ready;
+      const subscription = await registration.pushManager.getSubscription();
+      if (!subscription) {
+        status.textContent = permissionBlocked
+          ? "Notifications are blocked in this browser. Allow them in site settings to enable reminders."
+          : "No reminder is active on this device. Choose a time and enable it.";
+        enable.textContent = "Enable daily reminder";
+        enable.disabled = permissionBlocked;
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("push_subscriptions")
+        .select("reminder_time,enabled")
+        .eq("user_id", currentUser.id)
+        .eq("endpoint", subscription.endpoint)
+        .maybeSingle();
+      if (error) throw error;
+
+      if (data && data.enabled) {
+        timeInput.value = String(data.reminder_time || "19:00").slice(0, 5);
+        status.textContent = "A daily reminder is enabled on this device. It is skipped when you have already logged study activity that day.";
+        enable.textContent = "Save reminder time";
+        disable.hidden = false;
+      } else {
+        status.textContent = "This browser has a push subscription, but no active reminder is saved for your account. Enable it to finish setup.";
+        enable.textContent = "Enable daily reminder";
+      }
+      enable.disabled = permissionBlocked;
+    } catch (error) {
+      status.textContent = "Could not check reminder status: " + (error.message || "Unknown error");
+      enable.disabled = true;
+    }
+  }
+
+  async function enablePushReminders() {
+    if (!currentUser || !supabase) {
+      openAuthModal("home");
+      return;
+    }
+    if (!window.isSecureContext || !("serviceWorker" in navigator) ||
+        !("PushManager" in window) || !("Notification" in window)) {
+      throw new Error("Push reminders require a supported browser on a secure HTTPS connection.");
+    }
+    const vapidPublicKey = window.DESK_VAPID_PUBLIC_KEY;
+    if (!vapidPublicKey) throw new Error("The public VAPID key is missing from config.js.");
+
+    let permission = Notification.permission;
+    if (permission === "default") permission = await Notification.requestPermission();
+    if (permission !== "granted") throw new Error("Notification permission was not granted. Check this site's browser permissions.");
+
+    const registration = await navigator.serviceWorker.ready;
+    let subscription = await registration.pushManager.getSubscription();
+    if (!subscription) {
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+      });
+    }
+
+    const payload = subscription.toJSON();
+    if (!payload.keys || !payload.keys.p256dh || !payload.keys.auth) {
+      throw new Error("The browser did not return the required push encryption keys.");
+    }
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Kolkata";
+    const reminderTime = $("pushReminderTime").value || "19:00";
+    const { error } = await supabase.from("push_subscriptions").upsert({
+      user_id: currentUser.id,
+      endpoint: subscription.endpoint,
+      p256dh: payload.keys.p256dh,
+      auth: payload.keys.auth,
+      timezone,
+      reminder_time: reminderTime,
+      enabled: true,
+      updated_at: new Date().toISOString()
+    }, { onConflict: "endpoint" });
+    if (error) throw error;
+
+    toast("Daily study reminder enabled on this device.");
+    await refreshPushReminderUI();
+  }
+
+  async function disablePushReminders() {
+    if (!currentUser || !supabase) throw new Error("Sign in to manage this device's reminder.");
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) {
+      await refreshPushReminderUI();
+      return;
+    }
+
+    const { error } = await supabase.from("push_subscriptions")
+      .delete()
+      .eq("user_id", currentUser.id)
+      .eq("endpoint", subscription.endpoint);
+    if (error) throw error;
+
+    await subscription.unsubscribe();
+    toast("Daily reminders are turned off on this device.");
+    await refreshPushReminderUI();
+  }
+
   function isOwner() {
     if (!currentUser) return false;
     return userProfile.role === "admin" || (currentUser.email || "").toLowerCase() === OWNER_EMAIL;
@@ -1236,6 +1395,7 @@ th { background: var(--surface-alt); font-weight: 700; }
 
     document.querySelectorAll(".lock-tag").forEach(el => el.hidden = loggedIn);
     document.querySelectorAll(".owner-only").forEach(el => el.hidden = !isOwner());
+    refreshPushReminderUI().catch(() => {});
   }
 
   function openAuthModal(target = null) {
@@ -1260,6 +1420,35 @@ th { background: var(--surface-alt); font-weight: 700; }
     $("sidebar").classList.remove("open");
     history.replaceState(null, "", "#" + clean);
   }
+
+  // Device-level push reminder controls.
+  $("enablePushBtn").addEventListener("click", async () => {
+    const button = $("enablePushBtn");
+    button.disabled = true;
+    try {
+      await enablePushReminders();
+    } catch (error) {
+      $("pushReminderStatus").textContent = error.message || "Could not enable reminders.";
+      toast("Reminder setup failed: " + (error.message || "Unknown error"));
+    } finally {
+      button.disabled = false;
+      await refreshPushReminderUI();
+    }
+  });
+
+  $("disablePushBtn").addEventListener("click", async () => {
+    const button = $("disablePushBtn");
+    button.disabled = true;
+    try {
+      await disablePushReminders();
+    } catch (error) {
+      $("pushReminderStatus").textContent = error.message || "Could not disable reminders.";
+      toast("Could not turn off reminders: " + (error.message || "Unknown error"));
+    } finally {
+      button.disabled = false;
+      await refreshPushReminderUI();
+    }
+  });
 
   // Supabase Auth Handlers
   $("btnSignIn").addEventListener("click", async () => {
