@@ -1,0 +1,74 @@
+[
+ {
+  "id": "modern-history-0001",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Dyarchy in the provinces was introduced by the",
+  "a": "Government of India Act 1919",
+  "w": [
+   "Indian Councils Act 1909",
+   "Government of India Act 1935",
+   "Charter Act 1833"
+  ],
+  "e": "Dyarchy split provincial subjects into transferred and reserved.",
+  "status": "published"
+ },
+ {
+  "id": "modern-history-0002",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Separate electorates for Muslims were granted by the",
+  "a": "Morley-Minto reforms of 1909",
+  "w": [
+   "Montagu-Chelmsford reforms",
+   "Cripps Mission",
+   "Cabinet Mission"
+  ],
+  "e": "The Indian Councils Act 1909 gave this concession.",
+  "status": "published"
+ },
+ {
+  "id": "modern-history-0003",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Which Act proposed an All-India Federation and created a Federal Court?",
+  "a": "Government of India Act 1935",
+  "w": [
+   "Government of India Act 1919",
+   "Indian Independence Act 1947",
+   "Pitt's India Act"
+  ],
+  "e": "The federation part of the 1935 Act was never implemented.",
+  "status": "published"
+ },
+ {
+  "id": "modern-history-0004",
+  "subject": "Modern history",
+  "difficulty": "medium",
+  "q": "Who started the Swadeshi Steam Navigation Company in 1906?",
+  "a": "V. O. Chidambaram Pillai",
+  "w": [
+   "Subramania Bharati",
+   "C. Rajagopalachari",
+   "Periyar"
+  ],
+  "e": "VOC challenged British shipping at Tuticorin.",
+  "status": "published",
+  "exam": "TNPSC"
+ },
+ {
+  "id": "modern-history-0005",
+  "subject": "Modern history",
+  "difficulty": "easy",
+  "q": "Who led the Vedaranyam salt march in 1930?",
+  "a": "C. Rajagopalachari",
+  "w": [
+   "K. Kamaraj",
+   "Periyar",
+   "Subramania Bharati"
+  ],
+  "e": "It supported the Salt Satyagraha in Tamil Nadu.",
+  "status": "published",
+  "exam": "TNPSC"
+ }
+]

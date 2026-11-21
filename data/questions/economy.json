@@ -1,0 +1,172 @@
+[
+ {
+  "id": "economy-0001",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Which body regulates the securities market in India?",
+  "a": "SEBI",
+  "w": [
+   "RBI",
+   "IRDAI",
+   "NABARD"
+  ],
+  "e": "SEBI was set up in 1988 and given statutory powers in 1992.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0002",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The repo rate is the rate at which:",
+  "a": "RBI lends short-term funds to banks",
+  "w": [
+   "Banks lend to the public",
+   "RBI borrows from banks",
+   "Banks lend to each other"
+  ],
+  "e": "Repo is the RBI's main policy rate for liquidity injection.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0003",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "GST came into effect on:",
+  "a": "1 July 2017",
+  "w": [
+   "1 April 2017",
+   "1 January 2018",
+   "15 August 2017"
+  ],
+  "e": "It was introduced by the 101st Constitutional Amendment.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0004",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "NITI Aayog replaced which body?",
+  "a": "Planning Commission",
+  "w": [
+   "Finance Commission",
+   "National Development Council",
+   "Election Commission"
+  ],
+  "e": "NITI Aayog replaced the Planning Commission in 2015.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0005",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Fiscal deficit is:",
+  "a": "Total expenditure minus total receipts excluding borrowing",
+  "w": [
+   "Revenue expenditure minus revenue receipts",
+   "Imports minus exports",
+   "Capital receipts minus capital expenditure"
+  ],
+  "e": "It shows how much the government must borrow in a year.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0006",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "What is the inflation target set for the RBI under the 2016 framework?",
+  "a": "4 per cent (plus or minus 2)",
+  "w": [
+   "2 per cent (plus or minus 1)",
+   "6 per cent (plus or minus 2)",
+   "5 per cent (plus or minus 1)"
+  ],
+  "e": "The target is 4 per cent CPI inflation with a 2 to 6 per cent band.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0007",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "Which price index is used for inflation targeting in India?",
+  "a": "CPI-Combined",
+  "w": [
+   "WPI",
+   "GDP deflator",
+   "Index of Industrial Production"
+  ],
+  "e": "The RBI targets CPI-Combined inflation.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0008",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The rate at which the RBI lends short-term funds to banks against securities is the",
+  "a": "Repo rate",
+  "w": [
+   "Reverse repo rate",
+   "Bank rate",
+   "CRR"
+  ],
+  "e": "Repo is the main policy rate; borrowing is against government securities.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0009",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The share of deposits that banks keep with the RBI is called",
+  "a": "Cash Reserve Ratio",
+  "w": [
+   "Statutory Liquidity Ratio",
+   "Repo rate",
+   "Bank rate"
+  ],
+  "e": "CRR is held with the RBI as cash and earns no interest.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0010",
+  "subject": "Economy",
+  "difficulty": "medium",
+  "q": "The ceiling of the RBI rate corridor is the",
+  "a": "Marginal Standing Facility rate",
+  "w": [
+   "Standing Deposit Facility rate",
+   "Reverse repo rate",
+   "Bank rate"
+  ],
+  "e": "MSF lets banks borrow overnight above the repo rate; SDF is the floor.",
+  "status": "published"
+ },
+ {
+  "id": "economy-0011",
+  "subject": "Economy",
+  "difficulty": "easy",
+  "q": "Which institution is the apex body for rural credit?",
+  "a": "NABARD",
+  "w": [
+   "SIDBI",
+   "SEBI",
+   "IRDAI"
+  ],
+  "e": "NABARD was set up in 1982.",
+  "status": "published",
+  "exam": "UPSC"
+ },
+ {
+  "id": "economy-0012",
+  "subject": "Economy",
+  "difficulty": "hard",
+  "q": "Which committee recommended the Monetary Policy Committee for India?",
+  "a": "Urjit Patel Committee",
+  "w": [
+   "Narasimham Committee",
+   "Rangarajan Committee",
+   "Kelkar Committee"
+  ],
+  "e": "The Urjit Patel Committee (2014) recommended an MPC.",
+  "status": "published",
+  "exam": "UPSC"
+ }
+]
