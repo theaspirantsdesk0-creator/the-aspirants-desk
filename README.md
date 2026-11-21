@@ -22,6 +22,7 @@ Local data is stored in the browser. Sign in after configuring Supabase to synch
 ## Setup
 1. Create a Supabase project at https://supabase.com/.
 2. In Supabase, open SQL Editor > New query. Paste and run `supabase-schema.sql`.
+   - If Supabase is already configured, run `supabase/migrations/20261121_test_results.sql` in SQL Editor to add private per-learner Daily Test history. Do not paste API secrets into chat or commit them to the repository.
 3. Open Project Settings > API (or API Keys). Copy the Project URL and the publishable/anon public key.
 4. Put those two values in `config.js`. Do not use a `service_role` or secret key in the browser.
 5. Create your learner account on the website and confirm your email if Supabase requests it.
