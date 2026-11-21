@@ -115,15 +115,15 @@
   "id": "environment-0009",
   "subject": "Environment",
   "difficulty": "medium",
-  "q": "The Wildlife (Protection) Act was passed in:",
-  "a": "1972",
+  "q": "The Ramsar Convention is primarily concerned with the conservation and wise use of:",
+  "a": "Wetlands",
   "w": [
-   "1986",
-   "1980",
-   "2002"
+   "Desert ecosystems",
+   "Mountain glaciers",
+   "Open-ocean fisheries"
   ],
-  "e": "It created schedules of protected species and the sanctuary system.",
-  "status": "published"
+  "e": "The Ramsar Convention is an international treaty focused on the conservation and wise use of wetlands.",
+  "status": "draft"
  },
  {
   "id": "environment-0010",
@@ -157,15 +157,15 @@
   "id": "environment-0012",
   "subject": "Environment",
   "difficulty": "medium",
-  "q": "India's first National Park, set up in 1936, is:",
-  "a": "Jim Corbett National Park",
+  "q": "Project Tiger was launched in India in:",
+  "a": "1973",
   "w": [
-   "Kaziranga",
-   "Bandipur",
-   "Gir"
+   "1969",
+   "1975",
+   "1980"
   ],
-  "e": "It was first called Hailey National Park.",
-  "status": "published"
+  "e": "Project Tiger was launched in 1973 to support the conservation of tigers and their habitats.",
+  "status": "draft"
  },
  {
   "id": "environment-0013",
