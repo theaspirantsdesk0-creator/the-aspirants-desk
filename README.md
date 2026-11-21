@@ -45,6 +45,11 @@ For a future fresh Supabase project, first take a schema backup and create a rev
 - Learners can update their own display name but cannot change their own `role` column.
 - The admin dashboard can read learner progress summaries; private learner state remains restricted by RLS.
 
+## Remaining dashboard / owner-only security checks
+
+- **Leaked-password protection:** Supabase Security Advisor currently reports this as the one remaining security warning. It can be enabled in the project's Authentication password-security settings if the subscription plan supports it. Supabase documents this protection as available on the Pro plan and above. See [Supabase password security](https://supabase.com/docs/guides/auth/password-security).
+- **Future object default grants:** the current database tool was not authorised to change the default ACLs owned by the database roles. This does not change the current tables: all 14 public tables have RLS enabled and the existing grants/policies have been tightened. Optional SQL for the project owner to review and run is in `supabase/manual/secure-public-default-privileges.sql`. Do not try to bypass a permission error.
+
 ## Daily push reminders
 - The `send-study-reminders` Edge Function is deployed as version 3 and is called by an active `pg_cron` job.
 - The browser subscribes from the Dashboard's **Daily study reminder** card after a learner signs in and grants browser notification permission.
