@@ -73,15 +73,15 @@
   "id": "ssc-0006",
   "subject": "SSC",
   "difficulty": "easy",
-  "q": "The SI unit of force is",
-  "a": "Newton",
+  "q": "Which SI unit is used to measure electrical resistance?",
+  "a": "Ohm",
   "w": [
-   "Joule",
-   "Watt",
-   "Pascal"
+   "Volt",
+   "Ampere",
+   "Watt"
   ],
-  "e": "Force = mass x acceleration, measured in newtons.",
-  "status": "published"
+  "e": "Electrical resistance is measured in ohms, represented by the symbol Ω.",
+  "status": "draft"
  },
  {
   "id": "ssc-0007",
