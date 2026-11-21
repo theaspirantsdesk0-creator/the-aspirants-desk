@@ -1080,7 +1080,7 @@ th { background: var(--surface-alt); font-weight: 700; }
 </section></div></section>
 
 <section id="directory" class="view-sec"><div class="card gold-top" style="margin-bottom:1.2rem"><h2>Exam Directory</h2><p class="muted">Eligibility, stages and syllabus focus for government exams. Always confirm details in the official notification.</p><input id="exSearch" type="search" placeholder="Search exams, bodies or subjects…" aria-label="Search exams"><div class="table-wrap" style="margin-top:.8rem"><table><thead><tr><th>Exam</th><th>Conducting body</th><th>Eligibility</th><th>Stages</th><th>Subjects</th><th>Official site</th></tr></thead><tbody id="exTable"></tbody></table></div></div><div class="card"><h2>State Exam Notifications</h2><p class="muted">State Public Service Commissions and their official portals.</p><div class="table-wrap" style="margin-top:.8rem"><table><thead><tr><th>State / UT</th><th>Commission</th><th>Website</th></tr></thead><tbody id="stTable"></tbody></table></div></div></section>
-<section id="library" class="view-sec"><div class="card gold-top" style="margin-bottom:1.2rem"><h2>Study Library</h2><p class="muted">Recommended standard sources for each area.</p><div class="table-wrap" style="margin-top:.8rem"><table><thead><tr><th>Exam</th><th>Area</th><th>Recommended sources</th></tr></thead><tbody id="libTable"></tbody></table></div><h3 style="margin:1.3rem 0 .5rem">Official and useful links</h3><div class="grid-3" id="linkGrid"></div></div><div class="card"><h2>A to Z Topic Index</h2><p class="muted">Quick list of high-yield topics. Search any of them in Chapter Notes.</p><div class="azg" id="azGrid"></div></div></section>
+<section id="library" class="view-sec"><div class="card gold-top" style="margin-bottom:1.2rem"><h2>Study Library</h2><p class="muted">Recommended standard sources for each area. Open an exam, then a subject, for books, free sources, a study plan and a common mistake to avoid.</p><div id="libDeep"></div><h3 style="margin:1.3rem 0 .5rem">Quick table</h3><div class="table-wrap" style="margin-top:.8rem"><table><thead><tr><th>Exam</th><th>Area</th><th>Recommended sources</th></tr></thead><tbody id="libTable"></tbody></table></div><h3 style="margin:1.3rem 0 .5rem">Official and useful links</h3><div class="grid-3" id="linkGrid"></div></div><div class="card"><h2>A to Z Topic Index</h2><p class="muted">Quick list of high-yield topics. Search any of them in Chapter Notes.</p><div class="azg" id="azGrid"></div></div></section>
 <section id="connect" class="view-sec"><div class="card gold-top"><h2>Connect with us</h2>
 <p class="muted">Questions, corrections and ideas make this site better for every aspirant. Pick the option that fits you, or use the message box below.</p>
 <div class="grid-2">
@@ -2191,6 +2191,88 @@ th { background: var(--surface-alt); font-weight: 700; }
       navigator.serviceWorker.register("sw.js").catch(() => {});
     }
   })();
+})();
+</script>
+
+<style>
+#libDeep .lib-search{width:100%;max-width:26rem;margin:.6rem 0 1rem}
+#libDeep details{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:.7rem}
+#libDeep details>summary{cursor:pointer;padding:.8rem 1rem;font:700 1.02rem "Bricolage Grotesque",sans-serif}
+#libDeep details details{margin:.5rem 1rem;background:var(--surface-alt)}
+#libDeep details details>summary{font-size:.95rem;padding:.6rem .8rem}
+#libDeep .lib-body{padding:.2rem 1rem 1rem}
+#libDeep .lib-body p{margin:.45rem 0;max-width:72ch}
+#libDeep .lib-intro{padding:0 1rem .4rem;color:var(--muted)}
+#libDeep .lib-links{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 1rem 1rem}
+#libDeep .lib-links a{border:1px solid var(--line);border-radius:99px;padding:.25rem .75rem;font-size:.84rem;text-decoration:none;font-weight:600}
+#libDeep .lib-links a:hover{border-color:var(--gold)}
+</style>
+<script>
+(function(){
+var LIB=[
+{exam:"UPSC Civil Services",intro:"Prelims has two papers (General Studies and CSAT), Mains has nine papers, and then comes the Interview. Build the base with NCERT books, then add one standard book per subject and revise it many times.",links:[["upsc.gov.in","https://upsc.gov.in"],["NCERT books","https://ncert.nic.in"],["PIB","https://pib.gov.in"],["PRS India","https://prsindia.org"]],items:[
+["Polity and governance","Indian Polity by M. Laxmikanth. NCERT Class 11 Indian Constitution at Work. Bare text of the Constitution.","PRS India bill summaries, Lok Sabha and Rajya Sabha websites, Second ARC reports.","Read NCERT first for ideas, then Laxmikanth chapter by chapter. Make a table of Articles, Amendments and landmark cases. Revise this subject monthly.","Learning Articles as numbers only. UPSC asks the idea behind the Article and how it works in practice."],
+["Modern history","A Brief History of Modern India (Spectrum, Rajiv Ahir). NCERT Class 12 Themes in Indian History Part III. India's Struggle for Independence (Bipan Chandra).","NCERT Class 8 Our Pasts III, Prasar Bharati and Ministry of Culture freedom-struggle pages.","Study as a timeline: events, leaders, acts, movements. Write a one-page chart for each phase from 1857 to 1947.","Memorising dates without cause and effect. Link every movement to the one before it."],
+["Ancient and medieval history","NCERT Class 6 to 12 history. Tamil Nadu State Board Class 11 history for South India. Selections from Satish Chandra for medieval India.","Archaeological Survey of India pages, Ministry of Culture sites.","Make dynasty tables with capital, ruler, administration, art and foreign accounts. Add one map per period.","Treating dynasties as lists of kings. Questions usually ask about society, economy and culture."],
+["Art and culture","Indian Art and Culture by Nitin Singhania. NCERT An Introduction to Indian Art (Class 11).","CCRT India website, Ministry of Culture, UNESCO India list of World Heritage Sites.","Group by topic: architecture, painting, music, dance, theatre, festivals. Keep a list of GI tags and UNESCO sites.","Skipping photographs. Recognising a temple style from an image is a common Prelims task."],
+["Geography","NCERT Class 11 Fundamentals of Physical Geography and India: Physical Environment. NCERT Class 12 Fundamentals of Human Geography. Certificate Physical and Human Geography (G. C. Leong). An Oxford School Atlas.","IMD website for monsoon data, Survey of India maps.","Keep the atlas open while reading. Draw outline maps of rivers, mountains, ports and minerals again and again.","Reading without a map. Half of the questions test location."],
+["Indian economy","Indian Economy by Ramesh Singh. NCERT Class 11 Indian Economic Development. Economic Survey and Union Budget highlights.","RBI bulletin, Economic Survey, Budget documents, PIB economy releases.","Learn basic concepts first (GDP, inflation, fiscal deficit), then tie each concept to a current event from the newspaper.","Skipping the Economic Survey and Budget. Many Prelims questions come from them."],
+["Environment and ecology","Environment by Shankar IAS Academy. NCERT Class 12 Biology ecology chapters. Class 11 Fundamentals of Physical Geography.","MoEFCC website, UNEP and IUCN pages, Down To Earth magazine.","Study species, protected areas and conventions with a map. Revise the IUCN categories and Ramsar sites list.","Ignoring current affairs. Questions follow news on summits, species and protected areas."],
+["Science and technology","NCERT Science Class 6 to 10. Current affairs from The Hindu science pages and ISRO, DRDO and DST websites.","ISRO, DRDO, DST, DBT, PIB science and technology releases.","Understand the basics (physics, chemistry, biology) so you can follow news on space, health and technology.","Cramming news items without the underlying science."],
+["Ethics, integrity and aptitude","Ethics, Integrity and Aptitude by Chandhok (Lexicon). Second ARC Fourth Report on Ethics in Governance.","UPSC previous papers, Mains answer samples from toppers, case studies in the Second ARC report.","Learn definitions of values, then practise two case studies every week using stakeholders, options and a justified decision.","Quoting thinkers instead of showing what you would actually do in the case."],
+["Indian society and social issues","NCERT Class 12 Indian Society and Social Change and Development in India. Class 11 Understanding Society.","Census of India, NFHS reports, NITI Aayog and PIB social sector releases.","Link each topic (women, poverty, urbanisation, tribes) to a government scheme and a recent report.","Writing opinions without data. Add one figure or scheme to each point."],
+["International relations","NCERT Class 12 Contemporary World Politics. A standard International Relations guide for UPSC. The Hindu editorials on foreign affairs.","MEA website, IDSA and ORF analysis, PIB MEA releases.","Make one page per country or group with India's interests, agreements and issues. Update it each month.","Reading only headlines. Understand why India acts as it does."],
+["Internal security","Internal Security by Ashok Kumar and Vipul Singh. Annual reports of the Ministry of Home Affairs.","MHA website, PIB home affairs releases, SATP data.","Study threats (terrorism, extremism, cyber) with the agencies and laws that deal with them.","Not linking security with development. Mains asks for both."],
+["World history","NCERT Class 9 India and the Contemporary World I and Class 11 Themes in World History. Mastering Modern World History by Norman Lowe for depth.","UN history pages, standard encyclopedia entries.","Concentrate on the Industrial, French and Russian revolutions, the world wars and decolonisation.","Reading too deeply. Mains asks for impact, causes and relevance to India."],
+["CSAT","Quantitative Aptitude by R. S. Aggarwal. A CSAT manual with reading comprehension practice. Previous UPSC CSAT papers.","UPSC previous papers at upsc.gov.in, free timed mocks.","Practise 20 minutes daily: three sums, one reasoning set, one comprehension passage. Aim for safe qualifying marks of 33 per cent.","Ignoring CSAT until the last month. It is a qualifying paper that can end an attempt."],
+["Mains answer writing and Interview","Previous Mains questions, topper copies, and The Hindu or Indian Express editorials.","UPSC previous Mains papers, DAF guidelines on upsc.gov.in.","Write two answers daily within the word limit: intro, body with facts and examples, conclusion with a way forward. For the Interview, know your DAF thoroughly.","Writing everything you know. Answer what is asked within the word limit."]
+]},
+{exam:"TNPSC (Tamil Nadu)",intro:"Group 1, Group 2 and Group 4 differ in stages, but the General Studies and the Tamil eligibility paper form the common base.",links:[["tnpsc.gov.in","https://tnpsc.gov.in"],["Tamil Nadu textbooks","https://tntextbooks.in"]],items:[
+["General Studies and Tamil Nadu","Tamil Nadu State Board textbooks, Class 6 to 12, for History, Geography, Science and Social Science. Indian Polity by Laxmikanth for Constitution.","Tamil Nadu Textbook Corporation website, official TNPSC syllabus.","Read the State Board books in order from Class 6 to 12, noting dates, places, schemes and personalities specific to Tamil Nadu.","Using only all-India books. TNPSC asks many Tamil Nadu questions."],
+["General Tamil","Tamil State Board textbooks Class 6 to 12, grammar and literature.","Previous TNPSC question papers.","Revise grammar rules, famous poets and works. Practise previous questions.","Leaving Tamil to the end. In several stages it is a qualifying paper."],
+["Aptitude and mental ability","Quantitative Aptitude by R. S. Aggarwal. Verbal and Non-Verbal Reasoning by R. S. Aggarwal.","TNPSC previous papers, free timed practice sets.","Practise percentage, ratio, time and work, simple interest and number series daily.","Not timing yourself. Speed decides the result."]
+]},
+{exam:"SSC CGL, CHSL and Railways",intro:"Tier papers test four areas: quantitative aptitude, reasoning, English and general awareness. Speed and accuracy under time pressure matter most.",links:[["ssc.gov.in","https://ssc.gov.in"]],items:[
+["Quantitative aptitude","Quantitative Aptitude by R. S. Aggarwal. Fast Track Objective Arithmetic by Rajesh Verma.","Previous SSC papers, free timed mocks.","Learn tables and squares, then practise topic tests: percentage, profit and loss, time and distance, geometry.","Memorising tricks without understanding the formula."],
+["Reasoning","A Modern Approach to Verbal and Non-Verbal Reasoning by R. S. Aggarwal.","Previous SSC papers.","Solve series, coding-decoding, analogy and syllogism sets in a timed way each day.","Skipping non-verbal reasoning."],
+["English","Word Power Made Easy by Norman Lewis. High School English Grammar by Wren and Martin.","The Hindu editorials for vocabulary and comprehension.","Learn 10 words a day, practise error-spotting and cloze tests, read one editorial daily.","Studying grammar rules without reading passages."],
+["General awareness","Lucent's General Knowledge. NCERT Class 6 to 10 for science and social science.","PIB, monthly current affairs.","Revise static GK weekly and current affairs for the last six months.","Collecting too many sources. Fix one book and one current affairs source."]
+]},
+{exam:"Banking (IBPS, SBI, RBI)",intro:"Banking exams have Prelims and Mains with sections on reasoning, quantitative aptitude, English and banking awareness. Sectional time limits apply.",links:[["ibps.in","https://ibps.in"],["rbi.org.in","https://rbi.org.in"],["sbi.co.in/careers","https://sbi.co.in/careers"]],items:[
+["Banking and financial awareness","Banking awareness guide of a standard publisher. RBI functions, monetary policy and payments systems from official sources.","RBI website, PIB finance releases, Union Budget highlights.","Learn the RBI's tools, institutions (NABARD, SEBI, IRDAI), payment systems and monthly financial news.","Memorising news without understanding terms such as repo and CRR."],
+["Quantitative aptitude","Quicker Maths by M. Tyra. Quantitative Aptitude by R. S. Aggarwal.","Previous bank exam papers.","Practise data interpretation, simplification and number series in a timed way.","Spending too long on one hard sum."],
+["Reasoning","Analytical Reasoning by M. K. Pandey. Reasoning puzzles and seating arrangement sets.","Previous bank exam papers.","Master puzzles and seating arrangements first, since they carry the most marks.","Skipping puzzles because they look long."],
+["English","High School English Grammar by Wren and Martin. Daily newspaper reading.","The Hindu or Indian Express editorials.","Practise reading comprehension, cloze tests and sentence improvement within the sectional time.","Reading without a timer."]
+]},
+{exam:"Engineering (GATE) and Defence (NDA, CDS)",intro:"For GATE, branch fundamentals decide the score. For NDA and CDS, school mathematics, English and general knowledge decide it.",links:[["NPTEL","https://nptel.ac.in"],["upsc.gov.in","https://upsc.gov.in"]],items:[
+["GATE","The standard textbook for each core subject of your branch, plus engineering mathematics and aptitude.","NPTEL lectures and previous GATE papers from the official exam website.","Finish the syllabus subject by subject, then solve previous papers. Keep a formula sheet for revision.","Collecting many books. Use one textbook and previous papers."],
+["NDA and CDS","NCERT Class 11 and 12 Mathematics and Physics. High School English Grammar by Wren and Martin.","PIB defence releases, upsc.gov.in previous papers.","Revise mathematics daily, read one English passage, follow defence news, and keep your physical fitness routine.","Neglecting fitness and the SSB preparation until the written exam is over."]
+]}
+];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function build(){
+var box=document.getElementById("libDeep"); if(!box) return;
+var html='<input id="libSearch" class="lib-search" type="search" placeholder="Search books, subjects or exams (e.g. Laxmikanth, Tamil, NCERT)" aria-label="Search the study library">';
+LIB.forEach(function(g,gi){
+html+='<details class="lib-g"'+(gi===0?' open':'')+'><summary>'+esc(g.exam)+'</summary><p class="lib-intro">'+esc(g.intro)+'</p><div class="lib-links">'+g.links.map(function(l){return '<a href="'+esc(l[1])+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>';}).join("")+'</div>';
+g.items.forEach(function(it){
+html+='<details class="lib-i"><summary>'+esc(it[0])+'</summary><div class="lib-body"><p><b>Books:</b> '+esc(it[1])+'</p><p><b>Free sources:</b> '+esc(it[2])+'</p><p><b>How to study:</b> '+esc(it[3])+'</p><p><b>Common mistake:</b> '+esc(it[4])+'</p></div></details>';
+});
+html+='</details>';
+});
+html+='<p class="muted" id="libNone" hidden>No match. Try a book name, a subject or an exam.</p>';
+box.innerHTML=html;
+document.getElementById("libSearch").addEventListener("input",function(e){
+var q=e.target.value.trim().toLowerCase(),any=false;
+box.querySelectorAll(".lib-g").forEach(function(g){
+var hit=false;
+g.querySelectorAll(".lib-i").forEach(function(i){var m=!q||i.textContent.toLowerCase().indexOf(q)>-1||g.firstChild.textContent.toLowerCase().indexOf(q)>-1;i.hidden=!m;if(m){hit=true;if(q)i.open=true;}});
+g.hidden=!hit;if(hit){any=true;if(q)g.open=true;}
+});
+document.getElementById("libNone").hidden=any||!q;
+});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",build);else build();
 })();
 </script>
 </body>
