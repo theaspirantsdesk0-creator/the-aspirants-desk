@@ -1,5 +1,11 @@
--- The Aspirant's Desk — Supabase setup
--- Run this entire file in Supabase Dashboard > SQL Editor > New query.
+-- LEGACY INITIAL SETUP ONLY — NOT A COMPLETE SCHEMA FOR THE CURRENT RELEASE.
+-- Do not execute this file over the existing production project.
+-- The live project also uses PYQ, answer-key, push-subscription and test-history
+-- tables that were added after this early baseline was authored.
+-- Current hardening changes are recorded in supabase/migrations/ and have
+-- already been applied to the existing theaspirantsdesk Supabase project.
+-- Before creating a fresh project, first prepare and review a complete baseline
+-- from the current live schema; this older file is not sufficient by itself.
 -- Never put a service_role key in config.js or in this website.
 
 create extension if not exists pgcrypto;
