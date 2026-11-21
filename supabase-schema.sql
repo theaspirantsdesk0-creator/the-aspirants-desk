@@ -36,6 +36,21 @@ create table if not exists public.progress (
   summary jsonb not null default '{}'::jsonb,
   updated_at timestamptz not null default now()
 );
+create table if not exists public.test_results (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  exam text not null,
+  test_name text not null,
+  score numeric(8,2) not null,
+  max_score numeric(8,2) not null,
+  correct_count integer not null default 0 check (correct_count >= 0),
+  wrong_count integer not null default 0 check (wrong_count >= 0),
+  skipped_count integer not null default 0 check (skipped_count >= 0),
+  created_at timestamptz not null default now()
+);
+create index if not exists test_results_user_created_idx
+  on public.test_results (user_id, created_at desc);
+
 create table if not exists public.updates (
   id uuid primary key default gen_random_uuid(),
   state text not null,
@@ -79,6 +94,7 @@ as $$ select exists (select 1 from public.profiles p where p.id = auth.uid() and
 alter table public.profiles enable row level security;
 alter table public.user_data enable row level security;
 alter table public.progress enable row level security;
+alter table public.test_results enable row level security;
 alter table public.updates enable row level security;
 alter table public.notes enable row level security;
 alter table public.press enable row level security;
@@ -98,6 +114,13 @@ drop policy if exists "progress self insert" on public.progress;
 create policy "progress self insert" on public.progress for insert to authenticated with check (user_id = auth.uid());
 drop policy if exists "progress self update" on public.progress;
 create policy "progress self update" on public.progress for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists "test results self read" on public.test_results;
+create policy "test results self read" on public.test_results
+  for select to authenticated using (user_id = auth.uid());
+drop policy if exists "test results self insert" on public.test_results;
+create policy "test results self insert" on public.test_results
+  for insert to authenticated with check (user_id = auth.uid());
+
 drop policy if exists "published updates public read" on public.updates;
 create policy "published updates public read" on public.updates for select to anon, authenticated using (true);
 drop policy if exists "admin manage updates" on public.updates;
@@ -133,4 +156,5 @@ grant insert, update, delete on public.updates, public.notes, public.press to au
 grant select on public.profiles to authenticated;
 grant select, insert, update on public.user_data to authenticated;
 grant select, insert, update on public.progress to authenticated;
+grant select, insert on public.test_results to authenticated;
 grant select, insert, update, delete on public.admin_private_notes to authenticated;
