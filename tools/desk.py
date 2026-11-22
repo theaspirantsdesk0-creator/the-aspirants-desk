@@ -113,15 +113,8 @@ def _ai_json(prompt):
     import os
     if os.environ.get('GEMINI_API_KEY'):
         try:
-            payload = json.dumps({
-                'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
-                'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 180},
-            }).encode()
-            req = urllib.request.Request(
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
-                data=payload,
-                headers={'Content-Type': 'application/json', 'x-goog-api-key': os.environ['GEMINI_API_KEY']},
-                method='POST')
+            payload = json.dumps({'contents': [{'role': 'user', 'parts': [{'text': prompt}]}], 'generationConfig': {'temperature': 0.2, 'maxOutputTokens': 180}}).encode()
+            req = urllib.request.Request('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', data=payload, headers={'Content-Type': 'application/json', 'x-goog-api-key': os.environ['GEMINI_API_KEY']}, method='POST')
             with urllib.request.urlopen(req, timeout=25) as response:
                 data = json.loads(response.read().decode())
             return data['candidates'][0]['content']['parts'][0]['text'].strip()
@@ -129,17 +122,8 @@ def _ai_json(prompt):
             print('Gemini UPSC-angle generation failed:', ex)
     if os.environ.get('GROQ_API_KEY'):
         try:
-            payload = json.dumps({
-                'model': 'llama-3.3-70b-versatile',
-                'temperature': 0.2,
-                'max_tokens': 180,
-                'messages': [{'role': 'user', 'content': prompt}],
-            }).encode()
-            req = urllib.request.Request(
-                'https://api.groq.com/openai/v1/chat/completions',
-                data=payload,
-                headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + os.environ['GROQ_API_KEY']},
-                method='POST')
+            payload = json.dumps({'model': 'llama-3.3-70b-versatile', 'temperature': 0.2, 'max_tokens': 180, 'messages': [{'role': 'user', 'content': prompt}]}).encode()
+            req = urllib.request.Request('https://api.groq.com/openai/v1/chat/completions', data=payload, headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + os.environ['GROQ_API_KEY']}, method='POST')
             with urllib.request.urlopen(req, timeout=25) as response:
                 data = json.loads(response.read().decode())
             return data['choices'][0]['message']['content'].strip()
@@ -150,53 +134,20 @@ def _ai_json(prompt):
 
 def _upsc_angle(title, summary, topic):
     prompt = (
-        "Write one concise potential UPSC CSE relevance note (maximum 45 words) "
-        "for an educational current-affairs index. Use only the headline and supplied "
-        "RSS description. Do not invent facts, statistics, dates, schemes, legal provisions, "
-        "or claim the article says something not present in the source. Identify a plausible "
-        "GS paper or Prelims subject only when clear. If evidence is too thin, reply exactly "
-        "'Open the source article; the headline alone is insufficient for a reliable UPSC angle.' "
-        "Clearly phrase relevance as potential, not as an official UPSC prediction. Return plain text only.\n\n"
-        f"Topic label: {topic}\nHeadline: {title}\nRSS description: {summary or '[not supplied]'}"
+        'Write one concise potential UPSC CSE relevance note (maximum 45 words) for an educational current-affairs index. '
+        'Use only the headline and supplied RSS description. Do not invent facts, statistics, dates, schemes, legal provisions, '
+        'or claim the article says something not present in the source. Identify a plausible GS paper or Prelims subject only when clear. '
+        'If evidence is too thin, reply exactly: Open the source article; the headline alone is insufficient for a reliable UPSC angle. '
+        'Clearly phrase relevance as potential, not as an official UPSC prediction. Return plain text only.\n\n'
+        f'Topic label: {topic}\nHeadline: {title}\nRSS description: {summary or "[not supplied]"}'
     )
     answer = _ai_json(prompt)
     if not answer:
         return ''
-    answer = re.sub(r'^[\s"\']+|[\s"\']+
-    feeds = json.loads((ROOT / 'tools' / 'feeds.json').read_text(encoding='utf-8'))
-    old = json.loads(CA.read_text(encoding='utf-8'))['items'] if CA.exists() else []
-    by_link, ok = {i['link']: i for i in old}, 0
-    now = datetime.now(timezone.utc)
-    for f in feeds:
-        try:
-            req = urllib.request.Request(f['url'], headers={'User-Agent': 'AspirantsDeskBot/1.0'})
-            root = ET.fromstring(urllib.request.urlopen(req, timeout=25).read()); ok += 1
-        except Exception as ex:
-            print('feed failed:', f['name'], ex); continue
-        for it in root.iter('item'):
-            title, link = (it.findtext('title') or '').strip(), (it.findtext('link') or '').strip()
-            if not title or not link or link in by_link: continue
-            try: d = parsedate_to_datetime(it.findtext('pubDate')).astimezone(timezone.utc)
-            except Exception: d = now
-            topic = next((n for n, p in TOPICS if re.search(p, title.lower())), 'General')
-            by_link[link] = {'date': d.date().isoformat(), 'source': f['name'], 'title': title, 'link': link, 'topic': topic, 'upsc_angle': ''}
-    if not ok: sys.exit('all feeds failed')
-    keep = [i for i in by_link.values() if i['date'] >= (now - timedelta(days=90)).date().isoformat()]
-    keep.sort(key=lambda i: i['date'], reverse=True)
-    CA.write_text(json.dumps({'updated': now.isoformat(timespec='seconds'), 'items': keep}, ensure_ascii=False, indent=1), encoding='utf-8')
-    print(f'{len(keep)} current-affairs items ({ok}/{len(feeds)} feeds ok)')
-
-if __name__ == '__main__':
-    p = argparse.ArgumentParser(); s = p.add_subparsers(dest='cmd', required=True)
-    s.add_parser('export').add_argument('--force', action='store_true')
-    s.add_parser('validate').add_argument('--strict', action='store_true')
-    s.add_parser('build'); s.add_parser('news')
-    a = p.parse_args(); globals()['cmd_' + a.cmd](a)
-, '', answer).strip()
+    answer = answer.strip().strip(chr(34)).strip(chr(39)).strip()
     if len(answer) > 500 or len(answer) < 15:
         return ''
     return answer
-
 
 def cmd_news(a):
     import os
