@@ -1,0 +1,16 @@
+#tadAiLauncher{position:fixed;right:22px;bottom:22px;z-index:9998;border:0;border-radius:999px;padding:13px 18px;background:#111d4a;color:#fff;font:700 14px system-ui;box-shadow:0 8px 28px #0003;cursor:pointer}
+#tadAiPanel{position:fixed;right:22px;bottom:82px;z-index:9999;width:min(390px,calc(100vw - 28px));height:min(590px,calc(100dvh - 115px));display:none;flex-direction:column;background:var(--surface,#fff);color:var(--ink,#111827);border:1px solid var(--line,#ddd);border-radius:18px;box-shadow:0 18px 55px #0004;overflow:hidden}
+#tadAiPanel.open{display:flex}
+#tadAiHead{padding:13px 15px;background:#111d4a;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+#tadAiHead small{display:block;opacity:.8;font-size:11px}
+#tadAiClose{border:0;background:transparent;color:white;font-size:23px;cursor:pointer}
+#tadAiMessages{padding:14px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.tad-ai-msg{max-width:92%;padding:10px 12px;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.55}
+.tad-ai-user{align-self:flex-end;background:#dbeafe;color:#172554}
+.tad-ai-assistant{align-self:flex-start;background:var(--surface-alt,#f1f5f9);border:1px solid var(--line,#ddd)}
+#tadAiForm{padding:11px;border-top:1px solid var(--line,#ddd);display:flex;gap:8px}
+#tadAiInput{min-width:0;flex:1;resize:none;border:1px solid var(--line,#ddd);border-radius:10px;padding:10px;background:var(--surface,#fff);color:var(--ink,#111827);font:inherit;font-size:13px}
+#tadAiSend{border:0;border-radius:10px;padding:0 14px;background:#1d4ed8;color:#fff;font-weight:700;cursor:pointer}
+#tadAiSend:disabled{opacity:.5;cursor:wait}
+#tadAiStatus{padding:0 13px 9px;color:var(--muted,#64748b);font-size:11px}
+@media(max-width:520px){#tadAiLauncher{right:14px;bottom:14px}#tadAiPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:calc(100dvh - 88px)}}
