@@ -9,7 +9,7 @@ on:
     - cron: "30 12 * * *" # 18:00 IST; GitHub may start a few minutes late
   workflow_dispatch:
 concurrency:
-  group: daily-pib-main
+  group: daily-content-main
   cancel-in-progress: false
 permissions:
   contents: write
@@ -18,6 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Start from latest main to avoid stale queued runs
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
