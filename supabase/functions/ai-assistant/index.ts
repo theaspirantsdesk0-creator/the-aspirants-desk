@@ -45,7 +45,7 @@ const CONTENT_CACHE = new Map<string, { expiresAt: number; data: unknown }>();
 function contentFilesFor(message: string): string[] {
   const q = message.toLowerCase();
   const rules: Array<[RegExp, string[]]> = [
-    [/polity|constitution|constitutional|article\\s*\\d+|amendment|parliament|judiciar|fundamental right|directive principle|federal|governor|president|election|panchayat|basic structure|separation of powers/, ["polity.json", "polity-batch1.json"]],
+    [/polity|constitution|constitutional|article\s*\d+|amendment|parliament|judiciar|fundamental right|directive principle|federal|governor|president|election|panchayat|basic structure|separation of powers/, ["polity.json", "polity-batch1.json"]],
     [/econom|inflation|gdp|budget|fiscal|monetary|rbi|banking|tax|trade|poverty|employment/, ["economy.json", "economy-batch1.json", "banking-awareness.json"]],
     [/geograph|monsoon|river|soil|climate|ocean|plateau|earthquake|cyclone|agriculture/, ["geography.json", "geography-batch1.json"]],
     [/environment|biodivers|pollution|wildlife|forest|conservation|ecosystem|species/, ["environment.json", "environment-batch2.json"]],
@@ -118,7 +118,7 @@ async function buildGroundedContext(message: string): Promise<string> {
     }));
   }
 
-  if (true) {
+  if (/current affairs|latest|recent|today|news|pib|press release|scheme|government initiative|ministry|current event/.test(message.toLowerCase())) {
     const [ca,pib]=await Promise.all([
       loadPublicJson("data/current-affairs.json"),
       loadPublicJson("data/pib.json"),
