@@ -44,10 +44,10 @@ async function gemini(messages: Array<{role:string;content:string}>, role: strin
     parts: [{ text: m.content }],
   }));
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent?key=${encodeURIComponent(GEMINI_KEY)}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY },
       signal: AbortSignal.timeout(25000),
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: rolePrompt(role) }] },
@@ -145,6 +145,8 @@ Deno.serve(async (req: Request) => {
   }
   history.push({ role: "user", content: body.message.trim() });
 
+  if (!GEMINI_KEY && !GROQ_KEY) return json({ error: "AI provider keys have not been configured by the administrator." }, 503, origin);
+
   const { data: quota, error: quotaError } = await adminClient.rpc("consume_ai_daily_quota", {
     p_user_id: authData.user.id,
     p_daily_limit: 20,
@@ -156,8 +158,6 @@ Deno.serve(async (req: Request) => {
   if (!quota[0].allowed) {
     return json({ error: "You have reached today's AI Desk limit of 20 messages. Please try again tomorrow.", remaining: 0 }, 429, origin);
   }
-
-  if (!GEMINI_KEY && !GROQ_KEY) return json({ error: "AI provider keys have not been configured by the administrator." }, 503, origin);
 
   try {
     let answer = "";
