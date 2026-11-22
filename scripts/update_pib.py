@@ -184,7 +184,7 @@ def main():
         date = (datetime.date(*entry.published_parsed[:3]).isoformat()
                 if entry.get("published_parsed") else datetime.date.today().isoformat())
         ai = explain(title, summary) or {}
-        suffix = re.sub(r"\\D", "", link)[-10:] or str(abs(hash(link)))
+        suffix = re.sub(r"\D", "", link)[-10:] or str(abs(hash(link)))
         new.append({
             "id": "pib-" + suffix, "k": "pib", "p": "PIB", "s": "PIB",
             "d": date, "t": title, "l": link,
