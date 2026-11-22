@@ -1,5 +1,6 @@
 [
   {"name": "The Hindu: National", "url": "https://www.thehindu.com/news/national/feeder/default.rss"},
-  {"name": "Indian Express: India", "url": "https://indianexpress.com/section/india/feed/"},
-  {"name": "PIB: Press releases (replace with the RSS link from pib.gov.in/RssMain.aspx)", "url": "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"}
+  {"name": "Indian Express: UPSC Current Affairs", "url": "https://indianexpress.com/section/upsc-current-affairs/feed/"},
+  {"name": "PIB: National press releases", "url": "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1"},
+  {"name": "PIB: Regional press releases", "url": "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"}
 ]
