@@ -157,7 +157,7 @@ def cmd_news(a):
     now = datetime.now(timezone.utc)
     for f in feeds:
         try:
-            req = urllib.request.Request(f['url'], headers={'User-Agent': 'AspirantsDeskBot/1.0'})
+            req = urllib.request.Request(f['url'], headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126.0.0.0 Safari/537.36', 'Accept': 'application/rss+xml, application/xml, text/xml, */*', 'Accept-Language': 'en-IN,en;q=0.9', 'Referer': 'https://www.google.com/'})
             root = ET.fromstring(urllib.request.urlopen(req, timeout=25).read()); ok += 1
         except Exception as ex:
             print('feed failed:', f['name'], ex); continue
