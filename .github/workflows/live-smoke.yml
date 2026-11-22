@@ -1,5 +1,7 @@
 name: Live browser smoke test
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
@@ -23,6 +25,8 @@ jobs:
         run: npm install --no-save --no-package-lock playwright
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Allow Pages deployment to settle
+        run: sleep 60
       - name: Test the published website
         run: node tools/live_smoke.mjs
         env:
