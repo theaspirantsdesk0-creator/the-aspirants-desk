@@ -76,6 +76,6 @@ The production website is not updated until the pull request is reviewed and mer
 
 ## Known limitations in this first release
 
-- The assistant does not yet perform full retrieval across every lesson, textbook, library document or PYQ in the site. Supply the relevant source/question text in the chat for grounded explanations.
-- Learner context is limited to de-identified study-state and recent test-result summaries available in the current schema.
+- The assistant now retrieves a small set of relevant published question-bank records and matching entries from `data/current-affairs.json` and `data/pib.json` for each request. Retrieval uses topic keywords and is not a full-text search engine; it does not yet index every lesson, textbook, library document, PDF or all UPSC official PYQ papers. Supply source text when a topic is not found.
+- Learner context is limited to a de-identified study-state summary and the five most recent test-result records available in the current schema. Missing or differently named fields are omitted; the assistant should not infer absent progress data.
 - Mentor-to-learner private progress access and automated content publishing are intentionally not enabled.
