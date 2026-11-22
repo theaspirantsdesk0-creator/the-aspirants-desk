@@ -38,7 +38,7 @@ MENTOR MODE: Help an authorised mentor turn learner-provided, de-identified prog
 LEARNER MODE: Teach concepts at the learner's level, explain doubts, make revision plans, create clearly labelled practice questions, and give formative feedback on answer drafts. Do not claim that practice questions are official PYQs. Never present indicative answer feedback as an official UPSC evaluation. Encourage understanding rather than memorisation.`;
 }
 
-async function gemini(messages: Array<{role:string;content:string}>, role: string) {
+async function gemini(messages: Array<{role:string;content:string}>, role: string, learnerContext = "") {
   const contents = messages.map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
     parts: [{ text: m.content }],
@@ -50,7 +50,7 @@ async function gemini(messages: Array<{role:string;content:string}>, role: strin
       headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY },
       signal: AbortSignal.timeout(25000),
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: rolePrompt(role) }] },
+        systemInstruction: { parts: [{ text: rolePrompt(role) + (learnerContext ? "\n\n" + learnerContext : "") }] },
         contents,
         generationConfig: { temperature: 0.35, maxOutputTokens: 1400 },
       }),
@@ -68,7 +68,7 @@ async function gemini(messages: Array<{role:string;content:string}>, role: strin
   return answer;
 }
 
-async function groq(messages: Array<{role:string;content:string}>, role: string) {
+async function groq(messages: Array<{role:string;content:string}>, role: string, learnerContext = "") {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${GROQ_KEY}` },
@@ -78,7 +78,7 @@ async function groq(messages: Array<{role:string;content:string}>, role: string)
       temperature: 0.35,
       max_tokens: 1400,
       messages: [
-        { role: "system", content: rolePrompt(role) },
+        { role: "system", content: rolePrompt(role) + (learnerContext ? "\n\n" + learnerContext : "") },
         ...messages,
       ],
     }),
@@ -147,6 +147,34 @@ Deno.serve(async (req: Request) => {
 
   if (!GEMINI_KEY && !GROQ_KEY) return json({ error: "AI provider keys have not been configured by the administrator." }, 503, origin);
 
+
+  let learnerContext = "";
+  if (profile.role === "learner") {
+    const [savedResult, testsResult] = await Promise.all([
+      adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
+      adminClient.from("test_results")
+        .select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
+        .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(5),
+    ]);
+    const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
+      ? savedResult.data.payload as Record<string, unknown> : {};
+    const studyHours = typeof payload.hours === "number" ? payload.hours : null;
+    const lastSavedScore = typeof payload.lastScore === "number" ? payload.lastScore : null;
+    const mistakeRows = Array.isArray(payload.mistakes) ? payload.mistakes : [];
+    const mistakeTopics = mistakeRows.slice(-12).map((item) => {
+      if (!item || typeof item !== "object") return "";
+      const row = item as Record<string, unknown>;
+      return [row.subject, row.topic].filter((v) => typeof v === "string").join(" / ");
+    }).filter(Boolean).slice(0, 8);
+    const recentTests = (testsResult.data ?? []).map((test) => ({
+      exam: test.exam, name: test.test_name, score: test.score, max: test.max_score,
+      correct: test.correct_count, wrong: test.wrong_count, skipped: test.skipped_count,
+      date: test.created_at,
+    }));
+    learnerContext = "PRIVATE LEARNER STUDY SUMMARY (de-identified; use only to personalise advice; do not repeat identifiers): " +
+      JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests }).slice(0, 2200);
+  }
+
   const { data: quota, error: quotaError } = await adminClient.rpc("consume_ai_daily_quota", {
     p_user_id: authData.user.id,
     p_daily_limit: 20,
@@ -164,7 +192,7 @@ Deno.serve(async (req: Request) => {
     let provider = "";
     if (GEMINI_KEY) {
       try {
-        answer = await gemini(history, profile.role);
+        answer = await gemini(history, profile.role, learnerContext);
         provider = "Gemini";
       } catch (error) {
         const status = (error as Error & {status?:number}).status;
@@ -176,7 +204,7 @@ Deno.serve(async (req: Request) => {
       }
     }
     if (!answer && GROQ_KEY) {
-      answer = await groq(history, profile.role);
+      answer = await groq(history, profile.role, learnerContext);
       provider = "Groq";
     }
     if (!answer) throw new Error("No AI provider returned an answer");
