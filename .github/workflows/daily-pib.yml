@@ -20,6 +20,8 @@ jobs:
           python-version: "3.12"
       - name: Install PIB feed dependencies
         run: pip install feedparser requests
+      - name: Validate PIB updater syntax
+        run: python -m py_compile scripts/update_pib.py
       - name: Fetch PIB and add optional AI explanations
         run: python scripts/update_pib.py
         env:
@@ -27,7 +29,6 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash
           GROQ_MODEL: llama-3.3-70b-versatile
-        continue-on-error: true
       - name: Save changes
         run: |
           git config user.name "desk-bot"
