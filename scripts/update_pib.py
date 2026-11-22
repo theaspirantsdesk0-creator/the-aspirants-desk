@@ -10,14 +10,15 @@ import requests
 
 FEEDS = [u for u in [
     os.environ.get("PIB_FEED", ""),
-    "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
-    "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3&reg=48",
+    "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1",
+    "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    "https://www.pib.gov.in/RssMain.aspx?ModId=18&Lang=1&Regid=3",
 ] if u]
 HEAD = {"User-Agent": "Mozilla/5.0 (compatible; TheAspirantsDesk/1.0)",
         "Accept": "application/rss+xml, application/xml, text/xml, */*",
         "Accept-Language": "en-IN,en;q=0.9"}
 OUT = "data/pib.json"
-MAX_NEW, KEEP = 10, 300
+MAX_NEW, MAX_ENRICH, KEEP = 10, 5, 300
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 
@@ -111,20 +112,28 @@ def explain(title, summary):
 
 
 def get_entries():
+    combined = []
+    seen = set()
+    successful = 0
     for url in FEEDS:
         try:
             response = requests.get(url, headers=HEAD, timeout=30, allow_redirects=True)
             print(url, "->", response.status_code, response.headers.get("content-type"), len(response.content), "bytes")
             response.raise_for_status()
             feed = feedparser.parse(response.content)
-            if feed.entries:
-                return feed.entries
-            print("No feed entries:", response.text[:200].replace("\n", " "))
+            if not feed.entries:
+                print("No feed entries:", response.text[:200].replace("\\n", " "))
+                continue
+            successful += 1
+            for entry in feed.entries:
+                link = entry.get("link", "").strip()
+                if link and link not in seen:
+                    seen.add(link)
+                    combined.append(entry)
         except Exception as error:
             print(url, "failed:", error)
-    return []
-
-
+    print(f"PIB feeds with entries: {successful}/{len(FEEDS)}; unique entries: {len(combined)}")
+    return combined
 def main():
     try:
         with open(OUT, encoding="utf-8") as file:
@@ -133,34 +142,60 @@ def main():
             old = []
     except (OSError, json.JSONDecodeError):
         old = []
-    seen = {item.get("l") for item in old if isinstance(item, dict)}
+
+    by_link = {item.get("l"): item for item in old if isinstance(item, dict) and item.get("l")}
     entries = get_entries()
     if not entries:
         print("No entries returned from any PIB feed address.")
         sys.exit(1)
+
     new = []
+    enriched = 0
     for entry in entries:
-        link = entry.get("link", "")
-        if not link or link in seen:
+        link = entry.get("link", "").strip()
+        if not link:
             continue
+        title = clean(entry.get("title"))
+        summary_raw = entry.get("summary") or entry.get("description") or ""
+        if not summary_raw and entry.get("content"):
+            summary_raw = " ".join(
+                part.get("value", "") for part in entry.get("content", [])
+                if isinstance(part, dict)
+            )
+        summary = clean(summary_raw)
+
+        existing = by_link.get(link)
+        if existing:
+            needs_explanation = (
+                not existing.get("u")
+                or existing.get("w") == "See the full release at the source link."
+            )
+            if needs_explanation and summary and enriched < MAX_ENRICH:
+                ai = explain(title or existing.get("t", ""), summary)
+                if ai:
+                    existing["w"] = ai.get("what") or existing.get("w", "")
+                    existing["e"] = ai.get("why") or existing.get("e", "")
+                    existing["u"] = ai.get("upsc") or existing.get("u", "")
+                    enriched += 1
+            continue
+
         if len(new) >= MAX_NEW:
-            break
-        title, summary = clean(entry.get("title")), clean(entry.get("summary"))
+            continue
         date = (datetime.date(*entry.published_parsed[:3]).isoformat()
                 if entry.get("published_parsed") else datetime.date.today().isoformat())
         ai = explain(title, summary) or {}
-        suffix = re.sub(r"\D", "", link)[-10:] or str(abs(hash(link)))
+        suffix = re.sub(r"\\D", "", link)[-10:] or str(abs(hash(link)))
         new.append({
             "id": "pib-" + suffix, "k": "pib", "p": "PIB", "s": "PIB",
             "d": date, "t": title, "l": link,
             "w": ai.get("what") or "See the full release at the source link.",
             "e": ai.get("why") or "", "u": ai.get("upsc") or "",
         })
+
     data = sorted(new + old, key=lambda item: item.get("d", ""), reverse=True)[:KEEP]
     with open(OUT, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=1)
-    print("Added", len(new), "new PIB items")
-
+    print(f"Added {len(new)} new PIB items; enriched {enriched} existing items")
 
 if __name__ == "__main__":
     main()
