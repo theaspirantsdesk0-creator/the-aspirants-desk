@@ -1,6 +1,486 @@
 {
- "updated": "2026-11-21T17:00:35+00:00",
+ "updated": "2026-11-22T14:44:12+00:00",
  "items": [
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BRS urges govt. to put decision on Inter abolition on hold, convene all-party meet",
+   "link": "https://www.thehindu.com/news/national/telangana/brs-urges-govt-to-put-decision-on-inter-abolition-on-hold-convene-all-party-meet/article71731548.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Male elephant found dead near Bandipur",
+   "link": "https://www.thehindu.com/news/national/karnataka/male-elephant-found-dead-near-bandipur/article71731859.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Fresh wave of debutants dominates Srikakulam civic polls",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/fresh-wave-of-debutants-dominates-srikakulam-civic-polls/article71731423.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Mysuru City Corporation to resurvey street vendors, renew expired licence",
+   "link": "https://www.thehindu.com/news/national/karnataka/mysuru-city-corporation-to-resurvey-street-vendors-renew-expired-licence/article71731837.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Three-day Rangotsava in Kalaburagi from tomorrow",
+   "link": "https://www.thehindu.com/news/national/karnataka/three-day-rangotsava-in-kalaburagi-from-tomorrow/article71720896.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Degrees, certifications alone won’t secure jobs in competitive market: AWS expert",
+   "link": "https://www.thehindu.com/news/national/karnataka/degrees-certifications-alone-wont-secure-jobs-in-competitive-market-aws-expert/article71731144.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "IGRMS showcases Manipur’s unique pottery tradition in Mysuru",
+   "link": "https://www.thehindu.com/news/national/karnataka/igrms-showcases-manipurs-unique-pottery-tradition-in-mysuru/article71731175.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Will abide by high command’s directives fully, says Revanth Reddy at PAC meeting",
+   "link": "https://www.thehindu.com/news/national/telangana/will-abide-by-high-commands-directives-fully-says-revanth-reddy-at-pac-meeting/article71731591.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "A.P. Minister urges Arya Vysyas to remain united to gain respect and recognition",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ap-minister-urges-arya-vysyas-to-remain-united-to-gain-respect-and-recognition/article71731278.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "IMA holds session focusing on doctors’ safety and medical advances",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/ima-holds-session-focusing-on-doctors-safety-and-medical-advances/article71731365.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "About 3,500 runners participate in IITH half marathon 2026",
+   "link": "https://www.thehindu.com/news/national/telangana/about-3500-runners-participate-in-iith-half-marathon-2026/article71731007.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "U. Sharafali confirms ₹2-crore investment by RBC in football academy",
+   "link": "https://www.thehindu.com/news/national/kerala/usharafali-confirms-2-crore-investment-by-rbcin-football-academy/article71731492.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "The Learning Umbrella preschool celebrates 10th annual day",
+   "link": "https://www.thehindu.com/news/national/telangana/the-learning-umbrella-preschool-celebrates-10th-annual-day/article71731704.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "English translation of memoir Kudi Esaru released in Mysuru",
+   "link": "https://www.thehindu.com/news/national/karnataka/english-translation-of-memoir-kudi-esaru-released-in-mysuru/article71731472.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "A.P. Governor urges SSSIHL students to use technology responsibly to achieve India’s 2047 goals",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ap-governor-urges-sssihl-students-to-use-technology-responsibly-to-achieve-indias-2047-goals/article71731238.ece",
+   "topic": "Polity",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Why a shortage of clinical psychologists in Keralam govt hospitals is leaving people with intellectual disabilities waiting for certificates",
+   "link": "https://www.thehindu.com/news/national/kerala/why-a-shortage-of-clinical-psychologists-in-keralam-govt-hospitals-is-leaving-people-with-intellectual-disabilities-waiting-for-certificates/article71727630.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "U.P. couple kidnaps eight-month-old boy to secure ‘male heir’; three arrested",
+   "link": "https://www.thehindu.com/news/cities/Delhi/up-couple-kidnaps-eight-month-old-boy-to-secure-male-heir-three-arrested/article71731694.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "KERC mandates 43.33% of energy from renewable sources for Escoms, industries by 2030",
+   "link": "https://www.thehindu.com/news/national/karnataka/kerc-mandates-4333-of-energy-from-renewable-sources-for-escoms-industries-by-2030/article71656793.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "CJP launches Cockroach Club to shift ‘youth movement beyond street protests’",
+   "link": "https://www.thehindu.com/news/national/cjp-plans-to-take-cockroach-club-across-india-shifts-youth-movement-beyond-street-protests/article71731241.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Job aspirants protest NTPC’s abrupt decision to cancel recruitment process",
+   "link": "https://www.thehindu.com/news/national/kerala/job-aspirants-protest-ntpcs-abrupt-decision-to-cancel-recruitment-process/article71731702.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "‘Operation Paithal’: seven fishing vessels seized, ₹15 lakh in fines imposed in Kozhikode",
+   "link": "https://www.thehindu.com/news/national/kerala/operation-paithal-seven-fishing-vessels-seized-15-lakh-in-fines-imposed-in-kozhikode/article71731340.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "M.V. Jayarajan files police complaint alleging circulation of edited video",
+   "link": "https://www.thehindu.com/news/national/kerala/mv-jayarajan-files-police-complaint-alleging-circulation-of-edited-video/article71731633.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Student goes missing while swimming in sea",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/student-goes-missing-while-swimming-in-sea/article71731498.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "YSRCP families switch to TDP ahead of sarpanch elections in Nellore",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ysrcp-families-switch-to-tdp-ahead-of-sarpanch-elections-in-nellore/article71731466.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Union Minister promises four-lane highway, fly-over in Bhimavaram if BJP wins",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/union-minister-promises-four-lane-highway-fly-over-in-bhimavaram-if-bjp-wins/article71731460.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "RAPS, a small-town firm that’s now a trusted partner in India’s space and defence missions",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/raps-a-small-town-firm-thats-now-a-trusted-partner-in-indias-space-and-defence-missions/article71730831.ece",
+   "topic": "Schemes and society",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Additional ₹5 cr. sought for tackling drinking water crisis in Kalaburagi",
+   "link": "https://www.thehindu.com/news/national/karnataka/additional-5-cr-sought-for-tackling-drinking-water-crisis-in-kalaburagi/article71720627.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Helmetless riding cases in Bengaluru more than double compared to 2025, touch 42.90 lakh",
+   "link": "https://www.thehindu.com/news/cities/bangalore/helmetless-riding-cases-in-bengaluru-more-than-double-compared-to-2025-touch-4290-lakh/article71731440.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "People with diabetes, hypertension must undergo annual eye examinations, says Jagtial MLA",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/people-with-diabetes-hypertension-must-undergo-annual-eye-examinations-says-jagtial-mla/article71731384.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Specialised training on the anvil for college teachers, staff in Calicut varsity",
+   "link": "https://www.thehindu.com/news/national/kerala/specialised-training-on-the-anvil-for-college-teachers-staff-in-calicut-varsity/article71731448.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Federation of Islamic Organisations and Political Parties welcomes T.N. govt.’s review petition in Thirupparankundram case",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/federation-of-islamic-organisations-and-political-parties-welcomes-tn-govts-review-petition-in-thirupparankundram-case/article71731437.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BJP targets Congress after traders’ body thanks PM Modi for cautionary advice on buying gold",
+   "link": "https://www.thehindu.com/news/national/pms-call-to-defer-gold-purchase-averted-losses-bjp-demands-congress-apology-for-misleading-traders/article71731116.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "AI centre to come up in Vijayapura",
+   "link": "https://www.thehindu.com/news/national/karnataka/ai-centre-to-come-up-in-vijayapura/article71720603.ece",
+   "topic": "Science and technology",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BJP promises safer drinking water, better drainage if elected in RMC",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/bjp-promises-safer-drinking-water-better-drainage-if-elected-in-rmc/article71731435.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Migratory birds flock to Kawal Tiger Reserve as winter sets in",
+   "link": "https://www.thehindu.com/news/national/telangana/migratory-birds-flock-to-kawal-tiger-reserve-as-winter-sets-in/article71731240.ece",
+   "topic": "Environment",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Padmaja’s return bid to Cong gets mixed response, leaders leave decision to leadership",
+   "link": "https://www.thehindu.com/news/national/kerala/padmajas-return-bid-to-cong-gets-mixed-response-leaders-leave-decision-to-leadership/article71731468.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Congress-SP seat-sharing talks likely on November 23",
+   "link": "https://www.thehindu.com/news/national/uttar-pradesh/congress-hopeful-of-up-alliance-with-sp-seeks-respectable-seat-sharing/article71731190.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Telangana government renames GMC Siddipet after former Minister Anantula Madan Mohan",
+   "link": "https://www.thehindu.com/news/national/telangana/telangana-government-renames-gmc-siddipet-after-former-minister-anantula-madan-mohan/article71728947.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Foundation stone for sewerage system and treatment plant laid in Coonoor",
+   "link": "https://www.thehindu.com/news/cities/Coimbatore/foundation-stone-for-sewerage-system-and-treatment-plant-laid-in-coonoor/article71731432.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Sathya Sai Baba’s centenary message lights up New York’s Times Square",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/sathya-sai-babas-centenary-message-lights-up-new-yorks-times-square/article71731358.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Central funds will boost village administration soon, says A.P. Panchayat Raj Chamber vice-president",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/central-funds-will-boost-village-administration-soon-says-ap-panchayat-raj-chamber-vice-president/article71731121.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Police tighten security across Rayalaseema districts ahead of Panchayat polls",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/police-tighten-security-across-rayalaseema-districts-ahead-of-panchayat-polls/article71731284.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Karnataka plans to start two new medical colleges in Ramangara and Puttur next academic year",
+   "link": "https://www.thehindu.com/news/national/karnataka/karnataka-plans-to-start-two-new-medical-colleges-in-ramangara-and-puttur-next-academic-year/article71716537.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "1,300 students, medical professionals, police personnel trained in CPR at SIMS in Ramagundam",
+   "link": "https://www.thehindu.com/news/national/telangana/1300-students-medical-professionals-police-personnel-trained-in-cpr-at-sims-in-ramagundam/article71728218.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "REVA holds 11th annual convocation",
+   "link": "https://www.thehindu.com/news/national/karnataka/reva-holds-11th-annual-convocation/article71731566.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "MP seeks action on accident-prone roads, railway overbridges in Ballari",
+   "link": "https://www.thehindu.com/news/national/karnataka/mp-seeks-action-on-accident-prone-roads-railway-overbridges-in-ballari/article71720096.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "288 motorists booked for drunk driving in Cyberabad over the weekend",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/288-motorists-booked-for-drunk-driving-in-cyberabad-over-the-weekend/article71731070.ece",
+   "topic": "Internal security",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "E.M. Radha, daughter of E.M.S. Namboodiripad, passes away",
+   "link": "https://www.thehindu.com/news/national/kerala/em-radha-daughter-of-ems-namboodiripad-passes-away/article71730912.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Telangana Police bugle team wins silver at 27th All India Police Band Competition",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/telangana-police-bugle-team-wins-silver-at-27th-all-india-police-band-competition/article71731082.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "SCO Civilisational Dialogue ‘leaves options open’ for Pakistan SCO meets next year, say sources",
+   "link": "https://www.thehindu.com/news/national/sco-civilisational-dialogue-leaves-options-open-for-pakistan-sco-meets-next-year-say-sources/article71731201.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Telangana Police to revive brass, pipe bands with new equipment and special allowances",
+   "link": "https://www.thehindu.com/news/national/telangana/telangana-police-to-revive-brass-pipe-bands-with-new-equipment-and-special-allowances/article71731501.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Chikkamagaluru Congress MLAs oppose driving elephants to Bhadra Wildlife Sanctuary, threaten to resign",
+   "link": "https://www.thehindu.com/news/national/karnataka/chikkamagaluru-congress-mlas-oppose-driving-elephants-to-bhadra-wildlife-sanctuary-threaten-to-resign/article71731446.ece",
+   "topic": "Environment",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Activists welcome KSPCB move to close down eight Koppal factories",
+   "link": "https://www.thehindu.com/news/national/karnataka/activists-welcome-kspcb-move-to-close-down-eight-koppal-factories/article71720569.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Delhi Police take key accused Prashanth into custody in ₹2-crore spurious drugs racket",
+   "link": "https://www.thehindu.com/news/national/karnataka/delhi-police-take-key-accused-prashanth-into-custody-in-2-crore-spurious-drugs-racket/article71731338.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "YSRCP’s vote bank remains intact, says former MLA",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ysrcps-vote-bank-remains-intact-says-former-mla/article71731098.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Call to restore pedestrian access to walking paths in the Nilgiris",
+   "link": "https://www.thehindu.com/news/cities/Coimbatore/call-to-restore-pedestrian-access-to-walking-paths-in-the-nilgiris/article71731414.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Palaniswami criticises TVK-led government over SC dismissal of TN’s Cauvery pleas",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/palaniswami-criticises-tvk-led-government-over-sc-dismissal-of-tns-cauvery-pleas/article71730986.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "HC judge’s reference to ‘harassment’ of Kallakurichi Collector triggers call for action against TVK MLA",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/hc-judges-reference-to-harassment-of-kallakurichi-collector-triggers-call-for-action-against-tvk-mla/article71731408.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BJP State president Vijayendra questions appointments to boards and corporation while Karnataka is facing severe drought",
+   "link": "https://www.thehindu.com/news/national/karnataka/bjp-state-president-vijayendra-questions-appointments-to-boards-and-corporation-while-karnataka-is-facing-severe-drought/article71731337.ece",
+   "topic": "General",
+   "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "DRDO scientist P.C. Jain receives Murli Manohar Joshi Award",
+   "link": "https://www.thehindu.com/news/national/telangana/drdo-scientist-pc-jain-receives-murli-manohar-joshi-award/article71731302.ece",
+   "topic": "Science and technology",
+   "upsc_angle": ""
+  },
   {
    "date": "2026-11-21",
    "source": "The Hindu: National",
