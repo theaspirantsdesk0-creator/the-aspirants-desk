@@ -40,6 +40,7 @@ LEARNER MODE: Teach concepts at the learner's level, explain doubts, make revisi
 
 
 const CONTENT_BASE = "https://raw.githubusercontent.com/theaspirantsdesk0-creator/the-aspirants-desk/main/";
+const CONTENT_CACHE = new Map<string, { expiresAt: number; data: unknown }>();
 
 function contentFilesFor(message: string): string[] {
   const q = message.toLowerCase();
@@ -74,10 +75,14 @@ function searchTerms(message: string): string[] {
 }
 
 async function loadPublicJson(path: string): Promise<unknown | null> {
+  const cached = CONTENT_CACHE.get(path);
+  if (cached && cached.expiresAt > Date.now()) return cached.data;
   try {
     const response = await fetch(CONTENT_BASE + path, { signal: AbortSignal.timeout(7000) });
     if (!response.ok) return null;
-    return await response.json();
+    const data = await response.json();
+    CONTENT_CACHE.set(path, { expiresAt: Date.now() + 5 * 60 * 1000, data });
+    return data;
   } catch {
     return null;
   }
