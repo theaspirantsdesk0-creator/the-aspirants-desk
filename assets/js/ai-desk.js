@@ -37,6 +37,6 @@
     }catch(err){const text=err&&err.message?err.message:"AI Desk request failed.";addMessage(text,"assistant");status.textContent="Request could not be completed. Check your connection or try later.";}
     finally{busy=false;send.disabled=false;input.focus();}
   });
-  client.auth.onAuthStateChange(()=>{role="guest";history=[];messages.replaceChildren();refresh();});
+  client.auth.onAuthStateChange(()=>{role="guest";history=[];messages.replaceChildren();queueMicrotask(()=>refresh().catch(()=>{status.textContent="Could not refresh your account. Reload and sign in again."; }));});
   refresh();
 })();
