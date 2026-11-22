@@ -5,7 +5,7 @@
   python tools/desk.py build             data/questions -> TAD.BANK inside index.html
   python tools/desk.py news              refresh data/current-affairs.json from tools/feeds.json
 """
-import argparse, json, re, sys, urllib.request, xml.etree.ElementTree as ET
+import argparse, html, json, re, sys, urllib.request, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -164,7 +164,15 @@ def cmd_news(a):
         for it in root.iter('item'):
             title, link = (it.findtext('title') or '').strip(), (it.findtext('link') or '').strip()
             if not title or not link: continue
-            description = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', it.findtext('description') or '')).strip()
+            raw_description = (
+                it.findtext('description')
+                or it.findtext('{http://purl.org/rss/1.0/modules/content/}encoded')
+                or it.findtext('summary')
+                or ''
+            )
+            description = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', html.unescape(raw_description))).strip()
+            if description == title:
+                description = ''
             if link in by_link:
                 if description and not by_link[link].get('source_summary'):
                     by_link[link]['source_summary'] = description[:1200]
