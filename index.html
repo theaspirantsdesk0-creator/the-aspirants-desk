@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="theme-color" content="#070f2b">
 <link rel="manifest" href="manifest.webmanifest">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 
 <style>
@@ -446,6 +446,176 @@ th { background: var(--surface-alt); font-weight: 700; }
 .azg b{display:block;font:800 1.2rem "Bricolage Grotesque",sans-serif;color:var(--accent)}
 @media (max-width:960px){.nwrap{grid-template-columns:1fr}.ntoc{position:static;max-height:220px;flex-direction:row;flex-wrap:wrap}}
 
+
+/* ===== Design upgrade: answer-sheet look =====
+   Idea: an aspirant's desk is paper, ruled lines and OMR bubbles.
+   - Bubbles mark what is selected (nav, checklist, test options).
+   - Ruled lines and a margin rule appear only on the hero and chapter notes.
+   - Highlighter yellow is kept for the one thing to notice: the active item. */
+:root {
+  --bg: #eef1f7;
+  --surface: #ffffff;
+  --surface-alt: #f5f7fc;
+  --ink: #0c1730;
+  --muted: #4b5b78;
+  --line: #d3dae8;
+  --navy: #0a1736;
+  --navy-2: #0a1736;
+  --accent: #1f3fbf;
+  --gold: #f5c518;
+  --gold-ink: #231a00;
+  --margin: rgba(214, 69, 80, 0.5);
+  --radius: 8px;
+  --shadow: none;
+  --shadow-lg: 0 10px 28px -14px rgba(10, 23, 54, 0.35);
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+:root[data-theme="dark"] {
+  --bg: #070d1d;
+  --surface: #0e1730;
+  --surface-alt: #141f3d;
+  --ink: #eef2fb;
+  --muted: #9aa8c4;
+  --line: #22305a;
+  --accent: #8fa8ff;
+  --gold: #f5c518;
+  --margin: rgba(255, 120, 130, 0.4);
+  --shadow: none;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:root[data-theme="dark"] :focus-visible { outline-color: var(--gold); }
+
+/* Sidebar: flat ink, bubble markers */
+.sidebar { background: var(--navy); border-right: 0; }
+.brand-badge { border-radius: 8px; background: var(--gold); }
+.brand-box small { text-transform: none; letter-spacing: 0; font-size: 0.74rem; font-weight: 600; color: #aab8d8; }
+.nav-grp { text-transform: none; letter-spacing: 0; font-size: 0.78rem; font-weight: 700; color: #8fa0c6; opacity: 1; margin-top: 1.2rem; }
+.nav-link { justify-content: flex-start; border-radius: 8px; color: #cdd7ee; gap: 0.7rem; }
+.nav-link::before {
+  content: "";
+  width: 12px; height: 12px; flex: none;
+  border: 1.5px solid rgba(205, 215, 238, 0.55);
+  border-radius: 50%;
+}
+.nav-link .lock-tag { margin-left: auto; }
+.nav-link:hover { background: rgba(255, 255, 255, 0.07); }
+.nav-link.active { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.nav-link.active::before { background: var(--gold); border-color: var(--gold); }
+.nav-link.active .lock-tag { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.side-btn { border-radius: 8px; }
+
+/* Top bar */
+.topbar { backdrop-filter: none; background: var(--surface); }
+.exam-select { border-radius: 8px; border: 1.5px solid var(--ink); background: var(--surface); }
+.user-pill { border-radius: 8px; }
+
+/* Calmer surfaces: one soft radius, rules instead of shadows */
+.card { border-radius: var(--radius); box-shadow: none; }
+.card.gold-top { border-top: 3px solid var(--gold); }
+.view-sec { animation: fadeIn 0.14s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.btn { border-radius: 8px; }
+.btn:hover { transform: none; border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .btn.primary { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+input, select, textarea { border-radius: 8px; }
+th { text-transform: none; letter-spacing: 0; }
+.table-wrap { border-radius: 8px; }
+.item-list li { border-radius: 8px; border-left-color: var(--accent); }
+.pill, .chip, .kt span { border-radius: 6px; }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+:root:not([data-theme="dark"]) .chip[aria-pressed="true"] { color: #fff; }
+.kpi-val { color: var(--ink); font-variant-numeric: tabular-nums; }
+.bar-track { height: 8px; border-radius: 4px; }
+.bar-fill { background: var(--accent); }
+.modal-card { border: 1px solid var(--line); border-radius: 12px; }
+.toast { border-color: transparent; border-left: 4px solid var(--gold); border-radius: 8px; }
+
+/* Hero: ruled paper with a margin line */
+.dash-hero {
+  position: relative;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 33px, rgba(255, 255, 255, 0.07) 33px 34px),
+    var(--navy);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 2rem 2rem 2rem 4.2rem;
+}
+.dash-hero::before {
+  content: "";
+  position: absolute; top: 0; bottom: 0; left: 2.7rem;
+  width: 1px; background: var(--margin);
+}
+.dash-hero .eyebrow {
+  background: none; border: 0; padding: 0;
+  color: var(--gold);
+  text-transform: none; letter-spacing: 0;
+  font-size: 0.92rem; font-weight: 600;
+}
+.dash-hero h1 { font-weight: 800; }
+
+/* OMR bubbles: checklist and test options */
+input[type="checkbox"], input[type="radio"] {
+  -webkit-appearance: none; appearance: none;
+  width: 18px !important; height: 18px; flex: none;
+  padding: 0; margin: 0;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  background: var(--surface);
+  display: inline-grid; place-content: center;
+  cursor: pointer;
+}
+input[type="checkbox"]::before, input[type="radio"]::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink); transform: scale(0);
+  transition: transform 0.1s ease;
+}
+input[type="checkbox"]:checked, input[type="radio"]:checked { border-color: var(--ink); }
+input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { transform: scale(1); }
+:root[data-theme="dark"] input[type="checkbox"]::before, :root[data-theme="dark"] input[type="radio"]::before { background: var(--gold); }
+:root[data-theme="dark"] input[type="checkbox"]:checked, :root[data-theme="dark"] input[type="radio"]:checked { border-color: var(--gold); }
+
+/* Chapter notes: serif reading column with a margin rule */
+.ntoc button { border-radius: 6px; }
+.ntoc button.on { background: var(--ink); border-color: var(--ink); color: var(--surface); box-shadow: inset 4px 0 0 var(--gold); padding-left: 0.9rem; }
+.ntoc button.done::after { color: var(--ok); }
+.nbody {
+  font-family: var(--serif);
+  font-size: 1.04rem; line-height: 1.8;
+  max-width: 70ch;
+  padding: 1.6rem 1.6rem 1.6rem 2.2rem;
+  border-left: 2px solid var(--margin);
+  box-shadow: none;
+}
+.nbody h3 { font-size: 1.55rem; line-height: 1.25; }
+.nbody h4 { color: var(--ink); }
+.nbody .deep, .nbody .pic, .nbody .rv, .nbody .btn-row, .nbody .tipbox, .nbody #selfTest {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.92rem; line-height: 1.65;
+}
+.deep { border: 1px solid var(--line); border-radius: 8px; }
+.deep h5 { color: var(--accent); }
+:root[data-theme="dark"] .deep h5 { color: var(--gold); }
+.tipbox { border-left-color: var(--gold); border-radius: 4px; }
+.bx { border-top-color: var(--accent); border-radius: 6px; }
+.pic { border-color: var(--line); border-style: solid; border-radius: 8px; }
+
+/* Flashcards */
+.fc-box { background: var(--navy); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; }
+.fc-box:hover { transform: none; }
+.fc-box.flipped { border-color: var(--line); }
+.folder:hover { border-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 960px) {
+  .dash-hero { padding: 1.6rem 1.2rem 1.6rem 2.6rem; }
+  .dash-hero::before { left: 1.4rem; }
+  .nbody { padding: 1.2rem 1rem 1.2rem 1.3rem; }
+}
 </style>
 </head>
 <body>
@@ -2570,6 +2740,12 @@ document.getElementById("libNone").hidden=any||!q;
 console.log("Study Library loaded");
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",build);else build();
 })();
+</script>
+<script>
+document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
+  var n = a.firstChild;
+  if (n && n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/^\s*[\p{Extended_Pictographic}\uFE0F\u200D]+\s*/u, "");
+});
 </script>
 </body>
 </html>
