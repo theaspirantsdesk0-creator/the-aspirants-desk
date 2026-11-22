@@ -1,5 +1,10 @@
 name: Daily PIB update
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_pib.py'
+      - '.github/workflows/daily-pib.yml'
   schedule:
     - cron: "30 12 * * *" # 18:00 IST; GitHub may start a few minutes late
   workflow_dispatch:
@@ -18,8 +23,8 @@ jobs:
       - name: Fetch PIB and add optional AI explanations
         run: python scripts/update_pib.py
         env:
-          GEMINI_API_KEY: \${{ secrets.GEMINI_API_KEY }}
-          GROQ_API_KEY: \${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash
           GROQ_MODEL: llama-3.3-70b-versatile
         continue-on-error: true
