@@ -1,27 +1,24 @@
 name: Live browser smoke test
 on:
-  push:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
     branches: [main]
-    paths:
-      - "index.html"
-      - "config.js"
-      - "assets/**"
-      - "tools/live_smoke.mjs"
-      - ".github/workflows/live-smoke.yml"
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   browser-smoke:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Allow Pages deployment to finish
-        run: sleep 90
       - name: Install Playwright
         run: npm install --no-save --no-package-lock playwright
       - name: Install Chromium
