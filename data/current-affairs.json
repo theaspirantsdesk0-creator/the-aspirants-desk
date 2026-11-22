@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T14:44:12+00:00",
+ "updated": "2026-11-22T17:17:02+00:00",
  "items": [
   {
    "date": "2026-11-22",
@@ -143,7 +143,8 @@
    "title": "KERC mandates 43.33% of energy from renewable sources for Escoms, industries by 2030",
    "link": "https://www.thehindu.com/news/national/karnataka/kerc-mandates-4333-of-energy-from-renewable-sources-for-escoms-industries-by-2030/article71656793.ece",
    "topic": "General",
-   "upsc_angle": ""
+   "upsc_angle": "",
+   "source_summary": "Graphics emailed While the target was only 36% in 2026–27, the commission has set the target at 43.33% in 2029–30 by raising it in small steps every financial year"
   },
   {
    "date": "2026-11-22",
@@ -223,7 +224,8 @@
    "title": "Helmetless riding cases in Bengaluru more than double compared to 2025, touch 42.90 lakh",
    "link": "https://www.thehindu.com/news/cities/bangalore/helmetless-riding-cases-in-bengaluru-more-than-double-compared-to-2025-touch-4290-lakh/article71731440.ece",
    "topic": "General",
-   "upsc_angle": ""
+   "upsc_angle": "",
+   "source_summary": "A senior BTP officer told The Hindu that the number of cases had doubled because violations had been booked with zero tolerance through contactless enforcement over the last five months"
   },
   {
    "date": "2026-11-22",
@@ -399,7 +401,8 @@
    "title": "SCO Civilisational Dialogue ‘leaves options open’ for Pakistan SCO meets next year, say sources",
    "link": "https://www.thehindu.com/news/national/sco-civilisational-dialogue-leaves-options-open-for-pakistan-sco-meets-next-year-say-sources/article71731201.ece",
    "topic": "General",
-   "upsc_angle": ""
+   "upsc_angle": "",
+   "source_summary": "As the government faces criticism over “inconsistency” in the invitation to Pakistan, officials say the invite can be seen as building a window of opportunity for “common civility”"
   },
   {
    "date": "2026-11-22",
@@ -480,6 +483,551 @@
    "link": "https://www.thehindu.com/news/national/telangana/drdo-scientist-pc-jain-receives-murli-manohar-joshi-award/article71731302.ece",
    "topic": "Science and technology",
    "upsc_angle": ""
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Centre prioritising border villages, 40 seeing reverse migration: Amit Shah in Arunachal Pradesh",
+   "link": "https://www.thehindu.com/news/national/arunachal-pradesh/amit-shah-says-congress-neglected-development-provided-inadequate-funds-during-its-rule-in-arunachal-pradesh/article71731087.ece",
+   "topic": "Internal security",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Union Home Minister launches development initiatives, including 199 Vibrant Villages projects, worth more than ₹5,610 crore on last day of his three-day visit to the State"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Rampur’s Lavi Fair: Storytelling through 300 years of Himalayan trade and tradition",
+   "link": "https://www.thehindu.com/society/lavi-fair-rampur-himachal-pradesh-story/article71660853.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Rampur Bushahr’s Lavi Fair in Himachal Pradesh traces a Himalayan journey from wool and barter to women entrepreneurs and digital payments"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BMTC spare parts ‘scam’: FIR against 21 officials, employees and suppliers over alleged ₹3.97-crore fraud",
+   "link": "https://www.thehindu.com/news/national/karnataka/bmtc-spare-parts-scam-fir-against-21-officials-employees-and-suppliers-over-alleged-397-crore-fraud/article71732141.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Police fact-check claims about illegal Bangladeshi immigrants in Bengaluru",
+   "link": "https://www.thehindu.com/news/national/karnataka/police-fact-check-claims-about-illegal-bangladeshi-immigrants-in-bengaluru/article71732134.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Botcha urges Governor to recommend dismissal of Chandrababu Naidu government",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/botcha-urges-governor-to-recommend-dismissal-of-chandrababu-naidu-government/article71731245.ece",
+   "topic": "Polity",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Manipur hooch tragedy toll rises to 17; sample sent to Kolkata lab",
+   "link": "https://www.thehindu.com/news/national/manipur/manipur-hooch-tragedy-toll-rises-to-17-sample-sent-to-kolkata-lab/article71731475.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Government spokespersons said 228 out of 1,130 people screened after the tragedy are undergoing treatment in various hospitals"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Twenty held in Jammu and Kashmir recruitment board cheating case; ‘no paper leak found’",
+   "link": "https://www.thehindu.com/news/national/jammu-and-kashmir/jkssb-exam-cheating-racket-six-more-arrested-six-government-employees-among-accused/article71731253.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The investigation exposed an organised network involving government employees, candidates and intermediaries, who allegedly planned to facilitate cheating for selected candidates through electronic devices, the police say"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Bengal BJP MLA Rekha Patra critical after suspected pesticide poisoning",
+   "link": "https://www.thehindu.com/news/national/west-bengal/bengal-bjpmla-rekha-patra-critical-after-suspected-pesticide-poisoning/article71731932.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The medical report from the private health facility in Kolkata points to an “alleged history of poisoning (agricultural) on the home premises”"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "India, China hold 10-day talks to ease LoAC tensions in Arunachal Pradesh",
+   "link": "https://www.thehindu.com/news/national/india-china-hold-10-day-talks-to-ease-loac-tensions-in-arunachal-pradesh/article71731819.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The talks focused on establishing engagement protocols, preventing face-offs and misunderstandings between troops deployed along the frontier, and maintaining open communication channels"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Ladakh-Centre talks to include elected members, Kargil and Leh bodies: official",
+   "link": "https://www.thehindu.com/news/national/ladakh/ladakh-centre-talks-to-include-elected-members-kargil-and-leh-bodies-official/article71731904.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Elected members would be included and this does not mean ending the existing dialogue with the LAB and the KDA, the official said"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "FSSAI orders prosecution against Bisleri International for unsafe packaged drinking water",
+   "link": "https://www.thehindu.com/news/national/fssai-orders-prosecution-against-bisleri-international-for-unsafe-packaged-drinking-water/article71732196.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "\"The sample was found non-compliant with the prescribed bromate limits and declared unsafe under the FSS Act, 2006,\" the regulator said"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Mysuru to host AI Summit on November 25",
+   "link": "https://www.thehindu.com/news/national/karnataka/mysuru-to-host-ai-summit-on-november-25/article71731132.ece",
+   "topic": "International relations",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "CEOs, CXOs, functional heads, MSME owners, technology professionals, academia and students are expected to attend."
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Most of the 12.22 lakh electors removed during SIR yet to apply for inclusion in the rolls",
+   "link": "https://www.thehindu.com/news/cities/chennai/most-of-the-1222-lakhelectors-removed-during-sir-yet-to-submit-applications-for-inclusion-in-the-roll/article71731783.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Only 83,972 voters have been included in the electoral rolls after the SIR. Many residents of rental accommodation say they need assistance for inclusion. Officials point to lack of awareness among the residents of the SIR"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Tipu Sultan’s lost palace in Mysuru",
+   "link": "https://www.thehindu.com/news/national/karnataka/tipu-sultans-lost-palace-in-mysuru/article71719886.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Though a major portion of the palace was reportedly demolished two times, first in 1992 and again in 2003, the historian remains hopeful of restoring the surviving portion, which currently houses the Government Urdu Higher Primary Boys’ School."
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Mysuru: Historical Urdu school’s cry for help",
+   "link": "https://www.thehindu.com/news/national/karnataka/mysuru-historical-urdu-schools-cry-for-help/article71728257.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "A Kannada-medium school was also functioning in the part of the palace that was demolished. However, following the demolition of portions of the school building in two phases, the Urdu school is struggling to survive, according to sources."
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Temperature in Mumbai drops by about 5 degrees in a day",
+   "link": "https://www.thehindu.com/news/cities/mumbai/temperature-in-mumbai-drops-by-about-5-degrees-in-a-day/article71730918.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Santacruz recorded 16.2°C on Saturday, the second-lowest November reading in the past 10 years, while Pune’s Shivajinagar logged the winter’s lowest so far"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Traffic management, not enforcement, will be our priority: Bengaluru Traffic Commissioner",
+   "link": "https://www.thehindu.com/news/cities/bangalore/traffic-management-not-enforcement-will-be-our-priority-bengaluru-traffic-commissioner/article71731255.ece",
+   "topic": "Schemes and society",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Hemant M. Nimbalkar says officers must focus on managing traffic rather than enforcement, and that no vehicle should be stopped unless there is a visible violation"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Congress will return to power in Telangana for second term with 90 seats and one crore votes: Revanth Reddy",
+   "link": "https://www.thehindu.com/news/national/telangana/congress-will-return-to-power-in-telangana-for-second-term-with-90-seats-and-one-crore-votes-revanth-reddy/article71732106.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Bandi Sanjay inaugurates solar power system at Karimnagar gurudwara, lauds Sikh community",
+   "link": "https://www.thehindu.com/news/national/telangana/bandi-sanjay-inaugurates-solar-power-system-at-karimnagar-gurudwara-lauds-sikh-community/article71731861.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Rotary Club of Sainikpuri distributes sewing machines to 100 women, bicycles to six meritorious students in Peddapalli district",
+   "link": "https://www.thehindu.com/news/national/telangana/rotary-club-of-sainikpuri-distributes-sewing-machines-to-100-women-bicycles-to-six-meritorious-students-in-peddapalli-district/article71732053.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Vijayawada Mayor, 86 corporators to take oath today",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/vijayawada-mayor-86-corporators-to-take-oath-today/article71732010.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Jana Sena activist dies during clash over panchayat nominations in Pulivendula",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/jana-sena-activist-dies-during-clash-over-panchayat-nominations-in-pulivendula/article71730855.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Pawan Kalyan orders an inquiry into the sequence of events that led to the death"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BJP alleges T.N. government is refusing to implement Supreme Court’s order on Karthigai Deepam",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/bjp-alleges-tn-government-is-refusing-to-implement-supreme-courts-order-on-karthigai-deepam/article71731719.ece",
+   "topic": "Polity",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The apex court has ruled that the lamp should be allowed to be lit on November 24, subject to certain restrictions"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Nepal PM Balendra Shah arrives in Delhi for first official visit to India",
+   "link": "https://www.thehindu.com/news/national/nepal-pm-balendra-shah-arrives-in-delhi-for-first-official-visit-to-india/article71731829.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The PMs of India and Nepal are set to hold talks on Monday, with sources saying the discussion will give 'political direction' to bilateral relations for the coming years"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Nursing students walk to promote natural birthing awareness in Visakhapatnam",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/nursing-students-walk-to-promote-natural-birthing-awareness-in-visakhapatnam/article71731927.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Replace open power lines passing through oilpalm fields with AB lines: Minister",
+   "link": "https://www.thehindu.com/news/national/telangana/replace-open-power-lines-passing-through-oilpalm-fields-with-ab-lines-minister/article71731988.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Tummala Nageswara Rao says power lines are reducing the number of plans per acres by at least 8, causing income loss for lifetime of plants, 35 years"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "GVMC new council to take oath on Monday",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/gvmc-new-council-to-take-oath-on-monday/article71731504.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "JSP gained strong ground in North Andhra: Minister",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/jsp-became-stronger-in-north-andhra-minister/article71731879.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Three medals for A.P. athletes at international taekwondo meet in Pune",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ap-athletes-win-big-at-international-taekwondo-meet-in-pune/article71731951.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Decks cleared for forfeiting copies of controversial book Basava Mantapa in Karnataka",
+   "link": "https://www.thehindu.com/news/national/karnataka/decks-cleared-for-forfeiting-copies-of-controversial-book-basava-mantapa-in-karnataka/article71732065.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "BRS delegation plans to meet KRMB on A.P.’s tunnel project from Nagarjunasagar, Telangana water rights",
+   "link": "https://www.thehindu.com/news/national/telangana/brs-delegation-plans-to-meet-krmb-on-aps-tunnel-project-from-nagarjunasagar-telangana-water-rights/article71732054.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Samiti welcomes arrest of Ravi Hanj, seeks action against Vishweshwar Bhat",
+   "link": "https://www.thehindu.com/news/national/karnataka/protest-in-kalaburagi-seeking-action-against-ravi-hanj-vishweshwar-bhat/article71731723.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "A memorandum submitted to the State govt. says that certain ideological groups have been consistently trying to undermine Basavanna’s legacy"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Hyderabad Police issue alert over terror threat email; security checks conducted at key locations",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/hyderabad-police-issue-alert-over-terror-threat-email-security-checks-conducted-at-key-locations/article71731583.ece",
+   "topic": "Internal security",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Congress corruption being exposed by its MLAs: KTR",
+   "link": "https://www.thehindu.com/news/national/telangana/congress-corruption-being-exposed-by-its-mlas-ktr/article71732036.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Walk the talk by increasing honorarium for ASHA workers, Ashok tells CM",
+   "link": "https://www.thehindu.com/news/national/karnataka/walk-the-talk-by-increasing-honorarium-for-asha-workers-ashok-tells-cm/article71732062.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Rajasthan Congress chief credits organisational strength for panchayat polls victory",
+   "link": "https://www.thehindu.com/news/national/rajasthan/rajasthan-congress-chief-credits-organisational-strength-for-panchayat-polls-victory/article71731661.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "State Congress Chief Govind Singh Dotasra said that while anti-incumbency against the BJP government contributed to the Congress's victory"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "From taluk office to museum: Devanahalli’s 140-year-old heritage building to get a new lease of life",
+   "link": "https://www.thehindu.com/news/national/karnataka/from-taluk-office-to-museum-devanahallis-140-year-old-heritage-building-to-get-a-new-lease-of-life/article71731130.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Tension prevails at church; parish election suspended",
+   "link": "https://www.thehindu.com/news/national/kerala/tension-prevails-at-church-parish-election-suspended/article71731818.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Bengaluru Police launch door-to-door crackdown on rowdy-sheeters",
+   "link": "https://www.thehindu.com/news/national/karnataka/bengaluru-police-launch-door-to-door-crackdown-on-rowdy-sheeters/article71731000.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "SCO civilisational forum adopts outcome document recognising culture as a vital bridge",
+   "link": "https://www.thehindu.com/news/national/sco-civilisational-forum-adopts-outcome-document-recognising-culture-as-a-vital-bridge/article71731509.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The charter recognised that SCO countries have been shaped by centuries of interaction, exchange of ideas, movement of people and sharing of knowledge, all while preserving their distinct identities, cultures, traditions and beliefs"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Road crash in Rajasthan leaves nine dead, eight injured",
+   "link": "https://www.thehindu.com/news/national/rajasthan/many-killed-several-injured-as-vehicle-carrying-pilgrims-rams-into-truck-in-rajasthans-kota/article71730542.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "An ex-gratia of ₹2 lakh from the Prime Minister’s National Relief Fund would be given to the kin of those who lost their lives and ₹50,000 would be given to each of the injured"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Keralam cracks down on unsafe cosmetics after teen’s kidney disease",
+   "link": "https://www.thehindu.com/news/national/kerala/keralam-cracks-down-on-unsafe-cosmetics-after-teens-kidney-disease/article71731711.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Statewide inspections under Operation Soundarya on Sunday led to the seizure of fake cosmetic products worth more than ₹10 lakh. Teen’s plight prompts complaints from others citing health problems after using similar products"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "SOMI rally highlights benefits of natural birth",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/somi-rally-highlights-benefits-of-natural-birth/article71731667.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Marginalised sections must effectively utilise Right to Information Act: Chief Information Commissioner",
+   "link": "https://www.thehindu.com/news/national/kerala/marginalised-sections-must-effectively-utilise-right-to-information-act-chief-information-commissioner/article71731755.ece",
+   "topic": "Schemes and society",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "He emphasises that citizens should leverage the RTI Act to obtain accurate information regarding government schemes"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Dumping clothes in Pampa to invite ₹5,000 fine",
+   "link": "https://www.thehindu.com/news/national/kerala/dumping-clothes-in-pampa-to-invite-5000-fine/article71731920.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Field inspections revealed that a considerable number of devotees were abandoning used clothes in the river and at bathing ghats"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Eight persons killed, two others injured as van rams roadside tree on State Highway in Tiruchi",
+   "link": "https://www.thehindu.com/news/cities/Tiruchirapalli/eight-persons-killed-two-others-injured-as-van-rams-roadside-tree-on-state-highway-in-tiruchi/article71731469.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The victims, who were working in a brick kiln at Thirukattupalli in Thanjavur district, were returning home after attending a function in Namakkal district when the accident occurred around 4.05 p.m."
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Razak Paleri re-elected State president of Welfare Party",
+   "link": "https://www.thehindu.com/news/national/kerala//article71731820.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Government proposes amendments to Kerala Administrative Service Rules",
+   "link": "https://www.thehindu.com/news/national/kerala/government-proposes-amendments-to-kerala-administrative-service-rules/article71731940.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "According to a notification issued by the General Administration department, the amendments are aimed at removing certain ambiguities and errors that have crept into the KAS rules"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Repeat offender arrested with MDMA and charas in Keralam’s Kollam",
+   "link": "https://www.thehindu.com/news/national/kerala/repeat-offender-arrested-with-mdma-and-charas-in-keralams-kollam/article71731790.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "DANSAF seizes 5.21 grams of MDMA and charas valued at up to ₹10,000 from his possession"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Seven members of Army families killed in Gujarat accident",
+   "link": "https://www.thehindu.com/news/national/gujarat/seven-members-of-army-families-killed-in-gujarat-accident/article71731594.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The deceased include three children; PM announces ex gratia of ₹2 lakh each"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Three minors found begging at Dwaraka Tirumala temple rescued",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/three-minors-found-begging-at-dwaraka-tirumala-temple-rescued/article71731546.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "H.D. Kumaraswamy offers to take Kodagu farmers’ delegation to Delhi",
+   "link": "https://www.thehindu.com/news/national/karnataka/hd-kumaraswamy-offers-to-take-kodagu-farmers-delegation-to-delhi/article71731902.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "Promises talks with Union Forest Minister during Winter Session of Parliament over alleged harassment in the name of forest land clearance"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Actor Shilpa Shetty offers prayers at Simhachalam temple",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/actor-shilpa-shetty-offers-prayers-at-simhachalam-temple/article71731870.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Delegates from 16 countries attend national conference of AITUC",
+   "link": "https://www.thehindu.com/news/national/karnataka/delegates-from-16-countries-attend-national-conference-of-aituc/article71731821.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "New app offers three-minute Telugu audio lessons for school students",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/new-app-offers-three-minute-telugu-audio-lessons-for-school-students/article71731912.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "The free app uses student-narrated audio episodes to explain A.P., Telangana and CBSE lessons in simple Telugu, with plans to extend its coverage to the Intermediate level"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "POCSO case against teacher in Proddatur",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/pocso-case-against-teacher-in-proddatur/article71731716.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-22",
+   "source": "The Hindu: National",
+   "title": "Cyclonic circulation over the Bay likely in November last week",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/cyclonic-circulation-over-the-bay-likely-in-november-last-week/article71731739.ece",
+   "topic": "General",
+   "upsc_angle": "",
+   "ai_status": "pending",
+   "source_summary": "There is a probability of the system intensifying into a low pressure area, says head of the Cyclone Warning Centre in Visakhapatnam"
   },
   {
    "date": "2026-11-21",
