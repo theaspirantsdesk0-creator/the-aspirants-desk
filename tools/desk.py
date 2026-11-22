@@ -163,10 +163,14 @@ def cmd_news(a):
             print('feed failed:', f['name'], ex); continue
         for it in root.iter('item'):
             title, link = (it.findtext('title') or '').strip(), (it.findtext('link') or '').strip()
-            if not title or not link or link in by_link: continue
+            if not title or not link: continue
+            description = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', it.findtext('description') or '')).strip()
+            if link in by_link:
+                if description and not by_link[link].get('source_summary'):
+                    by_link[link]['source_summary'] = description[:1200]
+                continue
             try: d = parsedate_to_datetime(it.findtext('pubDate')).astimezone(timezone.utc)
             except Exception: d = now
-            description = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', it.findtext('description') or '')).strip()
             topic = next((n for n, p in TOPICS if re.search(p, title.lower())), 'General')
             by_link[link] = {
                 'date': d.date().isoformat(), 'source': f['name'], 'title': title,
@@ -180,7 +184,7 @@ def cmd_news(a):
     keep.sort(key=lambda i: i['date'], reverse=True)
 
     # Fill a small, bounded batch each day so free provider quotas are not exhausted.
-    missing = [i for i in keep if not i.get('upsc_angle')][:10]
+    missing = [i for i in keep if not i.get('upsc_angle') and i.get('source_summary')][:10]
     generated = 0
     if not os.environ.get('GEMINI_API_KEY') and not os.environ.get('GROQ_API_KEY'):
         print('AI angle generation skipped: configure GEMINI_API_KEY or GROQ_API_KEY in GitHub Actions secrets.')
