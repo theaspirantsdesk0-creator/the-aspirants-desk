@@ -814,7 +814,7 @@ th { background: var(--surface-alt); font-weight: 700; }
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem">
         <div>
           <h2 style="margin:0">Phase 1 · Interactive Daily Prelims Test</h2>
-          <span style="font-size:.85rem;color:var(--muted)">Official UPSC Marking: <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped</span>
+          <span id="examMarking" style="font-size:.85rem;color:var(--muted)">Official UPSC Marking: <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped</span>
         </div>
         <div class="pill warn" style="font-size:1rem;padding:.4rem .9rem">⏱️ Time Left: <span id="testTimerDisplay">10:00</span></div>
       </div>
@@ -841,7 +841,7 @@ th { background: var(--surface-alt); font-weight: 700; }
   </section>
 
   <!-- 7. SUBJECT NOTES -->
-  <section id="notes" class="view-sec protected-view"><div class="card gold-top"><h2>Chapter Notes &amp; Detailed Explanations</h2><p class="muted">Every chapter has full notes, a point-by-point explanation, key terms and a self-test. Mark chapters as read to track your progress.</p><input id="nSearch" class="nsearch" type="search" placeholder="Search all 231 chapters (e.g. Article 21, Kesavananda, monsoon)…" aria-label="Search chapters"><div id="nSearchOut"></div><div class="grid-3" id="ngrid"></div></div></section>
+  <section id="notes" class="view-sec protected-view"><div class="card gold-top"><h2>Chapter Notes &amp; Detailed Explanations</h2><p class="muted">Every chapter has full notes, a point-by-point explanation, key terms and a self-test. Mark chapters as read to track your progress.</p><input id="nSearch" class="nsearch" type="search" placeholder="Search all 231 chapters (e.g. Article 21, Kesavananda, monsoon)…" aria-label="Search chapters"><div id="nSearchOut"></div><p class="pill warn" id="examNotesNote" hidden style="margin:.6rem 0"></p><div class="grid-3" id="ngrid"></div></div></section>
 
   <!-- 8. DAILY PRESS & PIB -->
   <section id="press" class="view-sec protected-view">
@@ -955,7 +955,7 @@ th { background: var(--surface-alt); font-weight: 700; }
   <section id="tracker" class="view-sec protected-view">
     <div class="card gold-top" style="margin-bottom:1.2rem">
       <h2>My Preparation Tracker & Cloud Sync</h2>
-      <h3>1. Core Syllabus Checklist</h3>
+      <h3 id="sylTitle">1. Core Syllabus Checklist</h3>
       <div class="bar-track"><div class="bar-fill" id="sylBar"></div></div>
       <div class="grid-3" id="sylChecks" style="margin-bottom:1.2rem"></div>
 
@@ -1351,7 +1351,7 @@ th { background: var(--surface-alt); font-weight: 700; }
           email: currentUser.email,
           target_exam: selectedExam,
           hours: state.hours,
-          syllabus_pct: Math.round((state.syllabus.length / SYLLABUS_TOPICS.length) * 100),
+          syllabus_pct: sylPct(),
           last_score: state.lastScore
         },
         updated_at: new Date().toISOString()
@@ -1519,10 +1519,10 @@ th { background: var(--surface-alt); font-weight: 700; }
 
   // Phase 4: Multi-Exam Shell Selector
   const EXAM_META = {
-    "UPSC CSE": { targetDate: "2027-05-23", label: "Countdown to UPSC Prelims 2027", tag: "UPSC Civil Services Ecosystem" },
-    "TNPSC Group 1": { targetDate: "2027-06-14", label: "Countdown to TNPSC Group 1 Prelims", tag: "TNPSC Group 1 & 2 Ecosystem" },
-    "SSC CGL": { targetDate: "2027-07-12", label: "Countdown to SSC CGL Tier-I", tag: "SSC CGL & CHSL Ecosystem" },
-    "Banking PO": { targetDate: "2027-08-08", label: "Countdown to IBPS / SBI PO Prelims", tag: "Banking & Regulatory Ecosystem" }
+    "UPSC CSE": { targetDate: "2027-05-23", label: "Countdown to UPSC Prelims 2027", tag: "UPSC Civil Services Ecosystem", subj: null, marking: "Official UPSC Marking: <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped", note: "" },
+    "TNPSC Group 1": { targetDate: "2027-06-14", label: "Countdown to TNPSC Group 1 Prelims", tag: "TNPSC Group 1 & 2 Ecosystem", subj: ["Polity", "Modern history", "Ancient history", "Medieval history", "Geography", "Economy", "Science and technology", "Art and culture", "Indian society", "Environment", "Ethics", "CSAT"], marking: "Practice marking (UPSC pattern): <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped", note: "Showing the general-studies notes that overlap with TNPSC Group 1. Tamil Nadu-specific and General Tamil notes are being added." },
+    "SSC CGL": { targetDate: "2027-07-12", label: "Countdown to SSC CGL Tier-I", tag: "SSC CGL & CHSL Ecosystem", subj: ["Polity", "Modern history", "Ancient history", "Medieval history", "Geography", "Economy", "Science and technology", "Art and culture", "CSAT"], marking: "Practice marking (UPSC pattern): <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped", note: "Showing the general-awareness and aptitude notes that overlap with SSC CGL. English and SSC-specific reasoning notes are being added." },
+    "Banking PO": { targetDate: "2027-08-08", label: "Countdown to IBPS / SBI PO Prelims", tag: "Banking & Regulatory Ecosystem", subj: ["Economy", "Science and technology", "CSAT"], marking: "Practice marking (UPSC pattern): <b>+2.00</b> Correct | <b>−0.66</b> Incorrect | <b>0.00</b> Skipped", note: "Showing the economy, technology and aptitude notes that overlap with Banking PO. Banking awareness and English notes are being added." }
   };
 
   function applyExamShell(exam) {
@@ -1535,6 +1535,10 @@ th { background: var(--surface-alt); font-weight: 700; }
     $("kpiExamLabel").textContent = meta.label;
     const diff = Math.max(0, Math.ceil((new Date(meta.targetDate) - new Date()) / 86400000));
     $("kpiDays").textContent = `${diff} Days`;
+    const mk = $("examMarking"); if (mk) mk.innerHTML = meta.marking;
+    const nn = $("examNotesNote");
+    if (nn) { nn.textContent = meta.note; nn.hidden = !meta.note; }
+    try { nSub = ""; nCh = 0; renderSyllabus(); renderKPIs(); drawNotes(); } catch (err) { /* modules not ready yet */ }
   }
   $("globalExamSelector").addEventListener("change", (e) => {
     applyExamShell(e.target.value);
@@ -1543,8 +1547,7 @@ th { background: var(--surface-alt); font-weight: 700; }
 
   function renderKPIs() {
     $("kpiHours").textContent = `${Number(state.hours || 0).toFixed(1)} hrs`;
-    const pct = Math.round(((state.syllabus || []).length / 6) * 100);
-    $("kpiSyllabus").textContent = `${pct}%`;
+    $("kpiSyllabus").textContent = `${sylPct()}%`;
     $("kpiLastScore").textContent = state.lastScore !== null ? `${state.lastScore} / ${state.lastMax || 10}` : "—";
   }
 
@@ -1908,21 +1911,37 @@ th { background: var(--surface-alt); font-weight: 700; }
   });
 
   // Syllabus, Spaced Repetition & Mistake Log
-  const SYLLABUS_TOPICS = ["Indian Polity & Constitution", "Modern Indian History", "Indian Economy", "Physical & Indian Geography", "Environment & Ecology", "Ethics, Integrity & Aptitude"];
+  const SYLLABI = {
+    "UPSC CSE": ["Indian Polity & Constitution", "Modern Indian History", "Indian Economy", "Physical & Indian Geography", "Environment & Ecology", "Ethics, Integrity & Aptitude"],
+    "TNPSC Group 1": ["Tamil Nadu History & Culture", "Indian Polity & Constitution", "Indian & Tamil Nadu Economy", "Geography of India & Tamil Nadu", "General Science", "Aptitude & Mental Ability", "General Tamil (Eligibility)", "Current Affairs"],
+    "SSC CGL": ["Quantitative Aptitude", "General Intelligence & Reasoning", "English Comprehension & Grammar", "General Awareness: History, Polity & Geography", "General Awareness: Economy & Science", "Current Affairs"],
+    "Banking PO": ["Quantitative Aptitude & Data Interpretation", "Reasoning: Puzzles & Seating", "English Language", "Banking & Financial Awareness", "General & Economic Awareness", "Computer Aptitude"]
+  };
+  const sylTopics = () => SYLLABI[selectedExam] || SYLLABI["UPSC CSE"];
+  // UPSC keeps its original plain keys so saved progress is not lost; other exams are namespaced.
+  const sylKey = (t) => (selectedExam === "UPSC CSE" ? t : selectedExam + "::" + t);
+  const sylPct = () => {
+    const tp = sylTopics();
+    return Math.round((tp.filter(t => (state.syllabus || []).includes(sylKey(t))).length / tp.length) * 100);
+  };
   function renderSyllabus() {
-    $("sylChecks").innerHTML = SYLLABUS_TOPICS.map(t => `
+    const tp = sylTopics();
+    const ttl = $("sylTitle"); if (ttl) ttl.textContent = `1. Core Syllabus Checklist (${selectedExam})`;
+    $("sylChecks").innerHTML = tp.map((t, i) => `
       <label class="card" style="display:flex;align-items:center;gap:.6rem;cursor:pointer">
-        <input type="checkbox" ${(state.syllabus || []).includes(t) ? "checked" : ""} data-topic="${t}" style="width:auto">
-        <span>${t}</span>
+        <input type="checkbox" ${(state.syllabus || []).includes(sylKey(t)) ? "checked" : ""} data-i="${i}" style="width:auto">
+        <span>${t.replace(/&/g, "&amp;")}</span>
       </label>
     `).join("");
-    const pct = Math.round(((state.syllabus || []).length / SYLLABUS_TOPICS.length) * 100);
-    $("sylBar").style.width = pct + "%";
+    $("sylBar").style.width = sylPct() + "%";
     document.querySelectorAll("#sylChecks input").forEach(cb => {
       cb.addEventListener("change", () => {
-        if (cb.checked) state.syllabus.push(cb.dataset.topic);
-        else state.syllabus = state.syllabus.filter(x => x !== cb.dataset.topic);
+        const key = sylKey(tp[+cb.dataset.i]);
+        state.syllabus = state.syllabus || [];
+        if (cb.checked) { if (!state.syllabus.includes(key)) state.syllabus.push(key); }
+        else state.syllabus = state.syllabus.filter(x => x !== key);
         renderSyllabus();
+        renderKPIs();
         saveUserState();
       });
     });
@@ -2209,7 +2228,11 @@ th { background: var(--surface-alt); font-weight: 700; }
   const shuf = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((p) => p[1]);
   state.read = state.read || [];
   let nSub = "", nCh = 0, extra = {};
-  const subjects = () => Object.keys(T.NOTES).concat(Object.keys(extra).filter((s) => !T.NOTES[s]));
+  const subjectsAll = () => Object.keys(T.NOTES).concat(Object.keys(extra).filter((s) => !T.NOTES[s]));
+  const subjects = () => {
+    const allow = (EXAM_META[selectedExam] || {}).subj;
+    return allow ? subjectsAll().filter((s) => allow.includes(s)) : subjectsAll();
+  };
   const chapters = (s) => (T.NOTES[s] || []).concat(extra[s] || []);
   const rk = (s, i) => s + "|" + i;
   const isRead = (s, i) => (state.read || []).includes(rk(s, i));
@@ -2300,7 +2323,7 @@ th { background: var(--surface-alt); font-weight: 700; }
     extra = {};
     (window._allNotes || []).filter((n) => n.id).forEach((n) => { (extra[n.subject] = extra[n.subject] || []).push([n.title, n.body]); });
     const sel = $("admNoteSubj");
-    if (sel) sel.innerHTML = subjects().map((s) => `<option>${esc(s)}</option>`).join("");
+    if (sel) sel.innerHTML = subjectsAll().map((s) => `<option>${esc(s)}</option>`).join("");
     drawNotes();
   }
 
