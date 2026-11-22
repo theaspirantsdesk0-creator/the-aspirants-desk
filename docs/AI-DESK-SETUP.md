@@ -25,6 +25,15 @@ The Supabase runtime supplies the project's Supabase URL and server keys. Do not
 
 The app can be used with one configured provider. With both configured, Gemini is tried first and Groq is used when Gemini returns a rate-limit (429) or server (5xx) response. A provider's free quota, model availability, age/region eligibility, and terms are controlled by that provider and may change. This code does not guarantee $0 usage or a permanent free tier.
 
+## Daily PIB automation secrets
+
+The scheduled PIB workflow is separate from the chat Edge Function and reads GitHub Actions repository secrets. Open the repository's Settings → Secrets and variables → Actions and add:
+
+- `GEMINI_API_KEY` — optional primary provider for PIB explanations.
+- `GROQ_API_KEY` — optional fallback provider.
+
+These are separate secret stores: add the same provider keys to Supabase Edge Function Secrets for interactive AI Desk chat, and to GitHub Actions secrets for scheduled PIB explanations. Do not put either key in `config.js`, `index.html`, or a committed workflow file. If no GitHub Actions key is configured, the PIB updater still saves official headlines and source links but leaves the AI explanation fields at their safe fallback text.
+
 ## Role assignment
 
 New accounts default to `learner`. The current administrator account was checked and is already assigned `admin`.
