@@ -47,5 +47,207 @@
       "label": "UPSC archived question papers",
       "url": "https://www.upsc.gov.in/archived-exam-documents/question-papers/"
     }
-  ]
+  ],
+  "optional_subjects": [
+    {
+      "name": "Agriculture",
+      "category": "optional"
+    },
+    {
+      "name": "Animal Husbandry and Veterinary Science",
+      "category": "optional"
+    },
+    {
+      "name": "Anthropology",
+      "category": "optional"
+    },
+    {
+      "name": "Botany",
+      "category": "optional"
+    },
+    {
+      "name": "Chemistry",
+      "category": "optional"
+    },
+    {
+      "name": "Civil Engineering",
+      "category": "optional"
+    },
+    {
+      "name": "Commerce and Accountancy",
+      "category": "optional"
+    },
+    {
+      "name": "Economics",
+      "category": "optional"
+    },
+    {
+      "name": "Electrical Engineering",
+      "category": "optional"
+    },
+    {
+      "name": "Geography",
+      "category": "optional"
+    },
+    {
+      "name": "Geology",
+      "category": "optional"
+    },
+    {
+      "name": "History",
+      "category": "optional"
+    },
+    {
+      "name": "Law",
+      "category": "optional"
+    },
+    {
+      "name": "Management",
+      "category": "optional"
+    },
+    {
+      "name": "Mathematics",
+      "category": "optional"
+    },
+    {
+      "name": "Mechanical Engineering",
+      "category": "optional"
+    },
+    {
+      "name": "Medical Science",
+      "category": "optional"
+    },
+    {
+      "name": "Philosophy",
+      "category": "optional"
+    },
+    {
+      "name": "Physics",
+      "category": "optional"
+    },
+    {
+      "name": "Political Science and International Relations",
+      "category": "optional"
+    },
+    {
+      "name": "Psychology",
+      "category": "optional"
+    },
+    {
+      "name": "Public Administration",
+      "category": "optional"
+    },
+    {
+      "name": "Sociology",
+      "category": "optional"
+    },
+    {
+      "name": "Statistics",
+      "category": "optional"
+    },
+    {
+      "name": "Zoology",
+      "category": "optional"
+    },
+    {
+      "name": "Assamese",
+      "category": "literature"
+    },
+    {
+      "name": "Bengali",
+      "category": "literature"
+    },
+    {
+      "name": "Bodo",
+      "category": "literature"
+    },
+    {
+      "name": "Dogri",
+      "category": "literature"
+    },
+    {
+      "name": "Gujarati",
+      "category": "literature"
+    },
+    {
+      "name": "Hindi",
+      "category": "literature"
+    },
+    {
+      "name": "Kannada",
+      "category": "literature"
+    },
+    {
+      "name": "Kashmiri",
+      "category": "literature"
+    },
+    {
+      "name": "Konkani",
+      "category": "literature"
+    },
+    {
+      "name": "Maithili",
+      "category": "literature"
+    },
+    {
+      "name": "Malayalam",
+      "category": "literature"
+    },
+    {
+      "name": "Manipuri",
+      "category": "literature"
+    },
+    {
+      "name": "Marathi",
+      "category": "literature"
+    },
+    {
+      "name": "Nepali",
+      "category": "literature"
+    },
+    {
+      "name": "Odia",
+      "category": "literature"
+    },
+    {
+      "name": "Punjabi",
+      "category": "literature"
+    },
+    {
+      "name": "Sanskrit",
+      "category": "literature"
+    },
+    {
+      "name": "Santhali",
+      "category": "literature"
+    },
+    {
+      "name": "Sindhi",
+      "category": "literature"
+    },
+    {
+      "name": "Tamil",
+      "category": "literature"
+    },
+    {
+      "name": "Telugu",
+      "category": "literature"
+    },
+    {
+      "name": "Urdu",
+      "category": "literature"
+    },
+    {
+      "name": "English",
+      "category": "literature"
+    }
+  ],
+  "optional_subject_coverage_policy": {
+    "paper_values": [
+      "Optional Paper I",
+      "Optional Paper II"
+    ],
+    "record_field": "optional_subject",
+    "note": "Each subject is tracked separately for each paper and year. Records are counted only when published and explicitly verified. A record count is not proof that a complete paper is available."
+  }
 }
