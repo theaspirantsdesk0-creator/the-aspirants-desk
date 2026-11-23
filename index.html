@@ -1147,7 +1147,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <a class="btn secondary" href="https://www.upsc.gov.in/examinations/previous-question-papers" target="_blank" rel="noopener noreferrer">UPSC current question-paper archive</a>
         <a class="btn secondary" href="https://www.upsc.gov.in/archived-exam-documents/question-papers/" target="_blank" rel="noopener noreferrer">UPSC archived question papers</a>
       </div>
-      <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all optional subjects, including Anthropology and literature optionals. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
+      <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all 25 optional subjects and 23 literature choices. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
+      <div class="card" style="margin-top:1rem">
+        <h3>All optional subjects — Paper I &amp; Paper II</h3>
+        <p class="muted">Choose any subject or literature option to inspect its two papers and year-by-year publication status. A missing record means this site has not yet published a verified question for that year; it does not mean UPSC did not conduct the paper.</p>
+        <div style="max-width:520px;margin:.8rem 0">
+          <label for="optionalPyqCoverageSubject">Optional subject or literature</label>
+          <select id="optionalPyqCoverageSubject"><option value="ALL">All subjects and literature options</option></select>
+        </div>
+        <div id="optionalPyqCoverageGrid" aria-live="polite"><p class="muted">Loading subject-wise coverage…</p></div>
+      </div>
     </div>
   </section>
 
@@ -2473,6 +2482,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   });
 
   let OFFICIAL_PYQ_ROWS = [];
+  let PYQ_COVERAGE = { optional_subjects: [], targets: [] };
   async function loadOfficialPyqs() {
     const host = $("officialPyqContainer");
     const yearSelect = $("officialPyqYear");
@@ -2482,6 +2492,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const searchInput = $("officialPyqSearch");
     if (!host || !yearSelect || !stageSelect || !paperSelect || !subjectSelect || !searchInput) return;
     try {
+      const coverageResponse = await fetch("data/pyq/coverage.json", { cache: "no-store" });
+      if (coverageResponse.ok) PYQ_COVERAGE = await coverageResponse.json();
       const response = await fetch("data/pyq/questions.json", { cache: "no-store" });
       if (!response.ok) throw new Error("Official PYQ data unavailable (" + response.status + ")");
       const data = await response.json();
@@ -2497,8 +2509,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       return;
     }
     const years = [...new Set(OFFICIAL_PYQ_ROWS.map(row => String(row.year)))].sort((a,b) => Number(b)-Number(a));
-    const papers = [...new Set(OFFICIAL_PYQ_ROWS.map(row => row.paper).filter(Boolean))].sort();
-    const subjects = [...new Set(OFFICIAL_PYQ_ROWS.map(row => row.optional_subject || row.subject).filter(Boolean))].sort();
+    const catalogPapers = (PYQ_COVERAGE.targets || []).flatMap(group => group.papers || []);
+    const papers = [...new Set([...catalogPapers, ...OFFICIAL_PYQ_ROWS.map(row => row.paper).filter(Boolean)])].sort();
+    const catalogSubjects = (PYQ_COVERAGE.optional_subjects || []).map(row => row.name).filter(Boolean);
+    const subjects = [...new Set([...catalogSubjects, ...OFFICIAL_PYQ_ROWS.map(row => row.optional_subject || row.subject).filter(Boolean)])].sort();
     const old = {year:yearSelect.value,stage:stageSelect.value,paper:paperSelect.value,subject:subjectSelect.value};
     yearSelect.innerHTML = '<option value="ALL">All published years</option>' + years.map(y => '<option value="' + esc(y) + '">' + esc(y) + '</option>').join("");
     paperSelect.innerHTML = '<option value="ALL">All papers</option>' + papers.map(p => '<option value="' + esc(p) + '">' + esc(p) + '</option>').join("");
@@ -2531,6 +2545,68 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       yearSelect.dataset.bound = "1";
     }
     render();
+
+    const coverageSelect = $("optionalPyqCoverageSubject");
+    const coverageHost = $("optionalPyqCoverageGrid");
+    if (coverageSelect && coverageHost) {
+      const catalog = (PYQ_COVERAGE.optional_subjects || []).filter(item => item && item.name);
+      const previousChoice = coverageSelect.value;
+      coverageSelect.innerHTML = '<option value="ALL">All subjects and literature options</option>' +
+        catalog.map(item => '<option value="' + esc(item.name) + '">' +
+          esc(item.name + (item.category === "literature" ? " — Literature" : " — Optional")) +
+          '</option>').join("");
+      coverageSelect.value = catalog.some(item => item.name === previousChoice) ? previousChoice : "ALL";
+
+      const renderCoverage = () => {
+        const selected = coverageSelect.value;
+        const subjectsToShow = selected === "ALL" ? catalog : catalog.filter(item => item.name === selected);
+        const yearsInScope = [];
+        const firstYear = Number(PYQ_COVERAGE.scope && PYQ_COVERAGE.scope.from_year) || 2001;
+        const lastYear = Number(PYQ_COVERAGE.scope && PYQ_COVERAGE.scope.to_year) || 2025;
+        for (let year = firstYear; year <= lastYear; year++) yearsInScope.push(year);
+        const getCount = (subject, paper, year) => OFFICIAL_PYQ_ROWS.filter(row =>
+          row.stage === "Mains" &&
+          (row.optional_subject || row.subject) === subject &&
+          row.paper === paper && Number(row.year) === year
+        ).length;
+        if (selected === "ALL") {
+          coverageHost.innerHTML = '<p class="muted">' + catalog.length +
+            ' subject and literature choices are available. Each has two separate papers.</p>' +
+            '<div class="table-wrap"><table><thead><tr><th>Subject / literature</th><th>Category</th><th>Paper I</th><th>Paper II</th></tr></thead><tbody>' +
+            subjectsToShow.map(item => {
+              const counts = ["Optional Paper I", "Optional Paper II"].map(paper =>
+                yearsInScope.filter(year => getCount(item.name, paper, year) > 0).length);
+              return '<tr><td><b>' + esc(item.name) + '</b></td><td>' +
+                esc(item.category === "literature" ? "Literature" : "Optional") +
+                '</td><td>' + counts[0] + ' / ' + yearsInScope.length + ' years with records</td><td>' +
+                counts[1] + ' / ' + yearsInScope.length + ' years with records</td></tr>';
+            }).join("") + '</tbody></table></div>';
+          return;
+        }
+        coverageHost.innerHTML = subjectsToShow.map(item =>
+          '<h4>' + esc(item.name) + ' — ' +
+          esc(item.category === "literature" ? "Literature" : "Optional") + '</h4>' +
+          ["Optional Paper I", "Optional Paper II"].map(paper => {
+            const yearly = yearsInScope.map(year => {
+              const count = getCount(item.name, paper, year);
+              return '<span class="pill ' + (count ? 'ok' : 'warn') +
+                '" title="' + (count ? count + ' verified record(s)' : 'No verified records published yet') +
+                '">' + year + ': ' + (count ? count + ' record(s)' : '—') + '</span>';
+            }).join(" ");
+            const present = yearsInScope.filter(year => getCount(item.name, paper, year) > 0).length;
+            return '<section class="card" style="margin:.65rem 0"><b>' + esc(paper) + '</b>' +
+              '<p class="muted">' + present + ' of ' + yearsInScope.length +
+              ' years have at least one verified published question record. This is not a full-paper completeness measure.</p>' +
+              '<div class="btn-row">' + yearly + '</div></section>';
+          }).join("")
+        ).join("");
+      };
+      if (coverageSelect.dataset.bound !== "1") {
+        coverageSelect.addEventListener("change", renderCoverage);
+        coverageSelect.dataset.bound = "1";
+      }
+      renderCoverage();
+    }
   }
 
   async function loadCMSContent() {
