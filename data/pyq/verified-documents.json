@@ -52,6 +52,108 @@
         "verified_at": "2026-11-24",
         "method": "Official UPSC-hosted PDF result; document heading and paper code identify 2025 Kashmiri Literature Paper I."
       }
+    },
+    {
+      "id": "cse-mains-2025-anthropology-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "Anthropology",
+      "paper": "Paper II",
+      "category": "Optional",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — Anthropology Paper II",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/ANTHROPOLOGY-PAPER-II-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, Anthropology Paper II; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2025-gs-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — General Studies Paper I",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER%20I-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, General Studies Paper I; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2025-gs-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper II",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — General Studies Paper II",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-II-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, General Studies Paper II; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2025-gs-paper-iii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper III",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — General Studies Paper III",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-III-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, General Studies Paper III; linked UPSC PDF opened successfully (6 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2025-gs-paper-iv",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper IV",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — General Studies Paper IV",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-IV-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, General Studies Paper IV; linked UPSC PDF opened successfully (16 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2025-essay",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "Essay",
+      "paper": "Essay",
+      "category": "General",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — Essay",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/ESSAY-QP-CSM-25-010925.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, Essay; linked UPSC PDF opened successfully (2 pages)."
+      }
     }
   ]
 }
