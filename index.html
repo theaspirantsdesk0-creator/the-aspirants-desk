@@ -1098,14 +1098,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <!-- 11. VERIFIED PYQ BANK -->
   <section id="pyq" class="view-sec protected-view">
     <div class="card gold-top">
-      <h2>Verified Previous Year Questions (PYQ Bank)</h2>
-      <div class="chips" id="pyqFilterChips">
-        <button type="button" class="chip" data-subj="ALL" aria-pressed="true">All Subjects</button>
-        <button type="button" class="chip" data-subj="Polity">Polity</button>
-        <button type="button" class="chip" data-subj="Economy">Economy</button>
-        <button type="button" class="chip" data-subj="Environment">Environment</button>
+      <h2>Question Practice Bank & Verified PYQ Archive</h2>
+      <p class="muted">The available 494 questions are practice questions, not certified official UPSC PYQs. Official previous-year questions will be published separately only after source verification.</p>
+      <div class="form-grid" style="margin:.8rem 0">
+        <div><label for="pyqSearch">Search questions</label><input id="pyqSearch" type="search" placeholder="Search question text or topic"></div>
+        <div><label for="pyqSubject">Subject</label><select id="pyqSubject"><option value="ALL">All subjects</option></select></div>
+        <div><label for="pyqDifficulty">Difficulty</label><select id="pyqDifficulty"><option value="ALL">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></div>
       </div>
-      <div id="pyqContainer"></div>
+      <div id="pyqContainer" aria-live="polite"></div>
     </div>
   </section>
 
@@ -2155,6 +2155,42 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     { subject: "Environment", title: "Project Tiger & NTCA", body: "Launched in 1973; National Tiger Conservation Authority (NTCA) was given statutory status under the Wildlife Protection Amendment Act, 2006." }
   ];
 
+  function renderPracticeBank() {
+    const host = $("pyqContainer");
+    const bank = Array.isArray(window.TAD && window.TAD.BANK) ? window.TAD.BANK : [];
+    const subject = $("pyqSubject");
+    const search = $("pyqSearch");
+    const difficulty = $("pyqDifficulty");
+    if (!host || !subject || !search || !difficulty) return;
+    const subjects = [...new Set(bank.map(row => row[0]).filter(Boolean))].sort();
+    const previous = subject.value || "ALL";
+    subject.innerHTML = '<option value="ALL">All subjects</option>' +
+      subjects.map(name => '<option value="' + esc(name) + '">' + esc(name) + '</option>').join("");
+    subject.value = subjects.includes(previous) ? previous : "ALL";
+    const query = search.value.trim().toLowerCase();
+    const selectedSubject = subject.value;
+    const selectedDifficulty = difficulty.value;
+    const rows = bank.filter(row => {
+      const matchesSubject = selectedSubject === "ALL" || row[0] === selectedSubject;
+      const matchesDifficulty = selectedDifficulty === "ALL" || (row[7] || "medium") === selectedDifficulty;
+      const matchesQuery = !query || [row[0], row[1], row[6]].join(" ").toLowerCase().includes(query);
+      return matchesSubject && matchesDifficulty && matchesQuery;
+    });
+    host.innerHTML = '<p class="muted" style="font-size:.82rem">' + rows.length + ' matching practice questions · Showing up to 30 at a time. Answers and explanations are expandable.</p>' +
+      (rows.length ? rows.slice(0, 30).map((row, index) => {
+        const options = [row[2], ...row.slice(3, 6)];
+        return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row[0]) + '</span><span class="pill">' + esc(row[7] || "medium") + '</span><span class="pill">Practice question</span></div>' +
+          '<p><b>' + (index + 1) + '. ' + esc(row[1]) + '</b></p><ol type="A">' + options.map(option => '<li>' + esc(option) + '</li>').join("") + '</ol>' +
+          '<details><summary>Show answer and explanation</summary><p><b>Answer:</b> ' + esc(row[2]) + '</p><p>' + esc(row[6] || "Explanation not available.") + '</p></details></article>';
+      }).join("") : '<p class="muted">No matching practice questions. Try another subject or search term.</p>') +
+      (rows.length > 30 ? '<p class="muted">Refine your search to see other questions in this subject.</p>' : "");
+  }
+
+  ["pyqSearch", "pyqSubject", "pyqDifficulty"].forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener(id === "pyqSearch" ? "input" : "change", renderPracticeBank);
+  });
+
   async function loadCMSContent() {
     let updates = [...SEED_UPDATES];
     let notes = [...SEED_NOTES];
@@ -2181,13 +2217,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
     await loadDailyFeeds();
 
-    $("pyqContainer").innerHTML = `
-      <ul class="item-list">
-        <li><b>[UPSC Prelims 2023 · Polity]</b> In essence, what does 'Due Process of Law' mean? <br><span style="color:var(--ok);font-weight:700">Answer: Fair application of law (Maneka Gandhi case, 1978).</span></li>
-        <li><b>[UPSC Prelims 2022 · Economy]</b> Convertibility of bonds allows bondholders to exchange bonds for equity shares at a lower coupon rate. <br><span style="color:var(--ok);font-weight:700">Answer: Both statements are correct.</span></li>
-        <li><b>[UPSC Prelims 2021 · Environment]</b> 'R2 Code of Practices' constitutes a tool available for promoting the adoption of environmentally responsible practices in: <br><span style="color:var(--ok);font-weight:700">Answer: Electronics recycling industry.</span></li>
-      </ul>
-    `;
+    renderPracticeBank();
   }
 
   async function loadDailyFeeds() {
