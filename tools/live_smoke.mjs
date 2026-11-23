@@ -10,6 +10,24 @@ page.on('requestfailed', request => {
   if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
 });
 try {
+  // Public AI endpoint must reject requests without a signed-in Supabase session.
+  const aiAuthProbe = await fetch('https://sqnpxlsprzbgnmgljigg.supabase.co/functions/v1/ai-assistant', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Origin': 'https://theaspirantsdesk0-creator.github.io' },
+    body: JSON.stringify({ message: 'health check' }),
+  });
+  if (aiAuthProbe.status !== 401) {
+    throw new Error('AI endpoint should reject unauthenticated requests with HTTP 401; received ' + aiAuthProbe.status);
+  }
+  // Cron-triggered push sender must reject requests without its private cron header.
+  const pushAuthProbe = await fetch('https://sqnpxlsprzbgnmgljigg.supabase.co/functions/v1/send-study-reminders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: '{}',
+  });
+  if (pushAuthProbe.status !== 401) {
+    throw new Error('Push sender should reject requests without the cron secret with HTTP 401; received ' + pushAuthProbe.status);
+  }
   let response = null;
   let publishedVersionReady = false;
   for (let attempt = 0; attempt < 20; attempt++) {
