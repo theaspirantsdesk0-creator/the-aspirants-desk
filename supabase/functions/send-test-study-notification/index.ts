@@ -32,7 +32,16 @@ Deno.serve(async (request: Request) => {
   const allowedOrigin = ALLOWED_ORIGINS.has(origin) ? origin : "";
   if (request.method === "OPTIONS") {
     if (!allowedOrigin) return json({ error: "Origin not allowed" }, 403);
-    return json({}, 204, allowedOrigin);
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": allowedOrigin,
+        "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Max-Age": "86400",
+        "Vary": "Origin",
+      },
+    });
   }
   if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, allowedOrigin);
   if (!allowedOrigin) return json({ error: "Origin not allowed" }, 403);
