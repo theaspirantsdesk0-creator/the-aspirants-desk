@@ -663,6 +663,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#tracker" class="nav-link requires-auth" data-nav="tracker">📈 My Prep Tracker <span class="lock-tag">Login</span></a>
   <a href="#admin" class="nav-link owner-only" data-nav="admin" hidden>🛡️ Owner Admin Panel</a>
   <a href="#mentor" class="nav-link mentor-only" data-nav="mentor" hidden>🎓 Mentor Workspace</a>
+  <a href="#learning-hub" class="nav-link requires-auth" data-nav="learning-hub">🌐 Universal Learning Hub <span class="lock-tag">Login</span></a>
   <a href="#legal" class="nav-link" data-nav="legal">⚖️ Terms & Privacy</a>
 
   <div class="side-footer">
@@ -1287,6 +1288,60 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     </div>
   </section>
 
+  <!-- UNIVERSAL LEARNING HUB -->
+  <section id="learning-hub" class="view-sec protected-view">
+    <div class="dash-hero">
+      <div>
+        <span class="eyebrow">The Aspirant’s Desk · Beyond exam preparation</span>
+        <h1>Learn anything. Build useful skills. Keep progressing.</h1>
+        <p>A structured starting point for lifelong learning—from school-level foundations and competitive exams to communication, research, technology and responsible AI use.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.07);border-color:rgba(234,179,8,.4);color:#fff">
+        <div class="eyebrow">Your learning journey</div>
+        <div id="learningHubProgress" style="font:800 2rem 'Bricolage Grotesque',sans-serif;margin:.35rem 0">0%</div>
+        <div class="bar-track" style="background:rgba(255,255,255,.2)"><div class="bar-fill" id="learningHubProgressBar" style="width:0%;background:var(--gold)"></div></div>
+        <p style="font-size:.82rem;color:#cbd5e1;margin:.5rem 0 0">Progress is saved in this browser on this device. It is not part of cloud sync.</p>
+      </div>
+    </div>
+    <div class="card gold-top" style="margin-bottom:1rem">
+      <h2>Choose a learning track</h2>
+      <p class="muted">Start with one track. Complete its small milestones before adding more. You can return to this page at any time.</p>
+      <div class="grid-3" id="learningHubTracks"></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Trusted learning resources</h2>
+        <p class="muted">Prefer official and open educational resources. Check the publisher and latest edition before relying on a document.</p>
+        <ul class="item-list">
+          <li><b>NCERT / ePathshala</b><br><a href="https://epathshala.nic.in/" target="_blank" rel="noopener noreferrer">Textbooks and learning material</a></li>
+          <li><b>SWAYAM</b><br><a href="https://swayam.gov.in/" target="_blank" rel="noopener noreferrer">Free online courses from Indian institutions</a></li>
+          <li><b>National Digital Library of India</b><br><a href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener noreferrer">Academic and research resources</a></li>
+          <li><b>DIKSHA</b><br><a href="https://diksha.gov.in/" target="_blank" rel="noopener noreferrer">School education resources</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Official examination portals</h2>
+        <p class="muted">Always confirm dates, eligibility, syllabus and notices on the issuing authority’s website.</p>
+        <ul class="item-list">
+          <li><b>UPSC</b> — <a href="https://upsc.gov.in/" target="_blank" rel="noopener noreferrer">Notifications, syllabus and question papers</a></li>
+          <li><b>TNPSC</b> — <a href="https://www.tnpsc.gov.in/" target="_blank" rel="noopener noreferrer">Tamil Nadu recruitment and examinations</a></li>
+          <li><b>SSC</b> — <a href="https://ssc.gov.in/" target="_blank" rel="noopener noreferrer">Central government recruitment</a></li>
+          <li><b>IBPS</b> — <a href="https://www.ibps.in/" target="_blank" rel="noopener noreferrer">Banking recruitment examinations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <h2>How to use this hub</h2>
+      <ol>
+        <li>Choose one track that matches your current goal.</li>
+        <li>Complete a milestone and tick it only after doing the work.</li>
+        <li>Use the official resources to verify information.</li>
+        <li>Review your progress weekly and change tracks when your priorities change.</li>
+      </ol>
+      <p class="muted" style="margin-bottom:0">This hub is a learning directory and progress checklist—not a claim of certification or a replacement for official course providers.</p>
+    </div>
+  </section>
+
   <!-- 16. LEGAL -->
   <section id="legal" class="view-sec"><div class="card gold-top"><h2>Terms, Privacy & Official Disclaimer</h2>
       <p style="color:var(--muted)"><b>Disclaimer:</b> The Aspirant’s Desk is an independent educational platform built by Anbuchelvan M S and is not affiliated with UPSC, TNPSC, SSC, or IBPS. Always verify official notifications on government portals.</p>
@@ -1421,7 +1476,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     "legal": "Terms, Privacy & Disclaimer",
     "directory": "Exam & State Directory",
     "library": "Study Library & A–Z Index",
-    "connect": "Connect & FAQ"
+    "connect": "Connect & FAQ",
+    "learning-hub": "Universal Learning Hub"
   };
 
   // Initialize Supabase Client from config.js
@@ -3196,6 +3252,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   if (n && n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/^\s*[\p{Extended_Pictographic}\uFE0F\u200D]+\s*/u, "");
 });
 </script>
+  <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
 </html>
