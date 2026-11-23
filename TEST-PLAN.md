@@ -11,6 +11,7 @@
 
 ## Stage 5 — Sync matrix (Device A + Device B, same account)
 For each: create on A, sync, see on B; edit on B, see on A; delete on A, gone on B.
+- [ ] Learning Hub milestones — tick on Device A, confirm on Device B; edit on B and confirm on A
 - [ ] Mistake notebook  - [ ] Reading history  - [ ] Answer drafts  - [ ] Study hours & streak
 - [ ] Mock/daily test history  - [ ] Revision planner  - [ ] Goals/settings
 - [ ] Offline edit on A, reconnect: nothing lost
