@@ -67,12 +67,15 @@
   let searchTerm = "";
   function progressFor(course, state) {
     const record = state[course.id] || {};
-    const completed = Array.isArray(record.completedLessons) ? record.completedLessons : [];
+    const rawCompleted = Array.isArray(record.completedLessons) ? record.completedLessons : [];
     const lessonTotal = course.lessons.length;
-    const quizDone = Number.isInteger(record.quizBest);
+    const completed = [...new Set(rawCompleted.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal))];
+    const quizDone = Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory) && record.quizHistory.length > 0);
     const total = lessonTotal + 1;
-    const done = completed.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal).length + (quizDone ? 1 : 0);
-    return {record, completed, done, total, percent:Math.round(done / total * 100)};
+    const done = completed.length + (quizDone ? 1 : 0);
+    const completedCount = completed.length;
+    const isComplete = completedCount === lessonTotal && quizDone;
+    return {record, completed, done, total, percent:Math.round(done / total * 100), isComplete};
   }
   function render() {
     const host = document.getElementById("courseCatalog");
@@ -80,10 +83,20 @@
     if (!host || !detail) return;
     const state = readCourseState();
     const visible = courses.filter(c => !searchTerm || (c.title+" "+c.category+" "+c.summary).toLowerCase().includes(searchTerm));
+    let enrolledCount = 0, completedCount = 0, assessmentCount = 0;
+    courses.forEach(course => {
+      const p = progressFor(course, state);
+      if (p.record.enrolledAt) enrolledCount++;
+      if (p.isComplete) completedCount++;
+      assessmentCount += Array.isArray(p.record.quizHistory) ? p.record.quizHistory.length : (Number(p.record.quizAttempts) || 0);
+    });
+    const summary = document.getElementById("courseLearningSummary");
+    if (summary) summary.innerHTML = '<div class="course-summary-stat"><b>'+enrolledCount+'</b><span>Enrolled</span></div><div class="course-summary-stat"><b>'+completedCount+'</b><span>Completed</span></div><div class="course-summary-stat"><b>'+assessmentCount+'</b><span>Quiz attempts</span></div>';
     host.innerHTML = visible.map(course => {
       const p = progressFor(course,state);
       const enrolled = !!p.record.enrolledAt;
-      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'%</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(enrolled?"Continue course":"Start course")+'</button></article>';
+      const status = p.isComplete ? "Completed" : enrolled ? "In progress" : "Not started";
+      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'% · '+status+'</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(p.isComplete?"Review course":enrolled?"Continue course":"Start course")+'</button></article>';
     }).join("");
     if (!visible.length) host.innerHTML = '<p class="muted">No courses match this search.</p>';
     const course = courses.find(c => c.id === selected);
@@ -101,7 +114,17 @@
     }).join("");
     const quiz = course.quiz.map((item,i) => '<fieldset class="tad-quiz-question"><legend>'+(i+1)+'. '+esc(item.q)+'</legend>'+item.options.map((option,j)=>'<label><input type="radio" name="tad-course-q-'+i+'" value="'+j+'" required> '+esc(option)+'</label>').join("")+'</fieldset>').join("");
     const best = Number.isInteger(p.record.quizBest) ? p.record.quizBest : null;
-    detail.innerHTML = '<div class="card gold-top"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h2>'+esc(course.title)+'</h2><p class="muted">'+esc(course.summary)+'</p><h3>What you will learn</h3><ul>'+course.outcomes.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="tad-course-progress"><div><b>'+p.percent+'% complete</b><span>'+p.done+' / '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div>'+(enrolled?'':'<button type="button" class="btn primary" data-enrol-course>Enrol in this course</button>')+'</div><div class="card"><h3>Lessons</h3><div class="tad-lessons">'+lessonMarkup+'</div></div><div class="card"><h3>Knowledge check</h3><p class="muted">Answer all questions. Your best score is saved to your learning progress.</p><form id="tadCourseQuiz">'+quiz+'<button type="submit" class="btn primary">Submit quiz</button><p id="tadQuizFeedback" class="tad-quiz-feedback" aria-live="polite"></p></form>'+(best!==null?'<p class="muted">Best score: '+best+' / '+course.quiz.length+'</p>':'')+'</div><button type="button" class="btn" data-back-catalog>← Back to course catalogue</button>';
+    const history = Array.isArray(p.record.quizHistory) ? p.record.quizHistory.slice().reverse() : [];
+    const historyMarkup = history.length ? '<div class="tad-assessment-history"><h4>Assessment history</h4>'+history.slice(0,10).map((attempt,index) => {
+      const when = attempt.at ? new Date(attempt.at) : null;
+      const date = when && !Number.isNaN(when.getTime()) ? when.toLocaleString() : "Earlier attempt";
+      const score = Number.isFinite(attempt.score) ? attempt.score : 0;
+      const total = Number.isFinite(attempt.total) ? attempt.total : course.quiz.length;
+      return '<article class="tad-assessment-row"><div><b>Attempt '+(history.length-index)+'</b><span>'+esc(date)+'</span></div><strong>'+score+' / '+total+'</strong></article>';
+    }).join("")+'</div>' : '<p class="muted">Your quiz attempts will appear here after your first submission.</p>';
+    const completedDate = p.record.completedAt && !Number.isNaN(new Date(p.record.completedAt).getTime()) ? new Date(p.record.completedAt).toLocaleDateString() : "";
+    const completionMarkup = p.isComplete ? '<p class="tad-course-complete" role="status">Course completed'+(completedDate ? ' on '+esc(completedDate) : '')+'. You can revisit lessons and retake the quiz at any time.</p>' : '<p class="muted">Complete every lesson and submit the knowledge check to finish this course.</p>';
+    detail.innerHTML = '<div class="card gold-top"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h2>'+esc(course.title)+'</h2><p class="muted">'+esc(course.summary)+'</p><h3>What you will learn</h3><ul>'+course.outcomes.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="tad-course-progress"><div><b>'+p.percent+'% complete</b><span>'+p.done+' / '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div>'+(enrolled?'':'<button type="button" class="btn primary" data-enrol-course>Enrol in this course</button>')+'</div><div class="card"><h3>Lessons</h3><div class="tad-lessons">'+lessonMarkup+'</div></div><div class="card"><h3>Knowledge check</h3><p class="muted">Answer all questions. Your best score is saved to your learning progress.</p><form id="tadCourseQuiz">'+quiz+'<button type="submit" class="btn primary">Submit quiz</button><p id="tadQuizFeedback" class="tad-quiz-feedback" aria-live="polite"></p></form>'+(best!==null?'<p class="muted">Best score: '+best+' / '+course.quiz.length+'</p>':'')+historyMarkup+completionMarkup+'</div><button type="button" class="btn" data-back-catalog>← Back to course catalogue</button>';
   }
   document.addEventListener("input", event => {
     if (event.target.id === "courseSearch") {
@@ -117,7 +140,16 @@
     if (event.target.closest("[data-back-catalog]")) { selected=""; render(); document.getElementById("courseCatalog").scrollIntoView({behavior:"smooth",block:"start"}); return; }
     if (event.target.closest("[data-enrol-course]")) { const state=readCourseState(), record=state[selected]||{}; record.enrolledAt=record.enrolledAt||new Date().toISOString();state[selected]=record;writeCourseState(state);render();return; }
     const done = event.target.closest("[data-complete-lesson]");
-    if (done) { const state=readCourseState(),record=state[selected]||{};record.enrolledAt=record.enrolledAt||new Date().toISOString();const list=Array.isArray(record.completedLessons)?record.completedLessons:[];const n=Number(done.dataset.completeLesson);if(!list.includes(n))list.push(n);record.completedLessons=list;state[selected]=record;writeCourseState(state);render();return; }
+    if (done) {
+      const state=readCourseState(),record=state[selected]||{},course=courses.find(c=>c.id===selected);
+      record.enrolledAt=record.enrolledAt||new Date().toISOString();
+      const list=Array.isArray(record.completedLessons)?record.completedLessons:[];
+      const n=Number(done.dataset.completeLesson);
+      if(!list.includes(n))list.push(n);
+      record.completedLessons=list;
+      if(course && list.length>=course.lessons.length && (Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory)&&record.quizHistory.length))) record.completedAt=record.completedAt||new Date().toISOString();
+      state[selected]=record;writeCourseState(state);render();return;
+    }
   });
   document.addEventListener("submit", event => {
     if (event.target.id !== "tadCourseQuiz") return;
@@ -125,11 +157,24 @@
     const course=courses.find(c=>c.id===selected);if(!course)return;
     const state=readCourseState(),record=state[selected]||{};
     let score=0, missing=false;
-    course.quiz.forEach((item,i)=>{const chosen=event.target.querySelector('input[name="tad-course-q-'+i+'"]:checked');if(!chosen)missing=true;else if(Number(chosen.value)===item.answer)score++;});
+    const answers=[];
+    course.quiz.forEach((item,i)=>{
+      const chosen=event.target.querySelector('input[name="tad-course-q-'+i+'"]:checked');
+      if(!chosen){missing=true;answers.push(null);}
+      else {const answer=Number(chosen.value);answers.push(answer);if(answer===item.answer)score++;}
+    });
     const feedback=document.getElementById("tadQuizFeedback");
     if(missing){feedback.textContent="Please answer every question before submitting.";return;}
+    const attemptedAt=new Date().toISOString();
     const previous=Number.isInteger(record.quizBest)?record.quizBest:0;
-    record.quizBest=Math.max(previous,score);record.quizAttempts=(record.quizAttempts||0)+1;record.lastQuizAt=new Date().toISOString();record.enrolledAt=record.enrolledAt||new Date().toISOString();
+    record.quizBest=Math.max(previous,score);
+    record.quizAttempts=(record.quizAttempts||0)+1;
+    record.lastQuizAt=attemptedAt;
+    record.enrolledAt=record.enrolledAt||attemptedAt;
+    const history=Array.isArray(record.quizHistory)?record.quizHistory:[];
+    history.push({score,total:course.quiz.length,at:attemptedAt,answers});
+    record.quizHistory=history.slice(-20);
+    if(Array.isArray(record.completedLessons) && record.completedLessons.length>=course.lessons.length) record.completedAt=record.completedAt||attemptedAt;
     state[selected]=record;writeCourseState(state);
     feedback.textContent="You scored "+score+" / "+course.quiz.length+". "+course.quiz.map((q,i)=>"Q"+(i+1)+": "+q.why).join(" ");
     render();
