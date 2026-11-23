@@ -19,6 +19,8 @@ concurrency:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update:
@@ -49,3 +51,12 @@ jobs:
 
       - name: Publish with merge and push retries
         run: python tools/publish_generated.py data/current-affairs.json
+
+      - name: Upload the updated site to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy updated site
+        id: deployment
+        uses: actions/deploy-pages@v4
