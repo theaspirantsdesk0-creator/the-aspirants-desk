@@ -1601,7 +1601,15 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
   async function testPushReminder() {
     if (!currentUser || !supabase) throw new Error("Sign in before testing this device's reminder.");
-    const { data, error } = await supabase.functions.invoke("send-test-study-notification", { body: {} });
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
+      throw new Error("Push notifications are not supported in this browser.");
+    }
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    if (!subscription) throw new Error("Enable the daily reminder on this device before testing it.");
+    const { data, error } = await supabase.functions.invoke("send-test-study-notification", {
+      body: { endpoint: subscription.endpoint }
+    });
     if (error) throw error;
     if (!data || Number(data.sent) < 1) {
       throw new Error(data && data.error ? data.error : "The server did not confirm a test notification.");
