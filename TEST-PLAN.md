@@ -74,3 +74,15 @@ For each: create on A, sync, see on B; edit on B, see on A; delete on A, gone on
 - Publish a course or approve a pending course; confirm the learner catalogue refreshes without requiring a full page reload.
 - Confirm the same-account progress sync path continues to use the existing tad:learningHubChange event and user_data payload. Verify cross-device sync separately on two real devices.
 - Current database has no published mentor courses and no mentor-role account, so the actual end-to-end mentor publication path requires a real mentor account and a genuinely approved course.
+
+
+## Mentor-authored course quizzes
+- Create a mentor course with no quiz; confirm the learner can complete it through lesson completion without an empty quiz form.
+- Add one or more multiple-choice questions to another course; confirm each has 2–5 options, one correct answer and an explanation.
+- Save a draft and reopen it; confirm questions, options, correct answers and explanations are preserved.
+- Confirm incomplete or invalid quiz questions are rejected before saving.
+- Submit a mentor course for review; after owner approval, confirm its quiz appears in the learner course detail.
+- Submit the learner quiz; confirm the best score, attempt count, dated assessment history and selected answers are saved to the existing learningHub course record.
+- Retake the quiz with a different score; confirm the best score remains the highest and history appends the new attempt.
+- Confirm database validation rejects malformed quiz JSON and limits each course to 20 questions.
+- Confirm quiz data is only readable for published courses, the author's own courses, or the owner, using the existing courses RLS policies.
