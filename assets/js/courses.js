@@ -232,6 +232,10 @@
   }
 
   window.addEventListener("tad:authStateChanged", event => loadPublishedCourses(event.detail));
+  window.addEventListener("tad:publishedCoursesChanged", () => {
+    const context = window.DESK_AUTH_CONTEXT || {supabase:courseSupabase,user:courseUser};
+    loadPublishedCourses(context);
+  });
   if (window.DESK_AUTH_CONTEXT) loadPublishedCourses(window.DESK_AUTH_CONTEXT);
   window.addEventListener("tad:learningHubLoaded",render);
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",render,{once:true});else render();
