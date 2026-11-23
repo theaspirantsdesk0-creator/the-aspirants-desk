@@ -10,6 +10,7 @@ import tempfile
 from html.parser import HTMLParser
 from pathlib import Path
 from publish_generated import merge_json
+from upsc_angles import fallback_upsc_angle
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -175,6 +176,13 @@ def main() -> int:
     check(len(pib_merged) == 2, "Publisher must merge PIB items by official source link")
     check(any(x.get("t") == "One updated" for x in pib_merged),
           "Publisher must retain the latest non-empty PIB fields")
+
+    # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
+    polity_angle = fallback_upsc_angle("Polity")
+    check("GS Paper II" in polity_angle and "not a prediction" in polity_angle,
+          "Polity fallback must be a cautious GS-II syllabus pointer")
+    check(fallback_upsc_angle("General") == "",
+          "Broadly classified news must not receive an unsupported generic UPSC angle")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")

@@ -9,6 +9,7 @@ import argparse, html, json, re, sys, urllib.request, xml.etree.ElementTree as E
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from upsc_angles import fallback_upsc_angle
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX, QDIR, CA = ROOT / 'index.html', ROOT / 'data' / 'questions', ROOT / 'data' / 'current-affairs.json'
@@ -143,7 +144,7 @@ def _upsc_angle(title, summary, topic):
     )
     answer = _ai_json(prompt)
     if not answer:
-        return ''
+        return fallback_upsc_angle(topic)
     answer = answer.strip().strip(chr(34)).strip(chr(39)).strip()
     if len(answer) > 500 or len(answer) < 15:
         return ''
@@ -194,20 +195,26 @@ def cmd_news(a):
     # Fill a small, bounded batch each day so free provider quotas are not exhausted.
     missing = [i for i in keep if not i.get('upsc_angle') and i.get('source_summary')][:10]
     generated = 0
-    if not os.environ.get('GEMINI_API_KEY') and not os.environ.get('GROQ_API_KEY'):
-        print('AI angle generation skipped: configure GEMINI_API_KEY or GROQ_API_KEY in GitHub Actions secrets.')
-    else:
-        for item in missing:
-            angle = _upsc_angle(item.get('title', ''), item.get('source_summary', ''), item.get('topic', 'General'))
-            if angle:
-                item['upsc_angle'] = angle
+    templated = 0
+    has_ai_keys = bool(os.environ.get('GEMINI_API_KEY') or os.environ.get('GROQ_API_KEY'))
+    if not has_ai_keys:
+        print('No AI provider key configured; using cautious local syllabus mappings where the topic is clear.')
+    for item in missing:
+        topic = item.get('topic', 'General')
+        angle = _upsc_angle(item.get('title', ''), item.get('source_summary', ''), topic)
+        if angle:
+            item['upsc_angle'] = angle
+            if has_ai_keys and angle != fallback_upsc_angle(topic):
                 item['ai_status'] = 'generated'
                 generated += 1
             else:
-                item['ai_status'] = 'pending'
+                item['ai_status'] = 'template'
+                templated += 1
+        else:
+            item['ai_status'] = 'pending'
     CA.write_text(json.dumps({'updated': now.isoformat(timespec='seconds'), 'items': keep}, ensure_ascii=False, indent=1), encoding='utf-8')
     pending = sum(1 for i in keep if not i.get('upsc_angle'))
-    print(f'{len(keep)} current-affairs items ({ok}/{len(feeds)} feeds ok); generated {generated} UPSC angles; {pending} pending')
+    print(f'{len(keep)} current-affairs items ({ok}/{len(feeds)} feeds ok); generated {generated} AI angles; added {templated} local syllabus pointers; {pending} pending')
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); s = p.add_subparsers(dest='cmd', required=True)
     s.add_parser('export').add_argument('--force', action='store_true')
