@@ -13,6 +13,18 @@ try {
   const response = await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
   if (!response || !response.ok()) throw new Error('Homepage returned HTTP ' + (response?.status() ?? 'no response'));
   await page.waitForTimeout(7000);
+  const mentorNav = page.locator('a[data-nav="mentor"]');
+  const mentorSection = page.locator('#mentor');
+  if (await mentorNav.count() !== 1 || !(await mentorNav.isHidden())) {
+    throw new Error('Mentor navigation must remain hidden for a guest visitor');
+  }
+  if (await mentorSection.count() !== 1 || !(await mentorSection.isHidden())) {
+    throw new Error('Mentor workspace content must remain hidden for a guest visitor');
+  }
+  const ownerNav = page.locator('a[data-nav="admin"]');
+  if (await ownerNav.count() !== 1 || !(await ownerNav.isHidden())) {
+    throw new Error('Owner admin navigation must remain hidden for a guest visitor');
+  }
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
   const aiLauncher = await page.locator('#tadAiLauncher').count();
