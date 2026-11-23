@@ -1124,6 +1124,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <div><label for="pyqDifficulty">Difficulty</label><select id="pyqDifficulty"><option value="ALL">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></div>
       </div>
       <div id="pyqContainer" aria-live="polite"></div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:1.4rem 0">
+      <h3>Official UPSC Previous-Year Questions</h3>
+      <p class="muted">Only questions matched against an official UPSC paper document appear here. Use the year and paper filters after verified records are added. Answers and explanations are shown only when separately supported.</p>
+      <div class="form-grid" style="margin:.8rem 0">
+        <div><label for="officialPyqYear">Year</label><select id="officialPyqYear"><option value="ALL">All years</option></select></div>
+        <div><label for="officialPyqPaper">Paper</label><select id="officialPyqPaper"><option value="ALL">All papers</option></select></div>
+      </div>
+      <div id="officialPyqContainer" aria-live="polite"><p class="muted">Loading verified official PYQs…</p></div>
     </div>
   </section>
 
@@ -2311,6 +2319,56 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     if (el) el.addEventListener(id === "pyqSearch" ? "input" : "change", renderPracticeBank);
   });
 
+  let OFFICIAL_PYQ_ROWS = [];
+  async function loadOfficialPyqs() {
+    const host = $("officialPyqContainer");
+    const yearSelect = $("officialPyqYear");
+    const paperSelect = $("officialPyqPaper");
+    if (!host || !yearSelect || !paperSelect) return;
+    try {
+      const response = await fetch("data/pyq/questions.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("Official PYQ data unavailable (" + response.status + ")");
+      const data = await response.json();
+      OFFICIAL_PYQ_ROWS = Array.isArray(data) ? data.filter(row =>
+        row && row.status === "published" && row.verification && row.verification.status === "verified" &&
+        row.source && row.source.document_url && row.question
+      ) : [];
+    } catch (error) {
+      OFFICIAL_PYQ_ROWS = [];
+      host.innerHTML = '<p class="muted">The verified PYQ archive could not be loaded. Please try again later.</p>';
+      console.warn("Official PYQ archive load failed:", error);
+      return;
+    }
+    const years = [...new Set(OFFICIAL_PYQ_ROWS.map(row => String(row.year)))].sort((a,b) => Number(b)-Number(a));
+    const papers = [...new Set(OFFICIAL_PYQ_ROWS.map(row => row.paper).filter(Boolean))].sort();
+    const oldYear = yearSelect.value || "ALL";
+    const oldPaper = paperSelect.value || "ALL";
+    yearSelect.innerHTML = '<option value="ALL">All years</option>' + years.map(y => '<option value="' + esc(y) + '">' + esc(y) + '</option>').join("");
+    paperSelect.innerHTML = '<option value="ALL">All papers</option>' + papers.map(p => '<option value="' + esc(p) + '">' + esc(p) + '</option>').join("");
+    yearSelect.value = years.includes(oldYear) ? oldYear : "ALL";
+    paperSelect.value = papers.includes(oldPaper) ? oldPaper : "ALL";
+    const render = () => {
+      const year = yearSelect.value, paper = paperSelect.value;
+      const rows = OFFICIAL_PYQ_ROWS.filter(row =>
+        (year === "ALL" || String(row.year) === year) &&
+        (paper === "ALL" || row.paper === paper)
+      );
+      host.innerHTML = '<p class="muted">' + rows.length + ' verified official PYQs available.</p>' +
+        (rows.length ? rows.map(row => {
+          const options = Array.isArray(row.options) ? '<ol type="A">' + row.options.map(option => '<li>' + esc(option) + '</li>').join("") + '</ol>' : "";
+          const answer = row.answer ? '<p><b>Answer:</b> ' + esc(row.answer) + '</p>' : "";
+          const explanation = row.explanation ? '<p>' + esc(row.explanation) + '</p>' : "";
+          return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row.year) + '</span><span class="pill">' + esc(row.stage) + '</span><span class="pill">' + esc(row.paper) + '</span><span class="pill">Q. ' + esc(row.question_number) + '</span></div><p><b>' + esc(row.question) + '</b></p>' + options + (answer || explanation ? '<details><summary>Show answer / explanation</summary>' + answer + explanation + '</details>' : '<p class="muted">No verified answer or explanation is attached to this record.</p>') + '<p><a href="' + esc(row.source.document_url) + '" target="_blank" rel="noopener noreferrer">View official source document</a></p></article>';
+        }).join("") : '<p class="muted">No verified official PYQs have been published yet. This is intentional: questions will appear only after their wording and paper details are checked against an official UPSC document. The existing practice bank remains available above.</p>');
+    };
+    if (yearSelect.dataset.bound !== "1") {
+      yearSelect.addEventListener("change", render);
+      paperSelect.addEventListener("change", render);
+      yearSelect.dataset.bound = "1";
+    }
+    render();
+  }
+
   async function loadCMSContent() {
     let updates = [...SEED_UPDATES];
     let notes = [...SEED_NOTES];
@@ -2338,6 +2396,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     await loadDailyFeeds();
 
     renderPracticeBank();
+    await loadOfficialPyqs();
   }
 
   async function loadDailyFeeds() {
