@@ -1,0 +1,24 @@
+{
+  "policy": {
+    "years": [
+      2001,
+      2025
+    ],
+    "publication_rule": "Only verbatim questions matched against an official UPSC paper document may be published as official PYQs. Practice and coaching questions belong in data/questions/.",
+    "answer_rule": "Do not invent official answer keys. Clearly distinguish editorial explanations from official keys.",
+    "required_verification": [
+      "verified_at",
+      "method"
+    ]
+  },
+  "sources": [
+    {
+      "id": "upsc-question-paper-archive",
+      "title": "UPSC official question-paper archive",
+      "publisher": "Union Public Service Commission",
+      "url": "https://upsc.gov.in/exam-documents/question-papers/",
+      "allowed_host": "upsc.gov.in",
+      "purpose": "Primary source index for official examination question-paper PDFs."
+    }
+  ]
+}
