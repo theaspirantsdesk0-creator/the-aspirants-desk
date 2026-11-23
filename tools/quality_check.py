@@ -265,6 +265,16 @@ def main() -> int:
         check(required in target_pairs, f"PYQ coverage target is missing {required}")
     check("officialPyqStage" in html and "officialPyqSubject" in html and "officialPyqSearch" in html,
           "Official PYQ filters must include stage, optional subject, and text search")
+    check('id="optionalPyqCoverageSubject"' in html and 'id="optionalPyqCoverageGrid"' in html,
+          "The live PYQ interface must expose the all-subject optional coverage explorer")
+    check('data/pyq/coverage.json' in html and "catalogSubjects" in html,
+          "PYQ subject filters must load the full subject catalog, not only subjects present in published records")
+    check('Optional Paper I' in html and 'Optional Paper II' in html,
+          "The optional coverage explorer must expose both papers for every catalog subject")
+    check('yearsInScope' in html and 'No verified records published yet' in html,
+          "The optional coverage explorer must show year-by-year status without implying missing papers were never conducted")
+    check(len(coverage.get("optional_subjects", [])) == 48,
+          "The site catalog must expose all 25 optional subjects and 23 literature choices")
     check("archived-exam-documents/question-papers" in html,
           "Official PYQ section must link to the UPSC archived paper index")
 
