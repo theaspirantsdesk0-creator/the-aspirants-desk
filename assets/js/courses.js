@@ -217,7 +217,12 @@
           body: Array.isArray(lesson.body) ? lesson.body.map(String) : [String(lesson.body || "")],
           task: lesson.task || ""
         })),
-        quiz: []
+        quiz: (Array.isArray(row.quiz) ? row.quiz : []).map(item => ({
+          q: String(item.q || ""),
+          options: Array.isArray(item.options) ? item.options.map(String) : [],
+          answer: Number(item.answer),
+          why: String(item.why || "")
+        }))
       }));
       courses = starterCourses.concat(community);
       render();
