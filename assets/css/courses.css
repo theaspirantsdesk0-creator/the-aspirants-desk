@@ -20,3 +20,15 @@
 .tad-quiz-feedback{line-height:1.6;color:var(--ink)}
 @media(max-width:900px){#courseCatalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){#courseCatalog{grid-template-columns:1fr}.tad-course-meta{align-items:flex-start}}
+
+.course-learning-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:0 0 1rem}
+.course-summary-stat{display:flex;flex-direction:column;gap:.15rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:10px;background:var(--surface-alt)}
+.course-summary-stat b{font-size:1.35rem;color:var(--ink)}
+.course-summary-stat span{font-size:.8rem;color:var(--muted)}
+.tad-assessment-history{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line)}
+.tad-assessment-history h4{margin:.2rem 0 .6rem}
+.tad-assessment-row{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.65rem 0;border-bottom:1px solid var(--line)}
+.tad-assessment-row>div{display:flex;flex-direction:column;gap:.15rem}
+.tad-assessment-row span{font-size:.78rem;color:var(--muted)}
+.tad-course-complete{padding:.8rem;border:1px solid var(--line);border-radius:8px;background:var(--surface-alt);font-weight:600}
+@media(max-width:580px){.course-learning-summary{grid-template-columns:1fr 1fr}.course-summary-stat:last-child{grid-column:1/-1}}
