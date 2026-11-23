@@ -167,6 +167,8 @@
     const allowed = role === "admin" || role === "mentor";
     const section = $("courseStudio");
     if (section) section.hidden = !allowed;
+    const communityPanel = $("communityCoursesPanel");
+    if (communityPanel) communityPanel.hidden = !allowed;
     if (!allowed) return;
     renderShell();
 
@@ -324,8 +326,11 @@
     user = context.user || null;
     profile = context.profile || { role: "learner" };
     const section = $("courseStudio");
-    if (section) section.hidden = !(user && profile && ["admin", "mentor"].includes(profile.role));
-    if (user && profile && ["admin", "mentor"].includes(profile.role)) renderShell();
+    const allowed = !!(user && profile && ["admin", "mentor"].includes(profile.role));
+    if (section) section.hidden = !allowed;
+    const communityPanel = $("communityCoursesPanel");
+    if (communityPanel) communityPanel.hidden = !allowed;
+    if (allowed) renderShell();
     refresh();
   }
 
