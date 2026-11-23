@@ -1,23 +1,29 @@
+
 name: Daily PIB update
 on:
   push:
     branches: [main]
     paths:
       - 'scripts/update_pib.py'
+      - 'tools/publish_generated.py'
       - '.github/workflows/daily-pib.yml'
   schedule:
     - cron: "30 12 * * *" # 18:00 IST; GitHub may start a few minutes late
   workflow_dispatch:
+
 concurrency:
   group: daily-content-main
   cancel-in-progress: false
+
 permissions:
   contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Start from latest main to avoid stale queued runs
         run: |
           git fetch origin main
@@ -26,10 +32,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Install PIB feed dependencies
         run: pip install feedparser requests
+
       - name: Validate PIB updater syntax
-        run: python -m py_compile scripts/update_pib.py
+        run: python -m py_compile scripts/update_pib.py tools/publish_generated.py
+
       - name: Fetch PIB and add optional AI explanations
         run: python scripts/update_pib.py
         env:
@@ -37,15 +46,6 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash
           GROQ_MODEL: llama-3.3-70b-versatile
-      - name: Save changes
-        run: |
-          git config user.name "desk-bot"
-          git config user.email "desk-bot@users.noreply.github.com"
-          git add data/pib.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Daily PIB update"
-            git pull --rebase origin main
-            git push
-          else
-            echo "No PIB changes to publish."
-          fi
+
+      - name: Publish with merge and push retries
+        run: python tools/publish_generated.py data/pib.json
