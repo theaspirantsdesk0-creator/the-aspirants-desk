@@ -97,6 +97,14 @@ try {
   if (await publishedCourses.count() !== 1) throw new Error('Published community course catalogue is missing');
   const courseStudioCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('course-studio.css')));
   if (!courseStudioCss) throw new Error('Course Studio stylesheet was not loaded');
+  const courseSummary = page.locator('#courseLearningSummary');
+  const courseCatalog = page.locator('#courseCatalog');
+  const courseDetail = page.locator('#courseDetail');
+  if (await courseSummary.count() !== 1 || await courseCatalog.count() !== 1 || await courseDetail.count() !== 1) {
+    throw new Error('Learner course progress, catalogue, or detail containers are missing');
+  }
+  const learnerCourseCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('courses.css')));
+  if (!learnerCourseCss) throw new Error('Learner course progress stylesheet was not loaded');
 
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');
