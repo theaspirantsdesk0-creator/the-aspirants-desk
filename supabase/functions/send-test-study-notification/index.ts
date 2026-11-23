@@ -30,8 +30,12 @@ function json(data: unknown, status = 200, origin = ""): Response {
 Deno.serve(async (request: Request) => {
   const origin = request.headers.get("Origin") ?? "";
   const allowedOrigin = ALLOWED_ORIGINS.has(origin) ? origin : "";
-  if (request.method === "OPTIONS") return json({}, 204, allowedOrigin);
+  if (request.method === "OPTIONS") {
+    if (!allowedOrigin) return json({ error: "Origin not allowed" }, 403);
+    return json({}, 204, allowedOrigin);
+  }
   if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, allowedOrigin);
+  if (!allowedOrigin) return json({ error: "Origin not allowed" }, 403);
 
   if (!SUPABASE_URL || !ANON_KEY || !SERVICE_KEY || !VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY) {
     return json({ error: "Notification service is not fully configured." }, 500, allowedOrigin);
@@ -51,21 +55,33 @@ Deno.serve(async (request: Request) => {
     return json({ error: "Your session is invalid or expired. Please sign in again." }, 401, allowedOrigin);
   }
 
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "Invalid JSON request." }, 400, allowedOrigin);
+  }
+  const endpoint = typeof body.endpoint === "string" ? body.endpoint.trim() : "";
+  if (!endpoint || endpoint.length > 4096 || !endpoint.startsWith("https://")) {
+    return json({ error: "A valid HTTPS push endpoint for this device is required." }, 400, allowedOrigin);
+  }
+
   const admin = createClient(SUPABASE_URL, SERVICE_KEY, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const { data: subscriptions, error: subscriptionError } = await admin
+  const { data: subscription, error: subscriptionError } = await admin
     .from("push_subscriptions")
     .select("id,endpoint,p256dh,auth")
     .eq("user_id", userResult.user.id)
+    .eq("endpoint", endpoint)
     .eq("enabled", true)
-    .limit(10);
+    .maybeSingle();
 
   if (subscriptionError) {
-    return json({ error: "Could not read this account's notification subscription." }, 500, allowedOrigin);
+    return json({ error: "Could not read this account's device notification subscription." }, 500, allowedOrigin);
   }
-  if (!subscriptions?.length) {
-    return json({ error: "No active notification subscription was found for this account and device. Enable the daily reminder first." }, 404, allowedOrigin);
+  if (!subscription) {
+    return json({ error: "No active notification subscription was found for this device. Enable the daily reminder first." }, 404, allowedOrigin);
   }
 
   webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
@@ -73,11 +89,11 @@ Deno.serve(async (request: Request) => {
   let expired = 0;
   let failed = 0;
 
-  for (const subscription of subscriptions) {
+  for (const subscriptionRow of [subscription]) {
     try {
       await webpush.sendNotification({
-        endpoint: subscription.endpoint,
-        keys: { p256dh: subscription.p256dh, auth: subscription.auth },
+        endpoint: subscriptionRow.endpoint,
+        keys: { p256dh: subscriptionRow.p256dh, auth: subscriptionRow.auth },
       }, JSON.stringify({
         title: "The Aspirant's Desk",
         body: "Test notification received. Your study reminders are connected on this device.",
@@ -90,7 +106,7 @@ Deno.serve(async (request: Request) => {
       if (statusCode === 404 || statusCode === 410) {
         const { error: deleteError } = await admin.from("push_subscriptions")
           .delete()
-          .eq("id", subscription.id)
+          .eq("id", subscriptionRow.id)
           .eq("user_id", userResult.user.id);
         if (deleteError) failed++;
         else expired++;
