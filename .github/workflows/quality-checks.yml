@@ -22,3 +22,17 @@ jobs:
         run: python -m compileall -q scripts tools
       - name: Run project quality checks
         run: python tools/quality_check.py
+      - name: Generate practice-bank audit report
+        if: always()
+        run: |
+          mkdir -p build/reports
+          python tools/question_bank_audit.py --output build/reports/question-bank-audit.json
+          python tools/question_bank_audit.py
+      - name: Upload practice-bank audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: question-bank-audit
+          path: build/reports/question-bank-audit.json
+          if-no-files-found: error
+          retention-days: 30
