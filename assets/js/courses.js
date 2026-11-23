@@ -233,8 +233,9 @@
 
   window.addEventListener("tad:authStateChanged", event => loadPublishedCourses(event.detail));
   window.addEventListener("tad:publishedCoursesChanged", () => {
-    const context = window.DESK_AUTH_CONTEXT || {supabase:courseSupabase,user:courseUser};
-    loadPublishedCourses(context);
+    // Use the latest context received through tad:authStateChanged. The global
+    // context can briefly lag during sign-in/sign-out transitions.
+    loadPublishedCourses({supabase:courseSupabase,user:courseUser});
   });
   if (window.DESK_AUTH_CONTEXT) loadPublishedCourses(window.DESK_AUTH_CONTEXT);
   window.addEventListener("tad:learningHubLoaded",render);
