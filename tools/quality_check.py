@@ -187,6 +187,24 @@ def main() -> int:
     check(bool(validate_records(invalid_pyq, pyq_manifest)),
           "PYQ validator must reject records without official source and verification metadata")
 
+    # Coverage metadata is a target map, not a false claim of imported papers.
+    coverage = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
+    scope = coverage.get("scope", {})
+    check(scope.get("from_year") == 2001 and scope.get("to_year") == 2025,
+          "PYQ coverage scope must remain 2001-2025")
+    target_pairs = {(x.get("stage"), paper) for x in coverage.get("targets", [])
+                    for paper in x.get("papers", [])}
+    for required in (("Prelims", "General Studies Paper I"),
+                     ("Prelims", "General Studies Paper II (CSAT)"),
+                     ("Mains", "Essay"), ("Mains", "General Studies Paper I"),
+                     ("Mains", "General Studies Paper II"), ("Mains", "General Studies Paper III"),
+                     ("Mains", "General Studies Paper IV")):
+        check(required in target_pairs, f"PYQ coverage target is missing {required}")
+    check("officialPyqStage" in html and "officialPyqSubject" in html and "officialPyqSearch" in html,
+          "Official PYQ filters must include stage, optional subject, and text search")
+    check("archived-exam-documents/question-papers" in html,
+          "Official PYQ section must link to the UPSC archived paper index")
+
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
     check("GS Paper II" in polity_angle and "not a prediction" in polity_angle,

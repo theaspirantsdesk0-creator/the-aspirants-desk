@@ -1,0 +1,51 @@
+{
+  "scope": {
+    "from_year": 2001,
+    "to_year": 2025,
+    "exam": "Civil Services Examination",
+    "note": "Targets are not proof of source availability or publication. Mark a paper covered only after opening and checking the relevant official UPSC document."
+  },
+  "targets": [
+    {
+      "stage": "Prelims",
+      "papers": [
+        "General Studies Paper I",
+        "General Studies Paper II (CSAT)"
+      ]
+    },
+    {
+      "stage": "Mains",
+      "papers": [
+        "Essay",
+        "General Studies Paper I",
+        "General Studies Paper II",
+        "General Studies Paper III",
+        "General Studies Paper IV",
+        "Optional Paper I",
+        "Optional Paper II",
+        "Optional Literature Paper I",
+        "Optional Literature Paper II"
+      ]
+    }
+  ],
+  "publication_policy": {
+    "official_question_text": "Publish only after confirming wording and paper metadata against the official UPSC PDF. Check copyright and reuse conditions before reproducing full question text; link to the UPSC document where appropriate.",
+    "answers": "Do not claim an official answer key unless UPSC has published one. Label independently written explanations as editorial.",
+    "status_values": [
+      "not_checked",
+      "source_found",
+      "verified",
+      "published"
+    ]
+  },
+  "official_indexes": [
+    {
+      "label": "UPSC current question-paper archive",
+      "url": "https://www.upsc.gov.in/examinations/previous-question-papers"
+    },
+    {
+      "label": "UPSC archived question papers",
+      "url": "https://www.upsc.gov.in/archived-exam-documents/question-papers/"
+    }
+  ]
+}
