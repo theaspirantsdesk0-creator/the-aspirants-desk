@@ -51,34 +51,17 @@ try {
   if (aiForm !== 1) throw new Error('AI Desk chat form is missing');
   const css = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
   if (!css) throw new Error('AI Desk stylesheet was not loaded');
-  // Exercise the practice-bank controls, not just the homepage shell.
+  // The PYQ bank is login-protected. Confirm its controls exist in the document,
+  // but do not attempt to interact with a hidden protected view as a guest.
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');
   const pyqDifficulty = page.locator('#pyqDifficulty');
   if (await pyqSearch.count() !== 1 || await pyqSubject.count() !== 1 || await pyqDifficulty.count() !== 1) {
-    throw new Error('Practice-bank search, subject, or difficulty filter is missing');
+    throw new Error('Practice-bank search, subject, or difficulty filter markup is missing');
   }
-  await pyqSearch.fill('Lothal');
-  await page.waitForFunction(() => document.querySelector('#pyqContainer')?.innerText.includes('Lothal'));
-  const searchCards = await page.locator('#pyqContainer article.card').count();
-  if (searchCards !== 1) throw new Error('Practice-bank search did not narrow to the expected single Lothal question; count=' + searchCards);
-  await pyqSearch.fill('');
-  await pyqSubject.selectOption({ label: 'Polity' });
-  const subjectCards = await page.locator('#pyqContainer article.card').count();
-  if (subjectCards < 1) throw new Error('Practice-bank subject filter returned no Polity questions');
-  const nonPolityCards = await page.locator('#pyqContainer article.card').evaluateAll(cards =>
-    cards.filter(card => !card.querySelector('.pill')?.textContent.trim().includes('Polity')).length
-  );
-  if (nonPolityCards) throw new Error('Practice-bank subject filter displayed questions from another subject');
-  await pyqSubject.selectOption('ALL');
-  await pyqDifficulty.selectOption('easy');
-  const easyCards = await page.locator('#pyqContainer article.card').count();
-  if (easyCards < 1) throw new Error('Practice-bank easy filter returned no expected questions');
-  const nonEasyCards = await page.locator('#pyqContainer article.card').evaluateAll(cards =>
-    cards.filter(card => ![...card.querySelectorAll('.pill')].some(pill => pill.textContent.trim() === 'easy')).length
-  );
-  if (nonEasyCards) throw new Error('Practice-bank difficulty filter displayed a non-easy question');
-  await pyqDifficulty.selectOption('ALL');
+  if (await page.locator('#pyq').isVisible()) {
+    throw new Error('The login-protected PYQ view must not be visible to a guest');
+  }
 
   const bodyText = await page.locator('body').innerText();
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
