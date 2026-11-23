@@ -51,3 +51,14 @@ For each: create on A, sync, see on B; edit on B, see on A; delete on A, gone on
 - Verify that a learner cannot insert or update course records, and a mentor cannot publish or edit another mentor's course.
 - Confirm course data is still protected by Supabase RLS and the course table has no anonymous grants.
 - The database RLS workflow was tested in a rolled-back transaction using a temporary mentor role; no test course or role change was retained.
+
+
+## Learner course progress and assessment history
+- Open Courses & Learning as a guest and confirm the learning summary renders with zero or existing local progress.
+- Start a starter course; confirm it records enrolment and shows In progress.
+- Complete one lesson; refresh the page and confirm that lesson remains completed.
+- Submit the quiz twice with different scores; confirm each attempt is listed with its date and score, the best score remains the highest, and the attempt count increases.
+- Complete all lessons and submit at least one quiz; confirm the course is marked Completed and the completion date is shown.
+- Revisit a completed course and retake the quiz; confirm completion remains and history appends a new attempt.
+- Sign in and confirm the existing learningHub state-sync mechanism receives these changes; verify cross-device persistence separately using the same account on two real devices.
+- Confirm only the latest 20 quiz attempts are retained per course to keep the synced state bounded.
