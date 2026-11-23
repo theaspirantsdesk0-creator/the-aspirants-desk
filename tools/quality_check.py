@@ -140,14 +140,6 @@ def main() -> int:
     check(isinstance(bank_audit["difficulty_distribution"], dict),
           "Question-bank audit must report difficulty distribution")
 
-    # Official PYQ coverage reports counts only; zero records must never be labelled complete.
-    coverage_data = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
-    report = build_coverage_report(pyq_records, coverage_data)
-    check(report["verified_published_question_records"] == len(pyq_records),
-          "PYQ coverage report must count only verified published records")
-    check(all(not item["completeness_claim"] for item in report["paper_targets"]),
-          "PYQ coverage report must not claim paper completeness from record counts")
-
     for relative in ("data/current-affairs.json", "data/pib.json"):
         path = ROOT / relative
         try:
@@ -203,6 +195,14 @@ def main() -> int:
     invalid_pyq = [{"id": "fake", "year": 2025, "status": "published", "question": "Invented sample question", "source": {}, "verification": {}}]
     check(bool(validate_records(invalid_pyq, pyq_manifest)),
           "PYQ validator must reject records without official source and verification metadata")
+
+    # Official PYQ coverage reports counts only; zero records must never be labelled complete.
+    coverage_data = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
+    report = build_coverage_report(pyq_records, coverage_data)
+    check(report["verified_published_question_records"] == len(pyq_records),
+          "PYQ coverage report must count only verified published records")
+    check(all(not item["completeness_claim"] for item in report["paper_targets"]),
+          "PYQ coverage report must not claim paper completeness from record counts")
 
     # Coverage metadata is a target map, not a false claim of imported papers.
     coverage = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
