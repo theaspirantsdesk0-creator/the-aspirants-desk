@@ -39,3 +39,15 @@ For each: create on A, sync, see on B; edit on B, see on A; delete on A, gone on
 - [ ] Chrome, Edge, Firefox, Safari (iOS) pass
 - [ ] Backup of index.html, config.js, sw.js, manifest, SQL taken
 - [ ] sitemap.xml lists more than the home page; Search Console indexing checked
+
+
+## Mentor course authoring and owner review
+- Sign in with an account whose database profile role is `mentor`; confirm Course Studio is visible and learner/guest accounts cannot see it.
+- Create a draft with a title, summary, outcomes and at least one lesson; confirm it appears only in the mentor's course list.
+- Submit the draft for review; confirm the mentor can no longer edit it while it is pending.
+- Sign in as the site owner; confirm the pending course appears in the review queue.
+- Publish the course; confirm it appears in the learner-facing Published community courses catalogue.
+- Reject a second test course with a review note; confirm the mentor can edit the rejected draft and resubmit it.
+- Verify that a learner cannot insert or update course records, and a mentor cannot publish or edit another mentor's course.
+- Confirm course data is still protected by Supabase RLS and the course table has no anonymous grants.
+- The database RLS workflow was tested in a rolled-back transaction using a temporary mentor role; no test course or role change was retained.
