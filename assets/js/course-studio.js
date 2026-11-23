@@ -161,7 +161,10 @@
       const host = $("publishedCourseList");
       if (host) host.innerHTML = '<p class="muted">Published courses could not be loaded: ' + esc(publishedError.message) + '</p>';
       message("courseStudioFeedback", publishedError.message, "error");
-    } else renderPublished(published || []);
+    } else {
+      renderPublished(published || []);
+      window.dispatchEvent(new CustomEvent("tad:publishedCoursesChanged"));
+    }
 
     const role = profile && profile.role;
     const allowed = role === "admin" || role === "mentor";
