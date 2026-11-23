@@ -195,6 +195,7 @@ def cmd_news(a):
     # Fill a small, bounded batch each day so free provider quotas are not exhausted.
     missing = [i for i in keep if not i.get('upsc_angle') and i.get('source_summary')][:10]
     generated = 0
+    templated = 0
     has_ai_keys = bool(os.environ.get('GEMINI_API_KEY') or os.environ.get('GROQ_API_KEY'))
     if not has_ai_keys:
         print('No AI provider key configured; using cautious local syllabus mappings where the topic is clear.')
@@ -203,13 +204,17 @@ def cmd_news(a):
         angle = _upsc_angle(item.get('title', ''), item.get('source_summary', ''), topic)
         if angle:
             item['upsc_angle'] = angle
-            item['ai_status'] = 'generated' if has_ai_keys and angle != fallback_upsc_angle(topic) else 'template'
-            generated += 1
+            if has_ai_keys and angle != fallback_upsc_angle(topic):
+                item['ai_status'] = 'generated'
+                generated += 1
+            else:
+                item['ai_status'] = 'template'
+                templated += 1
         else:
             item['ai_status'] = 'pending'
     CA.write_text(json.dumps({'updated': now.isoformat(timespec='seconds'), 'items': keep}, ensure_ascii=False, indent=1), encoding='utf-8')
     pending = sum(1 for i in keep if not i.get('upsc_angle'))
-    print(f'{len(keep)} current-affairs items ({ok}/{len(feeds)} feeds ok); generated {generated} UPSC angles; {pending} pending')
+    print(f'{len(keep)} current-affairs items ({ok}/{len(feeds)} feeds ok); generated {generated} AI angles; added {templated} local syllabus pointers; {pending} pending')
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); s = p.add_subparsers(dest='cmd', required=True)
     s.add_parser('export').add_argument('--force', action='store_true')
