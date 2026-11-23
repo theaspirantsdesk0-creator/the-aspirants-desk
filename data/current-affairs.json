@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T13:14:12+00:00",
+ "updated": "2026-11-23T13:16:04+00:00",
  "items": [
   {
    "date": "2026-11-23",
@@ -32,8 +32,9 @@
    "title": "COP31 ends without a deal: Is global climate diplomacy breaking? | The Hindu Analysis",
    "link": "https://www.thehindu.com/sci-tech/energy-and-environment/cop31-ends-without-a-deal-is-global-climate-diplomacy-breaking-the-hindu-analysis/article71734819.ece",
    "topic": "Environment",
-   "ai_status": "pending",
-   "source_summary": "In this interview, we break down the key outcomes, fault lines, fossil fuel battles, adaptation finance, and implications for developing countries, including India"
+   "ai_status": "template",
+   "source_summary": "In this interview, we break down the key outcomes, fault lines, fossil fuel battles, adaptation finance, and implications for developing countries, including India",
+   "upsc_angle": "Potential relevance — GS Paper III / Prelims: biodiversity, conservation, climate change and environmental governance. Confirm the species, location, legal status and scientific details from the source."
   },
   {
    "date": "2026-11-23",
@@ -41,8 +42,9 @@
    "title": "‘Stop acting like Baahubali,’ says Supreme Court to Bihar judicial officer for FIR against Superintendent of Police",
    "link": "https://www.thehindu.com/news/national/bihar/stop-acting-like-baahubali-says-supreme-court-to-bihar-judicial-officer-for-fir-against-superintendent-of-police/article71734456.ece",
    "topic": "Polity",
-   "ai_status": "pending",
-   "source_summary": "A Bench comprising CJI Surya Kant and Justices Joymalya Bagchi and V. Mohana questioned Bihar Judge Anil Kumar’s conduct and said his understanding of law is appalling"
+   "ai_status": "template",
+   "source_summary": "A Bench comprising CJI Surya Kant and Justices Joymalya Bagchi and V. Mohana questioned Bihar Judge Anil Kumar’s conduct and said his understanding of law is appalling",
+   "upsc_angle": "Potential relevance — GS Paper II / Prelims: constitutional institutions, governance, federal relations and accountability. Read the source to identify the specific institution, provision and facts; this is a syllabus link, not a prediction."
   },
   {
    "date": "2026-11-23",
@@ -68,8 +70,9 @@
    "title": "Modi government is diminishing dignity of Parliament: Congress",
    "link": "https://www.thehindu.com/news/national/modi-government-is-diminishing-dignity-of-parliament-congress/article71734522.ece",
    "topic": "Polity",
-   "ai_status": "pending",
-   "source_summary": "Jairam Ramesh said the country was entitled to know the government’s formula for delimitation, after what he described as its efforts to cobble together a “super-tainted two-thirds majority” in the Lok Sabha"
+   "ai_status": "template",
+   "source_summary": "Jairam Ramesh said the country was entitled to know the government’s formula for delimitation, after what he described as its efforts to cobble together a “super-tainted two-thirds majority” in the Lok Sabha",
+   "upsc_angle": "Potential relevance — GS Paper II / Prelims: constitutional institutions, governance, federal relations and accountability. Read the source to identify the specific institution, provision and facts; this is a syllabus link, not a prediction."
   },
   {
    "date": "2026-11-23",
@@ -104,8 +107,9 @@
    "title": "Keralam Forest department plans to conduct ‘Mission Chakkakompan’ on November 25",
    "link": "https://www.thehindu.com/news/national/kerala/forest-department-begins-operations-to-tranquilize-wild-elephant-chakkakompan/article71734101.ece",
    "topic": "Schemes and society",
-   "ai_status": "pending",
-   "source_summary": "Chief Conservator of Forests D.K. Vinod Kumar says a 21-member team arrived from Wayanad to lead the operation; official notes the Forest department and expert team are continuing to track the movements of the tusker"
+   "ai_status": "template",
+   "source_summary": "Chief Conservator of Forests D.K. Vinod Kumar says a 21-member team arrived from Wayanad to lead the operation; official notes the Forest department and expert team are continuing to track the movements of the tusker",
+   "upsc_angle": "Potential relevance — GS Paper II: welfare schemes, vulnerable sections, social justice and implementation challenges. Verify the scheme's eligibility, coverage and outcomes from official material."
   },
   {
    "date": "2026-11-23",
@@ -691,6 +695,14 @@
    "source": "The Hindu: National",
    "title": "Karimnagar Medical College building to be ready by March-end, says Health Minister",
    "link": "https://www.thehindu.com/news/national/telangana/karimnagar-medical-college-building-to-be-ready-by-march-end-says-health-minister/article71734728.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "भारत की राष्ट्रपति का गुरु तेग बहादुर जी के ‘शहीदी दिवस’ की पूर्व संध्या पर संदेश",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340485",
    "topic": "General",
    "ai_status": "pending"
   },
