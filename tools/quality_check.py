@@ -11,6 +11,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from publish_generated import merge_json
 from upsc_angles import fallback_upsc_angle
+from pyq import validate_records
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -176,6 +177,15 @@ def main() -> int:
     check(len(pib_merged) == 2, "Publisher must merge PIB items by official source link")
     check(any(x.get("t") == "One updated" for x in pib_merged),
           "Publisher must retain the latest non-empty PIB fields")
+
+    # Official PYQ records must be source-attributed and explicitly verified.
+    pyq_manifest = json.loads((ROOT / "data/pyq/sources.json").read_text(encoding="utf-8"))
+    pyq_records = json.loads((ROOT / "data/pyq/questions.json").read_text(encoding="utf-8"))
+    check(validate_records(pyq_records, pyq_manifest) == [],
+          "Published official PYQs must pass source and verification checks")
+    invalid_pyq = [{"id": "fake", "year": 2025, "status": "published", "question": "Invented sample question", "source": {}, "verification": {}}]
+    check(bool(validate_records(invalid_pyq, pyq_manifest)),
+          "PYQ validator must reject records without official source and verification metadata")
 
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
