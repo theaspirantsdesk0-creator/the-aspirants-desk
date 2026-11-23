@@ -71,7 +71,7 @@ try {
     if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
   });
   await mentorDeepLinkPage.goto(base + '#mentor', { waitUntil: 'domcontentloaded' });
-  await mentorDeepLinkPage.waitForTimeout(700);
+  await mentorDeepLinkPage.locator('#authModal').waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
   if (!(await mentorDeepLinkPage.locator('#authModal').isVisible())) {
     throw new Error('A guest deep-linking to Mentor Workspace must be asked to sign in');
   }
@@ -86,7 +86,7 @@ try {
     if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
   });
   await adminDeepLinkPage.goto(base + '#admin', { waitUntil: 'domcontentloaded' });
-  await adminDeepLinkPage.waitForTimeout(700);
+  await adminDeepLinkPage.locator('#authModal').waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
   if (!(await adminDeepLinkPage.locator('#authModal').isVisible())) {
     throw new Error('A guest deep-linking to Owner Admin must be asked to sign in');
   }
