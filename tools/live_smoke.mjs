@@ -35,6 +35,12 @@ try {
   if (await mentorSection.count() !== 1 || !(await mentorSection.isHidden())) {
     throw new Error('Mentor workspace content must remain hidden for a guest visitor');
   }
+  const learnerFeedbackCard = page.locator('#learnerMentorFeedbackCard');
+  if (await learnerFeedbackCard.count() !== 1 || !(await learnerFeedbackCard.isHidden())) {
+    throw new Error('Shared learner feedback must remain hidden for a guest visitor');
+  }
+  const vapidPublicKeyLoaded = await page.evaluate(() => Boolean(window.DESK_VAPID_PUBLIC_KEY));
+  if (!vapidPublicKeyLoaded) throw new Error('Public VAPID key is not loaded from config.js');
   const ownerNav = page.locator('a[data-nav="admin"]');
   if (await ownerNav.count() !== 1 || !(await ownerNav.isHidden())) {
     throw new Error('Owner admin navigation must remain hidden for a guest visitor');
