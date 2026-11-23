@@ -112,7 +112,7 @@ try {
   const learnerCourseCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('courses.css')));
   if (!learnerCourseCss) throw new Error('Learner course progress stylesheet was not loaded');
 
-  // Exercise the mentor-course learner flow with an in-memory Supabase fixture.
+  // Exercise mentor-course lessons and quizzes with an in-memory Supabase fixture.
   // This does not create or modify real accounts or database records.
   await page.evaluate(() => {
     const fixture = {
@@ -121,17 +121,32 @@ try {
         eq() { return this; },
         order() {
           return Promise.resolve({
-            data: [{
-              id: '00000000-0000-4000-8000-000000000001',
-              title: 'Smoke mentor course',
-              summary: 'A temporary browser fixture for learner catalogue integration.',
-              category: 'Testing',
-              level: 'Beginner',
-              duration_minutes: 10,
-              outcomes: ['Explain the test topic'],
-              lessons: [{ title: 'Smoke lesson', body: ['Temporary lesson content.'], task: 'Summarise the lesson.' }],
-              status: 'published'
-            }],
+            data: [
+              {
+                id: '00000000-0000-4000-8000-000000000001',
+                title: 'Smoke mentor course',
+                summary: 'A temporary browser fixture for learner catalogue integration.',
+                category: 'Testing',
+                level: 'Beginner',
+                duration_minutes: 10,
+                outcomes: ['Explain the test topic'],
+                lessons: [{ title: 'Smoke lesson', body: ['Temporary lesson content.'], task: 'Summarise the lesson.' }],
+                quiz: [],
+                status: 'published'
+              },
+              {
+                id: '00000000-0000-4000-8000-000000000002',
+                title: 'Smoke mentor quiz course',
+                summary: 'A temporary browser fixture for mentor-authored assessment history.',
+                category: 'Testing',
+                level: 'Beginner',
+                duration_minutes: 15,
+                outcomes: ['Recognise a verified test answer'],
+                lessons: [{ title: 'Quiz lesson', body: ['Temporary quiz lesson content.'], task: 'Review the question.' }],
+                quiz: [{ q: 'Which option is the correct smoke-test answer?', options: ['Incorrect option', 'Correct option', 'Another option', 'Last option'], answer: 1, why: 'The fixture marks the second option as correct.' }],
+                status: 'published'
+              }
+            ],
             error: null
           });
         }
@@ -151,14 +166,35 @@ try {
     const lessonButton = detail.querySelector('[data-complete-lesson="0"]');
     if (!lessonButton) throw new Error('Mentor course lesson completion control is missing');
     lessonButton.click();
+    const noQuizCompleted = detail.textContent.includes('Course completed');
+    const noQuizProgressSaved = JSON.parse(localStorage.getItem('tad_state_v5') || '{}').learningHub?.courses?.['mentor-00000000-0000-4000-8000-000000000001']?.completedLessons?.includes(0) || false;
+
+    const quizCard = document.querySelector('[data-open-course="mentor-00000000-0000-4000-8000-000000000002"]');
+    if (!quizCard) throw new Error('Published mentor quiz course did not enter the learner catalogue');
+    quizCard.click();
+    const quizForm = document.querySelector('#tadCourseQuiz');
+    if (!quizForm) throw new Error('Mentor-authored quiz was not rendered');
+    const correct = quizForm.querySelector('input[name="tad-course-q-0"][value="1"]');
+    if (!correct) throw new Error('Mentor-authored quiz answer option is missing');
+    correct.checked = true;
+    quizForm.querySelector('button[type="submit"]').click();
+    const quizRecord = JSON.parse(localStorage.getItem('tad_state_v5') || '{}').learningHub?.courses?.['mentor-00000000-0000-4000-8000-000000000002'] || {};
     return {
       noQuizForm,
-      completed: detail.textContent.includes('Course completed'),
-      progressSaved: JSON.parse(localStorage.getItem('tad_state_v5') || '{}').learningHub?.courses?.['mentor-00000000-0000-4000-8000-000000000001']?.completedLessons?.includes(0) || false
+      noQuizCompleted,
+      noQuizProgressSaved,
+      quizRendered: !!quizForm,
+      quizHistoryVisible: document.querySelector('#courseDetail').textContent.includes('Assessment history'),
+      quizBest: quizRecord.quizBest,
+      quizAttempts: quizRecord.quizHistory?.length || 0
     };
   });
-  if (!mentorCourseResult.noQuizForm) throw new Error('Mentor course without a quiz displayed an empty assessment form');
-  if (!mentorCourseResult.completed || !mentorCourseResult.progressSaved) throw new Error('Mentor course lesson completion was not reflected in learner progress');
+  if (!mentorCourseResult.noQuizForm || !mentorCourseResult.noQuizCompleted || !mentorCourseResult.noQuizProgressSaved) {
+    throw new Error('Mentor course without a quiz did not complete through lesson progress');
+  }
+  if (!mentorCourseResult.quizRendered || !mentorCourseResult.quizHistoryVisible || mentorCourseResult.quizBest !== 1 || mentorCourseResult.quizAttempts !== 1) {
+    throw new Error('Mentor-authored quiz score or assessment history was not saved');
+  }
 
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');
