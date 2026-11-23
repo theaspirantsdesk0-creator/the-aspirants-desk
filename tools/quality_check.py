@@ -11,7 +11,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from publish_generated import merge_json
 from upsc_angles import fallback_upsc_angle
-from pyq import validate_records
+from pyq import validate_records, build_coverage_report
+from question_bank_audit import audit_question_bank
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -130,6 +131,22 @@ def main() -> int:
                             all_ids[key] = path.name
             except (OSError, json.JSONDecodeError) as exc:
                 check(False, f"Cannot parse {path.name}: {exc}")
+
+    # Full question-bank audit: report actual distribution without inventing target counts.
+    bank_audit = audit_question_bank(ROOT / "data" / "questions")
+    check(not bank_audit["errors"], "Question-bank audit found structural errors: " + "; ".join(bank_audit["errors"][:5]))
+    check(bank_audit["total_records"] == len(all_ids),
+          "Question-bank audit total must match the globally unique question IDs")
+    check(isinstance(bank_audit["difficulty_distribution"], dict),
+          "Question-bank audit must report difficulty distribution")
+
+    # Official PYQ coverage reports counts only; zero records must never be labelled complete.
+    coverage_data = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
+    report = build_coverage_report(pyq_records, coverage_data)
+    check(report["verified_published_question_records"] == len(pyq_records),
+          "PYQ coverage report must count only verified published records")
+    check(all(not item["completeness_claim"] for item in report["paper_targets"]),
+          "PYQ coverage report must not claim paper completeness from record counts")
 
     for relative in ("data/current-affairs.json", "data/pib.json"):
         path = ROOT / relative
