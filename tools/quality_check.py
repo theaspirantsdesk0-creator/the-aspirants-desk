@@ -203,6 +203,25 @@ def main() -> int:
           "PYQ coverage report must count only verified published records")
     check(all(not item["completeness_claim"] for item in report["paper_targets"]),
           "PYQ coverage report must not claim paper completeness from record counts")
+    check(all(len(item["yearly_coverage"]) == 25 for item in report["paper_targets"]),
+          "PYQ coverage must expose one status row for each year from 2001 to 2025")
+    sample_pyq = [{
+        "id": "test-pyq-coverage-2025-1", "exam": "Civil Services Examination",
+        "stage": "Prelims", "paper": "General Studies Paper I", "year": 2025,
+        "question_number": 1, "question": "A sufficiently long sample question for testing.",
+        "status": "published", "source": {"id": "upsc-question-paper-archive",
+        "document_url": "https://www.upsc.gov.in/example-paper.pdf"},
+        "verification": {"status": "verified", "verified_at": "2026-11-24", "method": "manual PDF comparison"}
+    }]
+    sample_report = build_coverage_report(sample_pyq, coverage_data)
+    sample_target = next(item for item in sample_report["paper_targets"]
+                         if item["stage"] == "Prelims" and item["paper"] == "General Studies Paper I")
+    check(sample_target["years_with_verified_records"] == 1
+          and sample_target["years_without_verified_records"] == 24,
+          "PYQ coverage must count the sample year and retain all 24 uncovered years")
+    check(sample_target["yearly_coverage"][-1]["year"] == 2025
+          and sample_target["yearly_coverage"][-1]["verified_question_records"] == 1,
+          "PYQ yearly matrix must assign records to the correct paper and year")
 
     # Coverage metadata is a target map, not a false claim of imported papers.
     coverage = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
