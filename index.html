@@ -616,6 +616,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   .dash-hero::before { left: 1.4rem; }
   .nbody { padding: 1.2rem 1rem 1.2rem 1.3rem; }
 }
+
+/* Mentor workspace */
+.mentor-hero{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.7rem 1.9rem;border-radius:22px;margin-bottom:1rem;background:linear-gradient(125deg,#101b3f 0%,#1d376e 58%,#244d88 100%);color:#fff;border:1px solid rgba(234,179,8,.5);box-shadow:var(--shadow-lg)}
+.mentor-hero h2{font-size:clamp(1.55rem,3vw,2.15rem);margin:.45rem 0}.mentor-hero p{color:#dbeafe;max-width:650px;margin:0}.mentor-eyebrow{font-size:.7rem;letter-spacing:.14em;font-weight:800;color:#facc15}.mentor-hero-mark{width:72px;height:72px;display:grid;place-items:center;border-radius:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:2rem;color:#facc15}
+.mentor-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;margin-bottom:1rem}.mentor-kpis .card{padding:1rem 1.2rem;border-top:3px solid #d5a928}.mentor-kpi-label{display:block;font-size:.76rem;color:var(--muted);font-weight:700}.mentor-kpis strong{display:block;font-size:1.7rem;margin-top:.3rem;color:var(--ink)}
+.mentor-panel{margin-bottom:1rem;padding:1.25rem}.mentor-panel h3{margin:.45rem 0}.mentor-panel-head,.mentor-section-head{display:flex;align-items:center;justify-content:space-between;gap:1rem}.mentor-assignment-list,.mentor-review-list{display:grid;gap:.75rem;margin-top:.9rem}.mentor-assignment{border:1px solid var(--line);border-radius:14px;padding:1rem;background:var(--surface-alt)}.mentor-assignment-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;flex-wrap:wrap}.mentor-assignment h4{margin:.25rem 0 .45rem}.mentor-assignment p{margin:.35rem 0;color:var(--muted);font-size:.88rem}.mentor-role-row{display:grid;grid-template-columns:minmax(0,1fr) 115px 72px;gap:.5rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line)}.mentor-role-row:last-child{border-bottom:0}.mentor-role-row strong{font-size:.86rem}.mentor-role-row select{min-width:0}.mentor-role-list{max-height:300px;overflow:auto}.mentor-review-item{padding:.85rem 1rem;border:1px solid var(--line);border-radius:12px}.mentor-review-item p{white-space:pre-wrap;margin:.5rem 0}.mentor-status{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.mentor-admin-card{border-top:3px solid #d5a928}
+@media(max-width:600px){.mentor-hero{padding:1.25rem;align-items:flex-start}.mentor-hero-mark{width:48px;height:48px;font-size:1.35rem}.mentor-kpis{gap:.5rem}.mentor-kpis .card{padding:.8rem}.mentor-kpis strong{font-size:1.35rem}.mentor-kpi-label{font-size:.68rem}.mentor-role-row{grid-template-columns:minmax(0,1fr) 100px 62px;gap:.35rem}.mentor-panel{padding:1rem}}
 </style>
   <link rel="stylesheet" href="assets/css/ai-desk.css">
 </head>
@@ -655,6 +662,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#planner" class="nav-link requires-auth" data-nav="planner">🗓️ Study Planner <span class="lock-tag">Login</span></a>
   <a href="#tracker" class="nav-link requires-auth" data-nav="tracker">📈 My Prep Tracker <span class="lock-tag">Login</span></a>
   <a href="#admin" class="nav-link owner-only" data-nav="admin" hidden>🛡️ Owner Admin Panel</a>
+  <a href="#mentor" class="nav-link mentor-only" data-nav="mentor" hidden>🎓 Mentor Workspace</a>
   <a href="#legal" class="nav-link" data-nav="legal">⚖️ Terms & Privacy</a>
 
   <div class="side-footer">
@@ -1179,6 +1187,30 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
     </div>
 
+    <div class="card mentor-admin-card" style="margin-bottom:1.2rem">
+      <div class="mentor-section-head">
+        <div><span class="pill">MENTOR NETWORK</span><h3 style="margin:.45rem 0">Mentor access & learner assignments</h3><p class="muted" style="margin:0">Only the owner can approve mentor accounts and allocate learners.</p></div>
+      </div>
+      <div class="grid-2" style="margin-top:1rem">
+        <div class="card">
+          <h4>Approve or change mentor access</h4>
+          <p class="muted">Promote a learner to mentor or revoke mentor access. Admin access cannot be changed here.</p>
+          <div id="mentorRoleManagement" class="mentor-role-list"><p class="muted">Loading account roles…</p></div>
+        </div>
+        <div class="card">
+          <h4>Create a mentoring assignment</h4>
+          <div class="form-grid">
+            <div><label for="admMentorSelect">Approved mentor</label><select id="admMentorSelect"><option value="">Select mentor</option></select></div>
+            <div><label for="admLearnerSelect">Learner</label><select id="admLearnerSelect"><option value="">Select learner</option></select></div>
+            <div class="form-full"><label for="admMentorSubject">Subject / focus area</label><input id="admMentorSubject" maxlength="120" placeholder="e.g. GS-II answer writing"></div>
+            <div class="form-full"><label for="admMentorGoal">Learning goal / review brief</label><textarea id="admMentorGoal" rows="3" maxlength="2000" placeholder="Describe what the mentor should review and the expected outcome"></textarea></div>
+            <div><label for="admMentorDue">Target date (optional)</label><input id="admMentorDue" type="date"></div>
+            <div class="form-full"><button type="button" class="btn primary" id="admCreateMentorAssignment" style="width:100%">Assign learner to mentor</button><p id="admMentorAssignStatus" class="muted" aria-live="polite"></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <h3>👥 Registered Learners & Progress Overview</h3>
       <div class="table-wrap" style="margin-top:.8rem">
@@ -1190,7 +1222,42 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     </div>
   </section>
 
-  <!-- 15. LEGAL -->
+  <!-- 15. MENTOR WORKSPACE: OWNER + APPROVED MENTORS ONLY -->
+  <section id="mentor" class="view-sec mentor-only" hidden>
+    <div class="mentor-hero">
+      <div>
+        <span class="mentor-eyebrow">THE ASPIRANT’S DESK · GUIDANCE NETWORK</span>
+        <h2>Mentor Workspace</h2>
+        <p>Review assigned learners, give structured feedback, and keep every mentoring commitment organised.</p>
+      </div>
+      <div class="mentor-hero-mark" aria-hidden="true">✦</div>
+    </div>
+    <div class="mentor-kpis">
+      <div class="card"><span class="mentor-kpi-label">Active assignments</span><strong id="mentorActiveCount">0</strong></div>
+      <div class="card"><span class="mentor-kpi-label">Learners assigned</span><strong id="mentorLearnerCount">0</strong></div>
+      <div class="card"><span class="mentor-kpi-label">Completed</span><strong id="mentorCompletedCount">0</strong></div>
+    </div>
+    <div class="card mentor-panel">
+      <div class="mentor-panel-head"><div><span class="pill">YOUR WORK QUEUE</span><h3>Assigned learners</h3><p class="muted">Only assignments allocated to your mentor account are shown here.</p></div><button type="button" class="btn" id="mentorRefreshBtn">↻ Refresh</button></div>
+      <div id="mentorAssignmentList" class="mentor-assignment-list" aria-live="polite"><p class="muted">Sign in with an approved mentor account to load assignments.</p></div>
+    </div>
+    <div class="card mentor-panel">
+      <div><span class="pill">FEEDBACK STUDIO</span><h3>Write a learner review</h3><p class="muted">Feedback is linked to an assigned learner. Shared feedback becomes visible to that learner; private feedback remains within the mentor and owner workspace.</p></div>
+      <form id="mentorReviewForm" class="form-grid">
+        <div class="form-full"><label for="mentorReviewAssignment">Assignment</label><select id="mentorReviewAssignment" required><option value="">Select an assignment</option></select></div>
+        <div><label for="mentorReviewRating">Review rating</label><select id="mentorReviewRating"><option value="">No rating</option><option value="5">5 · Excellent progress</option><option value="4">4 · Strong progress</option><option value="3">3 · On track</option><option value="2">2 · Needs attention</option><option value="1">1 · Needs a new plan</option></select></div>
+        <div><label for="mentorReviewVisibility">Visibility</label><select id="mentorReviewVisibility"><option value="shared">Share with learner</option><option value="private">Private mentor note</option></select></div>
+        <div class="form-full"><label for="mentorReviewFeedback">Feedback and next steps</label><textarea id="mentorReviewFeedback" rows="5" maxlength="5000" required placeholder="What is going well? What should the learner improve? Give clear, actionable next steps."></textarea></div>
+        <div class="form-full"><button class="btn primary" type="submit" id="mentorSubmitReviewBtn">Save review</button><span id="mentorReviewStatus" class="muted" aria-live="polite"></span></div>
+      </form>
+    </div>
+    <div class="card mentor-panel">
+      <div><span class="pill">RECENT ACTIVITY</span><h3>Recent feedback</h3></div>
+      <div id="mentorRecentReviews" class="mentor-review-list"><p class="muted">Reviews will appear here after you save them.</p></div>
+    </div>
+  </section>
+
+  <!-- 16. LEGAL -->
   <section id="legal" class="view-sec"><div class="card gold-top"><h2>Terms, Privacy & Official Disclaimer</h2>
       <p style="color:var(--muted)"><b>Disclaimer:</b> The Aspirant’s Desk is an independent educational platform built by Anbuchelvan M S and is not affiliated with UPSC, TNPSC, SSC, or IBPS. Always verify official notifications on government portals.</p>
       <p style="color:var(--muted)"><b>Privacy (DPDP Act 2023):</b> Your study progress, test results, and notes are stored securely via Supabase Row Level Security exclusively for your personal dashboard.</p><hr style="border:0;border-top:1px solid var(--line);margin:1.2rem 0"><h2>Terms of Use</h2>
