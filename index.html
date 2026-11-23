@@ -625,6 +625,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 @media(max-width:600px){.mentor-hero{padding:1.25rem;align-items:flex-start}.mentor-hero-mark{width:48px;height:48px;font-size:1.35rem}.mentor-kpis{gap:.5rem}.mentor-kpis .card{padding:.8rem}.mentor-kpis strong{font-size:1.35rem}.mentor-kpi-label{font-size:.68rem}.mentor-role-row{grid-template-columns:minmax(0,1fr) 100px 62px;gap:.35rem}.mentor-panel{padding:1rem}}
 </style>
   <link rel="stylesheet" href="assets/css/ai-desk.css">
+  <link rel="stylesheet" href="assets/css/courses.css">
 </head>
 <body>
 
@@ -664,6 +665,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#admin" class="nav-link owner-only" data-nav="admin" hidden>🛡️ Owner Admin Panel</a>
   <a href="#mentor" class="nav-link mentor-only" data-nav="mentor" hidden>🎓 Mentor Workspace</a>
   <a href="#learning-hub" class="nav-link requires-auth" data-nav="learning-hub">🌐 Universal Learning Hub <span class="lock-tag">Login</span></a>
+  <a href="#course-catalog" class="nav-link requires-auth" data-nav="course-catalog">🎓 Courses & Learning <span class="lock-tag">Login</span></a>
   <a href="#legal" class="nav-link" data-nav="legal">⚖️ Terms & Privacy</a>
 
   <div class="side-footer">
@@ -1340,6 +1342,30 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </ol>
       <p class="muted" style="margin-bottom:0">This hub is a learning directory and progress checklist—not a claim of certification or a replacement for official course providers.</p>
     </div>
+  </section>
+
+  <!-- COURSE AND LESSON FOUNDATION -->
+  <section id="course-catalog" class="view-sec protected-view">
+    <div class="dash-hero">
+      <div>
+        <span class="eyebrow">THE ASPIRANT’S DESK · LEARNING MANAGEMENT</span>
+        <h1>Courses, lessons and practice</h1>
+        <p>Follow a structured course, complete lessons and check your understanding. Course progress is stored with your learning account when signed in; guests keep it in this browser.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.07);border-color:rgba(234,179,8,.4);color:#fff">
+        <div class="eyebrow">COURSE LIBRARY</div>
+        <div style="font:800 2rem 'Bricolage Grotesque',sans-serif;margin:.35rem 0">3 starter courses</div>
+        <p style="font-size:.82rem;color:#cbd5e1;margin:0">Original beginner lessons with short knowledge checks. More courses can be added through a reviewed publishing workflow.</p>
+      </div>
+    </div>
+    <div class="card gold-top">
+      <h2>Course catalogue</h2>
+      <label for="courseSearch">Find a course</label>
+      <input id="courseSearch" type="search" placeholder="Search by title, topic or category" style="width:100%;max-width:520px;margin:.35rem 0 1rem">
+      <div id="courseCatalog" aria-live="polite"></div>
+    </div>
+    <div id="courseDetail" hidden></div>
+    <p class="muted">This is the first LMS learning layer, not yet a teacher publishing portal or accredited certification system. Course completion records participation and quiz performance; it does not issue formal qualifications.</p>
   </section>
 
   <!-- 16. LEGAL -->
@@ -3264,6 +3290,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
 });
 </script>
   <script src="assets/js/learning-hub.js" defer></script>
+  <script src="assets/js/courses.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
 </html>
