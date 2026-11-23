@@ -1,0 +1,22 @@
+#courseCatalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.tad-course-card{display:flex;flex-direction:column;gap:.55rem}
+.tad-course-card h3{margin:.25rem 0}
+.tad-course-meta{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+.tad-course-progress{margin:.4rem 0 .7rem}
+.tad-course-progress>div:first-child{display:flex;justify-content:space-between;gap:.7rem;margin-bottom:.35rem;font-size:.82rem}
+.tad-course-progress span{color:var(--muted)}
+.tad-course-card .btn{margin-top:auto;align-self:flex-start}
+#courseDetail{margin-top:1.2rem;scroll-margin-top:1rem}
+#courseDetail>.card{margin-bottom:1rem}
+.tad-lessons{display:grid;gap:1rem}
+.tad-lesson{border:1px solid var(--line);border-radius:12px;padding:1rem}
+.tad-lesson h4{margin:.45rem 0}
+.tad-lesson-body{line-height:1.65}
+.tad-task{padding:.75rem;border-left:3px solid var(--gold);background:var(--surface-alt);border-radius:5px}
+.tad-quiz-question{border:1px solid var(--line);border-radius:10px;padding:.85rem;margin:.8rem 0}
+.tad-quiz-question legend{font-weight:700;padding:0 .25rem}
+.tad-quiz-question label{display:block;margin:.6rem 0;font-weight:500}
+.tad-quiz-question input{margin-right:.45rem}
+.tad-quiz-feedback{line-height:1.6;color:var(--ink)}
+@media(max-width:900px){#courseCatalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){#courseCatalog{grid-template-columns:1fr}.tad-course-meta{align-items:flex-start}}
