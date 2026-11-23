@@ -19,6 +19,15 @@ try {
   if (aiAuthProbe.status !== 401) {
     throw new Error('AI endpoint should reject unauthenticated requests with HTTP 401; received ' + aiAuthProbe.status);
   }
+  // The user-triggered test-push endpoint must reject unauthenticated requests.
+  const testPushAuthProbe = await fetch('https://sqnpxlsprzbgnmgljigg.supabase.co/functions/v1/send-test-study-notification', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Origin': 'https://theaspirantsdesk0-creator.github.io' },
+    body: '{}',
+  });
+  if (testPushAuthProbe.status !== 401) {
+    throw new Error('Test notification endpoint should reject unauthenticated requests with HTTP 401; received ' + testPushAuthProbe.status);
+  }
   // Cron-triggered push sender must reject requests without its private cron header.
   const pushAuthProbe = await fetch('https://sqnpxlsprzbgnmgljigg.supabase.co/functions/v1/send-study-reminders', {
     method: 'POST',
