@@ -63,23 +63,37 @@ try {
     throw new Error('The login-protected PYQ view must not be visible to a guest');
   }
 
-  // Deep links must not bypass the owner/mentor role gate.
-  await page.goto(base + '#mentor', { waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(500);
-  if (!(await page.locator('#authModal').isVisible())) {
+  // Deep links must not bypass the owner/mentor role gate. Use fresh pages
+  // so each fragment is present on the initial document load.
+  const mentorDeepLinkPage = await browser.newPage();
+  mentorDeepLinkPage.on('pageerror', error => pageErrors.push(error.message));
+  mentorDeepLinkPage.on('requestfailed', request => {
+    if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
+  });
+  await mentorDeepLinkPage.goto(base + '#mentor', { waitUntil: 'domcontentloaded' });
+  await mentorDeepLinkPage.waitForTimeout(700);
+  if (!(await mentorDeepLinkPage.locator('#authModal').isVisible())) {
     throw new Error('A guest deep-linking to Mentor Workspace must be asked to sign in');
   }
-  if (await page.locator('#mentor').isVisible()) {
+  if (await mentorDeepLinkPage.locator('#mentor').isVisible()) {
     throw new Error('A guest must not see Mentor Workspace after opening its deep link');
   }
-  await page.goto(base + '#admin', { waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(500);
-  if (!(await page.locator('#authModal').isVisible())) {
+  await mentorDeepLinkPage.close();
+
+  const adminDeepLinkPage = await browser.newPage();
+  adminDeepLinkPage.on('pageerror', error => pageErrors.push(error.message));
+  adminDeepLinkPage.on('requestfailed', request => {
+    if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
+  });
+  await adminDeepLinkPage.goto(base + '#admin', { waitUntil: 'domcontentloaded' });
+  await adminDeepLinkPage.waitForTimeout(700);
+  if (!(await adminDeepLinkPage.locator('#authModal').isVisible())) {
     throw new Error('A guest deep-linking to Owner Admin must be asked to sign in');
   }
-  if (await page.locator('#admin').isVisible()) {
+  if (await adminDeepLinkPage.locator('#admin').isVisible()) {
     throw new Error('A guest must not see Owner Admin after opening its deep link');
   }
+  await adminDeepLinkPage.close();
 
   const bodyText = await page.locator('body').innerText();
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
