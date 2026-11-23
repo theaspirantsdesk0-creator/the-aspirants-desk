@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T13:16:04+00:00",
+ "updated": "2026-11-23T14:56:54+00:00",
  "items": [
   {
    "date": "2026-11-23",
@@ -135,8 +135,9 @@
    "title": "Implement Supreme Court order on Thirupparankundram deepam lighting, Annamalai urges TVK government",
    "link": "https://www.thehindu.com/news/national/tamil-nadu/implement-sc-order-on-thirupparankundram-deepam-lighting-annamalai-urges-tvk-government/article71734339.ece",
    "topic": "Polity",
-   "ai_status": "pending",
-   "source_summary": "He accused the TVK-led government of not having understood the essence of the Supreme Court’s order"
+   "ai_status": "template",
+   "source_summary": "He accused the TVK-led government of not having understood the essence of the Supreme Court’s order",
+   "upsc_angle": "Potential relevance — GS Paper II / Prelims: constitutional institutions, governance, federal relations and accountability. Read the source to identify the specific institution, provision and facts; this is a syllabus link, not a prediction."
   },
   {
    "date": "2026-11-23",
@@ -703,6 +704,592 @@
    "source": "PIB: Regional press releases",
    "title": "भारत की राष्ट्रपति का गुरु तेग बहादुर जी के ‘शहीदी दिवस’ की पूर्व संध्या पर संदेश",
    "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340485",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "KAT issues ultimatum to government to file reply in college principal appointment dispute",
+   "link": "https://www.thehindu.com/news/national/kerala/kat-issues-ultimatum-to-government-to-file-reply-in-college-principal-appointment-dispute/article71735391.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "In an interim order passed on November 20, KAT administrative member N. Vasudevan warned that the tribunal would automatically allow an application that sought to forfeit the government’s right to file a counter-reply and also proceed to fast-track the case for final hearing if the respondents fail to submit their response within the deadline"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Government will explore all possible ways to avoid electricity restriction in Keralam, says Minister",
+   "link": "https://www.thehindu.com/news/national/kerala/government-will-explore-all-possible-ways-to-avoid-electricity-restriction-in-keralam-says-minister/article71734978.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Sunny Joseph announces that the Idukki and Cheruthoni dams will be opened to tourists starting December 1"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Kerala Higher Education department approves Pro-VC appointment in Calicut University",
+   "link": "https://www.thehindu.com/news/national/kerala/kerala-higher-education-department-approves-pro-vc-appointment-in-calicut-university/article71735084.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Not obtaining government sanction for deputation of P. Rasheed Ahammed termed “an unintended administrative oversight” by the university."
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Karnataka HC suggests State amend rules to remove ambiguity over transfer of liquor licence to legal heirs of licensee",
+   "link": "https://www.thehindu.com/news/national/karnataka/karnataka-hc-suggests-state-amend-rules-to-remove-ambiguity-over-transfer-of-liquor-licence-to-legal-heirs-of-licensee/article71735284.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "3-member panel meet of KRMB ends without taking any decision on water use",
+   "link": "https://www.thehindu.com/news/national/telangana/3-member-panel-meet-of-krmb-ends-without-taking-any-decision-on-water-use/article71734941.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Telangana strongly opposed to AP’s demand for release of Nagarjunsagar water for use in Krishna Delta System"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "One held for sexually assaulting minor girl on train",
+   "link": "https://www.thehindu.com/news/national/kerala/one-held-for-sexually-assaulting-minor-girl-on-train/article71735212.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "BRS delegation meets KRMB Chairman, urges board to stop A.P. from going ahead with NSP tunnel project",
+   "link": "https://www.thehindu.com/news/national/telangana/brs-delegation-meets-krmb-chairman-urges-board-to-stop-ap-from-going-ahead-with-nsp-tunnel-project/article71734737.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "World Hindu Congress 2026 to be held in Mumbai from December 18 to 20",
+   "link": "https://www.thehindu.com/news/national/karnataka/three-day-world-hindu-congress-in-mumbai/article71734712.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "New civic chiefs take charge in Chittoor, Annamayya and Sri Sathya Sai districts",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/new-civic-chiefs-take-charge-in-chittoor-annamayya-and-sri-sathya-sai-districts/article71734482.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Irrigation dept., DTPC join hands to develop Pothundi tourism project",
+   "link": "https://www.thehindu.com/news/national/kerala/irrigation-dept-dtpc-join-hands-to-develop-pothundi-tourism-project/article71735226.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The decision was taken at a meeting of the Irrigation Project Tourism Management Committee (IPTMC), which reviewed measures to ensure the Irrigation department’s full support for the project here on Monday"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Bengal Christian group calls for missionary school alumni testimonies amid allegations of forced conversions",
+   "link": "https://www.thehindu.com/news/national/bengal-christian-group-calls-for-missionary-school-alumni-testimonies-amid-allegations-of-forced-conversions/article71734690.ece",
+   "topic": "Schemes and society",
+   "ai_status": "pending",
+   "source_summary": "MPs, MLAs, and politicians who are alumni of Christian missionary schools have been asked to share their memories of life at school to help refute allegations of forced conversions"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "ACB conducts surprise checks at NIMS, flags irregularities across departments",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/acb-conducts-surprise-checks-at-nims-flags-irregularities-across-departments/article71735133.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "DPS’s NCC cadets visit Bharat Cancer Hospital in Mysuru as part of community outreach programme",
+   "link": "https://www.thehindu.com/news/national/karnataka/dpss-ncc-cadets-visit-bharat-cancer-hospital-in-mysuru-as-part-of-community-outreach-programme/article71734704.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Former SC judge urges understanding, protection of electoral rights",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/former-sc-judge-urges-understanding-protection-of-electoral-rights/article71734672.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Boards of examiners in Calicut varsity likely to be reconstituted",
+   "link": "https://www.thehindu.com/news/national/kerala/boards-of-examiners-in-calicut-varsity-likely-to-be-reconstituted/article71735172.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Child rights panel steps in after 9-year-old injured in scooter accident in Keralam",
+   "link": "https://www.thehindu.com/news/national/kerala/child-rights-panel-steps-in-after-9-year-old-injured-in-scooter-accident-in-keralam/article71734993.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "According to a complaint received by the commission, the manager and headmistress of Perunad Estate LP School sent two students to an arts festival venue on a scooter ridden by a person without a driving licence"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Samajwadi Party open to offering seats to the CPI(ML) ahead of U.P. Assembly election",
+   "link": "https://www.thehindu.com/news/national/uttar-pradesh/samajwadi-party-open-to-offering-seats-to-the-cpiml-ahead-of-up-assembly-election/article71735006.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "CPI(ML) eyes seats in the Mirzapur-Sonbhadra belt, home to a large Kol population, an SC community in U.P. that has long been demanding ST status; SP keen to secure AISA’s active participation in polls"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Over 10,000 applications received for changes in electoral roll during special camps held in Cuddalore",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/over-10000-applications-received-for-changes-in-electoral-roll-during-special-camps-held-in-cuddalore/article71734089.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "CSB scientist Manthira Moorthy wins Louis Pasteur Award 2026",
+   "link": "https://www.thehindu.com/news/national/karnataka/csb-scientist-manthira-moorthy-wins-louis-pasteur-award-2026/article71734645.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Revanth to lay foundation stone for Sant Sevalal Maharaj temple on Nov. 26 in Achampet",
+   "link": "https://www.thehindu.com/news/national/telangana/revanth-to-lay-foundation-stone-for-sant-sevalal-maharaj-temple-on-nov-26-in-achampet/article71734517.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "AIR Dharwad organising youth music concert tomorrow",
+   "link": "https://www.thehindu.com/news/national/karnataka/air-dharwad-organising-youth-music-concert-tomorrow/article71734579.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Female langur escapes zoo enclosure yet again",
+   "link": "https://www.thehindu.com/news/national/kerala/female-langur-escapes-zoo-enclosure-yet-again/article71734676.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "It is perched on a ‘venga’ tree on the zoo premises. Attempts are on to lure it down with fruits and vegetables."
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Students pledge to turn 30 homes into green centres",
+   "link": "https://www.thehindu.com/news/national/kerala/students-pledge-to-turn-30-homes-into-green-centres/article71735145.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "SEC directs local body poll candidates to file expenditure returns",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/sec-directs-local-body-poll-candidates-to-file-expenditure-returns/article71735182.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Candidates in 99 ULBs must submit accounts by December 18 and those in Chirala by December 21; failure will invite three-year disqualification and loss of office for elected candidates"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Sri Sathya Sai Baba’s birth centenary celebrated in grand style at Puttaparthi",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/sri-sathya-sai-babas-birth-centenary-celebrated-in-grand-style-at-puttaparthi/article71734653.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Golden chariot procession, five Rathams and six thematic floats mark 100 years since the spiritual leader’s birth; Union Minister G. Kishan Reddy and Keralam Chief Minister V.D. Satheesan attend celebrations at Hill View Stadium"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Malampuzha garden to reopen before Christmas, says Suresh Gopi",
+   "link": "https://www.thehindu.com/news/national/kerala/malampuzha-garden-to-reopen-before-christmas-says-suresh-gopi/article71735057.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "He expressed satisfaction with the progress and quality of construction after reviewing the progress of its renovation work"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Two arrested, two women rescued from prostitution racket in Miyapur",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/two-arrested-two-women-rescued-from-prostitution-racket-in-miyapur/article71735140.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Yellow alert for three districts in Keralam on November 24",
+   "link": "https://www.thehindu.com/news/national/kerala/yellow-alert-for-three-districts-in-keralam-on-november-24/article71735314.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The alert has been issued for Thiruvananthapuram, Kollam and Pathanamthitta, warning of isolated heavy showers"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "IISc professor among winners of 2026 Tata Transformation Prize",
+   "link": "https://www.thehindu.com/news/national/karnataka/iisc-professor-among-winners-of-2026-tata-transformation-prize/article71734655.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "National Lok Adalat in Dharwad next month",
+   "link": "https://www.thehindu.com/news/national/karnataka/national-lok-adalat-in-dharwad-next-month/article71734569.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "It will provide an opportunity for the litigant public to settle their cases through mutual consent, says judge"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Raghumurthy visits tribal hamlets, directs officials to address basic amenities",
+   "link": "https://www.thehindu.com/news/national/karnataka/raghumurthy-visits-tribal-hamlets-directs-officials-to-address-basic-amenities/article71735349.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Over 4,100 children share ideas for a child-friendly Cyberabad",
+   "link": "https://www.thehindu.com/news/cities/Hyderabad/over-4100-children-share-ideas-for-a-child-friendly-cyberabad/article71734820.ece",
+   "topic": "Internal security",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Karnataka: Tension in Haveri over sugarcane prices",
+   "link": "https://www.thehindu.com/news/national/karnataka/karnataka-tension-in-haveri-over-sugarcane-prices/article71735190.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "NIT-C inks pact with IRFC Foundation to set up health centre",
+   "link": "https://www.thehindu.com/news/national/kerala/nit-c-inks-pact-with-irfc-foundation-to-set-up-health-centre/article71734637.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The project will strengthen healthcare infrastructure for the NIT-C community by providing accessible and affordable primary healthcare services to students, faculty and staff."
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Police constable exam postponed in M.P.; Congress, CPI(M) slam BJP government",
+   "link": "https://www.thehindu.com/news/national/madhya-pradesh/police-constable-exam-postponed-in-mp-congress-cpim-slam-bjp-government/article71735022.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "In a notification on the night of November 22, the Madhya Pradesh Employees Selection Board postponed the recruitment examination for 7,500 police constable posts, earlier tentatively scheduled to begin on November 19"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Harassment alleged in Plus Two student’s suicide; kin protest with body",
+   "link": "https://www.thehindu.com/news/national/kerala/harassment-alleged-in-plus-two-students-suicide-kin-protest-with-body/article71735152.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Komatireddy questions Nitin Nabin’s visit to Telangana",
+   "link": "https://www.thehindu.com/news/national/telangana/komatireddy-questions-nitin-nabins-visit-to-telangana/article71734526.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Andhra Pradesh initiates advance procurement of medicines for six months",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ap-initiates-advance-procurement-of-medicines-for-six-months/article71734810.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Health Department have shifted from procuring three-month stock in advance after the CAG report flags shortcomings in the system followed between 2018 and 2022"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Experts discuss sustainable future of silk at international conference in Chennai",
+   "link": "https://www.thehindu.com/news/cities/chennai/experts-discuss-sustainable-future-of-silk-at-international-conference-in-chennai/article71734921.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Union Minister says sustainability and climate change are major challenges facing the sericulture sector and India should focus on developing climate-resilient and heat-resistant silkworm breeds to sustain production"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Mega blood donation drive in Dharwad tomorrow",
+   "link": "https://www.thehindu.com/news/national/karnataka/mega-blood-donation-drive-in-dharwad-tomorrow/article71734555.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Mudigere MLA submits resignation over elephant operation",
+   "link": "https://www.thehindu.com/news/national/karnataka/mudigere-mla-resigns-over-elephant-operation/article71734618.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "TGCSB warns against Black Friday online shopping scams",
+   "link": "https://www.thehindu.com/news/national/telangana/tgcsb-warns-against-black-friday-online-shopping-scams/article71735154.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Pampa road upgrade model to be replicated across Keralam",
+   "link": "https://www.thehindu.com/news/national/kerala/pampa-road-upgrade-model-to-be-replicated-across-keralam/article71734516.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The 4.5-km Pampa–Chalakkayam road was recently upgraded by the PWD in just 30 days, well ahead of the stipulated nine-month deadline"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Two projects announced to spread awareness, increase green cover across Karnataka",
+   "link": "https://www.thehindu.com/news/national/karnataka/two-projects-announced-to-spread-awareness-increase-green-cover-across-karnataka/article71734580.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "New Mayors, chairpersons assume office across Rayalaseema",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/new-mayors-chairpersons-assume-office-across-rayalaseema/article71734551.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Central University V-C receives Vishishta Shikshaka Samman",
+   "link": "https://www.thehindu.com/news/national/karnataka/central-university-v-c-receives-vishishta-shikshaka-samman/article71731794.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Battu Satyanarayana was a Distinguished Speaker at the ninth Annual Conclave organised by Federation for World Academics in New Delhi"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Floral models of Bhuvaneshwari, Gandaberunda among attractions at Cubbon Park flower show in Bengaluru",
+   "link": "https://www.thehindu.com/news/national/karnataka/floral-models-of-bhuvaneshwari-gandaberunda-among-attractions-at-cubbon-park-flower-show-in-bengaluru/article71734190.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The 13-day flower show will be organised from November 25 to December 7"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Keralam’s Sabarimala temple pins hopes on ‘Vrischikam 12’ rush to lift slow start",
+   "link": "https://www.thehindu.com/news/national/kerala/keralams-sabarimala-temple-pins-hopes-on-vrischikam-12-rush-to-lift-slow-start/article71734766.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Seeking to allay concerns over the dip in pilgrim numbers, official points out that the daily average during the first week of the pilgrimage season remains above 60,000"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Keralam urged to launch ‘Nutri-Tuber Programme’ during 15th Five-Year Plan period to promote tuber crops",
+   "link": "https://www.thehindu.com/news/national/kerala/keralam-urged-to-launch-nutri-tuber-programme-during-15th-five-year-plan-period-to-promote-tuber-crops/article71734244.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Agriculture Minister T. Siddique to inaugurate State Tuber Crops Day celebrations at ICAR-CTCRI on November 24"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "BJP stages show of strength with Maha Padayatra in Karimnagar",
+   "link": "https://www.thehindu.com/news/national/telangana/bjp-stages-show-of-strength-with-maha-padayatra-in-karimnagar/article71735026.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Telangana distributes ₹5.59 crore to 214 surrendered Maoists",
+   "link": "https://www.thehindu.com/news/national/telangana/telangana-distributes-559-crore-to-214-surrendered-maoists/article71735126.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "BRS to hold public meet in Nalgonda on Dec. 10",
+   "link": "https://www.thehindu.com/news/national/telangana/brs-to-hold-public-meet-in-nalgonda-on-dec-10/article71734995.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Jagan dragging TDP into family disputes, alleges Palla",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/jagan-dragging-tdp-into-family-disputes-alleges-palla/article71734670.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "TDP State president accuses YSRCP chief of disrespecting women and targeting Chief Minister Chandrababu Naidu over Sharmila’s wedding invitation; asks him to set his own house in order"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "Constitution Day celebrations to be held in Mysuru on November 26",
+   "link": "https://www.thehindu.com/news/national/karnataka/grand-constitution-day-to-be-held-in-mysuru-on-november-26/article71734866.ece",
+   "topic": "Polity",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "India’s improved performance in Asia Power Index a reality check for Congress: BJP",
+   "link": "https://www.thehindu.com/news/national/indias-improved-performance-in-asia-power-index-a-reality-check-for-congress-bjp/article71734373.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "India improved its score by 0.5, reaching 40.5, which marks the narrowest gap since 2018 between its score and China’s, which stands at 73.6, as per the Lowy Institute metric"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "The Hindu: National",
+   "title": "High ethanol readings: Suresh Gopi questions sampling process",
+   "link": "https://www.thehindu.com/news/national/kerala/high-ethanol-readings-suresh-gopi-questions-sampling-process/article71734972.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Gopi described the reported ethanol concentrations of 27 and 28 per cent as unacceptable."
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "श्री गुरु नानक देव जी के प्रकाश पर्व पर आयोजित शबद कीर्तन में प्रधानमंत्री के संबोधन मूल का पाठ",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340586",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "गरीबी उन्मूलन में कृषि व ग्रामीण विकास की भूमिका पर दोनों मंत्रालयों की संयुक्त कार्यशाला केंद्रीय मंत्री श्री शिवराज सिंह चौहान की अध्यक्षता में दिल्ली में संपन्न",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340538",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "गरीबी उन्मूलन में कृषि व ग्रामीण विकास की भूमिका पर दोनों मंत्रालयों की संयुक्त कार्यशाला केंद्रीय मंत्री श्री शिवराज सिंह चौहान की अध्यक्षता में दिल्ली में संपन्न",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340534",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "सुपरहीरो की नई कल्पना: अयान मुखर्जी और बेसिल जोसेफ के बीच सांस्कृतिक जड़ों वाली दुनिया रचने पर चर्चा",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340574",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "नेपाल के प्रधानमंत्री ने भारत की राष्ट्रपति से मुलाकात की",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340502",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "कोयला मंत्रालय ने खनिज अनुदान नियम, 1960 में संशोधन किया और मान्यता प्राप्त अन्वेषण एजेंसियों तथा खनन योजना तैयार करने वाली एजेंसियों की मान्यता अवधि तीन से पांच वर्ष तक बढ़ाई",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340536",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "कोयला मंत्रालय ने कोयला एवं लिग्नाइट खानों के लिए खनन योजना और खदान बंदी योजना तैयार करने संबंधी दिशानिर्देश, 2026 जारी किए",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340547",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "गुरु नानक देव जी के प्रकाश पर्व की पूर्व संध्या पर भारत की राष्ट्रपति की शुभकामनाएं",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340494",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "57वें आईएफएफआई में तमिल फिल्म 'कूडू' पर्यावरण संरक्षण और सामुदायिक जिम्मेदारी की पड़ताल करती है",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340565",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "मैनुअल सीवर सफाई से रोबोटिक सैनिटेशन संचालन तक",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340512",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "असमिया सिनेमा में मजबूत पुनरुत्थान दिखाई दे रहा है: IFFI 2026 में फिल्म निर्माता अंतरा जीजी चौधरी",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340542",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "सकल घरेलू उत्पाद (जी डी पी), उपभोक्ता मूल्य सूचकांक (सी पी आई) और औद्योगिक उत्पादन सूचकांक (आई आई पी) की नई श्रृंखला पर डेटा उपयोगकर्ता सम्मेलन 23 नवंबर 2026 को मुंबई में आयोजित किया गया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340562",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "दिल्ली हाट में आयोजित 15 दिवसीय शिल्प समागम मेला 2026 का समापन, कुल बिक्री ₹1.13 करोड़ से अधिक रही",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340558",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "नेपाल के प्रधानमंत्री की भारत की राजकीय यात्रा के दौरान संयुक्त प्रेस विज्ञप्ति",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340486",
    "topic": "General",
    "ai_status": "pending"
   },
