@@ -18,3 +18,9 @@ Use the current and archived UPSC indexes recorded in the file. For each paper, 
 
 The site links to UPSC PDFs rather than republishing complete paper documents. Check applicable reuse/copyright terms before reproducing question text. Any editorial explanation must be labelled as editorial, not an official UPSC answer key.
 
+
+## Optional-subject coverage
+
+The coverage map enumerates the 25 optional subjects and 23 literature choices in the UPSC Civil Services Examination 2026 notice. The report tracks each choice independently across Optional Paper I and Optional Paper II for every year in scope. This catalog is based on the current official notice and must be reviewed against the relevant year's notice when historical coverage is built.
+
+For optional-subject records, use the exact canonical name in `optional_subject` and use `Optional Paper I` or `Optional Paper II` in `paper`. This produces separate Anthropology and literature coverage rather than combining all optionals into one total.
