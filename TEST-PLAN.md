@@ -62,3 +62,15 @@ For each: create on A, sync, see on B; edit on B, see on A; delete on A, gone on
 - Revisit a completed course and retake the quiz; confirm completion remains and history appends a new attempt.
 - Sign in and confirm the existing learningHub state-sync mechanism receives these changes; verify cross-device persistence separately using the same account on two real devices.
 - Confirm only the latest 20 quiz attempts are retained per course to keep the synced state bounded.
+
+
+## Mentor-published courses in learner catalogue
+- Sign in as a learner; confirm approved mentor courses appear alongside the three starter courses in the main Courses & Learning catalogue.
+- Search for a mentor-published course; confirm search includes its title, category and summary.
+- Enrol in a published mentor course; confirm progress is stored under a stable course-specific key in the existing learningHub state.
+- Complete mentor course lessons; confirm progress percentage updates and the course becomes Completed after every lesson is complete.
+- Confirm mentor courses clearly state that lesson completion is the progress measure when no quiz exists; do not show an empty quiz form or invent a score.
+- Sign in as mentor/admin; confirm the staff-only published-course management panel is visible while learners and guests cannot see it.
+- Publish a course or approve a pending course; confirm the learner catalogue refreshes without requiring a full page reload.
+- Confirm the same-account progress sync path continues to use the existing tad:learningHubChange event and user_data payload. Verify cross-device sync separately on two real devices.
+- Current database has no published mentor courses and no mentor-role account, so the actual end-to-end mentor publication path requires a real mentor account and a genuinely approved course.
