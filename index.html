@@ -626,6 +626,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 </style>
   <link rel="stylesheet" href="assets/css/ai-desk.css">
   <link rel="stylesheet" href="assets/css/courses.css">
+  <link rel="stylesheet" href="assets/css/course-studio.css">
 </head>
 <body>
 
@@ -1365,7 +1366,15 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <div id="courseCatalog" aria-live="polite"></div>
     </div>
     <div id="courseDetail" hidden></div>
-    <p class="muted">This is the first LMS learning layer, not yet a teacher publishing portal or accredited certification system. Course completion records participation and quiz performance; it does not issue formal qualifications.</p>
+    <div class="card gold-top" id="communityCoursesPanel">
+      <h2>Published community courses</h2>
+      <p class="muted">Courses created by approved mentors appear here after the owner reviews them.</p>
+      <div id="publishedCourseList" aria-live="polite"><p class="muted">Sign in to view mentor-published courses.</p></div>
+    </div>
+    <section id="courseStudio" class="card gold-top" hidden aria-label="Course authoring and review">
+      <div id="courseStudioApp"></div>
+    </section>
+    <p class="muted">Mentor-created courses are reviewed before publication. Course completion records participation and quiz performance; this platform does not issue formal qualifications.</p>
   </section>
 
   <!-- 16. LEGAL -->
@@ -1818,6 +1827,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     if (loggedIn && userProfile.role === "learner") loadLearnerMentorFeedback().catch(() => {});
     refreshPushReminderUI().catch(() => {});
     if (canAccessMentorWorkspace() && supabase) loadMentorWorkspace();
+    window.DESK_AUTH_CONTEXT = { supabase, user: currentUser, profile: userProfile };
+    window.dispatchEvent(new CustomEvent("tad:authStateChanged", { detail: window.DESK_AUTH_CONTEXT }));
   }
 
   function openAuthModal(target = null) {
@@ -3291,6 +3302,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
 </script>
   <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
+  <script src="assets/js/course-studio.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
 </html>
