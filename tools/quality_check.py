@@ -9,6 +9,7 @@ import sys
 import tempfile
 from html.parser import HTMLParser
 from pathlib import Path
+from publish_generated import merge_json
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -146,6 +147,34 @@ def main() -> int:
         check("if (true)" not in source, "AI retrieval must not fetch current-affairs feeds for every question")
         check("buildGroundedContext" in source, "AI retrieval function is missing")
         check("consume_ai_daily_quota" in source, "AI daily quota enforcement is missing")
+
+    # The publisher must union source items across concurrent updates without
+    # discarding useful fields when one writer supplies an empty value.
+    current_remote = {
+        "updated": "2026-11-22T10:00:00+00:00",
+        "items": [{"link": "https://example.test/a", "title": "Old", "upsc_angle": "Existing angle"}],
+    }
+    current_local = {
+        "updated": "2026-11-22T12:00:00+00:00",
+        "items": [
+            {"link": "https://example.test/a", "title": "Updated", "upsc_angle": ""},
+            {"link": "https://example.test/b", "title": "New"},
+        ],
+    }
+    current_merged = merge_json(current_remote, current_local, "data/current-affairs.json")
+    check(len(current_merged["items"]) == 2, "Publisher must merge current-affairs items by source link")
+    retained = next((x for x in current_merged["items"] if x.get("link", "").endswith("/a")), {})
+    check(retained.get("title") == "Updated" and retained.get("upsc_angle") == "Existing angle",
+          "Publisher must prefer non-empty generated fields and preserve existing enrichment")
+
+    pib_merged = merge_json(
+        [{"l": "https://pib.test/1", "t": "One"}],
+        [{"l": "https://pib.test/1", "t": "One updated"}, {"l": "https://pib.test/2", "t": "Two"}],
+        "data/pib.json",
+    )
+    check(len(pib_merged) == 2, "Publisher must merge PIB items by official source link")
+    check(any(x.get("t") == "One updated" for x in pib_merged),
+          "Publisher must retain the latest non-empty PIB fields")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
