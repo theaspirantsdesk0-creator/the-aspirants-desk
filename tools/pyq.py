@@ -138,6 +138,47 @@ def build_coverage_report(records, coverage):
                 "completeness_claim": False,
             })
 
+    optional_subject_coverage = []
+    optional_subjects = coverage.get("optional_subjects", [])
+    optional_papers = ("Optional Paper I", "Optional Paper II")
+    for subject_row in optional_subjects:
+        subject_name = subject_row.get("name", "")
+        if not subject_name:
+            continue
+        paper_rows = []
+        missing_pairs = 0
+        for paper in optional_papers:
+            yearly = []
+            for year in years:
+                count = sum(
+                    1 for row in published
+                    if row.get("stage") == "Mains"
+                    and (row.get("optional_subject") or row.get("subject")) == subject_name
+                    and row.get("paper") == paper
+                    and row.get("year") == year
+                )
+                yearly.append({
+                    "year": year,
+                    "verified_question_records": count,
+                    "status": "records_present" if count else "no_verified_records",
+                })
+                if not count:
+                    missing_pairs += 1
+            paper_rows.append({
+                "paper": paper,
+                "years_with_verified_records": sum(bool(row["verified_question_records"]) for row in yearly),
+                "years_without_verified_records": sum(not row["verified_question_records"] for row in yearly),
+                "yearly_coverage": yearly,
+                "completeness_claim": False,
+            })
+        optional_subject_coverage.append({
+            "subject": subject_name,
+            "category": subject_row.get("category", "optional"),
+            "paper_targets": paper_rows,
+            "missing_year_paper_pairs": missing_pairs,
+            "completeness_claim": False,
+        })
+
     return {
         "scope": {"from_year": first_year, "to_year": last_year},
         "verified_published_question_records": len(published),
@@ -147,6 +188,11 @@ def build_coverage_report(records, coverage):
             for (stage, subject), count in sorted(by_optional.items())
         ],
         "paper_targets": paper_targets,
+        "optional_subject_coverage": optional_subject_coverage,
+        "optional_subjects_in_scope": len(optional_subject_coverage),
+        "optional_subject_missing_year_paper_pairs": sum(
+            item["missing_year_paper_pairs"] for item in optional_subject_coverage
+        ),
         "missing_year_paper_pairs": sum(item["years_without_verified_records"] for item in paper_targets),
         "note": (
             "A year with one or more records is not necessarily a complete paper. "
