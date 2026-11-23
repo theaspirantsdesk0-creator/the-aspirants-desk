@@ -1126,12 +1126,23 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <div id="pyqContainer" aria-live="polite"></div>
       <hr style="border:0;border-top:1px solid var(--line);margin:1.4rem 0">
       <h3>Official UPSC Previous-Year Questions</h3>
-      <p class="muted">Only questions matched against an official UPSC paper document appear here. Use the year and paper filters after verified records are added. Answers and explanations are shown only when separately supported.</p>
+      <p class="muted">This archive displays only question records verified against official UPSC documents. The question bank and the official PYQ archive remain separate. Answers and explanations appear only when independently supported.</p>
       <div class="form-grid" style="margin:.8rem 0">
-        <div><label for="officialPyqYear">Year</label><select id="officialPyqYear"><option value="ALL">All years</option></select></div>
+        <div><label for="officialPyqYear">Year</label><select id="officialPyqYear"><option value="ALL">All published years</option></select></div>
+        <div><label for="officialPyqStage">Stage</label><select id="officialPyqStage"><option value="ALL">All stages</option><option value="Prelims">Prelims</option><option value="Mains">Mains</option></select></div>
         <div><label for="officialPyqPaper">Paper</label><select id="officialPyqPaper"><option value="ALL">All papers</option></select></div>
+        <div><label for="officialPyqSubject">Optional subject</label><select id="officialPyqSubject"><option value="ALL">All subjects</option></select></div>
+        <div class="form-full"><label for="officialPyqSearch">Search verified questions</label><input id="officialPyqSearch" type="search" placeholder="Search within published official PYQs"></div>
       </div>
       <div id="officialPyqContainer" aria-live="polite"><p class="muted">Loading verified official PYQs…</p></div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:1.2rem 0">
+      <h3>PYQ coverage scope: 2001–2025</h3>
+      <p class="muted">The coverage tracker is a collection target, not a claim that every paper has already been imported. Historical paper links and availability must be checked year by year. Use UPSC's own current and archived paper indexes below; this site will mark a question as published only after source verification.</p>
+      <div class="btn-row" style="margin:.8rem 0">
+        <a class="btn secondary" href="https://www.upsc.gov.in/examinations/previous-question-papers" target="_blank" rel="noopener noreferrer">UPSC current question-paper archive</a>
+        <a class="btn secondary" href="https://www.upsc.gov.in/archived-exam-documents/question-papers/" target="_blank" rel="noopener noreferrer">UPSC archived question papers</a>
+      </div>
+      <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all optional subjects, including Anthropology and literature optionals. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
     </div>
   </section>
 
@@ -2323,15 +2334,19 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   async function loadOfficialPyqs() {
     const host = $("officialPyqContainer");
     const yearSelect = $("officialPyqYear");
+    const stageSelect = $("officialPyqStage");
     const paperSelect = $("officialPyqPaper");
-    if (!host || !yearSelect || !paperSelect) return;
+    const subjectSelect = $("officialPyqSubject");
+    const searchInput = $("officialPyqSearch");
+    if (!host || !yearSelect || !stageSelect || !paperSelect || !subjectSelect || !searchInput) return;
     try {
       const response = await fetch("data/pyq/questions.json", { cache: "no-store" });
       if (!response.ok) throw new Error("Official PYQ data unavailable (" + response.status + ")");
       const data = await response.json();
       OFFICIAL_PYQ_ROWS = Array.isArray(data) ? data.filter(row =>
         row && row.status === "published" && row.verification && row.verification.status === "verified" &&
-        row.source && row.source.document_url && row.question
+        row.source && typeof row.source.document_url === "string" &&
+        /^https:\/\//i.test(row.source.document_url) && row.question
       ) : [];
     } catch (error) {
       OFFICIAL_PYQ_ROWS = [];
@@ -2341,29 +2356,36 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
     const years = [...new Set(OFFICIAL_PYQ_ROWS.map(row => String(row.year)))].sort((a,b) => Number(b)-Number(a));
     const papers = [...new Set(OFFICIAL_PYQ_ROWS.map(row => row.paper).filter(Boolean))].sort();
-    const oldYear = yearSelect.value || "ALL";
-    const oldPaper = paperSelect.value || "ALL";
-    yearSelect.innerHTML = '<option value="ALL">All years</option>' + years.map(y => '<option value="' + esc(y) + '">' + esc(y) + '</option>').join("");
+    const subjects = [...new Set(OFFICIAL_PYQ_ROWS.map(row => row.optional_subject || row.subject).filter(Boolean))].sort();
+    const old = {year:yearSelect.value,stage:stageSelect.value,paper:paperSelect.value,subject:subjectSelect.value};
+    yearSelect.innerHTML = '<option value="ALL">All published years</option>' + years.map(y => '<option value="' + esc(y) + '">' + esc(y) + '</option>').join("");
     paperSelect.innerHTML = '<option value="ALL">All papers</option>' + papers.map(p => '<option value="' + esc(p) + '">' + esc(p) + '</option>').join("");
-    yearSelect.value = years.includes(oldYear) ? oldYear : "ALL";
-    paperSelect.value = papers.includes(oldPaper) ? oldPaper : "ALL";
+    subjectSelect.innerHTML = '<option value="ALL">All subjects</option>' + subjects.map(p => '<option value="' + esc(p) + '">' + esc(p) + '</option>').join("");
+    yearSelect.value = years.includes(old.year) ? old.year : "ALL";
+    stageSelect.value = ["Prelims","Mains"].includes(old.stage) ? old.stage : "ALL";
+    paperSelect.value = papers.includes(old.paper) ? old.paper : "ALL";
+    subjectSelect.value = subjects.includes(old.subject) ? old.subject : "ALL";
     const render = () => {
-      const year = yearSelect.value, paper = paperSelect.value;
+      const year = yearSelect.value, stage = stageSelect.value, paper = paperSelect.value, subject = subjectSelect.value;
+      const term = searchInput.value.trim().toLowerCase();
       const rows = OFFICIAL_PYQ_ROWS.filter(row =>
         (year === "ALL" || String(row.year) === year) &&
-        (paper === "ALL" || row.paper === paper)
+        (stage === "ALL" || String(row.stage).toLowerCase() === stage.toLowerCase()) &&
+        (paper === "ALL" || row.paper === paper) &&
+        (subject === "ALL" || (row.optional_subject || row.subject) === subject) &&
+        (!term || [row.question,row.paper,row.stage,row.optional_subject,row.subject].filter(Boolean).join(" ").toLowerCase().includes(term))
       );
-      host.innerHTML = '<p class="muted">' + rows.length + ' verified official PYQs available.</p>' +
+      host.innerHTML = '<p class="muted">' + rows.length + ' verified official PYQs match these filters.</p>' +
         (rows.length ? rows.map(row => {
           const options = Array.isArray(row.options) ? '<ol type="A">' + row.options.map(option => '<li>' + esc(option) + '</li>').join("") + '</ol>' : "";
           const answer = row.answer ? '<p><b>Answer:</b> ' + esc(row.answer) + '</p>' : "";
           const explanation = row.explanation ? '<p>' + esc(row.explanation) + '</p>' : "";
           return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row.year) + '</span><span class="pill">' + esc(row.stage) + '</span><span class="pill">' + esc(row.paper) + '</span><span class="pill">Q. ' + esc(row.question_number) + '</span></div><p><b>' + esc(row.question) + '</b></p>' + options + (answer || explanation ? '<details><summary>Show answer / explanation</summary>' + answer + explanation + '</details>' : '<p class="muted">No verified answer or explanation is attached to this record.</p>') + '<p><a href="' + esc(row.source.document_url) + '" target="_blank" rel="noopener noreferrer">View official source document</a></p></article>';
-        }).join("") : '<p class="muted">No verified official PYQs have been published yet. This is intentional: questions will appear only after their wording and paper details are checked against an official UPSC document. The existing practice bank remains available above.</p>');
+        }).join("") : '<p class="muted">No verified official PYQs match these filters yet. This is not a statement that UPSC did not conduct the examination: it means this site has not published a source-verified record. Use the official current and archived paper links above. The practice bank remains separate.</p>');
     };
     if (yearSelect.dataset.bound !== "1") {
-      yearSelect.addEventListener("change", render);
-      paperSelect.addEventListener("change", render);
+      [yearSelect,stageSelect,paperSelect,subjectSelect].forEach(el => el.addEventListener("change",render));
+      searchInput.addEventListener("input",render);
       yearSelect.dataset.bound = "1";
     }
     render();
