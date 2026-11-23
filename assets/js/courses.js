@@ -67,12 +67,13 @@
   let searchTerm = "";
   function progressFor(course, state) {
     const record = state[course.id] || {};
-    const completed = Array.isArray(record.completedLessons) ? record.completedLessons : [];
+    const rawCompleted = Array.isArray(record.completedLessons) ? record.completedLessons : [];
     const lessonTotal = course.lessons.length;
+    const completed = [...new Set(rawCompleted.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal))];
     const quizDone = Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory) && record.quizHistory.length > 0);
     const total = lessonTotal + 1;
-    const done = completed.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal).length + (quizDone ? 1 : 0);
-    const completedCount = completed.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal).length;
+    const done = completed.length + (quizDone ? 1 : 0);
+    const completedCount = completed.length;
     const isComplete = completedCount === lessonTotal && quizDone;
     return {record, completed, done, total, percent:Math.round(done / total * 100), isComplete};
   }
@@ -121,7 +122,8 @@
       const total = Number.isFinite(attempt.total) ? attempt.total : course.quiz.length;
       return '<article class="tad-assessment-row"><div><b>Attempt '+(history.length-index)+'</b><span>'+esc(date)+'</span></div><strong>'+score+' / '+total+'</strong></article>';
     }).join("")+'</div>' : '<p class="muted">Your quiz attempts will appear here after your first submission.</p>';
-    const completionMarkup = p.isComplete ? '<p class="tad-course-complete" role="status">Course completed'+(p.record.completedAt ? ' on '+esc(new Date(p.record.completedAt).toLocaleDateString()) : '')+'. You can revisit lessons and retake the quiz at any time.</p>' : '<p class="muted">Complete every lesson and submit the knowledge check to finish this course.</p>';
+    const completedDate = p.record.completedAt && !Number.isNaN(new Date(p.record.completedAt).getTime()) ? new Date(p.record.completedAt).toLocaleDateString() : "";
+    const completionMarkup = p.isComplete ? '<p class="tad-course-complete" role="status">Course completed'+(completedDate ? ' on '+esc(completedDate) : '')+'. You can revisit lessons and retake the quiz at any time.</p>' : '<p class="muted">Complete every lesson and submit the knowledge check to finish this course.</p>';
     detail.innerHTML = '<div class="card gold-top"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h2>'+esc(course.title)+'</h2><p class="muted">'+esc(course.summary)+'</p><h3>What you will learn</h3><ul>'+course.outcomes.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="tad-course-progress"><div><b>'+p.percent+'% complete</b><span>'+p.done+' / '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div>'+(enrolled?'':'<button type="button" class="btn primary" data-enrol-course>Enrol in this course</button>')+'</div><div class="card"><h3>Lessons</h3><div class="tad-lessons">'+lessonMarkup+'</div></div><div class="card"><h3>Knowledge check</h3><p class="muted">Answer all questions. Your best score is saved to your learning progress.</p><form id="tadCourseQuiz">'+quiz+'<button type="submit" class="btn primary">Submit quiz</button><p id="tadQuizFeedback" class="tad-quiz-feedback" aria-live="polite"></p></form>'+(best!==null?'<p class="muted">Best score: '+best+' / '+course.quiz.length+'</p>':'')+historyMarkup+completionMarkup+'</div><button type="button" class="btn" data-back-catalog>← Back to course catalogue</button>';
   }
   document.addEventListener("input", event => {
