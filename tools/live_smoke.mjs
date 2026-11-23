@@ -94,7 +94,13 @@ try {
   if (await courseStudio.count() !== 1 || !(await courseStudio.isHidden())) {
     throw new Error('Course Studio must remain hidden from guest visitors');
   }
-  if (await publishedCourses.count() !== 1) throw new Error('Published community course catalogue is missing');
+  if (await publishedCourses.count() !== 1) throw new Error('Published course management container is missing');
+  const communityPanel = page.locator('#communityCoursesPanel');
+  if (await communityPanel.count() !== 1 || !(await communityPanel.isHidden())) {
+    throw new Error('Staff-only published course management panel must remain hidden from guests');
+  }
+  const courseScript = page.locator('script[src="assets/js/courses.js"]');
+  if (await courseScript.count() !== 1) throw new Error('Learner course integration script is missing');
   const courseStudioCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('course-studio.css')));
   if (!courseStudioCss) throw new Error('Course Studio stylesheet was not loaded');
   const courseSummary = page.locator('#courseLearningSummary');
