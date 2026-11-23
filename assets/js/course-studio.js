@@ -157,8 +157,11 @@
     }
     const { data: published, error: publishedError } = await supabase.from("courses")
       .select(columns).eq("status", "published").order("created_at", { ascending: false });
-    if (publishedError) message("courseStudioFeedback", publishedError.message, "error");
-    else renderPublished(published || []);
+    if (publishedError) {
+      const host = $("publishedCourseList");
+      if (host) host.innerHTML = '<p class="muted">Published courses could not be loaded: ' + esc(publishedError.message) + '</p>';
+      message("courseStudioFeedback", publishedError.message, "error");
+    } else renderPublished(published || []);
 
     const role = profile && profile.role;
     const allowed = role === "admin" || role === "mentor";
@@ -216,14 +219,16 @@
         editingId = courseId;
       }
       if (intent === "review") {
-        const { error } = await supabase.from("courses").update({ status: "pending_review" }).eq("id", courseId);
+        const { data, error } = await supabase.from("courses").update({ status: "pending_review" }).eq("id", courseId).select("id").single();
         if (error) throw error;
+        if (!data) throw new Error("The course could not be submitted for review.");
         message("courseStudioFeedback", "Course submitted. It will appear in the learner catalogue only after owner approval.", "success");
       } else if (intent === "publish") {
-        const { error } = await supabase.from("courses").update({
+        const { data, error } = await supabase.from("courses").update({
           status: "published", review_note: null, reviewed_by: user.id, reviewed_at: new Date().toISOString()
-        }).eq("id", courseId);
+        }).eq("id", courseId).select("id").single();
         if (error) throw error;
+        if (!data) throw new Error("The course could not be published.");
         message("courseStudioFeedback", "Course published successfully.", "success");
       } else {
         message("courseStudioFeedback", "Draft saved.", "success");
@@ -269,11 +274,12 @@
     }
     busy = true;
     try {
-      const { error } = await supabase.from("courses").update({
+      const { data, error } = await supabase.from("courses").update({
         status: decision, review_note: decision === "rejected" ? note : null,
         reviewed_by: user.id, reviewed_at: new Date().toISOString(), updated_at: new Date().toISOString()
-      }).eq("id", id);
+      }).eq("id", id).select("id").single();
       if (error) throw error;
+      if (!data) throw new Error("The course was not available for this review action.");
       message("courseStudioFeedback", decision === "published" ? "Course approved and published." : "Changes requested. The mentor can revise and resubmit.", "success");
       await refresh();
     } catch (error) {
