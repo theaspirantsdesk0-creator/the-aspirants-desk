@@ -46,8 +46,12 @@ try {
   if (nonPolityCards) throw new Error('Practice-bank subject filter displayed questions from another subject');
   await pyqSubject.selectOption('ALL');
   await pyqDifficulty.selectOption('easy');
-  const easyCountText = await page.locator('#pyqContainer').innerText();
-  if (!easyCountText.includes('matching practice questions')) throw new Error('Practice-bank difficulty filter did not refresh results');
+  const easyCards = await page.locator('#pyqContainer article.card').count();
+  if (easyCards < 1) throw new Error('Practice-bank easy filter returned no expected questions');
+  const nonEasyCards = await page.locator('#pyqContainer article.card').evaluateAll(cards =>
+    cards.filter(card => ![...card.querySelectorAll('.pill')].some(pill => pill.textContent.trim() === 'easy')).length
+  );
+  if (nonEasyCards) throw new Error('Practice-bank difficulty filter displayed a non-easy question');
   await pyqDifficulty.selectOption('ALL');
 
   const bodyText = await page.locator('body').innerText();
