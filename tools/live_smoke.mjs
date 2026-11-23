@@ -63,6 +63,24 @@ try {
     throw new Error('The login-protected PYQ view must not be visible to a guest');
   }
 
+  // Deep links must not bypass the owner/mentor role gate.
+  await page.goto(base + '#mentor', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(500);
+  if (!(await page.locator('#authModal').isVisible())) {
+    throw new Error('A guest deep-linking to Mentor Workspace must be asked to sign in');
+  }
+  if (await page.locator('#mentor').isVisible()) {
+    throw new Error('A guest must not see Mentor Workspace after opening its deep link');
+  }
+  await page.goto(base + '#admin', { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(500);
+  if (!(await page.locator('#authModal').isVisible())) {
+    throw new Error('A guest deep-linking to Owner Admin must be asked to sign in');
+  }
+  if (await page.locator('#admin').isVisible()) {
+    throw new Error('A guest must not see Owner Admin after opening its deep link');
+  }
+
   const bodyText = await page.locator('body').innerText();
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
   if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | '));
