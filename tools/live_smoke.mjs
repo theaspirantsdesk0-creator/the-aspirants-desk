@@ -163,8 +163,13 @@ try {
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');
   const pyqDifficulty = page.locator('#pyqDifficulty');
+  const optionalCoverageSubject = page.locator('#optionalPyqCoverageSubject');
+  const optionalCoverageGrid = page.locator('#optionalPyqCoverageGrid');
   if (await pyqSearch.count() !== 1 || await pyqSubject.count() !== 1 || await pyqDifficulty.count() !== 1) {
     throw new Error('Practice-bank search, subject, or difficulty filter markup is missing');
+  }
+  if (await optionalCoverageSubject.count() !== 1 || await optionalCoverageGrid.count() !== 1) {
+    throw new Error('All-subject optional PYQ coverage controls are missing from the published page');
   }
   if (await page.locator('#pyq').isVisible()) {
     throw new Error('The login-protected PYQ view must not be visible to a guest');
