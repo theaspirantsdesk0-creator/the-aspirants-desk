@@ -768,6 +768,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           <input id="pushReminderTime" type="time" value="19:00" style="max-width:12rem;margin:.25rem 0 .7rem">
           <div style="display:flex;gap:.55rem;flex-wrap:wrap">
             <button type="button" class="btn primary" id="enablePushBtn">Enable daily reminder</button>
+            <button type="button" class="btn" id="testPushBtn" hidden>Send test notification</button>
             <button type="button" class="btn" id="disablePushBtn" hidden>Turn off on this device</button>
           </div>
         </div>
@@ -1467,10 +1468,12 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   async function refreshPushReminderUI() {
     const status = $("pushReminderStatus");
     const enable = $("enablePushBtn");
+    const test = $("testPushBtn");
     const disable = $("disablePushBtn");
     const timeInput = $("pushReminderTime");
-    if (!status || !enable || !disable || !timeInput) return;
+    if (!status || !enable || !test || !disable || !timeInput) return;
 
+    test.hidden = true;
     disable.hidden = true;
     enable.disabled = false;
     timeInput.disabled = false;
@@ -1515,6 +1518,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         timeInput.value = String(data.reminder_time || "19:00").slice(0, 5);
         status.textContent = "A daily reminder is enabled on this device. It is skipped when you have already logged study activity that day.";
         enable.textContent = "Save reminder time";
+        test.hidden = false;
         disable.hidden = false;
       } else {
         status.textContent = "This browser has a push subscription, but no active reminder is saved for your account. Enable it to finish setup.";
@@ -1593,6 +1597,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     await subscription.unsubscribe();
     toast("Daily reminders are turned off on this device.");
     await refreshPushReminderUI();
+  }
+
+  async function testPushReminder() {
+    if (!currentUser || !supabase) throw new Error("Sign in before testing this device's reminder.");
+    const { data, error } = await supabase.functions.invoke("send-test-study-notification", { body: {} });
+    if (error) throw error;
+    if (!data || Number(data.sent) < 1) {
+      throw new Error(data && data.error ? data.error : "The server did not confirm a test notification.");
+    }
+    $("pushReminderStatus").textContent = "Test notification sent. Check this device's notification tray.";
+    toast("Test notification sent to this device.");
   }
 
   function isOwner() {
@@ -1754,6 +1769,20 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     } catch (error) {
       $("pushReminderStatus").textContent = error.message || "Could not disable reminders.";
       toast("Could not turn off reminders: " + (error.message || "Unknown error"));
+    } finally {
+      button.disabled = false;
+      await refreshPushReminderUI();
+    }
+  });
+
+  $("testPushBtn").addEventListener("click", async () => {
+    const button = $("testPushBtn");
+    button.disabled = true;
+    try {
+      await testPushReminder();
+    } catch (error) {
+      $("pushReminderStatus").textContent = error.message || "Could not send a test notification.";
+      toast("Test notification failed: " + (error.message || "Unknown error"));
     } finally {
       button.disabled = false;
       await refreshPushReminderUI();
