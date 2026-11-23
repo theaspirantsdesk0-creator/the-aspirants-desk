@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T13:10:38+00:00",
+ "updated": "2026-11-23T13:12:30+00:00",
  "items": [
   {
    "date": "2026-11-23",
@@ -667,6 +667,22 @@
    "source": "PIB: Regional press releases",
    "title": "प्रधानमंत्री ने तमिलनाडु के तिरुचिरापल्ली में हुई दुर्घटना में लोगों की मृत्यु पर शोक व्यक्त किया",
    "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340155",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "भारत की राष्ट्रपति 24 से 25 नवंबर तक ओडिशा का दौरा करेंगी",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340480",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-23",
+   "source": "PIB: Regional press releases",
+   "title": "सिनेमा में गोवा का भविष्य: इफ्फी 2026 में, गोवा की सिनेमाई संभावनाओं और इसकी विशिष्ट प्राकृतिक एवं सांस्कृतिक विरासत पर चर्चा",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2340477",
    "topic": "General",
    "ai_status": "pending"
   },
