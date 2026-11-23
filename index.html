@@ -1148,6 +1148,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <a class="btn secondary" href="https://www.upsc.gov.in/archived-exam-documents/question-papers/" target="_blank" rel="noopener noreferrer">UPSC archived question papers</a>
       </div>
       <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all 25 optional subjects and 23 literature choices. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
+      <h3>Verified official paper documents</h3>
+      <p class="muted">These are individually checked UPSC-hosted PDFs. This list grows only when exact paper metadata and source links are confirmed.</p>
+      <div id="verifiedPyqDocuments" class="grid-2" aria-live="polite"><p class="muted">Loading verified UPSC documents…</p></div>
       <div class="card" style="margin-top:1rem">
         <h3>All optional subjects — Paper I &amp; Paper II</h3>
         <p class="muted">Choose any subject or literature option to inspect its two papers and year-by-year publication status. A missing record means this site has not yet published a verified question for that year; it does not mean UPSC did not conduct the paper.</p>
@@ -2606,6 +2609,31 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         coverageSelect.dataset.bound = "1";
       }
       renderCoverage();
+    }
+
+    const verifiedDocsHost = $("verifiedPyqDocuments");
+    if (verifiedDocsHost) {
+      try {
+        const docsResponse = await fetch("data/pyq/verified-documents.json", { cache: "no-store" });
+        if (!docsResponse.ok) throw new Error("Verified document list unavailable (" + docsResponse.status + ")");
+        const docsData = await docsResponse.json();
+        const docs = Array.isArray(docsData.documents) ? docsData.documents.filter(doc =>
+          doc && doc.status === "verified" && doc.verification &&
+          doc.verification.verified_at && doc.title &&
+          typeof doc.document_url === "string" &&
+          doc.document_url.startsWith("https://") && doc.document_url.includes("upsc.gov.in/")
+        ) : [];
+        verifiedDocsHost.innerHTML = docs.length ? docs.map(doc =>
+          '<article class="card"><div class="btn-row"><span class="pill ok">' + esc(doc.year) + '</span>' +
+          '<span class="pill">' + esc(doc.category) + '</span><span class="pill">' + esc(doc.paper) + '</span></div>' +
+          '<h4>' + esc(doc.title) + '</h4><p class="muted">Verified ' + esc(doc.verification.verified_at) +
+          ' · ' + esc(doc.source || "UPSC") + '</p><a href="' + esc(doc.document_url) +
+          '" target="_blank" rel="noopener noreferrer">Open official UPSC PDF</a></article>'
+        ).join("") : '<p class="muted">No individually verified paper links are published yet.</p>';
+      } catch (error) {
+        verifiedDocsHost.innerHTML = '<p class="muted">The verified document list is temporarily unavailable. Use the official UPSC indexes above.</p>';
+        console.warn("Verified UPSC document list failed:", error);
+      }
     }
   }
 
