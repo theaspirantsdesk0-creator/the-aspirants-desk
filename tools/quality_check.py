@@ -198,6 +198,30 @@ def main() -> int:
 
     # Official PYQ coverage reports counts only; zero records must never be labelled complete.
     coverage_data = json.loads((ROOT / "data/pyq/coverage.json").read_text(encoding="utf-8"))
+    # Paper-level inventory: all target years and optional subjects must have an
+    # explicit status. A candidate link is never treated as verified by default.
+    document_inventory = json.loads((ROOT / "data/pyq/documents.json").read_text(encoding="utf-8"))
+    inventory_rows = document_inventory.get("documents", [])
+    expected_inventory_count = 25 * (7 + 2 * len(coverage_data.get("optional_subjects", [])))
+    inventory_ids = [row.get("id") for row in inventory_rows if isinstance(row, dict)]
+    check(len(inventory_rows) == expected_inventory_count,
+          "Official PYQ document inventory must cover 2001-2025 for seven core papers and both papers for every optional subject")
+    check(len(inventory_ids) == len(set(inventory_ids)),
+          "Official PYQ document inventory IDs must be unique")
+    check(all(row.get("status") in {"not_checked", "source_found", "verified", "published"}
+              for row in inventory_rows if isinstance(row, dict)),
+          "Every PYQ inventory row must use a supported verification status")
+    check(all(row.get("document_url") is None or
+              (isinstance(row.get("document_url"), str) and row["document_url"].startswith("https://")
+               and row.get("status") in {"verified", "published"})
+              for row in inventory_rows if isinstance(row, dict)),
+          "Direct official PDF URLs may only appear on verified or published inventory rows")
+    check(all(row.get("document_url") and row.get("document_title")
+              and row.get("verified_at") and row.get("verification_method")
+              for row in inventory_rows if isinstance(row, dict) and row.get("status") in {"verified", "published"}),
+          "Verified and published inventory rows must include the document URL, title, date, and verification method")
+    check(len(document_inventory.get("official_indexes", [])) >= 2,
+          "PYQ document inventory must retain both current and archived official UPSC indexes")
     report = build_coverage_report(pyq_records, coverage_data)
     check(report["verified_published_question_records"] == len(pyq_records),
           "PYQ coverage report must count only verified published records")
