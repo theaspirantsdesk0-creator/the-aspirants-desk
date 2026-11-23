@@ -10,9 +10,23 @@ page.on('requestfailed', request => {
   if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
 });
 try {
-  const response = await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
-  if (!response || !response.ok()) throw new Error('Homepage returned HTTP ' + (response?.status() ?? 'no response'));
-  await page.waitForTimeout(7000);
+  let response = null;
+  let publishedVersionReady = false;
+  for (let attempt = 0; attempt < 20; attempt++) {
+    response = await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    if (response && response.ok()) {
+      await page.waitForTimeout(1200);
+      const hasMentorWorkspace = await page.locator('#mentor').count() === 1;
+      const hasPracticeBank = await page.locator('#pyqSearch').count() === 1;
+      if (hasMentorWorkspace && hasPracticeBank) {
+        publishedVersionReady = true;
+        break;
+      }
+    }
+    await page.waitForTimeout(15000);
+  }
+  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank build did not appear on Pages within five minutes; last HTTP status=' + (response?.status() ?? 'no response'));
+  await page.waitForTimeout(4000);
   const mentorNav = page.locator('a[data-nav="mentor"]');
   const mentorSection = page.locator('#mentor');
   if (await mentorNav.count() !== 1 || !(await mentorNav.isHidden())) {
