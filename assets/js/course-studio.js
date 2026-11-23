@@ -202,10 +202,10 @@
       if (!Number.isInteger(duration) || duration < 5 || duration > 600) throw new Error("Duration must be between 5 and 600 minutes.");
       if (!outcomes.length || outcomes.length > 12) throw new Error("Add between 1 and 12 learning outcomes.");
       if (!lessons.length || lessons.length > 30 || lessons.some(x => !x.title || !x.body.length || !x.task)) throw new Error("Each lesson needs a title, content and practice task. Add 1 to 30 lessons.");
-      const payload = { title, summary, category, level, duration_minutes: duration, outcomes, lessons, updated_at: new Date().toISOString() };
+      const payload = { title, summary, category, level, duration_minutes: duration, outcomes, lessons };
       let courseId = editingId;
       if (editingId) {
-        const { data, error } = await supabase.from("courses").update(payload).eq("id", editingId).select("id").single();
+        const { data, error } = await supabase.from("courses").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", editingId).select("id").single();
         if (error) throw error;
         if (!data) throw new Error("The course could not be updated. Check your role and course status.");
         courseId = data.id;
