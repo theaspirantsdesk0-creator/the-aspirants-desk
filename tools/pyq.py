@@ -3,6 +3,7 @@
 from __future__ import annotations
 import json
 import sys
+from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -60,20 +61,68 @@ def validate_records(records, source_manifest):
     return errors
 
 
+def build_coverage_report(records, coverage):
+    """Count published verified records without treating partial coverage as complete."""
+    published = [
+        row for row in records
+        if isinstance(row, dict)
+        and row.get("status") == "published"
+        and isinstance(row.get("verification"), dict)
+        and row["verification"].get("status") == "verified"
+    ]
+    by_year = Counter(str(row.get("year")) for row in published)
+    by_paper = Counter((row.get("stage", ""), row.get("paper", "")) for row in published)
+    by_subject = Counter((row.get("stage", ""), row.get("optional_subject") or row.get("subject") or "unspecified") for row in published)
+    scope = coverage.get("scope", {})
+    targets = []
+    for group in coverage.get("targets", []):
+        stage = group.get("stage", "")
+        for paper in group.get("papers", []):
+            count = by_paper[(stage, paper)]
+            targets.append({
+                "stage": stage,
+                "paper": paper,
+                "verified_question_records": count,
+                "status": "records_present" if count else "no_verified_records",
+                "completeness_claim": False,
+            })
+    return {
+        "scope": {"from_year": scope.get("from_year"), "to_year": scope.get("to_year")},
+        "verified_published_question_records": len(published),
+        "records_by_year": dict(sorted(by_year.items())),
+        "records_by_optional_subject": [
+            {"stage": stage, "subject": subject, "count": count}
+            for (stage, subject), count in sorted(by_subject.items())
+        ],
+        "paper_targets": targets,
+        "note": "Record counts are not paper-completeness claims. A paper is complete only after a separate page-by-page review and explicit sign-off.",
+    }
+
+
 def main():
     try:
         records = json.loads(DATA.read_text(encoding="utf-8"))
         manifest = json.loads(SOURCES.read_text(encoding="utf-8"))
+        coverage = json.loads((ROOT / "data" / "pyq" / "coverage.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        print(f"ERROR: cannot read PYQ data or source manifest: {exc}")
+        print(f"ERROR: cannot read PYQ data, source manifest, or coverage map: {exc}")
         return 1
     errors = validate_records(records, manifest)
+    if "--report" in sys.argv:
+        print(json.dumps(build_coverage_report(records, coverage), indent=2, ensure_ascii=False))
+        if errors:
+            print("VALIDATION ERRORS:")
+            for error in errors:
+                print("ERROR", error)
+            return 1
+        return 0
     print(f"Official PYQ records checked: {len(records) if isinstance(records, list) else 0}")
     if errors:
         for error in errors:
             print("ERROR", error)
         return 1
     print("PASS: all published PYQs have registered official-source and verification metadata")
+    print("Run: python tools/pyq.py --report  (counts records; does not claim paper completeness)")
     return 0
 
 
