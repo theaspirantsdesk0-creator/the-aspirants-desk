@@ -86,6 +86,18 @@ try {
   if (!css) throw new Error('AI Desk stylesheet was not loaded');
   // The PYQ bank is login-protected. Confirm its controls exist in the document,
   // but do not attempt to interact with a hidden protected view as a guest.
+  // Course authoring must be present but remain unavailable to guest visitors.
+  const courseNav = page.locator('a[data-nav="course-catalog"]');
+  const courseStudio = page.locator('#courseStudio');
+  const publishedCourses = page.locator('#publishedCourseList');
+  if (await courseNav.count() !== 1) throw new Error('Courses & Learning navigation is missing');
+  if (await courseStudio.count() !== 1 || !(await courseStudio.isHidden())) {
+    throw new Error('Course Studio must remain hidden from guest visitors');
+  }
+  if (await publishedCourses.count() !== 1) throw new Error('Published community course catalogue is missing');
+  const courseStudioCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('course-studio.css')));
+  if (!courseStudioCss) throw new Error('Course Studio stylesheet was not loaded');
+
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');
   const pyqDifficulty = page.locator('#pyqDifficulty');
