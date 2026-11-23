@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "policy": "Only exact official UPSC PDF URLs with matching exam year, stage, subject, and paper metadata belong here. This small list is not a complete PYQ bank.",
+  "documents": [
+    {
+      "id": "cse-mains-2024-anthropology-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2024,
+      "stage": "Mains",
+      "subject": "Anthropology",
+      "paper": "Paper II",
+      "category": "Optional",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2024 — Anthropology Paper II",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/anthropology-paper-ii-1-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC-hosted PDF result; document heading and paper label identify 2024 Anthropology Paper II."
+      }
+    },
+    {
+      "id": "cse-mains-2025-psir-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "Political Science and International Relations",
+      "paper": "Paper I",
+      "category": "Optional",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — Political Science and International Relations Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/political-science-and-international-relation-paper-i-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC-hosted PDF result; document heading and paper code identify 2025 PSIR Paper I."
+      }
+    },
+    {
+      "id": "cse-mains-2025-kashmiri-literature-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2025,
+      "stage": "Mains",
+      "subject": "Kashmiri",
+      "paper": "Paper I",
+      "category": "Literature",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2025 — Kashmiri Literature Paper I",
+      "document_url": "https://www.upsc.gov.in/uploads/2026/07/kashmiri-literature-paper-i-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC-hosted PDF result; document heading and paper code identify 2025 Kashmiri Literature Paper I."
+      }
+    }
+  ]
+}
