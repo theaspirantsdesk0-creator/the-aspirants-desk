@@ -102,8 +102,12 @@ def main(paths):
                 print("No generated content changes to publish.")
                 return
 
+            git("config", "user.name", "desk-bot")
+            git("config", "user.email", "desk-bot@users.noreply.github.com")
             message = "Publish merged PIB update" if all("pib" in p.lower() for p in paths) else "Publish merged daily content update"
-            git("commit", "-m", message)
+            commit = git("commit", "-m", message, check=False)
+            if commit.returncode != 0:
+                raise SystemExit(commit.stdout)
             pushed = git("push", "origin", "HEAD:main", check=False)
             if pushed.returncode == 0:
                 print(f"Published {', '.join(paths)} on attempt {attempt}.")
