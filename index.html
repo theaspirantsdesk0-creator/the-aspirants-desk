@@ -1387,6 +1387,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     "planner": "Adaptive Study Planner",
     "tracker": "My Prep Tracker & Mistake Log",
     "admin": "Owner Admin Console",
+    "mentor": "Mentor Workspace",
     "legal": "Terms, Privacy & Disclaimer",
     "directory": "Exam & State Directory",
     "library": "Study Library & A–Z Index",
@@ -1566,8 +1567,15 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   }
 
   function isOwner() {
-    if (!currentUser) return false;
-    return userProfile.role === "admin" || (currentUser.email || "").toLowerCase() === OWNER_EMAIL;
+    return Boolean(currentUser && userProfile.role === "admin");
+  }
+
+  function isMentor() {
+    return Boolean(currentUser && userProfile.role === "mentor");
+  }
+
+  function canAccessMentorWorkspace() {
+    return isOwner() || isMentor();
   }
 
   async function saveUserState() {
@@ -1612,7 +1620,11 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
     renderAllUserModules();
     updateAuthUI();
-    if (isOwner()) loadAdminLearners();
+    if (isOwner()) {
+      loadAdminLearners();
+      loadAdminMentorManagement();
+    }
+    if (canAccessMentorWorkspace()) loadMentorWorkspace();
   }
 
   function updateAuthUI() {
@@ -1633,7 +1645,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
     document.querySelectorAll(".lock-tag").forEach(el => el.hidden = loggedIn);
     document.querySelectorAll(".owner-only").forEach(el => el.hidden = !isOwner());
+    document.querySelectorAll(".mentor-only").forEach(el => el.hidden = !canAccessMentorWorkspace());
     refreshPushReminderUI().catch(() => {});
+    if (canAccessMentorWorkspace() && supabase) loadMentorWorkspace();
   }
 
   function openAuthModal(target = null) {
@@ -1649,6 +1663,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       return;
     }
     if (clean === "admin" && !isOwner()) {
+      navigateTo("home");
+      return;
+    }
+    if (clean === "mentor" && !canAccessMentorWorkspace()) {
       navigateTo("home");
       return;
     }
@@ -2433,7 +2451,185 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <td>${Number(s.hours || 0).toFixed(1)} hrs (${s.syllabus_pct || 0}%)</td>
       </tr>`;
     }).join("") || "<tr><td colspan='5'>No learners registered yet.</td></tr>";
+    loadAdminMentorManagement();
   }
+
+  // Mentor network: all row access is additionally enforced by Supabase RLS.
+  let mentorAssignmentsCache = [];
+
+  async function loadMentorWorkspace() {
+    if (!supabase || !canAccessMentorWorkspace()) return;
+    const host = $("mentorAssignmentList");
+    if (host) host.innerHTML = '<p class="muted">Loading your mentoring assignments…</p>';
+    const { data: assignments, error } = await supabase
+      .from("mentor_assignments").select("*").order("created_at", { ascending: false });
+    if (error) {
+      if (host) host.innerHTML = '<p class="muted">Could not load assignments: ' + esc(error.message) + '</p>';
+      return;
+    }
+    mentorAssignmentsCache = assignments || [];
+    const learnerIds = [...new Set(mentorAssignmentsCache.map(a => a.learner_id))];
+    let learners = [];
+    if (learnerIds.length) {
+      const result = await supabase.from("profiles").select("id,display_name").in("id", learnerIds);
+      if (result.error) {
+        if (host) host.innerHTML = '<p class="muted">Assignments loaded, but learner names could not be retrieved.</p>';
+        return;
+      }
+      learners = result.data || [];
+    }
+    const learnerMap = Object.fromEntries(learners.map(p => [p.id, p.display_name || "Learner"]));
+    const active = mentorAssignmentsCache.filter(a => a.status === "active").length;
+    const completed = mentorAssignmentsCache.filter(a => a.status === "completed").length;
+    $("mentorActiveCount").textContent = String(active);
+    $("mentorLearnerCount").textContent = String(new Set(mentorAssignmentsCache.map(a => a.learner_id)).size);
+    $("mentorCompletedCount").textContent = String(completed);
+
+    if (host) host.innerHTML = mentorAssignmentsCache.length ? mentorAssignmentsCache.map(a => {
+      const label = learnerMap[a.learner_id] || "Assigned learner";
+      return '<article class="mentor-assignment"><div class="mentor-assignment-top"><div><span class="pill">' + esc(a.subject) + '</span><h4>' + esc(label) + '</h4></div><span class="pill ' + (a.status === "completed" ? "ok" : "") + '">' + esc(a.status) + '</span></div><p>' + esc(a.goal) + '</p><p><b>Target date:</b> ' + esc(a.due_date || "Not set") + '</p><button type="button" class="btn primary" data-review-assignment="' + esc(a.id) + '">Write review</button></article>';
+    }).join("") : '<div class="mentor-assignment"><h4>No assignments yet</h4><p>Your assigned learners and review tasks will appear here once the owner allocates them.</p></div>';
+
+    const selector = $("mentorReviewAssignment");
+    if (selector) {
+      const previous = selector.value;
+      selector.innerHTML = '<option value="">Select an assignment</option>' + mentorAssignmentsCache
+        .filter(a => a.status !== "completed")
+        .map(a => '<option value="' + esc(a.id) + '">' + esc(learnerMap[a.learner_id] || "Learner") + ' · ' + esc(a.subject) + '</option>').join("");
+      if (mentorAssignmentsCache.some(a => a.id === previous)) selector.value = previous;
+    }
+
+    const ids = mentorAssignmentsCache.map(a => a.id);
+    const reviewsHost = $("mentorRecentReviews");
+    if (!ids.length) {
+      if (reviewsHost) reviewsHost.innerHTML = '<p class="muted">No reviews yet.</p>';
+      return;
+    }
+    const reviewResult = await supabase.from("mentor_reviews").select("*").in("assignment_id", ids).order("created_at", { ascending: false }).limit(20);
+    if (reviewResult.error) {
+      if (reviewsHost) reviewsHost.innerHTML = '<p class="muted">Could not load recent feedback: ' + esc(reviewResult.error.message) + '</p>';
+      return;
+    }
+    if (reviewsHost) reviewsHost.innerHTML = (reviewResult.data || []).length ? reviewResult.data.map(r => {
+      const a = mentorAssignmentsCache.find(item => item.id === r.assignment_id);
+      return '<article class="mentor-review-item"><div class="mentor-assignment-top"><b>' + esc(learnerMap[r.learner_id] || "Learner") + ' · ' + esc(a ? a.subject : "Mentoring review") + '</b><span class="mentor-status">' + esc(r.visibility) + '</span></div><p>' + esc(r.feedback) + '</p><small class="muted">' + esc(r.rating ? r.rating + '/5 rating' : 'No rating') + ' · ' + esc(new Date(r.created_at).toLocaleDateString()) + '</small></article>';
+    }).join("") : '<p class="muted">No reviews have been saved yet.</p>';
+
+    document.querySelectorAll("[data-review-assignment]").forEach(button => {
+      button.addEventListener("click", () => {
+        $("mentorReviewAssignment").value = button.dataset.reviewAssignment;
+        $("mentorReviewFeedback").focus();
+        $("mentorReviewForm").scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  }
+
+  async function loadAdminMentorManagement() {
+    if (!supabase || !isOwner()) return;
+    const host = $("mentorRoleManagement");
+    const { data: profiles, error } = await supabase.from("profiles").select("id,display_name,role").order("display_name");
+    if (error) {
+      if (host) host.innerHTML = '<p class="muted">Could not load accounts: ' + esc(error.message) + '</p>';
+      return;
+    }
+    const rows = profiles || [];
+    if (host) {
+      const manageable = rows.filter(p => p.role !== "admin");
+      host.innerHTML = manageable.length ? manageable.map(p =>
+        '<div class="mentor-role-row"><strong>' + esc(p.display_name || "Account") + '</strong><select aria-label="Role for ' + esc(p.display_name || "account") + '" data-role-select="' + esc(p.id) + '"><option value="learner"' + (p.role === "learner" ? " selected" : "") + '>Learner</option><option value="mentor"' + (p.role === "mentor" ? " selected" : "") + '>Mentor</option></select><button type="button" class="btn" data-save-role="' + esc(p.id) + '">Save</button></div>'
+      ).join("") : '<p class="muted">No learner accounts are available to approve yet.</p>';
+      host.querySelectorAll("[data-save-role]").forEach(button => button.addEventListener("click", async () => {
+        const id = button.dataset.saveRole;
+        const select = host.querySelector('[data-role-select="' + id + '"]');
+        button.disabled = true;
+        const { error: updateError } = await supabase.from("profiles").update({ role: select.value }).eq("id", id);
+        button.disabled = false;
+        if (updateError) { toast("Role update failed: " + updateError.message); return; }
+        toast("Account role updated.");
+        await loadAdminMentorManagement();
+        await loadAdminLearners();
+      }));
+    }
+    const mentorSelect = $("admMentorSelect");
+    const learnerSelect = $("admLearnerSelect");
+    if (mentorSelect) {
+      const previous = mentorSelect.value;
+      mentorSelect.innerHTML = '<option value="">Select mentor</option>' + rows.filter(p => p.role === "mentor")
+        .map(p => '<option value="' + esc(p.id) + '">' + esc(p.display_name || "Mentor") + '</option>').join("");
+      if (rows.some(p => p.id === previous && p.role === "mentor")) mentorSelect.value = previous;
+    }
+    if (learnerSelect) {
+      const previous = learnerSelect.value;
+      learnerSelect.innerHTML = '<option value="">Select learner</option>' + rows.filter(p => p.role === "learner")
+        .map(p => '<option value="' + esc(p.id) + '">' + esc(p.display_name || "Learner") + '</option>').join("");
+      if (rows.some(p => p.id === previous && p.role === "learner")) learnerSelect.value = previous;
+    }
+  }
+
+  $("mentorRefreshBtn").addEventListener("click", () => loadMentorWorkspace());
+  $("mentorReviewForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    if (!supabase || !canAccessMentorWorkspace()) return;
+    const assignmentId = $("mentorReviewAssignment").value;
+    const assignment = mentorAssignmentsCache.find(a => a.id === assignmentId);
+    const feedback = $("mentorReviewFeedback").value.trim();
+    if (!assignment || feedback.length < 3) {
+      $("mentorReviewStatus").textContent = "Select an assignment and enter feedback.";
+      return;
+    }
+    const button = $("mentorSubmitReviewBtn");
+    button.disabled = true;
+    $("mentorReviewStatus").textContent = "Saving review…";
+    const { error } = await supabase.from("mentor_reviews").insert({
+      assignment_id: assignment.id,
+      mentor_id: currentUser.id,
+      learner_id: assignment.learner_id,
+      feedback,
+      rating: $("mentorReviewRating").value ? Number($("mentorReviewRating").value) : null,
+      visibility: $("mentorReviewVisibility").value
+    });
+    button.disabled = false;
+    if (error) {
+      $("mentorReviewStatus").textContent = "Could not save review: " + error.message;
+      return;
+    }
+    $("mentorReviewFeedback").value = "";
+    $("mentorReviewRating").value = "";
+    $("mentorReviewVisibility").value = "shared";
+    $("mentorReviewStatus").textContent = "Review saved successfully.";
+    await loadMentorWorkspace();
+  });
+
+  $("admCreateMentorAssignment").addEventListener("click", async () => {
+    if (!supabase || !isOwner()) return;
+    const mentorId = $("admMentorSelect").value;
+    const learnerId = $("admLearnerSelect").value;
+    const subject = $("admMentorSubject").value.trim();
+    const goal = $("admMentorGoal").value.trim();
+    const status = $("admMentorAssignStatus");
+    if (!mentorId || !learnerId || !subject || !goal) {
+      status.textContent = "Choose a mentor and learner, then enter the focus area and goal.";
+      return;
+    }
+    const button = $("admCreateMentorAssignment");
+    button.disabled = true;
+    status.textContent = "Creating assignment…";
+    const { error } = await supabase.from("mentor_assignments").insert({
+      mentor_id: mentorId, learner_id: learnerId, subject, goal,
+      due_date: $("admMentorDue").value || null,
+      created_by: currentUser.id
+    });
+    button.disabled = false;
+    if (error) {
+      status.textContent = "Assignment could not be created: " + error.message;
+      return;
+    }
+    $("admMentorSubject").value = "";
+    $("admMentorGoal").value = "";
+    $("admMentorDue").value = "";
+    status.textContent = "Learner successfully assigned.";
+    await loadMentorWorkspace();
+  });
 
   // Planner Generator
   $("genPlanBtn").addEventListener("click", () => {
