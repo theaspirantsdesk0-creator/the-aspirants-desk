@@ -205,6 +205,33 @@ def main() -> int:
           "PYQ coverage report must not claim paper completeness from record counts")
     check(all(len(item["yearly_coverage"]) == 25 for item in report["paper_targets"]),
           "PYQ coverage must expose one status row for each year from 2001 to 2025")
+    optional_rows = coverage_data.get("optional_subjects", [])
+    check(len(optional_rows) == 48, "PYQ coverage catalog must include 25 optional subjects and 23 literature options")
+    check({row.get("name") for row in optional_rows} >= {"Anthropology", "Tamil", "English"},
+          "PYQ optional catalog must include Anthropology and literature options")
+    check(report["optional_subjects_in_scope"] == 48,
+          "PYQ report must produce a separate coverage block for every optional and literature subject")
+    check(all(len(subject["paper_targets"]) == 2
+              and all(len(paper["yearly_coverage"]) == 25 for paper in subject["paper_targets"])
+              for subject in report["optional_subject_coverage"]),
+          "Every optional subject must expose Paper I and Paper II coverage for all 25 years")
+    sample_optional = [{
+        "id": "test-anthropology-2025-1", "exam": "Civil Services Examination",
+        "stage": "Mains", "paper": "Optional Paper I", "optional_subject": "Anthropology",
+        "year": 2025, "question_number": 1,
+        "question": "A sufficiently long sample optional-subject question.",
+        "status": "published", "source": {"id": "upsc-question-paper-archive",
+        "document_url": "https://www.upsc.gov.in/example-paper.pdf"},
+        "verification": {"status": "verified", "verified_at": "2026-11-24", "method": "manual PDF comparison"}
+    }]
+    optional_report = build_coverage_report(sample_optional, coverage_data)
+    anthropology = next(item for item in optional_report["optional_subject_coverage"]
+                        if item["subject"] == "Anthropology")
+    anthropology_paper_one = next(item for item in anthropology["paper_targets"]
+                                  if item["paper"] == "Optional Paper I")
+    check(anthropology_paper_one["years_with_verified_records"] == 1
+          and anthropology_paper_one["years_without_verified_records"] == 24,
+          "Anthropology Paper I coverage must count only its matching year and paper")
     sample_pyq = [{
         "id": "test-pyq-coverage-2025-1", "exam": "Civil Services Examination",
         "stage": "Prelims", "paper": "General Studies Paper I", "year": 2025,
