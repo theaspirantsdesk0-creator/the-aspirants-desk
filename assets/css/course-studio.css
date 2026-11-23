@@ -34,3 +34,14 @@
 .published-lesson{border-top:1px dashed var(--line);padding:.7rem 0}
 .published-lesson p{white-space:pre-wrap}
 @media(max-width:700px){.course-form-grid,.course-studio-lists{grid-template-columns:1fr}.course-form-actions>*{flex:1 1 100%}}
+
+
+.course-quiz-editor{border:1px solid var(--line);border-radius:12px;padding:.85rem;margin:.65rem 0;background:var(--surface-alt)}
+.course-quiz-editor label{display:grid;gap:.35rem;font-size:.88rem;font-weight:650;margin:.5rem 0}
+.course-quiz-editor input,.course-quiz-editor select,.course-quiz-editor textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:.65rem .75rem;background:var(--surface);color:var(--text);font:inherit}
+.course-quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .7rem}
+.course-quiz-option-row{display:flex;align-items:center;gap:.35rem}
+.course-quiz-option-row button{flex:0 0 auto}
+.course-quiz-actions{display:flex;justify-content:flex-end}
+.course-no-quiz{padding:.65rem 0}
+@media(max-width:700px){.course-quiz-options{grid-template-columns:1fr}}
