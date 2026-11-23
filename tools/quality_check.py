@@ -301,6 +301,20 @@ def main() -> int:
           "The site catalog must expose all 25 optional subjects and 23 literature choices")
     check("archived-exam-documents/question-papers" in html,
           "Official PYQ section must link to the UPSC archived paper index")
+    check('id="verifiedPyqDocuments"' in html and 'data/pyq/verified-documents.json' in html,
+          "The PYQ section must render individually verified official document links")
+    verified_docs = json.loads((ROOT / "data/pyq/verified-documents.json").read_text(encoding="utf-8"))
+    verified_rows = verified_docs.get("documents", [])
+    check(len(verified_rows) >= 1, "At least one official UPSC PDF must be individually verified")
+    check(all(row.get("status") == "verified"
+              and row.get("document_url", "").startswith("https://")
+              and "upsc.gov.in/" in row.get("document_url", "")
+              and row.get("verification", {}).get("verified_at")
+              and row.get("verification", {}).get("method")
+              for row in verified_rows),
+          "Every displayed official PDF must have an UPSC URL and verification metadata")
+    check(len({row.get("id") for row in verified_rows}) == len(verified_rows),
+          "Verified official document IDs must be unique")
 
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
