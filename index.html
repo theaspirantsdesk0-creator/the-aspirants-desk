@@ -1501,7 +1501,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     mainsDrafts: [],
     mistakes: [],
     masteredCards: [],
-    lastScore: null
+    lastScore: null,
+    learningHub: {}
   }));
 
   const $ = (id) => document.getElementById(id);
@@ -1709,6 +1710,15 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     ).join("") : '<p class="muted">No shared mentor feedback yet. When your mentor shares a review, it will appear here.</p>';
   }
 
+  // Learning Hub updates are part of the same authenticated user_data payload
+  // as the study workspace, so progress follows the signed-in user across devices.
+  window.addEventListener("tad:learningHubChange", (event) => {
+    const next = event && event.detail;
+    if (!next || typeof next !== "object" || Array.isArray(next)) return;
+    state.learningHub = next;
+    saveUserState();
+  });
+
   async function saveUserState() {
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
     renderKPIs();
@@ -1749,6 +1759,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       state = { ...state, ...udata.payload };
       localStorage.setItem("tad_state_v5", JSON.stringify(state));
     }
+    window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: state.learningHub || {} }));
     renderAllUserModules();
     updateAuthUI();
     if (isOwner()) {
