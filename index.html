@@ -774,6 +774,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
     </section>
 
+    <!-- SHARED MENTOR FEEDBACK: visible only to signed-in learners -->
+    <section class="card learner-feedback-only" id="learnerMentorFeedbackCard" hidden style="margin:0 0 1.4rem">
+      <div class="mentor-panel-head">
+        <div><span class="pill">MENTOR SUPPORT</span><h3 style="margin:.45rem 0">Feedback from your mentor</h3>
+          <p class="muted" style="margin:0;font-size:.88rem">Reviews your mentor has chosen to share with you appear here.</p></div>
+        <button type="button" class="btn" id="refreshLearnerMentorFeedback">Refresh</button>
+      </div>
+      <div id="learnerMentorFeedbackList" class="mentor-review-list" aria-live="polite"><p class="muted">Sign in to view shared feedback.</p></div>
+    </section>
+
     <!-- LIVE KPI METRICS -->
     <div class="grid-4" style="margin-bottom:1.4rem">
       <div class="card gold-top">
@@ -1578,6 +1588,29 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     return isOwner() || isMentor();
   }
 
+  async function loadLearnerMentorFeedback() {
+    const host = $("learnerMentorFeedbackList");
+    if (!host || !supabase || !currentUser || userProfile.role !== "learner") return;
+    host.innerHTML = '<p class="muted">Loading shared feedback…</p>';
+    const { data, error } = await supabase.from("mentor_reviews")
+      .select("id,feedback,rating,created_at")
+      .eq("learner_id", currentUser.id)
+      .eq("visibility", "shared")
+      .order("created_at", { ascending: false })
+      .limit(10);
+    if (error) {
+      host.innerHTML = '<p class="muted">Could not load mentor feedback. Please try again.</p>';
+      return;
+    }
+    host.innerHTML = (data || []).length ? data.map(review =>
+      '<article class="mentor-review-item"><div class="mentor-assignment-top"><b>Mentor feedback</b><span class="mentor-status">' +
+      esc(review.rating ? review.rating + '/5' : 'Review') +
+      '</span></div><p>' + esc(review.feedback) +
+      '</p><small class="muted">' + esc(new Date(review.created_at).toLocaleDateString()) +
+      '</small></article>'
+    ).join("") : '<p class="muted">No shared mentor feedback yet. When your mentor shares a review, it will appear here.</p>';
+  }
+
   async function saveUserState() {
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
     renderKPIs();
@@ -1646,6 +1679,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     document.querySelectorAll(".lock-tag").forEach(el => el.hidden = loggedIn);
     document.querySelectorAll(".owner-only").forEach(el => el.hidden = !isOwner());
     document.querySelectorAll(".mentor-only").forEach(el => el.hidden = !canAccessMentorWorkspace());
+    document.querySelectorAll(".learner-feedback-only").forEach(el => el.hidden = !(loggedIn && userProfile.role === "learner"));
+    if (loggedIn && userProfile.role === "learner") loadLearnerMentorFeedback().catch(() => {});
     refreshPushReminderUI().catch(() => {});
     if (canAccessMentorWorkspace() && supabase) loadMentorWorkspace();
   }
@@ -2567,6 +2602,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   }
 
   $("mentorRefreshBtn").addEventListener("click", () => loadMentorWorkspace());
+  $("refreshLearnerMentorFeedback").addEventListener("click", () => loadLearnerMentorFeedback());
+
   $("mentorReviewForm").addEventListener("submit", async event => {
     event.preventDefault();
     if (!supabase || !canAccessMentorWorkspace()) return;
