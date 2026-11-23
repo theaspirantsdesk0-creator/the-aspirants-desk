@@ -7,6 +7,7 @@ on:
     paths:
       - 'tools/desk.py'
       - 'tools/feeds.json'
+      - 'tools/publish_generated.py'
       - '.github/workflows/daily.yml'
   schedule:
     - cron: "0 14 * * *" # 19:30 IST daily
@@ -37,22 +38,14 @@ jobs:
       - name: Refresh current affairs and generate optional UPSC angles
         run: python tools/desk.py news
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: \${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: \${{ secrets.GROQ_API_KEY }}
 
-      - run: python tools/desk.py validate
+      - name: Validate generated content and site
+        run: python tools/desk.py validate
 
-      - run: python tools/desk.py build
+      - name: Build published question bank
+        run: python tools/desk.py build
 
-      - name: Commit if anything changed
-        run: |
-          git config user.name "desk-bot"
-          git config user.email "desk-bot@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Daily content update"
-            git pull --rebase origin main
-            git push
-          else
-            echo "No content changes to publish."
-          fi
+      - name: Publish with merge and push retries
+        run: python tools/publish_generated.py data/current-affairs.json
