@@ -101,7 +101,7 @@
       const p = progressFor(course,state);
       const enrolled = !!p.record.enrolledAt;
       const status = p.isComplete ? "Completed" : enrolled ? "In progress" : "Not started";
-      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'% · '+status+'</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(p.isComplete?"Review course":enrolled?"Continue course":"Start course")+'</button></article>';
+      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span>'+(course.source==="mentor"?'<span class="pill">Mentor-published</span>':'')+'<span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'% · '+status+'</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(p.isComplete?"Review course":enrolled?"Continue course":"Start course")+'</button></article>';
     }).join("");
     if (!visible.length) host.innerHTML = '<p class="muted">No courses match this search.</p>';
     const course = courses.find(c => c.id === selected);
@@ -155,7 +155,7 @@
       const n=Number(done.dataset.completeLesson);
       if(!list.includes(n))list.push(n);
       record.completedLessons=list;
-      if(course && list.length>=course.lessons.length && (Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory)&&record.quizHistory.length))) record.completedAt=record.completedAt||new Date().toISOString();
+      if(course && list.length>=course.lessons.length && (!(course.quiz || []).length || Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory)&&record.quizHistory.length))) record.completedAt=record.completedAt||new Date().toISOString();
       state[selected]=record;writeCourseState(state);render();return;
     }
   });
