@@ -2,12 +2,13 @@
   "use strict";
 
   const $ = id => document.getElementById(id);
-  const columns = "id,created_by,title,summary,category,level,duration_minutes,outcomes,lessons,status,review_note,reviewed_by,reviewed_at,created_at,updated_at";
+  const columns = "id,created_by,title,summary,category,level,duration_minutes,outcomes,lessons,quiz,status,review_note,reviewed_by,reviewed_at,created_at,updated_at";
   let supabase = null;
   let user = null;
   let profile = null;
   let editingId = null;
   let lessonRows = [{ title: "", body: "", task: "" }];
+  let quizRows = [];
   let busy = false;
 
   const esc = value => String(value == null ? "" : value).replace(/[&<>"']/g, c => ({
@@ -46,6 +47,8 @@
         <label>Learning outcomes <span class="muted">(one per line; up to 12)</span><textarea id="courseOutcomes" rows="3" required placeholder="Explain the core concept\nIdentify reliable sources"></textarea></label>
         <div class="course-lessons-head"><div><h3>Lessons</h3><p class="muted">Add at least one lesson. Put each paragraph on a separate line.</p></div><button type="button" class="btn" data-add-lesson>Add lesson</button></div>
         <div id="courseLessonRows"></div>
+        <div class="course-lessons-head"><div><h3>Knowledge check (optional)</h3><p class="muted">Add up to 20 multiple-choice questions. Each question needs 2–5 options, one correct answer and an explanation.</p></div><button type="button" class="btn" data-add-quiz-question>Add question</button></div>
+        <div id="courseQuizRows"></div>
         <div class="course-form-actions">
           <button type="submit" class="btn" data-intent="draft">Save draft</button>
           <button type="submit" class="btn primary" data-intent="${role === "admin" ? "publish" : "review"}">${role === "admin" ? "Publish course" : "Submit for review"}</button>
@@ -57,7 +60,9 @@
         ${role === "admin" ? '<section class="card"><h3>Awaiting review</h3><div id="pendingCoursesList" class="course-studio-list">Loading…</div></section>' : ""}
       </div>`;
     lessonRows = [{ title: "", body: "", task: "" }];
+    quizRows = [];
     renderLessonRows();
+    renderQuizRows();
   }
 
   function renderLessonRows() {
@@ -72,6 +77,28 @@
       </article>`).join("");
   }
 
+  function renderQuizRows() {
+    const host = $("courseQuizRows");
+    if (!host) return;
+    if (!quizRows.length) {
+      host.innerHTML = '<p class="muted course-no-quiz">No knowledge check added. Learners will complete this course through lesson progress only.</p>';
+      return;
+    }
+    host.innerHTML = quizRows.map((item, i) => `
+      <article class="course-quiz-editor">
+        <div class="course-lesson-editor-head"><b>Question ${i + 1}</b><button type="button" class="btn small" data-remove-quiz-question="${i}">Remove question</button></div>
+        <label>Question text<input data-quiz-field="q" data-quiz-index="${i}" maxlength="500" value="${esc(item.q)}" required placeholder="Write a clear multiple-choice question"></label>
+        <div class="course-quiz-options">
+          ${item.options.map((option, j) => `
+            <label>Option ${j + 1}<span class="course-quiz-option-row"><input data-quiz-option data-quiz-index="${i}" data-option-index="${j}" maxlength="240" value="${esc(option)}" required placeholder="Answer option"><button type="button" class="btn small" data-remove-quiz-option="${i}" data-option-index="${j}" ${item.options.length <= 2 ? "disabled" : ""} aria-label="Remove option ${j + 1}">×</button></span></label>
+          `).join("")}
+        </div>
+        <div class="course-quiz-actions"><button type="button" class="btn small" data-add-quiz-option="${i}" ${item.options.length >= 5 ? "disabled" : ""}>Add option</button></div>
+        <label>Correct answer<select data-quiz-field="answer" data-quiz-index="${i}">${item.options.map((option, j) => `<option value="${j}" ${Number(item.answer) === j ? "selected" : ""}>Option ${j + 1}</option>`).join("")}</select></label>
+        <label>Explanation<textarea data-quiz-field="why" data-quiz-index="${i}" rows="2" maxlength="1200" required placeholder="Explain why the correct answer is right.">${esc(item.why)}</textarea></label>
+      </article>`).join("");
+  }
+
   function resetEditor() {
     editingId = null;
     const form = $("courseEditor");
@@ -79,7 +106,9 @@
     if ($("courseCategory")) $("courseCategory").value = "Foundations";
     if ($("courseDuration")) $("courseDuration").value = "30";
     lessonRows = [{ title: "", body: "", task: "" }];
+    quizRows = [];
     renderLessonRows();
+    renderQuizRows();
     message("courseStudioFeedback", "Ready to create a new course.", "info");
   }
 
@@ -206,11 +235,19 @@
         body: lines(item.body),
         task: item.task.trim()
       }));
+      const quiz = quizRows.map(item => ({
+        q: String(item.q || "").trim(),
+        options: (item.options || []).map(option => String(option || "").trim()),
+        answer: Number(item.answer),
+        why: String(item.why || "").trim()
+      }));
       if (title.length < 4 || summary.length < 10 || category.length < 2) throw new Error("Complete the title, description and category.");
       if (!Number.isInteger(duration) || duration < 5 || duration > 600) throw new Error("Duration must be between 5 and 600 minutes.");
       if (!outcomes.length || outcomes.length > 12) throw new Error("Add between 1 and 12 learning outcomes.");
       if (!lessons.length || lessons.length > 30 || lessons.some(x => !x.title || !x.body.length || !x.task)) throw new Error("Each lesson needs a title, content and practice task. Add 1 to 30 lessons.");
-      const payload = { title, summary, category, level, duration_minutes: duration, outcomes, lessons };
+      if (quiz.length > 20) throw new Error("A course can have up to 20 quiz questions.");
+      if (quiz.some(x => x.q.length < 8 || x.q.length > 500 || x.options.length < 2 || x.options.length > 5 || x.options.some(o => !o || o.length > 240) || new Set(x.options.map(o => o.toLowerCase())).size !== x.options.length || !Number.isInteger(x.answer) || x.answer < 0 || x.answer >= x.options.length || x.why.length < 5 || x.why.length > 1200)) throw new Error("Each quiz question needs a clear question, 2–5 different options, one correct answer and an explanation.");
+      const payload = { title, summary, category, level, duration_minutes: duration, outcomes, lessons, quiz };
       let courseId = editingId;
       if (editingId) {
         const { data, error } = await supabase.from("courses").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", editingId).select("id").single();
@@ -264,7 +301,14 @@
       task: x.task || ""
     }));
     if (!lessonRows.length) lessonRows = [{ title: "", body: "", task: "" }];
+    quizRows = (Array.isArray(data.quiz) ? data.quiz : []).map(x => ({
+      q: x.q || "",
+      options: Array.isArray(x.options) ? x.options.map(String) : ["", ""],
+      answer: Number.isInteger(x.answer) ? x.answer : 0,
+      why: x.why || ""
+    }));
     renderLessonRows();
+    renderQuizRows();
     message("courseStudioFeedback", "Editing: " + data.title + " (" + statusLabel(data.status) + ").", "info");
     $("courseEditor").scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -296,13 +340,48 @@
 
   document.addEventListener("input", event => {
     const field = event.target.closest("[data-lesson-field]");
-    if (!field) return;
-    const index = Number(field.dataset.lessonIndex);
-    const key = field.dataset.lessonField;
-    if (lessonRows[index] && ["title", "body", "task"].includes(key)) lessonRows[index][key] = field.value;
+    if (field) {
+      const index = Number(field.dataset.lessonIndex);
+      const key = field.dataset.lessonField;
+      if (lessonRows[index] && ["title", "body", "task"].includes(key)) lessonRows[index][key] = field.value;
+      return;
+    }
+    const option = event.target.closest("[data-quiz-option]");
+    if (option) {
+      const index = Number(option.dataset.quizIndex), optionIndex = Number(option.dataset.optionIndex);
+      if (quizRows[index] && quizRows[index].options[optionIndex] !== undefined) quizRows[index].options[optionIndex] = option.value;
+      return;
+    }
+    const quizField = event.target.closest("[data-quiz-field]");
+    if (quizField) {
+      const index = Number(quizField.dataset.quizIndex), key = quizField.dataset.quizField;
+      if (quizRows[index] && ["q", "why", "answer"].includes(key)) quizRows[index][key] = key === "answer" ? Number(quizField.value) : quizField.value;
+    }
   });
 
   document.addEventListener("click", event => {
+    if (event.target.closest("[data-add-quiz-question]")) {
+      if (quizRows.length >= 20) { message("courseStudioFeedback", "A course can have up to 20 quiz questions.", "error"); return; }
+      quizRows.push({ q: "", options: ["", "", "", ""], answer: 0, why: "" }); renderQuizRows(); return;
+    }
+    const addOption = event.target.closest("[data-add-quiz-option]");
+    if (addOption) {
+      const index = Number(addOption.dataset.addQuizOption);
+      if (quizRows[index] && quizRows[index].options.length < 5) { quizRows[index].options.push(""); renderQuizRows(); }
+      return;
+    }
+    const removeOption = event.target.closest("[data-remove-quiz-option]");
+    if (removeOption) {
+      const index = Number(removeOption.dataset.removeQuizOption), optionIndex = Number(removeOption.dataset.optionIndex);
+      if (quizRows[index] && quizRows[index].options.length > 2) {
+        quizRows[index].options.splice(optionIndex, 1);
+        if (quizRows[index].answer >= quizRows[index].options.length) quizRows[index].answer = quizRows[index].options.length - 1;
+        renderQuizRows();
+      }
+      return;
+    }
+    const removeQuestion = event.target.closest("[data-remove-quiz-question]");
+    if (removeQuestion) { quizRows.splice(Number(removeQuestion.dataset.removeQuizQuestion), 1); renderQuizRows(); return; }
     if (event.target.closest("[data-add-lesson]")) {
       if (lessonRows.length >= 30) { message("courseStudioFeedback", "A course can have up to 30 lessons.", "error"); return; }
       lessonRows.push({ title: "", body: "", task: "" }); renderLessonRows(); return;
