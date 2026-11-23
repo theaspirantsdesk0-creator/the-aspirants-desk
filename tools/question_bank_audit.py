@@ -74,11 +74,16 @@ def audit_question_bank(directory: Path) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+    parser.add_argument("--output", type=Path, help="write the JSON report to this path")
     parser.add_argument("--directory", type=Path, default=Path(__file__).resolve().parents[1] / "data" / "questions")
     args = parser.parse_args()
     report = audit_question_bank(args.directory)
+    rendered = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
     if args.json:
-        print(json.dumps(report, indent=2, ensure_ascii=False))
+        print(rendered, end="")
     else:
         print(f"Question files scanned: {report['files_scanned']}")
         print(f"Question records: {report['total_records']} (unique IDs: {report['unique_ids']})")
