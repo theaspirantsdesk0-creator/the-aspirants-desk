@@ -94,7 +94,13 @@ try {
   if (await courseStudio.count() !== 1 || !(await courseStudio.isHidden())) {
     throw new Error('Course Studio must remain hidden from guest visitors');
   }
-  if (await publishedCourses.count() !== 1) throw new Error('Published community course catalogue is missing');
+  if (await publishedCourses.count() !== 1) throw new Error('Published course management container is missing');
+  const communityPanel = page.locator('#communityCoursesPanel');
+  if (await communityPanel.count() !== 1 || !(await communityPanel.isHidden())) {
+    throw new Error('Staff-only published course management panel must remain hidden from guests');
+  }
+  const courseScript = page.locator('script[src="assets/js/courses.js"]');
+  if (await courseScript.count() !== 1) throw new Error('Learner course integration script is missing');
   const courseStudioCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('course-studio.css')));
   if (!courseStudioCss) throw new Error('Course Studio stylesheet was not loaded');
   const courseSummary = page.locator('#courseLearningSummary');
@@ -105,6 +111,54 @@ try {
   }
   const learnerCourseCss = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('courses.css')));
   if (!learnerCourseCss) throw new Error('Learner course progress stylesheet was not loaded');
+
+  // Exercise the mentor-course learner flow with an in-memory Supabase fixture.
+  // This does not create or modify real accounts or database records.
+  await page.evaluate(() => {
+    const fixture = {
+      from: () => ({
+        select() { return this; },
+        eq() { return this; },
+        order() {
+          return Promise.resolve({
+            data: [{
+              id: '00000000-0000-4000-8000-000000000001',
+              title: 'Smoke mentor course',
+              summary: 'A temporary browser fixture for learner catalogue integration.',
+              category: 'Testing',
+              level: 'Beginner',
+              duration_minutes: 10,
+              outcomes: ['Explain the test topic'],
+              lessons: [{ title: 'Smoke lesson', body: ['Temporary lesson content.'], task: 'Summarise the lesson.' }],
+              status: 'published'
+            }],
+            error: null
+          });
+        }
+      })
+    };
+    window.dispatchEvent(new CustomEvent('tad:authStateChanged', {
+      detail: { supabase: fixture, user: { id: 'smoke-learner' }, profile: { role: 'learner' } }
+    }));
+  });
+  await page.waitForFunction(() => document.querySelector('#courseCatalog')?.textContent.includes('Smoke mentor course'));
+  const mentorCourseResult = await page.evaluate(() => {
+    const card = document.querySelector('[data-open-course="mentor-00000000-0000-4000-8000-000000000001"]');
+    if (!card) throw new Error('Published mentor course did not enter the learner catalogue');
+    card.click();
+    const detail = document.querySelector('#courseDetail');
+    const noQuizForm = !detail.querySelector('#tadCourseQuiz');
+    const lessonButton = detail.querySelector('[data-complete-lesson="0"]');
+    if (!lessonButton) throw new Error('Mentor course lesson completion control is missing');
+    lessonButton.click();
+    return {
+      noQuizForm,
+      completed: detail.textContent.includes('Course completed'),
+      progressSaved: JSON.parse(localStorage.getItem('tad_state_v5') || '{}').learningHub?.courses?.['mentor-00000000-0000-4000-8000-000000000001']?.completedLessons?.includes(0) || false
+    };
+  });
+  if (!mentorCourseResult.noQuizForm) throw new Error('Mentor course without a quiz displayed an empty assessment form');
+  if (!mentorCourseResult.completed || !mentorCourseResult.progressSaved) throw new Error('Mentor course lesson completion was not reflected in learner progress');
 
   const pyqSearch = page.locator('#pyqSearch');
   const pyqSubject = page.locator('#pyqSubject');

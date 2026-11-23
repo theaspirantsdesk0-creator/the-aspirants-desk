@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   const ROOT_KEY = "tad_state_v5";
-  const courses = [
+  const starterCourses = [
     {
       id:"learn-to-learn", title:"Learning how to learn", category:"Foundations", level:"Beginner", duration:"45 minutes",
       summary:"Build a repeatable study cycle using clear goals, active recall and spaced review.",
@@ -46,6 +46,10 @@
     }
   ];
 
+  let courses = starterCourses.slice();
+  let courseSupabase = null;
+  let courseUser = null;
+  let publishedLoadVersion = 0;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   function rootState() {
     try { const value = JSON.parse(localStorage.getItem(ROOT_KEY) || "{}"); return value && typeof value === "object" && !Array.isArray(value) ? value : {}; }
@@ -70,12 +74,13 @@
     const rawCompleted = Array.isArray(record.completedLessons) ? record.completedLessons : [];
     const lessonTotal = course.lessons.length;
     const completed = [...new Set(rawCompleted.filter(n => Number.isInteger(n) && n >= 0 && n < lessonTotal))];
-    const quizDone = Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory) && record.quizHistory.length > 0);
-    const total = lessonTotal + 1;
+    const hasQuiz = Array.isArray(course.quiz) && course.quiz.length > 0;
+    const quizDone = hasQuiz && (Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory) && record.quizHistory.length > 0));
+    const total = lessonTotal + (hasQuiz ? 1 : 0);
     const done = completed.length + (quizDone ? 1 : 0);
     const completedCount = completed.length;
-    const isComplete = completedCount === lessonTotal && quizDone;
-    return {record, completed, done, total, percent:Math.round(done / total * 100), isComplete};
+    const isComplete = completedCount === lessonTotal && (!hasQuiz || quizDone);
+    return {record, completed, done, total, percent:total ? Math.round(done / total * 100) : 0, isComplete, hasQuiz};
   }
   function render() {
     const host = document.getElementById("courseCatalog");
@@ -96,7 +101,7 @@
       const p = progressFor(course,state);
       const enrolled = !!p.record.enrolledAt;
       const status = p.isComplete ? "Completed" : enrolled ? "In progress" : "Not started";
-      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'% · '+status+'</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(p.isComplete?"Review course":enrolled?"Continue course":"Start course")+'</button></article>';
+      return '<article class="card tad-course-card"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span>'+(course.source==="mentor"?'<span class="pill">Mentor-published</span>':'')+'<span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h3>'+esc(course.title)+'</h3><p class="muted">'+esc(course.summary)+'</p><div class="tad-course-progress"><div><b>'+p.percent+'% · '+status+'</b><span>'+p.done+' of '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div><button type="button" class="btn primary" data-open-course="'+course.id+'">'+(p.isComplete?"Review course":enrolled?"Continue course":"Start course")+'</button></article>';
     }).join("");
     if (!visible.length) host.innerHTML = '<p class="muted">No courses match this search.</p>';
     const course = courses.find(c => c.id === selected);
@@ -112,7 +117,7 @@
       const done = p.completed.includes(i);
       return '<article class="tad-lesson"><div><span class="pill">LESSON '+(i+1)+'</span><h4>'+esc(lesson.title)+'</h4></div><div class="tad-lesson-body">'+lesson.body.map(par=>'<p>'+esc(par)+'</p>').join("")+'<p class="tad-task"><b>Try it:</b> '+esc(lesson.task)+'</p></div><button type="button" class="btn '+(done?"":"primary")+'" data-complete-lesson="'+i+'">'+(done?"Completed ✓":"Mark lesson complete")+'</button></article>';
     }).join("");
-    const quiz = course.quiz.map((item,i) => '<fieldset class="tad-quiz-question"><legend>'+(i+1)+'. '+esc(item.q)+'</legend>'+item.options.map((option,j)=>'<label><input type="radio" name="tad-course-q-'+i+'" value="'+j+'" required> '+esc(option)+'</label>').join("")+'</fieldset>').join("");
+    const quiz = (course.quiz || []).map((item,i) => '<fieldset class="tad-quiz-question"><legend>'+(i+1)+'. '+esc(item.q)+'</legend>'+item.options.map((option,j)=>'<label><input type="radio" name="tad-course-q-'+i+'" value="'+j+'" required> '+esc(option)+'</label>').join("")+'</fieldset>').join("");
     const best = Number.isInteger(p.record.quizBest) ? p.record.quizBest : null;
     const history = Array.isArray(p.record.quizHistory) ? p.record.quizHistory.slice().reverse() : [];
     const historyMarkup = history.length ? '<div class="tad-assessment-history"><h4>Assessment history</h4>'+history.slice(0,10).map((attempt,index) => {
@@ -122,9 +127,12 @@
       const total = Number.isFinite(attempt.total) ? attempt.total : course.quiz.length;
       return '<article class="tad-assessment-row"><div><b>Attempt '+(history.length-index)+'</b><span>'+esc(date)+'</span></div><strong>'+score+' / '+total+'</strong></article>';
     }).join("")+'</div>' : '<p class="muted">Your quiz attempts will appear here after your first submission.</p>';
+    const assessmentMarkup = p.hasQuiz
+      ? '<div class="card"><h3>Knowledge check</h3><p class="muted">Answer all questions. Your best score is saved to your learning progress.</p><form id="tadCourseQuiz">'+quiz+'<button type="submit" class="btn primary">Submit quiz</button><p id="tadQuizFeedback" class="tad-quiz-feedback" aria-live="polite"></p></form>'+(best!==null?'<p class="muted">Best score: '+best+' / '+course.quiz.length+'</p>':'')+historyMarkup+'</div>'
+      : '<div class="card"><h3>Course completion</h3><p class="muted">This mentor-published course currently uses lesson completion as its progress measure. No quiz has been added.</p></div>';
     const completedDate = p.record.completedAt && !Number.isNaN(new Date(p.record.completedAt).getTime()) ? new Date(p.record.completedAt).toLocaleDateString() : "";
-    const completionMarkup = p.isComplete ? '<p class="tad-course-complete" role="status">Course completed'+(completedDate ? ' on '+esc(completedDate) : '')+'. You can revisit lessons and retake the quiz at any time.</p>' : '<p class="muted">Complete every lesson and submit the knowledge check to finish this course.</p>';
-    detail.innerHTML = '<div class="card gold-top"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h2>'+esc(course.title)+'</h2><p class="muted">'+esc(course.summary)+'</p><h3>What you will learn</h3><ul>'+course.outcomes.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="tad-course-progress"><div><b>'+p.percent+'% complete</b><span>'+p.done+' / '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div>'+(enrolled?'':'<button type="button" class="btn primary" data-enrol-course>Enrol in this course</button>')+'</div><div class="card"><h3>Lessons</h3><div class="tad-lessons">'+lessonMarkup+'</div></div><div class="card"><h3>Knowledge check</h3><p class="muted">Answer all questions. Your best score is saved to your learning progress.</p><form id="tadCourseQuiz">'+quiz+'<button type="submit" class="btn primary">Submit quiz</button><p id="tadQuizFeedback" class="tad-quiz-feedback" aria-live="polite"></p></form>'+(best!==null?'<p class="muted">Best score: '+best+' / '+course.quiz.length+'</p>':'')+historyMarkup+completionMarkup+'</div><button type="button" class="btn" data-back-catalog>← Back to course catalogue</button>';
+    const completionMarkup = p.isComplete ? '<p class="tad-course-complete" role="status">Course completed'+(completedDate ? ' on '+esc(completedDate) : '')+'. You can revisit the course at any time.</p>' : '<p class="muted">'+(p.hasQuiz ? 'Complete every lesson and submit the knowledge check to finish this course.' : 'Complete every lesson to finish this course.')+'</p>';
+    detail.innerHTML = '<div class="card gold-top"><div class="tad-course-meta"><span class="pill">'+esc(course.category)+'</span><span>'+esc(course.level)+' · '+esc(course.duration)+'</span></div><h2>'+esc(course.title)+'</h2><p class="muted">'+esc(course.summary)+'</p><h3>What you will learn</h3><ul>'+course.outcomes.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="tad-course-progress"><div><b>'+p.percent+'% complete</b><span>'+p.done+' / '+p.total+' activities</span></div><div class="bar-track"><div class="bar-fill" style="width:'+p.percent+'%"></div></div></div>'+(enrolled?'':'<button type="button" class="btn primary" data-enrol-course>Enrol in this course</button>')+'</div><div class="card"><h3>Lessons</h3><div class="tad-lessons">'+lessonMarkup+'</div></div>'+assessmentMarkup+completionMarkup+'</div><button type="button" class="btn" data-back-catalog>← Back to course catalogue</button>';
   }
   document.addEventListener("input", event => {
     if (event.target.id === "courseSearch") {
@@ -147,7 +155,7 @@
       const n=Number(done.dataset.completeLesson);
       if(!list.includes(n))list.push(n);
       record.completedLessons=list;
-      if(course && list.length>=course.lessons.length && (Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory)&&record.quizHistory.length))) record.completedAt=record.completedAt||new Date().toISOString();
+      if(course && list.length>=course.lessons.length && (!(course.quiz || []).length || Number.isInteger(record.quizBest) || (Array.isArray(record.quizHistory)&&record.quizHistory.length))) record.completedAt=record.completedAt||new Date().toISOString();
       state[selected]=record;writeCourseState(state);render();return;
     }
   });
@@ -180,6 +188,55 @@
     render();
     const updated=document.getElementById("tadQuizFeedback");if(updated)updated.textContent="Latest score: "+score+" / "+course.quiz.length+". "+course.quiz.map((q,i)=>"Q"+(i+1)+": "+q.why).join(" ");
   });
+  async function loadPublishedCourses(context) {
+    courseSupabase = context && context.supabase || null;
+    courseUser = context && context.user || null;
+    const version = ++publishedLoadVersion;
+    if (!courseSupabase || !courseUser) {
+      courses = starterCourses.slice();
+      render();
+      return;
+    }
+    try {
+      const { data, error } = await courseSupabase.from("courses")
+        .select("id,title,summary,category,level,duration_minutes,outcomes,lessons,status")
+        .eq("status", "published").order("created_at", { ascending: false });
+      if (version !== publishedLoadVersion) return;
+      if (error) throw error;
+      const community = (data || []).map(row => ({
+        id: "mentor-" + row.id,
+        source: "mentor",
+        title: row.title || "Untitled course",
+        category: row.category || "Community",
+        level: row.level || "Beginner",
+        duration: (Number(row.duration_minutes) || 0) + " minutes",
+        summary: row.summary || "",
+        outcomes: Array.isArray(row.outcomes) ? row.outcomes : [],
+        lessons: (Array.isArray(row.lessons) ? row.lessons : []).map(lesson => ({
+          title: lesson.title || "Lesson",
+          body: Array.isArray(lesson.body) ? lesson.body.map(String) : [String(lesson.body || "")],
+          task: lesson.task || ""
+        })),
+        quiz: []
+      }));
+      courses = starterCourses.concat(community);
+      render();
+    } catch (error) {
+      if (version !== publishedLoadVersion) return;
+      courses = starterCourses.slice();
+      render();
+      const host = document.getElementById("courseCatalog");
+      if (host) host.insertAdjacentHTML("afterbegin", '<p class="muted" role="status">Community courses could not be refreshed. Your starter courses remain available.</p>');
+      console.warn("Could not load published courses", error);
+    }
+  }
+
+  window.addEventListener("tad:authStateChanged", event => loadPublishedCourses(event.detail));
+  window.addEventListener("tad:publishedCoursesChanged", () => {
+    const context = window.DESK_AUTH_CONTEXT || {supabase:courseSupabase,user:courseUser};
+    loadPublishedCourses(context);
+  });
+  if (window.DESK_AUTH_CONTEXT) loadPublishedCourses(window.DESK_AUTH_CONTEXT);
   window.addEventListener("tad:learningHubLoaded",render);
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",render,{once:true});else render();
 })();
