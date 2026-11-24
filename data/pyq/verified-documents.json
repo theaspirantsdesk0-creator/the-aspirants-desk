@@ -239,6 +239,40 @@
         "verified_at": "2026-11-24",
         "method": "Official UPSC-hosted PDF; the document heading identifies the 2025 Civil Services (Preliminary) Examination, General Studies Paper I, and the paper contains 100 numbered questions."
       }
+    },
+    {
+      "id": "cse-prelims-2024-gs-paper-i",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2024,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2024 — General Studies Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-4-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Opened official UPSC-hosted PDF and confirmed the 2024 Civil Services (Preliminary) Examination heading, Paper I label, and 100 numbered questions."
+      }
+    },
+    {
+      "id": "cse-prelims-2024-gs-paper-ii",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2024,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper II (CSAT)",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2024 — General Studies Paper II (CSAT)",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-ii-4-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Opened official UPSC-hosted PDF and confirmed the 2024 Civil Services (Preliminary) Examination heading, Paper II (CSAT) label, and 80 numbered questions."
+      }
     }
   ]
 }
