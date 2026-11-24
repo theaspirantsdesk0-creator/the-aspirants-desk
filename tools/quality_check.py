@@ -206,6 +206,17 @@ def main() -> int:
               and 'SAVED GUIDED-LESSON HISTORY' in source
               and 'lessonHistory' in source,
               "Anbuu chat must use the authenticated learner's saved lesson history")
+        check('body.lessonId' in source and 'resumedLesson' in source
+              and '.eq("id", lessonId).eq("user_id", authData.user.id)' in source
+              and 'CURRENT RESUMED LESSON' in source
+              and 'no prior chat transcript' in source.lower(),
+              "Anbuu resume must load only the authenticated learner's saved lesson metadata and disclose transcript limits")
+        if ai_js.is_file():
+            resume_ui = ai_js.read_text(encoding="utf-8")
+            check('sendMessage(message,lessonId=null)' in resume_ui
+                  and 'lesson.id));' in resume_ui
+                  and 'history:lessonId?[]:history' in resume_ui,
+                  "Resuming a lesson must send its saved ID and start a clean lesson-specific chat context")
         check('lessonActiveResult' in source and 'activeLessonResult' in source
               and '.in("status", ["in_progress", "paused"])' in source
               and 'prioritisedLessons' in source
