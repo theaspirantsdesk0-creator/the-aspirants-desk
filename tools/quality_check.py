@@ -300,7 +300,7 @@ def main() -> int:
             check('task.snooze_count = (task.snooze_count || 0) + 1' in edge_source
                   and 'task.review_count = (task.review_count || 0) + 1' in edge_source
                   and 'Choose a valid review date today or later.' in edge_source
-                  and 'previousTasks = new Map(mentorState.pending_tasks.map(task => [task.id, task]))' in edge_source,
+                  and 'previousTasks = new Map(mentorState.pending_tasks.map(task => [task.id, task]))' in edge_source
                   and 'const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> = [];' in edge_source,
                   "Anbuu backend must validate due dates, persist review outcomes and preserve metadata across AI state updates")
         check("state.mistakes.unshift(" in app_source,
