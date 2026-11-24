@@ -1394,8 +1394,21 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     </div>
     <div class="card gold-top">
       <h2>Course catalogue</h2>
-      <label for="courseSearch">Find a course</label>
-      <input id="courseSearch" type="search" placeholder="Search by title, topic or category" style="width:100%;max-width:520px;margin:.35rem 0 1rem">
+      <div class="course-discovery-toolbar">
+        <div class="course-search-field"><label for="courseSearch">Find a course</label>
+          <input id="courseSearch" type="search" placeholder="Search by title, topic or category" autocomplete="off">
+        </div>
+        <div><label for="courseCategoryFilter">Learning area</label>
+          <select id="courseCategoryFilter"><option value="ALL">All learning areas</option></select>
+        </div>
+        <div><label for="courseStatusFilter">Your progress</label>
+          <select id="courseStatusFilter">
+            <option value="ALL">All courses</option><option value="NOT_STARTED">Not started</option>
+            <option value="IN_PROGRESS">In progress</option><option value="COMPLETED">Completed</option>
+          </select>
+        </div>
+      </div>
+      <p id="courseResultCount" class="course-result-count" aria-live="polite">Loading courses…</p>
       <div id="courseLearningSummary" class="course-learning-summary" aria-label="Your learning summary"></div>
       <div id="courseCatalog" aria-live="polite"></div>
     </div>
