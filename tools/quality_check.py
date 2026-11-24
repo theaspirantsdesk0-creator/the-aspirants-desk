@@ -224,7 +224,8 @@ def main() -> int:
                       "Anbuu lesson history RLS policy must grant rows only to service_role")
         if ai_js.is_file():
             lesson_ui = ai_js.read_text(encoding="utf-8")
-            check('id="tadLessonHistoryList"' in lesson_ui and 'id="tadRefreshLessons"' in lesson_ui
+            check(('id="tadLessonHistoryList"' in lesson_ui or "id='tadLessonHistoryList'" in lesson_ui)
+                  and ('id="tadRefreshLessons"' in lesson_ui or "id='tadRefreshLessons'" in lesson_ui)
                   and 'action:"update_lesson"' in lesson_ui,
                   "Anbuu learner lesson history and progress controls are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
