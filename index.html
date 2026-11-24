@@ -669,6 +669,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#library" class="nav-link" data-nav="library">🔗 Study Library & A–Z</a>
   <a href="#connect" class="nav-link" data-nav="connect">✉️ Connect & FAQ</a>
 
+  <div class="nav-grp">AI Learning Companion</div>
+  <a href="#anbuu" class="nav-link requires-auth" data-nav="anbuu">✦ Anbuu · AI Study Mentor <span class="lock-tag">Login</span></a>
+
   <div class="nav-grp">Phase 1 · Study Deck</div>
   <a href="#today" class="nav-link requires-auth" data-nav="today">⭐ Today’s Desk & Timer <span class="lock-tag">Login</span></a>
   <a href="#dailytest" class="nav-link requires-auth" data-nav="dailytest">📝 Daily Prelims Test <span class="lock-tag">Login</span></a>
@@ -1576,6 +1579,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   const PUBLIC_VIEWS = new Set(["home", "about-app", "founder", "updates", "legal", "directory", "library", "connect"]);
   const VIEW_TITLES = {
     "home": "Dashboard Overview",
+    "anbuu": "Anbuu · AI Study Mentor",
     "about-app": "About the App",
     "founder": "Founder & Website Owner",
     "updates": "Exam Notifications & Calendar",
