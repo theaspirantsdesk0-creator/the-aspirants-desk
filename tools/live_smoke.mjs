@@ -89,6 +89,36 @@ try {
   if (aiForm !== 1) throw new Error('Anbuu chat form is missing');
   const revisionTab = page.locator('#tadAiRevisionTab');
   if (await revisionTab.count() !== 1) throw new Error('Anbuu Revision Planner tab is missing');
+  // Verify Anbuu guided-learning UI and the complete optional-subject catalogue.
+  const lessonStudio = page.locator('.tad-anbuu-lesson-studio');
+  if (await lessonStudio.count() !== 1) throw new Error('Anbuu guided-learning studio is missing');
+  for (const selector of ['#tadLessonTrack', '#tadLessonSubject', '#tadLessonTopic', '#tadLessonLevel', '#tadStartLesson']) {
+    if (await page.locator(selector).count() !== 1) throw new Error('Anbuu lesson control is missing: ' + selector);
+  }
+  await page.waitForFunction(() => {
+    const select = document.querySelector('#tadLessonSubject');
+    return select && select.options.length >= 12;
+  }, { timeout: 15000 });
+  const lessonCatalogue = await page.evaluate(async () => {
+    const track = document.querySelector('#tadLessonTrack');
+    const subject = document.querySelector('#tadLessonSubject');
+    const countFor = async value => {
+      track.value = value;
+      track.dispatchEvent(new Event('change', { bubbles: true }));
+      // Wait for the catalogue fetch to have populated the selected list.
+      for (let i = 0; i < 40; i++) {
+        if (subject.options.length > 1) return subject.options.length;
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      return subject.options.length;
+    };
+    const optional = await countFor('optional');
+    const literature = await countFor('literature');
+    return { optional, literature };
+  });
+  if (lessonCatalogue.optional !== 25 || lessonCatalogue.literature !== 23) {
+    throw new Error('Anbuu optional catalogue mismatch: ' + JSON.stringify(lessonCatalogue) + ' (expected 25 optional and 23 literature subjects)');
+  }
   const css = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
   if (!css) throw new Error('Anbuu stylesheet was not loaded');
   // The PYQ bank is login-protected. Confirm its controls exist in the document,
