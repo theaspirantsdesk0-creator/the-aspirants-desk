@@ -92,3 +92,16 @@
 @media(max-width:760px){.tad-anbuu-page-hero{padding:23px}.tad-anbuu-orb{width:112px;height:112px;flex-basis:112px}.tad-anbuu-orb span{font-size:28px}.tad-anbuu-orb b{font-size:13px}.tad-anbuu-orb small{font-size:6px}.tad-anbuu-feature-strip{grid-template-columns:1fr}.tad-anbuu-feature-strip>div{padding:10px}#tadAiWorkspace{grid-template-columns:1fr;min-height:0}.tad-ai-chat{min-height:530px;border-right:0;border-bottom:1px solid var(--line,#ddd)}#tadAiSidebar{max-height:none}}
 @media(max-width:480px){.tad-anbuu-page-hero{align-items:flex-start}.tad-anbuu-orb{display:none}.tad-anbuu-page-hero h1{font-size:36px}#tadAiHead{padding:12px}.tad-anbuu-online{font-size:9px}}
 @media(prefers-reduced-motion:reduce){#tadAiPanel.view-sec{animation:none}}
+
+/* Anbuu guided learning studio */
+.tad-anbuu-lesson-studio{margin:1.25rem 0 1.5rem;padding:1.25rem;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--surface),var(--surface-alt));box-shadow:var(--shadow)}
+.tad-lesson-heading>span{font-size:.68rem;font-weight:800;letter-spacing:.14em;color:var(--accent)}
+.tad-lesson-heading h2{margin:.2rem 0;font:800 1.35rem "Bricolage Grotesque",sans-serif}
+.tad-lesson-heading p,.tad-lesson-note{margin:.25rem 0 .9rem;color:var(--muted);font-size:.86rem}
+.tad-lesson-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;align-items:end}
+.tad-lesson-controls label{display:grid;gap:.32rem;font-size:.76rem;font-weight:700;color:var(--muted)}
+.tad-lesson-controls select,.tad-lesson-controls input{width:100%;min-width:0;padding:.68rem .75rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:500 .86rem "Plus Jakarta Sans",sans-serif}
+.tad-lesson-controls button{min-height:42px;border:0;border-radius:10px;padding:.65rem 1rem;background:var(--navy);color:#fff;font-weight:800;cursor:pointer}
+.tad-lesson-controls button:hover{filter:brightness(1.18)}
+.tad-lesson-note{margin:.8rem 0 0}
+@media(max-width:640px){.tad-lesson-controls{grid-template-columns:1fr}.tad-anbuu-lesson-studio{padding:1rem}}
