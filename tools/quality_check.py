@@ -306,7 +306,7 @@ def main() -> int:
                   and 'const intervals: Record<string, number> = { again: 1, hard: 2, good: 4, easy: 7 }' in edge_source
                   and 'task.last_review_result = result' in edge_source
                   and 'task.due_date = nextDate.toISOString().slice(0, 10)' in edge_source
-                  and 'const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> = [];' in edge_source,
+                  and 'const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string;last_review_result:string}> = [];' in edge_source,
                   "Anbuu backend must validate due dates, persist review outcomes and preserve metadata across AI state updates")
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
