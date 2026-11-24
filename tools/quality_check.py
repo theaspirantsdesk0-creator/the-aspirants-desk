@@ -546,6 +546,15 @@ def main() -> int:
           and all(f'data-nav={chr(92)}"{route}{chr(92)}"' in ai_source for route in
                   ("home", "today", "notes", "pyq", "planner", "tracker")),
           "Anbuu must provide working shortcuts back to the main study sections")
+    check('id="checkPushBtn"' in html and 'id="pushDiagnostics"' in html,
+          "Push reminder card must expose a device diagnostics control and result area")
+    check("async function runPushDiagnostics()" in html
+          and '.eq("user_id", currentUser.id)' in html
+          and '.eq("endpoint", subscription.endpoint)' in html,
+          "Push diagnostics must inspect only the signed-in user’s current device subscription")
+    check("This check does not send a notification." in html
+          and "send-test-study-notification" in html,
+          "Device diagnostics must remain separate from actual test-notification delivery")
     # The service worker must not keep old JavaScript or CSS after a site deployment.
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
