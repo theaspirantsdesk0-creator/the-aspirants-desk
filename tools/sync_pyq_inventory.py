@@ -98,7 +98,7 @@ def main() -> int:
     print(f"Inventory rows updated: {changed}")
     print(f"Verified inventory total: {result['inventory_summary']['verified_entries']}")
     if args.write:
-        INVENTORY.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+        INVENTORY.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print("Wrote data/pyq/documents.json")
     else:
         print("Dry run only. Re-run with --write to save changes.")
