@@ -73,8 +73,9 @@ try {
   }
   await page.locator('#checkPushBtn').click();
   await page.locator('#pushDiagnostics').waitFor({ state: 'visible' });
-  if (!(await page.locator('#pushDiagnostics').innerText()).includes('sign in')) {
-    throw new Error('Guest push diagnostics should explain that sign-in is required before account checks');
+  await page.waitForFunction(() => document.querySelector('#pushDiagnostics')?.innerText.includes('Account:'), { timeout: 10000 });
+  if (!(await page.locator('#pushDiagnostics').innerText()).includes('Account:')) {
+    throw new Error('Push diagnostics did not finish rendering the account check');
   }
   const ownerNav = page.locator('a[data-nav="admin"]');
   if (await ownerNav.count() !== 1 || !(await ownerNav.isHidden())) {
