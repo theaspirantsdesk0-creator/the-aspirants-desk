@@ -443,7 +443,7 @@ Deno.serve(async (req: Request) => {
     if (body.reviewResult !== undefined) {
       const result = typeof body.reviewResult === "string" ? body.reviewResult : "";
       const intervals: Record<string, number> = { again: 1, hard: 2, good: 4, easy: 7 };
-      if (!(result in intervals) || body.dueDate !== undefined || nextStatus !== "pending" || task.status === "completed") {
+      if (!Object.hasOwn(intervals, result) || body.dueDate !== undefined || nextStatus !== "pending" || task.status === "completed") {
         return json({ error: "Choose a valid review result for an active revision task." }, 400, origin);
       }
       const nextDate = new Date(nowDate);
