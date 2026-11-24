@@ -3138,8 +3138,12 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   }
 
   // Event Wiring
-  document.querySelectorAll("[data-nav]").forEach(el => {
-    el.addEventListener("click", (e) => { e.preventDefault(); navigateTo(el.dataset.nav); });
+  // Delegate navigation clicks so dynamically injected modules (including Anbuu) work too.
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest ? e.target.closest("[data-nav]") : null;
+    if (!el) return;
+    e.preventDefault();
+    navigateTo(el.dataset.nav);
   });
   document.querySelectorAll(".open-protected").forEach(btn => {
     btn.addEventListener("click", () => navigateTo(btn.dataset.target));
