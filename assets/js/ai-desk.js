@@ -63,12 +63,18 @@ function renderRevisionTasks(tasks){
   const history=[];
   if(Number(item.review_count)>0)history.push(String(item.review_count)+" review"+(Number(item.review_count)===1?"":"s")+(item.last_reviewed_at?" · last "+new Date(item.last_reviewed_at).toLocaleDateString():""));
   if(Number(item.snooze_count)>0)history.push("postponed "+item.snooze_count+" time"+(Number(item.snooze_count)===1?"":"s"));
+  if(item.last_review_result)history.push("last result: "+({again:"Again",hard:"Hard",good:"Good",easy:"Easy"}[item.last_review_result]||"Recorded"));
   meta.textContent=[dueLabel,...history].join(" · ");
   details.append(title,meta);
   const actions=document.createElement("div");actions.className="tad-revision-task-actions";
   const done=document.createElement("button");done.type="button";done.textContent=item.status==="completed"?"Undo":"Mark done";
   done.addEventListener("click",()=>task(item.id,item.status==="completed"?"pending":"completed"));actions.append(done);
   if(item.status!=="completed"){
+   const ratingGroup=document.createElement("div");ratingGroup.className="tad-revision-rating-actions";
+   [{value:"again",label:"Again · 1d"},{value:"hard",label:"Hard · 2d"},{value:"good",label:"Good · 4d"},{value:"easy",label:"Easy · 7d"}].forEach(rating=>{
+    const review=document.createElement("button");review.type="button";review.className="tad-revision-rating";review.textContent=rating.label;review.title="Record this review result and schedule the next review";
+    review.addEventListener("click",()=>task(item.id,"pending",null,rating.value));ratingGroup.append(review);
+   });actions.append(ratingGroup);
    [1,3].forEach(days=>{
     const postpone=document.createElement("button");postpone.type="button";postpone.textContent="+"+days+" day"+(days===1?"":"s");
     postpone.addEventListener("click",()=>{
@@ -220,7 +226,7 @@ if(!opened&&!messages.childElementCount){const n=state.pending_tasks.filter(t=>t
 else if(!messages.childElementCount)say(role==="admin"?"Admin Desk ready. Drafts require human verification.":"Mentor Desk ready. Share de-identified progress for feedback.","assistant");
 opened=true;
 }
-async function task(id,next,dueDate=null){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next,...(dueDate?{dueDate}:{})}});if(r.error)throw r.error;state=r.data.mentorState;render();status.textContent=dueDate?"Revision postponed and saved.":next==="completed"?"Revision marked complete.":"Task restored to pending."; }catch(e){status.textContent="Task could not be saved. Please try again.";}}
+async function task(id,next,dueDate=null,reviewResult=null){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next,...(dueDate?{dueDate}:{}),...(reviewResult?{reviewResult}:{})}});if(r.error)throw r.error;state=r.data.mentorState;render();status.textContent=reviewResult?"Review saved. Next review scheduled from your confidence rating.":dueDate?"Revision postponed and saved.":next==="completed"?"Revision marked complete.":"Task restored to pending."; }catch(e){status.textContent="Task could not be saved. Please try again.";}}
 async function sendMessage(message,lessonId=null){
 if(!message||busy)return;if(role==="guest"){status.textContent="Sign in with a learner, mentor or admin account.";return;}
 busy=true;send.disabled=true;input.value="";if(lessonId){history=[];messages.replaceChildren();}say(message,"user");
