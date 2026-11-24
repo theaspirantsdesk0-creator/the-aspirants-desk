@@ -278,7 +278,7 @@ Deno.serve(async (req: Request) => {
   let body: Record<string, unknown>;
   try { body = await req.json(); } catch { return json({ error: "Invalid JSON request." }, 400, origin); }
 
-  const mentorTable = adminClient.schema("private").from("anbuu_mentor_state");
+  const mentorTable = adminClient.from("anbuu_mentor_state");
   let mentorState = defaultMentorState();
   if (profile.role === "learner") {
     const { data: savedState, error: savedStateError } = await mentorTable
