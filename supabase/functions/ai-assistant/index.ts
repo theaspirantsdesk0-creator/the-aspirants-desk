@@ -308,8 +308,9 @@ Deno.serve(async (req: Request) => {
     const now = Date.now(), weekMs = 7 * 24 * 60 * 60 * 1000;
     const current = tests.filter(t => Date.parse(String(t.date)) >= now - weekMs);
     const previous = tests.filter(t => Date.parse(String(t.date)) >= now - 2 * weekMs && Date.parse(String(t.date)) < now - weekMs);
-    const average = (items: typeof tests) => items.length
-      ? Math.round(items.reduce((sum, t) => sum + (t.percentage ?? 0), 0) / items.length) : null;
+    const scored = (items: typeof tests) => items.filter(t => t.percentage !== null);
+    const average = (items: typeof tests) => { const valid = scored(items); return valid.length
+      ? Math.round(valid.reduce((sum, t) => sum + (t.percentage as number), 0) / valid.length) : null; };
     const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
       ? savedResult.data.payload as Record<string, unknown> : {};
     const mistakes = Array.isArray(payload.mistakes) ? payload.mistakes : [];
