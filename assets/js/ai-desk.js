@@ -80,7 +80,7 @@ function renderLessonHistory(){
   head.append(title,stateTag);
   const meta=document.createElement("small");meta.textContent=(lesson.track==="gs"?"General Studies":lesson.track==="literature"?"Literature optional":"UPSC optional")+" · "+lesson.level+" · Started "+(lesson.created_at?new Date(lesson.created_at).toLocaleDateString():"date unavailable");
   const actions=document.createElement("div");actions.className="tad-lesson-history-actions";
-  const resume=document.createElement("button");resume.type="button";resume.textContent="Continue with recap";resume.addEventListener("click",()=>sendMessage("Resume my saved "+lesson.subject+" lesson"+(lesson.topic?" on "+lesson.topic:"")+". Give me a brief recap based on the topic and level "+lesson.level+", then continue with one small concept and one understanding-check question. Do not claim to remember an unsaved chat transcript."));
+  const resume=document.createElement("button");resume.type="button";resume.textContent="Continue with recap";resume.addEventListener("click",()=>sendMessage("Continue this saved lesson with a short, honest recap and the next small teaching step. Ask one understanding-check question and wait for my reply.",lesson.id));
   actions.append(resume);
   const toggle=document.createElement("button");toggle.type="button";
   if(lesson.status==="completed"){toggle.textContent="Reopen";toggle.addEventListener("click",()=>updateLesson(lesson.id,"in_progress"));}
@@ -187,10 +187,10 @@ else if(!messages.childElementCount)say(role==="admin"?"Admin Desk ready. Drafts
 opened=true;
 }
 async function task(id,next){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next}});if(r.error)throw r.error;state=r.data.mentorState;render();}catch(e){status.textContent="Task could not be saved. Please try again.";}}
-async function sendMessage(message){
+async function sendMessage(message,lessonId=null){
 if(!message||busy)return;if(role==="guest"){status.textContent="Sign in with a learner, mentor or admin account.";return;}
 busy=true;send.disabled=true;input.value="";say(message,"user");
-try{const r=await db.functions.invoke("ai-assistant",{body:{message,history}});if(r.error)throw r.error;if(!r.data?.answer)throw new Error(r.data?.error||"No response received.");
+try{const r=await db.functions.invoke("ai-assistant",{body:{message,history:lessonId?[]:history,...(lessonId?{lessonId}:{})}});if(r.error)throw r.error;if(!r.data?.answer)throw new Error(r.data?.error||"No response received.");
 say(r.data.answer,"assistant");history.push({role:"user",content:message},{role:"assistant",content:r.data.answer});history=history.slice(-8);
 if(role==="learner"&&r.data.mentorState){state=r.data.mentorState;render();}
 status.textContent=(r.data.provider||"AI")+" · "+(r.data.remaining??"—")+" messages remaining today.";
