@@ -208,6 +208,10 @@ async function groq(messages: Array<{role:string;content:string}>, role: string,
   return answer;
 }
 
+function mentorStateFallback() {
+  return { active_study_plan: null, doubt_log: [], pending_tasks: [] };
+}
+
 function cleanMentorState(value: unknown): { active_study_plan: Record<string, unknown> | null; doubt_log: string[]; pending_tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed"}> } | null {
   if (!value || typeof value !== "object") return null;
   const raw = value as Record<string, unknown>;
@@ -323,9 +327,26 @@ Deno.serve(async (req: Request) => {
         !["in_progress", "paused", "completed"].includes(nextStatus)) {
       return json({ error: "That lesson update is not valid." }, 400, origin);
     }
+    if (nextStatus === "completed") {
+      const { data, error } = await adminClient.rpc("complete_anbuu_lesson_and_queue_revision", {
+        p_lesson_id: lessonId,
+        p_user_id: authData.user.id,
+      });
+      if (error) {
+        console.error("Anbuu lesson completion transaction failed:", error.message);
+        return json({ error: "Could not complete this lesson and queue its revision task. Please try again." }, 500, origin);
+      }
+      if (!data?.lesson) return json({ error: "That lesson was not found in your account." }, 404, origin);
+      const mentorState = cleanMentorState(data.mentorState) ?? mentorStateFallback();
+      return json({
+        lesson: data.lesson,
+        mentorState,
+        revisionTaskCreated: data.revisionTaskCreated === true,
+      }, 200, origin);
+    }
     const now = new Date().toISOString();
     const { data, error } = await adminClient.from("anbuu_lesson_history")
-      .update({ status: nextStatus, updated_at: now, completed_at: nextStatus === "completed" ? now : null })
+      .update({ status: nextStatus, updated_at: now, completed_at: null })
       .eq("id", lessonId).eq("user_id", authData.user.id)
       .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at").maybeSingle();
     if (error) return json({ error: "Could not update this lesson. Please try again." }, 500, origin);
