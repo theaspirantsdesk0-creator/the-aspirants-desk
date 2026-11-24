@@ -277,6 +277,16 @@ def main() -> int:
                   and 'renderLessonRevisionTasks' in lesson_ui,
                   "Anbuu learner lesson history and dashboard progress summary are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
+        if ai_js.is_file():
+            revision_ui = ai_js.read_text(encoding="utf-8")
+            check('function revisionIntervalDays(topic)' in revision_ui
+                  and 'if(misses>=4)return 0' in revision_ui
+                  and 'if(misses===3)return 1' in revision_ui
+                  and 'if(misses===2)return 3' in revision_ui
+                  and 'return 7' in revision_ui
+                  and 'revisionDueDate(topic)' in revision_ui
+                  and 'based on miss count' in revision_ui,
+                  "Anbuu revision dates must use recorded mistake frequency and show explicit due dates")
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
 
