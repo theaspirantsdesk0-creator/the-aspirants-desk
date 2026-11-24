@@ -119,6 +119,9 @@ try {
   if (lessonCatalogue.optional !== 25 || lessonCatalogue.literature !== 23) {
     throw new Error('Anbuu optional catalogue mismatch: ' + JSON.stringify(lessonCatalogue) + ' (expected 25 optional and 23 literature subjects)');
   }
+  for (const selector of ['#tadLessonHistoryTitle', '#tadLessonHistoryList', '#tadRefreshLessons']) {
+    if (await page.locator(selector).count() !== 1) throw new Error('Anbuu saved lesson history UI is missing: ' + selector);
+  }
   const css = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
   if (!css) throw new Error('Anbuu stylesheet was not loaded');
   // The PYQ bank is login-protected. Confirm its controls exist in the document,
