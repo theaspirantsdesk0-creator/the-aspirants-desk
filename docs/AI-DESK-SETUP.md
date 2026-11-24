@@ -79,3 +79,31 @@ The production website is not updated until the pull request is reviewed and mer
 - The assistant now retrieves a small set of relevant published question-bank records and matching entries from `data/current-affairs.json` and `data/pib.json` for each request. Retrieval uses topic keywords, caches public source files for five minutes per warm Edge Function instance, and is not a full-text search engine; it does not yet index every lesson, textbook, library document, PDF or all UPSC official PYQ papers. Supply source text when a topic is not found.
 - Learner context is limited to a de-identified study-state summary and the five most recent test-result records available in the current schema. Missing or differently named fields are omitted; the assistant should not infer absent progress data.
 - Mentor-to-learner private progress access and automated content publishing are intentionally not enabled.
+
+
+## Anbuu personal mentor
+
+The learner experience is branded as Anbuu and adds a structured teaching workflow:
+
+- Summarises multiple doubts before teaching, asks for clarification only when necessary, and teaches in short stages with understanding checks.
+- Builds realistic study plans and assigns 1–3 manageable tasks.
+- Opens a fresh session by referring to the learner's saved pending tasks.
+- Provides three chat shortcuts: make a study plan, summarise doubts, and give today's tasks.
+- Shows the active plan, pending/completed tasks, and recurring doubts in a progress sidebar.
+
+### Persistent state and privacy
+
+The private table `private.anbuu_mentor_state` stores one row per learner: `active_study_plan`, `doubt_log`, `pending_tasks`, and `updated_at`. It is deliberately in the non-exposed `private` schema. Browser clients cannot read or write it directly. The authenticated `ai-assistant` Edge Function verifies the caller, checks the database-assigned role, and uses the caller's user ID for all state reads and writes. The UI receives only that learner's state. Task completion is saved immediately.
+
+The model emits a machine-readable state block that the Edge Function validates and strips before returning the visible answer. Invalid or missing state blocks are ignored; existing saved state is retained. Do not place learner names or contact details in doubt logs or task descriptions.
+
+### Smoke test
+
+1. Sign in with a learner account and open Anbuu. Confirm the saved state loads and the welcome message reflects pending tasks.
+2. Use **Make Me a Study Plan** and complete a plan. Confirm it appears in the sidebar.
+3. Ask two related questions. Confirm Anbuu summarises the doubts before explaining.
+4. Ask for today's tasks. Mark one task complete and reload the page; confirm its completed status persists.
+5. Sign out and sign in as a different learner test account. Confirm the first learner's plan, tasks, and doubts are not visible.
+6. Confirm mentor/admin roles still receive their existing role-specific assistant and do not receive learner state.
+
+The provider free-tier limits and model availability are controlled by the provider; a permanent $0 operating cost is not guaranteed.
