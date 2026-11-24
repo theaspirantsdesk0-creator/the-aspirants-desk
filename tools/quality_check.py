@@ -274,7 +274,7 @@ def main() -> int:
                   and 'tad-ai-lesson-stats' in lesson_ui
                   and 'Complete + add revision task' in lesson_ui
                   and 'tadAiLessonRevisionTasks' in lesson_ui
-                  and 'renderLessonRevisionTasks' in lesson_ui,
+                  and 'renderRevisionTasks' in lesson_ui,
                   "Anbuu learner lesson history and dashboard progress summary are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
         if ai_js.is_file():
@@ -287,6 +287,21 @@ def main() -> int:
                   and 'revisionDueDate(topic)' in revision_ui
                   and 'based on miss count' in revision_ui,
                   "Anbuu revision dates must use recorded mistake frequency and show explicit due dates")
+        if ai_js.is_file():
+            check('function renderRevisionTasks(tasks)' in revision_ui
+                  and 'Overdue' in revision_ui
+                  and 'postpone.addEventListener' in revision_ui
+                  and 'task(item.id,"pending",dueDate)' in revision_ui
+                  and 'review_count' in revision_ui and 'snooze_count' in revision_ui,
+                  "Anbuu revision queue must show overdue status, allow postponement and display saved review history")
+        edge_file = ROOT / "supabase" / "functions" / "ai-assistant" / "index.ts"
+        if edge_file.is_file():
+            edge_source = edge_file.read_text(encoding="utf-8")
+            check('task.snooze_count = (task.snooze_count || 0) + 1' in edge_source
+                  and 'task.review_count = (task.review_count || 0) + 1' in edge_source
+                  and 'Choose a valid review date today or later.' in edge_source
+                  and 'previousTasks = new Map(mentorState.pending_tasks.map(task => [task.id, task]))' in edge_source,
+                  "Anbuu backend must validate due dates, persist review outcomes and preserve metadata across AI state updates")
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
 
