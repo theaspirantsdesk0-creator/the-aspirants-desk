@@ -10,7 +10,7 @@ document.querySelector("#mainContent").append(panel);
 const lessonStudio=document.createElement("section");
 lessonStudio.className="tad-anbuu-lesson-studio";
 lessonStudio.setAttribute("aria-labelledby","tadLessonTitle");
-lessonStudio.innerHTML="<div class='tad-lesson-heading'><span>GUIDED LEARNING</span><h2 id='tadLessonTitle'>Build a lesson with Anbuu</h2><p>Choose General Studies or any UPSC optional subject. Anbuu will teach the topic in stages, check understanding and suggest practice.</p></div><div class='tad-lesson-controls'><label>Learning track<select id='tadLessonTrack'><option value='gs'>General Studies &amp; GS foundations</option><option value='optional'>UPSC optional subject</option><option value='literature'>Literature optional</option></select></label><label>Subject<select id='tadLessonSubject'><option value='Polity'>Polity</option></select></label><label>Topic (optional)<input id='tadLessonTopic' maxlength='160' placeholder='e.g. Fundamental Rights'></label><label>Level<select id='tadLessonLevel'><option value='beginner'>Beginner</option><option value='intermediate'>Intermediate</option><option value='advanced'>Advanced</option></select></label><button id='tadStartLesson' type='button'>Start guided lesson <span>→</span></button></div><p class='tad-lesson-note' id='tadLessonNote' aria-live='polite'>Optional subjects and literature choices load from the site's UPSC coverage catalogue.</p>";
+lessonStudio.innerHTML="<div class='tad-lesson-heading'><span>GUIDED LEARNING</span><h2 id='tadLessonTitle'>Build a lesson with Anbuu</h2><p>Choose General Studies or any UPSC optional subject. Anbuu will teach the topic in stages, check understanding and suggest practice.</p></div><div class='tad-lesson-controls'><label>Learning track<select id='tadLessonTrack'><option value='gs'>General Studies &amp; GS foundations</option><option value='optional'>UPSC optional subject</option><option value='literature'>Literature optional</option></select></label><label>Subject<select id='tadLessonSubject'><option value='Polity'>Polity</option></select></label><label>Topic (optional)<input id='tadLessonTopic' maxlength='160' placeholder='e.g. Fundamental Rights'></label><label>Level<select id='tadLessonLevel'><option value='beginner'>Beginner</option><option value='intermediate'>Intermediate</option><option value='advanced'>Advanced</option></select></label><button id='tadStartLesson' type='button'>Start guided lesson <span>→</span></button></div><p class='tad-lesson-note' id='tadLessonNote' aria-live='polite'>Optional subjects and literature choices load from the site's UPSC coverage catalogue.</p><section class='tad-lesson-history' aria-labelledby='tadLessonHistoryTitle'><div class='tad-lesson-history-head'><div><h3 id='tadLessonHistoryTitle'>My lesson history</h3><p>Saved to your learner account across devices. Lesson details and status are stored, not chat transcripts.</p></div><button type='button' id='tadRefreshLessons'>Refresh</button></div><div id='tadLessonHistoryList' aria-live='polite'>Sign in as a learner to view your lessons.</div></section>";
 panel.insertBefore(lessonStudio,panel.querySelector("#tadAiHead"));
 const lessonTrack=lessonStudio.querySelector("#tadLessonTrack"),lessonSubject=lessonStudio.querySelector("#tadLessonSubject");
 const gsSubjects=["Polity","History","Geography","Indian Economy","Environment & Ecology","Science & Technology","Ethics","International Relations","Indian Society","Internal Security","Disaster Management","CSAT"];
@@ -28,10 +28,16 @@ fetch("data/pyq/coverage.json").then(r=>{if(!r.ok)throw new Error("catalogue una
  optionalCatalogue.literature=list.filter(x=>x.category==="literature");
  fillLessonSubjects();
 }).catch(()=>{lessonStudio.querySelector("#tadLessonNote").textContent="The optional catalogue could not load. General Studies remains available; refresh to retry the full subject list.";});
-lessonStudio.querySelector("#tadStartLesson").addEventListener("click",()=>{
+lessonStudio.querySelector("#tadStartLesson").addEventListener("click",async()=>{
  const track=lessonTrack.value,subject=lessonSubject.value,topic=lessonStudio.querySelector("#tadLessonTopic").value.trim(),level=lessonStudio.querySelector("#tadLessonLevel").value;
- if(!subject){lessonStudio.querySelector("#tadLessonNote").textContent="Please choose a subject.";return;}
+ const note=lessonStudio.querySelector("#tadLessonNote");
+ if(role!=="learner"){note.textContent="Sign in with a learner account to save and track guided lessons.";return;}
+ if(!subject){note.textContent="Please choose a subject.";return;}
  const label=track==="gs"?"General Studies":track==="literature"?"Literature optional":"UPSC optional";
+ const saved=await db.functions.invoke("ai-assistant",{body:{action:"start_lesson",track,subject,topic,level}});
+ if(saved.error||!saved.data?.lesson){note.textContent=saved.data?.error||"Could not save this lesson. Please try again.";return;}
+ note.textContent="Lesson saved to your account. You can pause it or mark it complete in My lesson history.";
+ await loadLessons();
  const prompt="Start an interactive, step-by-step UPSC "+label+" lesson. Subject: "+subject+". Topic: "+(topic||"Choose one appropriate foundational topic and state the official syllabus reference only if you can verify it; otherwise clearly say the reference is unverified.")+". Learner level: "+level+". Act as a patient teacher. First give a short lesson roadmap, 2–3 learning objectives and any prerequisites. Then teach ONLY the first small concept in simple language with one example. Ask exactly one short understanding-check question and STOP; wait for the learner's reply before teaching the next stage. After each reply, briefly correct or confirm understanding and teach only the next stage. When the topic is complete, give 3 practice questions with explanations and 1–3 manageable revision tasks. Distinguish verified syllabus facts from examples, never invent official PYQs or citations, and never claim to save lesson completion unless a real save operation confirms it. Use Tamil and English if requested.";
  sendMessage(prompt);
 });
@@ -45,6 +51,42 @@ const host=$("#tadAiTasks");host.replaceChildren();const ts=state.pending_tasks|
 ts.filter(t=>t.status!=="completed").concat(ts.filter(t=>t.status==="completed").slice(-2)).forEach(t=>{const box=document.createElement("div");box.className="tad-ai-task"+(t.status==="completed"?" is-done":"");const b=document.createElement("b");b.textContent=t.title;box.append(b);if(t.description){const p=document.createElement("p");p.textContent=t.description;box.append(p);}const btn=document.createElement("button");btn.textContent=t.status==="completed"?"Undo":"Mark done";btn.onclick=()=>task(t.id,t.status==="completed"?"pending":"completed");box.append(btn);host.append(box);});
 const dh=$("#tadAiDoubts");dh.replaceChildren();const ds=state.doubt_log||[];if(!ds.length)dh.textContent="No recurring doubts recorded yet.";else{const ul=document.createElement("ul");ds.slice(-8).forEach(x=>{const li=document.createElement("li");li.textContent=x;ul.append(li);});dh.append(ul);}
 }
+let lessonRows=[];
+function renderLessonHistory(){
+ const host=$("#tadLessonHistoryList");if(!host)return;host.replaceChildren();
+ if(role!=="learner"){host.textContent="Sign in with a learner account to save and view your lessons.";return;}
+ if(!lessonRows.length){host.textContent="No saved lessons yet. Start your first guided lesson above.";return;}
+ lessonRows.forEach(lesson=>{
+  const card=document.createElement("article");card.className="tad-lesson-history-card";
+  const head=document.createElement("div");head.className="tad-lesson-history-title";
+  const title=document.createElement("strong");title.textContent=lesson.subject+(lesson.topic?" · "+lesson.topic:"");
+  const stateTag=document.createElement("span");stateTag.className="tad-lesson-state tad-lesson-state-"+lesson.status;stateTag.textContent=lesson.status==="in_progress"?"In progress":lesson.status==="paused"?"Paused":"Completed";
+  head.append(title,stateTag);
+  const meta=document.createElement("small");meta.textContent=(lesson.track==="gs"?"General Studies":lesson.track==="literature"?"Literature optional":"UPSC optional")+" · "+lesson.level+" · Started "+(lesson.created_at?new Date(lesson.created_at).toLocaleDateString():"date unavailable");
+  const actions=document.createElement("div");actions.className="tad-lesson-history-actions";
+  const resume=document.createElement("button");resume.type="button";resume.textContent="Continue with recap";resume.addEventListener("click",()=>sendMessage("Resume my saved "+lesson.subject+" lesson"+(lesson.topic?" on "+lesson.topic:"")+". Give me a brief recap based on the topic and level "+lesson.level+", then continue with one small concept and one understanding-check question. Do not claim to remember an unsaved chat transcript."));
+  actions.append(resume);
+  const toggle=document.createElement("button");toggle.type="button";
+  if(lesson.status==="completed"){toggle.textContent="Reopen";toggle.addEventListener("click",()=>updateLesson(lesson.id,"in_progress"));}
+  else if(lesson.status==="paused"){toggle.textContent="Resume";toggle.addEventListener("click",()=>updateLesson(lesson.id,"in_progress"));}
+  else{toggle.textContent="Pause";toggle.addEventListener("click",()=>updateLesson(lesson.id,"paused"));}
+  actions.append(toggle);
+  if(lesson.status!=="completed"){const done=document.createElement("button");done.type="button";done.textContent="Mark complete";done.addEventListener("click",()=>updateLesson(lesson.id,"completed"));actions.append(done);}
+  card.append(head,meta,actions);host.append(card);
+ });
+}
+async function loadLessons(){
+ if(role!=="learner"){lessonRows=[];renderLessonHistory();return;}
+ const r=await db.functions.invoke("ai-assistant",{body:{action:"get_lessons"}});
+ if(r.error)throw r.error;
+ lessonRows=Array.isArray(r.data?.lessons)?r.data.lessons:[];
+ renderLessonHistory();
+}
+async function updateLesson(id,nextStatus){
+ try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson",lessonId:id,status:nextStatus}});if(r.error)throw r.error;await loadLessons();}
+ catch(e){status.textContent=e.message||"Lesson progress could not be updated. Try again.";}
+}
+$("#tadRefreshLessons").addEventListener("click",()=>loadLessons().catch(()=>{status.textContent="Could not refresh lesson history."; }));
 async function loadState(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_state"}});if(r.error)throw r.error;state=r.data?.mentorState||empty();render();}
 function setDashboardTab(name){const overview=name==="overview";$("#tadAiOverview").hidden=!overview;$("#tadAiRevision").hidden=overview;$("#tadAiOverviewTab").classList.toggle("is-active",overview);$("#tadAiRevisionTab").classList.toggle("is-active",!overview);$("#tadAiOverviewTab").setAttribute("aria-selected",String(overview));$("#tadAiRevisionTab").setAttribute("aria-selected",String(!overview));}
 $("#tadAiOverviewTab").addEventListener("click",()=>setDashboardTab("overview"));
@@ -88,7 +130,7 @@ role=!error&&p&&["learner","mentor","admin"].includes(p.role)?p.role:"guest";
 $("#tadAiRole").textContent=role==="learner"?"Your personal study mentor":role==="guest"?"Role unavailable":role+" assistant";
 $("#tadAiSidebar").hidden=role!=="learner";
 if(role==="guest"){status.textContent="Your account role could not be verified.";return;}
-if(role==="learner"){try{await loadState();await loadProgress();}catch(e){status.textContent="Could not load saved progress. Try again.";}
+if(role==="learner"){try{await loadState();await loadProgress();await loadLessons();}catch(e){status.textContent="Could not load saved progress or lesson history. Try again.";}
 if(!opened&&!messages.childElementCount){const n=state.pending_tasks.filter(t=>t.status!=="completed").length;say(n?"Welcome back! You have "+n+" pending tasks. How did you get on?":"Welcome back! I’m Anbuu, your study mentor. What shall we work on today?","assistant");}}
 else if(!messages.childElementCount)say(role==="admin"?"Admin Desk ready. Drafts require human verification.":"Mentor Desk ready. Share de-identified progress for feedback.","assistant");
 opened=true;
@@ -108,7 +150,7 @@ const prompts={plan:"Help me create a realistic study plan. Ask for my exam goal
 panel.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>sendMessage(prompts[b.dataset.prompt])));
 
 $("#tadAiForm").onsubmit=e=>{e.preventDefault();sendMessage(input.value.trim());};
-db.auth.onAuthStateChange(()=>{role="guest";history=[];state=empty();opened=false;messages.replaceChildren();queueMicrotask(()=>refresh().catch(()=>{}));});
+db.auth.onAuthStateChange(()=>{role="guest";history=[];state=empty();lessonRows=[];renderLessonHistory();opened=false;messages.replaceChildren();queueMicrotask(()=>refresh().catch(()=>{}));});
 refresh().catch(()=>{status.textContent="Could not check your account. Reload and sign in again.";});
 if(location.hash==="#anbuu"){const nav=document.querySelector('.nav-link[data-nav="anbuu"]');if(nav)nav.click();}
 })();
