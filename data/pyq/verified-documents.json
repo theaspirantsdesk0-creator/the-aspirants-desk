@@ -154,6 +154,74 @@
         "verified_at": "2026-11-24",
         "method": "Official archive entry identifies Civil Services (Main) Examination, 2025, Essay; linked UPSC PDF opened successfully (2 pages)."
       }
+    },
+    {
+      "id": "cse-mains-2024-gs-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2024,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2024 — General Studies Paper I",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP_CSM_2024_GenStud_I_03102024.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive entry identifies the 2024 Civil Services (Main) General Studies Paper I; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2024-gs-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2024,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper II",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2024 — General Studies Paper II",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP_CSM_2024_GenStud_II_03102024.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive entry identifies the 2024 Civil Services (Main) General Studies Paper II; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2024-gs-paper-iii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2024,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper III",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2024 — General Studies Paper III",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP_CSM_2024_GenStud_III_03102024.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive entry identifies the 2024 Civil Services (Main) General Studies Paper III; linked UPSC PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2024-gs-paper-iv",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2024,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper IV",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2024 — General Studies Paper IV",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP_CSM_2024_GenStud_IV_03102024.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive entry identifies the 2024 Civil Services (Main) General Studies Paper IV; linked UPSC PDF opened successfully (16 pages)."
+      }
     }
   ]
 }
