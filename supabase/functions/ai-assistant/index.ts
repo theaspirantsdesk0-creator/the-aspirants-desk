@@ -213,7 +213,7 @@ function mentorStateFallback() {
   return { active_study_plan: null, doubt_log: [], pending_tasks: [] };
 }
 
-function cleanMentorState(value: unknown): { active_study_plan: Record<string, unknown> | null; doubt_log: string[]; pending_tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed"}> } | null {
+function cleanMentorState(value: unknown): { active_study_plan: Record<string, unknown> | null; doubt_log: string[]; pending_tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> } | null {
   if (!value || typeof value !== "object") return null;
   const raw = value as Record<string, unknown>;
   const plan = raw.active_study_plan === null ? null :
@@ -230,7 +230,12 @@ function cleanMentorState(value: unknown): { active_study_plan: Record<string, u
     tasks.push({ id: row.id.trim().slice(0, 80), title: row.title.trim().slice(0, 180),
       description: typeof row.description === "string" ? row.description.slice(0, 500) : "",
       due_date: typeof row.due_date === "string" ? row.due_date.slice(0, 40) : "",
-      status: row.status === "completed" ? "completed" : "pending" });
+      status: row.status === "completed" ? "completed" : "pending",
+      review_count: Number.isInteger(row.review_count) ? Math.max(0, Math.min(10000, Number(row.review_count))) : 0,
+      snooze_count: Number.isInteger(row.snooze_count) ? Math.max(0, Math.min(10000, Number(row.snooze_count))) : 0,
+      last_reviewed_at: typeof row.last_reviewed_at === "string" ? row.last_reviewed_at.slice(0, 40) : "",
+      last_snoozed_at: typeof row.last_snoozed_at === "string" ? row.last_snoozed_at.slice(0, 40) : "",
+      completed_at: typeof row.completed_at === "string" ? row.completed_at.slice(0, 40) : "" });
   }
   return { active_study_plan: plan, doubt_log: doubtLog, pending_tasks: tasks };
 }
@@ -431,7 +436,27 @@ Deno.serve(async (req: Request) => {
       return json({ error: "Task update is not available for this account." }, 403, origin);
     const task = mentorState.pending_tasks.find(item => item.id === body.taskId);
     if (!task) return json({ error: "That task could not be found. Refresh your mentor panel." }, 404, origin);
-    task.status = body.status === "completed" ? "completed" : "pending";
+    const now = new Date().toISOString();
+    const nextStatus = body.status === "completed" ? "completed" : "pending";
+    if (body.dueDate !== undefined) {
+      const dueDate = typeof body.dueDate === "string" ? body.dueDate : "";
+      const parsed = /^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate) ? new Date(dueDate + "T00:00:00.000Z") : null;
+      if (!parsed || Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate ||
+          dueDate < new Date().toISOString().slice(0, 10) || nextStatus !== "pending") {
+        return json({ error: "Choose a valid review date today or later." }, 400, origin);
+      }
+      task.due_date = dueDate;
+      task.snooze_count = (task.snooze_count || 0) + 1;
+      task.last_snoozed_at = now;
+    }
+    if (nextStatus === "completed" && task.status !== "completed") {
+      task.review_count = (task.review_count || 0) + 1;
+      task.last_reviewed_at = now;
+      task.completed_at = now;
+    } else if (nextStatus === "pending" && task.status === "completed") {
+      task.completed_at = "";
+    }
+    task.status = nextStatus;
     const { error: saveError } = await mentorTable.upsert({
       user_id: authData.user.id, active_study_plan: mentorState.active_study_plan,
       doubt_log: mentorState.doubt_log, pending_tasks: mentorState.pending_tasks,
@@ -562,13 +587,20 @@ Deno.serve(async (req: Request) => {
       const extracted = extractMentorState(answer);
       visibleAnswer = extracted.answer;
       if (extracted.state) {
+        const previousTasks = new Map(mentorState.pending_tasks.map(task => [task.id, task]));
+        const nextState = { ...extracted.state, pending_tasks: extracted.state.pending_tasks.map(task => {
+          const previous = previousTasks.get(task.id);
+          return previous ? { ...task, review_count: previous.review_count, snooze_count: previous.snooze_count,
+            last_reviewed_at: previous.last_reviewed_at, last_snoozed_at: previous.last_snoozed_at,
+            completed_at: previous.completed_at } : task;
+        }) };
         const { error: stateSaveError } = await mentorTable.upsert({
-          user_id: authData.user.id, active_study_plan: extracted.state.active_study_plan,
-          doubt_log: extracted.state.doubt_log, pending_tasks: extracted.state.pending_tasks,
+          user_id: authData.user.id, active_study_plan: nextState.active_study_plan,
+          doubt_log: nextState.doubt_log, pending_tasks: nextState.pending_tasks,
           updated_at: new Date().toISOString(),
         });
         if (stateSaveError) console.error("Anbuu state save failed:", stateSaveError.message);
-        else mentorState = extracted.state;
+        else mentorState = nextState;
       }
     }
     return json({ answer: visibleAnswer, role: profile.role, provider,
