@@ -126,7 +126,9 @@ def main() -> int:
               "Course discovery toolbar styles are missing")
         check('id="pyqInventorySnapshot"' in course_html,
               "Official PYQ verification snapshot is missing")
-        check("data/pyq/documents.json" in course_html and "pyq-inventory-snapshot" in course_style,
+        design_system_css = ROOT / "assets" / "css" / "design-system.css"
+        design_system = design_system_css.read_text(encoding="utf-8") if design_system_css.is_file() else ""
+        check("data/pyq/documents.json" in course_html and "pyq-inventory-snapshot" in design_system,
               "Official PYQ verification snapshot must load the paper inventory and use its design styles")
 
     questions_dir = ROOT / "data/questions"
