@@ -290,6 +290,48 @@ Deno.serve(async (req: Request) => {
   if (body.action === "get_state") {
     return json({ mentorState: profile.role === "learner" ? mentorState : null, role: profile.role }, 200, origin);
   }
+
+  if (body.action === "get_lessons") {
+    if (profile.role !== "learner") return json({ error: "Lesson history is available to learner accounts only." }, 403, origin);
+    const { data, error } = await adminClient.from("anbuu_lesson_history")
+      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at")
+      .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(25);
+    if (error) return json({ error: "Could not load your lesson history." }, 500, origin);
+    return json({ lessons: data ?? [] }, 200, origin);
+  }
+  if (body.action === "start_lesson") {
+    if (profile.role !== "learner") return json({ error: "Only learner accounts can save guided lessons." }, 403, origin);
+    const track = typeof body.track === "string" ? body.track : "";
+    const subject = typeof body.subject === "string" ? body.subject.trim() : "";
+    const topic = typeof body.topic === "string" ? body.topic.trim() : "";
+    const level = typeof body.level === "string" ? body.level : "";
+    if (!["gs", "optional", "literature"].includes(track) || !subject || subject.length > 120 ||
+        topic.length > 160 || !["beginner", "intermediate", "advanced"].includes(level)) {
+      return json({ error: "Check the subject, topic, learning track and level, then try again." }, 400, origin);
+    }
+    const { data, error } = await adminClient.from("anbuu_lesson_history")
+      .insert({ user_id: authData.user.id, track, subject, topic, level, status: "in_progress" })
+      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at").single();
+    if (error) return json({ error: "Could not save this lesson. Please try again." }, 500, origin);
+    return json({ lesson: data }, 201, origin);
+  }
+  if (body.action === "update_lesson") {
+    if (profile.role !== "learner") return json({ error: "Only learner accounts can update lesson progress." }, 403, origin);
+    const lessonId = typeof body.lessonId === "string" ? body.lessonId : "";
+    const nextStatus = typeof body.status === "string" ? body.status : "";
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(lessonId) ||
+        !["in_progress", "paused", "completed"].includes(nextStatus)) {
+      return json({ error: "That lesson update is not valid." }, 400, origin);
+    }
+    const now = new Date().toISOString();
+    const { data, error } = await adminClient.from("anbuu_lesson_history")
+      .update({ status: nextStatus, updated_at: now, completed_at: nextStatus === "completed" ? now : null })
+      .eq("id", lessonId).eq("user_id", authData.user.id)
+      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at").maybeSingle();
+    if (error) return json({ error: "Could not update this lesson. Please try again." }, 500, origin);
+    if (!data) return json({ error: "That lesson was not found in your account." }, 404, origin);
+    return json({ lesson: data }, 200, origin);
+  }
   if (body.action === "get_progress") {
     if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
     const [testsResult, savedResult] = await Promise.all([
