@@ -50,8 +50,8 @@ def audit_documents(documents: object, source_manifest: object) -> dict:
         year = row.get("year")
         if isinstance(year, bool) or not isinstance(year, int) or year not in YEARS:
             errors.append(f"{label}: year must be an integer from 2001 to 2025")
-        if row.get("stage") != "Mains":
-            errors.append(f"{label}: unsupported stage; expected Mains for this manifest")
+        if row.get("stage") not in {"Prelims", "Mains"}:
+            errors.append(f"{label}: stage must be Prelims or Mains")
         if row.get("category") not in CATEGORIES:
             errors.append(f"{label}: unsupported category")
         position = (year, row.get("stage"), row.get("subject"), row.get("paper"))
