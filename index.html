@@ -1937,7 +1937,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       navigateTo("home");
       return;
     }
-    document.querySelectorAll(".view-sec").forEach(s => s.classList.toggle("active", s.id === clean));
+    // Anbuu is injected by ai-desk.js and keeps its styling hook ID; map the route to it.
+    const viewId = clean === "anbuu" ? "tadAiPanel" : clean;
+    document.querySelectorAll(".view-sec").forEach(s => s.classList.toggle("active", s.id === viewId));
     document.querySelectorAll(".nav-link").forEach(l => l.classList.toggle("active", l.dataset.nav === clean));
     $("pageTitle").textContent = VIEW_TITLES[clean] || "Dashboard";
     $("sidebar").classList.remove("open");
