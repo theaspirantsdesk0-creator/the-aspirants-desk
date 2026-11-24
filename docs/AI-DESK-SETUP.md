@@ -93,7 +93,7 @@ The learner experience is branded as Anbuu and adds a structured teaching workfl
 
 ### Persistent state and privacy
 
-The private table `private.anbuu_mentor_state` stores one row per learner: `active_study_plan`, `doubt_log`, `pending_tasks`, and `updated_at`. It is deliberately in the non-exposed `private` schema. Browser clients cannot read or write it directly. The authenticated `ai-assistant` Edge Function verifies the caller, checks the database-assigned role, and uses the caller's user ID for all state reads and writes. The UI receives only that learner's state. Task completion is saved immediately.
+The table `public.anbuu_mentor_state` stores one row per learner: `active_study_plan`, `doubt_log`, `pending_tasks`, and `updated_at`. Although it is in the public schema so the Edge Function can access it through Supabase's Data API, RLS is enabled and all table privileges are revoked from `PUBLIC`, `anon`, and `authenticated`; only `service_role` has access. The authenticated `ai-assistant` Edge Function verifies the caller, checks the database-assigned role, and filters every state read/write by the caller's user ID. Browser clients cannot read or write the table directly. The UI receives only that learner's state. Task completion is saved immediately.
 
 The model emits a machine-readable state block that the Edge Function validates and strips before returning the visible answer. Invalid or missing state blocks are ignored; existing saved state is retained. Do not place learner names or contact details in doubt logs or task descriptions.
 
