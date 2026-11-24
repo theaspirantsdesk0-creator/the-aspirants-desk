@@ -311,21 +311,25 @@ Deno.serve(async (req: Request) => {
     const scored = (items: typeof tests) => items.filter(t => t.percentage !== null);
     const average = (items: typeof tests) => { const valid = scored(items); return valid.length
       ? Math.round(valid.reduce((sum, t) => sum + (t.percentage as number), 0) / valid.length) : null; };
+    if (savedResult.error) return json({ error: "Could not load your saved mistake notebook." }, 500, origin);
     const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
       ? savedResult.data.payload as Record<string, unknown> : {};
     const mistakes = Array.isArray(payload.mistakes) ? payload.mistakes : [];
     const topicCounts = new Map<string, number>();
+    let unclassifiedMistakes = 0;
     for (const item of mistakes) {
       if (!item || typeof item !== "object") continue;
       const row = item as Record<string, unknown>;
       const topic = [row.subject, row.topic].filter(v => typeof v === "string" && v.trim()).join(" · ");
       if (topic) topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + 1);
+      else unclassifiedMistakes++;
     }
     const weakTopics = [...topicCounts.entries()].sort((a,b) => b[1]-a[1]).slice(0, 6)
       .map(([topic, mistakes]) => ({ topic, mistakes }));
     return json({ progress: { tests, weekly: { tests: current.length, average: average(current),
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
-      wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) }, weakTopics } }, 200, origin);
+      wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
+      weakTopics, unclassifiedMistakes } }, 200, origin);
   }
   if (body.action === "update_task") {
     if (profile.role !== "learner" || typeof body.taskId !== "string")
