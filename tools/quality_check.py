@@ -14,6 +14,7 @@ from upsc_angles import fallback_upsc_angle
 from pyq import validate_records, build_coverage_report
 from question_bank_audit import audit_question_bank
 from sync_pyq_inventory import reconcile_inventory
+from audit_pyq_documents import audit_documents
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -617,6 +618,31 @@ def main() -> int:
         check("create policy profiles_update_self" in signup_sql
               and "with check (id = (select auth.uid()))" in signup_sql,
               "Profile self-update policy must prevent changing profile ownership")
+
+    # The official paper-PDF catalogue must retain traceable provenance.
+    pyq_docs_path = ROOT / "data" / "pyq" / "verified-documents.json"
+    pyq_sources_path = ROOT / "data" / "pyq" / "sources.json"
+    if pyq_docs_path.is_file() and pyq_sources_path.is_file():
+        try:
+            pyq_docs = json.loads(pyq_docs_path.read_text(encoding="utf-8"))
+            pyq_sources = json.loads(pyq_sources_path.read_text(encoding="utf-8"))
+            document_audit = audit_documents(pyq_docs, pyq_sources)
+            check(not document_audit["errors"],
+                  "Official PYQ document audit found provenance errors: " + "; ".join(document_audit["errors"][:5]))
+            check(document_audit["documents_checked"] == document_audit["unique_ids"],
+                  "Official PYQ document IDs must be unique")
+            bad_host_fixture = {"documents": [{
+                "id": "fixture", "exam": "Civil Services (Main) Examination",
+                "year": 2025, "stage": "Mains", "subject": "Anthropology",
+                "paper": "Paper I", "category": "Optional", "status": "verified",
+                "title": "Fixture", "document_url": "https://example.invalid/paper.pdf",
+                "verification": {"verified_at": "2026-11-24", "method": "test"}
+            }]}
+            bad_host_audit = audit_documents(bad_host_fixture, pyq_sources)
+            check(any("registered official HTTPS host" in issue for issue in bad_host_audit["errors"]),
+                  "Official PYQ document audit must reject unregistered document hosts")
+        except (OSError, json.JSONDecodeError) as exc:
+            check(False, f"Official PYQ document catalogue could not be parsed: {exc}")
 
     # Public PYQ publication must be backed by a verified, traceable source.
     pyq_publication_guard = ROOT / "supabase" / "migrations" / "20261124101838_require_verified_source_before_publishing_pyqs.sql"
