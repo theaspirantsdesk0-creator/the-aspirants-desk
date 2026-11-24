@@ -113,13 +113,25 @@ function setDashboardTab(name){const overview=name==="overview";$("#tadAiOvervie
 $("#tadAiOverviewTab").addEventListener("click",()=>setDashboardTab("overview"));
 $("#tadAiRevisionTab").addEventListener("click",()=>setDashboardTab("revision"));
 let revisionTopics=[];
+function revisionIntervalDays(topic){
+ const misses=Math.max(0,Number(topic?.mistakes)||0);
+ if(misses>=4)return 0;
+ if(misses===3)return 1;
+ if(misses===2)return 3;
+ return 7;
+}
+function revisionDueDate(topic){
+ const date=new Date();
+ date.setHours(12,0,0,0);
+ date.setDate(date.getDate()+revisionIntervalDays(topic));
+ return date;
+}
 function renderRevisionPlan(topics){revisionTopics=Array.isArray(topics)?topics:[];const summary=$("#tadAiRevisionSummary"),list=$("#tadAiRevisionList"),build=$("#tadAiBuildRevision");summary.replaceChildren();list.replaceChildren();build.disabled=!revisionTopics.length;
 if(!revisionTopics.length){const p=document.createElement("p");p.className="tad-revision-empty";p.textContent="Your revision queue will appear here after topic-level mistakes are saved from practice. Complete a test and add the topics you missed.";summary.append(p);return;}
-const count=document.createElement("strong");count.textContent=revisionTopics.length+" focus topic"+(revisionTopics.length===1?"":"s");const detail=document.createElement("span");detail.textContent=" ranked by recorded mistake frequency";summary.append(count,detail);
-const intervals=["Today","Tomorrow","In 3 days","In 7 days","In 14 days"];
-revisionTopics.forEach((topic,index)=>{const card=document.createElement("article");card.className="tad-revision-card";const top=document.createElement("div");top.className="tad-revision-card-top";const rank=document.createElement("span");rank.className="tad-revision-rank";rank.textContent=String(index+1).padStart(2,"0");const name=document.createElement("strong");name.textContent=topic.topic;top.append(rank,name);const count=document.createElement("span");count.className="tad-revision-count";count.textContent=topic.mistakes+" miss"+(topic.mistakes===1?"":"es");const timeline=document.createElement("div");timeline.className="tad-revision-timeline";const label=document.createElement("span");label.textContent="Suggested review";const interval=document.createElement("b");interval.textContent=intervals[Math.min(index,intervals.length-1)];timeline.append(label,interval);card.append(top,count,timeline);list.append(card);});
+const count=document.createElement("strong");count.textContent=revisionTopics.length+" focus topic"+(revisionTopics.length===1?"":"s");const detail=document.createElement("span");detail.textContent=" prioritised by recorded mistake frequency";summary.append(count,detail);
+revisionTopics.forEach((topic,index)=>{const card=document.createElement("article");card.className="tad-revision-card";const top=document.createElement("div");top.className="tad-revision-card-top";const rank=document.createElement("span");rank.className="tad-revision-rank";rank.textContent=String(index+1).padStart(2,"0");const name=document.createElement("strong");name.textContent=topic.topic;top.append(rank,name);const count=document.createElement("span");count.className="tad-revision-count";count.textContent=topic.mistakes+" miss"+(topic.mistakes===1?"":"es");const timeline=document.createElement("div");timeline.className="tad-revision-timeline";const label=document.createElement("span");label.textContent="Next review · based on miss count";const interval=document.createElement("b");const days=revisionIntervalDays(topic);interval.textContent=days===0?"Today":days===1?"Tomorrow":"In "+days+" days";const due=document.createElement("small");due.textContent=revisionDueDate(topic).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"});timeline.append(label,interval,due);card.append(top,count,timeline);list.append(card);});
 }
-$("#tadAiBuildRevision").addEventListener("click",()=>{if(!revisionTopics.length)return;const topics=revisionTopics.map(t=>t.topic+" ("+t.mistakes+" recorded mistakes)").join("; ");sendMessage("Create a manageable revision plan and save 1–3 revision tasks for these recorded weak topics: "+topics+". Use active recall, a short concept review, and practice questions. Include spaced reviews over the next 1, 3, 7 and 14 days where realistic. Do not invent syllabus details.");});
+$("#tadAiBuildRevision").addEventListener("click",()=>{if(!revisionTopics.length)return;const topics=revisionTopics.map(t=>{const days=revisionIntervalDays(t);const due=days===0?"today":days===1?"tomorrow":"in "+days+" days";return t.topic+" ("+t.mistakes+" recorded mistakes; next review "+due+")";}).join("; ");sendMessage("Create a manageable revision plan and save 1–3 revision tasks for these recorded weak topics: "+topics+". Prioritise topics with more repeated mistakes first. Use active recall, a short concept review, and practice questions. Schedule the next review using the supplied intervals, then suggest later spaced reviews at 3, 7 and 14 days where appropriate. Do not invent syllabus details or claim that a topic is mastered.");});
 function renderNextSteps(data){
 const host=$("#tadAiNextSteps");if(!host)return;host.replaceChildren();
 const cards=[];
