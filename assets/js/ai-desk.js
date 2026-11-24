@@ -189,7 +189,7 @@ opened=true;
 async function task(id,next){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next}});if(r.error)throw r.error;state=r.data.mentorState;render();}catch(e){status.textContent="Task could not be saved. Please try again.";}}
 async function sendMessage(message,lessonId=null){
 if(!message||busy)return;if(role==="guest"){status.textContent="Sign in with a learner, mentor or admin account.";return;}
-busy=true;send.disabled=true;input.value="";say(message,"user");
+busy=true;send.disabled=true;input.value="";if(lessonId){history=[];messages.replaceChildren();}say(message,"user");
 try{const r=await db.functions.invoke("ai-assistant",{body:{message,history:lessonId?[]:history,...(lessonId?{lessonId}:{})}});if(r.error)throw r.error;if(!r.data?.answer)throw new Error(r.data?.error||"No response received.");
 say(r.data.answer,"assistant");history.push({role:"user",content:message},{role:"assistant",content:r.data.answer});history=history.slice(-8);
 if(role==="learner"&&r.data.mentorState){state=r.data.mentorState;render();}
