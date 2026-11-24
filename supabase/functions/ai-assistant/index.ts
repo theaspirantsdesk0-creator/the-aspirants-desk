@@ -222,7 +222,7 @@ function cleanMentorState(value: unknown): { active_study_plan: Record<string, u
   if (plan === undefined || !Array.isArray(raw.doubt_log) || !Array.isArray(raw.pending_tasks)) return null;
   const doubtLog = raw.doubt_log.filter((v): v is string => typeof v === "string" && v.trim().length > 0)
     .map(v => v.trim().slice(0, 300)).slice(-20);
-  const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed"}> = [];
+  const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> = [];
   for (const item of raw.pending_tasks.slice(0, 40)) {
     if (!item || typeof item !== "object") continue;
     const row = item as Record<string, unknown>;
