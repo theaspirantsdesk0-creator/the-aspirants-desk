@@ -170,3 +170,10 @@
 .tad-revision-rating-actions .tad-revision-rating{flex:1;min-width:62px;border-color:var(--accent);font-weight:750}
 .tad-revision-rating-actions .tad-revision-rating:hover{background:var(--surface-alt)}
 @media(max-width:480px){.tad-revision-rating-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* Quick links keep the rest of the study desk discoverable from Anbuu. */
+.tad-anbuu-shortcuts{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
+.tad-anbuu-shortcuts button{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 11px;background:rgba(255,255,255,.1);color:#fff;font:700 11px system-ui;cursor:pointer}
+.tad-anbuu-shortcuts button:hover,.tad-anbuu-shortcuts button:focus-visible{background:#fff;color:#111d4a;outline:2px solid #facc15;outline-offset:2px}
+@media(max-width:620px){.tad-anbuu-shortcuts{gap:6px}.tad-anbuu-shortcuts button{padding:7px 9px;font-size:10px}}
