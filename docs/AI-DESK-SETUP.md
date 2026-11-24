@@ -119,3 +119,8 @@ The Anbuu sidebar displays the latest eight tests, weekly test count/average and
 ## Anbuu revision planner tab
 
 The learner sidebar separates the existing progress dashboard from a dedicated Revision Planner tab. The planner ranks only topics present in the learner's own recorded mistake log, shows a suggested spaced-review sequence, and offers a one-click action to ask Anbuu to create and save revision tasks. If no topic-level mistakes exist, it displays an explicit empty state rather than inventing priorities. Review intervals are guidance, not a performance prediction.
+
+
+## Dedicated Anbuu main-navigation page
+
+Anbuu is a full-page workspace reached from its own AI Learning Companion sidebar entry. It includes a branded introduction, capability highlights, full-page chat workspace, quick prompts, learner overview and the separate Revision Planner tab. Access remains authenticated; learner-specific progress is shown only for learner-role accounts. The floating launcher is removed so the assistant is no longer a popup-only feature.
