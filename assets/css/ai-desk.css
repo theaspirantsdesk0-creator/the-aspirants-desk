@@ -133,3 +133,17 @@
 .tad-ai-lesson-empty{margin:.2rem 0;color:var(--muted);font-size:.75rem;line-height:1.5}
 .tad-ai-lesson-recent{display:grid;gap:.2rem}
 @media(max-width:480px){.tad-ai-lesson-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* Revision Planner: lesson-generated tasks */
+.tad-revision-lessons{margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tad-revision-lessons h3{margin:0 0 .25rem;font-size:.95rem;color:var(--ink)}
+.tad-revision-lessons>p{margin:0 0 .7rem;color:var(--muted);font-size:.72rem;line-height:1.5}
+#tadAiLessonRevisionTasks{display:grid;gap:.5rem}
+.tad-revision-lesson-task{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.7rem;border:1px solid var(--line);border-radius:10px;background:var(--surface-alt)}
+.tad-revision-lesson-details{display:grid;gap:.2rem;min-width:0}
+.tad-revision-lesson-details strong{font-size:.78rem;line-height:1.4;color:var(--ink)}
+.tad-revision-lesson-details small{font-size:.65rem;color:var(--muted)}
+.tad-revision-lesson-task button{flex:none;border:1px solid var(--line);border-radius:8px;padding:.42rem .6rem;background:var(--surface);color:var(--ink);font-size:.68rem;font-weight:700;cursor:pointer}
+.tad-revision-lesson-task.is-done{opacity:.75}
+@media(max-width:480px){.tad-revision-lesson-task{align-items:flex-start;flex-direction:column}.tad-revision-lesson-task button{width:100%}}

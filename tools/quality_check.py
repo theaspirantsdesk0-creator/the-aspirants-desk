@@ -247,7 +247,9 @@ def main() -> int:
                   and 'action:"update_lesson"' in lesson_ui
                   and ('id="tadAiLessons"' in lesson_ui or 'id=\\"tadAiLessons\\"' in lesson_ui or "id='tadAiLessons'" in lesson_ui)
                   and 'tad-ai-lesson-stats' in lesson_ui
-                  and 'Complete + add revision task' in lesson_ui,
+                  and 'Complete + add revision task' in lesson_ui
+                  and 'tadAiLessonRevisionTasks' in lesson_ui
+                  and 'renderLessonRevisionTasks' in lesson_ui,
                   "Anbuu learner lesson history and dashboard progress summary are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
         check("state.mistakes.unshift(" in app_source,
