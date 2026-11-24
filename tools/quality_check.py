@@ -507,6 +507,25 @@ def main() -> int:
     except ValueError:
         check(True, "PYQ inventory reconciliation rejects unverified candidates")
 
+    # Push reminders should prioritise due Anbuu revision tasks, even if study activity
+    # has already been logged for the day, while preserving the existing inactivity reminder.
+    reminder_file = ROOT / "supabase" / "functions" / "send-study-reminders" / "index.ts"
+    if reminder_file.is_file():
+        reminder_source = reminder_file.read_text(encoding="utf-8")
+        check("function dueRevisionCounts(" in reminder_source
+              and 'item.status !== "pending"' in reminder_source
+              and 'dueDate <= date' in reminder_source
+              and 'dueDate < date' in reminder_source,
+              "Push reminder logic must count only valid pending revision tasks due today or overdue")
+        check('from("anbuu_mentor_state")' in reminder_source
+              and 'title: "Anbuu revision reminder"' in reminder_source
+              and 'tag: "desk-revision-reminder"' in reminder_source
+              and 'url: "./#anbuu"' in reminder_source,
+              "Push reminders must read learner-owned Anbuu tasks and link revision alerts to Anbuu")
+        check("if (revisions.due > 0)" in reminder_source
+              and 'title: "Time to study"' in reminder_source,
+              "Due revision alerts must take priority while preserving the existing daily study reminder")
+
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
     check("GS Paper II" in polity_angle and "not a prediction" in polity_angle,
