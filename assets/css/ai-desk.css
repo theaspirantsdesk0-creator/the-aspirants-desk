@@ -34,3 +34,35 @@
 #tadAiSidebar .tad-ai-history-row strong,#tadAiSidebar .tad-ai-history-row small{display:block}
 #tadAiSidebar .tad-ai-history-row strong{font-size:12px}
 #tadAiSidebar .tad-ai-history-row small{font-size:10px;color:var(--muted,#64748b);margin-top:3px}
+
+/* Anbuu dashboard tabs and revision planner */
+#tadAiSidebar{padding:16px;background:var(--surface-alt,#f8fafc)}
+.tad-ai-side-heading{padding:0 0 12px;border-bottom:1px solid var(--line,#ddd)}
+.tad-ai-side-heading strong{display:block;font-size:15px;letter-spacing:-.02em}
+.tad-ai-side-heading span{display:block;margin-top:2px;font-size:9px;font-weight:800;letter-spacing:.13em;color:var(--muted,#64748b)}
+.tad-ai-tabs{display:grid;grid-template-columns:1fr 1.25fr;gap:5px;padding:8px;margin:12px 0;background:var(--surface,#fff);border:1px solid var(--line,#ddd);border-radius:12px}
+.tad-ai-tab{border:0;border-radius:8px;padding:9px 7px;background:transparent;color:var(--muted,#64748b);font:700 11px system-ui;cursor:pointer}
+.tad-ai-tab.is-active{background:#111d4a;color:#fff;box-shadow:0 3px 10px #111d4a25}
+#tadAiRevision{border:0;padding:0}
+.tad-revision-hero{padding:17px 15px;border-radius:15px;background:linear-gradient(145deg,#101c49,#243d78 72%,#34549a);color:#fff;box-shadow:0 8px 20px #111d4a20}
+.tad-revision-kicker{font-size:9px;font-weight:800;letter-spacing:.16em;color:#facc15}
+.tad-revision-hero h2{margin:7px 0 5px;font-size:21px;line-height:1.15;letter-spacing:-.04em}
+.tad-revision-hero p{margin:0;color:#dbeafe;font-size:11px;line-height:1.55}
+.tad-revision-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tad-revision-meta span{padding:5px 8px;border:1px solid #ffffff35;border-radius:99px;background:#ffffff12;font-size:9px;font-weight:700}
+.tad-revision-summary{margin:13px 0 8px;color:var(--muted,#64748b);font-size:11px}
+.tad-revision-summary strong{color:var(--ink,#111827);font-size:13px}
+.tad-revision-list{display:grid;gap:8px}
+.tad-revision-card{position:relative;padding:11px 12px;border:1px solid var(--line,#ddd);border-radius:12px;background:var(--surface,#fff);box-shadow:0 3px 10px #0f172a08}
+.tad-revision-card-top{display:flex;align-items:center;gap:8px;min-width:0}
+.tad-revision-card-top strong{flex:1;min-width:0;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.tad-revision-rank{display:grid;place-items:center;width:25px;height:25px;flex-shrink:0;border-radius:8px;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:900}
+.tad-revision-count{display:inline-block;margin:7px 0 0 33px;color:#b45309;font-size:10px;font-weight:800}
+.tad-revision-timeline{display:flex;justify-content:space-between;gap:8px;margin:9px 0 0 33px;padding-top:7px;border-top:1px dashed var(--line,#ddd);font-size:10px;color:var(--muted,#64748b)}
+.tad-revision-timeline b{color:var(--ink,#111827)}
+.tad-revision-build{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:13px;padding:12px 14px;border:0;border-radius:11px;background:#eab308;color:#1a1203;font-size:12px;font-weight:900;cursor:pointer}
+.tad-revision-build:disabled{opacity:.45;cursor:not-allowed}
+.tad-revision-build span{font-size:17px}
+.tad-revision-footnote{margin:9px 2px;color:var(--muted,#64748b);font-size:9px;line-height:1.55}
+.tad-revision-empty{padding:14px;border:1px dashed var(--line,#cbd5e1);border-radius:11px;background:var(--surface,#fff);font-size:11px;line-height:1.6}
+@media(max-width:620px){.tad-ai-tabs{margin:8px 0}.tad-revision-hero{padding:14px}.tad-revision-hero h2{font-size:19px}}
