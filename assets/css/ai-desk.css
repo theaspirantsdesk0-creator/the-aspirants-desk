@@ -147,3 +147,12 @@
 .tad-revision-lesson-task button{flex:none;border:1px solid var(--line);border-radius:8px;padding:.42rem .6rem;background:var(--surface);color:var(--ink);font-size:.68rem;font-weight:700;cursor:pointer}
 .tad-revision-lesson-task.is-done{opacity:.75}
 @media(max-width:480px){.tad-revision-lesson-task{align-items:flex-start;flex-direction:column}.tad-revision-lesson-task button{width:100%}}
+
+
+/* Anbuu's lesson-aware next-step recommendations */
+.tad-ai-next-steps{margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+#tadAiNextSteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.65rem}
+.tad-ai-next-step{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;padding:.8rem;border:1px solid var(--line);border-radius:11px;background:var(--surface-alt)}
+.tad-ai-next-step strong{font-size:.82rem;color:var(--ink);line-height:1.35}
+.tad-ai-next-step p{margin:0;color:var(--muted);font-size:.72rem;line-height:1.5;flex:1}
+.tad-ai-next-step button{border:1px solid var(--line);border-radius:8px;padding:.45rem .7rem;background:var(--surface);color:var(--ink);font-size:.7rem;font-weight:700;cursor:pointer}
