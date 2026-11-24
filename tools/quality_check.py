@@ -202,6 +202,24 @@ def main() -> int:
         # the start of the array rather than the oldest entries at the end.
         check("mistakeRows.slice(0, 12)" in source,
               "Anbuu must use the 12 newest saved mistakes for learner context")
+        check('body.action === "get_lessons"' in source and 'body.action === "start_lesson"' in source
+              and 'body.action === "update_lesson"' in source,
+              "Anbuu persistent lesson history actions are missing")
+        check('eq("user_id", authData.user.id)' in source,
+              "Anbuu lesson history queries must be scoped to the authenticated learner")
+        lesson_migration = ROOT / "supabase/migrations/20261124024026_anbuu_lesson_history.sql"
+        check(lesson_migration.is_file(), "Anbuu lesson history migration file is missing")
+        if lesson_migration.is_file():
+            migration_sql = lesson_migration.read_text(encoding="utf-8").lower()
+            check("enable row level security" in migration_sql
+                  and "revoke all on table public.anbuu_lesson_history from public, anon, authenticated" in migration_sql
+                  and "grant all on table public.anbuu_lesson_history to service_role" in migration_sql,
+                  "Anbuu lesson history must remain service-role-only behind its authenticated Edge Function")
+        if ai_js.is_file():
+            lesson_ui = ai_js.read_text(encoding="utf-8")
+            check('id="tadLessonHistoryList"' in lesson_ui and 'id="tadRefreshLessons"' in lesson_ui
+                  and 'action:"update_lesson"' in lesson_ui,
+                  "Anbuu learner lesson history and progress controls are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
