@@ -555,7 +555,7 @@ def main() -> int:
     check("This check does not send a notification." in html
           and "send-test-study-notification" in html,
           "Device diagnostics must remain separate from actual test-notification delivery")
-    mentor_integrity = ROOT / "supabase" / "migrations" / "20261124112000_validate_mentor_assignment_and_review_links.sql"
+    mentor_integrity = ROOT / "supabase" / "migrations" / "20261124100710_validate_mentor_assignment_and_review_links.sql"
     if mentor_integrity.is_file():
         mentor_sql = mentor_integrity.read_text(encoding="utf-8")
         check("security invoker" in mentor_sql.lower()
