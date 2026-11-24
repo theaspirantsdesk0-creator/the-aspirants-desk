@@ -26,7 +26,7 @@
   ],
   "inventory_summary": {
     "expected_paper_entries": 2575,
-    "verified_entries": 14,
+    "verified_entries": 16,
     "published_entries": 0,
     "note": "Every row starts as not_checked. A direct document URL is added only after locating the exact official PDF. 'source_found' means a candidate official document has been located but not yet checked against its metadata; 'verified' requires opening the PDF and confirming year, exam, subject, and paper."
   },
@@ -44888,16 +44888,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper I",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-4-1.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2024 — General Studies Paper I",
+      "verified_at": "2026-11-24",
+      "verification_method": "Opened official UPSC-hosted PDF and confirmed the 2024 Civil Services (Preliminary) Examination heading, Paper I label, and 100 numbered questions.",
+      "notes": "Verified against the official UPSC-hosted PDF."
     },
     {
       "id": "prelims-general-studies-paper-ii-csat-2024",
@@ -44906,16 +44906,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper II (CSAT)",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-ii-4-1.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2024 — General Studies Paper II (CSAT)",
+      "verified_at": "2026-11-24",
+      "verification_method": "Opened official UPSC-hosted PDF and confirmed the 2024 Civil Services (Preliminary) Examination heading, Paper II (CSAT) label, and 80 numbered questions.",
+      "notes": "Verified against the official UPSC-hosted PDF."
     },
     {
       "id": "mains-essay-2024",
