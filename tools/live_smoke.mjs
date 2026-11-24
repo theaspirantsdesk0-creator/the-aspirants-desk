@@ -262,6 +262,9 @@ try {
   }
   await adminDeepLinkPage.close();
 
+  if (!(await page.locator('#tadLessonHistoryList').count())) {
+    throw new Error('Anbuu lesson history UI is missing');
+  }
   if (await page.locator('#tadAiLessons').count() !== 1) {
     throw new Error('Anbuu guided-lesson progress summary is missing from the learner dashboard');
   }
