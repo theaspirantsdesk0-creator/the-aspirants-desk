@@ -1,11 +1,11 @@
 /* The Aspirant's Desk service worker — offline shell and Web Push. */
-var VERSION = 'desk-v5-push';
+var VERSION = 'desk-v6-fresh-assets';
 var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
 
-/* Files that must never be served stale: config (keys), and data feeds. */
+/* Network-first files: scripts/styles, config (keys), service worker and data feeds. */
 function isFresh(url) {
   var p = new URL(url).pathname;
-  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) || /\/sw\.js$/.test(p);
+  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) || /\/sw\.js$/.test(p) || /\.(?:js|css)$/.test(p);
 }
 
 self.addEventListener('install', function (event) {
@@ -37,7 +37,7 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  /* Network-first for config.js and data/*.json: always the latest when online, cached copy only offline. */
+  /* Network-first for scripts, styles, config and data: latest when online, cached copy only offline. */
   if (isFresh(request.url)) {
     event.respondWith(fetch(request, { cache: 'no-store' }).then(function (response) {
       if (response && response.ok) {

@@ -534,6 +534,12 @@ def main() -> int:
     check('$("menuToggle").addEventListener("click"' in html
           and '$("sidebarScrim").addEventListener("click"' in html,
           "Mobile navigation must expose and close the complete sidebar")
+    # The service worker must not keep old JavaScript or CSS after a site deployment.
+    sw_file = ROOT / "sw.js"
+    if sw_file.is_file():
+        sw_source = sw_file.read_text(encoding="utf-8")
+        check("desk-v6-fresh-assets" in sw_source and "(?:js|css)" in sw_source,
+              "Service worker must version its cache and refresh scripts/styles while online")
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
     check("GS Paper II" in polity_angle and "not a prediction" in polity_angle,
