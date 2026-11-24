@@ -205,6 +205,9 @@ def main() -> int:
         check('body.action === "get_lessons"' in source and 'body.action === "start_lesson"' in source
               and 'body.action === "update_lesson"' in source,
               "Anbuu persistent lesson history actions are missing")
+        check('lessonCompletedResult.count' in source and 'lessonInProgressResult.count' in source
+              and 'lessonPausedResult.count' in source and 'lessonRecentResult.data' in source,
+              "Anbuu progress report must include user-scoped guided-lesson counts and recent lessons")
         check('eq("user_id", authData.user.id)' in source,
               "Anbuu lesson history queries must be scoped to the authenticated learner")
         lesson_migration = ROOT / "supabase/migrations/20261124024026_anbuu_lesson_history.sql"
@@ -226,8 +229,10 @@ def main() -> int:
             lesson_ui = ai_js.read_text(encoding="utf-8")
             check(('id="tadLessonHistoryList"' in lesson_ui or "id='tadLessonHistoryList'" in lesson_ui)
                   and ('id="tadRefreshLessons"' in lesson_ui or "id='tadRefreshLessons'" in lesson_ui)
-                  and 'action:"update_lesson"' in lesson_ui,
-                  "Anbuu learner lesson history and progress controls are missing")
+                  and 'action:"update_lesson"' in lesson_ui
+                  and 'id="tadAiLessons"' in lesson_ui
+                  and 'tad-ai-lesson-stats' in lesson_ui,
+                  "Anbuu learner lesson history and dashboard progress summary are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
