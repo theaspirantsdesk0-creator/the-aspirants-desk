@@ -517,6 +517,9 @@ def main() -> int:
               and 'dueDate <= date' in reminder_source
               and 'dueDate < date' in reminder_source,
               "Push reminder logic must count only valid pending revision tasks due today or overdue")
+        check(r"/^\d{4}-\d{2}-\d{2}$/" in reminder_source
+              and r"/^\\d{4}-\\d{2}-\\d{2}$/" not in reminder_source,
+              "Revision due-date validation must use digit classes, not literal backslashes")
         check('from("anbuu_mentor_state")' in reminder_source
               and 'title: "Anbuu revision reminder"' in reminder_source
               and 'tag: "desk-revision-reminder"' in reminder_source
