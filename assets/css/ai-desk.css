@@ -123,3 +123,13 @@
 .tad-lesson-history-card>small{display:block;margin:.3rem 0 .6rem;color:var(--muted);font-size:.7rem}
 .tad-lesson-history-actions{display:flex;flex-wrap:wrap;gap:.4rem}
 @media(max-width:480px){.tad-lesson-history-head{flex-direction:column}.tad-lesson-history-actions button{flex:1}}
+
+
+/* Anbuu guided-lesson progress summary */
+.tad-ai-lesson-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem;margin:.35rem 0 .75rem}
+.tad-ai-lesson-stat{display:flex;flex-direction:column;gap:.12rem;min-width:0;padding:.65rem .5rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tad-ai-lesson-stat strong{font-size:1.15rem;line-height:1.2;color:var(--ink)}
+.tad-ai-lesson-stat span{font-size:.62rem;line-height:1.3;color:var(--muted)}
+.tad-ai-lesson-empty{margin:.2rem 0;color:var(--muted);font-size:.75rem;line-height:1.5}
+.tad-ai-lesson-recent{display:grid;gap:.2rem}
+@media(max-width:480px){.tad-ai-lesson-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
