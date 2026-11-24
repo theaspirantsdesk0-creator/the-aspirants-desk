@@ -125,7 +125,7 @@ function dueRevisionCounts(row: MentorStateRow | null, date: string): { due: num
     if (!task || typeof task !== "object" || Array.isArray(task)) continue;
     const item = task as Record<string, unknown>;
     const dueDate = typeof item.due_date === "string" ? item.due_date : "";
-    if (item.status !== "pending" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate)) continue;
+    if (item.status !== "pending" || !/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) continue;
     const parsed = new Date(dueDate + "T00:00:00.000Z");
     if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) continue;
     if (dueDate <= date) {
