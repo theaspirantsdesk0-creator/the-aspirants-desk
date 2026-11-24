@@ -377,7 +377,7 @@ Deno.serve(async (req: Request) => {
     const studyHours = typeof payload.hours === "number" ? payload.hours : null;
     const lastSavedScore = typeof payload.lastScore === "number" ? payload.lastScore : null;
     const mistakeRows = Array.isArray(payload.mistakes) ? payload.mistakes : [];
-    const mistakeTopics = mistakeRows.slice(-12).map((item) => {
+    const mistakeTopics = mistakeRows.slice(0, 12).map((item) => {
       if (!item || typeof item !== "object") return "";
       const row = item as Record<string, unknown>;
       return [row.subject, row.topic].filter((v) => typeof v === "string").join(" / ");
