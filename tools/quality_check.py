@@ -203,7 +203,7 @@ def main() -> int:
         check("mistakeRows.slice(0, 12)" in source,
               "Anbuu must use the 12 newest saved mistakes for learner context")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
-        check(re.search(r"state\\.mistakes\\.unshift\\s*\\(", app_source) is not None,
+        check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
 
     # The publisher must union source items across concurrent updates without
