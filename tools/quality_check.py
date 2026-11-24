@@ -537,7 +537,7 @@ def main() -> int:
     check('$("menuToggle").addEventListener("click"' in html
           and '$("sidebarScrim").addEventListener("click"' in html,
           "Mobile navigation must expose and close the complete sidebar")
-    # The service worker must not keep old JavaScript or CSS after a site deployment.
+    ai_script = ROOT / "assets" / "js" / "ai-desk.js"\n    ai_source = ai_script.read_text(encoding="utf-8") if ai_script.is_file() else ""\n    check('document.addEventListener("click", (e) => {' in html\n          and 'e.target.closest("[data-nav]")' in html,\n          "Navigation must use delegation for dynamically injected module links")\n    check('class=\\\"tad-anbuu-shortcuts\\\"' in ai_source\n          and all(f'data-nav=\\\"{route}\\\"' in ai_source for route in\n                  ("home", "today", "notes", "pyq", "planner", "tracker")),\n          "Anbuu must provide working shortcuts back to the main study sections")\n    # The service worker must not keep old JavaScript or CSS after a site deployment.
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
         sw_source = sw_file.read_text(encoding="utf-8")
