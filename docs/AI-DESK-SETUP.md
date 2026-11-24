@@ -107,3 +107,10 @@ The model emits a machine-readable state block that the Edge Function validates 
 6. Confirm mentor/admin roles still receive their existing role-specific assistant and do not receive learner state.
 
 The provider free-tier limits and model availability are controlled by the provider; a permanent $0 operating cost is not guaranteed.
+
+
+## Anbuu learning history and weekly progress
+
+The learner-only `get_progress` action returns the signed-in learner's last 30 saved mock-test results, a seven-day summary compared with the preceding seven days, and recurring topic mistakes from that learner's saved mistake log. The Edge Function filters every query by the authenticated user ID and does not expose this data to mentor/admin roles through the learner endpoint.
+
+The Anbuu sidebar displays the latest eight tests, weekly test count/average and correct-wrong-skipped totals, the week-over-week average change when both periods have scored tests, and up to six topics with the most recorded mistakes. Topic weaknesses are shown only when topic-level mistakes have actually been saved; the assistant must not infer weak areas from missing data. This is formative tracking, not a formal ability assessment.

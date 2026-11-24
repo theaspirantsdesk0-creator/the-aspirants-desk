@@ -29,3 +29,8 @@
 .tad-ai-task button{margin-top:6px;border:1px solid var(--line,#ddd);border-radius:7px;background:var(--surface-alt,#f8fafc);padding:5px 8px;font-size:11px;font-weight:700;cursor:pointer}
 .tad-ai-task.is-done{opacity:.65}.tad-ai-task.is-done strong{text-decoration:line-through}
 @media(max-width:620px){#tadAiLauncher{right:14px;bottom:14px}#tadAiPanel{right:8px;bottom:70px;width:calc(100vw - 16px);height:calc(100dvh - 88px)}#tadAiWorkspace{grid-template-columns:1fr;grid-template-rows:minmax(240px,1fr) minmax(150px,.75fr)}.tad-ai-chat{border-right:0;border-bottom:1px solid var(--line,#ddd)}#tadAiSidebar{padding:10px 14px}.tad-ai-quick button{font-size:10px;padding:6px 7px}}
+
+#tadAiSidebar .tad-ai-history-row{padding:8px 9px;margin:6px 0;border:1px solid var(--line,#ddd);border-radius:9px;background:var(--surface,#fff)}
+#tadAiSidebar .tad-ai-history-row strong,#tadAiSidebar .tad-ai-history-row small{display:block}
+#tadAiSidebar .tad-ai-history-row strong{font-size:12px}
+#tadAiSidebar .tad-ai-history-row small{font-size:10px;color:var(--muted,#64748b);margin-top:3px}
