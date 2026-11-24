@@ -215,6 +215,13 @@ def main() -> int:
                   and "revoke all on table public.anbuu_lesson_history from public, anon, authenticated" in migration_sql
                   and "grant all on table public.anbuu_lesson_history to service_role" in migration_sql,
                   "Anbuu lesson history must remain service-role-only behind its authenticated Edge Function")
+            policy_migration = ROOT / "supabase/migrations/20261124024203_anbuu_lesson_history_service_role_policy.sql"
+            check(policy_migration.is_file(), "Anbuu lesson history service-role policy migration is missing")
+            if policy_migration.is_file():
+                policy_sql = policy_migration.read_text(encoding="utf-8").lower()
+                check("for all" in policy_sql and "to service_role" in policy_sql
+                      and "using (true)" in policy_sql and "with check (true)" in policy_sql,
+                      "Anbuu lesson history RLS policy must grant rows only to service_role")
         if ai_js.is_file():
             lesson_ui = ai_js.read_text(encoding="utf-8")
             check('id="tadLessonHistoryList"' in lesson_ui and 'id="tadRefreshLessons"' in lesson_ui
