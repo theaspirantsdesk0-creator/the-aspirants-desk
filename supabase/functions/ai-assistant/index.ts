@@ -213,7 +213,7 @@ function mentorStateFallback() {
   return { active_study_plan: null, doubt_log: [], pending_tasks: [] };
 }
 
-function cleanMentorState(value: unknown): { active_study_plan: Record<string, unknown> | null; doubt_log: string[]; pending_tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> } | null {
+function cleanMentorState(value: unknown): { active_study_plan: Record<string, unknown> | null; doubt_log: string[]; pending_tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string;last_review_result:string}> } | null {
   if (!value || typeof value !== "object") return null;
   const raw = value as Record<string, unknown>;
   const plan = raw.active_study_plan === null ? null :
@@ -222,7 +222,7 @@ function cleanMentorState(value: unknown): { active_study_plan: Record<string, u
   if (plan === undefined || !Array.isArray(raw.doubt_log) || !Array.isArray(raw.pending_tasks)) return null;
   const doubtLog = raw.doubt_log.filter((v): v is string => typeof v === "string" && v.trim().length > 0)
     .map(v => v.trim().slice(0, 300)).slice(-20);
-  const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> = [];
+  const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string;last_review_result:string}> = [];
   for (const item of raw.pending_tasks.slice(0, 40)) {
     if (!item || typeof item !== "object") continue;
     const row = item as Record<string, unknown>;
@@ -235,7 +235,8 @@ function cleanMentorState(value: unknown): { active_study_plan: Record<string, u
       snooze_count: Number.isInteger(row.snooze_count) ? Math.max(0, Math.min(10000, Number(row.snooze_count))) : 0,
       last_reviewed_at: typeof row.last_reviewed_at === "string" ? row.last_reviewed_at.slice(0, 40) : "",
       last_snoozed_at: typeof row.last_snoozed_at === "string" ? row.last_snoozed_at.slice(0, 40) : "",
-      completed_at: typeof row.completed_at === "string" ? row.completed_at.slice(0, 40) : "" });
+      completed_at: typeof row.completed_at === "string" ? row.completed_at.slice(0, 40) : "",
+      last_review_result: ["again","hard","good","easy"].includes(String(row.last_review_result)) ? String(row.last_review_result) : "" });
   }
   return { active_study_plan: plan, doubt_log: doubtLog, pending_tasks: tasks };
 }
@@ -248,7 +249,7 @@ function extractMentorState(answer: string) {
 }
 function defaultMentorState() {
   return { active_study_plan: null, doubt_log: [] as string[],
-    pending_tasks: [] as Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> };
+    pending_tasks: [] as Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string;last_review_result:string}> };
 }
 Deno.serve(async (req: Request) => {
   const origin = corsOrigin(req);
@@ -436,8 +437,24 @@ Deno.serve(async (req: Request) => {
       return json({ error: "Task update is not available for this account." }, 403, origin);
     const task = mentorState.pending_tasks.find(item => item.id === body.taskId);
     if (!task) return json({ error: "That task could not be found. Refresh your mentor panel." }, 404, origin);
-    const now = new Date().toISOString();
+    const nowDate = new Date();
+    const now = nowDate.toISOString();
     const nextStatus = body.status === "completed" ? "completed" : "pending";
+    if (body.reviewResult !== undefined) {
+      const result = typeof body.reviewResult === "string" ? body.reviewResult : "";
+      const intervals: Record<string, number> = { again: 1, hard: 2, good: 4, easy: 7 };
+      if (!Object.hasOwn(intervals, result) || body.dueDate !== undefined || nextStatus !== "pending" || task.status === "completed") {
+        return json({ error: "Choose a valid review result for an active revision task." }, 400, origin);
+      }
+      const nextDate = new Date(nowDate);
+      nextDate.setUTCHours(12, 0, 0, 0);
+      nextDate.setUTCDate(nextDate.getUTCDate() + intervals[result]);
+      task.due_date = nextDate.toISOString().slice(0, 10);
+      task.review_count = (task.review_count || 0) + 1;
+      task.last_reviewed_at = now;
+      task.last_review_result = result;
+      task.completed_at = "";
+    }
     if (body.dueDate !== undefined) {
       const dueDate = typeof body.dueDate === "string" ? body.dueDate : "";
       const parsed = /^\d{4}-\d{2}-\d{2}$/.test(dueDate) ? new Date(dueDate + "T00:00:00.000Z") : null;
@@ -592,7 +609,7 @@ Deno.serve(async (req: Request) => {
           const previous = previousTasks.get(task.id);
           return previous ? { ...task, review_count: previous.review_count, snooze_count: previous.snooze_count,
             last_reviewed_at: previous.last_reviewed_at, last_snoozed_at: previous.last_snoozed_at,
-            completed_at: previous.completed_at } : task;
+            completed_at: previous.completed_at, last_review_result: previous.last_review_result } : task;
         }) };
         const { error: stateSaveError } = await mentorTable.upsert({
           user_id: authData.user.id, active_study_plan: nextState.active_study_plan,

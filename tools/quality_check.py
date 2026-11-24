@@ -292,8 +292,10 @@ def main() -> int:
                   and 'Overdue' in revision_ui
                   and 'postpone.addEventListener' in revision_ui
                   and 'task(item.id,"pending",dueDate)' in revision_ui
-                  and 'review_count' in revision_ui and 'snooze_count' in revision_ui,
-                  "Anbuu revision queue must show overdue status, allow postponement and display saved review history")
+                  and 'review_count' in revision_ui and 'snooze_count' in revision_ui
+                  and 'rating.value' in revision_ui and 'Again · 1d' in revision_ui
+                  and 'Easy · 7d' in revision_ui,
+                  "Anbuu revision queue must show overdue status, allow postponement and capture confidence ratings")
         edge_file = ROOT / "supabase" / "functions" / "ai-assistant" / "index.ts"
         if edge_file.is_file():
             edge_source = edge_file.read_text(encoding="utf-8")
@@ -301,7 +303,10 @@ def main() -> int:
                   and 'task.review_count = (task.review_count || 0) + 1' in edge_source
                   and 'Choose a valid review date today or later.' in edge_source
                   and 'previousTasks = new Map(mentorState.pending_tasks.map(task => [task.id, task]))' in edge_source
-                  and 'const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> = [];' in edge_source,
+                  and 'const intervals: Record<string, number> = { again: 1, hard: 2, good: 4, easy: 7 }' in edge_source
+                  and 'task.last_review_result = result' in edge_source
+                  and 'task.due_date = nextDate.toISOString().slice(0, 10)' in edge_source
+                  and 'const tasks: Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string;last_review_result:string}> = [];' in edge_source,
                   "Anbuu backend must validate due dates, persist review outcomes and preserve metadata across AI state updates")
         check("state.mistakes.unshift(" in app_source,
               "Mistake notebook must prepend new entries so newest-first ordering remains valid")
