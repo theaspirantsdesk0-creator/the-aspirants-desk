@@ -68,6 +68,14 @@ try {
   }
   const vapidPublicKeyLoaded = await page.evaluate(() => Boolean(window.DESK_VAPID_PUBLIC_KEY));
   if (!vapidPublicKeyLoaded) throw new Error('Public VAPID key is not loaded from config.js');
+  if (await page.locator('#checkPushBtn').count() !== 1 || await page.locator('#pushDiagnostics').count() !== 1) {
+    throw new Error('Push reminder device diagnostics controls are missing');
+  }
+  await page.locator('#checkPushBtn').click();
+  await page.locator('#pushDiagnostics').waitFor({ state: 'visible' });
+  if (!(await page.locator('#pushDiagnostics').innerText()).includes('sign in')) {
+    throw new Error('Guest push diagnostics should explain that sign-in is required before account checks');
+  }
   const ownerNav = page.locator('a[data-nav="admin"]');
   if (await ownerNav.count() !== 1 || !(await ownerNav.isHidden())) {
     throw new Error('Owner admin navigation must remain hidden for a guest visitor');
