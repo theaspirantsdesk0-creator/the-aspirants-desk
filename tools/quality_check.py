@@ -205,6 +205,21 @@ def main() -> int:
         check('body.action === "get_lessons"' in source and 'body.action === "start_lesson"' in source
               and 'body.action === "update_lesson"' in source,
               "Anbuu persistent lesson history actions are missing")
+        check('complete_anbuu_lesson_and_queue_revision' in source
+              and 'p_user_id: authData.user.id' in source
+              and 'mentorState' in source,
+              "Anbuu lesson completion must queue a learner-scoped revision task transactionally")
+        completion_migration = ROOT / "supabase/migrations/20261124031000_anbuu_lesson_completion_revision_task.sql"
+        check(completion_migration.is_file(), "Anbuu lesson completion revision-task migration is missing")
+        if completion_migration.is_file():
+            completion_sql = completion_migration.read_text(encoding="utf-8").lower()
+            check("security invoker" in completion_sql
+                  and "for update" in completion_sql
+                  and "lesson-review-" in completion_sql
+                  and "grant execute" in completion_sql
+                  and "to service_role" in completion_sql
+                  and "revoke all on function" in completion_sql,
+                  "Anbuu completion task function must be atomic, idempotent and service-role-only")
         check('lessonCompletedResult.count' in source and 'lessonInProgressResult.count' in source
               and 'lessonPausedResult.count' in source and 'lessonRecentResult.data' in source,
               "Anbuu progress report must include user-scoped guided-lesson counts and recent lessons")
@@ -231,7 +246,8 @@ def main() -> int:
                   and ('id="tadRefreshLessons"' in lesson_ui or "id='tadRefreshLessons'" in lesson_ui)
                   and 'action:"update_lesson"' in lesson_ui
                   and ('id="tadAiLessons"' in lesson_ui or 'id=\\"tadAiLessons\\"' in lesson_ui or "id='tadAiLessons'" in lesson_ui)
-                  and 'tad-ai-lesson-stats' in lesson_ui,
+                  and 'tad-ai-lesson-stats' in lesson_ui
+                  and 'Complete + add revision task' in lesson_ui,
                   "Anbuu learner lesson history and dashboard progress summary are missing")
         app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
         check("state.mistakes.unshift(" in app_source,
