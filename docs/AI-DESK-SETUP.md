@@ -10,6 +10,7 @@ The AI Desk adds a role-aware assistant to The Aspirant's Desk.
 - Learner, mentor and admin prompt modes.
 - A 20-message-per-user-per-UTC-day quota enforced in a private schema.
 - Persistent learner-owned Anbuu lesson history (subject, topic, level, and in-progress/paused/completed status), with pause, resume, reopen, and completion controls. Only lesson metadata is stored; chat transcripts are not saved.
+- The learner progress report includes all-time lesson counts by status and the five most recently updated lesson records, alongside mock-test and mistake-topic summaries. These counts are filtered to the authenticated learner on the server.
 - Lesson-history records are accessible only through the authenticated `ai-assistant` Edge Function; direct `anon` and `authenticated` table grants are revoked and RLS remains enabled.
 - Gemini-first provider selection and Groq fallback for Gemini HTTP 429 or 5xx responses.
 - AI-generated MCQs use the site's question JSON fields and are explicitly drafts, not approved/published questions.
