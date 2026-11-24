@@ -444,7 +444,22 @@ Deno.serve(async (req: Request) => {
     return json({ error: "Enter a message of 1–6000 characters." }, 400, origin);
   }
 
-  const rawHistory = Array.isArray(body.history) ? body.history.slice(-8) : [];
+  let resumedLesson: { id: string; track: string; subject: string; topic: string; level: string; status: string; updated_at: string } | null = null;
+  if (body.lessonId !== undefined) {
+    const lessonId = typeof body.lessonId === "string" ? body.lessonId : "";
+    if (profile.role !== "learner" ||
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(lessonId)) {
+      return json({ error: "That saved lesson could not be resumed." }, 404, origin);
+    }
+    const { data, error } = await adminClient.from("anbuu_lesson_history")
+      .select("id,track,subject,topic,level,status,updated_at")
+      .eq("id", lessonId).eq("user_id", authData.user.id).maybeSingle();
+    if (error) return json({ error: "Could not load that saved lesson. Please try again." }, 500, origin);
+    if (!data) return json({ error: "That saved lesson was not found in your account." }, 404, origin);
+    resumedLesson = data;
+  }
+
+  const rawHistory = body.lessonId ? [] : (Array.isArray(body.history) ? body.history.slice(-8) : []);
   const history: Array<{role:string;content:string}> = [];
   for (const item of rawHistory) {
     if (!item || typeof item !== "object") continue;
@@ -502,6 +517,9 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests }).slice(0, 2200) +
       "\nSAVED GUIDED-LESSON HISTORY (authoritative metadata; newest first; do not infer mastery): " +
       JSON.stringify(lessonHistory).slice(0, 1800) +
+      (resumedLesson ? "\nCURRENT RESUMED LESSON (verified from this learner's saved record; metadata only, not a transcript): " +
+        JSON.stringify(resumedLesson) +
+        "\nRESUME INSTRUCTIONS: Briefly recap only what can be inferred from the saved subject, topic, track, level and status. Be transparent that no prior chat transcript or exact stopping point is stored. Then teach one appropriate next small concept, use one simple example, ask exactly one short understanding-check question, and stop for the learner's reply. Do not claim the learner previously studied or understood a concept unless saved evidence says so." : "") +
       "\nSAVED ANBUU MENTOR STATE (authoritative; preserve it unless changed): " +
       JSON.stringify(mentorState).slice(0, 5200);
   }
