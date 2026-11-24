@@ -222,6 +222,23 @@
         "verified_at": "2026-11-24",
         "method": "Official UPSC archive entry identifies the 2024 Civil Services (Main) General Studies Paper IV; linked UPSC PDF opened successfully (16 pages)."
       }
+    },
+    {
+      "id": "cse-prelims-2025-gs-paper-i",
+      "exam": "Civil Services Examination",
+      "year": 2025,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2025 — General Studies Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/QP-CSP-25-GENERAL-STUDIES-PAPER-I-26052025.pdf",
+      "source": "UPSC official previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC-hosted PDF; the document heading identifies the 2025 Civil Services (Preliminary) Examination, General Studies Paper I, and the paper contains 100 numbered questions."
+      }
     }
   ]
 }
