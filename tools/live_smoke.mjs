@@ -82,6 +82,19 @@ try {
   if (await anbuuPage.count() !== 1 || !(await anbuuPage.isHidden())) {
     throw new Error('Anbuu full-page workspace must remain hidden for a guest visitor');
   }
+  const anbuuShortcuts = page.locator('#tadAiPanel .tad-anbuu-shortcuts button[data-nav]');
+  if (await anbuuShortcuts.count() !== 6) throw new Error('Anbuu must expose shortcuts to the main study sections');
+  await page.locator('#tadAiPanel .tad-anbuu-shortcuts button[data-nav="home"]').evaluate(el => el.click());
+  if (!(await page.locator('#home').isVisible())) throw new Error('A dynamically injected Anbuu shortcut did not navigate to Dashboard');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('#menuToggle').click();
+  if (!(await page.locator('#sidebar').evaluate(el => el.classList.contains('open')))) throw new Error('Mobile menu did not open');
+  if (await page.locator('#sidebar .nav-link:visible').count() < 8) throw new Error('Mobile sidebar did not reveal the full study navigation');
+  await page.locator('#sidebar a[data-nav="about-app"]').click();
+  if (!(await page.locator('#about-app').isVisible()) || await page.locator('#sidebar').evaluate(el => el.classList.contains('open'))) {
+    throw new Error('Mobile navigation did not switch sections and close the menu');
+  }
+  await page.setViewportSize({ width: 1365, height: 900 });
   if (!(await anbuuPage.locator('.tad-anbuu-page-hero h1').textContent()).includes('Meet Anbuu')) {
     throw new Error('Anbuu page hero is missing');
   }
