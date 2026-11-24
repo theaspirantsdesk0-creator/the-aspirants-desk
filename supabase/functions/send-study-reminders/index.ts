@@ -19,6 +19,11 @@ type UserDataRow = {
   updated_at: string | null;
 };
 
+type MentorStateRow = {
+  user_id: string;
+  pending_tasks: unknown[] | null;
+};
+
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
 const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? Deno.env.get("SUPABASE_SECRET_KEY") ?? "";
 const cronSecret = Deno.env.get("DESK_CRON_SECRET") ?? "";
@@ -112,6 +117,25 @@ function studiedToday(row: UserDataRow | null, date: string, timezone: string): 
     || savedDraftToday;
 }
 
+function dueRevisionCounts(row: MentorStateRow | null, date: string): { due: number; overdue: number } {
+  let due = 0;
+  let overdue = 0;
+  const tasks = Array.isArray(row?.pending_tasks) ? row.pending_tasks : [];
+  for (const task of tasks) {
+    if (!task || typeof task !== "object" || Array.isArray(task)) continue;
+    const item = task as Record<string, unknown>;
+    const dueDate = typeof item.due_date === "string" ? item.due_date : "";
+    if (item.status !== "pending" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate)) continue;
+    const parsed = new Date(dueDate + "T00:00:00.000Z");
+    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) continue;
+    if (dueDate <= date) {
+      due++;
+      if (dueDate < date) overdue++;
+    }
+  }
+  return { due, overdue };
+}
+
 Deno.serve(async (request: Request) => {
   if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
   if (!cronSecret || request.headers.get("x-cron-secret") !== cronSecret) {
@@ -137,14 +161,20 @@ Deno.serve(async (request: Request) => {
   if (!rows.length) return json({ checked: 0, sent: 0, skipped: 0, expired: 0, errors: [] });
 
   const userIds = [...new Set(rows.map((row) => row.user_id))];
-  const { data: userData, error: dataError } = await admin
-    .from("user_data")
-    .select("user_id,payload,updated_at")
-    .in("user_id", userIds);
-  if (dataError) return json({ error: dataError.message }, 500);
+  const [{ data: userData, error: dataError }, { data: mentorStates, error: mentorError }] = await Promise.all([
+    admin.from("user_data")
+      .select("user_id,payload,updated_at")
+      .in("user_id", userIds),
+    admin.from("anbuu_mentor_state")
+      .select("user_id,pending_tasks")
+      .in("user_id", userIds),
+  ]);
+  if (dataError || mentorError) return json({ error: "Could not load reminder activity and revision tasks." }, 500);
 
   const activityByUser = new Map<string, UserDataRow>();
   for (const row of (userData ?? []) as UserDataRow[]) activityByUser.set(row.user_id, row);
+  const mentorStateByUser = new Map<string, MentorStateRow>();
+  for (const row of (mentorStates ?? []) as MentorStateRow[]) mentorStateByUser.set(row.user_id, row);
 
   let sent = 0;
   let skipped = 0;
@@ -159,21 +189,35 @@ Deno.serve(async (request: Request) => {
       continue;
     }
 
-    if (studiedToday(activityByUser.get(row.user_id) ?? null, local.date, row.timezone)) {
-      const { error } = await admin.from("push_subscriptions")
-        .update({ last_sent_local_date: local.date, updated_at: new Date().toISOString() })
-        .eq("id", row.id);
-      if (error) errors.push(`activity-mark:${row.id}:${error.message}`);
-      skipped++;
-      continue;
+    const revisions = dueRevisionCounts(mentorStateByUser.get(row.user_id) ?? null, local.date);
+    let notification: string;
+    if (revisions.due > 0) {
+      const dueLabel = revisions.due === 1 ? "1 revision task is due" : `${revisions.due} revision tasks are due`;
+      const overdueLabel = revisions.overdue > 0
+        ? `, including ${revisions.overdue} overdue`
+        : "";
+      notification = JSON.stringify({
+        title: "Anbuu revision reminder",
+        body: `${dueLabel}${overdueLabel}. Open Anbuu's Revision Planner to review them.`,
+        url: "./#anbuu",
+        tag: "desk-revision-reminder",
+      });
+    } else {
+      if (studiedToday(activityByUser.get(row.user_id) ?? null, local.date, row.timezone)) {
+        const { error } = await admin.from("push_subscriptions")
+          .update({ last_sent_local_date: local.date, updated_at: new Date().toISOString() })
+          .eq("id", row.id);
+        if (error) errors.push(`activity-mark:${row.id}:${error.message}`);
+        skipped++;
+        continue;
+      }
+      notification = JSON.stringify({
+        title: "Time to study",
+        body: "You have not logged study activity today. Open Today's Desk and complete one focused task.",
+        url: "./#today",
+        tag: "desk-daily-reminder",
+      });
     }
-
-    const notification = JSON.stringify({
-      title: "Time to study",
-      body: "You have not logged study activity today. Open Today's Desk and complete one focused task.",
-      url: "./#today",
-      tag: "desk-daily-reminder",
-    });
 
     try {
       await webpush.sendNotification({
