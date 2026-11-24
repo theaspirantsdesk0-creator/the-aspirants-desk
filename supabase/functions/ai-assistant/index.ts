@@ -440,7 +440,7 @@ Deno.serve(async (req: Request) => {
     const nextStatus = body.status === "completed" ? "completed" : "pending";
     if (body.dueDate !== undefined) {
       const dueDate = typeof body.dueDate === "string" ? body.dueDate : "";
-      const parsed = /^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate) ? new Date(dueDate + "T00:00:00.000Z") : null;
+      const parsed = /^\d{4}-\d{2}-\d{2}$/.test(dueDate) ? new Date(dueDate + "T00:00:00.000Z") : null;
       if (!parsed || Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate ||
           dueDate < new Date().toISOString().slice(0, 10) || nextStatus !== "pending") {
         return json({ error: "Choose a valid review date today or later." }, 400, origin);
