@@ -571,6 +571,53 @@ def main() -> int:
               and "revoke all on function public.validate_mentor_review_assignment() from public, anon, authenticated" in mentor_sql.lower(),
               "Mentor integrity trigger functions must not be exposed as public RPC endpoints")
 
+    # Mentor workspace regression checks: preserve database-enforced roles,
+    # participant visibility, and review-to-assignment integrity.
+    profile_security = ROOT / "supabase" / "migrations" / "20261123123703_owner_managed_mentor_workspace_and_role_security.sql"
+    active_mentor_security = ROOT / "supabase" / "migrations" / "20261123123723_require_active_mentor_role_for_workspace_access.sql"
+    profile_signup_security = ROOT / "supabase" / "migrations" / "20261121135933_harden_profiles_signup_and_rls.sql"
+    check(profile_security.is_file(), "Owner-managed profile-role and mentor workspace migration is missing")
+    check(active_mentor_security.is_file(), "Active mentor workspace access migration is missing")
+    check(profile_signup_security.is_file(), "Profile signup and RLS baseline migration is missing")
+    if profile_security.is_file():
+        profile_sql = profile_security.read_text(encoding="utf-8").lower()
+        check("private.guard_profile_role_changes()" in profile_sql
+              and "new.role is distinct from old.role" in profile_sql
+              and "not private.is_desk_admin()" in profile_sql
+              and "revoke all on function private.guard_profile_role_changes() from public, anon, authenticated" in profile_sql,
+              "Profile role changes must be guarded by a private owner-only trigger")
+        check("create policy mentor_assignments_read_participants" in profile_sql
+              and "mentor_id = (select auth.uid())" in profile_sql
+              and "learner_id = (select auth.uid())" in profile_sql
+              and "create policy mentor_assignments_owner_insert" in profile_sql
+              and "created_by = (select auth.uid())" in profile_sql,
+              "Mentor assignments must be participant-readable and owner-created only")
+        check("create policy mentor_reviews_read_participants" in profile_sql
+              and "visibility = 'shared'" in profile_sql
+              and "create policy mentor_reviews_insert_assigned_mentor" in profile_sql
+              and "create policy mentor_reviews_update_assigned_mentor" in profile_sql,
+              "Learners must see only shared mentor feedback; mentors must be assignment-scoped")
+        check("with check" in profile_sql[profile_sql.find("create policy mentor_reviews_update_assigned_mentor"):],
+              "Mentor review updates must validate the resulting row as well as the original row")
+    if active_mentor_security.is_file():
+        active_sql = active_mentor_security.read_text(encoding="utf-8").lower()
+        check("create or replace function private.is_desk_mentor()" in active_sql
+              and "p.role = 'mentor'" in active_sql
+              and "grant execute on function private.is_desk_mentor() to authenticated" in active_sql
+              and "revoke all on function private.is_desk_mentor() from public, anon" in active_sql,
+              "Mentor workspace access must require the database-verified mentor role")
+        check("profiles_read_assigned_learners" in active_sql
+              and "a.mentor_id = (select auth.uid())" in active_sql
+              and "a.learner_id = profiles.id" in active_sql,
+              "Mentors must only be able to read profiles of learners assigned to them")
+    if profile_signup_security.is_file():
+        signup_sql = profile_signup_security.read_text(encoding="utf-8").lower()
+        check("grant update (display_name) on public.profiles to authenticated" in signup_sql,
+              "Authenticated users must not receive a broad profile update grant")
+        check("create policy profiles_update_self" in signup_sql
+              and "with check (id = (select auth.uid()))" in signup_sql,
+              "Profile self-update policy must prevent changing profile ownership")
+
     # The service worker must not keep old JavaScript or CSS after a site deployment.
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
