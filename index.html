@@ -1153,6 +1153,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <hr style="border:0;border-top:1px solid var(--line);margin:1.4rem 0">
       <h3>Official UPSC Previous-Year Questions</h3>
       <p class="muted">This archive displays only question records verified against official UPSC documents. The question bank and the official PYQ archive remain separate. Answers and explanations appear only when independently supported.</p>
+      <section id="pyqInventorySnapshot" class="pyq-inventory-snapshot" aria-live="polite" aria-label="Official paper verification progress">
+        <p class="muted">Loading official paper verification status…</p>
+      </section>
       <div class="form-grid" style="margin:.8rem 0">
         <div><label for="officialPyqYear">Year</label><select id="officialPyqYear"><option value="ALL">All published years</option></select></div>
         <div><label for="officialPyqStage">Stage</label><select id="officialPyqStage"><option value="ALL">All stages</option><option value="Prelims">Prelims</option><option value="Mains">Mains</option></select></div>
@@ -2660,6 +2663,27 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           typeof doc.document_url === "string" &&
           doc.document_url.startsWith("https://") && doc.document_url.includes("upsc.gov.in/")
         ) : [];
+        const inventoryHost = $("pyqInventorySnapshot");
+        if (inventoryHost) {
+          try {
+            const inventoryResponse = await fetch("data/pyq/documents.json", { cache: "no-store" });
+            if (!inventoryResponse.ok) throw new Error("Paper inventory unavailable (" + inventoryResponse.status + ")");
+            const inventory = await inventoryResponse.json();
+            const rows = Array.isArray(inventory.documents) ? inventory.documents : [];
+            const verifiedCount = rows.filter(row => ["verified", "published"].includes(row.status)).length;
+            const publishedCount = rows.filter(row => row.status === "published").length;
+            const total = rows.length;
+            const percent = total ? Math.round(verifiedCount / total * 1000) / 10 : 0;
+            inventoryHost.innerHTML =
+              '<div class="pyq-inventory-heading"><div><span class="pill">SOURCE-CHECKED DOCUMENTS</span><h3>Paper verification tracker</h3><p class="muted">A paper is counted only after its official PDF and metadata have been checked. This is document coverage, not a count of published question records.</p></div>' +
+              '<div class="pyq-inventory-number"><b>' + verifiedCount + '</b><span>of ' + total + ' papers</span></div></div>' +
+              '<div class="bar-track pyq-inventory-track" role="img" aria-label="' + verifiedCount + ' of ' + total + ' paper documents verified"><div class="bar-fill" style="width:' + percent + '%"></div></div>' +
+              '<div class="pyq-inventory-stats"><span><b>' + verifiedCount + '</b> verified</span><span><b>' + publishedCount + '</b> with published question records</span><span><b>' + Math.max(0,total-verifiedCount) + '</b> not yet verified</span></div>';
+          } catch (inventoryError) {
+            inventoryHost.innerHTML = '<p class="muted">Paper verification totals are temporarily unavailable. The individual verified document list remains available below.</p>';
+            console.warn("PYQ paper inventory failed:", inventoryError);
+          }
+        }
         verifiedDocsHost.innerHTML = docs.length ? docs.map(doc =>
           '<article class="verified-doc-card"><div class="verified-doc-topline"><span class="verified-doc-year">' + esc(doc.year) + '</span>' +
           '<span class="verified-doc-category">' + esc(doc.category) + '</span></div>' +
