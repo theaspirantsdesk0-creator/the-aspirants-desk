@@ -75,8 +75,8 @@ try {
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
   const anbuuNav = page.locator('a[data-nav="anbuu"]');
-  if (await anbuuNav.count() !== 1 || !(await anbuuNav.isHidden())) {
-    throw new Error('Anbuu main-navigation tab must remain hidden for a guest visitor');
+  if (await anbuuNav.count() !== 1 || !(await anbuuNav.isVisible()) || !(await anbuuNav.evaluate(el => el.classList.contains('requires-auth'))) || await anbuuNav.locator('.lock-tag').count() !== 1) {
+    throw new Error('Anbuu main-navigation tab must be visible with a login gate for guest visitors');
   }
   const anbuuPage = page.locator('#tadAiPanel');
   if (await anbuuPage.count() !== 1 || !(await anbuuPage.isHidden())) {
