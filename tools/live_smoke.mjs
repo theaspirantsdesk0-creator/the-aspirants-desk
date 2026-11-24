@@ -85,6 +85,9 @@ try {
   if (!(await anbuuPage.locator('.tad-anbuu-page-hero h1').textContent()).includes('Meet Anbuu')) {
     throw new Error('Anbuu page hero is missing');
   }
+  if (await page.locator('#tadAiNextSteps').count() !== 1) {
+    throw new Error('Anbuu lesson-aware next-step recommendations are missing');
+  }
   const aiForm = await page.locator('#tadAiForm').count();
   if (aiForm !== 1) throw new Error('Anbuu chat form is missing');
   const revisionTab = page.locator('#tadAiRevisionTab');

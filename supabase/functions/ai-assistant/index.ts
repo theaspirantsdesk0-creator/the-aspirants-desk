@@ -42,7 +42,8 @@ ANBUU PERSONAL MENTOR MODE: You are Anbuu, a dedicated, patient, disciplined all
 4) TASK ACCOUNTABILITY: At the start of a fresh session, refer to saved pending tasks and ask briefly how the learner progressed. At the end of a teaching session, assign 1–3 concrete micro-tasks. Be encouraging without exaggerated praise or pressure.
 5) DOUBT MEMORY: Keep a concise, cumulative list of recurring weak areas; remove duplicates and do not infer weaknesses from a single unclear question.
 6) ACCURACY: Clearly distinguish official PYQs from practice questions. Never invent official PYQs, sources, or evaluation claims. Flag uncertain facts and encourage verification.
-7) STATE SYNC: When a plan, doubt log, or task list changes, append exactly one hidden state block at the very end of your response using this exact format and valid JSON (no Markdown fence):
+7) LESSON-AWARE GUIDANCE: Use the learner's saved guided-lesson history when it is provided. Prefer continuing an in-progress lesson, resuming a paused lesson, and practising or revising a recently completed lesson before suggesting an unrelated new topic. Never claim a lesson was completed unless its saved status says completed. Do not infer mastery from completion alone; use a short recall check to confirm understanding. When there is no lesson history, say so and ask what subject or track the learner wants to begin.
+8) STATE SYNC: When a plan, doubt log, or task list changes, append exactly one hidden state block at the very end of your response using this exact format and valid JSON (no Markdown fence):
 <!--ANBUU_STATE:{"active_study_plan":null,"doubt_log":[],"pending_tasks":[]}-->
 The block must contain a complete current snapshot. active_study_plan is an object or null; doubt_log is an array of short strings; pending_tasks is an array of objects with id, title, description, due_date, and status ("pending" or "completed"). Preserve existing state unless intentionally changing it. Use short unique task IDs. Never mention this hidden block to the learner. If no saved state changes, omit it.
 Keep explanations well-structured, calm, and age-appropriate. Do not ask for personal contact details.`;
@@ -451,11 +452,14 @@ Deno.serve(async (req: Request) => {
 
   let learnerContext = "";
   if (profile.role === "learner") {
-    const [savedResult, testsResult] = await Promise.all([
+    const [savedResult, testsResult, lessonHistoryResult] = await Promise.all([
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
       adminClient.from("test_results")
         .select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(5),
+      adminClient.from("anbuu_lesson_history")
+        .select("track,subject,topic,level,status,updated_at,completed_at")
+        .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(8),
     ]);
     const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
       ? savedResult.data.payload as Record<string, unknown> : {};
@@ -472,8 +476,16 @@ Deno.serve(async (req: Request) => {
       correct: test.correct_count, wrong: test.wrong_count, skipped: test.skipped_count,
       date: test.created_at,
     }));
+    const lessonHistory = (lessonHistoryResult.data ?? []).map((lesson) => ({
+      track: lesson.track, subject: lesson.subject, topic: lesson.topic,
+      level: lesson.level, status: lesson.status, updatedAt: lesson.updated_at,
+      completedAt: lesson.completed_at,
+    }));
+    if (lessonHistoryResult.error) console.error("Anbuu lesson context read failed:", lessonHistoryResult.error.message);
     learnerContext = "PRIVATE LEARNER STUDY SUMMARY (de-identified; use only to personalise advice; do not repeat identifiers): " +
       JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests }).slice(0, 2200) +
+      "\nSAVED GUIDED-LESSON HISTORY (authoritative metadata; newest first; do not infer mastery): " +
+      JSON.stringify(lessonHistory).slice(0, 1800) +
       "\nSAVED ANBUU MENTOR STATE (authoritative; preserve it unless changed): " +
       JSON.stringify(mentorState).slice(0, 5200);
   }
