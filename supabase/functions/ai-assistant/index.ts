@@ -334,11 +334,26 @@ Deno.serve(async (req: Request) => {
   }
   if (body.action === "get_progress") {
     if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
-    const [testsResult, savedResult] = await Promise.all([
+    const [testsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult] = await Promise.all([
       adminClient.from("test_results").select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(30),
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
+      adminClient.from("anbuu_lesson_history").select("id", { count: "exact", head: true })
+        .eq("user_id", authData.user.id),
+      adminClient.from("anbuu_lesson_history").select("id", { count: "exact", head: true })
+        .eq("user_id", authData.user.id).eq("status", "completed"),
+      adminClient.from("anbuu_lesson_history").select("id", { count: "exact", head: true })
+        .eq("user_id", authData.user.id).eq("status", "in_progress"),
+      adminClient.from("anbuu_lesson_history").select("id", { count: "exact", head: true })
+        .eq("user_id", authData.user.id).eq("status", "paused"),
+      adminClient.from("anbuu_lesson_history")
+        .select("id,track,subject,topic,level,status,updated_at,completed_at")
+        .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(5),
     ]);
+    if (lessonTotalResult.error || lessonCompletedResult.error || lessonInProgressResult.error ||
+        lessonPausedResult.error || lessonRecentResult.error) {
+      return json({ error: "Could not load your guided-lesson progress." }, 500, origin);
+    }
     if (testsResult.error) return json({ error: "Could not load your learning history." }, 500, origin);
     const tests = (testsResult.data ?? []).map((t) => ({
       exam: String(t.exam ?? "Practice"), name: String(t.test_name ?? "Mock test"),
@@ -371,7 +386,14 @@ Deno.serve(async (req: Request) => {
     return json({ progress: { tests, weekly: { tests: current.length, average: average(current),
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
       wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
-      weakTopics, unclassifiedMistakes } }, 200, origin);
+      weakTopics, unclassifiedMistakes,
+      lessons: {
+        total: lessonTotalResult.count ?? 0,
+        completed: lessonCompletedResult.count ?? 0,
+        inProgress: lessonInProgressResult.count ?? 0,
+        paused: lessonPausedResult.count ?? 0,
+        recent: lessonRecentResult.data ?? [],
+      } } }, 200, origin);
   }
   if (body.action === "update_task") {
     if (profile.role !== "learner" || typeof body.taskId !== "string")
