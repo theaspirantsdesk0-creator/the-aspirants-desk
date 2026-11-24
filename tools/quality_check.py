@@ -526,6 +526,14 @@ def main() -> int:
               and 'title: "Time to study"' in reminder_source,
               "Due revision alerts must take priority while preserving the existing daily study reminder")
 
+    # Anbuu is dynamically injected with a styling ID different from its navigation route.
+    # Keep the route alias explicit so selecting Anbuu does not hide every view.
+    check('const viewId = clean === "anbuu" ? "tadAiPanel" : clean;' in html
+          and 's.id === viewId' in html,
+          "Anbuu navigation must activate its injected view without breaking other sections")
+    check('$("menuToggle").addEventListener("click"' in html
+          and '$("sidebarScrim").addEventListener("click"' in html,
+          "Mobile navigation must expose and close the complete sidebar")
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
     check("GS Paper II" in polity_angle and "not a prediction" in polity_angle,
