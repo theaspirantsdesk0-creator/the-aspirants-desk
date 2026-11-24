@@ -198,6 +198,13 @@ def main() -> int:
         check("if (true)" not in source, "AI retrieval must not fetch current-affairs feeds for every question")
         check("buildGroundedContext" in source, "AI retrieval function is missing")
         check("consume_ai_daily_quota" in source, "AI daily quota enforcement is missing")
+        # The mistake notebook prepends new entries, so Anbuu must read from
+        # the start of the array rather than the oldest entries at the end.
+        check("mistakeRows.slice(0, 12)" in source,
+              "Anbuu must use the 12 newest saved mistakes for learner context")
+        app_source = index.read_text(encoding="utf-8") if index.is_file() else ""
+        check("state.mistakes.unshift(" in app_source,
+              "Mistake notebook must prepend new entries so newest-first ordering remains valid")
 
     # The publisher must union source items across concurrent updates without
     # discarding useful fields when one writer supplies an empty value.
