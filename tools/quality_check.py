@@ -202,6 +202,15 @@ def main() -> int:
         # the start of the array rather than the oldest entries at the end.
         check("mistakeRows.slice(0, 12)" in source,
               "Anbuu must use the 12 newest saved mistakes for learner context")
+        check('lessonHistoryResult' in source
+              and 'SAVED GUIDED-LESSON HISTORY' in source
+              and 'lessonHistory' in source,
+              "Anbuu chat must use the authenticated learner's saved lesson history")
+        if ai_js.is_file():
+            check('tadAiNextSteps' in ai_js.read_text(encoding="utf-8")
+                  and 'renderNextSteps' in ai_js.read_text(encoding="utf-8")
+                  and 'Ask Anbuu' in ai_js.read_text(encoding="utf-8"),
+                  "Anbuu must show actionable, lesson-aware next-step recommendations")
         check('body.action === "get_lessons"' in source and 'body.action === "start_lesson"' in source
               and 'body.action === "update_lesson"' in source,
               "Anbuu persistent lesson history actions are missing")
