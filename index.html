@@ -2175,7 +2175,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   // Phase 1B: Upgraded Daily Prelims Test (Timer, +2/-0.66, Breakdown, Mistake Capture)
   let DAILY_QUESTIONS = [
     {
-      q: "1. With reference to the Constitution of India, which of the following statements regarding 'Money Bills' under Article 110 is correct?",
+      subject: "Polity", topic: "Money Bills · Article 110",
+      q: "1. With reference to the Constitution of India, which of the following statements regarding 'Money Bills' under Article 110 is correct?", 
       opts: [
         "A Money Bill can be introduced in either House of Parliament.",
         "The Rajya Sabha can amend or reject a Money Bill within 14 days.",
@@ -2186,7 +2187,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       exp: "Under Article 110(3), the Speaker's decision is final. Money Bills originate only in Lok Sabha and have no joint sitting."
     },
     {
-      q: "2. Which of the following best describes the 'Monetary Policy Committee (MPC)' of India?",
+      subject: "Economy", topic: "Monetary Policy Committee",
+      q: "2. Which of the following best describes the 'Monetary Policy Committee (MPC)' of India?", 
       opts: [
         "A 6-member statutory body under the RBI Act, 1934 tasked with maintaining price stability.",
         "An advisory committee chaired by the Union Finance Minister.",
@@ -2197,7 +2199,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       exp: "MPC is a 6-member statutory committee (3 from RBI, 3 nominated by Govt) chaired by the RBI Governor with an inflation target of 4% (±2%)."
     },
     {
-      q: "3. In the context of Indian Ecology, 'Gadgil Committee Report' and 'Kasturirangan Committee Report' are related to:",
+      subject: "Environment", topic: "Western Ghats · Gadgil and Kasturirangan Committees",
+      q: "3. In the context of Indian Ecology, 'Gadgil Committee Report' and 'Kasturirangan Committee Report' are related to:", 
       opts: [
         "Constitutional Reforms",
         "Ganga Action Plan",
@@ -2208,7 +2211,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       exp: "Both committees submitted landmark reports on Ecologically Sensitive Areas (ESAs) in the Western Ghats."
     },
     {
-      q: "4. Who among the following founded the 'Servants of India Society' in 1905?",
+      subject: "Modern History", topic: "Servants of India Society · 1905",
+      q: "4. Who among the following founded the 'Servants of India Society' in 1905?", 
       opts: [
         "Bal Gangadhar Tilak",
         "Gopal Krishna Gokhale",
@@ -2219,7 +2223,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       exp: "Gopal Krishna Gokhale founded the Servants of India Society in Pune in 1905 to train national missionaries for the service of India."
     },
     {
-      q: "5. Which one of the following is NOT a member of the Gulf Cooperation Council (GCC)?",
+      subject: "International Relations", topic: "Gulf Cooperation Council",
+      q: "5. Which one of the following is NOT a member of the Gulf Cooperation Council (GCC)?", 
       opts: [
         "Bahrain",
         "Kuwait",
@@ -2283,8 +2288,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         wrong++;
         expEl.style.color = "var(--bad)";
         expEl.textContent = `✕ Incorrect (−0.66) · ${item.exp}`;
-        if (!state.mistakes.some(m => m.q === item.q)) {
-          state.mistakes.unshift({ q: item.q, ans: item.opts[item.ans], exp: item.exp });
+        const savedMistake = state.mistakes.find(m => m.q === item.q);
+        if (savedMistake) {
+          // Enrich older records when the same question is missed again.
+          savedMistake.subject = savedMistake.subject || item.subject || "";
+          savedMistake.topic = savedMistake.topic || item.topic || "";
+        } else {
+          state.mistakes.unshift({
+            q: item.q, ans: item.opts[item.ans], exp: item.exp,
+            subject: item.subject || "", topic: item.topic || ""
+          });
         }
       }
     });
