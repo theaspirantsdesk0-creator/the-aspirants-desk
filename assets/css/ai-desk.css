@@ -156,3 +156,10 @@
 .tad-ai-next-step strong{font-size:.82rem;color:var(--ink);line-height:1.35}
 .tad-ai-next-step p{margin:0;color:var(--muted);font-size:.72rem;line-height:1.5;flex:1}
 .tad-ai-next-step button{border:1px solid var(--line);border-radius:8px;padding:.45rem .7rem;background:var(--surface);color:var(--ink);font-size:.7rem;font-weight:700;cursor:pointer}
+
+
+/* Unified Anbuu revision task controls */
+.tad-revision-task-actions{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end}
+.tad-revision-task-actions button{border:1px solid var(--line);border-radius:8px;padding:.4rem .55rem;background:var(--surface);color:var(--ink);font-size:.66rem;font-weight:700;cursor:pointer}
+.tad-revision-task-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:480px){.tad-revision-task-actions{width:100%;justify-content:flex-start}.tad-revision-task-actions button{flex:1}}
