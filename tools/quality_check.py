@@ -294,7 +294,7 @@ def main() -> int:
                   and 'task(item.id,"pending",dueDate)' in revision_ui
                   and 'review_count' in revision_ui and 'snooze_count' in revision_ui,
                   "Anbuu revision queue must show overdue status, allow postponement and display saved review history")
-        edge_file = root / "supabase" / "functions" / "ai-assistant" / "index.ts"
+        edge_file = ROOT / "supabase" / "functions" / "ai-assistant" / "index.ts"
         if edge_file.is_file():
             edge_source = edge_file.read_text(encoding="utf-8")
             check('task.snooze_count = (task.snooze_count || 0) + 1' in edge_source
