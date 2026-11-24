@@ -290,6 +290,42 @@ Deno.serve(async (req: Request) => {
   if (body.action === "get_state") {
     return json({ mentorState: profile.role === "learner" ? mentorState : null, role: profile.role }, 200, origin);
   }
+  if (body.action === "get_progress") {
+    if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
+    const [testsResult, savedResult] = await Promise.all([
+      adminClient.from("test_results").select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
+        .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(30),
+      adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
+    ]);
+    if (testsResult.error) return json({ error: "Could not load your learning history." }, 500, origin);
+    const tests = (testsResult.data ?? []).map((t) => ({
+      exam: String(t.exam ?? "Practice"), name: String(t.test_name ?? "Mock test"),
+      score: Number(t.score ?? 0), maxScore: Number(t.max_score ?? 0),
+      correct: Number(t.correct_count ?? 0), wrong: Number(t.wrong_count ?? 0),
+      skipped: Number(t.skipped_count ?? 0), date: t.created_at,
+      percentage: Number(t.max_score) > 0 ? Math.round(Number(t.score) / Number(t.max_score) * 100) : null,
+    }));
+    const now = Date.now(), weekMs = 7 * 24 * 60 * 60 * 1000;
+    const current = tests.filter(t => Date.parse(String(t.date)) >= now - weekMs);
+    const previous = tests.filter(t => Date.parse(String(t.date)) >= now - 2 * weekMs && Date.parse(String(t.date)) < now - weekMs);
+    const average = (items: typeof tests) => items.length
+      ? Math.round(items.reduce((sum, t) => sum + (t.percentage ?? 0), 0) / items.length) : null;
+    const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
+      ? savedResult.data.payload as Record<string, unknown> : {};
+    const mistakes = Array.isArray(payload.mistakes) ? payload.mistakes : [];
+    const topicCounts = new Map<string, number>();
+    for (const item of mistakes) {
+      if (!item || typeof item !== "object") continue;
+      const row = item as Record<string, unknown>;
+      const topic = [row.subject, row.topic].filter(v => typeof v === "string" && v.trim()).join(" · ");
+      if (topic) topicCounts.set(topic, (topicCounts.get(topic) ?? 0) + 1);
+    }
+    const weakTopics = [...topicCounts.entries()].sort((a,b) => b[1]-a[1]).slice(0, 6)
+      .map(([topic, mistakes]) => ({ topic, mistakes }));
+    return json({ progress: { tests, weekly: { tests: current.length, average: average(current),
+      previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
+      wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) }, weakTopics } }, 200, origin);
+  }
   if (body.action === "update_task") {
     if (profile.role !== "learner" || typeof body.taskId !== "string")
       return json({ error: "Task update is not available for this account." }, 403, origin);
