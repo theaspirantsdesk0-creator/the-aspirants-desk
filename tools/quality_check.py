@@ -107,6 +107,21 @@ def main() -> int:
     for path in js_files:
         run_node_check(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
 
+    dashboard_js = ROOT / "assets" / "js" / "dashboard.js"
+    dashboard_css = ROOT / "assets" / "css" / "design-system.css"
+    if dashboard_js.is_file() and dashboard_css.is_file() and index.is_file():
+        dashboard_source = dashboard_js.read_text(encoding="utf-8")
+        dashboard_style = dashboard_css.read_text(encoding="utf-8")
+        dashboard_html = index.read_text(encoding="utf-8")
+        for element_id in ("learnerCommandTitle", "homeStudyHours", "homeSyllabusProgress",
+                           "homeLatestScore", "homeLearningProgress", "homeVerifiedDocsStatus"):
+            check(f'id="{element_id}"' in dashboard_html,
+                  f"Learner dashboard element is missing: {element_id}")
+        check("data/pyq/verified-documents.json" in dashboard_source,
+              "Learner dashboard must load the verified document count from the published manifest")
+        check(".learner-command-panel" in dashboard_style,
+              "Learner dashboard responsive styles are missing")
+
     # Course discovery and starter-course content must remain valid and searchable.
     course_js = ROOT / "assets" / "js" / "courses.js"
     course_css = ROOT / "assets" / "css" / "courses.css"
