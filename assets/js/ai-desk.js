@@ -40,8 +40,15 @@ if(!tests.length)historyHost.textContent="Your saved mock-test results will appe
 else tests.slice(0,8).forEach(t=>{const row=document.createElement("div");row.className="tad-ai-history-row";const strong=document.createElement("strong");strong.textContent=t.name||t.exam||"Practice test";const meta=document.createElement("small");meta.textContent=(t.date?new Date(t.date).toLocaleDateString():"Date unavailable")+" · "+(t.percentage===null?"Score unavailable":t.percentage+"%")+" · "+t.correct+" correct";row.append(strong,meta);historyHost.append(row);});
 const topics=Array.isArray(data?.weakTopics)?data.weakTopics:[];
 renderRevisionPlan(topics);
-if(!topics.length)weak.textContent="No topic-level mistakes have been recorded yet. Complete practice tests and save mistakes to identify revision priorities.";
-else{const list=document.createElement("ul");topics.forEach(t=>{const li=document.createElement("li");li.textContent=t.topic+" · "+t.mistakes+" recorded mistake(s)";list.append(li);});weak.append(list);}
+const unclassified=Number(data?.unclassifiedMistakes||0);
+if(!topics.length){
+weak.textContent=unclassified
+?"You have "+unclassified+" older saved mistake(s), but they do not contain subject or topic tags. New tagged mistakes will appear here; if you miss the same question again, Anbuu will enrich its existing record."
+:"No topic-level mistakes have been recorded yet. Complete a practice test to start building revision priorities.";
+}else{
+const list=document.createElement("ul");topics.forEach(t=>{const li=document.createElement("li");li.textContent=t.topic+" · "+t.mistakes+" recorded mistake(s)";list.append(li);});weak.append(list);
+if(unclassified){const note=document.createElement("p");note.textContent=unclassified+" older mistake(s) are not topic-tagged and are excluded from this ranking.";weak.append(note);}
+}
 }
 async function loadProgress(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_progress"}});if(r.error)throw r.error;renderProgress(r.data?.progress||{});}
 async function refresh(){
