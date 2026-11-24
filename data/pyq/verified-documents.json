@@ -273,6 +273,142 @@
         "verified_at": "2026-11-24",
         "method": "Opened official UPSC-hosted PDF and confirmed the 2024 Civil Services (Preliminary) Examination heading, Paper II (CSAT) label, and 80 numbered questions."
       }
+    },
+    {
+      "id": "cse-prelims-2025-csat",
+      "exam": "Civil Services Examination",
+      "year": 2025,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper II (CSAT)",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2025 — General Studies Paper II (CSAT)",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-II-26052025.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists this under Civil Services (Preliminary) Examination, 2025 as General Studies Paper II; exact PDF URL resolved from the archive link."
+      }
+    },
+    {
+      "id": "cse-mains-2023-anthropology-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "Anthropology",
+      "paper": "Paper I",
+      "category": "Optional",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — Anthropology Paper I",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ANTHROPOLOGY-PAPER-I-29092023.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 Anthropology Paper I; exact PDF URL resolved from the archive link and PDF opened successfully (6 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2023-anthropology-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "Anthropology",
+      "paper": "Paper II",
+      "category": "Optional",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — Anthropology Paper II",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ANTHROPOLOGY-PAPER-II-29092023.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 Anthropology Paper II; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2023-gs-paper-i",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — General Studies Paper I",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-I-180923.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 General Studies Paper I; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2023-gs-paper-ii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper II",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — General Studies Paper II",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-II-180923.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 General Studies Paper II and its exact official PDF URL; the PDF preview exceeded the retrieval service limit."
+      }
+    },
+    {
+      "id": "cse-mains-2023-gs-paper-iii",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper III",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — General Studies Paper III",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-III-180923.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 General Studies Paper III; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages)."
+      }
+    },
+    {
+      "id": "cse-mains-2023-gs-paper-iv",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "General Studies",
+      "paper": "Paper IV",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — General Studies Paper IV",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-IV-180923.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 General Studies Paper IV and its exact official PDF URL; PDF preview exceeded the retrieval service size limit."
+      }
+    },
+    {
+      "id": "cse-mains-2023-essay",
+      "exam": "Civil Services (Main) Examination",
+      "year": 2023,
+      "stage": "Mains",
+      "subject": "Essay",
+      "paper": "Essay",
+      "category": "General",
+      "status": "verified",
+      "title": "Civil Services (Main) Examination, 2023 — Essay",
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ESSAY-180923.pdf",
+      "source": "Official UPSC previous question-paper archive",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC archive lists the 2023 Essay paper; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages)."
+      }
     }
   ]
 }
