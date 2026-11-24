@@ -830,6 +830,38 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
     </div>
 
+    <section class="card learner-command-panel" aria-labelledby="learnerCommandTitle">
+      <div class="learner-command-head">
+        <div><span class="eyebrow">YOUR STUDY WORKSPACE</span><h2 id="learnerCommandTitle">Pick up where you left off</h2>
+          <p class="muted">A quick view of your current progress and the tools you can use next.</p></div>
+        <a class="btn" href="#tracker" data-nav="tracker">Open full tracker</a>
+      </div>
+      <div class="learner-command-metrics" aria-live="polite">
+        <article class="learner-command-metric"><span>Study time</span><strong id="homeStudyHours">—</strong><small>Logged hours</small></article>
+        <article class="learner-command-metric"><span>Syllabus</span><strong id="homeSyllabusProgress">—</strong><small>Checklist completion</small></article>
+        <article class="learner-command-metric"><span>Latest test</span><strong id="homeLatestScore">—</strong><small>Most recent score</small></article>
+        <article class="learner-command-metric"><span>Learning hub</span><strong id="homeLearningProgress">—</strong><small>Track milestones</small></article>
+      </div>
+      <div class="learner-command-lower">
+        <div class="learner-command-next">
+          <span class="pill">SUGGESTED NEXT STEP</span><h3>Study in a short, focused cycle</h3>
+          <p class="muted">Choose one task, complete it, then record what you learned. You can change the order to match your plan.</p>
+          <div class="learner-command-actions">
+            <a class="btn primary" href="#today" data-nav="today">Start a focus session</a>
+            <a class="btn" href="#dailytest" data-nav="dailytest">Practise questions</a>
+            <a class="btn" href="#mains" data-nav="mains">Write an answer</a>
+          </div>
+        </div>
+        <div class="learner-command-links">
+          <h3>Continue learning</h3>
+          <a href="#pyq" data-nav="pyq"><span>Verified PYQ archive</span><span aria-hidden="true">→</span></a>
+          <a href="#notes" data-nav="notes"><span>Subject notes</span><span aria-hidden="true">→</span></a>
+          <a href="#learning-hub" data-nav="learning-hub"><span>Universal learning courses</span><span aria-hidden="true">→</span></a>
+          <p id="homeVerifiedDocsStatus" class="muted" aria-live="polite">Checking verified paper coverage…</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT APP & FOUNDER SUMMARY -->
     <div class="grid-2" style="margin-bottom:1.4rem">
       <div class="card accent-left">
@@ -3481,7 +3513,8 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   if (n && n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/^\s*[\p{Extended_Pictographic}\uFE0F\u200D]+\s*/u, "");
 });
 </script>
-  <script src="assets/js/learning-hub.js" defer></script>
+  <script src="assets/js/dashboard.js" defer></script>
+<script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
   <script src="assets/js/course-studio.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>

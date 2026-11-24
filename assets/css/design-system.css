@@ -138,3 +138,24 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px soli
 .pyq-inventory-stats{display:flex;flex-wrap:wrap;gap:.45rem 1.1rem;font-size:.78rem;color:var(--muted)}
 .pyq-inventory-stats b{color:var(--ink);font-variant-numeric:tabular-nums}
 @media(max-width:560px){.pyq-inventory-heading{align-items:flex-start}.pyq-inventory-number b{font-size:1.5rem}.pyq-inventory-stats{display:grid;grid-template-columns:1fr 1fr}}
+
+/* Learner home command panel */
+.learner-command-panel{margin:0 0 1.4rem;padding:clamp(1rem,2vw,1.4rem);border:1px solid var(--line);background:var(--surface)}
+.learner-command-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.learner-command-head h2{margin:.3rem 0;font-size:clamp(1.15rem,2vw,1.45rem)}
+.learner-command-head p{margin:.25rem 0 0;font-size:.88rem}
+.learner-command-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem}
+.learner-command-metric{min-width:0;padding:.85rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-alt)}
+.learner-command-metric span,.learner-command-metric small{display:block;color:var(--muted);font-size:.76rem}
+.learner-command-metric strong{display:block;margin:.28rem 0;font:800 1.45rem "Bricolage Grotesque",sans-serif;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.learner-command-lower{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);gap:1rem;margin-top:1rem}
+.learner-command-next{padding:1rem;border-radius:12px;background:var(--surface-alt);border:1px solid var(--line)}
+.learner-command-next h3,.learner-command-links h3{margin:.45rem 0;font-size:1rem}
+.learner-command-next p{font-size:.84rem;margin:.25rem 0 .8rem}
+.learner-command-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.learner-command-links{padding:.4rem .2rem}
+.learner-command-links>a{display:flex;justify-content:space-between;gap:.6rem;padding:.7rem 0;border-bottom:1px solid var(--line);font-size:.88rem;font-weight:650;color:var(--ink);text-decoration:none}
+.learner-command-links>a:hover{color:var(--accent)}
+.learner-command-links>p{font-size:.76rem;margin:.75rem 0 0}
+@media(max-width:760px){.learner-command-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.learner-command-lower{grid-template-columns:1fr}}
+@media(max-width:520px){.learner-command-head{display:block}.learner-command-head>.btn{margin-top:.75rem}.learner-command-metric{padding:.7rem}.learner-command-metric strong{font-size:1.25rem}.learner-command-actions .btn{flex:1 1 100%;text-align:center}}
