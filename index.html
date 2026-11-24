@@ -798,7 +798,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
             <button type="button" class="btn primary" id="enablePushBtn">Enable daily reminder</button>
             <button type="button" class="btn" id="testPushBtn" hidden>Send test notification</button>
             <button type="button" class="btn" id="disablePushBtn" hidden>Turn off on this device</button>
+            <button type="button" class="btn" id="checkPushBtn">Check device setup</button>
           </div>
+          <div id="pushDiagnostics" class="muted" aria-live="polite" hidden style="margin-top:.8rem;font-size:.82rem"></div>
         </div>
       </div>
     </section>
@@ -1709,6 +1711,57 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
   }
 
+  async function runPushDiagnostics() {
+    const host = $("pushDiagnostics");
+    if (!host) return;
+    host.hidden = false;
+    host.textContent = "Checking this device…";
+    const list = document.createElement("ul");
+    list.style.cssText = "margin:.45rem 0 0;padding-left:1.15rem;display:grid;gap:.3rem";
+    const add = (label, ok, detail) => {
+      const item = document.createElement("li");
+      item.textContent = label + ": " + detail;
+      item.dataset.state = ok ? "ok" : "attention";
+      list.appendChild(item);
+    };
+    try {
+      add("Account", Boolean(currentUser && supabase), currentUser && supabase ? "signed in" : "sign in before enabling reminders");
+      const secure = Boolean(window.isSecureContext);
+      add("Connection", secure, secure ? "secure HTTPS context" : "HTTPS is required");
+      const notificationSupported = "Notification" in window;
+      const permission = notificationSupported ? Notification.permission : "unsupported";
+      add("Notification permission", permission === "granted", notificationSupported ? permission : "not supported in this browser");
+      const swSupported = "serviceWorker" in navigator;
+      let registration = null;
+      if (swSupported) registration = await navigator.serviceWorker.getRegistration();
+      add("Service worker", Boolean(registration && registration.active), !swSupported ? "not supported" : registration && registration.active ? "active" : "not registered or not active");
+      let subscription = null;
+      if (registration && "pushManager" in registration) subscription = await registration.pushManager.getSubscription();
+      add("Browser subscription", Boolean(subscription), subscription ? "present on this device" : "not enabled on this device");
+      if (currentUser && supabase && subscription) {
+        const { data, error } = await supabase.from("push_subscriptions")
+          .select("enabled,reminder_time")
+          .eq("user_id", currentUser.id)
+          .eq("endpoint", subscription.endpoint)
+          .maybeSingle();
+        if (error) add("Account record", false, "could not read your own reminder record: " + (error.message || "database error"));
+        else add("Account record", Boolean(data && data.enabled), data && data.enabled ? "enabled for this account at " + String(data.reminder_time || "19:00").slice(0, 5) : "no enabled reminder record found");
+      } else if (currentUser && supabase) {
+        add("Account record", false, "enable a browser subscription first");
+      } else {
+        add("Account record", false, "sign in to check your account record");
+      }
+      const note = document.createElement("p");
+      note.style.margin = ".5rem 0 0";
+      note.textContent = "This check does not send a notification. Use “Send test notification” to test delivery after enabling reminders.";
+      list.appendChild(note);
+      host.replaceChildren(list);
+    } catch (error) {
+      add("Device check", false, error && error.message ? error.message : "could not complete");
+      host.replaceChildren(list);
+    }
+  }
+
   async function enablePushReminders() {
     if (!currentUser || !supabase) {
       openAuthModal("home");
@@ -1950,6 +2003,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   }
 
   // Device-level push reminder controls.
+  $("checkPushBtn").addEventListener("click", async () => {
+    const button = $("checkPushBtn");
+    button.disabled = true;
+    try { await runPushDiagnostics(); }
+    finally { button.disabled = false; }
+  });
+
   $("enablePushBtn").addEventListener("click", async () => {
     const button = $("enablePushBtn");
     button.disabled = true;
