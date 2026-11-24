@@ -623,6 +623,23 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 .mentor-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem;margin-bottom:1rem}.mentor-kpis .card{padding:1rem 1.2rem;border-top:3px solid #d5a928}.mentor-kpi-label{display:block;font-size:.76rem;color:var(--muted);font-weight:700}.mentor-kpis strong{display:block;font-size:1.7rem;margin-top:.3rem;color:var(--ink)}
 .mentor-panel{margin-bottom:1rem;padding:1.25rem}.mentor-panel h3{margin:.45rem 0}.mentor-panel-head,.mentor-section-head{display:flex;align-items:center;justify-content:space-between;gap:1rem}.mentor-assignment-list,.mentor-review-list{display:grid;gap:.75rem;margin-top:.9rem}.mentor-assignment{border:1px solid var(--line);border-radius:14px;padding:1rem;background:var(--surface-alt)}.mentor-assignment-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;flex-wrap:wrap}.mentor-assignment h4{margin:.25rem 0 .45rem}.mentor-assignment p{margin:.35rem 0;color:var(--muted);font-size:.88rem}.mentor-role-row{display:grid;grid-template-columns:minmax(0,1fr) 115px 72px;gap:.5rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--line)}.mentor-role-row:last-child{border-bottom:0}.mentor-role-row strong{font-size:.86rem}.mentor-role-row select{min-width:0}.mentor-role-list{max-height:300px;overflow:auto}.mentor-review-item{padding:.85rem 1rem;border:1px solid var(--line);border-radius:12px}.mentor-review-item p{white-space:pre-wrap;margin:.5rem 0}.mentor-status{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.mentor-admin-card{border-top:3px solid #d5a928}
 @media(max-width:600px){.mentor-hero{padding:1.25rem;align-items:flex-start}.mentor-hero-mark{width:48px;height:48px;font-size:1.35rem}.mentor-kpis{gap:.5rem}.mentor-kpis .card{padding:.8rem}.mentor-kpis strong{font-size:1.35rem}.mentor-kpi-label{font-size:.68rem}.mentor-role-row{grid-template-columns:minmax(0,1fr) 100px 62px;gap:.35rem}.mentor-panel{padding:1rem}}
+
+/* Verified UPSC paper cards */
+.verified-docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:1rem;margin-top:1rem}
+.verified-doc-card{position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;padding:1.1rem;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-alt));box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.verified-doc-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow-lg)}
+.verified-doc-topline{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.9rem}
+.verified-doc-year{display:inline-flex;align-items:center;justify-content:center;min-width:3.4rem;padding:.32rem .62rem;border-radius:999px;background:var(--navy);color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.04em}
+.verified-doc-category{padding:.3rem .6rem;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.72rem;font-weight:700}
+.verified-doc-main{flex:1}
+.verified-doc-stage{margin:0 0 .35rem;color:var(--muted);font-size:.75rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase}
+.verified-doc-card h4{margin:.25rem 0 .55rem;font-size:1rem;line-height:1.45;color:var(--ink)}
+.verified-doc-meta{margin:0 0 1rem;color:var(--muted);font-size:.78rem}
+.verified-doc-link{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-top:auto;padding:.72rem .85rem;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent);font-size:.84rem;font-weight:800;text-decoration:none;transition:background .18s ease,border-color .18s ease}
+.verified-doc-link:hover{background:color-mix(in srgb,var(--accent) 13%,var(--surface));border-color:var(--accent)}
+.verified-doc-link:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.verified-doc-card,.verified-doc-link{transition:none}.verified-doc-card:hover{transform:none}}
+
 </style>
   <link rel="stylesheet" href="assets/css/ai-desk.css">
   <link rel="stylesheet" href="assets/css/courses.css">
@@ -1150,7 +1167,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all 25 optional subjects and 23 literature choices. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
       <h3>Verified official paper documents</h3>
       <p class="muted">These are individually checked UPSC-hosted PDFs. This list grows only when exact paper metadata and source links are confirmed.</p>
-      <div id="verifiedPyqDocuments" class="grid-2" aria-live="polite"><p class="muted">Loading verified UPSC documents…</p></div>
+      <div id="verifiedPyqDocuments" class="verified-docs-grid" aria-live="polite"><p class="muted">Loading verified UPSC documents…</p></div>
       <div class="card" style="margin-top:1rem">
         <h3>All optional subjects — Paper I &amp; Paper II</h3>
         <p class="muted">Choose any subject or literature option to inspect its two papers and year-by-year publication status. A missing record means this site has not yet published a verified question for that year; it does not mean UPSC did not conduct the paper.</p>
@@ -2624,11 +2641,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           doc.document_url.startsWith("https://") && doc.document_url.includes("upsc.gov.in/")
         ) : [];
         verifiedDocsHost.innerHTML = docs.length ? docs.map(doc =>
-          '<article class="card"><div class="btn-row"><span class="pill ok">' + esc(doc.year) + '</span>' +
-          '<span class="pill">' + esc(doc.category) + '</span><span class="pill">' + esc(doc.paper) + '</span></div>' +
-          '<h4>' + esc(doc.title) + '</h4><p class="muted">Verified ' + esc(doc.verification.verified_at) +
-          ' · ' + esc(doc.source || "UPSC") + '</p><a href="' + esc(doc.document_url) +
-          '" target="_blank" rel="noopener noreferrer">Open official UPSC PDF</a></article>'
+          '<article class="verified-doc-card"><div class="verified-doc-topline"><span class="verified-doc-year">' + esc(doc.year) + '</span>' +
+          '<span class="verified-doc-category">' + esc(doc.category) + '</span></div>' +
+          '<div class="verified-doc-main"><p class="verified-doc-stage">' + esc(doc.stage) + ' · ' + esc(doc.exam) + '</p>' +
+          '<h4>' + esc(doc.title) + '</h4><p class="verified-doc-meta">Checked ' + esc(doc.verification.verified_at) +
+          ' <span aria-hidden="true">·</span> ' + esc(doc.paper) + '</p></div>' +
+          '<a class="verified-doc-link" href="' + esc(doc.document_url) +
+          '" target="_blank" rel="noopener noreferrer"><span>Open official paper</span><span aria-hidden="true">↗</span></a></article>'
         ).join("") : '<p class="muted">No individually verified paper links are published yet.</p>';
       } catch (error) {
         verifiedDocsHost.innerHTML = '<p class="muted">The verified document list is temporarily unavailable. Use the official UPSC indexes above.</p>';
