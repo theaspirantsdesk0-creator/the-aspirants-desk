@@ -248,7 +248,7 @@ function extractMentorState(answer: string) {
 }
 function defaultMentorState() {
   return { active_study_plan: null, doubt_log: [] as string[],
-    pending_tasks: [] as Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed"}> };
+    pending_tasks: [] as Array<{id:string;title:string;description:string;due_date:string;status:"pending"|"completed";review_count:number;snooze_count:number;last_reviewed_at:string;last_snoozed_at:string;completed_at:string}> };
 }
 Deno.serve(async (req: Request) => {
   const origin = corsOrigin(req);
