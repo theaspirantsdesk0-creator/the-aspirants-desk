@@ -74,16 +74,23 @@ try {
   }
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
-  const aiLauncher = await page.locator('#tadAiLauncher').count();
-  if (aiLauncher !== 1) throw new Error('AI Desk launcher missing or duplicated; count=' + aiLauncher);
-  await page.locator('#tadAiLauncher').click();
-  await page.waitForTimeout(500);
-  const aiPanelOpen = await page.locator('#tadAiPanel').evaluate(el => el.classList.contains('open'));
-  if (!aiPanelOpen) throw new Error('AI Desk launcher did not open its panel');
+  const anbuuNav = page.locator('a[data-nav="anbuu"]');
+  if (await anbuuNav.count() !== 1 || !(await anbuuNav.isHidden())) {
+    throw new Error('Anbuu main-navigation tab must remain hidden for a guest visitor');
+  }
+  const anbuuPage = page.locator('#tadAiPanel');
+  if (await anbuuPage.count() !== 1 || !(await anbuuPage.isHidden())) {
+    throw new Error('Anbuu full-page workspace must remain hidden for a guest visitor');
+  }
+  if (!(await anbuuPage.locator('.tad-anbuu-page-hero h1').textContent()).includes('Meet Anbuu')) {
+    throw new Error('Anbuu page hero is missing');
+  }
   const aiForm = await page.locator('#tadAiForm').count();
-  if (aiForm !== 1) throw new Error('AI Desk chat form is missing');
+  if (aiForm !== 1) throw new Error('Anbuu chat form is missing');
+  const revisionTab = page.locator('#tadAiRevisionTab');
+  if (await revisionTab.count() !== 1) throw new Error('Anbuu Revision Planner tab is missing');
   const css = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
-  if (!css) throw new Error('AI Desk stylesheet was not loaded');
+  if (!css) throw new Error('Anbuu stylesheet was not loaded');
   // The PYQ bank is login-protected. Confirm its controls exist in the document,
   // but do not attempt to interact with a hidden protected view as a guest.
   // Course authoring must be present but remain unavailable to guest visitors.
@@ -177,6 +184,21 @@ try {
 
   // Deep links must not bypass the owner/mentor role gate. Use fresh pages
   // so each fragment is present on the initial document load.
+  const anbuuDeepLinkPage = await browser.newPage();
+  anbuuDeepLinkPage.on('pageerror', error => pageErrors.push(error.message));
+  anbuuDeepLinkPage.on('requestfailed', request => {
+    if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push(request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
+  });
+  await anbuuDeepLinkPage.goto(base + '#anbuu', { waitUntil: 'domcontentloaded' });
+  await anbuuDeepLinkPage.locator('#authModal').waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+  if (!(await anbuuDeepLinkPage.locator('#authModal').isVisible())) {
+    throw new Error('A guest deep-linking to Anbuu must be asked to sign in');
+  }
+  if (await anbuuDeepLinkPage.locator('#tadAiPanel').isVisible()) {
+    throw new Error('A guest must not see Anbuu after opening its deep link');
+  }
+  await anbuuDeepLinkPage.close();
+
   const mentorDeepLinkPage = await browser.newPage();
   mentorDeepLinkPage.on('pageerror', error => pageErrors.push(error.message));
   mentorDeepLinkPage.on('requestfailed', request => {
@@ -211,7 +233,7 @@ try {
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
   if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | '));
   if (failedLocalRequests.length) throw new Error('Failed same-origin requests: ' + failedLocalRequests.join(' | '));
-  console.log(JSON.stringify({ result: 'PASS', url: base, title, aiLauncher, aiPanelOpen, aiForm, cssLoaded: css, pageErrors, failedLocalRequests }, null, 2));
+  console.log(JSON.stringify({ result: 'PASS', url: base, title, anbuuNavigation: true, anbuuPage: true, aiForm, revisionTab: true, cssLoaded: css, pageErrors, failedLocalRequests }, null, 2));
 } catch (error) {
   console.error(JSON.stringify({ result: 'FAIL', message: error.message, pageErrors, failedLocalRequests }, null, 2));
   process.exitCode = 1;
