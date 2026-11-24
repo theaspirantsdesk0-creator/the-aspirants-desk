@@ -114,3 +114,8 @@ The provider free-tier limits and model availability are controlled by the provi
 The learner-only `get_progress` action returns the signed-in learner's last 30 saved mock-test results, a seven-day summary compared with the preceding seven days, and recurring topic mistakes from that learner's saved mistake log. The Edge Function filters every query by the authenticated user ID and does not expose this data to mentor/admin roles through the learner endpoint.
 
 The Anbuu sidebar displays the latest eight tests, weekly test count/average and correct-wrong-skipped totals, the week-over-week average change when both periods have scored tests, and up to six topics with the most recorded mistakes. Topic weaknesses are shown only when topic-level mistakes have actually been saved; the assistant must not infer weak areas from missing data. This is formative tracking, not a formal ability assessment.
+
+
+## Anbuu revision planner tab
+
+The learner sidebar separates the existing progress dashboard from a dedicated Revision Planner tab. The planner ranks only topics present in the learner's own recorded mistake log, shows a suggested spaced-review sequence, and offers a one-click action to ask Anbuu to create and save revision tasks. If no topic-level mistakes exist, it displays an explicit empty state rather than inventing priorities. Review intervals are guidance, not a performance prediction.
