@@ -4,7 +4,7 @@ The AI Desk adds a role-aware assistant to The Aspirant's Desk.
 
 ## Included
 
-- Floating AI Desk widget in the static GitHub Pages frontend.
+- Dedicated, full-page Anbuu workspace in the main website navigation (not a floating popup), with a learner progress sidebar and an in-page Revision Planner tab.
 - Supabase Edge Function `ai-assistant`; browser code never receives provider API keys.
 - Server-side account authentication and role lookup from `public.profiles`.
 - Learner, mentor and admin prompt modes.
@@ -77,7 +77,7 @@ The production website is not updated until the pull request is reviewed and mer
 ## Known limitations in this first release
 
 - The assistant now retrieves a small set of relevant published question-bank records and matching entries from `data/current-affairs.json` and `data/pib.json` for each request. Retrieval uses topic keywords, caches public source files for five minutes per warm Edge Function instance, and is not a full-text search engine; it does not yet index every lesson, textbook, library document, PDF or all UPSC official PYQ papers. Supply source text when a topic is not found.
-- Learner context is limited to a de-identified study-state summary and the five most recent test-result records available in the current schema. Missing or differently named fields are omitted; the assistant should not infer absent progress data.
+- Learner chat context uses a de-identified study summary, the 12 newest saved mistake entries, and up to five recent test-result records. The separate progress report can display up to 30 test results. Mistake-topic insights depend on the saved entries containing `subject` and/or `topic`; missing fields are not inferred.
 - Mentor-to-learner private progress access and automated content publishing are intentionally not enabled.
 
 
