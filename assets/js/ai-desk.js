@@ -71,7 +71,7 @@ function renderLessonHistory(){
   else if(lesson.status==="paused"){toggle.textContent="Resume";toggle.addEventListener("click",()=>updateLesson(lesson.id,"in_progress"));}
   else{toggle.textContent="Pause";toggle.addEventListener("click",()=>updateLesson(lesson.id,"paused"));}
   actions.append(toggle);
-  if(lesson.status!=="completed"){const done=document.createElement("button");done.type="button";done.textContent="Mark complete";done.addEventListener("click",()=>updateLesson(lesson.id,"completed"));actions.append(done);}
+  if(lesson.status!=="completed"){const done=document.createElement("button");done.type="button";done.textContent="Complete + add revision task";done.addEventListener("click",()=>updateLesson(lesson.id,"completed"));actions.append(done);}
   card.append(head,meta,actions);host.append(card);
  });
 }
@@ -83,8 +83,13 @@ async function loadLessons(){
  renderLessonHistory();
 }
 async function updateLesson(id,nextStatus){
- try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson",lessonId:id,status:nextStatus}});if(r.error)throw r.error;await loadLessons();}
- catch(e){status.textContent=e.message||"Lesson progress could not be updated. Try again.";}
+ try{
+  const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson",lessonId:id,status:nextStatus}});
+  if(r.error)throw r.error;
+  if(r.data?.mentorState){state=r.data.mentorState;render();}
+  await Promise.all([loadLessons(),loadState(),loadProgress()]);
+  if(nextStatus==="completed")status.textContent="Lesson completed. A revision task is now in your Pending tasks list.";
+ }catch(e){status.textContent=e.message||"Lesson progress could not be updated. Try again.";}
 }
 $("#tadRefreshLessons").addEventListener("click",()=>loadLessons().catch(()=>{status.textContent="Could not refresh lesson history."; }));
 async function loadState(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_state"}});if(r.error)throw r.error;state=r.data?.mentorState||empty();render();}
