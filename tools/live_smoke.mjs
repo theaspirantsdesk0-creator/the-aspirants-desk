@@ -262,6 +262,10 @@ try {
   }
   await adminDeepLinkPage.close();
 
+  if (await page.locator('#tadAiLessons').count() !== 1) {
+    throw new Error('Anbuu guided-lesson progress summary is missing from the learner dashboard');
+  }
+
   const bodyText = await page.locator('body').innerText();
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
   if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | '));
