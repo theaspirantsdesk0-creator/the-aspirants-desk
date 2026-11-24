@@ -555,6 +555,22 @@ def main() -> int:
     check("This check does not send a notification." in html
           and "send-test-study-notification" in html,
           "Device diagnostics must remain separate from actual test-notification delivery")
+    mentor_integrity = ROOT / "supabase" / "migrations" / "20261124112000_validate_mentor_assignment_and_review_links.sql"
+    if mentor_integrity.is_file():
+        mentor_sql = mentor_integrity.read_text(encoding="utf-8")
+        check("security invoker" in mentor_sql.lower()
+              and "Only the site owner can manage mentor assignments" in mentor_sql
+              and "The selected account is not an approved mentor" in mentor_sql
+              and "The selected account is not a learner" in mentor_sql,
+              "Mentor assignments must be owner-managed and validate approved mentor/learner roles in the database")
+        check("validate_mentor_review_assignment" in mentor_sql
+              and "Review learner must match the selected assignment" in mentor_sql
+              and "Only the assigned mentor or site owner can write this review" in mentor_sql,
+              "Mentor reviews must be tied to the selected assignment and authenticated author")
+        check("revoke all on function public.validate_mentor_assignment_roles() from public, anon, authenticated" in mentor_sql.lower()
+              and "revoke all on function public.validate_mentor_review_assignment() from public, anon, authenticated" in mentor_sql.lower(),
+              "Mentor integrity trigger functions must not be exposed as public RPC endpoints")
+
     # The service worker must not keep old JavaScript or CSS after a site deployment.
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
