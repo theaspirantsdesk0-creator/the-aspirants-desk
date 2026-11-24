@@ -107,6 +107,30 @@ def main() -> int:
     for path in js_files:
         run_node_check(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
 
+    # Course discovery and starter-course content must remain valid and searchable.
+    course_js = ROOT / "assets" / "js" / "courses.js"
+    course_css = ROOT / "assets" / "css" / "courses.css"
+    if course_js.is_file() and course_css.is_file() and index.is_file():
+        course_source = course_js.read_text(encoding="utf-8")
+        course_style = course_css.read_text(encoding="utf-8")
+        course_html = index.read_text(encoding="utf-8")
+        for control in ("courseSearch", "courseCategoryFilter", "courseStatusFilter", "courseResultCount"):
+            check(f'id="{control}"' in course_html,
+                  f"Course discovery control is missing from index.html: {control}")
+        for feature in ("digital-information-literacy", "responsible-ai-literacy"):
+            check(f'id:"{feature}"' in course_source,
+                  f"Universal starter course is missing: {feature}")
+        check("categoryFilter" in course_source and "statusFilter" in course_source,
+              "Course catalogue must apply category and progress filters")
+        check(".course-discovery-toolbar" in course_style,
+              "Course discovery toolbar styles are missing")
+        check('id="pyqInventorySnapshot"' in course_html,
+              "Official PYQ verification snapshot is missing")
+        design_system_css = ROOT / "assets" / "css" / "design-system.css"
+        design_system = design_system_css.read_text(encoding="utf-8") if design_system_css.is_file() else ""
+        check("data/pyq/documents.json" in course_html and "pyq-inventory-snapshot" in design_system,
+              "Official PYQ verification snapshot must load the paper inventory and use its design styles")
+
     questions_dir = ROOT / "data/questions"
     all_ids: dict[str, str] = {}
     if questions_dir.is_dir():

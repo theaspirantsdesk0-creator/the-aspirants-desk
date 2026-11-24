@@ -44,6 +44,37 @@
         {q:"What is a useful final editing check?",options:["Does every paragraph answer the question?","Can I add unrelated facts?","Can I remove all examples?","Can I make every sentence longer?"],answer:0,why:"Relevance is a central test of answer quality."}
       ]
     }
+    ,
+    {
+      id:"digital-information-literacy", title:"Digital and information literacy", category:"Digital skills", level:"Beginner", duration:"55 minutes",
+      summary:"Use digital tools safely, search more effectively and judge whether online information is trustworthy.",
+      outcomes:["Use focused search terms and compare sources","Recognise common online safety and privacy risks","Check the origin, date and evidence behind a claim"],
+      lessons:[
+        {title:"Search with a clear purpose",body:["Turn a broad topic into a specific question before searching. Add useful terms such as a place, date, institution or document type.","Prefer original sources for important claims: official notices, laws, datasets, research papers and institutional publications.","Compare more than one credible source. A search ranking is not proof that a result is accurate."],task:"Write a focused search query and identify one primary source for your topic."},
+        {title:"Evaluate information",body:["Check who created the material, when it was published and what evidence it provides. Open the original source rather than relying only on a screenshot or forwarded message.","Separate facts, opinions and predictions. Look for missing context, unsupported numbers and headlines that overstate the evidence.","If a claim matters, verify it with an independent authoritative source and record uncertainty where evidence is incomplete."],task:"Choose one online claim and record its author, date, evidence and one independent cross-check."},
+        {title:"Protect accounts and personal data",body:["Use unique passwords and enable multi-factor authentication where available. Never share one-time codes or recovery links with another person.","Review app permissions and privacy settings. Avoid uploading identity documents or sensitive personal information to unfamiliar services.","Use trusted networks and keep your browser, operating system and security updates current. Report suspicious messages through the relevant service."],task:"Review the permissions of one app and identify one setting you can improve."}
+      ],
+      quiz:[
+        {q:"What is the best first step when checking an important online claim?",options:["Share it quickly","Find the original source and inspect its evidence","Trust the most popular post","Judge it by the headline"],answer:1,why:"Checking the original source and its evidence is more reliable than relying on popularity or presentation."},
+        {q:"Why should you compare publication dates?",options:["Older sources are always wrong","Dates help identify whether information may be outdated","Dates prove the author is correct","Dates replace source checking"],answer:1,why:"Some information changes, so the date helps you judge whether it is still current."},
+        {q:"Which practice improves account security?",options:["Reuse one password everywhere","Share one-time codes with support callers","Use unique passwords and multi-factor authentication","Store passwords in a public note"],answer:2,why:"Unique passwords limit reuse risk and multi-factor authentication adds another layer of protection."}
+      ]
+    },
+    {
+      id:"responsible-ai-literacy", title:"AI literacy and responsible use", category:"Technology", level:"Beginner", duration:"50 minutes",
+      summary:"Understand what AI tools can and cannot do, write clearer prompts and verify generated information.",
+      outcomes:["Explain the difference between a model output and verified evidence","Write prompts with context, constraints and a clear task","Check outputs for errors, bias and privacy risks"],
+      lessons:[
+        {title:"Understand AI outputs",body:["AI systems generate outputs from patterns in data and instructions. A fluent answer is not automatically a correct or complete answer.","Models can make factual mistakes, omit context or present uncertain information confidently. Treat important claims as items to verify.","Use AI as an assistant for explanation, drafting and exploration—not as a substitute for professional judgement or authoritative records."],task:"Take one AI-generated factual claim and verify it against an authoritative source."},
+        {title:"Write a useful prompt",body:["State the task, relevant context, intended audience and format. Give constraints such as word limits or the level of explanation required.","Break complex work into stages: ask for an outline, inspect it, then request a focused draft or explanation.","Ask the tool to identify uncertainty and distinguish sourced facts from suggestions. You remain responsible for checking the result."],task:"Rewrite a vague prompt by adding context, task, audience and output format."},
+        {title:"Use AI safely and fairly",body:["Do not enter passwords, one-time codes, private records or other sensitive information into tools unless you understand and trust their data handling.","Check outputs for stereotypes, missing viewpoints, fabricated citations and accessibility barriers. Include human review for consequential decisions.","Follow academic and workplace rules. Disclose AI assistance when required and make sure submitted work reflects your own understanding."],task:"Create a short checklist you will use before relying on an AI-generated answer."}
+      ],
+      quiz:[
+        {q:"Does a fluent AI answer guarantee factual accuracy?",options:["Yes, fluency proves accuracy","No, important claims still need checking","Only if the answer is long","Only if it includes a table"],answer:1,why:"Fluency and factual accuracy are different; verify important claims using reliable sources."},
+        {q:"Which prompt is usually more useful?",options:["Explain everything","Give a clear task, context, audience and output format","Write something impressive","Do not ask questions"],answer:1,why:"Clear context and constraints help make the output relevant and usable."},
+        {q:"What should you avoid entering into an unfamiliar AI tool?",options:["A public topic","A general study question","Passwords and sensitive personal records","A request for a summary of public information"],answer:2,why:"Sensitive data should not be shared unless the tool's data handling is understood and appropriate."}
+      ]
+    }
   ];
 
   let courses = starterCourses.slice();
@@ -69,6 +100,8 @@
   }
   let selected = "";
   let searchTerm = "";
+  let categoryFilter = "ALL";
+  let statusFilter = "ALL";
   function progressFor(course, state) {
     const record = state[course.id] || {};
     const rawCompleted = Array.isArray(record.completedLessons) ? record.completedLessons : [];
@@ -87,7 +120,23 @@
     const detail = document.getElementById("courseDetail");
     if (!host || !detail) return;
     const state = readCourseState();
-    const visible = courses.filter(c => !searchTerm || (c.title+" "+c.category+" "+c.summary).toLowerCase().includes(searchTerm));
+    const categorySelect = document.getElementById("courseCategoryFilter");
+    if (categorySelect) {
+      const categories = [...new Set(courses.map(course => course.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+      const options = '<option value="ALL">All learning areas</option>' + categories.map(category => '<option value="'+esc(category)+'">'+esc(category)+'</option>').join("");
+      if (categorySelect.innerHTML !== options) categorySelect.innerHTML = options;
+      categorySelect.value = categories.includes(categoryFilter) ? categoryFilter : "ALL";
+      categoryFilter = categorySelect.value;
+    }
+    const visible = courses.filter(c => {
+      const p = progressFor(c,state);
+      const status = p.isComplete ? "COMPLETED" : p.record.enrolledAt ? "IN_PROGRESS" : "NOT_STARTED";
+      return (!searchTerm || (c.title+" "+c.category+" "+c.summary).toLowerCase().includes(searchTerm))
+        && (categoryFilter === "ALL" || c.category === categoryFilter)
+        && (statusFilter === "ALL" || status === statusFilter);
+    });
+    const resultCount = document.getElementById("courseResultCount");
+    if (resultCount) resultCount.textContent = "Showing " + visible.length + " of " + courses.length + " courses";
     let enrolledCount = 0, completedCount = 0, assessmentCount = 0;
     courses.forEach(course => {
       const p = progressFor(course, state);
@@ -140,6 +189,16 @@
       render();
       const input = document.getElementById("courseSearch");
       if (input) { input.focus(); input.setSelectionRange(input.value.length,input.value.length); }
+    }
+  });
+  document.addEventListener("change", event => {
+    if (event.target.id === "courseCategoryFilter") {
+      categoryFilter = event.target.value || "ALL";
+      render();
+    }
+    if (event.target.id === "courseStatusFilter") {
+      statusFilter = event.target.value || "ALL";
+      render();
     }
   });
   document.addEventListener("click", event => {

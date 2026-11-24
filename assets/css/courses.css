@@ -32,3 +32,10 @@
 .tad-assessment-row span{font-size:.78rem;color:var(--muted)}
 .tad-course-complete{padding:.8rem;border:1px solid var(--line);border-radius:8px;background:var(--surface-alt);font-weight:600}
 @media(max-width:580px){.course-learning-summary{grid-template-columns:1fr 1fr}.course-summary-stat:last-child{grid-column:1/-1}}
+
+/* Course discovery controls */
+.course-discovery-toolbar{display:grid;grid-template-columns:minmax(220px,2fr) minmax(170px,1fr) minmax(160px,1fr);gap:.8rem;align-items:end;margin:.25rem 0 .35rem}
+.course-discovery-toolbar>div{min-width:0}
+.course-discovery-toolbar input,.course-discovery-toolbar select{width:100%;max-width:none;margin:.3rem 0 0}
+.course-result-count{font-size:.8rem;color:var(--muted);margin:.35rem 0 .7rem;font-weight:600}
+@media(max-width:680px){.course-discovery-toolbar{grid-template-columns:minmax(0,1fr)}}
