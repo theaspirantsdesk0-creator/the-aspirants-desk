@@ -409,6 +409,23 @@
         "verified_at": "2026-11-24",
         "method": "Official UPSC archive lists the 2023 Essay paper; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages)."
       }
+    },
+    {
+      "id": "cse-prelims-2022-gs-paper-i",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2022,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2022 — General Studies Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-7-1.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-24",
+        "method": "Official UPSC-hosted PDF search result; document heading identifies CIVIL SERVICES (P) EXAM-2022 and General Studies Paper I."
+      }
     }
   ]
 }
