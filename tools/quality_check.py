@@ -13,6 +13,7 @@ from publish_generated import merge_json
 from upsc_angles import fallback_upsc_angle
 from pyq import validate_records, build_coverage_report
 from question_bank_audit import audit_question_bank
+from sync_pyq_inventory import reconcile_inventory
 
 ROOT = Path(__file__).resolve().parents[1]
 ERRORS: list[str] = []
@@ -315,6 +316,45 @@ def main() -> int:
           "Every displayed official PDF must have an UPSC URL and verification metadata")
     check(len({row.get("id") for row in verified_rows}) == len(verified_rows),
           "Verified official document IDs must be unique")
+
+    # Every curated verified PDF must reconcile to exactly one matching paper-level
+    # inventory row; candidate/source-found links must never be promoted.
+    try:
+        reconciled_inventory, reconciled_count = reconcile_inventory(
+            json.loads(json.dumps(document_inventory)), verified_rows
+        )
+        check(reconciled_count == len(verified_rows),
+              "Every verified UPSC PDF must map to exactly one inventory row")
+        check(reconciled_inventory["inventory_summary"]["verified_entries"] ==
+              len(verified_rows),
+              "Inventory summary must count all verified and published rows")
+        verified_keys = {
+            (row.get("year"), row.get("stage"), row.get("paper"),
+             row.get("optional_subject") or "")
+            for row in reconciled_inventory["documents"]
+            if row.get("status") in {"verified", "published"}
+        }
+        expected_keys = {
+            (row.get("year"), row.get("stage"),
+             (f"General Studies {row.get('paper')}" if row.get("category") == "General Studies"
+              else row.get("paper") if row.get("category") == "General"
+              else f"Optional {row.get('paper')}"),
+             row.get("subject") if row.get("category") in {"Optional", "Literature"} else "")
+            for row in verified_rows
+        }
+        check(expected_keys <= verified_keys,
+              "Verified document metadata must appear in the matching inventory rows")
+    except (ValueError, KeyError, TypeError) as exc:
+        check(False, f"Verified PYQ inventory reconciliation failed: {exc}")
+
+    try:
+        reconcile_inventory(
+            json.loads(json.dumps(document_inventory)),
+            [{"id": "candidate", "status": "source_found"}],
+        )
+        check(False, "PYQ inventory reconciliation must reject unverified candidate links")
+    except ValueError:
+        check(True, "PYQ inventory reconciliation rejects unverified candidates")
 
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
