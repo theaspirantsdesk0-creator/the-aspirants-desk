@@ -618,6 +618,24 @@ def main() -> int:
               and "with check (id = (select auth.uid()))" in signup_sql,
               "Profile self-update policy must prevent changing profile ownership")
 
+    # Public PYQ publication must be backed by a verified, traceable source.
+    pyq_publication_guard = ROOT / "supabase" / "migrations" / "20261124101838_require_verified_source_before_publishing_pyqs.sql"
+    check(pyq_publication_guard.is_file(), "Verified-source PYQ publication guard migration is missing")
+    if pyq_publication_guard.is_file():
+        pyq_guard_sql = pyq_publication_guard.read_text(encoding="utf-8").lower()
+        check("private.guard_pyq_publication()" in pyq_guard_sql
+              and "new.is_published is true" in pyq_guard_sql
+              and "new.source_verified is distinct from true" in pyq_guard_sql
+              and "nullif(btrim(new.source_reference), '') is null" in pyq_guard_sql
+              and "nullif(btrim(new.question_text), '') is null" in pyq_guard_sql,
+              "Published PYQs must have non-empty question text and a verified source reference")
+        check("security invoker" in pyq_guard_sql
+              and "set search_path = pg_catalog, public, private" in pyq_guard_sql
+              and "revoke all on function private.guard_pyq_publication() from public, anon, authenticated" in pyq_guard_sql,
+              "PYQ publication guard must be a non-exposed invoker trigger function with a fixed search path")
+        check("before insert or update of is_published, source_verified, source_reference, question_text" in pyq_guard_sql,
+              "PYQ publication guard must cover inserts and changes to publication/source fields")
+
     # The service worker must not keep old JavaScript or CSS after a site deployment.
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
