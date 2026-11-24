@@ -124,6 +124,10 @@ def main() -> int:
               "Course catalogue must apply category and progress filters")
         check(".course-discovery-toolbar" in course_style,
               "Course discovery toolbar styles are missing")
+        check('id="pyqInventorySnapshot"' in course_html,
+              "Official PYQ verification snapshot is missing")
+        check("data/pyq/documents.json" in course_html and "pyq-inventory-snapshot" in course_style,
+              "Official PYQ verification snapshot must load the paper inventory and use its design styles")
 
     questions_dir = ROOT / "data/questions"
     all_ids: dict[str, str] = {}
