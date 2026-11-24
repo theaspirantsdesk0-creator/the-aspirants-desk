@@ -356,7 +356,7 @@ Deno.serve(async (req: Request) => {
   }
   if (body.action === "get_progress") {
     if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
-    const [testsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult] = await Promise.all([
+    const [testsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult, lessonActiveResult] = await Promise.all([
       adminClient.from("test_results").select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(30),
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
@@ -371,9 +371,13 @@ Deno.serve(async (req: Request) => {
       adminClient.from("anbuu_lesson_history")
         .select("id,track,subject,topic,level,status,updated_at,completed_at")
         .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(5),
+      adminClient.from("anbuu_lesson_history")
+        .select("id,track,subject,topic,level,status,updated_at,completed_at")
+        .eq("user_id", authData.user.id).in("status", ["in_progress", "paused"])
+        .order("updated_at", { ascending: false }).limit(5),
     ]);
     if (lessonTotalResult.error || lessonCompletedResult.error || lessonInProgressResult.error ||
-        lessonPausedResult.error || lessonRecentResult.error) {
+        lessonPausedResult.error || lessonRecentResult.error || lessonActiveResult.error) {
       return json({ error: "Could not load your guided-lesson progress." }, 500, origin);
     }
     if (testsResult.error) return json({ error: "Could not load your learning history." }, 500, origin);
@@ -405,6 +409,11 @@ Deno.serve(async (req: Request) => {
     }
     const weakTopics = [...topicCounts.entries()].sort((a,b) => b[1]-a[1]).slice(0, 6)
       .map(([topic, mistakes]) => ({ topic, mistakes }));
+    // Keep active and paused lessons visible to recommendations even when a learner
+    // has many newer completed lessons; deduplicate against the recent-history list.
+    const prioritisedLessons = [...(lessonActiveResult.data ?? []), ...(lessonRecentResult.data ?? [])]
+      .filter((lesson, index, rows) => rows.findIndex(candidate => candidate.id === lesson.id) === index)
+      .slice(0, 8);
     return json({ progress: { tests, weekly: { tests: current.length, average: average(current),
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
       wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
@@ -414,7 +423,7 @@ Deno.serve(async (req: Request) => {
         completed: lessonCompletedResult.count ?? 0,
         inProgress: lessonInProgressResult.count ?? 0,
         paused: lessonPausedResult.count ?? 0,
-        recent: lessonRecentResult.data ?? [],
+        recent: prioritisedLessons,
       } } }, 200, origin);
   }
   if (body.action === "update_task") {
@@ -452,14 +461,18 @@ Deno.serve(async (req: Request) => {
 
   let learnerContext = "";
   if (profile.role === "learner") {
-    const [savedResult, testsResult, lessonHistoryResult] = await Promise.all([
+    const [savedResult, testsResult, lessonHistoryResult, activeLessonResult] = await Promise.all([
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
       adminClient.from("test_results")
         .select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(5),
       adminClient.from("anbuu_lesson_history")
-        .select("track,subject,topic,level,status,updated_at,completed_at")
+        .select("id,track,subject,topic,level,status,updated_at,completed_at")
         .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(8),
+      adminClient.from("anbuu_lesson_history")
+        .select("id,track,subject,topic,level,status,updated_at,completed_at")
+        .eq("user_id", authData.user.id).in("status", ["in_progress", "paused"])
+        .order("updated_at", { ascending: false }).limit(5),
     ]);
     const payload = savedResult.data?.payload && typeof savedResult.data.payload === "object"
       ? savedResult.data.payload as Record<string, unknown> : {};
@@ -476,11 +489,14 @@ Deno.serve(async (req: Request) => {
       correct: test.correct_count, wrong: test.wrong_count, skipped: test.skipped_count,
       date: test.created_at,
     }));
-    const lessonHistory = (lessonHistoryResult.data ?? []).map((lesson) => ({
-      track: lesson.track, subject: lesson.subject, topic: lesson.topic,
-      level: lesson.level, status: lesson.status, updatedAt: lesson.updated_at,
-      completedAt: lesson.completed_at,
-    }));
+    const lessonHistory = [...(activeLessonResult.data ?? []), ...(lessonHistoryResult.data ?? [])]
+      .filter((lesson, index, rows) => rows.findIndex(candidate => candidate.id === lesson.id) === index)
+      .slice(0, 8)
+      .map((lesson) => ({
+        track: lesson.track, subject: lesson.subject, topic: lesson.topic,
+        level: lesson.level, status: lesson.status, updatedAt: lesson.updated_at,
+        completedAt: lesson.completed_at,
+      }));
     if (lessonHistoryResult.error) console.error("Anbuu lesson context read failed:", lessonHistoryResult.error.message);
     learnerContext = "PRIVATE LEARNER STUDY SUMMARY (de-identified; use only to personalise advice; do not repeat identifiers): " +
       JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests }).slice(0, 2200) +

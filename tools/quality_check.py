@@ -206,6 +206,11 @@ def main() -> int:
               and 'SAVED GUIDED-LESSON HISTORY' in source
               and 'lessonHistory' in source,
               "Anbuu chat must use the authenticated learner's saved lesson history")
+        check('lessonActiveResult' in source and 'activeLessonResult' in source
+              and '.in("status", ["in_progress", "paused"])' in source
+              and 'prioritisedLessons' in source
+              and 'findIndex(candidate => candidate.id === lesson.id)' in source,
+              "Anbuu must prioritise active and paused lessons even when newer completed lessons fill the recent-history window")
         if ai_js.is_file():
             check('tadAiNextSteps' in ai_js.read_text(encoding="utf-8")
                   and 'renderNextSteps' in ai_js.read_text(encoding="utf-8")
