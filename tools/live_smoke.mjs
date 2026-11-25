@@ -138,6 +138,33 @@ try {
   if (anthropologyDocumentCount < 1 || anthropologyDocumentCount >= allDocumentCards) throw new Error('Verified PDF search filter returned an unexpected count: ' + anthropologyDocumentCount);
   await page.locator('#verifiedPyqSearch').fill('');
   if (await verifiedDocCards.count() !== allDocumentCards) throw new Error('Clearing the verified PDF search did not restore all documents');
+  await page.locator('#verifiedPyqCategory').selectOption('Optional');
+  const optionalDocumentCount = await verifiedDocCards.count();
+  if (optionalDocumentCount !== 5) throw new Error('Verified PDF category filter returned an unexpected Optional count: ' + optionalDocumentCount);
+  await page.locator('#verifiedPyqCategory').selectOption('ALL');
+  await page.locator('#verifiedPyqSearch').fill('no-such-upsc-paper-xyz');
+  if (await verifiedDocCards.count() !== 0) throw new Error('Verified PDF search should return zero cards for a no-match query');
+  if (!(await page.locator('#verifiedPyqDocuments').innerText()).includes('No verified paper documents match')) {
+    throw new Error('Verified PDF no-match state is missing its helpful message');
+  }
+  await page.locator('#verifiedPyqSearch').fill('');
+  if (await verifiedDocCards.count() !== allDocumentCards) throw new Error('Resetting all verified PDF filters did not restore the catalogue');
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobileCatalogueLayout = await page.evaluate(() => {
+    const host = document.querySelector('#verifiedPyqDocuments');
+    const cards = [...host.querySelectorAll('.verified-doc-card')];
+    return {
+      viewport: document.documentElement.clientWidth,
+      host: host.getBoundingClientRect().width,
+      hostScroll: host.scrollWidth,
+      cardsFit: cards.every(card => card.getBoundingClientRect().width <= document.documentElement.clientWidth + 2),
+    };
+  });
+  if (mobileCatalogueLayout.hostScroll > mobileCatalogueLayout.host + 2 || !mobileCatalogueLayout.cardsFit) {
+    throw new Error('Verified PDF catalogue overflows its mobile layout: ' + JSON.stringify(mobileCatalogueLayout));
+  }
+  await page.setViewportSize({ width: 1365, height: 900 });
+
   const mentorNav = page.locator('a[data-nav="mentor"]');
   const mentorSection = page.locator('#mentor');
   if (await mentorNav.count() !== 1 || !(await mentorNav.isHidden())) {
