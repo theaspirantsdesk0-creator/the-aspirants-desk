@@ -2072,13 +2072,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     renderAllUserModules();
   }
 
+  function activateUserScope(userId) {
+    const activeUserId = localStorage.getItem("tad_active_user_id");
+    if (activeUserId !== userId) {
+      resetUserScopedState();
+      localStorage.setItem("tad_active_user_id", userId);
+    }
+  }
+
   async function loadUserState() {
     if (!supabase || !currentUser) return;
-    const activeUserId = localStorage.getItem("tad_active_user_id");
-    if (activeUserId !== currentUser.id) {
-      resetUserScopedState();
-      localStorage.setItem("tad_active_user_id", currentUser.id);
-    }
+    activateUserScope(currentUser.id);
     const { data: prof } = await supabase.from("profiles").select("*").eq("id", currentUser.id).single();
     if (prof) userProfile = prof;
 
@@ -2222,8 +2226,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       currentUser = data.user;
       await loadUserState();
     } else {
-      currentUser = { id: "local-user", email };
-      userProfile = { display_name: email.split("@")[0], role: email.toLowerCase() === OWNER_EMAIL ? "admin" : "learner" };
+      currentUser = { id: "local-user:" + email.toLowerCase(), email };
+      userProfile = { display_name: email.split("@")[0], role: "learner" };
+      activateUserScope(currentUser.id);
     }
     $("authModal").hidden = true;
     updateAuthUI();
@@ -2256,8 +2261,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       currentUser = data.user;
       await loadUserState();
     } else {
-      currentUser = { id: "local-user", email };
-      userProfile = { display_name: name, role: email.toLowerCase() === OWNER_EMAIL ? "admin" : "learner" };
+      currentUser = { id: "local-user:" + email.toLowerCase(), email };
+      userProfile = { display_name: name, role: "learner" };
+      activateUserScope(currentUser.id);
     }
     $("authModal").hidden = true;
     updateAuthUI();
