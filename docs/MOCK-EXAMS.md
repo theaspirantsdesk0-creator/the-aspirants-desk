@@ -184,3 +184,8 @@ Expanded the private answer-improvement dashboard to compare saved formative mar
 ## Personalised UPSC Revision Engine
 
 The Weakness-to-Mastery queue now combines the learner's latest 12 completed/expired mock attempts (section accuracy below 65%), saved Mains evaluation feedback, tagged mistakes, active revision dates, and incomplete syllabus topics. It ranks evidence-backed signals first and clearly labels syllabus suggestions as unfinished learning rather than diagnosed weaknesses. Learners can mark a topic as practised or schedule it for the next day; actions are saved in their existing private `user_data.payload` state. Mock and answer signals are fetched for the authenticated user only. The engine gracefully falls back to locally saved signals if cloud reads fail. Browser and multi-account end-to-end tests remain outstanding.
+
+
+## Daily UPSC Mission planner
+
+The Study Command Centre includes an account-synced daily mission planner. Learners can choose 90, 120, 150 or 180 minutes and build up to four time-boxed blocks from recorded revision signals, tagged mistakes, mock-section weaknesses, saved Mains feedback and unfinished syllabus topics. When no weakness evidence exists, the planner uses a neutral syllabus or active-recall task rather than inventing a weakness. Task completion and the selected plan are saved in the learner's `user_data.payload` through the existing state-sync path. Up to two unfinished tasks from the previous day's plan are carried into the next generated plan. This is a deterministic planner and does not depend on an AI provider key.
