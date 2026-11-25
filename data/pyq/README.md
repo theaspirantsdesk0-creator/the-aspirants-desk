@@ -16,7 +16,7 @@ Run `python tools/pyq.py validate` before publishing. See `sources.json` for the
 
 Use the current and archived UPSC indexes recorded in the file. For each paper, record its exact official document URL and verification evidence before adding question records to `questions.json`. Do not mark a question published merely because a coaching or third-party page reproduces it. Keep practice questions in `data/questions/`.
 
-The curated `verified-documents.json` list currently contains 25 individually checked official UPSC PDFs across the 2022–2025 Civil Services examinations, including Prelims and Mains. It is intentionally a small verified subset, not a complete archive. The site links to UPSC PDFs rather than republishing complete paper documents. Check applicable reuse/copyright terms before reproducing question text. Any editorial explanation must be labelled as editorial, not an official UPSC answer key.
+The curated `verified-documents.json` list currently contains 26 individually checked official UPSC PDFs across the 2021–2025 Civil Services examinations, including Prelims and Mains. It is intentionally a small verified subset, not a complete archive. The site links to UPSC PDFs rather than republishing complete paper documents. Check applicable reuse/copyright terms before reproducing question text. Any editorial explanation must be labelled as editorial, not an official UPSC answer key.
 
 
 ## Optional-subject coverage
