@@ -426,6 +426,23 @@
         "verified_at": "2026-11-24",
         "method": "Official UPSC-hosted PDF search result; document heading identifies CIVIL SERVICES (P) EXAM-2022 and General Studies Paper I."
       }
+    },
+    {
+      "id": "cse-prelims-2021-gs-paper-i",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2021,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2021 — General Studies Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-9-1.pdf",
+      "source": "UPSC official question-paper PDF",
+      "verification": {
+        "verified_at": "2026-11-25",
+        "method": "Opened the official UPSC-hosted PDF; its heading identifies CS (P) Exam, 2021 and General Studies Paper I, and the paper states that it contains 100 questions."
+      }
     }
   ]
 }
