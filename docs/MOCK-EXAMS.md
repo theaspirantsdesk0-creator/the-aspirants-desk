@@ -214,3 +214,8 @@ The optional-subject workspace reads the official syllabus dataset in `data/upsc
 ## Multi-optional learner syllabus workspaces
 
 The optional-subject selector includes the full subject list from the official UPSC CSE 2026 notification. Anthropology retains its authored 15-unit guided lesson and original quiz bank. For every other optional, learners can add exact unit headings and subtopics from the official notification, mark units studied, set learning stages, save personal notes, search/filter by paper, and schedule spaced revisions. Custom units and notes use the existing `optionalPrep` account-state sync event. This avoids presenting unverified or generic content as a completed official syllabus. These are learner-managed trackers; subject-specific guided lessons and original tests still need to be authored and quality-checked in batches.
+
+
+## Sociology optional syllabus starter
+
+Added a Sociology syllabus starter with 25 unit headings (10 Paper I and 15 Paper II), organised from the official CSE 2026 notification, Part B, Sociology syllabus (printed pages 145–148). It is a syllabus map, not a completed lesson bank: no invented notes, MCQs, model answers or PYQs are presented as official. Learners can add personal subtopics and notes, track progress and schedule revisions. Official source: https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Examination-2026-Notice-E.pdf.
