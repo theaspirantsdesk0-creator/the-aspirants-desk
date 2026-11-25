@@ -172,3 +172,19 @@ input,select,textarea{border-radius:10px}
 .tad-revision-queue-actions{display:flex;gap:.4rem;flex-wrap:wrap}
 .tad-revision-queue-actions .btn,.tad-topic-schedule-button{font-size:.78rem;padding:.4rem .65rem}
 @media(max-width:620px){.tad-revision-queue-item{align-items:flex-start}.tad-revision-queue-actions{width:100%}}
+
+/* Anbuu experience polish: clear hierarchy, calm contrast and mobile-first spacing */
+#tadAiPanel .tad-anbuu-page-hero{position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.28);border-radius:26px;padding:clamp(1.2rem,3vw,2.2rem);background:radial-gradient(circle at 82% 18%,rgba(234,179,8,.18),transparent 30%),linear-gradient(125deg,#07132f 0%,#14285b 58%,#26376c 100%);box-shadow:0 22px 55px rgba(7,15,43,.18);color:#f8fafc}
+#tadAiPanel .tad-anbuu-hero-copy{max-width:760px;position:relative;z-index:1}
+#tadAiPanel .tad-anbuu-hero-copy h1{font-size:clamp(2.1rem,5vw,3.6rem);letter-spacing:-.045em;line-height:1.02;margin:.55rem 0 .8rem;color:#fff}
+#tadAiPanel .tad-anbuu-hero-copy p{max-width:62ch;color:#dbe5f6;font-size:1rem}
+#tadAiPanel .tad-anbuu-eyebrow{color:#f6d77b;font-size:.72rem;font-weight:800;letter-spacing:.16em}
+#tadAiPanel .tad-anbuu-hero-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.1rem}
+#tadAiPanel .tad-anbuu-hero-pills span{border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(255,255,255,.08);padding:.42rem .72rem;color:#f8fafc;font-size:.78rem}
+#tadAiPanel .tad-anbuu-orb{border:1px solid rgba(246,215,123,.45);background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.2),rgba(234,179,8,.08) 42%,rgba(7,15,43,.25) 70%);box-shadow:inset 0 0 35px rgba(255,255,255,.08),0 12px 35px rgba(0,0,0,.18)}
+#tadAiPanel .tad-anbuu-shortcuts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+#tadAiPanel .tad-anbuu-shortcuts button{border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.09);color:#fff;padding:.58rem .9rem;font-weight:700;transition:background .18s ease,transform .18s ease}
+#tadAiPanel .tad-anbuu-shortcuts button:hover{background:rgba(255,255,255,.17);transform:translateY(-1px)}
+#tadAiPanel .tad-ai-chat-shell,#tadAiPanel .tad-ai-workspace{border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 12px 32px rgba(15,23,42,.06)}
+#tadAiPanel button:focus-visible,#tadAiPanel input:focus-visible,#tadAiPanel textarea:focus-visible{outline:3px solid rgba(234,179,8,.72);outline-offset:2px}
+@media(max-width:700px){#tadAiPanel .tad-anbuu-page-hero{border-radius:19px}#tadAiPanel .tad-anbuu-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#tadAiPanel .tad-anbuu-shortcuts button{width:100%}}
