@@ -1,0 +1,73 @@
+/* The Aspirant's Desk — visual system refresh */
+:root{
+ --tad-radius-sm:12px;--tad-radius-lg:22px;--tad-ease:cubic-bezier(.2,.75,.25,1);
+ --tad-blue:#3157c8;--tad-blue-soft:rgba(49,87,200,.09);--tad-gold:#e7b84b;
+}
+html{scroll-padding-top:1rem}
+body{letter-spacing:-.012em}
+::selection{background:rgba(49,87,200,.18);color:var(--ink)}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 65%,transparent);outline-offset:3px}
+.sidebar{background:linear-gradient(180deg,#080f2a 0%,#101b40 100%);border-right:1px solid rgba(255,255,255,.08);box-shadow:10px 0 36px rgba(7,15,43,.08)}
+.brand-box{padding:1.1rem .95rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.brand-badge{box-shadow:0 8px 24px rgba(231,184,75,.22);border:1px solid rgba(255,255,255,.18)}
+.nav-grp{letter-spacing:.12em;font-size:.66rem;color:#9eadd2}
+.nav-link{margin:.13rem .55rem;padding:.68rem .78rem;border:1px solid transparent;border-radius:11px;transition:background .2s var(--tad-ease),border-color .2s var(--tad-ease),transform .2s var(--tad-ease)}
+.nav-link:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.08);transform:translateX(2px)}
+.nav-link.active{background:linear-gradient(100deg,rgba(231,184,75,.2),rgba(255,255,255,.07));border-color:rgba(231,184,75,.25);box-shadow:inset 3px 0 0 var(--tad-gold)}
+.main-wrap{max-width:1320px;padding:clamp(1rem,2.4vw,2rem)}
+.dash-hero{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:26px;background:radial-gradient(ellipse at 90% 5%,rgba(91,129,226,.36),transparent 34%),linear-gradient(125deg,#07112f 0%,#14275a 64%,#1b3472 100%);box-shadow:0 24px 60px rgba(7,15,43,.16);padding:clamp(1.4rem,4vw,2.6rem)}
+.dash-hero:after{content:"";position:absolute;z-index:-1;width:340px;height:340px;right:-140px;bottom:-210px;border:1px solid rgba(255,255,255,.14);border-radius:50%;box-shadow:0 0 0 34px rgba(255,255,255,.025),0 0 0 70px rgba(255,255,255,.02)}
+.dash-hero h1{max-width:760px;letter-spacing:-.045em;line-height:1.06;font-size:clamp(2rem,4.2vw,3.4rem)}
+.dash-hero p{max-width:720px;color:#d5def5;font-size:1rem;line-height:1.75}
+.eyebrow{letter-spacing:.16em;font-weight:800}
+.card{border-radius:18px;box-shadow:0 8px 26px rgba(15,23,42,.045);transition:box-shadow .2s var(--tad-ease),border-color .2s var(--tad-ease)}
+.card:hover{box-shadow:0 14px 34px rgba(15,23,42,.075)}
+.btn{border-radius:11px;font-weight:700;transition:transform .18s var(--tad-ease),box-shadow .18s var(--tad-ease),filter .18s}
+.btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.12);filter:saturate(1.08)}
+input,select,textarea{border-radius:10px}
+.view-sec.active{animation:deskEnter .28s var(--tad-ease)}
+@keyframes deskEnter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+/* Anbuu AI workspace */
+#tadAiPanel{padding-bottom:2rem}
+.tad-anbuu-page-hero{position:relative;overflow:hidden;border-radius:26px;padding:clamp(1.5rem,4vw,2.8rem);background:radial-gradient(circle at 82% 25%,rgba(95,128,219,.3),transparent 25%),linear-gradient(125deg,#07112f,#142858 72%,#1e397b);color:#fff;box-shadow:0 24px 58px rgba(7,15,43,.16)}
+.tad-anbuu-hero-copy h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1;letter-spacing:-.055em;margin:.55rem 0 1rem}
+.tad-anbuu-hero-copy p{max-width:690px;color:#d7e1fa;font-size:1.02rem;line-height:1.75}
+.tad-anbuu-eyebrow,.tad-ai-studio-kicker{font-size:.68rem;letter-spacing:.17em;font-weight:800}
+.tad-anbuu-hero-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+.tad-anbuu-hero-pills span{border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);padding:.4rem .75rem;font-size:.78rem;color:#edf2ff}
+.tad-anbuu-orb{border:1px solid rgba(255,255,255,.2);background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.24),rgba(255,255,255,.04) 58%);box-shadow:inset 0 0 40px rgba(255,255,255,.06),0 20px 48px rgba(0,0,0,.18)}
+.tad-anbuu-shortcuts{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.6rem}
+.tad-anbuu-shortcuts button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:9px;padding:.48rem .75rem;font-weight:700;font-size:.78rem}
+.tad-anbuu-shortcuts button:hover{background:rgba(255,255,255,.16)}
+.tad-anbuu-feature-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1rem 0}
+.tad-anbuu-feature-strip>div{display:grid;gap:.18rem;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tad-anbuu-feature-strip b{font-size:.67rem;letter-spacing:.14em;color:var(--accent)}
+.tad-anbuu-feature-strip strong{font-size:.92rem}
+.tad-anbuu-feature-strip span{font-size:.78rem;color:var(--muted)}
+.tad-ai-studio{margin:1.1rem 0 1.2rem;padding:clamp(1rem,2.5vw,1.5rem);border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,var(--surface),var(--surface-alt));box-shadow:0 10px 30px rgba(15,23,42,.045)}
+.tad-ai-studio-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.tad-ai-studio-kicker{color:var(--accent)}
+.tad-ai-studio-head h2{font-size:clamp(1.35rem,2.5vw,1.8rem);letter-spacing:-.04em;margin:.3rem 0}
+.tad-ai-studio-head p{color:var(--muted);font-size:.88rem;max-width:650px;margin:0}
+.tad-ai-studio-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:13px;background:var(--tad-blue-soft);color:var(--accent);font-size:1.4rem}
+.tad-ai-studio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
+.tad-ai-tool{display:flex;flex-direction:column;align-items:flex-start;gap:.42rem;text-align:left;min-height:178px;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);cursor:pointer;transition:transform .2s var(--tad-ease),border-color .2s,box-shadow .2s}
+.tad-ai-tool:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 12px 26px rgba(15,23,42,.08)}
+.tad-ai-tool-icon{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--tad-blue-soft);color:var(--accent);font-size:.68rem;font-weight:900}
+.tad-ai-tool strong{font-size:.96rem}
+.tad-ai-tool small{font-size:.77rem;line-height:1.55;color:var(--muted)}
+.tad-ai-tool-cta{margin-top:auto;padding-top:.35rem;font-size:.76rem;font-weight:800;color:var(--accent)}
+#tadAiHead{margin:1rem 0 .7rem;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:.9rem 1rem}
+#tadAiWorkspace{gap:1rem}
+.tad-ai-chat,#tadAiSidebar{border-radius:18px}
+.tad-ai-chat{border:1px solid var(--line);box-shadow:var(--shadow)}
+.tad-ai-msg{line-height:1.7}
+.tad-ai-quick button{border-radius:999px}
+#tadAiForm textarea{min-height:58px}
+#tadAiForm button{border-radius:10px;font-weight:800}
+.tad-anbuu-lesson-studio{margin-top:1rem;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow)}
+@media(max-width:900px){.tad-ai-studio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.tad-anbuu-feature-strip{grid-template-columns:1fr}.tad-ai-studio-grid{grid-template-columns:1fr}.tad-ai-tool{min-height:140px}.tad-anbuu-page-hero{border-radius:20px}.dash-hero{border-radius:20px}.main-wrap{padding:.85rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+:root[data-theme="dark"] .tad-ai-studio{background:linear-gradient(145deg,var(--surface),var(--surface-alt))}
+:root[data-theme="dark"] .tad-ai-tool{background:var(--surface-alt)}
