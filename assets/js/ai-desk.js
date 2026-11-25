@@ -40,7 +40,7 @@ lessonStudio.querySelector("#tadStartLesson").addEventListener("click",async()=>
  if(!subject){note.textContent="Please choose a subject.";return;}
  const label=track==="gs"?"General Studies":track==="literature"?"Literature optional":"UPSC optional";
  const language=lessonStudio.querySelector("#tadLessonLanguage").value;
- const saved=await db.functions.invoke("ai-assistant",{body:{action:"start_lesson",track,subject,topic,level}});
+ const saved=await invokeAI({action:"start_lesson",track,subject,topic,level}});
  if(saved.error||!saved.data?.lesson){note.textContent=saved.data?.error||"Could not save this lesson. Please try again.";return;}
  note.textContent="Lesson saved to your account. You can pause it or mark it complete in My lesson history.";
  await loadLessons();
@@ -138,16 +138,30 @@ function renderLessonHistory(){
   card.append(head,meta,progress,checkpointList,recommendation,actions);host.append(card);
  });
 }
+async function invokeAI(body){
+ let result=await db.auth.getSession();
+ let session=result.data?.session||null;
+ if(result.error)throw result.error;
+ if(!session)throw new Error("Your sign-in session is missing. Please sign in again, then retry Anbuu.");
+ const expiresAt=Number(session.expires_at||0);
+ if(expiresAt&&expiresAt*1000<Date.now()+90000){
+  const refreshed=await db.auth.refreshSession();
+  if(refreshed.error||!refreshed.data?.session)throw new Error("Your sign-in session expired and could not be refreshed. Please sign out and sign in again.");
+  session=refreshed.data.session;
+ }
+ if(!session.access_token)throw new Error("Your sign-in session has no access token. Please sign in again.");
+ return db.functions.invoke("ai-assistant",{body,headers:{Authorization:"Bearer "+session.access_token}});
+}
 async function loadLessons(){
  if(role!=="learner"){lessonRows=[];renderLessonHistory();return;}
- const r=await db.functions.invoke("ai-assistant",{body:{action:"get_lessons"}});
+ const r=await invokeAI({action:"get_lessons"}});
  if(r.error)throw r.error;
  lessonRows=Array.isArray(r.data?.lessons)?r.data.lessons:[];
  renderLessonHistory();
 }
 async function updateLesson(id,nextStatus){
  try{
-  const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson",lessonId:id,status:nextStatus}});
+  const r=await invokeAI({action:"update_lesson",lessonId:id,status:nextStatus}});
   if(r.error)throw r.error;
   if(r.data?.mentorState){state=r.data.mentorState;render();}
   await Promise.all([loadLessons(),loadState(),loadProgress()]);
@@ -156,7 +170,7 @@ async function updateLesson(id,nextStatus){
 }
 async function updateLessonCheckpoint(lessonId,checkpoint,completed){
  try{
-  const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson_checkpoint",lessonId,checkpoint,completed}});
+  const r=await invokeAI({action:"update_lesson_checkpoint",lessonId,checkpoint,completed}});
   if(r.error)throw r.error;
   const updated=r.data?.lesson;
   if(!updated)throw new Error("No saved checkpoint update was returned.");
@@ -166,7 +180,7 @@ async function updateLessonCheckpoint(lessonId,checkpoint,completed){
  }catch(e){status.textContent=e.message||"Checkpoint could not be saved. Please try again.";}
 }
 $("#tadRefreshLessons").addEventListener("click",()=>loadLessons().catch(()=>{status.textContent="Could not refresh lesson history."; }));
-async function loadState(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_state"}});if(r.error)throw r.error;state=r.data?.mentorState||empty();render();}
+async function loadState(){const r=await invokeAI({action:"get_state"}});if(r.error)throw r.error;state=r.data?.mentorState||empty();render();}
 function setDashboardTab(name){const overview=name==="overview";$("#tadAiOverview").hidden=!overview;$("#tadAiRevision").hidden=overview;$("#tadAiOverviewTab").classList.toggle("is-active",overview);$("#tadAiRevisionTab").classList.toggle("is-active",!overview);$("#tadAiOverviewTab").setAttribute("aria-selected",String(overview));$("#tadAiRevisionTab").setAttribute("aria-selected",String(!overview));}
 $("#tadAiOverviewTab").addEventListener("click",()=>setDashboardTab("overview"));
 $("#tadAiRevisionTab").addEventListener("click",()=>setDashboardTab("revision"));
@@ -375,7 +389,7 @@ const list=document.createElement("ul");topics.forEach(t=>{const li=document.cre
 if(unclassified){const note=document.createElement("p");note.textContent=unclassified+" older mistake(s) are not topic-tagged and are excluded from this ranking.";weak.append(note);}
 }
 }
-async function loadProgress(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_progress"}});if(r.error)throw r.error;renderProgress(r.data?.progress||{});}
+async function loadProgress(){const r=await invokeAI({action:"get_progress"}});if(r.error)throw r.error;renderProgress(r.data?.progress||{});}
 async function refresh(){
 const {data:{session}}=await db.auth.getSession();
 if(!session){role="guest";$("#tadAiRole").textContent="Sign in required";status.textContent="Please sign in to use Anbuu.";$("#tadAiSidebar").hidden=true;return;}
@@ -389,7 +403,7 @@ if(!opened&&!messages.childElementCount){const n=state.pending_tasks.filter(t=>t
 else if(!messages.childElementCount)say(role==="admin"?"Admin Desk ready. Drafts require human verification.":"Mentor Desk ready. Share de-identified progress for feedback.","assistant");
 opened=true;
 }
-async function task(id,next,dueDate=null,reviewResult=null){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next,...(dueDate?{dueDate}:{}),...(reviewResult?{reviewResult}:{})}});if(r.error)throw r.error;state=r.data.mentorState;render();status.textContent=reviewResult?"Review saved. Next review scheduled from your confidence rating.":dueDate?"Revision postponed and saved.":next==="completed"?"Revision marked complete.":"Task restored to pending."; }catch(e){status.textContent="Task could not be saved. Please try again.";}}
+async function task(id,next,dueDate=null,reviewResult=null){try{const r=await invokeAI({action:"update_task",taskId:id,status:next,...(dueDate?{dueDate}:{}),...(reviewResult?{reviewResult}:{})}});if(r.error)throw r.error;state=r.data.mentorState;render();status.textContent=reviewResult?"Review saved. Next review scheduled from your confidence rating.":dueDate?"Revision postponed and saved.":next==="completed"?"Revision marked complete.":"Task restored to pending."; }catch(e){status.textContent="Task could not be saved. Please try again.";}}
 async function aiFunctionErrorMessage(error){
  let message=error&&typeof error.message==="string"?error.message:"Anbuu could not respond right now.";
  try{
@@ -410,10 +424,10 @@ async function aiFunctionErrorMessage(error){
 async function sendMessage(message,lessonId=null,evaluation=null){
 if(!message||busy)return;if(role==="guest"){status.textContent="Sign in with a learner, mentor or admin account.";return;}
 busy=true;send.disabled=true;input.value="";if(lessonId){history=[];messages.replaceChildren();}say(message,"user");
-try{const r=await db.functions.invoke("ai-assistant",{body:{message,history:lessonId?[]:history,...(lessonId?{lessonId}:{})}});if(r.error)throw r.error;if(!r.data?.answer)throw new Error(r.data?.error||"No response received.");
+try{const r=await invokeAI({message,history:lessonId?[]:history,...(lessonId?{lessonId}:{})}});if(r.error)throw r.error;if(!r.data?.answer)throw new Error(r.data?.error||"No response received.");
 say(r.data.answer,"assistant");history.push({role:"user",content:message},{role:"assistant",content:r.data.answer});history=history.slice(-8);
 if(evaluation&&role==="learner"){
- const saved=await db.functions.invoke("ai-assistant",{body:{action:"save_answer_evaluation",...evaluation,feedback:r.data.answer}});
+ const saved=await invokeAI({action:"save_answer_evaluation",...evaluation,feedback:r.data.answer}});
  if(saved.error||!saved.data?.saved){$("#tadAnswerStatus").textContent=saved.data?.error||"Feedback was generated, but saving failed. Please retry while connected.";}
  else{$("#tadAnswerStatus").textContent="Evaluation saved to your private learner history.";await loadProgress().catch(()=>{});}
 }
