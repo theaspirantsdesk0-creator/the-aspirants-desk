@@ -644,7 +644,108 @@
           "a": 0,
           "w": "Redistribution involves collection at a centre followed by allocation."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Explain how communities organise production, distribution, authority, conflict resolution and religious life, using comparative anthropological concepts.",
+        "sections": [
+          {
+            "heading": "Economic anthropology: beyond money and markets",
+            "explanation": [
+              "Economic anthropology studies how people produce, distribute, exchange and consume resources within social and cultural relationships. Economic action is shaped by kinship, status, obligation, institutions and ecology as well as prices.",
+              "Subsistence systems include foraging, pastoralism, horticulture, agriculture and industrial production. These are broad categories; communities may combine several strategies and change them over time."
+            ],
+            "example": "A harvest exchange may involve labour-sharing, reciprocal obligations, market sale and ritual commitments at the same time."
+          },
+          {
+            "heading": "Modes of exchange",
+            "explanation": [
+              "Reciprocity involves transfers between people or groups and may be generalised, balanced or negative. The categories describe patterns of obligation and expected return, not moral rankings.",
+              "Redistribution involves resources moving toward a centre and being reallocated, while market exchange commonly involves transfers mediated by prices. Real economies often combine all three forms."
+            ]
+          },
+          {
+            "heading": "Property, production and livelihood",
+            "explanation": [
+              "Anthropologists distinguish access, use, control and ownership. Property may involve overlapping individual, household, community and state claims rather than a single absolute right.",
+              "Modes of production concern how labour, resources, technology and social relations are organised. Analyses should ask who controls resources, who performs work, how benefits are distributed and how power shapes outcomes."
+            ]
+          },
+          {
+            "heading": "Political organisation and authority",
+            "explanation": [
+              "Political anthropology examines power, leadership, decision-making, legitimacy, law and conflict resolution. Political organisation ranges from relatively decentralised arrangements to formal states, but no society should be treated as politically simple.",
+              "Authority may rest on custom, age, expertise, ritual standing, elected office, coercive capacity or state law. Informal institutions can influence formal governance, and formal rules may be negotiated in everyday practice."
+            ]
+          },
+          {
+            "heading": "Religion, ritual and belief",
+            "explanation": [
+              "Anthropologists study religion as systems of belief, practice, ritual, symbols and institutions situated in social life. They examine how people explain uncertainty, mark transitions, create solidarity and negotiate moral questions.",
+              "Rituals can reinforce social relationships, express identity, manage transitions or contest authority. A ritual should be interpreted in its local context rather than reduced to one universal function."
+            ]
+          },
+          {
+            "heading": "Magic, taboo, myth and social change",
+            "explanation": [
+              "Magic, taboo and myth are analytical topics in the study of belief and practice. They should be described respectfully and contextually, not used to label communities as irrational or less developed.",
+              "Religious life changes through migration, education, media, reform movements, law, inter-community contact and individual interpretation. Continuity and change often coexist."
+            ]
+          },
+          {
+            "heading": "How to build a comparative answer",
+            "explanation": [
+              "A strong answer defines the concept, identifies the social setting, compares relevant cases and explains variation. Avoid presenting a single society as representative of all communities.",
+              "Use ethnographic examples carefully: identify the scholar or region, state the point the example supports and avoid unsupported generalisations."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Generalised reciprocity",
+            "meaning": "Giving without a fixed expectation of immediate or equivalent return."
+          },
+          {
+            "term": "Balanced reciprocity",
+            "meaning": "Exchange with an expectation of a broadly comparable return within a socially recognised period."
+          },
+          {
+            "term": "Redistribution",
+            "meaning": "Movement of resources toward a centre followed by allocation to members or groups."
+          },
+          {
+            "term": "Mode of production",
+            "meaning": "The organisation of labour, resources, technology and social relations in production."
+          },
+          {
+            "term": "Legitimacy",
+            "meaning": "Socially recognised acceptance of a person's or institution's right to exercise authority."
+          },
+          {
+            "term": "Ritual",
+            "meaning": "A patterned symbolic practice through which people express or negotiate meanings and relationships."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Marcel Mauss",
+            "idea": "Analysed gift exchange and the social obligations to give, receive and reciprocate."
+          },
+          {
+            "scholar": "Bronisław Malinowski",
+            "idea": "Studied exchange, including the Kula, within wider systems of social relationships and meaning."
+          },
+          {
+            "scholar": "E. E. Evans-Pritchard",
+            "idea": "Produced influential analyses of political systems and religious thought, showing the importance of local categories and context."
+          },
+          {
+            "scholar": "Clifford Geertz",
+            "idea": "Approached religion and culture as systems of meaning requiring contextual interpretation."
+          }
+        ],
+        "answerPractice": "In 200 words, compare reciprocity, redistribution and market exchange. Explain why economic activities must be studied within their social and cultural context.",
+        "revisionPrompt": "Choose a familiar exchange practice and identify whether it involves reciprocity, redistribution or market exchange. Explain why more than one category may apply."
+      }
     },
     {
       "paper": "I",
@@ -675,7 +776,115 @@
           "a": 0,
           "w": "Franz Boas is associated with historical particularism and contextual field research."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Compare major anthropological theories by their central arguments, methods, scholars, contributions and limitations.",
+        "sections": [
+          {
+            "heading": "Why anthropological theories matter",
+            "explanation": [
+              "A theory is an organised explanation that helps frame questions, select evidence and interpret social life. Theories are not merely lists of scholars; each has assumptions about culture, society, history, power or meaning.",
+              "In an exam answer, define the approach, explain its central proposition, cite a scholar and ethnographic illustration, then assess its contribution and limitation."
+            ]
+          },
+          {
+            "heading": "Classical evolutionism and diffusionism",
+            "explanation": [
+              "Nineteenth-century evolutionists such as E. B. Tylor, Lewis Henry Morgan and James Frazer proposed broad sequences of cultural development. Their work helped establish comparative questions but often relied on limited evidence and ranked societies through unilinear schemes.",
+              "Diffusionist approaches emphasised the spread of cultural traits through contact and borrowing. Diffusion can explain some similarities, but similarities may also arise independently or through shared constraints; historical evidence is essential."
+            ]
+          },
+          {
+            "heading": "Historical particularism and functionalism",
+            "explanation": [
+              "Franz Boas argued for studying cultures through their specific histories and contexts, challenging simplistic universal stages. Historical particularism encouraged careful field research and attention to cultural diversity.",
+              "Malinowski examined how institutions relate to human needs and everyday practices. Radcliffe-Brown focused on social structure and the contribution of institutions to continuity in social relationships. Functional approaches can understate conflict, inequality and historical transformation if applied narrowly."
+            ]
+          },
+          {
+            "heading": "Structuralism and culture-and-personality",
+            "explanation": [
+              "Claude Lévi-Strauss examined underlying structures and patterns of classification, including binary oppositions and transformations in myth and kinship. Structural analysis seeks relationships beneath surface variation.",
+              "Culture-and-personality approaches explored relationships between socialisation, shared cultural patterns and personality. Such work raised important questions but can overgeneralise a supposedly uniform national or cultural character."
+            ]
+          },
+          {
+            "heading": "Neo-evolutionism and cultural materialism",
+            "explanation": [
+              "Neo-evolutionary approaches revisited long-term social change with attention to energy, technology, environment and complexity, while recognising that change need not follow one universal path.",
+              "Cultural materialism, associated with Marvin Harris, gives analytical priority to material conditions and practical constraints in explaining cultural practices. Material explanations are powerful but should not ignore symbols, agency and historical meaning."
+            ]
+          },
+          {
+            "heading": "Symbolic, interpretive and post-modern approaches",
+            "explanation": [
+              "Symbolic and interpretive anthropology examines how people create and negotiate meaning through symbols, ritual and everyday action. Geertz's idea of thick description asks researchers to interpret actions in context.",
+              "Post-modern and reflexive approaches question claims of neutral, all-knowing representation and examine how authority, writing and the researcher's position shape ethnographic accounts. Reflexivity strengthens research when paired with evidence and clear method."
+            ]
+          },
+          {
+            "heading": "How to compare theories critically",
+            "explanation": [
+              "Compare theories using common dimensions: view of culture, explanation of social order or change, preferred methods, role of history and power, and treatment of individual agency.",
+              "No single theory explains every question. A balanced answer can show how approaches illuminate different dimensions while identifying their limits and the evidence needed to evaluate them."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Unilinear evolutionism",
+            "meaning": "The view that societies pass through a common sequence of cultural stages."
+          },
+          {
+            "term": "Historical particularism",
+            "meaning": "An approach explaining cultural forms through their specific histories and contexts."
+          },
+          {
+            "term": "Functionalism",
+            "meaning": "An approach examining how institutions and practices relate to needs or social arrangements."
+          },
+          {
+            "term": "Structuralism",
+            "meaning": "Analysis of underlying relations and systems of classification shaping cultural forms."
+          },
+          {
+            "term": "Cultural materialism",
+            "meaning": "An approach that emphasises material conditions in explaining cultural practices and institutions."
+          },
+          {
+            "term": "Thick description",
+            "meaning": "Context-rich interpretation of actions and the meanings people attach to them."
+          },
+          {
+            "term": "Reflexivity",
+            "meaning": "Critical examination of how the researcher's position and methods shape knowledge."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "E. B. Tylor and Lewis Henry Morgan",
+            "idea": "Associated with classical evolutionist comparisons; their historical influence should be distinguished from the limitations of unilinear ranking."
+          },
+          {
+            "scholar": "Franz Boas",
+            "idea": "Emphasised historical context, cultural particularity and empirical field research."
+          },
+          {
+            "scholar": "Bronisław Malinowski and A. R. Radcliffe-Brown",
+            "idea": "Developed influential but distinct functional and structural-functional approaches."
+          },
+          {
+            "scholar": "Claude Lévi-Strauss",
+            "idea": "Analysed underlying structures in kinship, myth and systems of classification."
+          },
+          {
+            "scholar": "Clifford Geertz",
+            "idea": "Advanced interpretive anthropology and context-rich analysis of meaning."
+          }
+        ],
+        "answerPractice": "Compare historical particularism, functionalism and structuralism in 200–250 words. Explain their central focus, name one scholar for each and mention one limitation.",
+        "revisionPrompt": "Create a six-row theory chart: evolutionism, diffusionism, historical particularism, functionalism, structuralism and interpretive anthropology. Add one scholar and one key idea to each."
+      }
     },
     {
       "paper": "I",
