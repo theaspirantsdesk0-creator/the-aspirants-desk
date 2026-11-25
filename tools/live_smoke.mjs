@@ -255,8 +255,16 @@ try {
   // Verify Anbuu guided-learning UI and the complete optional-subject catalogue.
   const lessonStudio = page.locator('.tad-anbuu-lesson-studio');
   if (await lessonStudio.count() !== 1) throw new Error('Anbuu guided-learning studio is missing');
-  for (const selector of ['#tadLessonTrack', '#tadLessonSubject', '#tadLessonTopic', '#tadLessonLevel', '#tadStartLesson']) {
+  for (const selector of ['#tadLessonTrack', '#tadLessonSubject', '#tadLessonTopic', '#tadLessonLanguage', '#tadLessonLevel', '#tadStartLesson']) {
     if (await page.locator(selector).count() !== 1) throw new Error('Anbuu lesson control is missing: ' + selector);
+  }
+  const lessonLanguage = page.locator('#tadLessonLanguage');
+  const languageChoices = await lessonLanguage.locator('option').allTextContents();
+  if (languageChoices.length !== 3 || !languageChoices.some(value => value.includes('Tamil + English'))) {
+    throw new Error('Anbuu lesson language choices must include English, Tamil and Tamil + English');
+  }
+  if (await lessonLanguage.inputValue() !== 'Tamil and English') {
+    throw new Error('Anbuu guided lessons should default to bilingual Tamil + English teaching');
   }
   await page.waitForFunction(() => {
     const select = document.querySelector('#tadLessonSubject');
