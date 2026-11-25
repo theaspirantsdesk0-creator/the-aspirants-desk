@@ -95,3 +95,16 @@ input,select,textarea{border-radius:10px}
 .tad-answer-history-item details{margin-top:6px}
 .tad-answer-history-feedback{white-space:pre-wrap;line-height:1.65;margin-top:10px;max-height:520px;overflow:auto}
 @media(max-width:600px){.tad-answer-lab-row{align-items:stretch}.tad-answer-lab-row label,.tad-answer-lab-row button{width:100%}}
+
+/* Subject-wise answer-writing performance dashboard */
+#tadAnswerPerformance{margin-top:18px;padding:18px;border:1px solid var(--tad-border,rgba(190,160,100,.2));border-radius:14px}
+.tad-answer-performance-overview{color:var(--tad-muted,#9ba3b2);line-height:1.6}
+.tad-answer-performance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}
+.tad-answer-performance-card{display:grid;gap:7px;padding:14px;border:1px solid var(--tad-border,rgba(190,160,100,.16));border-radius:12px;background:var(--tad-surface,rgba(255,255,255,.02))}
+.tad-answer-performance-card strong{overflow-wrap:anywhere}
+.tad-answer-performance-card span,.tad-answer-performance-card small{color:var(--tad-muted,#9ba3b2)}
+.tad-answer-performance-tags{margin-top:14px}
+.tad-answer-performance-tags h4{margin-bottom:8px}
+.tad-answer-performance-tags ul{display:flex;gap:8px;flex-wrap:wrap;padding:0;list-style:none}
+.tad-answer-performance-tags li{padding:7px 10px;border:1px solid var(--tad-border,rgba(190,160,100,.18));border-radius:999px;font-size:.9rem}
+.tad-answer-performance-action{margin-top:16px;padding:11px 15px;border:0;border-radius:10px;background:var(--tad-gold,#c8a96b);color:#151923;font-weight:700;cursor:pointer}
