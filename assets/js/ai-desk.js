@@ -10,7 +10,7 @@ document.querySelector("#mainContent").append(panel);
 const answerLab=document.createElement("section");
 answerLab.className="tad-answer-lab";
 answerLab.setAttribute("aria-labelledby","tadAnswerLabTitle");
-answerLab.innerHTML="<div class='tad-answer-lab-head'><span>MAINS ANSWER PRACTICE</span><h2 id='tadAnswerLabTitle'>Write, review and improve.</h2><p>Submit one practice answer. Anbuu will review it against a consistent UPSC-style rubric and save the feedback in your private learner history.</p></div><form id='tadAnswerLabForm' class='tad-answer-lab-form'><label>Paper / subject<input id='tadAnswerSubject' maxlength='120' required value='General Studies'></label><label>Question<textarea id='tadAnswerQuestion' rows='3' maxlength='1000' required placeholder='Paste the question and its directive words…'></textarea></label><label>Your answer<textarea id='tadAnswerText' rows='8' maxlength='3500' required placeholder='Write your answer here…'></textarea></label><div class='tad-answer-lab-row'><label>Word limit<input id='tadAnswerWordLimit' type='number' min='1' max='1000' value='150' required></label><button id='tadAnswerSubmit' type='submit'>Evaluate my answer →</button></div><p id='tadAnswerStatus' aria-live='polite'>Practice feedback is an AI learning aid, not an official UPSC assessment.</p></form><section class='tad-answer-history'><h3>My saved answer evaluations</h3><div id='tadAnswerHistory' aria-live='polite'>Sign in as a learner to view your saved evaluations.</div></section>";
+answerLab.innerHTML="<div class='tad-answer-lab-head'><span>MAINS ANSWER PRACTICE</span><h2 id='tadAnswerLabTitle'>Write, review and improve.</h2><p>Submit one practice answer. Anbuu will review it against a consistent UPSC-style rubric and save the feedback in your private learner history.</p></div><form id='tadAnswerLabForm' class='tad-answer-lab-form'><label>Paper / subject<input id='tadAnswerSubject' maxlength='120' required value='General Studies'></label><label>Question<textarea id='tadAnswerQuestion' rows='3' maxlength='1000' required placeholder='Paste the question and its directive words…'></textarea></label><label>Your answer<textarea id='tadAnswerText' rows='8' maxlength='3500' required placeholder='Write your answer here…'></textarea></label><div class='tad-answer-lab-row'><label>Word limit<input id='tadAnswerWordLimit' type='number' min='1' max='1000' value='150' required></label><button id='tadAnswerSubmit' type='submit'>Evaluate my answer →</button></div><p id='tadAnswerStatus' aria-live='polite'>Practice feedback is an AI learning aid, not an official UPSC assessment.</p></form><section class='tad-answer-history'><h3>My saved answer evaluations</h3><div id='tadAnswerHistory' aria-live='polite'>Sign in as a learner to view your saved evaluations.</div><section class='tad-answer-performance'><h3>Subject-wise performance</h3><div id='tadAnswerPerformance' aria-live='polite'></div></section></section>";
 panel.insertBefore(answerLab,panel.querySelector("#tadAiHead"));
 const lessonStudio=document.createElement("section");
 lessonStudio.className="tad-anbuu-lesson-studio";
@@ -264,6 +264,33 @@ function renderMockExamInsights(data){
   const note=document.createElement("p");note.textContent="Section breakdown is not available for the submitted attempts yet.";host.append(note);
  }
 }
+function renderAnswerPerformanceDashboard(items){
+ const host=$("#tadAnswerPerformance");if(!host)return;host.replaceChildren();
+ const rows=(Array.isArray(items)?items:[]).filter(item=>item&&typeof item==="object");
+ if(!rows.length){const p=document.createElement("p");p.textContent="Subject-wise trends and recurring writing gaps will appear after your first saved evaluation.";host.append(p);return;}
+ const subjects=new Map(),weaknesses=new Map(),strengths=new Map();
+ rows.forEach(item=>{
+  const subject=String(item.subject||"General Practice").trim()||"General Practice";
+  const entry=subjects.get(subject)||{count:0,latest:0};entry.count++;
+  const date=Date.parse(String(item.savedAt||""));if(Number.isFinite(date)&&date>entry.latest)entry.latest=date;
+  (Array.isArray(item.priorityWeaknesses)?item.priorityWeaknesses:[]).forEach(tag=>{const key=String(tag).trim();if(key)weaknesses.set(key,(weaknesses.get(key)||0)+1);});
+  (Array.isArray(item.keyStrengths)?item.keyStrengths:[]).forEach(tag=>{const key=String(tag).trim();if(key)strengths.set(key,(strengths.get(key)||0)+1);});
+  subjects.set(subject,entry);
+ });
+ const overview=document.createElement("p");overview.className="tad-answer-performance-overview";overview.textContent=rows.length+" saved evaluation(s) across "+subjects.size+" paper/subject area(s). Counts reflect feedback themes, not official UPSC marks.";host.append(overview);
+ const grid=document.createElement("div");grid.className="tad-answer-performance-grid";
+ [...subjects.entries()].sort((a,b)=>b[1].count-a[1].count).forEach(([subject,value])=>{
+  const card=document.createElement("article");card.className="tad-answer-performance-card";
+  const title=document.createElement("strong");title.textContent=subject;const count=document.createElement("span");count.textContent=value.count+" answer(s) reviewed";
+  const date=document.createElement("small");date.textContent=value.latest?"Latest: "+new Date(value.latest).toLocaleDateString():"Date unavailable";card.append(title,count,date);grid.append(card);
+ });host.append(grid);
+ const renderTags=(headingText,map,emptyText)=>{const section=document.createElement("section");section.className="tad-answer-performance-tags";const heading=document.createElement("h4");heading.textContent=headingText;section.append(heading);
+  if(!map.size){const p=document.createElement("p");p.textContent=emptyText;section.append(p);}else{const list=document.createElement("ul");[...map.entries()].sort((a,b)=>b[1]-a[1]).slice(0,6).forEach(([tag,count])=>{const li=document.createElement("li");li.textContent=tag+" · "+count+" mention(s)";list.append(li);});section.append(list);}host.append(section);};
+ renderTags("Recurring areas to improve",weaknesses,"No structured weakness tags yet. New evaluations will populate this list.");
+ renderTags("Consistent strengths",strengths,"No structured strength tags yet.");
+ const button=document.createElement("button");button.type="button";button.className="tad-answer-performance-action";button.textContent="Create my answer-writing revision plan";
+ button.addEventListener("click",()=>{const gaps=[...weaknesses.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5).map(([tag,count])=>tag+" ("+count+")");const papers=[...subjects.entries()].map(([subject,value])=>subject+": "+value.count+" evaluation(s)");sendMessage("Use my saved Mains answer dashboard to create a focused revision plan. Paper/subject activity: "+papers.join("; ")+". Recurring evidenced weaknesses: "+(gaps.join("; ")||"No structured weakness tags available yet")+". Create 2–3 small practice tasks and do not infer marks or mastery from feedback counts.");});host.append(button);
+}
 function renderAnswerEvaluationHistory(items){
  const host=$("#tadAnswerHistory");if(!host)return;host.replaceChildren();
  const rows=Array.isArray(items)?items:[];
@@ -280,6 +307,7 @@ function renderAnswerEvaluationHistory(items){
 function renderProgress(data){
 renderStudySnapshot(data);
 renderAnswerEvaluationHistory(data?.answerEvaluations);
+renderAnswerPerformanceDashboard(data?.answerEvaluations);
 renderMockExamInsights(data);
 const weekly=$("#tadAiWeekly"),historyHost=$("#tadAiHistory"),lessonsHost=$("#tadAiLessons"),weak=$("#tadAiWeak");
 weekly.replaceChildren();historyHost.replaceChildren();lessonsHost.replaceChildren();weak.replaceChildren();
@@ -355,7 +383,7 @@ $("#tadAnswerLabForm").addEventListener("submit",e=>{
  if(role!=="learner"){$("#tadAnswerStatus").textContent="Sign in with a learner account to save answer evaluations.";return;}
  const evaluation={subject:$("#tadAnswerSubject").value.trim(),question:$("#tadAnswerQuestion").value.trim(),answer:$("#tadAnswerText").value.trim(),wordLimit:Number($("#tadAnswerWordLimit").value)};
  if(!evaluation.subject||!evaluation.question||!evaluation.answer||!Number.isInteger(evaluation.wordLimit)||evaluation.wordLimit<1||evaluation.wordLimit>1000){$("#tadAnswerStatus").textContent="Complete every field and check the word limit.";return;}
- const prompt="Evaluate the following UPSC Mains practice answer. This is educational feedback, not an official UPSC score. Paper/subject: "+evaluation.subject+". Word limit: "+evaluation.wordLimit+". Question: "+evaluation.question+". Candidate answer: "+evaluation.answer+". Use these headings: 1. Question demand and directive analysis 2. Demand coverage and relevance 3. Structure and flow 4. Analysis and depth 5. Examples, evidence and constitutional/legal accuracy 6. Balance and conclusion 7. Specific strengths 8. Priority corrections 9. Improved answer outline 10. A short next-practice task. Count approximate words and compare with the stated limit. Do not invent facts, data, judgments, reports, scholars or citations. Flag anything that needs verification. Give a numeric mark only if the question explicitly supplies the maximum marks; otherwise use qualitative feedback. Do not fabricate a complete topper answer.";
+ const prompt="Evaluate the following UPSC Mains practice answer. This is educational feedback, not an official UPSC score. Paper/subject: "+evaluation.subject+". Word limit: "+evaluation.wordLimit+". Question: "+evaluation.question+". Candidate answer: "+evaluation.answer+". Use these headings: 1. Question demand and directive analysis 2. Demand coverage and relevance 3. Structure and flow 4. Analysis and depth 5. Examples, evidence and constitutional/legal accuracy 6. Balance and conclusion 7. Specific strengths 8. Priority corrections 9. Improved answer outline 10. A short next-practice task. Count approximate words and compare with the stated limit. Do not invent facts, data, judgments, reports, scholars or citations. Flag anything that needs verification. Give a numeric mark only if the question explicitly supplies the maximum marks; otherwise use qualitative feedback. End with exactly two summary lines: PRIORITY WEAKNESSES: comma-separated short skill labels supported by evidence (choose from Demand coverage, Structure, Analysis, Evidence, Balance, Conclusion, Accuracy, Word-limit control; write None if none). KEY STRENGTHS: comma-separated short skill labels supported by evidence (write None if none). Do not fabricate a complete topper answer.";
  $("#tadAnswerStatus").textContent="Anbuu is reviewing your answer…";
  sendMessage(prompt,null,evaluation);
 });
