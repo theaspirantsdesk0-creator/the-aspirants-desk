@@ -5,6 +5,8 @@ const SOURCE="https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Exa
 let catalogue=null,selectedUnit=0,selectedPaper="ALL",activeQuiz=null;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function current(){return window.TAD_OPTIONAL_PREP&&typeof window.TAD_OPTIONAL_PREP==="object"?window.TAD_OPTIONAL_PREP:{};}
+function localDate(date=new Date()){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,"0"),d=String(date.getDate()).padStart(2,"0");return y+"-"+m+"-"+d;}
+function dateAfter(days){const date=new Date();date.setHours(12,0,0,0);date.setDate(date.getDate()+days);return localDate(date);}
 function fillSubjects(){
  const select=$("optionalSubjectSelect");if(!select||!catalogue)return;
  select.innerHTML=catalogue.subjects.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join("");
@@ -28,7 +30,7 @@ function saveSelection(){
  const language=$("optionalStudyLanguage").value;
  const level=$("optionalStudyLevel").value;
  const previous=current();
- const next={subject,language,level,selectedAt:previous.subject===subject?(previous.selectedAt||new Date().toISOString()):new Date().toISOString(),syllabusVersion:catalogue.version};
+ const next={...previous,subject,language,level,selectedAt:previous.subject===subject?(previous.selectedAt||new Date().toISOString()):new Date().toISOString(),syllabusVersion:catalogue.version};
  window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
  closeSetup();
  render();
@@ -51,18 +53,28 @@ function render(){
  const progress=pref.progress&&typeof pref.progress==="object"?pref.progress:{};
  const done=units.filter((u,i)=>progress[subject+":"+i]).length;
  const percent=units.length?Math.round(done/units.length*100):0;
+ const mastery=pref.mastery&&typeof pref.mastery==="object"?pref.mastery:{};
+ const revisions=pref.revisionSchedule&&typeof pref.revisionSchedule==="object"?pref.revisionSchedule:{};
+ const results=Array.isArray(pref.quizResults)?pref.quizResults.filter(x=>x.subject===subject):[];
+ const quizCount=results.length,quizCorrect=results.reduce((n,x)=>n+Number(x.score||0),0),quizTotal=results.reduce((n,x)=>n+Number(x.maxScore||0),0);
+ const quizAccuracy=quizTotal?Math.round(quizCorrect/quizTotal*100):null;
+ const today=localDate(),dueItems=units.map((u,i)=>({u,i,review:revisions[subject+":"+i]})).filter(x=>x.review&&!x.review.completed&&x.review.dueAt<=today);
  const subjectCount=catalogue.subjects.length;
  host.innerHTML=`
  <div class="optional-prep-head">
   <div><span class="eyebrow">YOUR MAINS OPTIONAL</span><h2>${esc(subject)}</h2><p class="muted">Two descriptive papers · 250 marks each · three hours each. Your study language: ${esc(language)}.</p></div>
   <button type="button" class="btn" id="changeOptionalSubject">Change subject</button>
  </div>
- <div class="optional-prep-stats">
-  <div><b>${subjectCount}</b><span>Official subject/literature choices</span></div>
-  <div><b>2</b><span>Optional papers</span></div>
-  <div><b>${percent}%</b><span>Units studied</span></div>
+ <div class="optional-prep-stats optional-prep-stats-four">
+  <div><b>${units.length}</b><span>Syllabus units</span></div>
+  <div><b>${done}/${units.length}</b><span>Units studied</span></div>
+  <div><b>${quizAccuracy===null?"—":quizAccuracy+"%"}</b><span>MCQ accuracy · ${quizCount} tests</span></div>
+  <div><b>${dueItems.length}</b><span>Reviews due</span></div>
  </div>
  <div class="optional-progress-track"><span style="width:${percent}%"></span></div>
+ <div class="optional-learning-path"><div><span class="eyebrow">YOUR NEXT STEP</span><strong>${esc((units.find((u,i)=>!progress[subject+":"+i])||units[0]||{}).unit||"Choose a topic")}</strong><small>${done===units.length?"All units marked studied — use revision and tests to consolidate.":"Continue in syllabus order, then attempt the unit test."}</small></div><span class="optional-path-percent">${percent}%</span></div>
+ <div class="optional-revision-summary"><strong>Revision queue</strong><span>${dueItems.length?dueItems.length+" unit(s) due today or earlier":"No overdue unit reviews"}</span>${dueItems.length?'<ul>'+dueItems.slice(0,4).map(x=>'<li>'+esc(x.u.unit)+' · Paper '+x.u.paper+'</li>').join("")+'</ul>':""}</div>
+ <div class="optional-filter-row"><label>Find a syllabus topic<input id="optionalUnitSearch" type="search" placeholder="Search topics, scholars or keywords…"></label><span id="optionalUnitCount">${filtered.length} of ${units.length} units shown</span></div>
  <div class="optional-paper-tabs" role="group" aria-label="Filter optional paper">
   <button type="button" data-paper="ALL" aria-pressed="${paper==="ALL"}">Both papers</button>
   <button type="button" data-paper="I" aria-pressed="${paper==="I"}">Paper I</button>
@@ -71,9 +83,11 @@ function render(){
  ${subject==="Anthropology"?`
  <div class="optional-source-note"><b>Source checked:</b> UPSC CSE 2026 official notification, Anthropology syllabus, pp. 44–48. <a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open official notification (PDF)</a>. Topic labels below are study-friendly summaries, not a replacement for the official syllabus.</div>
  <div class="optional-unit-list">${filtered.map(u=>`
-  <article class="optional-unit ${progress[subject+":"+u.index]?"is-done":""}">
+  <article class="optional-unit ${progress[subject+":"+u.index]?"is-done":""}" id="optionalUnit-${u.index}" data-unit-card="${u.index}">
    <div class="optional-unit-top"><span class="pill">Paper ${u.paper}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark unit studied</label></div>
    <h3>${esc(u.unit)}</h3>
+   <div class="optional-unit-tools"><label>Learning stage<select data-unit-mastery="${u.index}"><option value="not_started">Not started</option><option value="learning">Learning</option><option value="practised">Practised</option><option value="revision_due">Revision due</option><option value="mastered">Mastered</option></select></label><span class="optional-unit-quiz-meta">${(()=>{const rows=results.filter(x=>x.unit===u.unit);const last=rows[rows.length-1];return rows.length?rows.length+" test(s) · latest "+last.score+"/"+last.maxScore:"No test attempt yet";})()}</span></div>
+   <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?"Review due "+esc(revisions[subject+":"+u.index].dueAt):"Schedule revision"}</button>${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?'<button class="btn" type="button" data-complete-review="'+u.index+'">I reviewed this</button>':""}</div>
    <ul>${u.topics.map(t=>"<li>"+esc(t)+"</li>").join("")}</ul>
    ${u.lesson?`<section class="guided-lesson"><h4>Guided lesson</h4><p class="muted">${esc(u.lesson.objective||"")}</p>${(u.lesson.sections||[]).map((section,n)=>`<article><h5>${n+1}. ${esc(section.heading)}</h5>${(section.explanation||[]).map(p=>`<p>${esc(p)}</p>`).join("")}${section.example?`<p><b>Example:</b> ${esc(section.example)}</p>`:""}</article>`).join("")}${u.lesson.keyTerms?`<h5>Key terms</h5><dl>${u.lesson.keyTerms.map(t=>`<dt><b>${esc(t.term)}</b></dt><dd>${esc(t.meaning)}</dd>`).join("")}</dl>`:""}${u.lesson.scholarLens?`<h5>Scholar perspectives</h5><ul>${u.lesson.scholarLens.map(x=>`<li><b>${esc(x.scholar)}:</b> ${esc(x.idea)}</li>`).join("")}</ul>`:""}${u.lesson.answerPractice?`<h5>Mains answer practice</h5><p>${esc(u.lesson.answerPractice)}</p>`:""}${u.lesson.revisionPrompt?`<h5>Revision prompt</h5><p>${esc(u.lesson.revisionPrompt)}</p>`:""}${u.lesson.answerPractice?`<button class="btn" type="button" data-answer-practice="${u.index}">Open in Mains Writing Pad</button>`:""}</section>`:""}
    <details><summary>Open beginner notes and explanation</summary><div class="optional-notes-body">
@@ -83,7 +97,7 @@ function render(){
    </div></details>
   </article>`).join("")}</div>
  <div id="optionalQuizHost" class="optional-quiz-host" aria-live="polite"></div>
- <p class="muted optional-disclaimer">These are first-pass beginner notes and unit checks. They are not a complete substitute for standard books, the official syllabus or verified previous-year questions. Further subtopic notes and Mains answer tests will be added unit by unit.</p>
+ <p class="muted optional-disclaimer">These are beginner study notes and original unit checks, not official UPSC answers or verified previous-year questions. Cross-check facts with standard books and the official syllabus. The selected language setting is a learning preference; the current lesson text is primarily in English, so a full Tamil translation is not yet available.</p>
  `:`
  <div class="optional-coming-soon">
   <h3>Subject selected — syllabus workspace prepared</h3>
@@ -97,9 +111,16 @@ function render(){
  host.querySelectorAll("[data-unit-done]").forEach(box=>box.addEventListener("change",()=>{
   const next={...current(),progress:{...(current().progress||{})}};
   next.progress[subject+":"+box.dataset.unitDone]=box.checked;
+  const masteryNext={...(next.mastery||{})};masteryNext[current().subject+":"+index]=score===questions.length?"mastered":score/questions.length>=.7?"practised":"revision_due";next.mastery=masteryNext;
+  if(score<questions.length){next.revisionSchedule={...(next.revisionSchedule||{}),[current().subject+":"+index]:{dueAt:dateAfter(1),intervalIndex:0,reviewCount:0,completed:false,updatedAt:attemptedAt,source:"unit_quiz"}};}
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   render();
  }));
+ host.querySelectorAll("[data-unit-mastery]").forEach(select=>{select.value=mastery[subject+":"+select.dataset.unitMastery]||"not_started";select.addEventListener("change",()=>{const next={...current(),mastery:{...(current().mastery||{}),[subject+":"+select.dataset.unitMastery]:select.value}};window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));});});
+ host.querySelectorAll("[data-schedule-review]").forEach(button=>button.addEventListener("click",()=>{const i=Number(button.dataset.scheduleReview),next={...current(),revisionSchedule:{...(current().revisionSchedule||{})}};next.revisionSchedule[subject+":"+i]={dueAt:dateAfter(1),intervalIndex:0,reviewCount:0,completed:false,updatedAt:new Date().toISOString()};next.mastery={...(next.mastery||{}),[subject+":"+i]:"revision_due"};window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));render();}));
+ host.querySelectorAll("[data-complete-review]").forEach(button=>button.addEventListener("click",()=>{const i=Number(button.dataset.completeReview),next={...current(),revisionSchedule:{...(current().revisionSchedule||{})}};const old=next.revisionSchedule[subject+":"+i]||{},step=Math.min(4,Number(old.intervalIndex||0)+1),days=[1,3,7,21,45][step];next.revisionSchedule[subject+":"+i]={...old,intervalIndex:step,reviewCount:Number(old.reviewCount||0)+1,dueAt:dateAfter(days),completed:false,updatedAt:new Date().toISOString()};next.mastery={...(next.mastery||{}),[subject+":"+i]:"practised"};window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));render();}));
+ const search=$("optionalUnitSearch");if(search)search.addEventListener("input",()=>{const q=search.value.trim().toLowerCase();let shown=0;host.querySelectorAll("[data-unit-card]").forEach(card=>{const match=!q||card.textContent.toLowerCase().includes(q);card.hidden=!match;if(match)shown++;});const count=$("optionalUnitCount");if(count)count.textContent=shown+" of "+units.length+" units shown";});
+
  host.querySelectorAll("[data-unit-quiz]").forEach(button=>button.addEventListener("click",()=>startQuiz(Number(button.dataset.unitQuiz))));
  host.querySelectorAll("[data-answer-practice]").forEach(button=>button.addEventListener("click",()=>{
   const selected=activeUnits()[Number(button.dataset.answerPractice)];
