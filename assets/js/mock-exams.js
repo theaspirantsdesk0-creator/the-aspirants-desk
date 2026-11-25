@@ -36,6 +36,7 @@ async function boot(){
   sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle()
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});
+ if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
  await loadPapers();await loadRecent();renderCatalog();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
