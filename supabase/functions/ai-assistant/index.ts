@@ -358,8 +358,8 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
           provider = "Gemini";
         } catch (error) {
           const status = (error as Error & { status?: number }).status;
-          if (GROQ_KEY && (status === 429 || (status !== undefined && status >= 500))) {
-            console.warn("Gemini unavailable for Mains evaluation; trying configured fallback.");
+          if (GROQ_KEY) {
+            console.warn("Gemini Mains evaluation failed" + (status ? " (HTTP " + status + ")" : "") + "; trying configured Groq fallback.");
           } else throw error;
         }
       }
@@ -845,8 +845,8 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
         provider = "Gemini";
       } catch (error) {
         const status = (error as Error & {status?:number}).status;
-        if (GROQ_KEY && (status === 429 || (status !== undefined && status >= 500))) {
-          console.warn("Gemini unavailable; trying configured fallback.");
+        if (GROQ_KEY) {
+          console.warn("Gemini request failed" + (status ? " (HTTP " + status + ")" : "") + "; trying configured Groq fallback.");
         } else {
           throw error;
         }
