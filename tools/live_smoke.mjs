@@ -138,11 +138,17 @@ try {
   if (verifiedTrackerRows < 1 || verifiedTrackerRows > 25) throw new Error('PYQ tracker verified-status filter returned an unexpected row count');
   const trackerStatuses = await page.locator('#pyqTrackerRows .pyq-status').allTextContents();
   if (trackerStatuses.some(value => value.trim() !== 'Verified')) throw new Error('PYQ tracker status filter returned a non-verified row');
+  await page.locator('#pyqTrackerSubject').selectOption({ label: 'Anthropology' });
+  const anthropologyRows = await trackerRows.count();
+  if (anthropologyRows < 1 || anthropologyRows > 25) throw new Error('PYQ tracker optional-subject filter returned an unexpected row count');
+  const anthropologySubjects = await page.locator('#pyqTrackerRows tr td:nth-child(4)').allTextContents();
+  if (anthropologySubjects.some(value => value.trim() !== 'Anthropology')) throw new Error('PYQ tracker optional-subject filter returned a different subject');
   await page.locator('#pyqTrackerSearch').fill('Anthropology');
   if (await trackerRows.count() < 1) throw new Error('PYQ tracker search did not find verified Anthropology paper records');
   await page.locator('#pyqTrackerSearch').fill('');
   await page.locator('#pyqTrackerYear').selectOption('ALL');
   await page.locator('#pyqTrackerStage').selectOption('ALL');
+  await page.locator('#pyqTrackerSubject').selectOption('ALL');
   await page.locator('#pyqTrackerStatus').selectOption('ALL');
   if (!(await page.locator('#pyqTrackerPageInfo').innerText()).includes('of 2,575 matching records')) {
     throw new Error('PYQ tracker reset did not restore the full inventory');
