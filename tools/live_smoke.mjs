@@ -114,6 +114,10 @@ try {
       pyqAudit.invalidQuestions) {
     throw new Error('Published PYQ provenance audit failed: ' + JSON.stringify(pyqAudit));
   }
+  // The PYQ page is intentionally login-gated. Activate its section in the
+  // guest smoke-test DOM so public catalogue rendering/filter behavior can be
+  // tested without bypassing the real navigation/authentication controls.
+  await page.locator('#pyq').evaluate(el => el.classList.add('active'));
   // Verify that the official PDF catalogue filters independently of question records.
   const verifiedDocCards = page.locator('#verifiedPyqDocuments .verified-doc-card');
   await page.locator('#verifiedPyqDocuments').waitFor({ state: 'visible' });
