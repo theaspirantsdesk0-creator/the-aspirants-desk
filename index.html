@@ -1381,6 +1381,20 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <h3 id="sylTitle">1. Core Syllabus Checklist</h3>
       <div class="bar-track"><div class="bar-fill" id="sylBar"></div></div>
       <div class="grid-3" id="sylChecks" style="margin-bottom:1.2rem"></div>
+      <section class="tad-syllabus-progress" aria-labelledby="tadSyllabusProgressTitle">
+        <div class="tad-syllabus-progress-head">
+          <div><h3 id="tadSyllabusProgressTitle">Syllabus progress overview</h3><p class="muted">Completion reflects the checklist you have personally marked. Unmarked topics are not assumed to be started.</p></div>
+          <a class="btn" href="#notes" data-nav="notes">Open chapter notes</a>
+        </div>
+        <div id="tadSyllabusMetrics" class="tad-syllabus-metrics" aria-live="polite"></div>
+        <div class="tad-syllabus-controls">
+          <label for="tadSyllabusFilter">Show topics</label>
+          <select id="tadSyllabusFilter"><option value="all">All topics</option><option value="completed">Completed</option><option value="remaining">Not marked complete</option></select>
+          <input id="tadSyllabusSearch" type="search" placeholder="Find a syllabus area…" aria-label="Search syllabus topics">
+        </div>
+        <div id="tadSyllabusTopicList" class="tad-syllabus-topic-list" aria-live="polite"></div>
+        <div id="tadSyllabusNotesSummary" class="tad-syllabus-notes-summary"></div>
+      </section>
 
       <h3>2. Spaced Repetition Scheduler (1 - 3 - 7 - 21 - 45 Days)</h3>
       <div class="form-grid">
@@ -2863,6 +2877,52 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const tp = sylTopics();
     return Math.round((tp.filter(t => (state.syllabus || []).includes(sylKey(t))).length / tp.length) * 100);
   };
+  function renderSyllabusDetails(tp) {
+    const metrics = $("tadSyllabusMetrics"), list = $("tadSyllabusTopicList"), notes = $("tadSyllabusNotesSummary");
+    if (!metrics || !list || !notes) return;
+    const completed = tp.filter(topic => (state.syllabus || []).includes(sylKey(topic)));
+    const total = tp.length, remaining = total - completed.length;
+    const readRows = Array.isArray(state.read) ? state.read : [];
+    const readBySubject = new Map();
+    readRows.forEach(key => {
+      const subject = String(key).split("|")[0] || "Other";
+      readBySubject.set(subject, (readBySubject.get(subject) || 0) + 1);
+    });
+    const metric = (label, value) => '<div class="tad-syllabus-metric"><strong>' + value + '</strong><span>' + label + '</span></div>';
+    metrics.innerHTML = metric("Syllabus areas", total) + metric("Marked complete", completed.length) + metric("Remaining", remaining) + metric("Chapter notes read", readRows.length);
+    const filter = $("tadSyllabusFilter"), search = $("tadSyllabusSearch");
+    const mode = filter ? filter.value : "all", query = search ? search.value.trim().toLowerCase() : "";
+    const visible = tp.filter(topic => {
+      const done = completed.includes(topic);
+      return (mode === "all" || (mode === "completed" ? done : !done)) && (!query || topic.toLowerCase().includes(query));
+    });
+    list.replaceChildren();
+    if (!visible.length) {
+      const empty = document.createElement("p"); empty.className = "muted";
+      empty.textContent = "No syllabus areas match this filter."; list.append(empty);
+    } else visible.forEach(topic => {
+      const done = completed.includes(topic), row = document.createElement("article");
+      row.className = "tad-syllabus-topic" + (done ? " is-complete" : "");
+      const title = document.createElement("strong"); title.textContent = topic;
+      const status = document.createElement("span"); status.className = "tad-syllabus-status";
+      status.textContent = done ? "Completed (self-marked)" : "Not marked complete";
+      row.append(title, status); list.append(row);
+    });
+    notes.replaceChildren();
+    const noteHeading = document.createElement("h4"); noteHeading.textContent = "Chapter-note reading activity";
+    notes.append(noteHeading);
+    if (!readBySubject.size) {
+      const p = document.createElement("p"); p.className = "muted";
+      p.textContent = "No chapter notes have been marked as read yet. Reading activity will appear here as you use the Notes library.";
+      notes.append(p);
+    } else {
+      const ul = document.createElement("ul");
+      [...readBySubject.entries()].sort((a,b) => b[1]-a[1]).forEach(([subject,count]) => {
+        const li = document.createElement("li"); li.textContent = subject + " · " + count + " chapter(s) marked read"; ul.append(li);
+      });
+      notes.append(ul);
+    }
+  }
   function renderSyllabus() {
     const tp = sylTopics();
     const ttl = $("sylTitle"); if (ttl) ttl.textContent = `1. Core Syllabus Checklist (${selectedExam})`;
@@ -2873,6 +2933,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </label>
     `).join("");
     $("sylBar").style.width = sylPct() + "%";
+    renderSyllabusDetails(tp);
     document.querySelectorAll("#sylChecks input").forEach(cb => {
       cb.addEventListener("change", () => {
         const key = sylKey(tp[+cb.dataset.i]);
@@ -2885,6 +2946,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       });
     });
   }
+  $("tadSyllabusFilter")?.addEventListener("change", () => renderSyllabus());
+  $("tadSyllabusSearch")?.addEventListener("input", () => renderSyllabus());
 
   function renderRevisions() {
     $("revList").innerHTML = (state.revisions || []).map(r =>
