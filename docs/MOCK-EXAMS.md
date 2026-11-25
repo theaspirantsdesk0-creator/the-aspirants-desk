@@ -169,3 +169,8 @@ The Mock Examinations workspace includes a focused MCQ practice builder using ac
 ## Mains Topic Practice Studio
 
 Added a standalone written-answer workspace backed by active written questions in published Mains papers. Learners choose a GS or optional paper and a question; the workspace shows its supplied rubric checklist, counts words, offers a 7-minute timer for 10-mark questions and an 11-minute timer for 15-mark questions, and autosaves drafts to the existing learner-scoped `user_data.payload.mainsDrafts` state. Drafts can be restored, manually saved, or deleted. The existing Anbuu formative evaluator is reused for supported 10/15-mark questions with 150/250-word limits. AI evaluation still requires a configured provider secret and is not an official UPSC score. Browser interaction and cross-device draft restoration require end-to-end validation.
+
+
+## Mains Answer Improvement Dashboard
+
+Added a learner-scoped dashboard based on the existing `user_data.payload.answerEvaluations` and `mainsDrafts` records. It summarises saved evaluations, saved drafts, recurring priority weaknesses, repeated strengths, subject-wise practice volume and recent feedback. It creates concise practice advice from recorded weakness labels; it does not infer marks or mastery. The dashboard loads directly from the signed-in learner's row and includes a refresh action. AI feedback remains formative and depends on configured provider credentials.
