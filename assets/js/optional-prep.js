@@ -58,7 +58,7 @@ function render(){
  <div class="optional-prep-stats">
   <div><b>${subjectCount}</b><span>Official subject/literature choices</span></div>
   <div><b>2</b><span>Optional papers</span></div>
-  <div><b>${percent}%</b><span>Mapped topic progress</span></div>
+  <div><b>${percent}%</b><span>Units studied</span></div>
  </div>
  <div class="optional-progress-track"><span style="width:${percent}%"></span></div>
  <div class="optional-paper-tabs" role="group" aria-label="Filter optional paper">
@@ -70,7 +70,7 @@ function render(){
  <div class="optional-source-note"><b>Source checked:</b> UPSC CSE 2026 official notification, Anthropology syllabus, pp. 44–48. <a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open official notification (PDF)</a>. Topic labels below are study-friendly summaries, not a replacement for the official syllabus.</div>
  <div class="optional-unit-list">${filtered.map(u=>`
   <article class="optional-unit ${progress[subject+":"+u.index]?"is-done":""}">
-   <div class="optional-unit-top"><span class="pill">Paper ${u.paper}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark mapped</label></div>
+   <div class="optional-unit-top"><span class="pill">Paper ${u.paper}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark unit studied</label></div>
    <h3>${esc(u.unit)}</h3>
    <ul>${u.topics.map(t=>"<li>"+esc(t)+"</li>").join("")}</ul>
    ${u.lesson?`<section class="guided-lesson"><h4>Guided lesson</h4><p class="muted">${esc(u.lesson.objective||"")}</p>${(u.lesson.sections||[]).map((section,n)=>`<article><h5>${n+1}. ${esc(section.heading)}</h5>${(section.explanation||[]).map(p=>`<p>${esc(p)}</p>`).join("")}${section.example?`<p><b>Example:</b> ${esc(section.example)}</p>`:""}</article>`).join("")}${u.lesson.keyTerms?`<h5>Key terms</h5><dl>${u.lesson.keyTerms.map(t=>`<dt><b>${esc(t.term)}</b></dt><dd>${esc(t.meaning)}</dd>`).join("")}</dl>`:""}${u.lesson.scholarLens?`<h5>Scholar perspectives</h5><ul>${u.lesson.scholarLens.map(x=>`<li><b>${esc(x.scholar)}:</b> ${esc(x.idea)}</li>`).join("")}</ul>`:""}${u.lesson.answerPractice?`<h5>Mains answer practice</h5><p>${esc(u.lesson.answerPractice)}</p>`:""}${u.lesson.revisionPrompt?`<h5>Revision prompt</h5><p>${esc(u.lesson.revisionPrompt)}</p>`:""}</section>`:""}
@@ -107,7 +107,12 @@ function startQuiz(index){
  activeQuiz={index,questions};
  host.innerHTML='<section class="card optional-quiz-card"><h3>Unit check: '+esc(unit.unit)+'</h3><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'" required> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
  $("optionalQuizForm").addEventListener("submit",async event=>{
-  event.preventDefault();const fd=new FormData(event.currentTarget);let score=0;
+  event.preventDefault();
+  const form=event.currentTarget;
+  const submitButton=form.querySelector('button[type="submit"]');
+  if(submitButton&&submitButton.disabled)return;
+  if(submitButton)submitButton.disabled=true;
+  const fd=new FormData(form);let score=0;
   const explanations=questions.map((q,i)=>{const got=Number(fd.get("q"+i));const ok=got===q.a;if(ok)score++;return '<p><b>Q'+(i+1)+': '+(ok?"Correct":"Review")+'.</b> '+esc(q.w)+'</p>';});
   const attemptedAt=new Date().toISOString();
   const next={...current(),quizResults:[...(Array.isArray(current().quizResults)?current().quizResults:[]),{
@@ -116,17 +121,22 @@ function startQuiz(index){
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   const resultHost=$("optionalQuizResult");
   resultHost.innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p>';
+  const status=$("optionalQuizSaveStatus");
   const context=window.DESK_AUTH_CONTEXT;
-  if(context&&context.user&&context.supabase){
-   const {error}=await context.supabase.from("test_results").insert({
-    user_id:context.user.id,exam:"UPSC CSE",test_name:"Optional — "+(current().subject||"Anthropology")+" — "+unit.unit,
-    score,max_score:questions.length,correct_count:score,wrong_count:questions.length-score,skipped_count:0
-   });
-   const status=$("optionalQuizSaveStatus");
-   if(status)status.textContent=error?"Result is saved in your account payload; test-history sync will retry on your next save.":"Result saved to your private account test history.";
+  if(context&&context.user&&context.user.id&&context.supabase&&typeof context.supabase.from==="function"){
+   try{
+    const {error}=await context.supabase.from("test_results").insert({
+     user_id:context.user.id,exam:"UPSC CSE",test_name:"Optional — "+(current().subject||"Anthropology")+" — "+unit.unit,
+     score,max_score:questions.length,correct_count:score,wrong_count:questions.length-score,skipped_count:0
+    });
+    if(error)throw error;
+    if(status)status.textContent="Result saved to your private account test history.";
+   }catch(error){
+    console.warn("Optional quiz history sync failed:",error&&error.message?error.message:error);
+    if(status)status.textContent="Attempt remains in this browser's optional-subject record; the separate private test-history entry could not be confirmed. Check your connection before your next attempt.";
+   }
   }else{
-   const status=$("optionalQuizSaveStatus");
-   if(status)status.textContent="Result saved on this device. Sign in to sync it to your private account.";
+   if(status)status.textContent="Attempt recorded in this browser only. The private account test history was not updated because you are not signed in.";
   }
  });
  host.scrollIntoView({behavior:"smooth",block:"start"});
