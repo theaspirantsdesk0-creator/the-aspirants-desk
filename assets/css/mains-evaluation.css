@@ -1,0 +1,28 @@
+.mains-evaluation{margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.mains-evaluation-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.mains-evaluation-heading h3{margin:.3rem 0}
+.mains-evaluation-heading p,.mains-evaluation-status{margin:.35rem 0;color:var(--muted);font-size:.9rem}
+.mains-evaluation-status{padding:.65rem .75rem;border-radius:9px;background:var(--surface-alt)}
+.mains-evaluation-status.is-error{color:var(--bad)}
+.mains-evaluation-status.is-success{color:var(--ok)}
+.mains-evaluation-score{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-alt)}
+.mains-evaluation-score strong{font-size:1.8rem;letter-spacing:-.04em}
+.mains-evaluation-score small{display:block;color:var(--muted)}
+.mains-evaluation-rubric{display:grid;gap:.65rem;margin:.8rem 0}
+.mains-evaluation-criterion{padding:.75rem;border:1px solid var(--line);border-radius:10px}
+.mains-evaluation-criterion-head{display:flex;justify-content:space-between;gap:.5rem;font-weight:750}
+.mains-evaluation-bar{height:7px;margin:.5rem 0;background:var(--surface-alt);border-radius:99px;overflow:hidden}
+.mains-evaluation-bar span{display:block;height:100%;background:var(--accent);border-radius:99px}
+.mains-evaluation-criterion p{margin:.25rem 0;color:var(--muted);font-size:.88rem}
+.mains-evaluation-feedback{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:.8rem 0}
+.mains-evaluation-feedback section{padding:.75rem;border:1px solid var(--line);border-radius:10px}
+.mains-evaluation-feedback h4{margin:0 0 .45rem}
+.mains-evaluation-feedback ul{margin:.25rem 0;padding-left:1.2rem}
+.mains-evaluation-feedback li{margin:.25rem 0;font-size:.9rem}
+.mains-evaluation-history{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line)}
+.mains-evaluation-history-list{display:grid;gap:.55rem}
+.mains-evaluation-history-item{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.65rem;border:1px solid var(--line);border-radius:9px}
+.mains-evaluation-history-item p{margin:.15rem 0;font-size:.86rem}
+.mains-evaluation-history-item small{color:var(--muted)}
+.mains-evaluation-disclaimer{font-size:.78rem;color:var(--muted);margin-top:.75rem}
+@media(max-width:620px){.mains-evaluation-feedback{grid-template-columns:1fr}.mains-evaluation-heading{display:grid}.mains-evaluation-heading button{width:100%}.mains-evaluation-history-item{align-items:flex-start}}
