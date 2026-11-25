@@ -211,11 +211,48 @@ async function submitExam(auto){
  try{localStorage.removeItem(DRAFT_PREFIX+attempt.id);}catch(e){}
  renderResult(result,paper);submitting=false;
 }
+async function evaluateMockWrittenAnswer(q,paper,button){
+ const answer=String(answers[q.id]||"").trim();
+ if(answer.length<40){status("Write at least 40 characters before requesting an evaluation.");return;}
+ if(![10,15].includes(Number(q.marks))||![150,250].includes(Number(q.word_limit))){status("This question's mark or word-limit format is not supported by the current evaluator.");return;}
+ button.disabled=true;const old=button.textContent;button.textContent="Evaluating…";
+ const host=$("mockEvalStatus-"+q.id);if(host)host.textContent="Anbuu is reviewing demand coverage, accuracy, structure and analysis…";
+ try{
+  const result=await sb.functions.invoke("ai-assistant",{body:{action:"evaluate_mains_answer",question:q.prompt,answer,subject:paper.title,unit:sectionName(q),maxMarks:Number(q.marks),wordLimit:Number(q.word_limit)}});
+  if(result.error)throw result.error;
+  if(!result.data?.evaluation)throw new Error(result.data?.error||"No evaluation was returned.");
+  const ev=result.data.evaluation;
+  const feedback=JSON.stringify(ev,null,2);
+  const saved=await sb.functions.invoke("ai-assistant",{body:{action:"save_answer_evaluation",subject:paper.title+" · "+sectionName(q),question:q.prompt,answer,wordLimit:Number(q.word_limit),feedback}});
+  if(saved.error||!saved.data?.saved)throw new Error(saved.data?.error||"Evaluation generated but could not be saved.");
+  if(host)host.textContent="Saved to your private answer history · formative estimate "+ev.estimated_mark+"/"+ev.max_marks+" · "+ev.word_count+" words";
+  button.textContent="Evaluation saved";button.disabled=true;
+  loadAnalytics();
+ }catch(error){
+  let message=error?.message||"Evaluation could not be completed.";
+  try{const payload=error?.context&&typeof error.context.clone==="function"?await error.context.clone().json():null;if(payload?.error)message=payload.error;}catch(_){}
+  if(host)host.textContent=message;
+  button.disabled=false;button.textContent=old;
+ }
+}
+function renderMockWrittenEvaluations(paper){
+ const written=questions.filter(q=>q.question_type==="written");
+ if(!written.length)return "";
+ const rows=written.map(q=>{
+  const answer=String(answers[q.id]||"").trim();
+  const id="mockEvalStatus-"+q.id;
+  if(!answer)return '<article class="mock-written-review"><b>Q'+q.question_no+' · '+q.marks+' marks</b><p class="mock-save">No answer submitted for evaluation.</p></article>';
+  return '<article class="mock-written-review"><div><b>Q'+q.question_no+' · '+q.marks+' marks · '+esc(sectionName(q))+'</b><p>'+esc(q.prompt)+'</p><div class="mock-save">'+answer.split(/\\s+/).filter(Boolean).length+' words · Suggested limit '+q.word_limit+'</div></div><button class="btn primary mock-evaluate-answer" type="button" data-evaluate="'+esc(q.id)+'">Evaluate with Anbuu</button><p class="mock-save" id="'+id+'" aria-live="polite">Not yet evaluated.</p></article>';
+ }).join("");
+ return '<section class="mock-written-evaluation"><h3>Written answer evaluation</h3><p class="mock-save">Evaluate each answer separately. Each AI evaluation uses your daily AI allowance. Feedback is formative, not an official UPSC mark.</p>'+rows+'</section>';
+}
 function renderResult(r,paper){
  $("mockExamView").classList.add("mock-hidden");$("mockCatalogView").classList.remove("mock-hidden");$("mockResultView").classList.remove("mock-hidden");
  const a=r.analytics||{},sections=a.section_breakdown||{};
  const pct=Number(r.max_score)>0?(Number(r.score)/Number(r.max_score)*100):0;
  $("mockResultView").innerHTML='<div class="card gold-top"><div class="mock-meta">EXAM REPORT · '+esc(paper?.title||"UPSC mock")+'</div><h2>Examination submitted</h2><div class="mock-result-kpis"><div><b class="kpi-val">'+Number(r.score||0).toFixed(2)+'</b><div class="kpi-lbl">Objective score</div></div><div><b class="kpi-val">'+pct.toFixed(1)+'%</b><div class="kpi-lbl">Score percentage</div></div><div><b class="kpi-val">'+(a.correct||0)+'</b><div class="kpi-lbl">Correct</div></div><div><b class="kpi-val">'+(a.wrong||0)+'</b><div class="kpi-lbl">Incorrect</div></div><div><b class="kpi-val">'+(a.skipped||0)+'</b><div class="kpi-lbl">Unanswered</div></div></div><p class="mock-warning">Written answers: '+(a.written_questions||0)+'. These require a separate rubric-based review; they are not automatically assigned marks.</p><h3>Section-wise performance</h3>'+Object.entries(sections).map(([k,v])=>'<div style="margin:.7rem 0"><b>'+esc(k)+'</b><div class="mock-meta">'+v.correct+' correct · '+v.wrong+' incorrect · '+v.skipped+' unanswered · '+Number(v.score||0).toFixed(2)+' marks</div></div>').join("")+'<div class="mock-actions"><button class="btn primary" id="mockBackCatalog">Back to examinations</button></div></div>';
+ $("mockResultView").querySelector(".card").insertAdjacentHTML("beforeend",renderMockWrittenEvaluations(paper));
+ $("mockResultView").querySelectorAll("[data-evaluate]").forEach(button=>{const q=questions.find(item=>item.id===button.dataset.evaluate);if(q)button.addEventListener("click",()=>evaluateMockWrittenAnswer(q,paper,button));});
  $("mockBackCatalog").addEventListener("click",()=>{$("mockResultView").classList.add("mock-hidden");});
  loadRecent();loadAnalytics();
 }
