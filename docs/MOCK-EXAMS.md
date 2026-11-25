@@ -144,3 +144,8 @@ The home dashboard now provides a private summary of the signed-in learner's sav
 ## Adaptive Daily UPSC Learning Engine
 
 The Anbuu daily-plan workflow now accepts a 90-, 120-, 150- or 180-minute study window and a Tamil + English, English or Tamil response preference. It receives a limited, current-account study context from the home command centre: selected exam and optional subject, syllabus checklist progress, topic mastery counts, due spaced-revision topics, recent mock-attempt count and weakest recorded objective section, plus the existing Anbuu evidence for mistakes, answer feedback, lessons and pending tasks. The prompt directs Anbuu to prioritise evidence-backed needs, fit the chosen duration, avoid adding an unselected optional, avoid duplicating tasks, and save only through the existing server-confirmed plan/task workflow. The context is cleared in guest mode. The browser-side integration and syntax are checked; provider-backed plan generation and real account task persistence still require a configured AI provider and learner test.
+
+
+## UPSC Learning Intelligence Dashboard
+
+The Study Command Centre includes a topic mastery heatmap for the selected exam, a seven-day study-hours chart, a consecutive-day study streak, and a seven-day revision outlook. Mastery tiles read only saved topic statuses; untracked topics remain neutral. Streak and weekly activity use dated session records (`dateKey`). Older sessions containing only a time are excluded rather than assigned guessed dates. New study logs store the local calendar date. Revision outlook uses saved `topicRevisionSchedule.dueAt` dates. The report is account-scoped and does not predict exam scores. Browser interaction and multi-account testing remain necessary.
