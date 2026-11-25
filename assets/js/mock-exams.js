@@ -198,7 +198,7 @@ async function publishPaper(){
  if(!items?.length){status("Cannot publish an empty paper.");return;}
  const expected=expectedFor(code);if(expected&&items.length!==expected){status("This is a full-length paper: "+expected+" questions are required, but "+items.length+" are imported.");return;}
  const mcqIds=items.filter(q=>q.question_type==="mcq").map(q=>q.id);
- if(mcqIds.length){const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id").in("question_id",mcqIds);if(keyError){status(keyError.message);return;}const ready=new Set((keys||[]).map(k=>k.question_id));if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ must have a verified answer key.");return;}}
+ if(mcqIds.length){const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id,correct_answer").in("question_id",mcqIds);if(keyError){status(keyError.message);return;}const ready=new Set((keys||[]).filter(k=>typeof k.correct_answer==="string"&&k.correct_answer.trim()).map(k=>k.question_id));if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ must have a verified answer key.");return;}}
  const {error:e}=await sb.from("mock_exam_papers").update({is_published:true,updated_at:new Date().toISOString()}).eq("id",paper.id);
  if(e){status("Publish failed: "+e.message);return;}
  await loadPapers();renderCatalog();status("Paper published for eligible learners.");
