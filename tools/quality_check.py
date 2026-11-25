@@ -178,8 +178,13 @@ def main() -> int:
                     for section in unit["lesson"].get("sections", []))
                 for unit in guided_units
             ), "Every guided Anthropology lesson section must have a heading and explanatory content")
-            check(all(len(unit.get("test", [])) >= 5 for unit in anthro_units),
-                  "Every Anthropology unit must provide at least five topic-test questions")
+            check(all(len(unit.get("test", [])) >= 10 for unit in anthro_units),
+                  "Every Anthropology unit must provide at least ten topic-test questions")
+            check(all(
+                len({question.get("q", "").strip().casefold() for question in unit.get("test", [])})
+                == len(unit.get("test", []))
+                for unit in anthro_units
+            ), "Anthropology unit tests must not contain duplicate question prompts")
             check(all(
                 all(isinstance(question.get("q"), str) and question.get("q")
                     and isinstance(question.get("o"), list) and len(question.get("o", [])) == 4
@@ -245,8 +250,10 @@ def main() -> int:
         quiz_source = optional_source.split("function startQuiz", 1)[1].split("async function init", 1)[0]
         check("setInterval(updateTimer,1000)" in quiz_source
               and "form.requestSubmit()" in quiz_source
-              and "skippedCount" in quiz_source,
-              "Optional topic tests must have a countdown, submit on timeout and count skipped answers")
+              and "skippedCount" in quiz_source
+              and "const initialMinutes=Math.floor(durationSeconds/60)" in quiz_source
+              and "questions.length+' questions" in quiz_source,
+              "Optional topic tests must have a question-matched countdown, submit on timeout and count skipped answers")
         check('const resultHost=$("optionalQuizHost")' in quiz_source
               and 'resultHost.querySelector("#optionalQuizSaveStatus")' in quiz_source
               and quiz_source.index('window.dispatchEvent(new CustomEvent("tad:optionalPrepSave"')
