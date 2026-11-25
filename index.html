@@ -819,6 +819,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
       <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p></section>
       <section class="tad-weekly-review" aria-labelledby="tadWeeklyReviewTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">WEEKLY REVIEW</span><h3 id="tadWeeklyReviewTitle">Your seven-day preparation review</h3><p class="muted">A review of recorded activity and the next practical priorities.</p></div><button type="button" class="btn" id="tadWeeklyReviewRefresh">Refresh report</button></div><div id="tadWeeklyReviewBody" aria-live="polite"><p class="muted">Loading your private weekly review…</p></div></section>
+      <section class="tad-weakness-engine" aria-labelledby="tadWeaknessTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">TARGETED IMPROVEMENT</span><h3 id="tadWeaknessTitle">Weakness-to-Mastery Engine</h3><p class="muted">Turn recorded mistakes and revision gaps into a manageable practice queue.</p></div><button type="button" class="btn" id="tadWeaknessRefresh">Refresh</button></div><div id="tadWeaknessSummary" class="tad-review-metrics"></div><div id="tadWeaknessQueue" aria-live="polite"><p class="muted">Loading your improvement queue…</p></div><p class="tad-intelligence-foot">Only saved learner records are used. A topic is not labelled weak unless a recorded mistake or saved feedback identifies it.</p></section>
       <div class="tad-command-actions"><a class="btn primary" href="#today" data-nav="today">Start study session</a><a class="btn" href="#tracker" data-nav="tracker">Open preparation tracker</a><a class="btn" href="#anbuu" data-nav="anbuu">Ask Anbuu</a></div>
       <p class="tad-command-foot" id="tadCommandFoot" aria-live="polite">Sign in to see your private study summary.</p>
     </section>
@@ -3848,6 +3849,28 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   }
   if($("tadWeeklyReviewRefresh")&&!$("tadWeeklyReviewRefresh").dataset.bound){$("tadWeeklyReviewRefresh").dataset.bound="1";$("tadWeeklyReviewRefresh").addEventListener("click",()=>renderWeeklyReview());}
 
+  function renderWeaknessEngine() {
+    const summary=$("tadWeaknessSummary"),host=$("tadWeaknessQueue");if(!summary||!host)return;
+    if(!currentUser){summary.replaceChildren();host.textContent="Sign in to view your private improvement queue.";return;}
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const mistakes=Array.isArray(state.mistakes)?state.mistakes:[];
+    const groups=new Map();
+    mistakes.forEach(m=>{const topic=String(m.topic||m.subject||"Unclassified mistake").trim();if(!topic)return;const item=groups.get(topic)||{topic,count:0,questions:[]};item.count++;if(m.q)item.questions.push(m.q);groups.set(topic,item);});
+    const due=Object.entries(state.topicRevisionSchedule||{}).filter(([,x])=>x&&!x.completed&&x.dueAt).map(([key,x])=>({key,...x}));
+    const mastery=state.topicMastery||{};
+    const tasks=[...groups.values()].sort((a,b)=>b.count-a.count).slice(0,8).map(x=>({kind:"mistake",topic:x.topic,count:x.count,detail:x.count+" recorded mistake(s)",key:selectedExam+"::"+x.topic}));
+    due.sort((a,b)=>String(a.dueAt).localeCompare(String(b.dueAt))).slice(0,8).forEach(x=>tasks.push({kind:"revision",topic:x.topic,count:1,detail:"Scheduled review · "+x.dueAt,key:x.key,dueAt:x.dueAt}));
+    const evals=Array.isArray(state.answerEvaluations)?state.answerEvaluations:Array.isArray(state.mainsEvaluations)?state.mainsEvaluations:[];
+    const evaluationSignals=[];
+    evals.slice(0,10).forEach(e=>{const source=[e.priorityWeaknesses,e.weaknesses,e.improvements,e.feedback].filter(Boolean).join(" ");if(source)evaluationSignals.push({subject:e.subject||"Mains answer",text:String(source).slice(0,320)});});
+    summary.innerHTML=[[""+mistakes.length,"Saved mistakes"],[groups.size,"Identified topics"],[due.length,"Scheduled revisions"],[evals.length,"Saved answer evaluations"]].map(x=>'<div class="tad-review-metric"><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></div>').join("");
+    const topicMatches=topic=> (SYLLABI[selectedExam]||[]).find(t=>t.toLowerCase()===topic.toLowerCase());
+    host.innerHTML=(tasks.length?'<h4>Practice and revision queue</h4><ol class="tad-review-priorities">'+tasks.map((x,i)=>{const match=topicMatches(x.topic);const status=mastery[x.key]?.status||"not_started";return '<li><b>'+esc(x.topic)+'</b><span>'+esc(x.detail)+' · Stage: '+esc(status.replace("_"," "))+'</span><div class="tad-weakness-actions"><button type="button" class="btn" data-weakness-practise="'+i+'">Mark practising</button><button type="button" class="btn" data-weakness-revise="'+i+'">Schedule revision</button>'+(match?'<a href="#tracker" data-nav="tracker">Open syllabus topic</a>':'')+'</div></li>';}).join("")+'</ol>':'<p class="muted">No topic-tagged mistakes or active revision tasks are recorded yet. Complete a practice test and tag its topics to build this queue.</p>')+(evaluationSignals.length?'<h4>Answer-writing signals to revisit</h4><ul class="tad-weakness-feedback">'+evaluationSignals.slice(0,4).map(x=>'<li><b>'+esc(x.subject)+'</b><p>'+esc(x.text)+'</p></li>').join("")+'</ul>':'<p class="muted">Saved Mains evaluation feedback will appear here when available.</p>');
+    host.querySelectorAll("[data-weakness-practise]").forEach(btn=>btn.addEventListener("click",()=>{const x=tasks[Number(btn.dataset.weaknessPractise)];if(!x)return;state.topicMastery=state.topicMastery||{};state.topicMastery[x.key]={status:"practised",updatedAt:new Date().toISOString()};saveUserState();renderWeaknessEngine();toast("Practice stage saved. This is your self-assessment.");}));
+    host.querySelectorAll("[data-weakness-revise]").forEach(btn=>btn.addEventListener("click",()=>{const x=tasks[Number(btn.dataset.weaknessRevise)];if(!x)return;state.topicRevisionSchedule=state.topicRevisionSchedule||{};const exact=(SYLLABI[selectedExam]||[]).find(t=>t.toLowerCase()===x.topic.toLowerCase());const topic=exact||x.topic;const key=selectedExam+"::"+topic;state.topicRevisionSchedule[key]={exam:selectedExam,topic,createdAt:new Date().toISOString(),intervalIndex:0,dueAt:tadDateAfterDays(1),reviewCount:0,snoozeCount:0,completed:false};saveUserState();renderWeaknessEngine();toast("A one-day revision reminder has been scheduled.");}));
+  }
+  if($("tadWeaknessRefresh")&&!$("tadWeaknessRefresh").dataset.bound){$("tadWeaknessRefresh").dataset.bound="1";$("tadWeaknessRefresh").addEventListener("click",renderWeaknessEngine);}
+
   async function renderStudyCommandCentre() {
     const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 
@@ -3865,6 +3888,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       if ($("tadRevisionOutlook")) $("tadRevisionOutlook").textContent = "Sign in to view your private revision outlook.";
       if ($("tadIntelligenceFoot")) $("tadIntelligenceFoot").textContent = "Your learning records are private to your signed-in account.";
       if ($("tadWeeklyReviewBody")) $("tadWeeklyReviewBody").textContent = "Sign in to view your private weekly review.";
+      if ($("tadWeaknessSummary")) $("tadWeaknessSummary").replaceChildren();
+      if ($("tadWeaknessQueue")) $("tadWeaknessQueue").textContent = "Sign in to view your private improvement queue.";
       return;
     }
     const topics = SYLLABI[selectedExam] || SYLLABI["UPSC CSE"] || [];
@@ -3909,6 +3934,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     window.dispatchEvent(new CustomEvent("tad:study-context-updated"));
     renderStudyIntelligence(topics, active);
     renderWeeklyReview();
+    renderWeaknessEngine();
     const metric = (value,label) => '<div class="tad-command-kpi"><strong>'+value+'</strong><span>'+label+'</span></div>';
     host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
     const priorities = [];
