@@ -3815,6 +3815,11 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       $("tadCommandPriorities").innerHTML = '<p class="muted">Sign in to load your private priorities.</p>';
       $("tadCommandProgress").innerHTML = '<p class="muted">Your personal progress is hidden in guest mode.</p>';
       $("tadCommandFoot").textContent = "Your learning records are private to your signed-in account.";
+      if ($("tadIntelligenceKpis")) $("tadIntelligenceKpis").innerHTML = '<div><strong>—</strong><span>Study streak</span></div><div><strong>—</strong><span>Study hours · 7 days</span></div><div><strong>—</strong><span>Active study days</span></div><div><strong>—</strong><span>Revisions next 7 days</span></div>';
+      if ($("tadMasteryHeatmap")) $("tadMasteryHeatmap").replaceChildren();
+      if ($("tadWeeklyStudyReport")) $("tadWeeklyStudyReport").textContent = "Sign in to view your private study report.";
+      if ($("tadRevisionOutlook")) $("tadRevisionOutlook").textContent = "Sign in to view your private revision outlook.";
+      if ($("tadIntelligenceFoot")) $("tadIntelligenceFoot").textContent = "Your learning records are private to your signed-in account.";
       return;
     }
     const topics = SYLLABI[selectedExam] || SYLLABI["UPSC CSE"] || [];
