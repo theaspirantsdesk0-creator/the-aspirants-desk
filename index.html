@@ -810,6 +810,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
     </div>
 
+    <section class="tad-command-centre card" id="tadCommandCentre" aria-labelledby="tadCommandTitle">
+      <div class="tad-command-head"><div><span class="eyebrow">YOUR PREPARATION AT A GLANCE</span><h2 id="tadCommandTitle">Personalised Study Command Centre</h2><p class="muted">A live summary of your saved preparation progress and next actions.</p></div><button type="button" class="btn" id="tadCommandRefresh">Refresh overview</button></div>
+      <div class="tad-command-kpis" id="tadCommandKpis" aria-live="polite"><div class="tad-command-kpi"><strong>—</strong><span>Loading your progress</span></div></div>
+      <div class="tad-command-grid">
+        <section><h3>Today's priorities</h3><div id="tadCommandPriorities" class="tad-command-list"><p class="muted">Your priorities will appear after sign-in.</p></div></section>
+        <section><h3>Preparation progress</h3><div id="tadCommandProgress" class="tad-command-list"><p class="muted">Your progress will appear after sign-in.</p></div></section>
+      </div>
+      <div class="tad-command-actions"><a class="btn primary" href="#today" data-nav="today">Start study session</a><a class="btn" href="#tracker" data-nav="tracker">Open preparation tracker</a><a class="btn" href="#anbuu" data-nav="anbuu">Ask Anbuu</a></div>
+      <p class="tad-command-foot" id="tadCommandFoot" aria-live="polite">Sign in to see your private study summary.</p>
+    </section>
+
     <!-- DEVICE-LEVEL DAILY STUDY REMINDERS -->
     <section class="card" id="pushReminderCard" aria-labelledby="pushReminderTitle" style="margin:0 0 1.4rem">
       <div class="grid-2" style="align-items:center;gap:1rem">
@@ -3761,6 +3772,59 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
     `).join("");
   });
+
+  async function renderStudyCommandCentre() {
+    const host = $("tadCommandKpis");
+    if (!host) return;
+    if (!currentUser) {
+      host.innerHTML = '<div class="tad-command-kpi"><strong>—</strong><span>Study hours</span></div><div class="tad-command-kpi"><strong>—</strong><span>Syllabus progress</span></div><div class="tad-command-kpi"><strong>—</strong><span>Revision due</span></div><div class="tad-command-kpi"><strong>—</strong><span>Mock attempts</span></div>';
+      $("tadCommandPriorities").innerHTML = '<p class="muted">Sign in to load your private priorities.</p>';
+      $("tadCommandProgress").innerHTML = '<p class="muted">Your personal progress is hidden in guest mode.</p>';
+      $("tadCommandFoot").textContent = "Your learning records are private to your signed-in account.";
+      return;
+    }
+    const topics = SYLLABI[selectedExam] || SYLLABI["UPSC CSE"] || [];
+    const completed = topics.filter(topic => (state.syllabus || []).includes(sylKey(topic))).length;
+    const pct = topics.length ? Math.round(completed / topics.length * 100) : 0;
+    const schedule = Object.values(state.topicRevisionSchedule || {});
+    const today = new Date(); today.setHours(0,0,0,0);
+    const active = schedule.filter(item => item && item.topic && !item.completed);
+    const due = active.filter(item => item.dueAt && new Date(item.dueAt + "T00:00:00") <= today);
+    const mastery = Object.values(state.topicMastery || {});
+    const mastered = mastery.filter(item => item && item.status === "mastered").length;
+    const evaluations = Array.isArray(state.answerEvaluations) ? state.answerEvaluations.length : Array.isArray(state.mainsEvaluations) ? state.mainsEvaluations.length : 0;
+    let mockCount = 0, recentAttempt = null, weakSection = null;
+    try {
+      if (supabase) {
+        const { data, error } = await supabase.from("mock_exam_attempts").select("id,submitted_at,analytics").eq("user_id", currentUser.id).in("status", ["submitted","expired"]).order("submitted_at", {ascending:false}).limit(20);
+        if (error) throw error;
+        mockCount = (data || []).length;
+        recentAttempt = data && data[0] ? data[0] : null;
+        const totals = {};
+        (data || []).forEach(attempt => Object.entries(attempt.analytics?.section_breakdown || {}).forEach(([name, item]) => {
+          const answered = Number(item.correct || 0) + Number(item.wrong || 0);
+          if (!answered) return;
+          const row = totals[name] || {correct:0,wrong:0};
+          row.correct += Number(item.correct || 0); row.wrong += Number(item.wrong || 0); totals[name] = row;
+        }));
+        weakSection = Object.entries(totals).map(([name,row]) => ({name,accuracy:row.correct/(row.correct+row.wrong)*100})).sort((a,b)=>a.accuracy-b.accuracy)[0] || null;
+      }
+    } catch (error) {
+      console.warn("Command centre mock summary unavailable:", error.message);
+    }
+    const metric = (value,label) => '<div class="tad-command-kpi"><strong>'+value+'</strong><span>'+label+'</span></div>';
+    host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
+    const priorities = [];
+    if (due.length) priorities.push({title:"Complete "+due.length+" due revision(s)",detail:due.slice(0,2).map(x=>x.topic).join(" · "),route:"tracker",label:"Open revision queue"});
+    if (weakSection) priorities.push({title:"Revisit "+weakSection.name,detail:"Lowest recorded MCQ accuracy: "+weakSection.accuracy.toFixed(1)+"%",route:"mock-exams",label:"Review mock analytics"});
+    if (!due.length && !weakSection) priorities.push({title:"Build today's study momentum",detail:"Choose one syllabus topic, study it and schedule its next revision.",route:"today",label:"Start a study session"});
+    if (evaluations === 0) priorities.push({title:"Practise Mains answer writing",detail:"Save a rubric-based answer evaluation to begin tracking writing progress.",route:"mains",label:"Open answer writing"});
+    $("tadCommandPriorities").innerHTML = priorities.slice(0,3).map(item=>'<article class="tad-command-item"><div><strong>'+item.title+'</strong><p class="muted">'+item.detail+'</p></div><a class="btn" href="#'+item.route+'" data-nav="'+item.route+'">'+item.label+'</a></article>').join("");
+    if (!priorities.length) $("tadCommandPriorities").innerHTML = '<p class="muted">No urgent revision priority is recorded. Continue your planned study session.</p>';
+    const optional = state.optionalPrep?.subject || state.optionalPrep?.optionalSubject || "Not selected";
+    $("tadCommandProgress").innerHTML = '<div class="tad-command-item"><div><strong>'+selectedExam+'</strong><p class="muted">'+completed+' of '+topics.length+' syllabus areas marked complete</p></div><b>'+pct+'%</b></div><div class="tad-command-item"><div><strong>Topic mastery</strong><p class="muted">'+mastered+' topics marked mastered</p></div><a class="btn" href="#tracker" data-nav="tracker">Update</a></div><div class="tad-command-item"><div><strong>Optional subject</strong><p class="muted">'+optional+'</p></div><a class="btn" href="#optional" data-nav="optional">Open</a></div><div class="tad-command-item"><div><strong>Answer evaluations</strong><p class="muted">'+evaluations+' saved evaluation(s)</p></div><a class="btn" href="#anbuu" data-nav="anbuu">Review</a></div>';
+    $("tadCommandFoot").textContent = recentAttempt ? "Latest mock submitted "+(recentAttempt.submitted_at ? new Date(recentAttempt.submitted_at).toLocaleDateString() : "recently")+". Your summary is scoped to this account." : "No completed mock attempt is recorded yet. Your summary updates as you study.";
+  }
 
   function renderAllUserModules() {
     renderKPIs();
