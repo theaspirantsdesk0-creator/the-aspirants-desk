@@ -3780,6 +3780,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const host = $("tadCommandKpis");
     if (!host) return;
     if (!currentUser) {
+      window.TAD_STUDY_CONTEXT = null;
       host.innerHTML = '<div class="tad-command-kpi"><strong>—</strong><span>Study hours</span></div><div class="tad-command-kpi"><strong>—</strong><span>Syllabus progress</span></div><div class="tad-command-kpi"><strong>—</strong><span>Revision due</span></div><div class="tad-command-kpi"><strong>—</strong><span>Mock attempts</span></div>';
       $("tadCommandPriorities").innerHTML = '<p class="muted">Sign in to load your private priorities.</p>';
       $("tadCommandProgress").innerHTML = '<p class="muted">Your personal progress is hidden in guest mode.</p>';
@@ -3815,6 +3816,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     } catch (error) {
       console.warn("Command centre mock summary unavailable:", error.message);
     }
+    window.TAD_STUDY_CONTEXT = {
+      exam: selectedExam,
+      optionalSubject: state.optionalPrep?.subject || state.optionalPrep?.optionalSubject || null,
+      syllabus: { total: topics.length, completed, percentage: pct },
+      mastery: { mastered, tracked: mastery.length },
+      revisionDue: due.slice(0,8).map(item => ({ topic: item.topic, dueAt: item.dueAt })),
+      mock: { completedAttempts: mockCount, weakestSection: weakSection ? { name: weakSection.name, accuracy: Number(weakSection.accuracy.toFixed(1)) } : null },
+      answerEvaluations: evaluations,
+      generatedAt: new Date().toISOString()
+    };
+    window.dispatchEvent(new CustomEvent("tad:study-context-updated"));
     const metric = (value,label) => '<div class="tad-command-kpi"><strong>'+value+'</strong><span>'+label+'</span></div>';
     host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
     const priorities = [];
