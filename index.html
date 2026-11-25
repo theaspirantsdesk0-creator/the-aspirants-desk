@@ -648,6 +648,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <link rel="stylesheet" href="assets/css/course-studio.css">
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/pyq-inventory.css">
+  <link rel="stylesheet" href="assets/css/mains-evaluation.css">
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -1250,7 +1251,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         </div>
       </div>
 
-      <textarea id="mainsBox" rows="11" placeholder="Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward..."></textarea>
+      <textarea id="mainsBox" rows="11" maxlength="8000" placeholder="Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward..."></textarea>
+      <section id="mainsEvaluationPanel" class="mains-evaluation" aria-labelledby="mainsEvaluationTitle">
+        <div class="mains-evaluation-heading">
+          <div><span class="eyebrow">ANBUU · ANSWER REVIEW</span><h3 id="mainsEvaluationTitle">Evaluate my Mains answer</h3>
+          <p>Receive a formative review of relevance, accuracy, depth, structure and evidence. AI marks are estimates, not official UPSC scores.</p></div>
+          <button type="button" class="btn primary" id="mainsEvaluateBtn">✦ Evaluate with Anbuu</button>
+        </div>
+        <p id="mainsEvaluationStatus" class="mains-evaluation-status" role="status" aria-live="polite">Sign in with a learner account to evaluate and save your answer history.</p>
+        <div id="mainsEvaluationResult" aria-live="polite"></div>
+        <div class="mains-evaluation-history"><h4>My previous evaluations</h4><div id="mainsEvaluationHistory">Your evaluated answers will appear here after you sign in.</div></div>
+      </section>
 
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-top:.75rem">
         <span id="mainsWordCount" style="font-weight:800;color:var(--muted)">0 / 150 words</span>
@@ -1733,6 +1744,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   const supabase = (window.supabase && sbUrl && sbKey)
     ? window.supabase.createClient(sbUrl, sbKey)
     : null;
+  window.TAD_SUPABASE = supabase;
 
   // Application State
   let currentUser = null;
@@ -1746,6 +1758,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     syllabus: [],
     revisions: [],
     mainsDrafts: [],
+    mainsEvaluations: [],
     mistakes: [],
     masteredCards: [],
     lastScore: null,
@@ -2058,12 +2071,34 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
   }
 
+  window.TAD_CAN_EVALUATE_MAINS = () => Boolean(supabase && currentUser && userProfile.role === "learner");
+  window.TAD_GET_MAINS_EVALUATIONS = () => Array.isArray(state.mainsEvaluations) ? state.mainsEvaluations : [];
+  window.TAD_SAVE_MAINS_EVALUATION = async (record) => {
+    if (!window.TAD_CAN_EVALUATE_MAINS() || !record || typeof record !== "object") return false;
+    state.mainsEvaluations = Array.isArray(state.mainsEvaluations) ? state.mainsEvaluations : [];
+    state.mainsEvaluations.unshift(record);
+    state.mainsEvaluations = state.mainsEvaluations.slice(0, 20);
+    localStorage.setItem("tad_state_v5", JSON.stringify(state));
+    try {
+      const { error } = await supabase.from("user_data").upsert({
+        user_id: currentUser.id, payload: state, updated_at: new Date().toISOString()
+      });
+      if (error) throw error;
+      window.dispatchEvent(new CustomEvent("tad:mainsEvaluationsUpdated"));
+      return true;
+    } catch (error) {
+      console.warn("Mains evaluation cloud save failed:", error.message);
+      window.dispatchEvent(new CustomEvent("tad:mainsEvaluationsUpdated"));
+      return false;
+    }
+  };
+
   function resetUserScopedState() {
     // Never carry a previous account's private notes, drafts, attempts or progress
     // into the next signed-in session on a shared browser/device.
     state = {
       hours: 0, sessions: [], syllabus: [], revisions: [],
-      mainsDrafts: [], mistakes: [], masteredCards: [],
+      mainsDrafts: [], mainsEvaluations: [], mistakes: [], masteredCards: [],
       lastScore: null, learningHub: {}
     };
     window.TAD_OPTIONAL_PREP = null;
@@ -2071,6 +2106,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     localStorage.removeItem("tad.learningHub.v1");
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: {} }));
     renderAllUserModules();
+    window.dispatchEvent(new CustomEvent("tad:mainsStateReady"));
   }
 
   function activateUserScope(userId) {
@@ -2096,6 +2132,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: state.learningHub || {} }));
     renderAllUserModules();
     updateAuthUI();
+    window.dispatchEvent(new CustomEvent("tad:mainsStateReady"));
     if (isOwner()) {
       loadAdminLearners();
       loadAdminMentorManagement();
@@ -3962,6 +3999,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/course-studio.js" defer></script>
   <script src="assets/js/optional-prep.js" defer></script>
   <script src="assets/js/mains-bank.js" defer></script>
+  <script src="assets/js/mains-evaluation.js" defer></script>
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
