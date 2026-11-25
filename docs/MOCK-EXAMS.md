@@ -89,3 +89,8 @@ The full-length Prelims GS Paper I remains a separate publishing task and must n
 ## Published full-length Prelims GS Paper I
 
 **UPSC Prelims · General Studies Paper I** is now published as a 100-question, 120-minute, 200-mark original practice mock. It contains four-option MCQs across Indian Polity and Constitution, Modern Indian History, Geography, Economy and Environment/Ecology. Each item has an answer key, an explanatory note and a source/provenance note. The scoring configuration awards 2 marks for a correct answer and deducts 0.67 marks for an incorrect answer (the one-third penalty rounded to the database's two-decimal precision). Unattempted questions receive no penalty. These are original practice questions, not official UPSC previous-year questions.
+
+
+## Published full-length CSAT Paper II
+
+**UPSC Prelims · CSAT Paper II** is published as an 80-question, 120-minute, 200-mark original practice mock. It contains four sections of 20 questions each: reading comprehension, logical reasoning and analytical ability, basic numeracy, and data interpretation. Each question has four options, an answer key and an explanatory note. The scoring configuration is 2.5 marks for a correct answer and 0.83 marks deducted for an incorrect answer (the one-third penalty rounded to two decimal places); unanswered questions receive no penalty. These are original practice questions, not official UPSC previous-year questions.
