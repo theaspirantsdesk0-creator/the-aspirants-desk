@@ -719,7 +719,7 @@ def main() -> int:
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
         sw_source = sw_file.read_text(encoding="utf-8")
-        check("desk-v6-fresh-assets" in sw_source and "(?:js|css)" in sw_source,
+        check("desk-v7-offline-shell" in sw_source and "(?:js|css)" in sw_source,
               "Service worker must version its cache and refresh scripts/styles while online")
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
