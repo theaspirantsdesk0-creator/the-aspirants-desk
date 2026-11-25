@@ -41,6 +41,8 @@ function activeUnits(){
  return [];
 }
 function render(){
+ if(activeQuiz&&activeQuiz.timerId)clearInterval(activeQuiz.timerId);
+ activeQuiz=null;
  const host=$("optionalSyllabusWorkspace");if(!host||!catalogue)return;
  const pref=current(),subject=pref.subject||"Anthropology",units=activeUnits();
  const language=pref.language||"Tamil + English";
@@ -104,30 +106,42 @@ function startQuiz(index){
  const unit=activeUnits()[index],host=$("optionalQuizHost");if(!unit||!host)return;
  const questions=unit.test||[];
  if(!questions.length){host.textContent="A test for this unit is being prepared.";return;}
- activeQuiz={index,questions};
- host.innerHTML='<section class="card optional-quiz-card"><h3>Unit check: '+esc(unit.unit)+'</h3><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'" required> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
+ if(activeQuiz&&activeQuiz.timerId)clearInterval(activeQuiz.timerId);
+ const durationSeconds=Math.max(180,questions.length*60);
+ const quizRun={index,questions,secondsLeft:durationSeconds,timerId:null,submitted:false};
+ activeQuiz=quizRun;
+ host.innerHTML='<section class="card optional-quiz-card"><h3>Timed unit test: '+esc(unit.unit)+'</h3><p class="optional-quiz-timer" id="optionalQuizTimer" role="timer" aria-live="off">Time remaining: 05:00</p><p class="muted">Five questions · five minutes · unanswered questions count as skipped.</p><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
  $("optionalQuizForm").addEventListener("submit",async event=>{
   event.preventDefault();
+  if(quizRun.submitted)return;
+  quizRun.submitted=true;
+  if(quizRun.timerId){clearInterval(quizRun.timerId);quizRun.timerId=null;}
   const form=event.currentTarget;
   const submitButton=form.querySelector('button[type="submit"]');
-  if(submitButton&&submitButton.disabled)return;
   if(submitButton)submitButton.disabled=true;
-  const fd=new FormData(form);let score=0;
-  const explanations=questions.map((q,i)=>{const got=Number(fd.get("q"+i));const ok=got===q.a;if(ok)score++;return '<p><b>Q'+(i+1)+': '+(ok?"Correct":"Review")+'.</b> '+esc(q.w)+'</p>';});
+  const fd=new FormData(form);let score=0,skippedCount=0;
+  const explanations=questions.map((q,i)=>{
+   const raw=fd.get("q"+i),got=raw===null?null:Number(raw),skipped=got===null,ok=!skipped&&got===q.a;
+   if(skipped)skippedCount++;else if(ok)score++;
+   const verdict=skipped?"Skipped":ok?"Correct":"Review";
+   return '<p><b>Q'+(i+1)+': '+verdict+'.</b> '+esc(q.w)+'</p>';
+  });
+  const wrongCount=questions.length-score-skippedCount;
   const attemptedAt=new Date().toISOString();
   const next={...current(),quizResults:[...(Array.isArray(current().quizResults)?current().quizResults:[]),{
-   subject:current().subject||"Anthropology",paper:unit.paper,unit:unit.unit,score,maxScore:questions.length,attemptedAt
+   subject:current().subject||"Anthropology",paper:unit.paper,unit:unit.unit,score,maxScore:questions.length,
+   wrongCount,skippedCount,attemptedAt
   }].slice(-100)};
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   const resultHost=$("optionalQuizResult");
-  resultHost.innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p>';
+  resultHost.innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4><p>Incorrect: '+wrongCount+' · Skipped: '+skippedCount+'</p>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p>';
   const status=$("optionalQuizSaveStatus");
   const context=window.DESK_AUTH_CONTEXT;
   if(context&&context.user&&context.user.id&&context.supabase&&typeof context.supabase.from==="function"){
    try{
     const {error}=await context.supabase.from("test_results").insert({
      user_id:context.user.id,exam:"UPSC CSE",test_name:"Optional — "+(current().subject||"Anthropology")+" — "+unit.unit,
-     score,max_score:questions.length,correct_count:score,wrong_count:questions.length-score,skipped_count:0
+     score,max_score:questions.length,correct_count:score,wrong_count:wrongCount,skipped_count:skippedCount
     });
     if(error)throw error;
     if(status)status.textContent="Result saved to your private account test history.";
@@ -139,6 +153,21 @@ function startQuiz(index){
    if(status)status.textContent="Attempt recorded in this browser only. The private account test history was not updated because you are not signed in.";
   }
  });
+ const updateTimer=()=>{
+  if(quizRun.submitted)return;
+  const remaining=quizRun.secondsLeft;
+  const timer=$("optionalQuizTimer");
+  if(timer){const minutes=Math.floor(remaining/60),seconds=remaining%60;timer.textContent="Time remaining: "+String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");}
+  if(remaining<=0){
+   if(quizRun.timerId){clearInterval(quizRun.timerId);quizRun.timerId=null;}
+   const form=$("optionalQuizForm");
+   if(form&&activeQuiz===quizRun)form.requestSubmit();
+   return;
+  }
+  quizRun.secondsLeft-=1;
+ };
+ updateTimer();
+ quizRun.timerId=setInterval(updateTimer,1000);
  host.scrollIntoView({behavior:"smooth",block:"start"});
 }
 async function init(){
