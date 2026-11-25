@@ -54,6 +54,10 @@ async function loadAnalytics(){
  const {data:rows,error}=await sb.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",user.id).in("status",["submitted","expired"]).order("submitted_at",{ascending:false}).limit(100);
  if(error){host.innerHTML='<p class="mock-warning">Performance history could not be loaded: '+esc(error.message)+'</p>';return;}
  const attempts=rows||[];
+ const {data:personal,error:personalError}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();
+ if(personalError){host.innerHTML='<p class="mock-warning">Your answer-evaluation history could not be loaded.</p>';return;}
+ const savedEvaluations=Array.isArray(personal?.payload?.answerEvaluations)?personal.payload.answerEvaluations:[];
+
  if(!attempts.length){host.innerHTML='<p class="muted">No completed mock attempts yet. Your reports will appear here after you submit a mock examination.</p>';return;}
  const paperMap=new Map(papers.map(p=>[p.id,p]));
  const enriched=attempts.map(a=>({...a,paper:paperMap.get(a.paper_id)})).filter(a=>a.paper);
@@ -65,6 +69,22 @@ async function loadAnalytics(){
  const scored=enriched.filter(a=>Number(a.max_score)>0&&(Number(a.analytics?.correct||0)+Number(a.analytics?.wrong||0)+Number(a.analytics?.skipped||0))>0);
  const avg=scored.length?scored.reduce((s,a)=>s+Number(a.score||0)/Number(a.max_score)*100,0)/scored.length:null;
  const totalWritten=enriched.reduce((s,a)=>s+Number(a.analytics?.written_questions||0),0);
+ const paperTrends=[...new Map(enriched.map(a=>[a.paper_id,a.paper])).values()].map(p=>{
+  const list=enriched.filter(a=>a.paper_id===p.id).sort((a,b)=>Date.parse(b.submitted_at||"")-Date.parse(a.submitted_at||""));
+  const accuracy=a=>{const x=a?.analytics||{};const n=Number(x.correct||0)+Number(x.wrong||0);return n?Number(x.correct||0)/n*100:null;};
+  const latest=list[0],previous=list[1],now=accuracy(latest),before=accuracy(previous);
+  return {title:p.title,latest:now,previous:before,delta:now!==null&&before!==null?now-before:null,count:list.length};
+ }).filter(x=>x.count>1&&x.latest!==null);
+ const evaluationGroups=new Map();
+ savedEvaluations.filter(x=>x&&typeof x==="object"&&typeof x.feedback==="string").forEach(x=>{
+  const key=String(x.subject||"Practice"),m=x.feedback.match(/FORMATIVE AI ESTIMATE:\s*([0-9.]+)\s*\/\s*([0-9.]+)/i);
+  if(!m)return;const list=evaluationGroups.get(key)||[];list.push({mark:Number(m[1]),max:Number(m[2]),date:x.savedAt||""});evaluationGroups.set(key,list);
+ });
+ const evaluationTrends=[...evaluationGroups.entries()].map(([subject,list])=>{
+  list.sort((a,b)=>Date.parse(b.date||"")-Date.parse(a.date||""));const latest=list[0],previous=list[1];
+  return {subject,latest,previous,delta:previous&&latest.max===previous.max?latest.mark-previous.mark:null,count:list.length};
+ }).filter(x=>x.count>1);
+
  const kpi=(value,label)=>'<div class="mock-analytics-kpi"><b>'+value+'</b><span>'+label+'</span></div>';
  const groupCard=(name,list)=>{
   const byPaper=new Map();
@@ -84,8 +104,12 @@ async function loadAnalytics(){
   });
  });
  const weak=Object.entries(sectionTotals).map(([key,v])=>({...v,key,accuracy:(v.correct+v.wrong)?v.correct/(v.correct+v.wrong)*100:0})).sort((a,b)=>a.accuracy-b.accuracy).slice(0,4);
+
+ const trendRows=paperTrends.map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.title)+'</b><div class="mock-save">Latest objective accuracy '+x.latest.toFixed(1)+'% · previous '+x.previous.toFixed(1)+'%</div></div><div class="mock-analytics-score">'+(x.delta===null?'—':(x.delta>0?'+':'')+x.delta.toFixed(1)+' percentage points')+'</div></div>').join("");
+ const evaluationRows=evaluationTrends.map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.subject)+'</b><div class="mock-save">Latest '+x.latest.mark+'/'+x.latest.max+' · previous '+x.previous.mark+'/'+x.previous.max+'</div></div><div class="mock-analytics-score">'+(x.delta===null?'Different mark scales':(x.delta>0?'+':'')+x.delta.toFixed(1)+' marks')+'</div></div>').join("");
+ const trendHtml='<section class="mock-analytics-group"><h3>Improvement tracker</h3><p class="mock-save">Compares your two most recent attempts for the same paper and saved AI evaluations for the same subject. Changes are descriptive, not proof of mastery.</p>'+(trendRows||'<p class="mock-save">Complete the same paper at least twice to compare objective accuracy.</p>')+(evaluationRows?'<h4>Written-answer evaluation progress</h4>'+evaluationRows:'<p class="mock-save">Save at least two AI evaluations for the same paper/section to compare formative marks.</p>')+'</section>';
  const weakHtml=weak.length?'<section class="mock-analytics-group"><h3>Objective sections to revisit</h3><p class="mock-save">Based only on scored MCQ attempts; written answers are not automatically graded.</p>'+weak.map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.key)+'</b><div class="mock-save">'+x.correct+' correct · '+x.wrong+' incorrect</div></div><div class="mock-analytics-score">'+x.accuracy.toFixed(1)+'% accuracy</div></div>').join("")+'</section>':'<section class="mock-analytics-group"><h3>Section-level review</h3><p class="mock-save">No scored MCQ section data yet. Submit a Prelims mock to generate objective weak-area insights. Mains written responses need rubric-based evaluation.</p></section>';
- host.innerHTML='<div class="mock-analytics-kpis">'+kpi(enriched.length,"Completed attempts")+kpi(scored.length,"Objectively scored attempts")+kpi(avg===null?"—":avg.toFixed(1)+"%","Average objective accuracy")+kpi(totalWritten,"Written responses awaiting review")+'</div>'+groupCard("Prelims",groups.prelims)+groupCard("Mains · General Studies",groups.mains)+groupCard("Anthropology optional",groups.anthropology)+weakHtml+'<p class="mock-save">Reports are scoped to your signed-in account. Only your own attempts are queried.</p>';
+ host.innerHTML='<div class="mock-analytics-kpis">'+kpi(enriched.length,"Completed attempts")+kpi(scored.length,"Objectively scored attempts")+kpi(avg===null?"—":avg.toFixed(1)+"%","Average objective accuracy")+kpi(totalWritten,"Written responses awaiting review")+'</div>'+groupCard("Prelims",groups.prelims)+groupCard("Mains · General Studies",groups.mains)+groupCard("Anthropology optional",groups.anthropology)+trendHtml+weakHtml+'<p class="mock-save">Reports are scoped to your signed-in account. Only your own attempts are queried.</p>';
 }
 async function loadRecent(){
  const {data}=await sb.from("mock_exam_attempts").select("id,paper_id,status,updated_at,expires_at").eq("user_id",user.id).eq("status","in_progress").order("updated_at",{ascending:false}).limit(5);
