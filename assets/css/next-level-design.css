@@ -154,3 +154,16 @@ input,select,textarea{border-radius:10px}
 .tad-mastery-updated{grid-column:2;font-size:.72rem;color:var(--muted)}
 .tad-mastery-title{display:block}
 @media(max-width:560px){.tad-mastery-control{grid-template-columns:1fr}.tad-mastery-updated{grid-column:1}}
+
+/* Automatic topic revision queue */
+.tad-topic-revision-queue{margin-top:1.2rem;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tad-revision-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.55rem;margin:.8rem 0}
+.tad-revision-metric{display:grid;gap:2px;padding:.7rem;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt)}
+.tad-revision-metric strong{font:800 1.3rem "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.tad-revision-metric span,.tad-revision-queue-item small{font-size:.76rem;color:var(--muted)}
+.tad-revision-queue-list{display:grid;gap:.55rem}
+.tad-revision-queue-item{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;padding:.75rem;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt)}
+.tad-revision-queue-item>div:first-child{display:grid;gap:3px;min-width:180px}
+.tad-revision-queue-actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.tad-revision-queue-actions .btn,.tad-topic-schedule-button{font-size:.78rem;padding:.4rem .65rem}
+@media(max-width:620px){.tad-revision-queue-item{align-items:flex-start}.tad-revision-queue-actions{width:100%}}
