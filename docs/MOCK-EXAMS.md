@@ -179,3 +179,8 @@ Added a learner-scoped dashboard based on the existing `user_data.payload.answer
 ## Mains Answer Improvement Dashboard
 
 Expanded the private answer-improvement dashboard to compare saved formative marks within the same subject and mark scale, show average rubric-criterion scores, rank recurring feedback priorities, retain strengths, and provide rewrite exercises for recent evaluated answers. Improved evaluation records now explicitly store priority weakness and strength tags so the dashboard can aggregate them. Rewrite drafts are saved through the existing signed-in learner draft bridge in `user_data.payload.mainsDrafts`. The dashboard reads only the authenticated learner's `user_data` row. AI-provider configuration is still required for new AI evaluations; the dashboard remains useful for reviewing previously saved feedback.
+
+
+## Personalised UPSC Revision Engine
+
+The Weakness-to-Mastery queue now combines the learner's latest 12 completed/expired mock attempts (section accuracy below 65%), saved Mains evaluation feedback, tagged mistakes, active revision dates, and incomplete syllabus topics. It ranks evidence-backed signals first and clearly labels syllabus suggestions as unfinished learning rather than diagnosed weaknesses. Learners can mark a topic as practised or schedule it for the next day; actions are saved in their existing private `user_data.payload` state. Mock and answer signals are fetched for the authenticated user only. The engine gracefully falls back to locally saved signals if cloud reads fail. Browser and multi-account end-to-end tests remain outstanding.
