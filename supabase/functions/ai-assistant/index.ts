@@ -514,8 +514,8 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     const answer = typeof body.answer === "string" ? body.answer.trim() : "";
     const feedback = typeof body.feedback === "string" ? body.feedback.trim() : "";
     const wordLimit = Number(body.wordLimit);
-    if (!subject || subject.length > 120 || !question || question.length > 2500 ||
-        !answer || answer.length > 8000 || !feedback || feedback.length > 12000 ||
+    if (!subject || subject.length > 120 || !question || question.length > 1000 ||
+        !answer || answer.length > 3500 || !feedback || feedback.length > 12000 ||
         !Number.isInteger(wordLimit) || wordLimit < 1 || wordLimit > 1000) {
       return json({ error: "The answer evaluation could not be saved because one or more fields are invalid." }, 400, origin);
     }
