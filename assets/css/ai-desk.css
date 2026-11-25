@@ -177,3 +177,15 @@
 .tad-anbuu-shortcuts button{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 11px;background:rgba(255,255,255,.1);color:#fff;font:700 11px system-ui;cursor:pointer}
 .tad-anbuu-shortcuts button:hover,.tad-anbuu-shortcuts button:focus-visible{background:#fff;color:#111d4a;outline:2px solid #facc15;outline-offset:2px}
 @media(max-width:620px){.tad-anbuu-shortcuts{gap:6px}.tad-anbuu-shortcuts button{padding:7px 9px;font-size:10px}}
+
+/* Persistent Anbuu learning checkpoints */
+.tad-lesson-checkpoint-progress{display:grid;gap:.35rem;margin:.7rem 0 .45rem}
+.tad-lesson-checkpoint-progress>span:first-child{font-size:.7rem;font-weight:800;color:var(--muted)}
+.tad-lesson-progress-track{height:7px;display:block;overflow:hidden;border-radius:999px;background:var(--surface-alt);border:1px solid var(--line)}
+.tad-lesson-progress-track i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .2s ease}
+.tad-lesson-checkpoints{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0}
+.tad-lesson-checkpoint{border:1px solid var(--line);border-radius:9px;padding:.45rem .6rem;background:var(--surface);color:var(--ink);font:700 .68rem "Plus Jakarta Sans",sans-serif;cursor:pointer}
+.tad-lesson-checkpoint.is-complete{border-color:#16a34a;background:#f0fdf4;color:#166534}
+.tad-lesson-checkpoint:disabled{cursor:default;opacity:.75}
+.tad-lesson-recommendation{margin:.4rem 0 .7rem;padding:.6rem .7rem;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--surface-alt);color:var(--muted);font-size:.72rem;line-height:1.5}
+@media(max-width:480px){.tad-lesson-checkpoints{display:grid;grid-template-columns:1fr}.tad-lesson-checkpoint{text-align:left}}
