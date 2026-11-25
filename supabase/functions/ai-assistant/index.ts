@@ -561,7 +561,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
         writtenQuestions: Number(analytics.written_questions ?? 0),
       };
     });
-    const legacyTests = (testsResult.data ?? []).map((t) => ({
+    const legacyTests = (testsResult.data ?? []).filter((t) => !String(t.exam ?? "").startsWith("UPSC Mock Attempt ")).map((t) => ({
       exam: String(t.exam ?? "Practice"), name: String(t.test_name ?? "Practice test"),
       score: Number(t.score ?? 0), maxScore: Number(t.max_score ?? 0),
       correct: Number(t.correct_count ?? 0), wrong: Number(t.wrong_count ?? 0),
@@ -736,7 +736,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
         sections: analytics.section_breakdown ?? {}, date: attempt.submitted_at,
       };
     });
-    const recentTests = [...mockRecentTests, ...(testsResult.data ?? []).map((test) => ({
+    const recentTests = [...mockRecentTests, ...(testsResult.data ?? []).filter((test) => !String(test.exam ?? "").startsWith("UPSC Mock Attempt ")).map((test) => ({
       exam: test.exam, name: test.test_name, score: test.score, max: test.max_score,
       correct: test.correct_count, wrong: test.wrong_count, skipped: test.skipped_count,
       date: test.created_at,
