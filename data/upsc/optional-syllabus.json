@@ -78,7 +78,82 @@
           "a": 1,
           "w": "Holism examines connected dimensions of human life rather than isolating one factor."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Understand what anthropology studies, why it is holistic, and how its major branches connect.",
+        "sections": [
+          {
+            "heading": "Meaning and central focus",
+            "explanation": [
+              "Anthropology is the systematic study of humans: their biological origins, bodies, languages, material pasts, social relationships and cultural meanings. It asks how humans are similar, how they vary, and how human life changes across time and place.",
+              "The subject is not limited to remote communities or ancient societies. Anthropological questions can be asked in villages, cities, hospitals, workplaces, online communities and archaeological sites."
+            ],
+            "example": "A study of food habits may examine nutrition and adaptation, family roles, markets, religious meanings and the history of crops together."
+          },
+          {
+            "heading": "The holistic perspective",
+            "explanation": [
+              "Holism means explaining a human issue by connecting relevant dimensions instead of treating one dimension as the whole explanation. It does not mean studying everything at once; the researcher selects connected evidence relevant to the question.",
+              "A biocultural approach is one example: biological processes and cultural practices influence one another. Environment, institutions, economy and history may also matter."
+            ],
+            "example": "To understand anaemia in a community, a researcher may examine diet, infection, gendered food distribution, income, health services and local beliefs."
+          },
+          {
+            "heading": "Four broad branches",
+            "explanation": [
+              "Social-cultural anthropology studies social organisation, kinship, economy, politics, religion and everyday meaning through contextual research.",
+              "Biological anthropology studies human evolution, primates, genetics, human variation, growth and adaptation.",
+              "Archaeology reconstructs past lifeways from material remains, their context and scientific dating.",
+              "Linguistic anthropology studies language in social life, including identity, power, communication and cultural transmission. These branches overlap in many research projects."
+            ]
+          },
+          {
+            "heading": "Comparative and fieldwork orientation",
+            "explanation": [
+              "Comparison helps identify both shared patterns and context-specific differences. A sound comparison avoids assuming that one society is the universal standard.",
+              "Ethnographic fieldwork commonly involves sustained engagement, observation, interviews, careful recording, informed consent and reflexive attention to the researcher's position."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Holism",
+            "meaning": "An approach that studies connected dimensions of human life."
+          },
+          {
+            "term": "Biocultural",
+            "meaning": "Relating biological processes to cultural practices and environments."
+          },
+          {
+            "term": "Ethnography",
+            "meaning": "A systematic, contextual account based on research with people and their social worlds."
+          },
+          {
+            "term": "Ethnocentrism",
+            "meaning": "Judging another culture using the assumptions or standards of one's own."
+          },
+          {
+            "term": "Cultural relativism",
+            "meaning": "Interpreting cultural practices in their particular context before making comparisons."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "E. B. Tylor",
+            "idea": "An early influential definition of culture as a complex whole; useful historically, though later approaches broadened and criticised early evolutionist frameworks."
+          },
+          {
+            "scholar": "Franz Boas",
+            "idea": "Emphasised historical context, cultural particularity and careful empirical research; challenged simplistic unilinear rankings of cultures."
+          },
+          {
+            "scholar": "Bronisław Malinowski",
+            "idea": "Developed participant observation and a functional approach to institutions and everyday life."
+          }
+        ],
+        "answerPractice": "In 150–200 words, explain the holistic approach of anthropology with one contemporary example. Define holism, connect at least three dimensions, and conclude with why an interdisciplinary approach matters.",
+        "revisionPrompt": "Without looking at the notes, explain the four branches of anthropology and show how one research problem can connect at least two branches."
+      }
     },
     {
       "paper": "I",
@@ -108,7 +183,90 @@
           "a": 0,
           "w": "The synthesis combines Darwinian selection with Mendelian inheritance and population-level genetics."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Explain evolution as a branching population process and distinguish the major ideas used in human evolutionary study.",
+        "sections": [
+          {
+            "heading": "Evolution: populations across generations",
+            "explanation": [
+              "Biological evolution refers to changes in heritable characteristics of populations across generations. Individuals develop during their lifetime; populations evolve over generations.",
+              "Variation arises through processes including mutation and recombination. Inherited variants may become more or less common through natural selection, genetic drift and gene flow."
+            ],
+            "example": "A population's allele frequencies may change when individuals move into or out of it; this is gene flow."
+          },
+          {
+            "heading": "Natural selection and the modern synthesis",
+            "explanation": [
+              "Natural selection occurs when heritable differences are associated with differences in reproductive success in a particular environment. It is not a purposeful process and does not guarantee progress toward complexity.",
+              "The modern evolutionary synthesis connects Darwinian natural selection with Mendelian inheritance and population genetics. It explains evolution through changes in genetic variation within populations."
+            ]
+          },
+          {
+            "heading": "Adaptation and evolutionary patterns",
+            "explanation": [
+              "Adaptation refers to a heritable feature shaped by selection in a particular environment, or the process through which such features become common. A feature's usefulness depends on context.",
+              "Adaptive radiation is diversification from a common ancestral lineage into different ecological niches. Convergent evolution describes similar traits evolving independently under comparable pressures. Mosaic evolution means different traits evolve at different rates."
+            ]
+          },
+          {
+            "heading": "Primates and comparative evidence",
+            "explanation": [
+              "Many primates show grasping hands or feet, forward-facing eyes, relatively flexible behaviour and extended parental care, although these traits vary across groups.",
+              "Comparative anatomy, behaviour, fossils, geological context, archaeology and genetics provide complementary evidence. No single fossil should be treated as the complete story of human origins."
+            ]
+          },
+          {
+            "heading": "Human evolution is branching",
+            "explanation": [
+              "Human evolution is not a straight ladder from one living species to another. Hominin lineages branched, some coexisted, and many became extinct.",
+              "Australopithecines, early Homo, Homo erectus, Neanderthals and Homo sapiens are studied through multiple evidence types. Dates and relationships are revised when new evidence and methods become available."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Natural selection",
+            "meaning": "Differential reproductive success associated with heritable variation."
+          },
+          {
+            "term": "Genetic drift",
+            "meaning": "Random changes in allele frequencies, often strongest in small populations."
+          },
+          {
+            "term": "Gene flow",
+            "meaning": "Movement of alleles between populations through migration and reproduction."
+          },
+          {
+            "term": "Convergent evolution",
+            "meaning": "Independent evolution of similar traits in different lineages."
+          },
+          {
+            "term": "Adaptive radiation",
+            "meaning": "Diversification of a lineage into different ecological niches."
+          },
+          {
+            "term": "Mosaic evolution",
+            "meaning": "Different anatomical or behavioural traits changing at different rates."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Charles Darwin",
+            "idea": "Explained natural selection as a mechanism through which heritable variation can influence reproductive success."
+          },
+          {
+            "scholar": "Gregor Mendel",
+            "idea": "Established principles of particulate inheritance that later became integrated with evolutionary theory."
+          },
+          {
+            "scholar": "Theodosius Dobzhansky",
+            "idea": "Helped connect genetics and evolutionary biology in the modern synthesis."
+          }
+        ],
+        "answerPractice": "Write a 200-word answer: 'Human evolution is a branching process rather than a linear sequence.' Explain with reference to the kinds of evidence anthropologists use.",
+        "revisionPrompt": "Distinguish natural selection, genetic drift and gene flow. Give one sentence on why fossil evidence must be interpreted with geological and archaeological context."
+      }
     },
     {
       "paper": "I",
