@@ -3855,6 +3855,24 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const bars=Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);const k=key(d);return {k,label:d.toLocaleDateString(undefined,{weekday:"short"}),h:week.filter(s=>s.dateKey===k).reduce((n,s)=>n+Math.max(0,Number(s.hrs)||0),0)};});
     const max=Math.max(.5,...bars.map(x=>x.h));
     weekly.innerHTML="<div class='tad-week-bars'>"+bars.map(x=>"<div class='tad-week-day'><div class='tad-week-track'><i style='height:"+Math.round(x.h/max*100)+"%'></i></div><b>"+x.h.toFixed(1)+"h</b><span>"+esc(x.label)+"</span></div>").join("")+"</div><p class='muted'>"+(dated.length?hours.toFixed(1)+" hours across "+active+" active day(s).":"No dated sessions yet. New study logs will populate this report.")+"</p>";
+     const goalHoursEl=$("tadGoalHours"),goalDaysEl=$("tadGoalDays"),goalSave=$("tadGoalSave"),goalProgress=$("tadGoalProgress"),achievementShelf=$("tadAchievementShelf");
+     const savedGoals=state.studyGoals||{weeklyHours:10,activeDays:5};
+     if(goalHoursEl)goalHoursEl.value=String(savedGoals.weeklyHours||10);
+     if(goalDaysEl)goalDaysEl.value=String(savedGoals.activeDays||5);
+     const renderGoals=()=>{
+       const gh=Number(state.studyGoals?.weeklyHours||10),gd=Number(state.studyGoals?.activeDays||5),hp=Math.min(100,Math.round(hours/gh*100)),dp=Math.min(100,Math.round(active/gd*100));
+       if(goalProgress)goalProgress.innerHTML=[["Study time",hours.toFixed(1)+" / "+gh+"h",hp],["Active days",active+" / "+gd+" days",dp]].map(x=>"<div class='tad-goal-row'><div><b>"+x[0]+"</b><span>"+x[1]+"</span></div><div class='tad-goal-track'><i style='width:"+x[2]+"%'></i></div></div>").join("")+"<p>"+(hp>=100&&dp>=100?"Both weekly targets reached. Keep the pace sustainable.":Math.max(0,gh-hours).toFixed(1)+" study hour(s) and "+Math.max(0,gd-active)+" active day(s) remaining in this rolling seven-day window.")+"</p>";
+       const topicCount=topics.filter(t=>(state.syllabus||[]).includes(sylKey(t))).length,lifetimeHours=dated.reduce((n,s)=>n+Math.max(0,Number(s.hrs)||0),0),activeDays=new Set(dated.map(s=>s.dateKey)).size,masteredCount=Object.values(state.topicMastery||{}).filter(x=>x&&x.status==="mastered").length;
+       const badges=[["First study log","Record your first dated study session",dated.length>=1],["Finding rhythm","Study on 3 different recorded days",activeDays>=3],["Weekly regular","Study on 5 different recorded days",activeDays>=5],["Five-hour foundation","Record 5 study hours",lifetimeHours>=5],["Twenty-hour builder","Record 20 study hours",lifetimeHours>=20],["Syllabus starter","Complete 1 syllabus topic",topicCount>=1],["Ten topics completed","Complete 10 syllabus topics",topicCount>=10],["Five mastered topics","Mark 5 topics as mastered",masteredCount>=5]];
+       if(achievementShelf)achievementShelf.innerHTML=badges.map(b=>"<article class='tad-achievement "+(b[2]?"is-unlocked":"")+"'><span class='tad-achievement-icon'>"+(b[2]?"✓":"·")+"</span><div><b>"+esc(b[0])+"</b><small>"+esc(b[1])+"</small></div><em>"+(b[2]?"Unlocked":"In progress")+"</em></article>").join("");
+     };
+     renderGoals();
+     if(goalSave&&!goalSave.dataset.bound){goalSave.dataset.bound="1";goalSave.addEventListener("click",()=>{
+       if(!currentUser){$("tadGoalStatus").textContent="Sign in to save private weekly targets.";return;}
+       state.studyGoals={weeklyHours:Math.max(1,Math.min(40,Number(goalHoursEl.value||10))),activeDays:Math.max(1,Math.min(7,Number(goalDaysEl.value||5)))};
+       saveUserState();$("tadGoalStatus").textContent="Weekly targets saved to your account.";
+     });}
+
     const rows=dueItems.filter(x=>x.dueAt).slice().sort((a,b)=>String(a.dueAt).localeCompare(String(b.dueAt))).slice(0,5);
     outlook.innerHTML=rows.length?"<ul class='tad-outlook-list'>"+rows.map(x=>"<li><strong>"+esc(x.topic)+"</strong><span>"+esc(x.dueAt)+" · "+(new Date(x.dueAt+"T00:00:00")<=today?"Due / overdue":"Upcoming")+"</span></li>").join("")+"</ul>":"<p class='muted'>No active scheduled revisions. Schedule a topic from the syllabus tracker.</p>";
     foot.textContent=dated.length?"Streak and weekly hours use only dated session records. Older time-only logs are excluded; revision outlook uses saved due dates.":"Older time-only logs are excluded. Study streak and weekly history begin with newly logged dated sessions.";
