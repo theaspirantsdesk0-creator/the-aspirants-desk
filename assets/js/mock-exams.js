@@ -236,7 +236,7 @@ async function importPaper(){
   if(rows.some(q=>!q.prompt))throw new Error("Every question needs a prompt.");
   const {data:inserted,error:qe}=await sb.from("mock_exam_questions").insert(rows).select("id,question_no");
   if(qe)throw qe;
-  const keys=inserted.map((q,i)=>({question_id:q.id,correct_answer:raw.questions[i].correct_answer?String(raw.questions[i].correct_answer).toUpperCase():null,explanation:(raw.questions[i].explanation||"")+(raw.questions[i].source?"\\nSource: "+raw.questions[i].source.trim():""),model_answer:raw.questions[i].model_answer||""})).filter((k,i)=>raw.questions[i].question_type==="mcq"||raw.questions[i].model_answer||raw.questions[i].explanation);
+  const keys=inserted.map((q,i)=>({question_id:q.id,correct_answer:raw.questions[i].correct_answer?String(raw.questions[i].correct_answer).toUpperCase():null,explanation:(raw.questions[i].explanation||"")+(raw.questions[i].source?"\nSource: "+raw.questions[i].source.trim():""),model_answer:raw.questions[i].model_answer||""})).filter((k,i)=>raw.questions[i].question_type==="mcq"||raw.questions[i].model_answer||raw.questions[i].explanation);
   if(keys.length){const {error:ke}=await sb.from("mock_exam_answer_keys").insert(keys);if(ke)throw ke;}
   status("Imported "+inserted.length+" questions. Review the paper, then publish it below.");
   $("mockPublishCode").value=p.code;await loadPapers();renderCatalog();
