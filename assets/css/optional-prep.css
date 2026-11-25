@@ -22,3 +22,14 @@
 .mains-bank-meta{display:flex;gap:.4rem;flex-wrap:wrap}
 .mains-bank-note{font-size:.82rem;color:var(--muted)}
 @media(max-width:520px){.mains-bank-controls{grid-template-columns:1fr}}
+
+/* Anthropology learning centre: progress, mastery and revision */
+.optional-prep-stats-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.optional-learning-path,.optional-revision-summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.9rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-alt);margin:.8rem 0}
+.optional-learning-path>div{display:grid;gap:.2rem}.optional-learning-path small,.optional-revision-summary span{color:var(--muted);font-size:.8rem}
+.optional-path-percent{font-size:1.5rem;font-weight:850}
+.optional-revision-summary{display:block}.optional-revision-summary>span{margin-left:.5rem}.optional-revision-summary ul{margin:.5rem 0 0;padding-left:1.2rem}.optional-revision-summary li{margin:.2rem 0;font-size:.82rem}
+.optional-filter-row{display:flex;justify-content:space-between;align-items:end;gap:.8rem;flex-wrap:wrap;margin:1rem 0}.optional-filter-row label{display:grid;gap:.3rem;flex:1;max-width:520px;font-size:.82rem;font-weight:700}.optional-filter-row input{width:100%;padding:.65rem .75rem;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink)}.optional-filter-row>span{font-size:.78rem;color:var(--muted)}
+.optional-unit-tools{display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap;margin:.65rem 0}.optional-unit-tools label{display:flex;align-items:center;gap:.45rem;font-size:.78rem;font-weight:700}.optional-unit-tools select{padding:.45rem .55rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}.optional-unit-quiz-meta{font-size:.76rem;color:var(--muted)}
+.optional-unit-revision{display:flex;gap:.45rem;flex-wrap:wrap;margin:.45rem 0}.optional-unit-revision .btn{font-size:.78rem;padding:.4rem .7rem}
+@media(max-width:650px){.optional-prep-stats-four{grid-template-columns:repeat(2,minmax(0,1fr))}.optional-learning-path,.optional-revision-summary{align-items:flex-start;flex-direction:column}.optional-unit-tools{align-items:flex-start;flex-direction:column}}
