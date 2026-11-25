@@ -55,13 +55,9 @@ function practiceLabel(value){return String(value||"").replace(/[_-]+/g," ").rep
 function initTopicPractice(){
  const paperSel=$("mockPracticePaper"),sectionSel=$("mockPracticeSection"),countSel=$("mockPracticeCount"),startBtn=$("mockPracticeStart");
  if(!paperSel||!sectionSel||!countSel||!startBtn)return;
- const available=papers.filter(p=>p.is_published&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
- const previous=paperSel.value;
- paperSel.innerHTML='<option value="">Choose a published paper</option>'+available.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.title)+'</option>').join("");
- if(available.some(p=>p.id===previous))paperSel.value=previous;
  const refreshSections=async()=>{
   sectionSel.innerHTML='<option value="">Loading sections…</option>';sectionSel.disabled=true;startBtn.disabled=true;
-  const paper=available.find(p=>p.id===paperSel.value);
+  const paper=papers.find(p=>p.id===paperSel.value&&p.is_published);
   if(!paper){sectionSel.innerHTML='<option value="">Choose a section</option>';return;}
   try{
    const {data,error}=await sb.from("mock_exam_questions").select("section_key").eq("paper_id",paper.id).eq("is_active",true).eq("question_type","mcq").order("sort_order");
@@ -72,11 +68,18 @@ function initTopicPractice(){
    practiceStatus(sections.length?"Choose a section and question count.":"This published paper has no MCQ sections available for focused practice.");
   }catch(e){sectionSel.innerHTML='<option value="">Sections unavailable</option>';practiceStatus("Could not load sections: "+e.message);}
  };
- paperSel.addEventListener("change",refreshSections);
- sectionSel.addEventListener("change",()=>{startBtn.disabled=!(paperSel.value&&sectionSel.value);});
- startBtn.addEventListener("click",startTopicPractice);
+ const previous=paperSel.value;
+ const available=papers.filter(p=>p.is_published&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
+ paperSel.innerHTML='<option value="">Choose a published paper</option>'+available.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.title)+'</option>').join("");
+ paperSel.value=available.some(p=>p.id===previous)?previous:"";
+ if(!paperSel.dataset.bound){
+  paperSel.dataset.bound="1";
+  paperSel.addEventListener("change",refreshSections);
+  sectionSel.addEventListener("change",()=>{startBtn.disabled=!(paperSel.value&&sectionSel.value);});
+  startBtn.addEventListener("click",startTopicPractice);
+ }
  if(paperSel.value)refreshSections();
- else if(!available.length)practiceStatus("No published MCQ papers are available for your selected optional-subject setting.");
+ else{sectionSel.innerHTML='<option value="">Choose a section</option>';sectionSel.disabled=true;startBtn.disabled=true;practiceStatus(available.length?"Select a paper to load its available MCQ sections.":"No published MCQ papers are available for your selected optional-subject setting.");}
 }
 async function startTopicPractice(){
  const paper=papers.find(p=>p.id===$("mockPracticePaper")?.value),section=$("mockPracticeSection")?.value;
@@ -127,7 +130,8 @@ async function finishTopicPractice(timeExpired){
  const total=practiceQuestions.length,accuracy=total?Math.round(practiceCorrect/total*100):0;
  const elapsed=Math.max(0,Math.round((Date.now()-practiceStartedAt)/1000));
  const net=practiceQuestions.reduce((n,q)=>n,0);
- const record={topic:(paper?.title||"Practice")+" · "+practiceLabel(section),paperId:paper?.id||null,section,correct:practiceCorrect,wrong:practiceWrong,total,accuracy,elapsedSeconds:elapsed,timeExpired:Boolean(timeExpired)};
+ const skipped=Math.max(0,total-practiceCorrect-practiceWrong);
+ const record={topic:(paper?.title||"Practice")+" · "+practiceLabel(section),paperId:paper?.id||null,section,correct:practiceCorrect,wrong:practiceWrong,skipped,total,accuracy,elapsedSeconds:elapsed,timeExpired:Boolean(timeExpired)};
  let saved=false;try{if(typeof window.TAD_RECORD_TOPIC_PRACTICE==="function")saved=await window.TAD_RECORD_TOPIC_PRACTICE(record);}catch(e){console.warn("Practice history save failed",e);}
  const host=$("mockPracticeSession");if(host)host.innerHTML='<div class="mock-practice-result"><span class="eyebrow">PRACTICE COMPLETE</span><h3>'+accuracy+'% accuracy</h3><div class="mock-analytics-kpis"><div class="mock-analytics-kpi"><b>'+practiceCorrect+'</b><span>Correct</span></div><div class="mock-analytics-kpi"><b>'+practiceWrong+'</b><span>Incorrect</span></div><div class="mock-analytics-kpi"><b>'+total+'</b><span>Total questions</span></div></div><p>'+(timeExpired?"Time expired. ":"")+(accuracy<70?"A revision reminder has been scheduled for tomorrow. Review the explanations and retry this section.":"Good work. Continue with another section or revisit this one later.")+'</p><p class="mock-save">'+(saved?"Your practice result was saved to your private study history.":"Result shown for this session; sign in again if saving was unavailable.")+'</p><button type="button" class="btn primary" id="mockPracticeAgain">Build another set</button></div>';
  practiceStatus("Completed "+(paper?.title||"practice")+" · "+practiceLabel(section));
