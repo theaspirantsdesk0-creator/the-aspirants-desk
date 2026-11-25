@@ -1262,6 +1262,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
       <h3 style="margin:1.2rem 0 .5rem">Saved Mains Answer Drafts</h3>
       <ul class="item-list" id="mainsDraftList"></ul>
+      <section id="mainsBankHost" class="mains-bank" aria-label="Anthropology Mains question bank"><p class="muted">Loading topic-wise Anthropology Mains practice questions…</p></section>
     </div>
   </section>
 
@@ -2667,12 +2668,20 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       window.TAD_ACTIVE_MAINS_PROMPT = {
         subject: String(detail.subject || "Optional"),
         unit: String(detail.unit || ""),
-        prompt: String(detail.prompt)
+        prompt: String(detail.prompt),
+        marks: Number(detail.marks) === 15 ? 15 : 10,
+        wordLimit: Number(detail.wordLimit) || (Number(detail.marks) === 15 ? 250 : 150),
+        durationMinutes: Number(detail.durationMinutes) || (Number(detail.marks) === 15 ? 11 : 7),
+        bankId: String(detail.bankId || ""),
+        framework: String(detail.framework || "")
       };
       $("mainsQuestionPaper").textContent = [window.TAD_ACTIVE_MAINS_PROMPT.subject, window.TAD_ACTIVE_MAINS_PROMPT.unit].filter(Boolean).join(" · ");
       $("mainsQuestionText").textContent = "Q. " + window.TAD_ACTIVE_MAINS_PROMPT.prompt;
-      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.</p>";
+      const suggested = detail.framework || "Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.";
+      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>" + escapeMainsText(suggested) + "</p>";
       $("mainsBox").placeholder = "Write your answer to the optional-subject question shown above…";
+      const marksMode = document.querySelector('.mains-mode[data-words="' + (Number(detail.marks) === 15 ? 250 : 150) + '"]');
+      if (marksMode) marksMode.click();
     } else {
       window.TAD_ACTIVE_MAINS_PROMPT = null;
       $("mainsQuestionPaper").textContent = defaultMainsPaper;
@@ -2772,7 +2781,12 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       date: new Date().toLocaleDateString(), words, text,
       subject: activePrompt.subject || $("mainsQuestionPaper").textContent,
       unit: activePrompt.unit || "",
-      prompt: activePrompt.prompt || fallbackPrompt
+      prompt: activePrompt.prompt || fallbackPrompt,
+      marks: activePrompt.marks || (mainsTargetWords === 250 ? 15 : 10),
+      wordLimit: mainsTargetWords,
+      durationMinutes: activePrompt.durationMinutes || (mainsTargetWords === 250 ? 11 : 7),
+      bankId: activePrompt.bankId || "",
+      framework: activePrompt.framework || ""
     });
     state.mainsDrafts = state.mainsDrafts.slice(0, 100);
     $("mainsBox").value = "";
@@ -3947,6 +3961,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/courses.js" defer></script>
   <script src="assets/js/course-studio.js" defer></script>
   <script src="assets/js/optional-prep.js" defer></script>
+  <script src="assets/js/mains-bank.js" defer></script>
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>

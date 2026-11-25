@@ -844,6 +844,47 @@ def main() -> int:
     check(fallback_upsc_angle("General") == "",
           "Broadly classified news must not receive an unsupported generic UPSC angle")
 
+    # Anthropology Mains question bank must remain a distinct practice resource, not official PYQs.
+    anthro_mains_path = ROOT / "data" / "upsc" / "anthropology-mains-bank.json"
+    mains_bank_script = ROOT / "assets" / "js" / "mains-bank.js"
+    index_path = ROOT / "index.html"
+    if anthro_mains_path.is_file():
+        try:
+            mains_bank = json.loads(anthro_mains_path.read_text(encoding="utf-8"))
+            mains_questions = mains_bank.get("questions", [])
+            check(len(mains_bank.get("units", [])) == 15 and len(mains_questions) == 30,
+                  "Anthropology Mains bank must cover 15 units with 30 practice prompts")
+            check(all(q.get("marks") in (10, 15)
+                      and q.get("wordLimit") == (150 if q.get("marks") == 10 else 250)
+                      and q.get("durationMinutes") == (7 if q.get("marks") == 10 else 11)
+                      and q.get("prompt") and q.get("framework") and q.get("unit")
+                      for q in mains_questions),
+                  "Anthropology Mains prompts must include valid mark, word, time and framework metadata")
+            check(len({q.get("id") for q in mains_questions}) == len(mains_questions),
+                  "Anthropology Mains question IDs must be unique")
+            check("not official UPSC PYQs" in mains_bank.get("sourceLabel", ""),
+                  "Anthropology Mains practice bank must be clearly distinguished from official PYQs")
+        except (OSError, json.JSONDecodeError) as exc:
+            check(False, f"Anthropology Mains bank could not be parsed: {exc}")
+    check(mains_bank_script.is_file(), "Anthropology Mains bank renderer is missing")
+    if mains_bank_script.is_file():
+        mains_js = mains_bank_script.read_text(encoding="utf-8")
+        check('data/upsc/anthropology-mains-bank.json' in mains_js
+              and 'tad:mainsPromptSelected' in mains_js
+              and 'escapeHTML' in mains_js,
+              "Mains bank must load its data safely and connect questions to the writing pad")
+    if index_path.is_file():
+        index_html = index_path.read_text(encoding="utf-8")
+        check('id="mainsBankHost"' in index_html
+              and 'assets/js/mains-bank.js' in index_html
+              and 'detail.framework' in index_html
+              and 'bankId: activePrompt.bankId' in index_html,
+              "Mains writing pad must render the bank and preserve question frameworks in saved drafts")
+    sw_source_for_mains = (ROOT / "sw.js").read_text(encoding="utf-8") if (ROOT / "sw.js").is_file() else ""
+    check("assets/js/mains-bank.js" in sw_source_for_mains
+          and "data/upsc/anthropology-mains-bank.json" in sw_source_for_mains,
+          "Service worker must cache the Mains bank script and question data")
+
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
     if ERRORS:
