@@ -189,12 +189,46 @@ function bindControls(){
  $("mockRefreshBtn").addEventListener("click",async()=>{await loadPapers();renderCatalog();});
  $("mockImportBtn").addEventListener("click",importPaper);
 }
+function validateImport(raw){
+ if(!raw||typeof raw!=="object"||Array.isArray(raw))throw new Error("Paper JSON must be an object.");
+ if(typeof raw.code!=="string"||!/^[A-Z0-9][A-Z0-9-]{2,79}$/.test(raw.code.trim()))throw new Error("Use a paper code containing 3–80 uppercase letters, numbers or hyphens.");
+ if(typeof raw.title!=="string"||raw.title.trim().length<5||raw.title.trim().length>160)throw new Error("Paper title must contain 5–160 characters.");
+ if(!["prelims","mains"].includes(raw.exam_stage))throw new Error("exam_stage must be prelims or mains.");
+ if(typeof raw.paper_type!=="string"||!raw.paper_type.trim())throw new Error("paper_type is required.");
+ if(!Number.isInteger(Number(raw.duration_minutes))||Number(raw.duration_minutes)<15||Number(raw.duration_minutes)>360)throw new Error("Duration must be between 15 and 360 minutes.");
+ if(!Number.isFinite(Number(raw.total_marks))||Number(raw.total_marks)<=0||Number(raw.total_marks)>1000)throw new Error("total_marks must be greater than 0 and at most 1000.");
+ if(!Array.isArray(raw.questions)||!raw.questions.length||raw.questions.length>200)throw new Error("Provide 1–200 questions.");
+ const expected=expectedFor(raw.code.trim());
+ if(expected&&raw.questions.length!==expected)throw new Error("This full-length paper requires exactly "+expected+" questions before import.");
+ const numbers=new Set();
+ raw.questions.forEach((q,i)=>{
+  if(!q||typeof q!=="object"||typeof q.prompt!=="string"||q.prompt.trim().length<15||q.prompt.length>6000)throw new Error("Question "+(i+1)+": prompt must contain 15–6000 characters.");
+  const no=Number(q.question_no??i+1);
+  if(!Number.isInteger(no)||no<1||numbers.has(no))throw new Error("Question numbers must be unique positive integers (problem at item "+(i+1)+").");
+  numbers.add(no);
+  if(!["mcq","written"].includes(q.question_type))throw new Error("Question "+(i+1)+": question_type must be mcq or written.");
+  if(!Number.isFinite(Number(q.marks))||Number(q.marks)<=0||Number(q.marks)>100)throw new Error("Question "+(i+1)+": marks must be greater than 0 and at most 100.");
+  if(!Number.isFinite(Number(q.negative_marks??0))||Number(q.negative_marks??0)<0||Number(q.negative_marks??0)>Number(q.marks))throw new Error("Question "+(i+1)+": invalid negative_marks.");
+  if(typeof q.source!=="string"||q.source.trim().length<5||q.source.trim().length>500)throw new Error("Question "+(i+1)+": add a source/provenance note (official source or Original practice question).");
+  if(q.question_type==="mcq"){
+   if(!Array.isArray(q.options)||q.options.length!==4)throw new Error("Question "+(i+1)+": MCQs need exactly four options.");
+   const keys=q.options.map(o=>String(o?.key||"").toUpperCase()).sort();
+   if(keys.join(",")!=="A,B,C,D"||q.options.some(o=>typeof o.text!=="string"||!o.text.trim()))throw new Error("Question "+(i+1)+": provide non-empty A, B, C and D options.");
+   if(!["A","B","C","D"].includes(String(q.correct_answer||"").toUpperCase()))throw new Error("Question "+(i+1)+": add a valid correct_answer.");
+   if(typeof q.explanation!=="string"||q.explanation.trim().length<20)throw new Error("Question "+(i+1)+": add an explanation of at least 20 characters.");
+  }else{
+   if(!Number.isInteger(Number(q.word_limit))||Number(q.word_limit)<50||Number(q.word_limit)>1000)throw new Error("Question "+(i+1)+": written questions need a 50–1000 word_limit.");
+   if(!Array.isArray(q.rubric)||q.rubric.length<2||q.rubric.some(v=>typeof v!=="string"||!v.trim()))throw new Error("Question "+(i+1)+": written questions need at least two rubric points.");
+  }
+ });
+}
+
 async function importPaper(){
  if(!admin()){status("Only the owner/admin can publish papers.");return;}
  try{
   const raw=JSON.parse($("mockImportJson").value);
-  if(!raw.code||!raw.title||!Array.isArray(raw.questions)||!raw.questions.length)throw new Error("JSON needs code, title and a non-empty questions array.");
-  const {data:p,error:pe}=await sb.from("mock_exam_papers").upsert({code:raw.code,title:raw.title,exam_stage:raw.exam_stage||"mains",paper_type:raw.paper_type||raw.code,optional_subject:raw.optional_subject||null,duration_minutes:Number(raw.duration_minutes||180),total_marks:Number(raw.total_marks||250),is_published:false,sections:raw.sections||[],created_by:user.id},{onConflict:"code"}).select().single();
+  validateImport(raw);
+  const {data:p,error:pe}=await sb.from("mock_exam_papers").upsert({code:raw.code.trim(),title:raw.title.trim(),exam_stage:raw.exam_stage,paper_type:raw.paper_type.trim(),optional_subject:raw.optional_subject||null,duration_minutes:Number(raw.duration_minutes),total_marks:Number(raw.total_marks),is_published:false,sections:raw.sections||[],created_by:user.id},{onConflict:"code"}).select().single();
   if(pe)throw pe;
   const old=await sb.from("mock_exam_questions").select("id").eq("paper_id",p.id);
   if(old.data?.length){const ids=old.data.map(x=>x.id);await sb.from("mock_exam_answer_keys").delete().in("question_id",ids);await sb.from("mock_exam_questions").delete().eq("paper_id",p.id);}
@@ -202,7 +236,7 @@ async function importPaper(){
   if(rows.some(q=>!q.prompt))throw new Error("Every question needs a prompt.");
   const {data:inserted,error:qe}=await sb.from("mock_exam_questions").insert(rows).select("id,question_no");
   if(qe)throw qe;
-  const keys=inserted.map((q,i)=>({question_id:q.id,correct_answer:raw.questions[i].correct_answer??null,explanation:raw.questions[i].explanation||"",model_answer:raw.questions[i].model_answer||""})).filter((k,i)=>raw.questions[i].correct_answer!==undefined||raw.questions[i].explanation||raw.questions[i].model_answer);
+  const keys=inserted.map((q,i)=>({question_id:q.id,correct_answer:raw.questions[i].correct_answer?String(raw.questions[i].correct_answer).toUpperCase():null,explanation:(raw.questions[i].explanation||"")+(raw.questions[i].source?"\\nSource: "+raw.questions[i].source.trim():""),model_answer:raw.questions[i].model_answer||""})).filter((k,i)=>raw.questions[i].question_type==="mcq"||raw.questions[i].model_answer||raw.questions[i].explanation);
   if(keys.length){const {error:ke}=await sb.from("mock_exam_answer_keys").insert(keys);if(ke)throw ke;}
   status("Imported "+inserted.length+" questions. Review the paper, then publish it below.");
   $("mockPublishCode").value=p.code;await loadPapers();renderCatalog();
@@ -212,12 +246,21 @@ async function publishPaper(){
  if(!admin())return;
  const code=$("mockPublishCode").value.trim();if(!code)return;
  const paper=papers.find(p=>p.code===code);if(!paper){status("Import the paper first.");return;}
- const {data:items,error}=await sb.from("mock_exam_questions").select("id,question_type").eq("paper_id",paper.id).eq("is_active",true);
+ const {data:items,error}=await sb.from("mock_exam_questions").select("id,question_no,question_type,prompt,options,marks,word_limit,rubric").eq("paper_id",paper.id).eq("is_active",true);
  if(error){status(error.message);return;}
  if(!items?.length){status("Cannot publish an empty paper.");return;}
  const expected=expectedFor(code);if(expected&&items.length!==expected){status("This is a full-length paper: "+expected+" questions are required, but "+items.length+" are imported.");return;}
+ const invalidWritten=items.filter(q=>q.question_type==="written"&&(!Number.isInteger(Number(q.word_limit))||!Array.isArray(q.rubric)||q.rubric.length<2));
+ const invalidTypes=items.filter(q=>!["mcq","written"].includes(q.question_type));
+ if(invalidWritten.length||invalidTypes.length){status("Cannot publish: check written word limits, written rubrics and question types.");return;}
  const mcqIds=items.filter(q=>q.question_type==="mcq").map(q=>q.id);
- if(mcqIds.length){const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id,correct_answer").in("question_id",mcqIds);if(keyError){status(keyError.message);return;}const ready=new Set((keys||[]).filter(k=>typeof k.correct_answer==="string"&&k.correct_answer.trim()).map(k=>k.question_id));if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ must have a verified answer key.");return;}}
+ if(mcqIds.length){
+  const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id,correct_answer,explanation").in("question_id",mcqIds);
+  if(keyError){status(keyError.message);return;}
+  const ready=new Map((keys||[]).filter(k=>typeof k.correct_answer==="string"&&k.correct_answer.trim()&&typeof k.explanation==="string"&&k.explanation.trim().length>=20).map(k=>[k.question_id,k]));
+  if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ needs an answer key and an explanation.");return;}
+  if([...ready.values()].some(k=>!k.explanation.includes("Source:"))){status("Cannot publish: add a Source: provenance note to every MCQ explanation.");return;}
+ }
  const {error:e}=await sb.from("mock_exam_papers").update({is_published:true,updated_at:new Date().toISOString()}).eq("id",paper.id);
  if(e){status("Publish failed: "+e.message);return;}
  await loadPapers();renderCatalog();status("Paper published for eligible learners.");
