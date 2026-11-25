@@ -222,7 +222,20 @@ async function evaluateMockWrittenAnswer(q,paper,button){
   if(result.error)throw result.error;
   if(!result.data?.evaluation)throw new Error(result.data?.error||"No evaluation was returned.");
   const ev=result.data.evaluation;
-  const feedback=JSON.stringify(ev,null,2);
+  const list=(items)=>Array.isArray(items)&&items.length?items.map(item=>"• "+String(item)).join("\\n"):"• None recorded";
+  const feedback=[
+   "FORMATIVE AI ESTIMATE: "+ev.estimated_mark+"/"+ev.max_marks,
+   "Overall: "+String(ev.overall_feedback||""),
+   "Word count: "+ev.word_count+" / "+ev.word_limit,
+   "RUBRIC:",
+   ...(Array.isArray(ev.criteria)?ev.criteria.map(row=>row.name+": "+row.score+"/"+row.max_score+" — "+row.feedback):[]),
+   "STRENGTHS:",list(ev.strengths),
+   "IMPROVEMENTS:",list(ev.improvements),
+   "MISSING POINTS:",list(ev.missing_points),
+   "FACTUAL CAUTIONS:",list(ev.factual_cautions),
+   "NEXT PRACTICE:",list(ev.rewrite_plan),
+   "AI-generated formative feedback; not an official UPSC score."
+  ].join("\\n");
   const saved=await sb.functions.invoke("ai-assistant",{body:{action:"save_answer_evaluation",subject:paper.title+" · "+sectionName(q),question:q.prompt,answer,wordLimit:Number(q.word_limit),feedback}});
   if(saved.error||!saved.data?.saved)throw new Error(saved.data?.error||"Evaluation generated but could not be saved.");
   if(host)host.textContent="Saved to your private answer history · formative estimate "+ev.estimated_mark+"/"+ev.max_marks+" · "+ev.word_count+" words";
