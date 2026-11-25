@@ -291,6 +291,18 @@ Deno.serve(async (req: Request) => {
   let body: Record<string, unknown>;
   try { body = await req.json(); } catch { return json({ error: "Invalid JSON request." }, 400, origin); }
 
+  if (body.action === "get_ai_status") {
+    if (profile.role !== "admin") return json({ error: "AI configuration status is available to the site owner only." }, 403, origin);
+    return json({
+      configured: Boolean(GEMINI_KEY || GROQ_KEY),
+      providers: { gemini: Boolean(GEMINI_KEY), groq: Boolean(GROQ_KEY) },
+      models: { gemini: GEMINI_MODEL, groq: GROQ_MODEL },
+      message: GEMINI_KEY || GROQ_KEY
+        ? "At least one AI provider secret is configured."
+        : "No AI provider secret is configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase Edge Function Secrets."
+    }, 200, origin);
+  }
+
   if (body.action === "evaluate_mains_answer") {
     if (profile.role !== "learner") return json({ error: "Mains answer evaluation is available to learner accounts only." }, 403, origin);
     const question = typeof body.question === "string" ? body.question.trim() : "";
