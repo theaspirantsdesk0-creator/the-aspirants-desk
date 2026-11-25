@@ -117,20 +117,33 @@ function studiedToday(row: UserDataRow | null, date: string, timezone: string): 
     || savedDraftToday;
 }
 
-function dueRevisionCounts(row: MentorStateRow | null, date: string): { due: number; overdue: number } {
+function dueRevisionCounts(mentor: MentorStateRow | null, activity: UserDataRow | null, date: string): { due: number; overdue: number } {
   let due = 0;
   let overdue = 0;
-  const tasks = Array.isArray(row?.pending_tasks) ? row.pending_tasks : [];
+  const addDueDate = (dueDate: unknown, pending: boolean) => {
+    if (!pending || typeof dueDate !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate)) return;
+    const parsed = new Date(dueDate + "T00:00:00.000Z");
+    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) return;
+    if (dueDate <= date) { due++; if (dueDate < date) overdue++; }
+  };
+
+  const tasks = Array.isArray(mentor?.pending_tasks) ? mentor.pending_tasks : [];
   for (const task of tasks) {
     if (!task || typeof task !== "object" || Array.isArray(task)) continue;
     const item = task as Record<string, unknown>;
-    const dueDate = typeof item.due_date === "string" ? item.due_date : "";
-    if (item.status !== "pending" || !/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) continue;
-    const parsed = new Date(dueDate + "T00:00:00.000Z");
-    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) continue;
-    if (dueDate <= date) {
-      due++;
-      if (dueDate < date) overdue++;
+    addDueDate(item.due_date, item.status === "pending");
+  }
+
+  // The syllabus revision queue is saved in each learner's private user_data payload.
+  const payload = activity?.payload;
+  const schedule = payload && typeof payload === "object"
+    ? (payload as Record<string, unknown>).topicRevisionSchedule
+    : null;
+  if (schedule && typeof schedule === "object" && !Array.isArray(schedule)) {
+    for (const value of Object.values(schedule as Record<string, unknown>)) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) continue;
+      const item = value as Record<string, unknown>;
+      addDueDate(item.dueAt, item.completed !== true);
     }
   }
   return { due, overdue };
@@ -189,7 +202,7 @@ Deno.serve(async (request: Request) => {
       continue;
     }
 
-    const revisions = dueRevisionCounts(mentorStateByUser.get(row.user_id) ?? null, local.date);
+    const revisions = dueRevisionCounts(mentorStateByUser.get(row.user_id) ?? null, activityByUser.get(row.user_id) ?? null, local.date);
     let notification: string;
     if (revisions.due > 0) {
       const dueLabel = revisions.due === 1 ? "1 revision task is due" : `${revisions.due} revision tasks are due`;
