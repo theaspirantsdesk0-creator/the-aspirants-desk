@@ -305,7 +305,7 @@ Deno.serve(async (req: Request) => {
   if (body.action === "get_lessons") {
     if (profile.role !== "learner") return json({ error: "Lesson history is available to learner accounts only." }, 403, origin);
     const { data, error } = await adminClient.from("anbuu_lesson_history")
-      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at")
+      .select("id,track,subject,topic,level,status,checkpoint_completed,created_at,updated_at,completed_at")
       .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(25);
     if (error) return json({ error: "Could not load your lesson history." }, 500, origin);
     return json({ lessons: data ?? [] }, 200, origin);
@@ -322,9 +322,31 @@ Deno.serve(async (req: Request) => {
     }
     const { data, error } = await adminClient.from("anbuu_lesson_history")
       .insert({ user_id: authData.user.id, track, subject, topic, level, status: "in_progress" })
-      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at").single();
+      .select("id,track,subject,topic,level,status,checkpoint_completed,created_at,updated_at,completed_at").single();
     if (error) return json({ error: "Could not save this lesson. Please try again." }, 500, origin);
     return json({ lesson: data }, 201, origin);
+  }
+  if (body.action === "update_lesson_checkpoint") {
+    if (profile.role !== "learner") return json({ error: "Only learner accounts can update lesson checkpoints." }, 403, origin);
+    const lessonId = typeof body.lessonId === "string" ? body.lessonId : "";
+    const checkpoint = typeof body.checkpoint === "string" ? body.checkpoint : "";
+    const completed = body.completed;
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(lessonId) ||
+        !["concept", "practice", "recap"].includes(checkpoint) || typeof completed !== "boolean") {
+      return json({ error: "That learning checkpoint update is not valid." }, 400, origin);
+    }
+    const { data, error } = await adminClient.rpc("set_anbuu_lesson_checkpoint", {
+      p_lesson_id: lessonId,
+      p_user_id: authData.user.id,
+      p_checkpoint: checkpoint,
+      p_completed: completed,
+    });
+    if (error) {
+      console.error("Anbuu checkpoint update failed:", error.message);
+      return json({ error: "Could not save this learning checkpoint. Please try again." }, 500, origin);
+    }
+    if (!data) return json({ error: "That lesson was not found in your account." }, 404, origin);
+    return json({ lesson: data }, 200, origin);
   }
   if (body.action === "update_lesson") {
     if (profile.role !== "learner") return json({ error: "Only learner accounts can update lesson progress." }, 403, origin);
@@ -355,7 +377,7 @@ Deno.serve(async (req: Request) => {
     const { data, error } = await adminClient.from("anbuu_lesson_history")
       .update({ status: nextStatus, updated_at: now, completed_at: null })
       .eq("id", lessonId).eq("user_id", authData.user.id)
-      .select("id,track,subject,topic,level,status,created_at,updated_at,completed_at").maybeSingle();
+      .select("id,track,subject,topic,level,status,checkpoint_completed,created_at,updated_at,completed_at").maybeSingle();
     if (error) return json({ error: "Could not update this lesson. Please try again." }, 500, origin);
     if (!data) return json({ error: "That lesson was not found in your account." }, 404, origin);
     return json({ lesson: data }, 200, origin);
