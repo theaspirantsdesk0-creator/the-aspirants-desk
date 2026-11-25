@@ -649,6 +649,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/pyq-inventory.css">
   <link rel="stylesheet" href="assets/css/mains-evaluation.css">
+  <link rel="stylesheet" href="assets/css/mock-exams.css">
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -686,6 +687,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#flashcards" class="nav-link requires-auth" data-nav="flashcards">⚡ Flashcard Engine <span class="lock-tag">Login</span></a>
   <a href="#mains" class="nav-link requires-auth" data-nav="mains">✍️ Mains Writing Pad <span class="lock-tag">Login</span></a>
   <a href="#pyq" class="nav-link requires-auth" data-nav="pyq">🏛️ Verified PYQ Bank <span class="lock-tag">Login</span></a>
+  <a href="#mockexams" class="nav-link requires-auth" data-nav="mockexams">⏱️ Full-length Mock Exams <span class="lock-tag">Login</span></a>
 
   <div class="nav-grp">Planner, Tracker & Admin</div>
   <a href="#planner" class="nav-link requires-auth" data-nav="planner">🗓️ Study Planner <span class="lock-tag">Login</span></a>
@@ -1703,6 +1705,19 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 <details><summary>Where are my planner and daily test results saved?</summary><p>In your own browser on your device. Clearing browser data removes them.</p></details>
 <details><summary>Which exams does the site cover?</summary><p>The notes focus on the UPSC Civil Services Examination. The exam directory and updates also list other government exams.</p></details>
 </div></div></section>
+  <section id="mockexams" class="view-sec protected-view">
+    <div class="mock-shell">
+      <div class="mock-hero"><span class="eyebrow">UPSC 2027 · EXAM SIMULATOR</span><h2 style="margin:.3rem 0">Full-length Mock Examinations</h2><p>Strict exam timers, question navigation, answer autosave, resume support and performance reports. Your attempts remain private to your account.</p><div class="mock-meta" style="color:#dbe5fa"><span>GS Prelims</span><span>·</span><span>CSAT</span><span>·</span><span>GS I–IV</span><span>·</span><span>Anthropology I–II</span></div></div>
+      <div id="mockStatus" class="mock-save" role="status" aria-live="polite">Connecting to your examination workspace…</div>
+      <div id="mockCatalogView" class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:.7rem;flex-wrap:wrap"><div><h2 style="margin:0">Examination library</h2><p class="muted" style="margin:.2rem 0">Papers appear here after the owner publishes their verified question sets.</p></div><button class="btn" id="mockRefreshBtn">Refresh papers</button></div><div id="mockResumeBox" style="margin:.8rem 0"></div><div id="mockPaperList" class="mock-grid"></div></div>
+      <div id="mockExamView" class="mock-hidden">
+        <div class="card" style="margin-bottom:.8rem"><div style="display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap;align-items:center"><div><h2 id="mockExamTitle" style="margin:0"></h2><div class="muted" id="mockExamSub"></div></div><div style="text-align:right"><div class="mock-clock" id="mockClock">02:00:00</div><div class="mock-save">Remaining time</div></div></div><div class="mock-progress" style="margin-top:.8rem"><span id="mockProgressFill"></span></div><div class="mock-save" id="mockQuestionPosition"></div></div>
+        <div class="mock-exam-layout"><div class="mock-question-card"><div id="mockQuestionBody"></div><div class="mock-actions" style="margin-top:1.2rem"><button class="btn" id="mockPrevBtn">Previous</button><button class="btn" id="mockMarkBtn">Mark for review</button><button class="btn primary" id="mockNextBtn">Next</button></div></div><aside class="mock-side"><b>Question palette</b><p class="mock-save" id="mockAnsweredCount"></p><div class="mock-qgrid" id="mockQuestionGrid"></div><div class="mock-save">Blue = answered · yellow outline = review</div><div class="mock-actions" style="margin-top:1rem"><button class="btn" id="mockExitBtn">Save & exit</button><button class="btn bad" id="mockSubmitBtn">Submit exam</button></div></aside></div>
+      </div>
+      <div id="mockResultView" class="mock-hidden"></div>
+      <div id="mockAdminPanel" class="card mock-admin mock-hidden"><h2>Owner · Mock paper publishing</h2><p class="muted">Import a complete paper as JSON. Correct answers and explanations are stored separately from learner-visible questions. Importing a paper with the same code replaces its existing question set.</p><label for="mockImportJson">Paper JSON</label><textarea id="mockImportJson" placeholder='{"code":"UPSC-MAINS-GS1","title":"GS Paper I Mock 01","exam_stage":"mains","paper_type":"GS I","duration_minutes":180,"total_marks":250,"optional_subject":null,"questions":[{"section_key":"history","question_no":1,"question_type":"written","prompt":"Discuss...","marks":10,"word_limit":150,"rubric":["..."],"model_answer":"..."}]}'></textarea><div class="mock-actions"><button class="btn primary" id="mockImportBtn">Import question paper</button><input id="mockPublishCode" placeholder="Paper code to publish" style="max-width:240px"><button class="btn" id="mockPublishBtn">Publish paper</button></div><p class="mock-save">Prelims MCQ fields: options as [{"key":"A","text":"..."}], correct_answer:"A", marks:2, negative_marks:0.66. Mains written questions use question_type:"written", word_limit and rubric. Only publish after verifying every question, key and source.</p></div>
+    </div>
+  </section>
 </main>
 
 <div class="toast" id="toastBox" hidden></div>
@@ -4002,5 +4017,6 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/mains-evaluation.js" defer></script>
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
+  <script src="assets/js/mock-exams.js" defer></script>
 </body>
 </html>
