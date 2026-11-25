@@ -548,15 +548,15 @@
           "w": "In DNA, adenine pairs with thymine, while guanine pairs with cytosine."
         },
         {
-          "q": "Meiosis is important because it:",
+          "q": "Which feature of meiosis helps create new combinations of alleles?",
           "o": [
-            "Produces haploid cells and contributes to genetic variation",
-            "Produces two identical diploid body cells",
-            "Occurs only in mature red blood cells",
-            "Prevents chromosome segregation"
+            "Crossing over between homologous chromosomes",
+            "Duplication of the entire organism",
+            "Absence of chromosome pairing",
+            "Binary fission"
           ],
           "a": 0,
-          "w": "Meiosis produces haploid cells and generates genetic variation through recombination and independent assortment."
+          "w": "Crossing over during meiosis exchanges segments between homologous chromosomes and creates new allele combinations."
         },
         {
           "q": "A mutation is best defined as:",
@@ -3061,15 +3061,15 @@
           "w": "Multi-sited research follows relationships and processes across locations rather than treating the village as closed."
         },
         {
-          "q": "The little and great traditions framework examines:",
+          "q": "The little and great traditions approach is concerned with:",
           "o": [
-            "Interaction between local cultural forms and wider traditions",
-            "A fixed hierarchy of biological populations",
-            "Only urban industrial employment",
-            "A sequence of geological deposits"
+            "How local practices interact with wider religious and cultural forms",
+            "A fixed hierarchy of communities",
+            "Only the legal structure of village councils",
+            "The biological classification of populations"
           ],
           "a": 0,
-          "w": "The framework analyses interaction between local and wider cultural traditions."
+          "w": "The framework studies interaction between local cultural forms and broader traditions."
         },
         {
           "q": "A key contribution of S. C. Dube to Indian anthropology was his work on:",
@@ -3083,15 +3083,15 @@
           "w": "S. C. Dube is known for influential village studies and analysis of social change."
         },
         {
-          "q": "Agrarian relations include relationships involving:",
+          "q": "Tenancy relations in agrarian anthropology concern:",
           "o": [
-            "Land, labour, tenancy, credit and production",
-            "Only religious ritual",
-            "Only language families",
-            "Only descent terminology"
+            "Arrangements governing the use of land by cultivators who may not own it",
+            "Only ritual status at a temple",
+            "The transmission of language between generations",
+            "The dating of prehistoric tools"
           ],
           "a": 0,
-          "w": "Agrarian relations concern land, labour, tenancy, credit, production and rural power."
+          "w": "Tenancy concerns arrangements between landowners and those who cultivate land, shaping rural power and production."
         },
         {
           "q": "A critical reading of colonial ethnographic records should consider: ",
@@ -3334,15 +3334,15 @@
           "w": "Free, prior and informed consent concerns meaningful community decision-making before actions affecting rights or resources."
         },
         {
-          "q": "A social impact assessment examines:",
+          "q": "Before a tribal development project begins, an impact review should identify:",
           "o": [
-            "Likely social consequences of a proposed policy or project",
-            "Only the project's construction materials",
-            "Only the price of machinery",
-            "Only the project's media coverage"
+            "Groups affected, likely livelihood changes, rights risks and consultation needs",
+            "Only the project's launch date",
+            "Only the number of contractors",
+            "Only the publicity budget"
           ],
           "a": 0,
-          "w": "Social impact assessment identifies likely effects on people, livelihoods, institutions and relationships."
+          "w": "A sound impact review identifies affected people, likely consequences, rights and participation needs before decisions are finalised."
         }
       ],
       "lesson": {
