@@ -4,7 +4,7 @@
   const host = $("pyqTrackerRows");
   if (!host) return;
   const controls = {
-    search: $("pyqTrackerSearch"), year: $("pyqTrackerYear"), stage: $("pyqTrackerStage"),
+    search: $("pyqTrackerSearch"), year: $("pyqTrackerYear"), stage: $("pyqTrackerStage"), subject: $("pyqTrackerSubject"),
     status: $("pyqTrackerStatus"), total: $("pyqExplorerTotal"), summary: $("pyqTrackerSummary"),
     pageInfo: $("pyqTrackerPageInfo"), prev: $("pyqTrackerPrev"), next: $("pyqTrackerNext")
   };
@@ -23,6 +23,7 @@
       const haystack = [item.year,item.stage,item.paper,item.optional_subject,item.optional_category].filter(Boolean).join(" ").toLowerCase();
       return (controls.year.value === "ALL" || String(item.year) === controls.year.value) &&
         (controls.stage.value === "ALL" || item.stage === controls.stage.value) &&
+        (controls.subject.value === "ALL" || item.optional_subject === controls.subject.value) &&
         (controls.status.value === "ALL" || item.status === controls.status.value) &&
         (!term || haystack.includes(term));
     });
@@ -57,7 +58,7 @@
   }
   function resetPage(){page=0;render();}
   controls.search.addEventListener("input",resetPage);
-  [controls.year,controls.stage,controls.status].forEach(node=>node.addEventListener("change",resetPage));
+  [controls.year,controls.stage,controls.subject,controls.status].forEach(node=>node.addEventListener("change",resetPage));
   controls.prev.addEventListener("click",()=>{page=Math.max(0,page-1);render();});
   controls.next.addEventListener("click",()=>{page+=1;render();});
   fetch("data/pyq/documents.json",{cache:"no-store"})
@@ -66,6 +67,7 @@
       rows=Array.isArray(data.documents)?data.documents.filter(item=>item&&Number.isInteger(Number(item.year))&&item.stage&&item.paper):[];
       [...new Set(rows.map(item=>String(item.year)))].sort((a,b)=>Number(b)-Number(a)).forEach(value=>addOption(controls.year,value,value));
       [...new Set(rows.map(item=>item.stage))].sort().forEach(value=>addOption(controls.stage,value,value));
+      [...new Set(rows.map(item=>item.optional_subject).filter(Boolean))].sort((a,b)=>a.localeCompare(b)).forEach(value=>addOption(controls.subject,value,value));
       render();
     })
     .catch(error=>{
