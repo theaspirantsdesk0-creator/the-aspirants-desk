@@ -104,3 +104,8 @@ The full-length Prelims GS Paper I is also published as a 100-question, 120-minu
 ## Published full-length Mains GS Paper II
 
 **UPSC Mains · General Studies Paper II · Full-Length Mock 01** is published as a 20-question, 180-minute, 250-mark original written practice paper. It contains 10 questions carrying 10 marks and 10 questions carrying 15 marks across two sections: Constitution, polity and governance; and social justice and international relations. Every question includes a marking rubric and a model-answer outline for self-review. Written answers are saved for review and are not automatically awarded marks. These are original practice questions, not official UPSC previous-year questions.
+
+
+## Published full-length Mains GS Paper III
+
+**UPSC Mains · General Studies Paper III · Full-Length Mock 01** is published as a 20-question, 180-minute, 250-mark original written practice paper. It contains 10 questions carrying 10 marks and 10 questions carrying 15 marks across two sections: Economy, agriculture and science & technology; and environment, disaster management and internal security. Every question includes a marking rubric and a model-answer outline for self-review. Written answers are saved for review and are not automatically awarded marks. These are original practice questions, not official UPSC previous-year questions.
