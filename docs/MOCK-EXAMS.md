@@ -189,3 +189,8 @@ The Weakness-to-Mastery queue now combines the learner's latest 12 completed/exp
 ## Daily UPSC Mission planner
 
 The Study Command Centre includes an account-synced daily mission planner. Learners can choose 90, 120, 150 or 180 minutes and build up to four time-boxed blocks from recorded revision signals, tagged mistakes, mock-section weaknesses, saved Mains feedback and unfinished syllabus topics. When no weakness evidence exists, the planner uses a neutral syllabus or active-recall task rather than inventing a weakness. Task completion and the selected plan are saved in the learner's `user_data.payload` through the existing state-sync path. Up to two unfinished tasks from the previous day's plan are carried into the next generated plan. This is a deterministic planner and does not depend on an AI provider key.
+
+
+## Weekly targets and achievements
+
+The learner Study Command Centre includes configurable rolling-seven-day study-hour and active-day targets. Targets are stored in the learner's existing `user_data.payload` as `studyGoals` and default to 10 hours / 5 active days when unset. The achievement shelf derives unlocked milestones from dated study sessions, recorded hours, completed syllabus topics and topic mastery; it does not fabricate activity or award marks for unrecorded work. Older time-only session records are excluded from dated weekly goals.
