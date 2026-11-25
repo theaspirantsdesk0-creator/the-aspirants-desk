@@ -78,8 +78,8 @@ function initAdaptivePractice(payload){
     const paperSel=$("mockPracticePaper"),sectionSel=$("mockPracticeSection"),countSel=$("mockPracticeCount"),start=$("mockPracticeStart");
     if(!paperSel||!sectionSel||!start)return;
     paperSel.value=item.paperId;paperSel.dispatchEvent(new Event("change"));
-    const setSection=()=>{if([...sectionSel.options].some(o=>o.value===item.section)){sectionSel.value=item.section;sectionSel.dispatchEvent(new Event("change"));if(countSel)countSel.value="10";start.disabled=false;start.click();}else setTimeout(setSection,80);};
-    setTimeout(setSection,80);
+    let waits=0;const setSection=()=>{if([...sectionSel.options].some(o=>o.value===item.section)){sectionSel.value=item.section;sectionSel.dispatchEvent(new Event("change"));if(countSel)countSel.value="10";start.disabled=false;start.click();}else if(++waits<30&&!sectionSel.disabled)setTimeout(setSection,100);else{practiceStatus("That section could not be loaded. Refresh suggestions or choose a section manually.");}};
+    setTimeout(setSection,100);
     $("mockTopicPractice")?.scrollIntoView({behavior:"smooth",block:"start"});
    }));
   }catch(e){host.innerHTML='<p class="mock-warning">Adaptive recommendations could not load: '+esc(e.message||"Please retry.")+'</p>';}
