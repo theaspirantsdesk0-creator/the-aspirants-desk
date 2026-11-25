@@ -84,3 +84,8 @@ The first release includes the exam engine and secure publishing path. Full veri
 **UPSC Mains · Anthropology Paper I · Full-Length Mock 01** is now published for eligible learner accounts that have selected Anthropology as their optional subject. It contains 20 original written practice questions, a 3-hour timer, 250 total marks, 10 questions carrying 10 marks and 10 questions carrying 15 marks. Each question includes a marking rubric and a model-answer outline for review. These are original practice questions, not official UPSC previous-year questions. Written responses are saved but are not automatically graded; the rubric and model outline are reference material for self-review or mentor feedback.
 
 The full-length Prelims GS Paper I remains a separate publishing task and must not be treated as available until its complete 100-question bank and answer-key checks pass.
+
+
+## Published full-length Prelims GS Paper I
+
+**UPSC Prelims · General Studies Paper I** is now published as a 100-question, 120-minute, 200-mark original practice mock. It contains four-option MCQs across Indian Polity and Constitution, Modern Indian History, Geography, Economy and Environment/Ecology. Each item has an answer key, an explanatory note and a source/provenance note. The scoring configuration awards 2 marks for a correct answer and deducts 0.67 marks for an incorrect answer (the one-third penalty rounded to the database's two-decimal precision). Unattempted questions receive no penalty. These are original practice questions, not official UPSC previous-year questions.
