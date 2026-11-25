@@ -8,7 +8,7 @@ var CORE_ASSETS = [
   'assets/css/pyq-inventory.css',
   'assets/js/pyq-inventory.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
-  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/css/optional-prep.css', 'assets/css/mains-bank.css', 'assets/js/mains-bank.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json'
+  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json'
 ];
 
 /* Network-first files: scripts/styles, config (public keys), service worker and data feeds. */
