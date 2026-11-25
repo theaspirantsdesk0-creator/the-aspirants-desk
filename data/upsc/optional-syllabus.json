@@ -77,6 +77,50 @@
           ],
           "a": 1,
           "w": "Holism examines connected dimensions of human life rather than isolating one factor."
+        },
+        {
+          "q": "Ethnography is best described as:",
+          "o": [
+            "A statistical table without context",
+            "A systematic, contextual account based on research with people and their social worlds",
+            "A fossil classification system",
+            "A theory of population growth"
+          ],
+          "a": 1,
+          "w": "Ethnography develops a contextual account through systematic engagement with people's social worlds."
+        },
+        {
+          "q": "Which branch primarily studies material remains of past human activity?",
+          "o": [
+            "Linguistic anthropology",
+            "Biological anthropology",
+            "Archaeology",
+            "Social psychology"
+          ],
+          "a": 2,
+          "w": "Archaeology interprets artefacts, features and other material traces in context."
+        },
+        {
+          "q": "Ethnocentrism means:",
+          "o": [
+            "Interpreting practices in their own context",
+            "Judging another culture using one's own cultural standards",
+            "Comparing only economic statistics",
+            "Avoiding all comparison"
+          ],
+          "a": 1,
+          "w": "Ethnocentrism treats one's own cultural assumptions as the standard for judging others."
+        },
+        {
+          "q": "Participant observation involves:",
+          "o": [
+            "Only analysing census tables",
+            "Observing and appropriately participating in everyday social settings",
+            "Only conducting laboratory experiments",
+            "Avoiding contact with research participants"
+          ],
+          "a": 1,
+          "w": "Participant observation combines observation with engagement in the setting being studied."
         }
       ],
       "lesson": {
@@ -182,6 +226,50 @@
           ],
           "a": 0,
           "w": "The synthesis combines Darwinian selection with Mendelian inheritance and population-level genetics."
+        },
+        {
+          "q": "Biological evolution is most accurately defined as change in:",
+          "o": [
+            "An individual's body during one day",
+            "Heritable characteristics of populations across generations",
+            "A single fossil after burial",
+            "Cultural rules within one meeting"
+          ],
+          "a": 1,
+          "w": "Evolution is defined at the population level across generations, not as an individual's lifetime change."
+        },
+        {
+          "q": "Gene flow refers to:",
+          "o": [
+            "Random changes caused by sampling alone",
+            "Movement of alleles between populations through migration and reproduction",
+            "The formation of a fossil layer",
+            "The production of proteins from mRNA"
+          ],
+          "a": 1,
+          "w": "Gene flow transfers genetic variants between populations when migrants reproduce."
+        },
+        {
+          "q": "Convergent evolution occurs when:",
+          "o": [
+            "Related populations become identical through law",
+            "Similar traits evolve independently in different lineages",
+            "All traits evolve at the same speed",
+            "A population stops changing"
+          ],
+          "a": 1,
+          "w": "Convergence describes independent evolution of similar features under comparable conditions."
+        },
+        {
+          "q": "Mosaic evolution means that:",
+          "o": [
+            "All anatomical traits change at an identical rate",
+            "Different traits evolve at different rates",
+            "Evolution always follows a straight ladder",
+            "Only cultural traits can change"
+          ],
+          "a": 1,
+          "w": "Mosaic evolution recognises that different features may change at different rates."
         }
       ],
       "lesson": {
@@ -293,6 +381,50 @@
           ],
           "a": 1,
           "w": "Translation reads mRNA codons at ribosomes to assemble a polypeptide."
+        },
+        {
+          "q": "A prokaryotic cell differs from a eukaryotic cell because it:",
+          "o": [
+            "Has no genetic material",
+            "Lacks a membrane-bound nucleus",
+            "Cannot carry out metabolism",
+            "Always has many nuclei"
+          ],
+          "a": 1,
+          "w": "Prokaryotic cells do not enclose their genetic material in a membrane-bound nucleus."
+        },
+        {
+          "q": "Meiosis is important because it:",
+          "o": [
+            "Produces gametes with half the usual chromosome number",
+            "Duplicates every body cell without division",
+            "Copies RNA into DNA in all cells",
+            "Removes all genetic variation"
+          ],
+          "a": 0,
+          "w": "Meiosis reduces chromosome number and contributes to variation through recombination and assortment."
+        },
+        {
+          "q": "Transcription is the process in which:",
+          "o": [
+            "DNA information is used to produce RNA",
+            "A protein is copied into DNA",
+            "A cell divides into two identical cells",
+            "An organism acquires a new species"
+          ],
+          "a": 0,
+          "w": "Transcription produces an RNA molecule using a DNA template."
+        },
+        {
+          "q": "A mutation is:",
+          "o": [
+            "Always harmful to an organism",
+            "A change in a DNA sequence whose effects depend on context",
+            "The same as natural selection",
+            "A movement of people between populations"
+          ],
+          "a": 1,
+          "w": "Mutations alter DNA sequences; their effects can vary and are not automatically harmful or beneficial."
         }
       ],
       "lesson": {
@@ -403,6 +535,50 @@
           ],
           "a": 0,
           "w": "Stratigraphic relationships can establish relative sequence when deposits are undisturbed."
+        },
+        {
+          "q": "An ecofact in archaeology is:",
+          "o": [
+            "A natural remain associated with human activity",
+            "A modern legal document",
+            "A language family",
+            "A genetic counselling record"
+          ],
+          "a": 0,
+          "w": "Ecofacts are natural remains, such as seeds or animal bones, found in archaeological contexts."
+        },
+        {
+          "q": "Chronometric dating aims to:",
+          "o": [
+            "Place objects only in a relative sequence",
+            "Estimate age in years using a dating method",
+            "Classify kinship terminology",
+            "Measure household income"
+          ],
+          "a": 1,
+          "w": "Chronometric methods estimate an age in years, subject to method-specific limits and uncertainty."
+        },
+        {
+          "q": "Taphonomy studies:",
+          "o": [
+            "Processes affecting remains between deposition and discovery",
+            "The grammar of a language",
+            "Population fertility",
+            "Political leadership"
+          ],
+          "a": 0,
+          "w": "Taphonomic processes influence preservation and the condition of archaeological remains."
+        },
+        {
+          "q": "Relative dating can establish:",
+          "o": [
+            "An exact calendar year in every case",
+            "The sequence of events or deposits",
+            "A person's genetic identity",
+            "The meaning of every artefact"
+          ],
+          "a": 1,
+          "w": "Relative dating places deposits or objects in sequence without necessarily giving a calendar age."
         }
       ],
       "lesson": {
@@ -519,6 +695,50 @@
           ],
           "a": 1,
           "w": "Cultural relativism seeks contextual understanding rather than ethnocentric ranking."
+        },
+        {
+          "q": "Patrilineal descent traces recognised descent through the:",
+          "o": [
+            "Mother's line",
+            "Father's line",
+            "Both parental lines equally in every case",
+            "Spouse's occupational group"
+          ],
+          "a": 1,
+          "w": "Patrilineal descent traces group membership through the father's line."
+        },
+        {
+          "q": "An affinal relationship is based on:",
+          "o": [
+            "Marriage",
+            "Shared language only",
+            "Living in the same village only",
+            "Identical occupations"
+          ],
+          "a": 0,
+          "w": "Affinal kinship is created through marriage relationships."
+        },
+        {
+          "q": "Bilateral kinship recognises relatives through:",
+          "o": [
+            "Only the father's side",
+            "Only the mother's side",
+            "Both maternal and paternal sides",
+            "Only the oldest household member"
+          ],
+          "a": 2,
+          "w": "Bilateral reckoning recognises kin through both parental sides."
+        },
+        {
+          "q": "A household is not always identical to a family because a household may be defined by:",
+          "o": [
+            "Only genetic descent",
+            "Residence and/or resource sharing",
+            "Only clan membership",
+            "Only a marriage ceremony"
+          ],
+          "a": 1,
+          "w": "A household is a residential or resource-sharing unit and may not match family relationships exactly."
         }
       ],
       "lesson": {
@@ -643,6 +863,50 @@
           ],
           "a": 0,
           "w": "Redistribution involves collection at a centre followed by allocation."
+        },
+        {
+          "q": "Generalised reciprocity commonly involves:",
+          "o": [
+            "Immediate return of exactly equal value",
+            "Giving without a fixed expectation of immediate equivalent return",
+            "Resources always collected by the state",
+            "Exchange only through posted prices"
+          ],
+          "a": 1,
+          "w": "Generalised reciprocity involves giving without specifying an immediate or equivalent return."
+        },
+        {
+          "q": "Political legitimacy refers to:",
+          "o": [
+            "The number of buildings in a settlement",
+            "Socially recognised acceptance of a right to exercise authority",
+            "A form of archaeological dating",
+            "A kinship diagram"
+          ],
+          "a": 1,
+          "w": "Legitimacy concerns the recognised right or authority to govern or make decisions."
+        },
+        {
+          "q": "A ritual is best understood as:",
+          "o": [
+            "A patterned symbolic practice with social meaning",
+            "A random event without interpretation",
+            "A population statistic",
+            "A type of land tenure"
+          ],
+          "a": 0,
+          "w": "Rituals are patterned practices through which people express and negotiate meanings and relationships."
+        },
+        {
+          "q": "Property relations may involve:",
+          "o": [
+            "Only one absolute owner in every society",
+            "Overlapping claims of access, use, control and ownership",
+            "No social rules",
+            "Only market prices"
+          ],
+          "a": 1,
+          "w": "Property can involve multiple and overlapping rights held by individuals, households, communities or the state."
         }
       ],
       "lesson": {
@@ -775,6 +1039,50 @@
           ],
           "a": 0,
           "w": "Franz Boas is associated with historical particularism and contextual field research."
+        },
+        {
+          "q": "Bronisław Malinowski is especially associated with:",
+          "o": [
+            "Participant observation and functional analysis",
+            "Historical particularism",
+            "Thick description",
+            "Demographic transition theory"
+          ],
+          "a": 0,
+          "w": "Malinowski helped establish participant observation and a functional approach to institutions."
+        },
+        {
+          "q": "The idea of thick description is associated with:",
+          "o": [
+            "Clifford Geertz",
+            "Gregor Mendel",
+            "Thomas Malthus",
+            "Lewis Henry Morgan"
+          ],
+          "a": 0,
+          "w": "Geertz used thick description to interpret actions in their cultural context."
+        },
+        {
+          "q": "Claude Lévi-Strauss is most closely linked with:",
+          "o": [
+            "Structuralism",
+            "Cultural materialism",
+            "Population genetics",
+            "Palaeolithic chronology"
+          ],
+          "a": 0,
+          "w": "Lévi-Strauss analysed underlying structures and systems of classification in culture."
+        },
+        {
+          "q": "Franz Boas challenged simplistic unilinear cultural rankings through emphasis on:",
+          "o": [
+            "Historical context and cultural particularity",
+            "One universal sequence for all societies",
+            "Only biological determinism",
+            "Economic output as the only explanation"
+          ],
+          "a": 0,
+          "w": "Boas emphasised historical particularism and context-specific empirical research."
         }
       ],
       "lesson": {
@@ -913,6 +1221,50 @@
           ],
           "a": 1,
           "w": "Methodology explains and justifies the approach and methods used."
+        },
+        {
+          "q": "Triangulation in research means:",
+          "o": [
+            "Using one source and ignoring contradictions",
+            "Comparing evidence from multiple methods or sources",
+            "Choosing participants without a research question",
+            "Replacing field notes with assumptions"
+          ],
+          "a": 1,
+          "w": "Triangulation compares sources or methods and can reveal both convergence and disagreement."
+        },
+        {
+          "q": "A genealogy is useful for recording:",
+          "o": [
+            "Relationships and descent",
+            "Rainfall only",
+            "Market prices",
+            "Archaeological soil chemistry"
+          ],
+          "a": 0,
+          "w": "Genealogies systematically record relationships and descent links."
+        },
+        {
+          "q": "Informed consent requires:",
+          "o": [
+            "Participation without explanation",
+            "Voluntary agreement based on understanding of the research",
+            "Publishing all participant names",
+            "Collecting data before permission"
+          ],
+          "a": 1,
+          "w": "Consent should be voluntary and based on a clear understanding of the research and its implications."
+        },
+        {
+          "q": "Dell Hymes is associated with the:",
+          "o": [
+            "Ethnography of communication",
+            "Hardy-Weinberg principle",
+            "Cultural ecology of irrigation",
+            "Archaeological typology"
+          ],
+          "a": 0,
+          "w": "Hymes developed the ethnography of communication to examine culturally organised communication practices."
         }
       ],
       "lesson": {
@@ -1050,6 +1402,50 @@
           ],
           "a": 1,
           "w": "Random sampling effects are proportionally stronger in small populations."
+        },
+        {
+          "q": "Genotype refers to an individual's:",
+          "o": [
+            "Observable appearance alone",
+            "Genetic constitution at relevant loci",
+            "Cultural identity only",
+            "Age and occupation"
+          ],
+          "a": 1,
+          "w": "Genotype describes genetic constitution; phenotype reflects traits shaped by genes and environment."
+        },
+        {
+          "q": "Phenotype is shaped by:",
+          "o": [
+            "Genes alone in every case",
+            "Interactions among genetic, developmental and environmental factors",
+            "Only language",
+            "Only migration"
+          ],
+          "a": 1,
+          "w": "Phenotypic characteristics often emerge through interactions among genes, development and environment."
+        },
+        {
+          "q": "The Hardy-Weinberg model assumes, among other conditions:",
+          "o": [
+            "Small population and non-random mating",
+            "Large population and random mating with no specified evolutionary forces",
+            "Strong selection in every generation",
+            "Continuous migration"
+          ],
+          "a": 1,
+          "w": "The baseline model assumes a large population, random mating and absence of mutation, migration and selection."
+        },
+        {
+          "q": "Mutation contributes to population variation by:",
+          "o": [
+            "Creating new genetic variants",
+            "Preventing all inheritance",
+            "Eliminating genetic drift",
+            "Making every phenotype identical"
+          ],
+          "a": 0,
+          "w": "Mutation introduces new variants into the genetic pool."
         }
       ],
       "lesson": {
@@ -1161,6 +1557,50 @@
           ],
           "a": 1,
           "w": "Biocultural analysis considers biological and cultural influences together."
+        },
+        {
+          "q": "Epidemiology primarily studies:",
+          "o": [
+            "The distribution and determinants of health-related conditions in populations",
+            "Only individual personality",
+            "Ancient pottery",
+            "Kinship terminology"
+          ],
+          "a": 0,
+          "w": "Epidemiology examines who is affected, where, when and under what conditions."
+        },
+        {
+          "q": "Acclimatisation refers to:",
+          "o": [
+            "Shorter-term physiological adjustment during an individual's lifetime",
+            "A change in allele frequency across centuries only",
+            "A type of descent system",
+            "A method of relative dating"
+          ],
+          "a": 0,
+          "w": "Acclimatisation is a shorter-term physiological adjustment to environmental conditions."
+        },
+        {
+          "q": "A longitudinal study:",
+          "o": [
+            "Measures different people once and never returns",
+            "Follows the same participants over a period of time",
+            "Uses only archaeological artefacts",
+            "Cannot study growth"
+          ],
+          "a": 1,
+          "w": "Longitudinal research observes the same participants repeatedly across time."
+        },
+        {
+          "q": "Morbidity refers to:",
+          "o": [
+            "Occurrence or burden of illness in a population",
+            "Only the number of births",
+            "Movement of alleles",
+            "A form of reciprocity"
+          ],
+          "a": 0,
+          "w": "Morbidity concerns illness or disease occurrence and burden."
         }
       ],
       "lesson": {
@@ -1299,6 +1739,50 @@
           ],
           "a": 0,
           "w": "Fecundity is biological reproductive capacity; fertility concerns actual reproductive outcomes."
+        },
+        {
+          "q": "Population change is commonly analysed through:",
+          "o": [
+            "Births, deaths and migration",
+            "Only language change",
+            "Only technological innovation",
+            "Only household size"
+          ],
+          "a": 0,
+          "w": "Births, deaths and migration are the core components of population change."
+        },
+        {
+          "q": "Life expectancy is best understood as:",
+          "o": [
+            "A guaranteed lifespan for each person",
+            "A summary measure based on mortality patterns",
+            "A measure of household wealth",
+            "A direct count of births"
+          ],
+          "a": 1,
+          "w": "Life expectancy summarises mortality conditions and does not predict an individual's lifespan."
+        },
+        {
+          "q": "Demographic transition theory describes broad changes in:",
+          "o": [
+            "Birth and death rates over time",
+            "Kinship terminology only",
+            "Stone-tool production",
+            "Language grammar"
+          ],
+          "a": 0,
+          "w": "The model describes shifts from high to lower birth and death rates, with different pathways across settings."
+        },
+        {
+          "q": "Applied anthropology uses anthropological methods to:",
+          "o": [
+            "Address practical problems with attention to context and ethics",
+            "Replace community decision-making",
+            "Avoid evaluation",
+            "Rank communities by culture"
+          ],
+          "a": 0,
+          "w": "Applied anthropology brings research into practical settings while considering rights, participation and evidence."
         }
       ],
       "lesson": {
@@ -1438,6 +1922,50 @@
           ],
           "a": 0,
           "w": "Ethno-archaeology studies relationships between living practices and material remains, with careful limits on analogy."
+        },
+        {
+          "q": "Urban planning and drainage systems are important evidence in the study of:",
+          "o": [
+            "Harappan settlements",
+            "Only Mesolithic camps",
+            "Modern census offices",
+            "The Hardy-Weinberg model"
+          ],
+          "a": 0,
+          "w": "Harappan urban contexts are studied through settlement planning, drainage, crafts, exchange and other material evidence."
+        },
+        {
+          "q": "Microlithic technologies are commonly associated with many:",
+          "o": [
+            "Mesolithic assemblages",
+            "Modern industrial sites",
+            "Only Harappan seals",
+            "Contemporary digital archives"
+          ],
+          "a": 0,
+          "w": "Microliths are small stone tools frequently found in Mesolithic contexts, though regional patterns vary."
+        },
+        {
+          "q": "Neolithic transitions in parts of India included:",
+          "o": [
+            "Cultivation and animal management in varied regional settings",
+            "One identical shift at one date across the subcontinent",
+            "The disappearance of all foraging",
+            "The invention of written alphabets everywhere"
+          ],
+          "a": 0,
+          "w": "Neolithic developments varied by region and could include cultivation, animal management and more settled lifeways."
+        },
+        {
+          "q": "A careful archaeological claim about a disputed fossil should:",
+          "o": [
+            "Present one contested label as certain",
+            "Describe the evidence and acknowledge the classification debate",
+            "Ignore geological context",
+            "Assume every fossil belongs to Homo sapiens"
+          ],
+          "a": 1,
+          "w": "Fossil classification may be debated and should be presented with evidence and uncertainty."
         }
       ],
       "lesson": {
@@ -1578,6 +2106,50 @@
           ],
           "a": 1,
           "w": "Varna and jati are distinct categories; local histories and social relations matter."
+        },
+        {
+          "q": "The concept of dominant caste is associated with:",
+          "o": [
+            "M. N. Srinivas",
+            "Charles Darwin",
+            "Clifford Geertz",
+            "James Tanner"
+          ],
+          "a": 0,
+          "w": "Srinivas used dominant caste to analyse local power and status relationships."
+        },
+        {
+          "q": "Jati is best understood as:",
+          "o": [
+            "One universal category identical everywhere",
+            "A locally and historically situated social group",
+            "A biological species",
+            "A method of radiocarbon dating"
+          ],
+          "a": 1,
+          "w": "Jati refers to social groupings whose forms and relationships vary across history and region."
+        },
+        {
+          "q": "The sacred complex framework is associated with:",
+          "o": [
+            "L. P. Vidyarthi",
+            "Gregor Mendel",
+            "Lewis Binford",
+            "Thomas Malthus"
+          ],
+          "a": 0,
+          "w": "Vidyarthi developed the sacred complex approach in Indian anthropology."
+        },
+        {
+          "q": "Sanskritisation describes:",
+          "o": [
+            "A process of status claims through adopting practices associated with higher-status groups",
+            "A universal biological adaptation",
+            "A method of measuring fertility",
+            "The spread of one language through law only"
+          ],
+          "a": 0,
+          "w": "Srinivas used Sanskritisation to analyse certain forms of social mobility and cultural change."
         }
       ],
       "lesson": {
@@ -1717,6 +2289,50 @@
           ],
           "a": 0,
           "w": "M. N. Srinivas developed the concept in his work on social change in India."
+        },
+        {
+          "q": "A village study should treat a village as:",
+          "o": [
+            "An isolated and unchanging unit",
+            "A diverse social setting connected to wider institutions and processes",
+            "A place without internal differences",
+            "A uniform household"
+          ],
+          "a": 1,
+          "w": "Village studies examine internal diversity and connections with markets, migration, states and wider society."
+        },
+        {
+          "q": "Agrarian relations include relationships involving:",
+          "o": [
+            "Land, labour, tenancy, credit and production",
+            "Only ceremonial language",
+            "Only fossil remains",
+            "Only marriage terminology"
+          ],
+          "a": 0,
+          "w": "Agrarian relations concern ownership and access to land, labour, credit, production and rural power."
+        },
+        {
+          "q": "The little and great traditions framework examines:",
+          "o": [
+            "Interaction between local cultural forms and wider traditions",
+            "Only biological inheritance",
+            "Only population mortality",
+            "A single universal social hierarchy"
+          ],
+          "a": 0,
+          "w": "The framework studies interactions and mutual influence between local and wider cultural traditions."
+        },
+        {
+          "q": "Panchayati Raj is concerned with:",
+          "o": [
+            "Rural local self-government",
+            "Archaeological excavation",
+            "Population genetics",
+            "Kinship terminology"
+          ],
+          "a": 0,
+          "w": "Panchayati Raj institutions provide a framework for rural local self-government."
         }
       ],
       "lesson": {
@@ -1858,6 +2474,50 @@
           ],
           "a": 1,
           "w": "A rights-based assessment considers community participation and social, economic and cultural effects."
+        },
+        {
+          "q": "The Fifth and Sixth Schedules of the Indian Constitution are associated with:",
+          "o": [
+            "Special governance arrangements for specified Scheduled and tribal areas",
+            "A system of radiocarbon dating",
+            "Rules for university examinations",
+            "Only municipal taxation"
+          ],
+          "a": 0,
+          "w": "The Fifth and Sixth Schedules provide special constitutional arrangements for specified Scheduled Areas and tribal areas; details should be checked in current official texts."
+        },
+        {
+          "q": "PVTG is an official category used in India to refer to:",
+          "o": [
+            "Particularly Vulnerable Tribal Groups",
+            "All rural households",
+            "All linguistic minorities",
+            "Only urban migrant workers"
+          ],
+          "a": 0,
+          "w": "PVTG is a policy category used for targeted attention to certain tribal communities."
+        },
+        {
+          "q": "A social impact assessment examines:",
+          "o": [
+            "Likely social consequences of a proposed policy or project",
+            "Only the project's engineering design",
+            "Only the number of vehicles used",
+            "Only changes in rainfall"
+          ],
+          "a": 0,
+          "w": "Social impact assessment examines how a project or intervention may affect people and communities."
+        },
+        {
+          "q": "Participatory development means that affected people:",
+          "o": [
+            "Are excluded from decisions",
+            "Help define priorities and take part in decisions and evaluation",
+            "Only receive a final report",
+            "Have no role after consultation"
+          ],
+          "a": 1,
+          "w": "Participatory approaches involve affected people in defining priorities, decisions, implementation and evaluation."
         }
       ],
       "lesson": {

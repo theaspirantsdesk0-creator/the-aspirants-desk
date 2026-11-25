@@ -178,14 +178,16 @@ def main() -> int:
                     for section in unit["lesson"].get("sections", []))
                 for unit in guided_units
             ), "Every guided Anthropology lesson section must have a heading and explanatory content")
+            check(all(len(unit.get("test", [])) >= 5 for unit in anthro_units),
+                  "Every Anthropology unit must provide at least five topic-test questions")
             check(all(
                 all(isinstance(question.get("q"), str) and question.get("q")
-                    and isinstance(question.get("o"), list) and len(question.get("o", [])) >= 2
+                    and isinstance(question.get("o"), list) and len(question.get("o", [])) == 4
                     and isinstance(question.get("a"), int) and 0 <= question.get("a", -1) < len(question.get("o", []))
                     and isinstance(question.get("w"), str) and question.get("w")
                     for question in unit.get("test", []))
                 for unit in anthro_units
-            ), "Every Anthropology self-test must have valid options, answer index and explanation")
+            ), "Every Anthropology self-test must have four valid options, an answer index and explanation")
         except (OSError, json.JSONDecodeError) as exc:
             check(False, f"Optional syllabus catalogue is invalid JSON: {exc}")
     if index.is_file():
@@ -224,6 +226,16 @@ def main() -> int:
               "Optional unit tests must prevent duplicate submissions and report local/cloud save status accurately")
         check("Units studied" in optional_source and "Mark unit studied" in optional_source,
               "Optional workspace progress labels must match unit-level completion tracking")
+        quiz_source = optional_source.split("function startQuiz", 1)[1].split("async function init", 1)[0]
+        check("setInterval(updateTimer,1000)" in quiz_source
+              and "form.requestSubmit()" in quiz_source
+              and "skippedCount" in quiz_source,
+              "Optional topic tests must have a countdown, submit on timeout and count skipped answers")
+        check('const resultHost=$("optionalQuizHost")' in quiz_source
+              and 'resultHost.querySelector("#optionalQuizSaveStatus")' in quiz_source
+              and quiz_source.index('window.dispatchEvent(new CustomEvent("tad:optionalPrepSave"')
+                  < quiz_source.index('const resultHost=$("optionalQuizHost")'),
+              "Quiz results must render safely after optional-preference sync rerenders the workspace")
         check('select("id,display_name,role,target_exam")' not in owner_source,
               "Owner workspace queries a target_exam profile column that does not exist")
 

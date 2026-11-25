@@ -7,3 +7,5 @@
 .guided-lesson dl{display:grid;grid-template-columns:minmax(8rem, .35fr) 1fr;gap:.4rem .8rem}
 .guided-lesson dd{margin:0}
 @media(max-width:560px){.guided-lesson dl{grid-template-columns:1fr;gap:.15rem}.guided-lesson dd{margin:0 0 .45rem}}
+
+.optional-quiz-timer{display:inline-flex;align-items:center;padding:.45rem .75rem;border:1px solid var(--line);border-radius:999px;font-weight:800;font-variant-numeric:tabular-nums;background:var(--surface-alt);color:var(--ink)}
