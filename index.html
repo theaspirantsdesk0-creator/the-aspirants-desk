@@ -646,6 +646,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <link rel="stylesheet" href="assets/css/courses.css">
   <link rel="stylesheet" href="assets/css/course-studio.css">
   <link rel="stylesheet" href="assets/css/design-system.css">
+  <link rel="stylesheet" href="assets/css/pyq-inventory.css">
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -1251,6 +1252,26 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <p class="muted">This archive displays only question records verified against official UPSC documents. The question bank and the official PYQ archive remain separate. Answers and explanations appear only when independently supported.</p>
       <section id="pyqInventorySnapshot" class="pyq-inventory-snapshot" aria-live="polite" aria-label="Official paper verification progress">
         <p class="muted">Loading official paper verification status…</p>
+      </section>
+      <section class="pyq-explorer card" aria-labelledby="pyqExplorerTitle">
+        <div class="pyq-explorer-heading">
+          <div><span class="pill">TRANSPARENT COVERAGE</span><h3 id="pyqExplorerTitle">Explore all planned papers</h3>
+          <p class="muted">Browse the paper checklist by year, stage and verification status. “Not checked” means this site has not verified a matching official PDF; it does not mean the paper is unavailable.</p></div>
+          <div class="pyq-explorer-total" id="pyqExplorerTotal" aria-live="polite">Loading tracker…</div>
+        </div>
+        <div class="pyq-explorer-filters">
+          <label>Search papers<input id="pyqTrackerSearch" type="search" placeholder="Search paper or optional subject"></label>
+          <label>Year<select id="pyqTrackerYear"><option value="ALL">All years</option></select></label>
+          <label>Stage<select id="pyqTrackerStage"><option value="ALL">All stages</option></select></label>
+          <label>Status<select id="pyqTrackerStatus"><option value="ALL">All statuses</option><option value="verified">Verified</option><option value="published">Published</option><option value="source_found">Source found · not verified</option><option value="not_checked">Not checked</option></select></label>
+        </div>
+        <div class="pyq-tracker-summary" id="pyqTrackerSummary" aria-live="polite"></div>
+        <div class="pyq-tracker-table-wrap"><table class="pyq-tracker-table">
+          <thead><tr><th>Year</th><th>Stage</th><th>Paper</th><th>Optional subject</th><th>Status</th></tr></thead>
+          <tbody id="pyqTrackerRows"><tr><td colspan="5">Loading paper inventory…</td></tr></tbody>
+        </table></div>
+        <div class="pyq-tracker-pagination"><span id="pyqTrackerPageInfo" aria-live="polite">—</span><div><button type="button" id="pyqTrackerPrev" class="btn secondary" disabled>Previous</button><button type="button" id="pyqTrackerNext" class="btn secondary" disabled>Next</button></div></div>
+        <p class="muted pyq-tracker-note">This is a paper-level work tracker, not a claim that every listed paper has been found or published. Use the verified document catalogue below for confirmed official PDFs.</p>
       </section>
       <div class="form-grid" style="margin:.8rem 0">
         <div><label for="officialPyqYear">Year</label><select id="officialPyqYear"><option value="ALL">All published years</option></select></div>
@@ -3747,6 +3768,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
     paint();
   })();
   </script>
+  <script src="assets/js/pyq-inventory.js" defer></script>
   <script src="assets/js/dashboard.js" defer></script>
 <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
