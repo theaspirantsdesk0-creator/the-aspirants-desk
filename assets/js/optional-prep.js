@@ -233,4 +233,5 @@ async function init(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
 window.TADOptionalPrep={open:openSetup,render};
+const guided=document.createElement("script");guided.src="assets/js/optional-guided-content.js";guided.async=true;document.head.appendChild(guided);
 })();
