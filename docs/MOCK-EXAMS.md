@@ -174,3 +174,8 @@ Added a standalone written-answer workspace backed by active written questions i
 ## Mains Answer Improvement Dashboard
 
 Added a learner-scoped dashboard based on the existing `user_data.payload.answerEvaluations` and `mainsDrafts` records. It summarises saved evaluations, saved drafts, recurring priority weaknesses, repeated strengths, subject-wise practice volume and recent feedback. It creates concise practice advice from recorded weakness labels; it does not infer marks or mastery. The dashboard loads directly from the signed-in learner's row and includes a refresh action. AI feedback remains formative and depends on configured provider credentials.
+
+
+## Mains Answer Improvement Dashboard
+
+Expanded the private answer-improvement dashboard to compare saved formative marks within the same subject and mark scale, show average rubric-criterion scores, rank recurring feedback priorities, retain strengths, and provide rewrite exercises for recent evaluated answers. Improved evaluation records now explicitly store priority weakness and strength tags so the dashboard can aggregate them. Rewrite drafts are saved through the existing signed-in learner draft bridge in `user_data.payload.mainsDrafts`. The dashboard reads only the authenticated learner's `user_data` row. AI-provider configuration is still required for new AI evaluations; the dashboard remains useful for reviewing previously saved feedback.
