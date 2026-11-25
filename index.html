@@ -3896,6 +3896,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const summary=$("tadWeaknessSummary"),host=$("tadWeaknessQueue");if(!summary||!host)return;
     if(!currentUser){summary.replaceChildren();host.textContent="Sign in to view your private improvement queue.";return;}
     const run=++tadRevisionEngineRun;
+    const requestedUserId=currentUser.id;
     const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
     host.innerHTML='<p class="muted">Connecting your mock results, answer feedback, syllabus and revision schedule…</p>';
     const mistakes=Array.isArray(state.mistakes)?state.mistakes:[];
@@ -3951,7 +3952,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const syllabus=sylTopics()||[];
     const unfinished=syllabus.filter(topic=>!(state.syllabus||[]).includes(sylKey(topic))&&!["mastered"].includes(mastery[selectedExam+"::"+topic]?.status));
     unfinished.slice(0,4).forEach((topic,i)=>add("syllabus",topic,"Syllabus not yet marked complete · "+(mastery[selectedExam+"::"+topic]?.status||"not started"),45-i));
-    if(run!==tadRevisionEngineRun||!currentUser||currentUser.id!==localStorage.getItem("tad_active_user_id"))return;
+    if(run!==tadRevisionEngineRun||!currentUser||currentUser.id!==requestedUserId)return;
     tasks.sort((a,b)=>b.priority-a.priority);
     const activeDue=due.filter(x=>x.dueAt<=tadDateAfterDays(0)).length;
     summary.innerHTML=[[mistakes.length,"Saved mistakes"],[mockWeak.length,"Weak mock sections"],[weaknessTags.size,"Mains feedback signals"],[activeDue,"Due / overdue revisions"]].map(x=>'<div class="tad-review-metric"><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></div>').join("");
@@ -4041,6 +4042,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const optional = state.optionalPrep?.subject || state.optionalPrep?.optionalSubject || "Not selected";
     $("tadCommandProgress").innerHTML = '<div class="tad-command-item"><div><strong>'+safe(selectedExam)+'</strong><p class="muted">'+completed+' of '+topics.length+' syllabus areas marked complete</p></div><b>'+pct+'%</b></div><div class="tad-command-item"><div><strong>Topic mastery</strong><p class="muted">'+mastered+' topics marked mastered</p></div><a class="btn" href="#tracker" data-nav="tracker">Update</a></div><div class="tad-command-item"><div><strong>Optional subject</strong><p class="muted">'+safe(optional)+'</p></div><a class="btn" href="#notes" data-nav="notes">Open</a></div><div class="tad-command-item"><div><strong>Answer evaluations</strong><p class="muted">'+evaluations+' saved evaluation(s)</p></div><a class="btn" href="#anbuu" data-nav="anbuu">Review</a></div>';
     $("tadCommandFoot").textContent = recentAttempt ? "Latest mock submitted "+(recentAttempt.submitted_at ? new Date(recentAttempt.submitted_at).toLocaleDateString() : "recently")+". Your summary is scoped to this account." : "No completed mock attempt is recorded yet. Your summary updates as you study.";
+    renderWeaknessEngine();
   }
 
   function renderAllUserModules() {
