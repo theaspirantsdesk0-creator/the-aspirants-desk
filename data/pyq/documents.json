@@ -26,7 +26,7 @@
   ],
   "inventory_summary": {
     "expected_paper_entries": 2575,
-    "verified_entries": 26,
+    "verified_entries": 28,
     "published_entries": 0,
     "note": "Every row starts as not_checked. A direct document URL is added only after locating the exact official PDF. 'source_found' means a candidate official document has been located but not yet checked against its metadata; 'verified' requires opening the PDF and confirming year, exam, subject, and paper."
   },
@@ -37088,16 +37088,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper I",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-11.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2020 — General Studies Paper I",
+      "verified_at": "2026-11-25",
+      "verification_method": "Official UPSC-hosted PDF result; its heading identifies CS (P) Exam 2020, General Studies Paper I, and the instructions state that the booklet contains 100 questions.",
+      "notes": "Verified against the official UPSC-hosted PDF; the document heading confirms the 2020 Civil Services Preliminary examination and paper."
     },
     {
       "id": "prelims-general-studies-paper-ii-csat-2020",
@@ -37106,16 +37106,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper II (CSAT)",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-ii-11.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2020 — General Studies Paper II (CSAT)",
+      "verified_at": "2026-11-25",
+      "verification_method": "Official UPSC-hosted PDF result; its heading identifies CS (P) Exam 2020, General Studies Paper II, and the instructions state that the booklet contains 80 questions.",
+      "notes": "Verified against the official UPSC-hosted PDF; the document heading confirms the 2020 Civil Services Preliminary examination and paper."
     },
     {
       "id": "mains-essay-2020",

@@ -443,6 +443,40 @@
         "verified_at": "2026-11-25",
         "method": "Opened the official UPSC-hosted PDF; its heading identifies CS (P) Exam, 2021 and General Studies Paper I, and the paper states that it contains 100 questions."
       }
+    },
+    {
+      "id": "cse-prelims-2020-gs-paper-i",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2020,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper I",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2020 — General Studies Paper I",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-11.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-25",
+        "method": "Official UPSC-hosted PDF result; its heading identifies CS (P) Exam 2020, General Studies Paper I, and the instructions state that the booklet contains 100 questions."
+      }
+    },
+    {
+      "id": "cse-prelims-2020-csat",
+      "exam": "Civil Services (Preliminary) Examination",
+      "year": 2020,
+      "stage": "Prelims",
+      "subject": "General Studies",
+      "paper": "Paper II (CSAT)",
+      "category": "General Studies",
+      "status": "verified",
+      "title": "Civil Services (Preliminary) Examination, 2020 — General Studies Paper II (CSAT)",
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-ii-11.pdf",
+      "source": "UPSC official PDF",
+      "verification": {
+        "verified_at": "2026-11-25",
+        "method": "Official UPSC-hosted PDF result; its heading identifies CS (P) Exam 2020, General Studies Paper II, and the instructions state that the booklet contains 80 questions."
+      }
     }
   ]
 }
