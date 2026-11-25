@@ -134,3 +134,14 @@ input,select,textarea{border-radius:10px}
 .tad-syllabus-notes-summary h4{margin:.2rem 0 .5rem}
 .tad-syllabus-notes-summary ul{display:flex;gap:.5rem;flex-wrap:wrap;padding-left:1.2rem}
 @media(max-width:620px){.tad-syllabus-controls{grid-template-columns:1fr}.tad-syllabus-controls label{margin-bottom:-.4rem}.tad-syllabus-progress{padding:.8rem}}
+
+
+/* Syllabus-to-learning pathways */
+.tad-topic-pathways{margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--line)}
+.tad-topic-pathway-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}
+.tad-topic-pathway{display:grid;gap:.7rem;padding:.85rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tad-topic-pathway strong{font-size:.9rem}
+.tad-topic-pathway-actions,.tad-optional-pathway-actions{display:flex;gap:.45rem;flex-wrap:wrap}
+.tad-topic-pathway-actions .btn,.tad-optional-pathway-actions .btn{font-size:.78rem;padding:.45rem .65rem}
+.tad-optional-pathway-actions{align-items:center;margin-top:1rem;padding:.8rem;border:1px dashed var(--line);border-radius:10px}
+.tad-optional-pathway-actions span{font-weight:700;margin-right:.25rem}
