@@ -693,11 +693,14 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
 
   let learnerContext = "";
   if (profile.role === "learner") {
-    const [savedResult, testsResult, lessonHistoryResult, activeLessonResult] = await Promise.all([
+    const [savedResult, testsResult, mockAttemptsResult, lessonHistoryResult, activeLessonResult] = await Promise.all([
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
       adminClient.from("test_results")
         .select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(5),
+      adminClient.from("mock_exam_attempts").select("id,paper_id,score,max_score,analytics,submitted_at")
+        .eq("user_id", authData.user.id).in("status", ["submitted", "expired"])
+        .order("submitted_at", { ascending: false }).limit(5),
       adminClient.from("anbuu_lesson_history")
         .select("id,track,subject,topic,level,status,updated_at,completed_at")
         .eq("user_id", authData.user.id).order("updated_at", { ascending: false }).limit(8),
@@ -716,11 +719,28 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       const row = item as Record<string, unknown>;
       return [row.subject, row.topic].filter((v) => typeof v === "string").join(" / ");
     }).filter(Boolean).slice(0, 8);
-    const recentTests = (testsResult.data ?? []).map((test) => ({
+    const mockAttempts = mockAttemptsResult.data ?? [];
+    const mockPaperIds = [...new Set(mockAttempts.map((attempt) => attempt.paper_id).filter(Boolean))];
+    const mockPapersResult = mockPaperIds.length
+      ? await adminClient.from("mock_exam_papers").select("id,title,paper_type,optional_subject").in("id", mockPaperIds)
+      : { data: [], error: null };
+    const mockPaperById = new Map((mockPapersResult.data ?? []).map((paper) => [paper.id, paper]));
+    const mockRecentTests = mockAttempts.map((attempt) => {
+      const paper = mockPaperById.get(attempt.paper_id);
+      const analytics = attempt.analytics && typeof attempt.analytics === "object" ? attempt.analytics : {};
+      return {
+        exam: "UPSC mock", name: paper?.title ?? paper?.paper_type ?? "Mock examination",
+        optionalSubject: paper?.optional_subject ?? null,
+        score: attempt.score, max: attempt.max_score,
+        correct: analytics.correct ?? 0, wrong: analytics.wrong ?? 0, skipped: analytics.skipped ?? 0,
+        sections: analytics.section_breakdown ?? {}, date: attempt.submitted_at,
+      };
+    });
+    const recentTests = [...mockRecentTests, ...(testsResult.data ?? []).map((test) => ({
       exam: test.exam, name: test.test_name, score: test.score, max: test.max_score,
       correct: test.correct_count, wrong: test.wrong_count, skipped: test.skipped_count,
       date: test.created_at,
-    }));
+    }))].sort((a,b) => Date.parse(String(b.date ?? ""))-Date.parse(String(a.date ?? ""))).slice(0,8);
     const lessonHistory = [...(activeLessonResult.data ?? []), ...(lessonHistoryResult.data ?? [])]
       .filter((lesson, index, rows) => rows.findIndex(candidate => candidate.id === lesson.id) === index)
       .slice(0, 8)
