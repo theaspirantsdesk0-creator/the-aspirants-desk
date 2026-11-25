@@ -163,6 +163,7 @@ function startQuiz(index){
   }].slice(-100)};
   const masteryNext={...(next.mastery||{})};masteryNext[current().subject+":"+index]=score===questions.length?"mastered":score/questions.length>=.7?"practised":"revision_due";next.mastery=masteryNext;
   if(score<questions.length){next.revisionSchedule={...(next.revisionSchedule||{}),[current().subject+":"+index]:{dueAt:dateAfter(1),intervalIndex:0,reviewCount:0,completed:false,updatedAt:attemptedAt,source:"unit_quiz"}};}
+  else if(next.revisionSchedule&&next.revisionSchedule[current().subject+":"+index]){next.revisionSchedule={...next.revisionSchedule,[current().subject+":"+index]:{...next.revisionSchedule[current().subject+":"+index],completed:true,completedAt:attemptedAt}};}
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   const resultHost=$("optionalQuizHost");
   if(!resultHost)return;
