@@ -223,6 +223,7 @@ function renderStudySnapshot(data){
  const button=$("#tadAiPlanSession");if(button)button.onclick=()=>sendMessage("Use my saved study plan, pending tasks and recorded weak topics to create my next study session. Keep it realistic and time-bounded. If my available study time is not saved, ask me for it before setting durations. Start with one priority and explain why it comes first.");
 }
 function renderProgress(data){
+renderStudySnapshot(data);
 const weekly=$("#tadAiWeekly"),historyHost=$("#tadAiHistory"),lessonsHost=$("#tadAiLessons"),weak=$("#tadAiWeak");
 weekly.replaceChildren();historyHost.replaceChildren();lessonsHost.replaceChildren();weak.replaceChildren();
 const w=data?.weekly||{},summary=document.createElement("p");
