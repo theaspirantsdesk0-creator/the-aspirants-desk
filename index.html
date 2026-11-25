@@ -817,7 +817,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <section><h3>Today's priorities</h3><div id="tadCommandPriorities" class="tad-command-list"><p class="muted">Your priorities will appear after sign-in.</p></div></section>
         <section><h3>Preparation progress</h3><div id="tadCommandProgress" class="tad-command-list"><p class="muted">Your progress will appear after sign-in.</p></div></section>
       </div>
-      <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p></section>
+      <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p><section class="tad-performance-intelligence" aria-labelledby="tadPerformanceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">PERFORMANCE INTELLIGENCE</span><h3 id="tadPerformanceTitle">Exam performance overview</h3><p class="muted">Separate objective mock evidence from formative Mains feedback. Only your own saved records are shown.</p></div><button type="button" class="btn" id="tadPerformanceRefresh">Refresh performance</button></div><div id="tadPerformanceStatus" class="muted" aria-live="polite">Loading your performance records…</div><div id="tadPerformanceGroups" class="tad-performance-groups"></div><div id="tadPerformanceAnswers" class="tad-performance-answers"></div></section></section>
       <section class="tad-goals-achievements" aria-labelledby="tadGoalsTitle">
 <div class="tad-intelligence-head"><div><span class="eyebrow">CONSISTENCY & MILESTONES</span><h3 id="tadGoalsTitle">Weekly targets & achievements</h3><p class="muted">Set a realistic weekly target and earn milestones from recorded activity.</p></div></div>
 <div class="tad-goal-controls"><label>Study hours / week<select id="tadGoalHours"><option value="5">5 hours</option><option value="8">8 hours</option><option value="10" selected>10 hours</option><option value="12">12 hours</option><option value="15">15 hours</option><option value="20">20 hours</option></select></label><label>Active study days<select id="tadGoalDays"><option value="3">3 days</option><option value="4">4 days</option><option value="5" selected>5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></label><button type="button" class="btn primary" id="tadGoalSave">Save weekly targets</button><span id="tadGoalStatus" class="muted" aria-live="polite">Targets are private to your account.</span></div>
@@ -3832,9 +3832,66 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     `).join("");
   });
 
+
+  let tadPerformanceRun=0;
+  async function renderPerformanceIntelligence(){
+    const host=$("tadPerformanceGroups"),answerHost=$("tadPerformanceAnswers"),status=$("tadPerformanceStatus");
+    if(!host||!answerHost||!status)return;
+    if(!currentUser){host.replaceChildren();answerHost.replaceChildren();status.textContent="Sign in to view private performance analytics.";return;}
+    const run=++tadPerformanceRun,requestedUserId=currentUser.id;
+    status.textContent="Loading your latest mock attempts and saved answer evaluations…";
+    try{
+      if(!supabase)throw new Error("Study database connection is unavailable.");
+      const [ar,pr]=await Promise.all([
+        supabase.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",requestedUserId).in("status",["submitted","expired"]).order("submitted_at",{ascending:false}).limit(100),
+        supabase.from("mock_exam_papers").select("id,title,exam_stage,optional_subject").eq("is_published",true)
+      ]);
+      if(currentUser?.id!==requestedUserId||run!==tadPerformanceRun)return;
+      if(ar.error)throw ar.error;
+      if(pr.error)throw pr.error;
+      const papers=new Map((pr.data||[]).map(p=>[p.id,p]));
+      const attempts=(ar.data||[]).map(a=>({...a,paper:papers.get(a.paper_id)})).filter(a=>a.paper);
+      const buckets=[
+        {key:"prelims",label:"Prelims",test:p=>/prelims/i.test(p.exam_stage||"")||/PRELIMS/i.test(p.title||"")},
+        {key:"gs",label:"Mains · General Studies",test:p=>/mains/i.test(p.exam_stage||"")&&!p.optional_subject},
+        {key:"anthro",label:"Anthropology optional",test:p=>/anthropology/i.test((p.optional_subject||"")+" "+(p.title||""))}
+      ];
+      const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+      const cards=buckets.map(b=>{
+        const list=attempts.filter(a=>b.test(a.paper));
+        const objective=list.filter(a=>Number(a.max_score)>0&&(Number(a.analytics?.correct||0)+Number(a.analytics?.wrong||0))>0);
+        const accuracy=objective.length?objective.reduce((n,a)=>n+Number(a.analytics.correct||0)/(Number(a.analytics.correct||0)+Number(a.analytics.wrong||0))*100,0)/objective.length:null;
+        const written=list.reduce((n,a)=>n+Number(a.analytics?.written_questions||0),0);
+        const latest=list[0]?.submitted_at;
+        return '<article class="tad-performance-card"><div><span>'+esc(b.label)+'</span><strong>'+list.length+'</strong></div><p>'+ (accuracy===null?'No objective accuracy recorded':accuracy.toFixed(1)+'% average objective accuracy')+'</p><small>'+objective.length+' objectively scored attempt(s) · '+written+' written response(s) · '+(latest?'Latest '+new Date(latest).toLocaleDateString():'No completed attempt yet')+'</small></article>';
+      });
+      host.innerHTML=cards.join("");
+      const evaluations=Array.isArray(state.answerEvaluations)?state.answerEvaluations:Array.isArray(state.mainsEvaluations)?state.mainsEvaluations:[];
+      const grouped=new Map();
+      evaluations.forEach(e=>{
+        const subject=String(e.subject||"Mains answer");
+        const g=grouped.get(subject)||{count:0,marks:[],latest:""};
+        g.count++;
+        const match=String(e.feedback||"").match(/FORMATIVE AI ESTIMATE:\s*([0-9.]+)\s*\/\s*([0-9.]+)/i);
+        if(match&&Number(match[2])>0)g.marks.push(Number(match[1])/Number(match[2])*100);
+        const date=e.savedAt||e.created_at||"";
+        if(Date.parse(date)>Date.parse(g.latest||""))g.latest=date;
+        grouped.set(subject,g);
+      });
+      const answerRows=[...grouped.entries()].sort((a,b)=>b[1].count-a[1].count).slice(0,8);
+      answerHost.innerHTML='<h4>Mains answer-writing evidence</h4>'+(answerRows.length?answerRows.map(([subject,g])=>'<div class="tad-performance-answer-row"><div><b>'+esc(subject)+'</b><small>'+g.count+' saved evaluation(s) · '+(g.latest?'Latest '+new Date(g.latest).toLocaleDateString():'date unavailable')+'</small></div><strong>'+(g.marks.length?g.marks.reduce((n,x)=>n+x,0)/g.marks.length+'% formative average':'Feedback saved · no comparable estimate')+'</strong></div>').join(""):'<p class="muted">No saved answer evaluations yet. Complete a Mains answer evaluation to build this section.</p>');
+      status.textContent=attempts.length+" completed mock attempt(s) · "+evaluations.length+" saved answer evaluation(s). "+(attempts.length?"Results are grouped by exam stage and optional subject.":"Your dashboard is ready; submit a mock to start building objective performance history.");
+    }catch(error){
+      if(currentUser?.id!==requestedUserId||run!==tadPerformanceRun)return;
+      status.textContent="Performance data could not be loaded: "+(error.message||"Please retry.");
+      host.replaceChildren();answerHost.replaceChildren();
+    }
+  }
+  if($("tadPerformanceRefresh")&&!$("tadPerformanceRefresh").dataset.bound){$("tadPerformanceRefresh").dataset.bound="1";$("tadPerformanceRefresh").addEventListener("click",renderPerformanceIntelligence);}
   function renderStudyIntelligence(topics, dueItems) {
     const kpis=$("tadIntelligenceKpis"), heat=$("tadMasteryHeatmap"), weekly=$("tadWeeklyStudyReport"), outlook=$("tadRevisionOutlook"), foot=$("tadIntelligenceFoot");
     if(!kpis||!heat||!weekly||!outlook)return;
+    renderPerformanceIntelligence();
     const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
     const key=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
     const today=new Date();today.setHours(0,0,0,0);
