@@ -126,6 +126,27 @@ try {
   if (allDocumentCards !== pyqAudit.manifestCount) {
     throw new Error('Verified PDF catalogue UI count does not match its manifest: ' + allDocumentCards + ' vs ' + pyqAudit.manifestCount);
   }
+  // The paper-level coverage explorer must load the full inventory and filter safely.
+  await page.waitForFunction(() => document.querySelector('#pyqExplorerTotal')?.textContent.includes('planned paper records'), { timeout: 15000 });
+  const trackerTotal = await page.locator('#pyqExplorerTotal').innerText();
+  if (!trackerTotal.includes('2,575')) throw new Error('PYQ coverage explorer did not load the expected paper inventory: ' + trackerTotal);
+  const trackerRows = page.locator('#pyqTrackerRows tr');
+  await page.locator('#pyqTrackerYear').selectOption('2024');
+  if (await trackerRows.count() < 1 || await trackerRows.count() > 25) throw new Error('PYQ tracker year filter or pagination returned an unexpected row count');
+  await page.locator('#pyqTrackerStatus').selectOption('verified');
+  const verifiedTrackerRows = await trackerRows.count();
+  if (verifiedTrackerRows < 1 || verifiedTrackerRows > 25) throw new Error('PYQ tracker verified-status filter returned an unexpected row count');
+  const trackerStatuses = await page.locator('#pyqTrackerRows .pyq-status').allTextContents();
+  if (trackerStatuses.some(value => value.trim() !== 'Verified')) throw new Error('PYQ tracker status filter returned a non-verified row');
+  await page.locator('#pyqTrackerSearch').fill('Anthropology');
+  if (await trackerRows.count() < 1) throw new Error('PYQ tracker search did not find verified Anthropology paper records');
+  await page.locator('#pyqTrackerSearch').fill('');
+  await page.locator('#pyqTrackerYear').selectOption('ALL');
+  await page.locator('#pyqTrackerStage').selectOption('ALL');
+  await page.locator('#pyqTrackerStatus').selectOption('ALL');
+  if (!(await page.locator('#pyqTrackerPageInfo').innerText()).includes('of 2,575 matching records')) {
+    throw new Error('PYQ tracker reset did not restore the full inventory');
+  }
   await page.locator('#verifiedPyqYear').selectOption('2021');
   if (await verifiedDocCards.count() !== 1) throw new Error('Verified PDF year filter did not isolate the 2021 document');
   await page.locator('#verifiedPyqYear').selectOption('ALL');
