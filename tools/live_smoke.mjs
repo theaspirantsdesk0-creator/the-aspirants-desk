@@ -437,6 +437,34 @@ try {
 
   const bodyText = await page.locator('body').innerText();
   if (!bodyText.includes('The Aspirant')) throw new Error('Expected site content is missing');
+
+  // Mobile navigation regression check: the compact menu must open, route to a
+  // public section, close again, and avoid horizontal page overflow.
+  const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, deviceScaleFactor: 1 });
+  mobilePage.on('pageerror', error => pageErrors.push('mobile: ' + error.message));
+  mobilePage.on('requestfailed', request => {
+    if (new URL(request.url()).origin === new URL(base).origin) failedLocalRequests.push('mobile: ' + request.url() + ' :: ' + (request.failure()?.errorText || 'failed'));
+  });
+  await mobilePage.goto(base, { waitUntil: 'domcontentloaded' });
+  await mobilePage.locator('#home').waitFor({ state: 'visible', timeout: 15000 });
+  const mobileMenu = mobilePage.locator('#menuToggle');
+  if (!(await mobileMenu.isVisible())) throw new Error('Mobile navigation menu button is not visible');
+  await mobileMenu.click();
+  if (await mobileMenu.getAttribute('aria-expanded') !== 'true') throw new Error('Mobile navigation did not report its expanded state');
+  if (!(await mobilePage.locator('#sidebar').evaluate(el => el.classList.contains('open')))) throw new Error('Mobile sidebar did not open');
+  await mobilePage.locator('.nav-link[data-nav="about-app"]').click();
+  if (!(await mobilePage.locator('#about-app').evaluate(el => el.classList.contains('active')))) throw new Error('Mobile navigation did not open the selected public section');
+  if (await mobilePage.locator('#sidebar').evaluate(el => el.classList.contains('open'))) throw new Error('Mobile sidebar did not close after selecting a section');
+  const mobileLayout = await mobilePage.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth,
+    mainVisible: !!document.querySelector('#about-app.active')
+  }));
+  if (mobileLayout.document > mobileLayout.viewport + 1) throw new Error('Mobile page has horizontal overflow: ' + JSON.stringify(mobileLayout));
+  await mobilePage.setViewportSize({ width: 320, height: 720 });
+  const narrowLayout = await mobilePage.evaluate(() => ({ viewport: document.documentElement.clientWidth, document: document.documentElement.scrollWidth }));
+  if (narrowLayout.document > narrowLayout.viewport + 1) throw new Error('Narrow mobile page has horizontal overflow: ' + JSON.stringify(narrowLayout));
+  await mobilePage.close();
   if (pageErrors.length) throw new Error('Browser runtime errors: ' + pageErrors.join(' | '));
   if (failedLocalRequests.length) throw new Error('Failed same-origin requests: ' + failedLocalRequests.join(' | '));
   console.log(JSON.stringify({ result: 'PASS', url: base, title, anbuuNavigation: true, anbuuPage: true, aiForm, revisionTab: true, cssLoaded: css, pageErrors, failedLocalRequests }, null, 2));
