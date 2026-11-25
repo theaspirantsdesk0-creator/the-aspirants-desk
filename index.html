@@ -818,6 +818,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <section><h3>Preparation progress</h3><div id="tadCommandProgress" class="tad-command-list"><p class="muted">Your progress will appear after sign-in.</p></div></section>
       </div>
       <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p></section>
+      <section class="tad-weekly-review" aria-labelledby="tadWeeklyReviewTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">WEEKLY REVIEW</span><h3 id="tadWeeklyReviewTitle">Your seven-day preparation review</h3><p class="muted">A review of recorded activity and the next practical priorities.</p></div><button type="button" class="btn" id="tadWeeklyReviewRefresh">Refresh report</button></div><div id="tadWeeklyReviewBody" aria-live="polite"><p class="muted">Loading your private weekly review…</p></div></section>
       <div class="tad-command-actions"><a class="btn primary" href="#today" data-nav="today">Start study session</a><a class="btn" href="#tracker" data-nav="tracker">Open preparation tracker</a><a class="btn" href="#anbuu" data-nav="anbuu">Ask Anbuu</a></div>
       <p class="tad-command-foot" id="tadCommandFoot" aria-live="polite">Sign in to see your private study summary.</p>
     </section>
@@ -3804,6 +3805,49 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     foot.textContent=dated.length?"Streak and weekly hours use only dated session records. Older time-only logs are excluded; revision outlook uses saved due dates.":"Older time-only logs are excluded. Study streak and weekly history begin with newly logged dated sessions.";
   }
 
+  async function renderWeeklyReview() {
+    const host=$("tadWeeklyReviewBody");if(!host)return;
+    if(!currentUser){host.textContent="Sign in to view your private weekly review.";return;}
+    host.innerHTML='<p class="muted">Refreshing your seven-day report…</p>';
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const today=new Date();today.setHours(23,59,59,999);
+    const start=new Date();start.setHours(0,0,0,0);start.setDate(start.getDate()-6);
+    const dated=s=>(s&&/^\d{4}-\d{2}-\d{2}$/.test(String(s.dateKey||""))?new Date(s.dateKey+"T12:00:00"):null);
+    const sessions=(Array.isArray(state.sessions)?state.sessions:[]).filter(s=>{const d=dated(s);return d&&d>=start&&d<=today;});
+    const hours=sessions.reduce((n,s)=>n+Math.max(0,Number(s.hrs)||0),0);
+    const days=new Set(sessions.map(s=>s.dateKey)).size;
+    let attempts=[],papersById=new Map(),attemptError="";
+    try{
+      if(!supabase)throw new Error("Study database is unavailable.");
+      const [ar,pr]=await Promise.all([
+        supabase.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",currentUser.id).in("status",["submitted","expired"]).order("submitted_at",{ascending:false}).limit(100),
+        supabase.from("mock_exam_papers").select("id,title,exam_stage,optional_subject")
+      ]);
+      if(ar.error)throw ar.error;if(pr.error)throw pr.error;
+      attempts=ar.data||[];papersById=new Map((pr.data||[]).map(p=>[p.id,p]));
+    }catch(e){attemptError=e.message||"Mock history could not be loaded.";}
+    const inWeek=attempts.filter(a=>a.submitted_at&&new Date(a.submitted_at)>=start&&new Date(a.submitted_at)<=today);
+    const scored=inWeek.filter(a=>Number(a.max_score)>0&&Number.isFinite(Number(a.score)));
+    const avg=scored.length?scored.reduce((n,a)=>n+Number(a.score)/Number(a.max_score)*100,0)/scored.length:null;
+    const section={};
+    inWeek.forEach(a=>Object.entries(a.analytics?.section_breakdown||{}).forEach(([name,v])=>{const n=Number(v.correct||0)+Number(v.wrong||0);if(!n)return;const x=section[name]||{correct:0,wrong:0};x.correct+=Number(v.correct||0);x.wrong+=Number(v.wrong||0);section[name]=x;}));
+    const weakest=Object.entries(section).map(([name,v])=>({name,accuracy:v.correct/(v.correct+v.wrong)*100})).sort((a,b)=>a.accuracy-b.accuracy)[0];
+    const evals=Array.isArray(state.answerEvaluations)?state.answerEvaluations:Array.isArray(state.mainsEvaluations)?state.mainsEvaluations:[];
+    const datedEvals=evals.filter(e=>{const v=e.created_at||e.createdAt||e.evaluated_at||e.timestamp||e.date;if(!v)return false;const d=new Date(v);return Number.isFinite(d.getTime())&&d>=start&&d<=today;});
+    const topics=SYLLABI[selectedExam]||SYLLABI["UPSC CSE"]||[];
+    const incomplete=topics.filter(t=>!(state.syllabus||[]).includes(sylKey(t)));
+    const due=Object.values(state.topicRevisionSchedule||{}).filter(x=>x&&x.topic&&!x.completed&&x.dueAt&&new Date(x.dueAt+"T00:00:00")<=new Date(new Date().setHours(0,0,0,0)));
+    const recommendations=[];
+    if(due.length)recommendations.push({title:"Clear the revision backlog",detail:due.slice(0,3).map(x=>x.topic).join(" · "),action:"Open revision queue",route:"tracker"});
+    if(weakest)recommendations.push({title:"Revise your weakest mock section",detail:weakest.name+" · "+weakest.accuracy.toFixed(1)+"% recorded accuracy",action:"Review mock analytics",route:"mockexams"});
+    if(incomplete.length)recommendations.push({title:"Move one syllabus area forward",detail:incomplete.slice(0,2).join(" · "),action:"Open syllabus tracker",route:"tracker"});
+    if(!datedEvals.length)recommendations.push({title:"Build answer-writing evidence",detail:"Complete and save one formative Mains answer evaluation this week.",action:"Open Answer Lab",route:"anbuu"});
+    const metric=(v,l)=>'<div class="tad-review-metric"><strong>'+esc(v)+'</strong><span>'+esc(l)+'</span></div>';
+    const attemptSummary=attemptError?'<p class="muted">Mock data unavailable: '+esc(attemptError)+'</p>':'<p class="muted">'+inWeek.length+' completed mock attempt(s) this week'+(avg===null?'; no comparable objective score available.':'; average recorded score '+avg.toFixed(1)+'% across '+scored.length+' scored attempt(s.')+'</p>';
+    host.innerHTML='<div class="tad-review-metrics">'+metric(hours.toFixed(1)+'h','Dated study time')+metric(days+'/7','Study days')+metric(inWeek.length,'Mocks submitted')+metric(datedEvals.length,'Dated answer evaluations')+'</div><div class="tad-review-columns"><section><h4>What happened this week</h4>'+attemptSummary+'<p class="muted">'+evals.length+' saved answer evaluation(s) in total; '+(datedEvals.length?'dated within this week.':'weekly dates unavailable for saved evaluations.')+'</p>'+(weakest?'<p class="tad-review-highlight"><b>Lowest recorded section:</b> '+esc(weakest.name)+' · '+weakest.accuracy.toFixed(1)+'%</p>':'<p class="muted">Section-wise mock trend will appear when attempts include section analytics.</p>')+'</section><section><h4>Next priorities</h4>'+(recommendations.length?'<ol class="tad-review-priorities">'+recommendations.slice(0,4).map(x=>'<li><b>'+esc(x.title)+'</b><span>'+esc(x.detail)+'</span><a href="#'+esc(x.route)+'" data-nav="'+esc(x.route)+'">'+esc(x.action)+'</a></li>').join("")+'</ol>':'<p class="muted">No outstanding priorities were found in the tracked records.</p>')+'</section></div><p class="tad-intelligence-foot">Only this signed-in account’s records are used. Unavailable dates, unscored attempts and untracked topics are not estimated.</p>';
+  }
+  if($("tadWeeklyReviewRefresh")&&!$("tadWeeklyReviewRefresh").dataset.bound){$("tadWeeklyReviewRefresh").dataset.bound="1";$("tadWeeklyReviewRefresh").addEventListener("click",()=>renderWeeklyReview());}
+
   async function renderStudyCommandCentre() {
     const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 
@@ -3820,6 +3864,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       if ($("tadWeeklyStudyReport")) $("tadWeeklyStudyReport").textContent = "Sign in to view your private study report.";
       if ($("tadRevisionOutlook")) $("tadRevisionOutlook").textContent = "Sign in to view your private revision outlook.";
       if ($("tadIntelligenceFoot")) $("tadIntelligenceFoot").textContent = "Your learning records are private to your signed-in account.";
+      if ($("tadWeeklyReviewBody")) $("tadWeeklyReviewBody").textContent = "Sign in to view your private weekly review.";
       return;
     }
     const topics = SYLLABI[selectedExam] || SYLLABI["UPSC CSE"] || [];
@@ -3863,6 +3908,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     };
     window.dispatchEvent(new CustomEvent("tad:study-context-updated"));
     renderStudyIntelligence(topics, active);
+    renderWeeklyReview();
     const metric = (value,label) => '<div class="tad-command-kpi"><strong>'+value+'</strong><span>'+label+'</span></div>';
     host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
     const priorities = [];
