@@ -37,7 +37,7 @@ async function boot(){
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});savedPracticeHistory=typeof window.TAD_GET_TOPIC_PRACTICE_HISTORY==="function"?window.TAD_GET_TOPIC_PRACTICE_HISTORY().slice(0,50):(Array.isArray(u.data?.payload?.practiceHistory)?u.data.payload.practiceHistory.slice(0,50):[]);
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();initTopicPractice();initMainsTopicStudio();renderTopicPracticeHistory();loadMainsImprovementDashboard();await loadAnalytics();
+ await loadPapers();await loadRecent();renderCatalog();initTopicPractice();initAdaptivePractice(u.data?.payload||{});initMainsTopicStudio();renderTopicPracticeHistory();loadMainsImprovementDashboard();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -47,6 +47,44 @@ async function loadPapers(){
   const {data:qrows,error:qerror}=await sb.from("mock_exam_questions").select("paper_id").eq("is_active",true);
   if(!qerror){const counts={};(qrows||[]).forEach(q=>counts[q.paper_id]=(counts[q.paper_id]||0)+1);papers.forEach(p=>p.question_count=counts[p.id]||0);}
  }
+}
+
+
+let adaptiveSections=[];
+function initAdaptivePractice(payload){
+ const host=$("tadAdaptiveRecommendations"),refresh=$("tadAdaptiveRefresh");if(!host)return;
+ const run=async()=>{
+  host.innerHTML='<p class="mock-save">Checking your saved practice history and published MCQ sections…</p>';
+  const available=papers.filter(p=>p.is_published&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
+  if(!available.length){host.innerHTML='<p class="mock-save">No published MCQ papers are available for this account’s optional-subject selection yet.</p>';return;}
+  try{
+   const {data,error}=await sb.from("mock_exam_questions").select("paper_id,section_key").in("paper_id",available.map(p=>p.id)).eq("is_active",true).eq("question_type","mcq").limit(5000);
+   if(error)throw error;
+   const sectionMap=new Map();
+   (data||[]).forEach(row=>{if(!row.section_key)return;const key=row.paper_id+"::"+row.section_key;sectionMap.set(key,{paperId:row.paper_id,section:row.section_key,count:(sectionMap.get(key)?.count||0)+1});});
+   const history=Array.isArray(payload.practiceHistory)?payload.practiceHistory:(savedPracticeHistory||[]);
+   const scores=new Map();
+   history.forEach(h=>{if(!h||!h.paperId||!h.section)return;const key=h.paperId+"::"+h.section;const x=scores.get(key)||{attempts:0,accuracy:[],latest:""};x.attempts++;if(Number.isFinite(Number(h.accuracy)))x.accuracy.push(Number(h.accuracy));const date=h.completedAt||"";if(Date.parse(date)>Date.parse(x.latest||""))x.latest=date;scores.set(key,x);});
+   const candidates=[...sectionMap.values()].map(s=>{
+    const p=available.find(x=>x.id===s.paperId),h=scores.get(s.paperId+"::"+s.section),avg=h?.accuracy.length?h.accuracy.reduce((a,b)=>a+b,0)/h.accuracy.length:null;
+    const reason=!h?"Not practised yet":avg<70?"Recent accuracy below 70%":avg<85?"Opportunity to strengthen accuracy":"Maintain this topic with spaced practice";
+    const priority=!h?2:avg<70?0:avg<85?1:3;
+    return {...s,paper:p,attempts:h?.attempts||0,accuracy:avg,latest:h?.latest||"",reason,priority};
+   }).sort((a,b)=>a.priority-b.priority||(a.accuracy??101)-(b.accuracy??101)||a.attempts-b.attempts).slice(0,4);
+   adaptiveSections=candidates;
+   host.innerHTML=candidates.length?candidates.map((x,i)=>'<article class="tad-adaptive-card"><div><span class="tad-adaptive-rank">NEXT '+(i+1)+'</span><strong>'+esc(x.paper.title)+'</strong></div><h4>'+esc(practiceLabel(x.section))+'</h4><p>'+esc(x.reason)+'</p><small>'+x.count+' active MCQ(s) · '+x.attempts+' previous set(s)'+(x.accuracy===null?'':' · '+x.accuracy.toFixed(1)+'% average accuracy')+'</small><button type="button" class="btn primary" data-adaptive-start="'+esc(x.paperId+'::'+x.section)+'">Practise this section</button></article>').join(""):'<p class="mock-save">No active MCQ sections were found in the published papers.</p>';
+   host.querySelectorAll("[data-adaptive-start]").forEach(button=>button.addEventListener("click",()=>{
+    const item=candidates.find(x=>x.paperId+"::"+x.section===button.dataset.adaptiveStart);if(!item)return;
+    const paperSel=$("mockPracticePaper"),sectionSel=$("mockPracticeSection"),countSel=$("mockPracticeCount"),start=$("mockPracticeStart");
+    if(!paperSel||!sectionSel||!start)return;
+    paperSel.value=item.paperId;paperSel.dispatchEvent(new Event("change"));
+    const setSection=()=>{if([...sectionSel.options].some(o=>o.value===item.section)){sectionSel.value=item.section;sectionSel.dispatchEvent(new Event("change"));if(countSel)countSel.value="10";start.disabled=false;start.click();}else setTimeout(setSection,80);};
+    setTimeout(setSection,80);
+    $("mockTopicPractice")?.scrollIntoView({behavior:"smooth",block:"start"});
+   }));
+  }catch(e){host.innerHTML='<p class="mock-warning">Adaptive recommendations could not load: '+esc(e.message||"Please retry.")+'</p>';}
+ };
+ run();if(refresh&&!refresh.dataset.bound){refresh.dataset.bound="1";refresh.addEventListener("click",run);}
 }
 
 let practiceQuestions=[],practiceIndex=0,practiceCorrect=0,practiceWrong=0,practiceStartedAt=0,practiceSeconds=0,practiceTimer=null,practiceAnswered=false,practiceSubmitting=false;
