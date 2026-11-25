@@ -209,3 +209,8 @@ The Smart Topic Practice area now recommends up to four published MCQ sections u
 ## Anthropology learning centre progress tools
 
 The optional-subject workspace reads the official syllabus dataset in `data/upsc/optional-syllabus.json`. For Anthropology it currently contains 15 syllabus units (11 Paper I and 4 Paper II), 15 guided lessons and 150 original unit MCQs. These are editorial learning resources, not official UPSC questions. The workspace now shows unit completion, aggregate accuracy from saved unit quizzes, due revisions, topic search, per-unit learning stage, and a spaced revision schedule (1, 3, 7, 21 and 45 days). Quiz results and mastery/revision records are stored in the existing optional-preparation preference object and flow through the existing `tad:optionalPrepSave` account-sync path. The selected language is a preference only; current Anthropology lesson content is primarily English and is not represented as a complete Tamil translation.
+
+
+## Multi-optional learner syllabus workspaces
+
+The optional-subject selector includes the full subject list from the official UPSC CSE 2026 notification. Anthropology retains its authored 15-unit guided lesson and original quiz bank. For every other optional, learners can add exact unit headings and subtopics from the official notification, mark units studied, set learning stages, save personal notes, search/filter by paper, and schedule spaced revisions. Custom units and notes use the existing `optionalPrep` account-state sync event. This avoids presenting unverified or generic content as a completed official syllabus. These are learner-managed trackers; subject-specific guided lessons and original tests still need to be authored and quality-checked in batches.
