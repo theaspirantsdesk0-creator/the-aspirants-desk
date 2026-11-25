@@ -2926,6 +2926,51 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       });
       notes.append(ul);
     }
+    renderTopicLearningPathways(tp, notes);
+  }
+  function renderTopicLearningPathways(topics, host) {
+    const section = document.createElement("section"); section.className = "tad-topic-pathways";
+    const heading = document.createElement("h4"); heading.textContent = "Topic learning pathways";
+    const intro = document.createElement("p"); intro.className = "muted"; intro.textContent = "Move from a syllabus area to matching chapter notes, practice questions and tests. These links do not mark a topic complete.";
+    section.append(heading, intro);
+    const list = document.createElement("div"); list.className = "tad-topic-pathway-list";
+    const searchTerms = {"Indian Polity & Constitution":"Polity Constitution","Modern Indian History":"Modern Indian History","Indian Economy":"Economy","Physical & Indian Geography":"Geography","Environment & Ecology":"Environment Ecology","Ethics, Integrity & Aptitude":"Ethics Integrity","Indian & Tamil Nadu Economy":"Economy Tamil Nadu","Geography of India & Tamil Nadu":"Geography Tamil Nadu","General Science":"General Science","Current Affairs":"Current Affairs","Tamil Nadu History & Culture":"Tamil Nadu History"};
+    topics.forEach(topic => {
+      const card = document.createElement("article"); card.className = "tad-topic-pathway";
+      const title = document.createElement("strong"); title.textContent = topic;
+      const actions = document.createElement("div"); actions.className = "tad-topic-pathway-actions";
+      [["notes","Find notes"],["practice","Find practice"],["test","Open tests"]].forEach(([action,label]) => {
+        const button = document.createElement("button"); button.type = "button"; button.className = "btn"; button.textContent = label;
+        button.dataset.pathwayAction = action; button.dataset.pathwayTopic = topic; actions.append(button);
+      });
+      card.append(title, actions); list.append(card);
+    });
+    section.append(list);
+    const optional = state.optionalPrep && state.optionalPrep.subject ? String(state.optionalPrep.subject) : "";
+    if (optional) {
+      const row = document.createElement("div"); row.className = "tad-optional-pathway-actions";
+      const label = document.createElement("span"); label.textContent = optional + " optional:"; row.append(label);
+      [["Paper I","paper1"],["Paper II","paper2"]].forEach(([caption,paper]) => {
+        const button = document.createElement("button"); button.type = "button"; button.className = "btn"; button.textContent = "Open " + caption; button.dataset.pathwayAction = paper; row.append(button);
+      });
+      section.append(row);
+    }
+    section.addEventListener("click", event => {
+      const button = event.target.closest("button[data-pathway-action]"); if (!button) return;
+      const action = button.dataset.pathwayAction, topic = button.dataset.pathwayTopic || "", term = searchTerms[topic] || topic;
+      if (action === "notes") {
+        document.querySelector('[data-nav="notes"]')?.click();
+        const input = $("nSearch"); if (input) { input.value = term; input.dispatchEvent(new Event("input", {bubbles:true})); const hit = $("nSearchOut")?.querySelector(".hit"); if (hit) hit.click(); }
+      } else if (action === "practice") {
+        document.querySelector('[data-nav="pyq"]')?.click(); const input = $("pyqSearch"); if (input) { input.value = term; renderPracticeBank(); }
+      } else if (action === "test") { document.querySelector('[data-nav="dailytest"]')?.click();
+      } else if (action === "paper1" || action === "paper2") {
+        document.querySelector('[data-nav="notes"]')?.click(); const workspace = $("optionalSyllabusWorkspace");
+        const target = workspace && workspace.querySelector('[data-paper="' + action + '"], [data-optional-paper="' + action + '"]');
+        if (target) target.scrollIntoView({behavior:"smooth",block:"center"}); else workspace?.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+    });
+    host.append(section);
   }
   function renderSyllabus() {
     const tp = sylTopics();
