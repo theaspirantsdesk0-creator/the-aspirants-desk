@@ -2654,7 +2654,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       OFFICIAL_PYQ_ROWS = Array.isArray(data) ? data.filter(row =>
         row && row.status === "published" && row.verification && row.verification.status === "verified" &&
         row.source && typeof row.source.document_url === "string" &&
-        /^https:\/\//i.test(row.source.document_url) && row.question
+        isOfficialUpscUrl(row.source.document_url) && row.question
       ) : [];
     } catch (error) {
       OFFICIAL_PYQ_ROWS = [];
@@ -2772,7 +2772,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           doc && doc.status === "verified" && doc.verification &&
           doc.verification.verified_at && doc.title &&
           typeof doc.document_url === "string" &&
-          doc.document_url.startsWith("https://") && doc.document_url.includes("upsc.gov.in/")
+          isOfficialUpscUrl(doc.document_url)
         ) : [];
         const inventoryHost = $("pyqInventorySnapshot");
         if (inventoryHost) {
@@ -3244,6 +3244,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   /* ===== ADDED: chapter engine, reference views, practice banks ===== */
   const T = window.TAD;
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  function isOfficialUpscUrl(value) {
+    try {
+      const url = new URL(value);
+      const host = url.hostname.toLowerCase();
+      return url.protocol === "https:" && (host === "upsc.gov.in" || host === "www.upsc.gov.in");
+    } catch (_) { return false; }
+  }
   const shuf = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((p) => p[1]);
   state.read = state.read || [];
   let nSub = "", nCh = 0, extra = {};
