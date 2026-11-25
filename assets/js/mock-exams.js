@@ -37,7 +37,7 @@ async function boot(){
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();
+ await loadPapers();await loadRecent();renderCatalog();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -47,6 +47,45 @@ async function loadPapers(){
   const {data:qrows,error:qerror}=await sb.from("mock_exam_questions").select("paper_id").eq("is_active",true);
   if(!qerror){const counts={};(qrows||[]).forEach(q=>counts[q.paper_id]=(counts[q.paper_id]||0)+1);papers.forEach(p=>p.question_count=counts[p.id]||0);}
  }
+}
+async function loadAnalytics(){
+ const host=$("mockAnalyticsContent");if(!host)return;
+ host.innerHTML='<p class="mock-save">Loading your private performance history…</p>';
+ const {data:rows,error}=await sb.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",user.id).eq("status","submitted").order("submitted_at",{ascending:false}).limit(100);
+ if(error){host.innerHTML='<p class="mock-warning">Performance history could not be loaded: '+esc(error.message)+'</p>';return;}
+ const attempts=rows||[];
+ if(!attempts.length){host.innerHTML='<p class="muted">No completed mock attempts yet. Your reports will appear here after you submit a mock examination.</p>';return;}
+ const paperMap=new Map(papers.map(p=>[p.id,p]));
+ const enriched=attempts.map(a=>({...a,paper:paperMap.get(a.paper_id)})).filter(a=>a.paper);
+ const groups={prelims:[],mains:[],anthropology:[]};
+ enriched.forEach(a=>{
+  const isAnthro=String(a.paper.optional_subject||"").toLowerCase()==="anthropology";
+  (isAnthro?groups.anthropology:a.paper.exam_stage==="prelims"?groups.prelims:groups.mains).push(a);
+ });
+ const scored=enriched.filter(a=>Number(a.max_score)>0&&Number(a.analytics?.objective_questions||a.analytics?.mcq_questions||0)>0);
+ const avg=scored.length?scored.reduce((s,a)=>s+Number(a.score||0)/Number(a.max_score)*100,0)/scored.length:null;
+ const totalWritten=enriched.reduce((s,a)=>s+Number(a.analytics?.written_questions||0),0);
+ const kpi=(value,label)=>'<div class="mock-analytics-kpi"><b>'+value+'</b><span>'+label+'</span></div>';
+ const groupCard=(name,list)=>{
+  const byPaper=new Map();
+  list.forEach(a=>{const key=a.paper.code;const x=byPaper.get(key)||{paper:a.paper,count:0,scored:[],latest:a.submitted_at};x.count++;if(Number(a.max_score)>0&&Number(a.analytics?.objective_questions||a.analytics?.mcq_questions||0)>0)x.scored.push(Number(a.score||0)/Number(a.max_score)*100);if(new Date(a.submitted_at||0)>new Date(x.latest||0))x.latest=a.submitted_at;byPaper.set(key,x);});
+  const items=[...byPaper.values()].map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.paper.title)+'</b><div class="mock-save">'+x.count+' completed attempt(s) · latest '+(x.latest?new Date(x.latest).toLocaleDateString():"date unavailable")+'</div></div><div class="mock-analytics-score">'+(x.scored.length?(x.scored.reduce((s,n)=>s+n,0)/x.scored.length).toFixed(1)+'% objective avg':'Written review required')+'</div></div>').join("");
+  return '<section class="mock-analytics-group"><h3>'+name+'</h3>'+(items||'<p class="mock-save">No attempts yet.</p>')+'</section>';
+ };
+ const sectionTotals={};
+ enriched.forEach(a=>{
+  const breakdown=a.analytics?.section_breakdown;
+  if(!breakdown||typeof breakdown!=="object")return;
+  Object.entries(breakdown).forEach(([key,v])=>{
+   const answered=Number(v.correct||0)+Number(v.wrong||0);
+   if(!answered)return;
+   const x=sectionTotals[key]||{correct:0,wrong:0,score:0,attempts:0};
+   x.correct+=Number(v.correct||0);x.wrong+=Number(v.wrong||0);x.score+=Number(v.score||0);x.attempts++;sectionTotals[key]=x;
+  });
+ });
+ const weak=Object.entries(sectionTotals).map(([key,v])=>({...v,key,accuracy:(v.correct+v.wrong)?v.correct/(v.correct+v.wrong)*100:0})).sort((a,b)=>a.accuracy-b.accuracy).slice(0,4);
+ const weakHtml=weak.length?'<section class="mock-analytics-group"><h3>Objective sections to revisit</h3><p class="mock-save">Based only on scored MCQ attempts; written answers are not automatically graded.</p>'+weak.map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.key)+'</b><div class="mock-save">'+x.correct+' correct · '+x.wrong+' incorrect</div></div><div class="mock-analytics-score">'+x.accuracy.toFixed(1)+'% accuracy</div></div>').join("")+'</section>':'<section class="mock-analytics-group"><h3>Section-level review</h3><p class="mock-save">No scored MCQ section data yet. Submit a Prelims mock to generate objective weak-area insights. Mains written responses need rubric-based evaluation.</p></section>';
+ host.innerHTML='<div class="mock-analytics-kpis">'+kpi(enriched.length,"Completed attempts")+kpi(scored.length,"Objectively scored attempts")+kpi(avg===null?"—":avg.toFixed(1)+"%","Average objective accuracy")+kpi(totalWritten,"Written responses awaiting review")+'</div>'+groupCard("Prelims",groups.prelims)+groupCard("Mains · General Studies",groups.mains)+groupCard("Anthropology optional",groups.anthropology)+weakHtml+'<p class="mock-save">Reports are scoped to your signed-in account. Only your own attempts are queried.</p>';
 }
 async function loadRecent(){
  const {data}=await sb.from("mock_exam_attempts").select("id,paper_id,status,updated_at,expires_at").eq("user_id",user.id).eq("status","in_progress").order("updated_at",{ascending:false}).limit(5);
@@ -178,7 +217,7 @@ function renderResult(r,paper){
  const pct=Number(r.max_score)>0?(Number(r.score)/Number(r.max_score)*100):0;
  $("mockResultView").innerHTML='<div class="card gold-top"><div class="mock-meta">EXAM REPORT · '+esc(paper?.title||"UPSC mock")+'</div><h2>Examination submitted</h2><div class="mock-result-kpis"><div><b class="kpi-val">'+Number(r.score||0).toFixed(2)+'</b><div class="kpi-lbl">Objective score</div></div><div><b class="kpi-val">'+pct.toFixed(1)+'%</b><div class="kpi-lbl">Score percentage</div></div><div><b class="kpi-val">'+(a.correct||0)+'</b><div class="kpi-lbl">Correct</div></div><div><b class="kpi-val">'+(a.wrong||0)+'</b><div class="kpi-lbl">Incorrect</div></div><div><b class="kpi-val">'+(a.skipped||0)+'</b><div class="kpi-lbl">Unanswered</div></div></div><p class="mock-warning">Written answers: '+(a.written_questions||0)+'. These require a separate rubric-based review; they are not automatically assigned marks.</p><h3>Section-wise performance</h3>'+Object.entries(sections).map(([k,v])=>'<div style="margin:.7rem 0"><b>'+esc(k)+'</b><div class="mock-meta">'+v.correct+' correct · '+v.wrong+' incorrect · '+v.skipped+' unanswered · '+Number(v.score||0).toFixed(2)+' marks</div></div>').join("")+'<div class="mock-actions"><button class="btn primary" id="mockBackCatalog">Back to examinations</button></div></div>';
  $("mockBackCatalog").addEventListener("click",()=>{$("mockResultView").classList.add("mock-hidden");});
- loadRecent();
+ loadRecent();loadAnalytics();
 }
 function bindControls(){
  $("mockPrevBtn").addEventListener("click",()=>{if(index>0){index--;saveDraft();renderQuestion();renderQuestionGrid();}});
@@ -186,7 +225,7 @@ function bindControls(){
  $("mockMarkBtn").addEventListener("click",()=>{const id=questions[index].id;marked.has(id)?marked.delete(id):marked.add(id);saveDraft();renderQuestion();renderQuestionGrid();});
  $("mockSubmitBtn").addEventListener("click",()=>submitExam(false));
  $("mockExitBtn").addEventListener("click",()=>{if(confirm("Exit this examination? Your saved attempt will remain available to resume.")){clearInterval(timer);saveDraft();attempt=null;$("mockExamView").classList.add("mock-hidden");$("mockCatalogView").classList.remove("mock-hidden");}});
- $("mockRefreshBtn").addEventListener("click",async()=>{await loadPapers();renderCatalog();});
+ $("mockRefreshBtn").addEventListener("click",async()=>{await loadPapers();renderCatalog();await loadAnalytics();});
  $("mockImportBtn").addEventListener("click",importPaper);
 }
 function validateImport(raw){
