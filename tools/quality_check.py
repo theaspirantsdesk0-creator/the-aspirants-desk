@@ -147,6 +147,35 @@ def main() -> int:
         check("Try again" in offline_html and "You're offline" in offline_html,
               "Offline fallback must explain the connection state and offer retry")
 
+    # Optional subject onboarding and syllabus workspace must stay wired to the app.
+    optional_js = ROOT / "assets" / "js" / "optional-prep.js"
+    optional_css = ROOT / "assets" / "css" / "optional-prep.css"
+    optional_data = ROOT / "data" / "upsc" / "optional-syllabus.json"
+    check(optional_js.is_file(), "Optional subject onboarding module is missing")
+    check(optional_css.is_file(), "Optional subject workspace styles are missing")
+    check(optional_data.is_file(), "Official optional syllabus catalogue is missing")
+    if optional_js.is_file():
+        run_node_check(optional_js.read_text(encoding="utf-8"), "assets/js/optional-prep.js")
+    if optional_data.is_file():
+        try:
+            optional_payload = json.loads(optional_data.read_text(encoding="utf-8"))
+            check(len(optional_payload.get("subjects", [])) == 48,
+                  "Optional catalogue must include the 25 subjects and 23 literature choices")
+            anthro_units = optional_payload.get("anthropology", [])
+            check(len(anthro_units) >= 14,
+                  "Anthropology syllabus map must include both papers and all major units")
+            check({unit.get("paper") for unit in anthro_units} == {"I", "II"},
+                  "Anthropology syllabus map must cover Paper I and Paper II")
+            check(all(unit.get("topics") and unit.get("notes") and unit.get("test") for unit in anthro_units),
+                  "Each published Anthropology unit must include topics, notes and a self-test")
+        except (OSError, json.JSONDecodeError) as exc:
+            check(False, f"Optional syllabus catalogue is invalid JSON: {exc}")
+    if index.is_file():
+        optional_html = index.read_text(encoding="utf-8")
+        for required in ("optionalSetupModal", "optionalSetupForm", "optionalSyllabusWorkspace",
+                         "tad:optionalPrepSave", "assets/js/optional-prep.js"):
+            check(required in optional_html, f"Optional subject onboarding is not wired: {required}")
+
     js_files = [p for p in (ROOT / "assets").rglob("*.js") if p != ai_js]
     for path in js_files:
         run_node_check(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
