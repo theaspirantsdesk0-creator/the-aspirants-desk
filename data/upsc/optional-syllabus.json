@@ -3706,5 +3706,537 @@
         "Illiteracy and disparities in education"
       ]
     }
+  ],
+  "public administration": [
+    {
+      "paper": "I",
+      "unit": "Introduction",
+      "topics": [
+        "Meaning, scope and significance of Public Administration",
+        "Woodrow Wilson’s vision; evolution and present status of the discipline",
+        "New Public Administration and Public Choice approach",
+        "Liberalisation, privatisation and globalisation",
+        "Good governance and New Public Management"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Administrative Thought",
+      "topics": [
+        "Scientific Management: F. W. Taylor",
+        "Classical theory and administrative principles",
+        "Weber’s bureaucratic model, critiques and post-Weberian developments",
+        "Mary Parker Follett and Dynamic Administration",
+        "Human Relations School: Elton Mayo",
+        "C. I. Barnard: Functions of the Executive",
+        "Herbert Simon: decision-making theory",
+        "Participative management: Likert, Argyris and McGregor"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Administrative Behaviour",
+      "topics": [
+        "Decision-making processes and techniques",
+        "Communication and morale",
+        "Motivation: content, process and contemporary theories",
+        "Traditional and modern theories of leadership"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Organisations",
+      "topics": [
+        "Systems and contingency theories",
+        "Organisational structures and forms",
+        "Ministries, departments, corporations and companies",
+        "Boards, commissions, ad hoc and advisory bodies",
+        "Headquarters-field relationships, regulatory authorities and public-private partnerships"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Accountability and Control",
+      "topics": [
+        "Concepts of accountability and control",
+        "Legislative, executive and judicial control",
+        "Citizen-administration relationship",
+        "Media, interest groups, voluntary organisations and civil society",
+        "Citizen’s Charters, Right to Information and social audit"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Administrative Law",
+      "topics": [
+        "Meaning, scope and significance",
+        "Dicey’s contribution",
+        "Delegated legislation and administrative tribunals"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Comparative Public Administration",
+      "topics": [
+        "Historical and sociological factors shaping administrative systems",
+        "Administration and politics across countries",
+        "Ecology of administration",
+        "Riggsian models and their critiques"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Development Dynamics",
+      "topics": [
+        "Concept and changing profile of development administration",
+        "Anti-development thesis",
+        "Bureaucracy and development",
+        "Strong state versus market debate",
+        "Liberalisation and administration in developing countries",
+        "Women and development; self-help group movement"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Personnel Administration",
+      "topics": [
+        "Human resource development",
+        "Recruitment, training and career advancement",
+        "Position classification, discipline, appraisal and promotion",
+        "Pay, service conditions and employer-employee relations",
+        "Grievance redressal, code of conduct and administrative ethics"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Public Policy",
+      "topics": [
+        "Models of policy-making and their critiques",
+        "Policy conceptualisation, planning and implementation",
+        "Monitoring, evaluation, review and limitations",
+        "State theories and policy formulation"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Techniques of Administrative Improvement",
+      "topics": [
+        "Organisation and methods; work study and work management",
+        "E-governance and information technology",
+        "Management tools: network analysis, MIS, PERT and CPM"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Financial Administration",
+      "topics": [
+        "Monetary and fiscal policies",
+        "Public borrowings and public debt",
+        "Types and forms of budgets",
+        "Budgetary process and financial accountability",
+        "Accounts and audit"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Evolution of Indian Administration",
+      "topics": [
+        "Kautilya’s Arthashastra",
+        "Mughal administration",
+        "British legacy in politics and administration",
+        "Indianisation of public services",
+        "Revenue and district administration",
+        "Local self-government"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Philosophical and Constitutional Framework",
+      "topics": [
+        "Salient features and value premises",
+        "Constitutionalism and political culture",
+        "Bureaucracy and democracy",
+        "Bureaucracy and development"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Public Sector Undertakings",
+      "topics": [
+        "Public sector in modern India and forms of PSUs",
+        "Autonomy, accountability and control",
+        "Effects of liberalisation and privatisation"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Union Government and Administration",
+      "topics": [
+        "Executive, Parliament and Judiciary: structure, functions and processes",
+        "Recent trends and inter-governmental relations",
+        "Cabinet Secretariat and Prime Minister’s Office",
+        "Central Secretariat, ministries and departments",
+        "Boards, commissions, attached offices and field organisations"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Plans and Priorities",
+      "topics": [
+        "Planning machinery and institutions",
+        "Planning Commission and National Development Council: roles and functions",
+        "Indicative planning and plan formulation at Union and State levels",
+        "1992 Constitutional Amendments and decentralised planning"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "State Government and Administration",
+      "topics": [
+        "Union-State administrative, legislative and financial relations",
+        "Finance Commission",
+        "Governor, Chief Minister and Council of Ministers",
+        "Chief Secretary, State Secretariat and Directorates"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "District Administration since Independence",
+      "topics": [
+        "Changing role of the District Collector",
+        "Union-State-local relations",
+        "Development management and law-and-order administration",
+        "District administration and democratic decentralisation"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Civil Services",
+      "topics": [
+        "Constitutional position, structure and recruitment",
+        "Training and capacity building",
+        "Good governance initiatives",
+        "Conduct, discipline and staff associations",
+        "Political rights, grievance redressal and neutrality",
+        "Civil service activism"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Financial Management",
+      "topics": [
+        "Budget as a political instrument",
+        "Parliamentary control of public expenditure",
+        "Finance Ministry in monetary and fiscal matters",
+        "Accounting techniques and audit",
+        "Controller General of Accounts and Comptroller and Auditor General"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Administrative Reforms since Independence",
+      "topics": [
+        "Major concerns and reform initiatives",
+        "Important committees and commissions",
+        "Financial management and human-resource reforms",
+        "Implementation challenges"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Rural Development",
+      "topics": [
+        "Rural development institutions and agencies",
+        "Programmes, focus and strategies",
+        "Decentralisation and Panchayati Raj",
+        "73rd Constitutional Amendment"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Urban Local Government",
+      "topics": [
+        "Municipal governance: features, structures and finance",
+        "74th Constitutional Amendment",
+        "Global-local debate and new localism",
+        "Urban development, politics and city management"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Law and Order Administration",
+      "topics": [
+        "British legacy and National Police Commission",
+        "Investigative agencies and central/state agencies",
+        "Police role in law and order",
+        "Criminalisation of politics and administration",
+        "Police-public relations and police reforms"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Significant Issues in Indian Administration",
+      "topics": [
+        "Values in public service and regulatory commissions",
+        "National Human Rights Commission",
+        "Administration in coalition regimes",
+        "Citizen-administration interface",
+        "Corruption and administration",
+        "Disaster management"
+      ]
+    }
+  ],
+  "political science and international relations": [
+    {
+      "paper": "I",
+      "unit": "Political Theory",
+      "topics": [
+        "Meaning and approaches to political theory",
+        "Theories of state: liberal, neo-liberal, Marxist, pluralist, post-colonial and feminist",
+        "Justice: Rawls and communitarian critiques",
+        "Equality: social, political and economic; equality and freedom; affirmative action",
+        "Rights: meanings, theories, kinds and human rights",
+        "Democracy: classical and contemporary theories; representative, participatory and deliberative models",
+        "Power: hegemony, ideology and legitimacy",
+        "Political ideologies: liberalism, socialism, Marxism, fascism, Gandhism and feminism"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Indian Political Thought",
+      "topics": [
+        "Dharamshastra, Arthashastra and Buddhist traditions",
+        "Sir Syed Ahmed Khan",
+        "Sri Aurobindo",
+        "M. K. Gandhi",
+        "B. R. Ambedkar",
+        "M. N. Roy"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Western Political Thought",
+      "topics": [
+        "Plato and Aristotle",
+        "Machiavelli",
+        "Hobbes and Locke",
+        "John Stuart Mill",
+        "Karl Marx and Antonio Gramsci",
+        "Hannah Arendt"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Indian Nationalism",
+      "topics": [
+        "Strategies of freedom struggle: constitutionalism, mass satyagraha, non-cooperation and civil disobedience",
+        "Militant and revolutionary movements",
+        "Peasant and workers’ movements",
+        "Liberal, socialist, Marxist, radical humanist and Dalit perspectives on nationalism"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Making of the Indian Constitution",
+      "topics": [
+        "Legacies of British rule",
+        "Social and political perspectives in constitution-making"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Salient Features of the Indian Constitution",
+      "topics": [
+        "Preamble, Fundamental Rights and Fundamental Duties",
+        "Directive Principles of State Policy",
+        "Parliamentary system and amendment procedures",
+        "Judicial review and basic structure doctrine"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Principal Organs of Government",
+      "topics": [
+        "Union Executive, Legislature and Supreme Court: envisaged role and actual working",
+        "State Executive, Legislature and High Courts: envisaged role and actual working"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Grassroots Democracy",
+      "topics": [
+        "Panchayati Raj and municipal government",
+        "73rd and 74th Constitutional Amendments",
+        "Grassroots movements"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Statutory Institutions and Commissions",
+      "topics": [
+        "Election Commission, CAG, Finance Commission and UPSC",
+        "National Commissions for SCs, STs, Women, Minorities and Backward Classes",
+        "National Human Rights Commission"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Federalism",
+      "topics": [
+        "Constitutional provisions and changing Centre-State relations",
+        "Integrationist tendencies and regional aspirations",
+        "Inter-State disputes"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Planning, Development and Political Society",
+      "topics": [
+        "Nehruvian and Gandhian perspectives on planning",
+        "Public sector and economic development",
+        "Green Revolution, land reforms and agrarian relations",
+        "Liberalisation and economic reforms",
+        "Caste, religion and ethnicity in Indian politics",
+        "Party systems, coalition politics, pressure groups and electoral behaviour",
+        "Social movements: civil liberties, human rights, women and environment"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Comparative Politics",
+      "topics": [
+        "Nature and major approaches",
+        "Political economy and political sociology perspectives",
+        "Limitations of comparative method"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "State in Comparative Perspective",
+      "topics": [
+        "State in capitalist and socialist economies",
+        "State in advanced industrial and developing societies",
+        "Changing nature and characteristics of the state"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Politics of Representation and Participation",
+      "topics": [
+        "Political parties and pressure groups",
+        "Social movements in advanced industrial and developing societies"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Globalisation",
+      "topics": [
+        "Globalisation and responses from developed societies",
+        "Globalisation and responses from developing societies"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Approaches to International Relations",
+      "topics": [
+        "Idealist, realist, Marxist and functionalist approaches",
+        "Systems theory"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Key Concepts in International Relations",
+      "topics": [
+        "National interest, security and power",
+        "Balance of power and deterrence",
+        "Transnational actors and collective security",
+        "World capitalist economy and globalisation"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Changing International Political Order",
+      "topics": [
+        "Rise of superpowers, bipolarity, arms race and Cold War",
+        "Nuclear threat",
+        "Non-Aligned Movement: aims and achievements",
+        "Collapse of Soviet Union, unipolarity and American hegemony",
+        "Contemporary relevance of non-alignment"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "International Economic System",
+      "topics": [
+        "Bretton Woods institutions and the WTO",
+        "Socialist economies and CMEA",
+        "Third World demand for a New International Economic Order",
+        "Globalisation of the world economy"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "United Nations",
+      "topics": [
+        "Envisaged role and actual record of the UN",
+        "Specialised agencies: aims and functioning",
+        "Need for UN reforms"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Regionalisation and Global Concerns",
+      "topics": [
+        "EU, ASEAN, APEC, SAARC and NAFTA as regional groupings",
+        "Democracy, human rights, environment and gender justice",
+        "Terrorism and nuclear proliferation"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Indian Foreign Policy",
+      "topics": [
+        "Determinants and institutions of foreign-policy making",
+        "Continuity and change in Indian foreign policy",
+        "India’s contribution to NAM and its contemporary role"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "India and South Asia",
+      "topics": [
+        "SAARC: performance and future prospects",
+        "South Asian free-trade area",
+        "India’s Look East policy",
+        "Regional cooperation challenges: water, migration, ethnic conflict, insurgency and border disputes"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "India and the Global South",
+      "topics": [
+        "Relations with Africa and Latin America",
+        "India’s role in the New International Economic Order debate and WTO negotiations"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "India and Global Centres of Power",
+      "topics": [
+        "India and the United States",
+        "India and the European Union",
+        "India and Japan",
+        "India and China",
+        "India and Russia"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "India and the United Nations System",
+      "topics": [
+        "India’s role in UN peacekeeping",
+        "India’s demand for a permanent seat in the UN Security Council"
+      ]
+    }
   ]
 }
