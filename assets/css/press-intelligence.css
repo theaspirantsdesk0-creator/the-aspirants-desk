@@ -4,7 +4,7 @@
 #pressContainer .press-intel-heading{font-size:1.18rem;margin:.2rem 0 .7rem}
 #pressContainer .press-intel-count{font-size:.7rem;font-weight:750;padding:.35rem .6rem;border:1px solid var(--line);border-radius:99px;white-space:nowrap;color:var(--muted)}
 #pressContainer .press-intel-filters{display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .8rem}
-#pressContainer .press-intel-filter{border:1px solid var(--line);border-radius:99px;padding:.45rem .7rem;background:var(--surface);color:var(--muted);font:700 .73rem inherit;cursor:pointer}
+#pressContainer .press-intel-filter{border:1px solid var(--line);border-radius:99px;padding:.45rem .7rem;background:var(--surface);color:var(--muted);font-family:inherit;font-size:.73rem;font-weight:700;cursor:pointer}
 #pressContainer .press-intel-filter.active{background:var(--ink);border-color:var(--ink);color:var(--surface)}
 #pressContainer .press-intel-search{display:grid;gap:.25rem;max-width:460px;font-size:.72rem;font-weight:700;color:var(--muted)}
 #pressContainer .press-intel-search input{width:100%;padding:.62rem .72rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.85rem}
