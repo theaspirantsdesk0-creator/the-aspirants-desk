@@ -129,3 +129,8 @@ The mock examination workspace includes a private performance panel for the sign
 ## Anbuu evaluation for submitted Mains mock answers
 
 After submitting a written mock examination, learners can request a separate Anbuu evaluation for each answered written question. The workflow sends the question, response, paper/section context, marks and word limit to the existing authenticated Mains evaluation action, then saves the returned rubric feedback to that learner's private answer-evaluation history. Supported full-length Mains formats are 10 marks/150 words and 15 marks/250 words. Empty or very short answers are not sent. Each evaluation uses the learner's daily AI allowance and requires the site AI provider to be configured. Estimates are formative learning feedback, not official UPSC marks; objective mock scores remain separate. A real learner attempt and provider-backed evaluation are still required for end-to-end validation.
+
+
+## Mock improvement tracker
+
+The private performance panel compares the two most recent completed attempts for each paper using objective accuracy derived from correct and incorrect MCQ counts. It also compares the two most recent saved formative AI estimates for matching subject/section labels when both use the same maximum mark. It reads the signed-in learner's own mock attempts and their own answer-evaluation history. Comparisons are descriptive and should be interpreted alongside question difficulty and attempt conditions; they do not establish mastery or predict UPSC results. At least two completed attempts or two saved evaluations in the same comparison group are needed.
