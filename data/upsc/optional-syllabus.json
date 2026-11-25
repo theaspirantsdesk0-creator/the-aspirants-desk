@@ -1439,7 +1439,117 @@
           "a": 0,
           "w": "Ethno-archaeology studies relationships between living practices and material remains, with careful limits on analogy."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Reconstruct major phases of Indian prehistory and early civilisation through archaeological and palaeo-anthropological evidence, while distinguishing evidence from interpretation.",
+        "sections": [
+          {
+            "heading": "How Indian prehistory is reconstructed",
+            "explanation": [
+              "Indian prehistory is studied through stone tools, habitation traces, plant and animal remains, burials, rock art, geological context and scientific dating. No single artefact or site represents the whole subcontinent.",
+              "Archaeological interpretation depends on context: where an object was found, which deposits surrounded it, whether the layer was disturbed and how its age was estimated. Regional sequences can differ because environments, resources and histories differ."
+            ],
+            "example": "A stone tool from a secure dated layer can help establish a technological sequence; an isolated tool without context provides much less information."
+          },
+          {
+            "heading": "Palaeolithic traditions",
+            "explanation": [
+              "The Palaeolithic is broadly associated with stone-tool technologies and varied foraging lifeways. Archaeologists often distinguish Lower, Middle and Upper Palaeolithic phases using changes in technology, raw material use and regional chronology.",
+              "Acheulean assemblages are associated with bifacial tools such as handaxes and cleavers in several regions. Middle Palaeolithic assemblages often include prepared-core and flake technologies; Upper Palaeolithic contexts in some regions show blade and other specialised technologies.",
+              "These labels are analytical categories. Chronologies and tool traditions vary across regions and should not be presented as a single uniform sequence."
+            ]
+          },
+          {
+            "heading": "Mesolithic and Neolithic transitions",
+            "explanation": [
+              "Mesolithic assemblages commonly include microlithic tools, but subsistence and settlement patterns varied. Communities used diverse combinations of foraging, fishing, hunting, plant management and mobility.",
+              "Neolithic developments in different parts of India include cultivation, animal management, ground and polished stone tools, pottery in some contexts and changing settlement patterns. These changes did not occur at one date or through one identical pathway.",
+              "The transition to food production was not simply a sudden replacement of hunting and gathering. Different strategies could coexist and communities adapted them to local ecologies."
+            ]
+          },
+          {
+            "heading": "Harappan and regional Chalcolithic cultures",
+            "explanation": [
+              "The Indus or Harappan civilisation is studied through settlements, town planning, drainage, craft production, seals, weights, trade, subsistence and regional variation. Its material record supports complex urban organisation, but many questions about language, political structure and symbols remain debated.",
+              "Pre-Harappan, Harappan and post-Harappan contexts show regional continuities and change. Chalcolithic communities in different regions used combinations of stone and copper technologies and had varied settlement and subsistence patterns.",
+              "Careful answers separate excavated evidence from hypotheses about identity, language or political authority."
+            ]
+          },
+          {
+            "heading": "Palaeo-anthropological evidence: Siwaliks and Narmada",
+            "explanation": [
+              "The Siwalik deposits have yielded important fossil evidence for Miocene and later vertebrate evolution, including primates. Their value depends on geological dating, anatomical comparison and the depositional history of the fossils.",
+              "The Narmada basin is important in Indian palaeo-anthropology because of a notable hominin fossil find and associated debates about its classification and place in human evolution. The taxonomic interpretation has been contested; describe the debate rather than stating a disputed label as settled fact.",
+              "Fossils, stone tools, geological context and dating methods should be considered together. A fossil discovery does not by itself establish a complete evolutionary sequence."
+            ]
+          },
+          {
+            "heading": "Ethno-archaeology and living traditions",
+            "explanation": [
+              "Ethno-archaeology studies relationships between present-day activities and the material traces they may leave. It can help generate hypotheses about tool use, craft, settlement or subsistence.",
+              "Analogies between present and past communities must be tested. Similar objects can have different meanings, and present communities should not be treated as unchanged survivals of prehistoric life.",
+              "Research should be collaborative, ethically conducted and attentive to local knowledge, rights and heritage concerns."
+            ]
+          },
+          {
+            "heading": "Writing evidence-based answers",
+            "explanation": [
+              "A strong answer identifies the period or cultural context, states the evidence, explains what it may indicate and acknowledges limits or alternative interpretations.",
+              "Use regional examples where relevant, but avoid unsupported claims about a single origin, migration route or cultural identity. A short chronology or comparison table can make an answer clearer."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Acheulean",
+            "meaning": "A Lower Palaeolithic technological tradition commonly associated with bifacial tools such as handaxes and cleavers."
+          },
+          {
+            "term": "Microlith",
+            "meaning": "A small stone tool often used as part of a composite implement."
+          },
+          {
+            "term": "Chalcolithic",
+            "meaning": "A period or cultural context in which copper and stone technologies were both used."
+          },
+          {
+            "term": "Stratigraphy",
+            "meaning": "Study of the sequence and relationships of archaeological deposits."
+          },
+          {
+            "term": "Ethno-archaeology",
+            "meaning": "Study of links between living practices and material remains to inform archaeological interpretation."
+          },
+          {
+            "term": "Palaeo-anthropology",
+            "meaning": "Study of human and related primate evolution through fossil and associated evidence."
+          },
+          {
+            "term": "Context",
+            "meaning": "The documented spatial, stratigraphic and material relationships of an archaeological find."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "H. D. Sankalia",
+            "idea": "A major figure in Indian prehistory who contributed to systematic archaeological research and regional cultural sequences."
+          },
+          {
+            "scholar": "B. B. Lal",
+            "idea": "Contributed to Indian archaeology through field investigations and debates about archaeological interpretation; evaluate specific claims against the evidence."
+          },
+          {
+            "scholar": "V. Gordon Childe",
+            "idea": "Provided influential frameworks for interpreting archaeological and social transformations, which should be tested against regional evidence rather than applied as universal stages."
+          },
+          {
+            "scholar": "Kenneth Oakley",
+            "idea": "Contributed to methods and debates in palaeo-anthropology and fossil interpretation; dating and comparative methods remain central to the field."
+          }
+        ],
+        "answerPractice": "Discuss the major archaeological phases of Indian prehistory and explain why regional variation and archaeological context are essential for interpreting them.",
+        "revisionPrompt": "Create a comparison table for Palaeolithic, Mesolithic, Neolithic and Harappan contexts using technology, subsistence evidence, settlement clues and one interpretive caution."
+      }
     },
     {
       "paper": "II",
@@ -1469,7 +1579,116 @@
           "a": 1,
           "w": "Varna and jati are distinct categories; local histories and social relations matter."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Analyse Indian population diversity and social institutions using historical, linguistic, cultural and anthropological concepts without treating communities as fixed or internally uniform.",
+        "sections": [
+          {
+            "heading": "Understanding population diversity",
+            "explanation": [
+              "India's population is diverse across language, region, religion, livelihood, social organisation and historical experience. Anthropological study examines how these dimensions overlap and change.",
+              "Linguistic classifications describe language families and relationships; they do not automatically establish a person's biological ancestry, social identity or cultural practice. Language boundaries can also shift through migration, education and multilingual life.",
+              "Population studies require careful sampling and context. Broad labels should not hide differences within communities or imply that identities are timeless."
+            ]
+          },
+          {
+            "heading": "Population structure and change",
+            "explanation": [
+              "Population structure is shaped by age composition, fertility, mortality, migration, settlement and historical events. Regional patterns are influenced by ecology, economy, policy and social institutions.",
+              "Anthropologists study how population processes connect with household arrangements, work, marriage, kinship, health, education and mobility. Statistical patterns need interpretation alongside lived experience."
+            ]
+          },
+          {
+            "heading": "Classical concepts and social values",
+            "explanation": [
+              "Concepts such as varna, jati, ashrama, purushartha, karma, rina and rebirth are important in the study of Indian social and philosophical traditions. Their meanings vary across texts, regions, communities and historical periods.",
+              "Varna is a broad normative classification discussed in textual traditions; jati refers to many local and historically changing social groups. They are related in some social contexts but are not interchangeable descriptions of every lived arrangement.",
+              "Anthropological answers should distinguish textual ideals, regional practice and people's own interpretations rather than assuming one model applies uniformly."
+            ]
+          },
+          {
+            "heading": "Caste, mobility and social relations",
+            "explanation": [
+              "Caste relations have involved hierarchy, occupation, endogamy, exclusion, status claims and changing political-economic relationships. These features vary historically and regionally; caste should not be described as static or identical everywhere.",
+              "Sanskritisation describes a process in which a group adopts practices associated with locally higher-status groups to make status claims. It is not a universal route to equality and does not by itself remove structural inequalities.",
+              "Dominant caste is a concept associated with M. N. Srinivas for analysing local power, including numerical strength, land or economic resources, political influence and status. Its relevance depends on the particular setting."
+            ]
+          },
+          {
+            "heading": "Jajmani and tribe-caste continuum",
+            "explanation": [
+              "The jajmani concept has been used to analyse patterned service, exchange and reciprocal relations between families or occupational groups in some village settings. It should not be treated as a universal or unchanging village system.",
+              "The tribe-caste continuum is an analytical idea used to explore interactions, mobility and overlapping features between groups classified as tribes and caste communities. It should not erase distinct histories, identities, rights or political claims.",
+              "Contemporary analysis must consider state policy, market change, migration, education, land relations and community agency."
+            ]
+          },
+          {
+            "heading": "Sacred complex and religious influences",
+            "explanation": [
+              "The sacred complex concept, associated with L. P. Vidyarthi, examines relationships among sacred centres, sacred specialists and sacred performances in a regional cultural setting. It can be used to study interaction between village and wider religious traditions.",
+              "The nature-man-spirit complex is another approach associated with Vidyarthi's work, focusing on relationships between people, environment and spiritual beliefs in particular settings. It should be applied with evidence, not as a universal template.",
+              "Buddhist, Jain, Islamic and Christian traditions have influenced Indian social life in diverse ways. Their effects vary across regions and periods and should not be reduced to one uniform social outcome."
+            ]
+          },
+          {
+            "heading": "Ethical and comparative interpretation",
+            "explanation": [
+              "Use concepts as analytical tools, not labels for ranking people. Distinguish a scholar's model from the full complexity of social life.",
+              "A strong answer connects the concept to a named scholar, a contextual example, a limitation and a contemporary dimension where relevant."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Varna",
+            "meaning": "A broad normative category in Indian textual traditions; not identical to every local caste grouping."
+          },
+          {
+            "term": "Jati",
+            "meaning": "A locally and historically situated social group, often associated with marriage and social identity."
+          },
+          {
+            "term": "Sanskritisation",
+            "meaning": "A status-mobility process described by M. N. Srinivas involving adoption of practices associated with higher-status groups."
+          },
+          {
+            "term": "Dominant caste",
+            "meaning": "A concept for analysing local power using factors such as numerical strength, resources and political influence."
+          },
+          {
+            "term": "Jajmani",
+            "meaning": "A concept used to study patterned service and exchange relationships in some village settings."
+          },
+          {
+            "term": "Sacred complex",
+            "meaning": "A framework for studying sacred centres, specialists and performances in a regional setting."
+          },
+          {
+            "term": "Tribe-caste continuum",
+            "meaning": "An analytical framework for studying interaction and overlap while recognising distinct community histories and identities."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Developed concepts including Sanskritisation and dominant caste through village-based research and analysis of social change."
+          },
+          {
+            "scholar": "G. S. Ghurye",
+            "idea": "Wrote influential analyses of caste and tribal communities; his integrationist perspective is debated and should be assessed critically."
+          },
+          {
+            "scholar": "L. P. Vidyarthi",
+            "idea": "Developed the sacred complex and nature-man-spirit complex frameworks in Indian anthropology."
+          },
+          {
+            "scholar": "N. K. Bose",
+            "idea": "Contributed to the study of Indian social organisation, caste and tribal communities, stressing historical and cultural relationships."
+          }
+        ],
+        "answerPractice": "Distinguish varna and jati. Explain Sanskritisation and dominant caste as analytical concepts, and discuss two limitations of applying them without local evidence.",
+        "revisionPrompt": "Make a scholar-concept-example table for Srinivas, Vidyarthi, Ghurye and Bose. Add one caution about overgeneralising each concept."
+      }
     },
     {
       "paper": "II",
@@ -1499,7 +1718,116 @@
           "a": 0,
           "w": "M. N. Srinivas developed the concept in his work on social change in India."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Understand the development of Indian anthropology and village studies, and analyse village institutions, agrarian change, minorities and contemporary processes of social transformation.",
+        "sections": [
+          {
+            "heading": "Indian anthropology and its historical development",
+            "explanation": [
+              "Indian anthropology developed through colonial-era surveys and administrative writing as well as later academic, community-based and applied research. These traditions produced data but were also shaped by the politics and assumptions of their times.",
+              "Indian anthropologists have studied caste, tribes, villages, kinship, religion, material culture, language and social change. A critical account distinguishes descriptive contributions from the limits of colonial categories or administrative classifications.",
+              "Contemporary anthropology increasingly attends to community voice, historical inequality, rights, reflexivity and collaboration in research."
+            ]
+          },
+          {
+            "heading": "Scholar-administrators and Indian scholars",
+            "explanation": [
+              "Scholar-administrators contributed records and accounts of tribal and caste communities, but administrative aims could shape what was observed and how people were classified. Their work should be read critically and historically.",
+              "Indian scholars developed field-based and comparative approaches that connected local institutions with wider social and political processes. Their concepts should be applied to the cases for which evidence exists, not treated as universal descriptions."
+            ]
+          },
+          {
+            "heading": "The Indian village as a social system",
+            "explanation": [
+              "Village studies examine settlement, land, kinship, caste relations, occupation, religion, leadership, exchange, conflict and connections with towns and states. A village is not an isolated or timeless unit.",
+              "Villages contain internal differences based on class, caste, gender, age, landholding and political influence. Local institutions may create cooperation as well as exclusion and contestation.",
+              "A whole-village description should be balanced with attention to households, marginalised groups, migrants and people whose livelihoods cross village boundaries."
+            ]
+          },
+          {
+            "heading": "Agrarian relations and globalisation",
+            "explanation": [
+              "Agrarian relations include land ownership, tenancy, labour, credit, production, markets and state policy. These relations influence power and opportunity within rural settings.",
+              "Mechanisation, commercial agriculture, migration, remittances, digital services, education and changing markets connect rural communities to wider processes. Their effects are uneven and can create both opportunities and new vulnerabilities.",
+              "Anthropologists examine how people negotiate change rather than assuming globalisation produces the same outcome everywhere."
+            ]
+          },
+          {
+            "heading": "Linguistic and religious minorities",
+            "explanation": [
+              "Minority experiences are shaped by language use, religious practice, representation, access to institutions, discrimination, location and public policy. Categories should be grounded in the relevant legal and social context.",
+              "Anthropological research examines how identities are maintained, negotiated or transformed through family, schooling, media, work, migration and political participation. Avoid treating any minority as internally uniform."
+            ]
+          },
+          {
+            "heading": "Social change and cultural processes",
+            "explanation": [
+              "Sanskritisation, Westernisation, modernisation, secularisation and the concepts of little and great traditions are frameworks for examining change and interaction. Each highlights some processes while leaving others less visible.",
+              "The little and great traditions framework examines interaction between local and wider cultural forms. It should not be used to rank traditions or imply that one is merely a passive copy of another.",
+              "Education, social movements, law, media, markets, migration, technology and local leadership can interact. Continuity and innovation often occur together."
+            ]
+          },
+          {
+            "heading": "Panchayati Raj, media and local agency",
+            "explanation": [
+              "Panchayati Raj institutions provide formal spaces for local self-government. Anthropological analysis asks how formal rules interact with local power, participation, representation, accountability and everyday practice.",
+              "Media and digital communication influence information, identity, political mobilisation and access to services. Their effects depend on literacy, connectivity, trust and local social relations.",
+              "A sound village study combines observation, interviews, local records and attention to variation among groups, with informed consent and reflexive practice."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Village study",
+            "meaning": "Contextual field research on rural institutions, relationships and change."
+          },
+          {
+            "term": "Agrarian relations",
+            "meaning": "Social and economic relationships involving land, labour, production, credit and rural power."
+          },
+          {
+            "term": "Westernisation",
+            "meaning": "A concept used to analyse changes linked to contact with Western institutions, ideas and practices in a particular historical setting."
+          },
+          {
+            "term": "Modernisation",
+            "meaning": "A broad framework for analysing changes in institutions, technology, economy and social organisation."
+          },
+          {
+            "term": "Little and great traditions",
+            "meaning": "A framework for studying interaction between local cultural forms and wider literate or institutional traditions."
+          },
+          {
+            "term": "Panchayati Raj",
+            "meaning": "The system of rural local self-government in India, operating through constitutional and state legal frameworks."
+          },
+          {
+            "term": "Reflexive fieldwork",
+            "meaning": "Research practice that critically examines the researcher's role and influence."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Village research informed concepts such as dominant caste and Sanskritisation and highlighted the importance of field-based analysis."
+          },
+          {
+            "scholar": "S. C. Dube",
+            "idea": "Contributed influential studies of Indian village society and social change, linking local institutions with wider processes."
+          },
+          {
+            "scholar": "D. N. Majumdar",
+            "idea": "Contributed to Indian anthropology through research on communities, social organisation and applied questions."
+          },
+          {
+            "scholar": "N. K. Bose",
+            "idea": "Analysed Indian civilisation, caste and tribal communities through historical and cultural relationships."
+          }
+        ],
+        "answerPractice": "Why should the Indian village not be treated as an isolated and homogeneous social unit? Discuss with reference to agrarian relations, social diversity and contemporary change.",
+        "revisionPrompt": "Draw a village social-system diagram linking land, caste, kinship, labour, local government, markets, media and migration. Mark where power differences may arise."
+      }
     },
     {
       "paper": "II",
@@ -1531,7 +1859,118 @@
           "a": 1,
           "w": "A rights-based assessment considers community participation and social, economic and cultural effects."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Analyse tribal diversity, development challenges, constitutional and legal safeguards, community rights and the contribution of anthropology to inclusive development.",
+        "sections": [
+          {
+            "heading": "Tribal diversity and careful classification",
+            "explanation": [
+              "Tribal communities in India are diverse in language, ecology, livelihood, political organisation, religion, settlement and historical experience. No single account can represent all communities.",
+              "Anthropological profiles may consider biological, linguistic, social and economic dimensions, but these should not be used to create rigid rankings or imply that communities are internally uniform.",
+              "The term Particularly Vulnerable Tribal Groups (PVTGs) is an official administrative category used in India. Its use should be understood within policy and service-delivery contexts, not as a judgement about the worth or ability of a community."
+            ]
+          },
+          {
+            "heading": "Historical and contemporary challenges",
+            "explanation": [
+              "Challenges may include insecure land and forest access, displacement, debt, poverty, educational barriers, health-service gaps, language exclusion, discrimination and limited participation in decisions.",
+              "These issues are connected. For example, loss of access to a livelihood resource can affect food security, mobility, cultural practice, income and intergenerational knowledge.",
+              "A sound assessment starts from specific community histories and local evidence rather than assuming that every group faces identical conditions."
+            ]
+          },
+          {
+            "heading": "Development projects, displacement and rehabilitation",
+            "explanation": [
+              "Infrastructure, mining, conservation, industry and other projects can create public benefits while distributing costs unevenly. Anthropological assessment examines who decides, who gains, who bears costs and whether alternatives were considered.",
+              "Displacement can affect land, housing, livelihood, social networks, sacred places, language and community institutions. Compensation alone may not restore these relationships.",
+              "Rehabilitation should be assessed through secure rights, livelihood restoration, access to services, cultural continuity, meaningful participation and long-term outcomes."
+            ]
+          },
+          {
+            "heading": "Constitutional and legal safeguards",
+            "explanation": [
+              "India's constitutional framework includes special provisions and institutional arrangements concerning Scheduled Tribes and areas with distinct governance needs. Relevant topics include the Fifth and Sixth Schedules, representation and constitutional bodies.",
+              "Legislation and policy concerning local self-government, forest rights, land protection, education and welfare are important parts of the safeguards framework. Their scope, amendments and implementation should be checked against current official legal texts before citing section numbers or legal conclusions.",
+              "A constitutional or statutory safeguard is not the same as effective implementation. Analysis should consider awareness, administrative capacity, access to grievance mechanisms and community participation."
+            ]
+          },
+          {
+            "heading": "Autonomy, identity and political change",
+            "explanation": [
+              "Ethnicity, autonomy and regional movements may emerge from histories of identity, land, language, resource control, political representation and relations with the state. Their causes vary and should be studied in context.",
+              "The relation between tribe and nation-state involves questions of citizenship, self-government, development priorities, security, rights and recognition. Community demands may include autonomy, cultural protection and fair access to public institutions.",
+              "Avoid presenting tribal identity as frozen in the past. Communities actively adapt, organise, debate and shape their futures."
+            ]
+          },
+          {
+            "heading": "Tribal administration, programmes and civil society",
+            "explanation": [
+              "Tribal development programmes may address education, health, livelihoods, infrastructure, nutrition, rights and local institutions. Programme evaluation should examine access, quality, fairness and outcomes rather than only spending or beneficiary counts.",
+              "PVTG-focused interventions and NGO work should be assessed for cultural and linguistic appropriateness, accountability, participation and long-term sustainability. External organisations should not replace community decision-making.",
+              "Local institutions, community organisations and women's groups may be important partners, but representation should be examined rather than assumed."
+            ]
+          },
+          {
+            "heading": "Role of anthropology in inclusive development",
+            "explanation": [
+              "Anthropologists can contribute through baseline research, participatory planning, social impact assessment, documentation of local knowledge, programme evaluation and communication across institutions and communities.",
+              "Ethical practice requires informed consent, privacy, fair representation, feedback to participants and respect for community priorities. Research should not expose people to stigma or risk.",
+              "The goal is not to romanticise communities or to oppose all change. It is to support informed choices, rights, participation and development outcomes defined with the people affected."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Scheduled Tribe",
+            "meaning": "A constitutional and administrative category recognised through the process provided in India's constitutional framework."
+          },
+          {
+            "term": "PVTG",
+            "meaning": "Particularly Vulnerable Tribal Group, an official category used for targeted policy attention to certain tribal communities."
+          },
+          {
+            "term": "Displacement",
+            "meaning": "Loss of residence, land, livelihood or access to resources due to a project or other process."
+          },
+          {
+            "term": "Rehabilitation",
+            "meaning": "Measures intended to restore or improve living conditions and livelihoods after displacement or disruption."
+          },
+          {
+            "term": "Self-governance",
+            "meaning": "Meaningful authority of a community or local institution to participate in and make decisions affecting its affairs."
+          },
+          {
+            "term": "Participatory development",
+            "meaning": "An approach in which affected people help define priorities, decisions, implementation and evaluation."
+          },
+          {
+            "term": "Social impact assessment",
+            "meaning": "Systematic examination of the likely social consequences of a proposed policy, project or intervention."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Verrier Elwin",
+            "idea": "Produced influential ethnographic work and debated approaches to tribal policy; his protectionist positions should be read critically in their historical context."
+          },
+          {
+            "scholar": "G. S. Ghurye",
+            "idea": "Advanced an integrationist interpretation of tribal communities and Indian society, which has been critically debated by later scholars."
+          },
+          {
+            "scholar": "N. K. Bose",
+            "idea": "Contributed to the study of tribal communities and their relationships with wider Indian society."
+          },
+          {
+            "scholar": "L. P. Vidyarthi",
+            "idea": "Used field-based approaches to examine tribal religion, social organisation and relationships between people, nature and the sacred."
+          }
+        ],
+        "answerPractice": "Discuss the role of anthropology in tribal development. Explain how rights, participation, displacement, livelihood restoration and cultural context should shape the assessment of a development project.",
+        "revisionPrompt": "Prepare a checklist for evaluating a development project affecting a tribal community: participation, consent, land and resource rights, livelihood, culture, services, grievance process and long-term outcomes."
+      }
     }
   ]
 }
