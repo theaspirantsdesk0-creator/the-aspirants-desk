@@ -1,0 +1,499 @@
+{
+  "version": "2026-CSE-notification",
+  "source": "https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Examination-2026-Notice-E.pdf",
+  "sourceLabel": "UPSC Civil Services Examination 2026 official notification, Section III Part B",
+  "subjects": [
+    "Agriculture",
+    "Animal Husbandry and Veterinary Science",
+    "Anthropology",
+    "Botany",
+    "Chemistry",
+    "Civil Engineering",
+    "Commerce and Accountancy",
+    "Economics",
+    "Electrical Engineering",
+    "Geography",
+    "Geology",
+    "History",
+    "Law",
+    "Management",
+    "Mathematics",
+    "Mechanical Engineering",
+    "Medical Science",
+    "Philosophy",
+    "Physics",
+    "Political Science and International Relations",
+    "Psychology",
+    "Public Administration",
+    "Sociology",
+    "Statistics",
+    "Zoology",
+    "Literature: Assamese",
+    "Literature: Bengali",
+    "Literature: Bodo",
+    "Literature: Dogri",
+    "Literature: English",
+    "Literature: Gujarati",
+    "Literature: Hindi",
+    "Literature: Kannada",
+    "Literature: Kashmiri",
+    "Literature: Konkani",
+    "Literature: Maithili",
+    "Literature: Malayalam",
+    "Literature: Manipuri",
+    "Literature: Marathi",
+    "Literature: Nepali",
+    "Literature: Odia",
+    "Literature: Punjabi",
+    "Literature: Sanskrit",
+    "Literature: Santhali",
+    "Literature: Sindhi",
+    "Literature: Tamil",
+    "Literature: Telugu",
+    "Literature: Urdu"
+  ],
+  "anthropology": [
+    {
+      "paper": "I",
+      "unit": "Foundations of Anthropology",
+      "topics": [
+        "Meaning, scope and development of Anthropology",
+        "Relationship with social, behavioural, life, medical and earth sciences and humanities",
+        "Social-cultural, biological, archaeological and linguistic branches: scope and relevance"
+      ],
+      "notes": [
+        "Anthropology studies humans across time and space. Its distinctive approach is holistic: biological, cultural, social, linguistic and archaeological evidence are considered together.",
+        "The four broad branches are complementary. Social-cultural anthropology studies social life and meaning; biological anthropology studies human evolution and variation; archaeology studies material remains; linguistic anthropology studies language in social and cultural context.",
+        "Interdisciplinary links help explain health, ecology, behaviour, history and institutions without reducing human life to a single cause."
+      ],
+      "test": [
+        {
+          "q": "Which idea best captures anthropology's holistic approach?",
+          "o": [
+            "Studying only written laws",
+            "Studying human life through connected biological, social and cultural dimensions",
+            "Studying only fossils",
+            "Studying only economic output"
+          ],
+          "a": 1,
+          "w": "Holism examines connected dimensions of human life rather than isolating one factor."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Human evolution and primates",
+      "topics": [
+        "Biological and cultural factors in human evolution",
+        "Pre-Darwinian, Darwinian, post-Darwinian and synthetic theories",
+        "Evolutionary biology concepts: adaptation, convergence, parallelism, adaptive radiation and mosaic evolution",
+        "Primate characteristics, taxonomy, adaptations, behaviour and comparative anatomy",
+        "Fossil hominins: Australopithecines, Homo erectus, Neanderthals and early Homo sapiens"
+      ],
+      "notes": [
+        "Evolution is a population-level process across generations. Variation, inheritance, differential reproductive success and changing environments are central explanatory ideas.",
+        "Darwinian natural selection explains how heritable variation can become more or less common when it affects reproductive success. The modern synthesis connects selection with Mendelian genetics and population genetics.",
+        "Primates share traits such as grasping hands, forward-facing eyes and flexible behaviour, but species differ in locomotion, diet and social organisation. Comparative anatomy helps reconstruct evolutionary relationships.",
+        "Human evolution is branching rather than a simple ladder. Fossil evidence, dating, anatomy, archaeology and genetics must be considered together."
+      ],
+      "test": [
+        {
+          "q": "The modern evolutionary synthesis primarily integrates natural selection with:",
+          "o": [
+            "Mendelian genetics and population genetics",
+            "Plate tectonics only",
+            "Cultural diffusion only",
+            "Lamarck's inheritance of acquired traits"
+          ],
+          "a": 0,
+          "w": "The synthesis combines Darwinian selection with Mendelian inheritance and population-level genetics."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Biological basis of life",
+      "topics": [
+        "Cell structure and function",
+        "DNA structure and replication",
+        "Gene expression and protein synthesis",
+        "Mutation, chromosomes and cell division"
+      ],
+      "notes": [
+        "The cell is the basic structural and functional unit of life. DNA stores hereditary information; replication copies it before cell division.",
+        "A gene is a functional DNA sequence. Transcription produces RNA from DNA; translation uses messenger RNA to assemble a polypeptide at ribosomes.",
+        "Mutations create new genetic variants. Their effects depend on location, molecular change and environment; they are not automatically harmful or beneficial."
+      ],
+      "test": [
+        {
+          "q": "Which process uses messenger RNA to assemble a polypeptide?",
+          "o": [
+            "Replication",
+            "Translation",
+            "Meiosis",
+            "Mutation"
+          ],
+          "a": 1,
+          "w": "Translation reads mRNA codons at ribosomes to assemble a polypeptide."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Prehistoric archaeology",
+      "topics": [
+        "Principles of prehistoric archaeology",
+        "Relative and absolute dating methods",
+        "Palaeolithic, Mesolithic, Neolithic, Chalcolithic, Copper-Bronze and Iron Age cultures"
+      ],
+      "notes": [
+        "Archaeology reconstructs past human behaviour from material evidence in context. Stratigraphy and association are important for interpreting sites.",
+        "Relative dating places finds in sequence; absolute or chronometric methods estimate calendar age, subject to method-specific assumptions and error ranges.",
+        "Broad prehistoric labels describe changing technologies and lifeways, not identical stages experienced everywhere at the same time."
+      ],
+      "test": [
+        {
+          "q": "Stratigraphy is most directly used for:",
+          "o": [
+            "Relative dating through layer relationships",
+            "Measuring blood groups",
+            "Classifying languages",
+            "Estimating modern fertility"
+          ],
+          "a": 0,
+          "w": "Stratigraphic relationships can establish relative sequence when deposits are undisturbed."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Culture, society, marriage, family and kinship",
+      "topics": [
+        "Culture, civilisation, ethnocentrism and cultural relativism",
+        "Society, social institutions, groups and stratification",
+        "Marriage rules and forms; marriage payments",
+        "Family, household, domestic groups and changing family patterns",
+        "Descent, filiation, lineage, clan, moiety, kinship terminology, descent and alliance"
+      ],
+      "notes": [
+        "Culture is learned, shared and transmitted, but it is neither static nor internally uniform. Cultural relativism seeks to understand practices in context; it does not require abandoning ethical evaluation.",
+        "Marriage is studied through rules, forms, social functions and exchanges. Distinguish endogamy from exogamy, and monogamy from polygamous forms.",
+        "Family, household and domestic group are related but not identical analytical categories. Residence, descent, marriage and succession shape family forms.",
+        "Descent traces socially recognised relationships; alliance approaches examine ties created through marriage. Kinship terminology can be descriptive or classificatory."
+      ],
+      "test": [
+        {
+          "q": "Cultural relativism primarily asks the researcher to:",
+          "o": [
+            "Rank cultures on one scale",
+            "Interpret practices within their cultural context",
+            "Assume all practices are identical",
+            "Ignore evidence"
+          ],
+          "a": 1,
+          "w": "Cultural relativism seeks contextual understanding rather than ethnocentric ranking."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Economic and political organisation; religion",
+      "topics": [
+        "Economic anthropology and formalist-substantivist debate",
+        "Production, distribution and exchange: reciprocity, redistribution and market",
+        "Bands, tribes, chiefdoms, kingdoms and states",
+        "Power, authority, legitimacy, law and social control",
+        "Anthropological approaches to religion, myth, ritual, magic and religious specialists"
+      ],
+      "notes": [
+        "Economic anthropology studies how people organise production, distribution and exchange within social relationships and ecological settings.",
+        "Reciprocity involves transfers between people or groups; redistribution moves resources through a central point; market exchange uses price-mediated transactions. Real economies may combine all three.",
+        "Political organisation varies in scale and institutional complexity. Power, authority and legitimacy are related but distinct concepts.",
+        "Anthropological study of religion examines meaning, ritual, cosmology and social function without assuming that all communities organise belief in the same way."
+      ],
+      "test": [
+        {
+          "q": "Which exchange system involves resources collected and reallocated through a central authority?",
+          "o": [
+            "Redistribution",
+            "Generalised reciprocity only",
+            "Barter-free isolation",
+            "Endogamy"
+          ],
+          "a": 0,
+          "w": "Redistribution involves collection at a centre followed by allocation."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Anthropological theories",
+      "topics": [
+        "Classical evolutionism: Tylor, Morgan and Frazer",
+        "Historical particularism and diffusionism",
+        "Functionalism and structural-functionalism",
+        "Structuralism; culture and personality",
+        "Neo-evolutionism and cultural materialism",
+        "Symbolic, interpretive, cognitive and post-modern approaches"
+      ],
+      "notes": [
+        "Theories are analytical frameworks, not lists of names. In an answer, define the central claim, explain the method, cite a scholar and assess strengths or limitations.",
+        "Classical evolutionists proposed broad cultural sequences; Boas challenged unilinear schemes through historical particularism and careful contextual research.",
+        "Malinowski emphasised institutions and needs; Radcliffe-Brown examined social structure and the maintenance of social relations.",
+        "Lévi-Strauss analysed underlying structures and oppositions. Interpretive approaches such as Geertz's focus on meaning and thick description."
+      ],
+      "test": [
+        {
+          "q": "Which scholar is most closely associated with historical particularism?",
+          "o": [
+            "Franz Boas",
+            "B. F. Skinner",
+            "Adam Smith",
+            "Auguste Comte"
+          ],
+          "a": 0,
+          "w": "Franz Boas is associated with historical particularism and contextual field research."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Language, communication and research methods",
+      "topics": [
+        "Origin, nature and characteristics of language",
+        "Verbal and non-verbal communication; social context of language",
+        "Fieldwork tradition",
+        "Technique, method and methodology",
+        "Observation, interview, schedules, questionnaires, case studies, genealogy, life history, oral history and participatory methods",
+        "Analysis, interpretation and presentation of data"
+      ],
+      "notes": [
+        "Language both communicates information and helps organise social identity, relationships and meaning. Register, code choice and context matter.",
+        "Fieldwork relies on systematic observation, rapport, ethical conduct and reflexivity. A technique is a specific tool; a method is an organised procedure; methodology is the reasoning behind the choice of methods.",
+        "Triangulation compares different sources or methods. Researchers should record sampling limits, positionality, consent and uncertainty."
+      ],
+      "test": [
+        {
+          "q": "In research design, methodology refers mainly to:",
+          "o": [
+            "Only a questionnaire",
+            "The reasoning and principles guiding method choices",
+            "The final bibliography only",
+            "A statistical result"
+          ],
+          "a": 1,
+          "w": "Methodology explains and justifies the approach and methods used."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Human genetics and population variation",
+      "topics": [
+        "Pedigree, twin, foster-child, cytogenetic, biochemical, immunological and DNA methods",
+        "Mendelian, multifactorial and polygenic inheritance",
+        "Hardy-Weinberg principle; mutation, migration, selection, isolation, inbreeding and genetic drift",
+        "Chromosomal numerical and structural variations",
+        "Human biological variation, race and racism; blood groups and other genetic markers"
+      ],
+      "notes": [
+        "Population genetics studies allele frequencies and how they change. Hardy-Weinberg equilibrium is a null model requiring assumptions such as random mating and absence of evolutionary forces.",
+        "Mutation, gene flow, genetic drift, natural selection and non-random mating can alter population genetic structure. Small populations are especially vulnerable to drift.",
+        "Human variation is clinal and overlapping; older typological race classifications do not describe discrete biological divisions. Racism is a social and political system, not a biological taxonomy.",
+        "Genetic screening and counselling raise questions of consent, privacy, interpretation and equitable access."
+      ],
+      "test": [
+        {
+          "q": "Genetic drift is generally strongest in:",
+          "o": [
+            "Very large populations",
+            "Small populations",
+            "Populations with no reproduction",
+            "Only fossil populations"
+          ],
+          "a": 1,
+          "w": "Random sampling effects are proportionally stronger in small populations."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Ecological, epidemiological and growth anthropology",
+      "topics": [
+        "Ecological anthropology and biocultural adaptation",
+        "Human responses to heat, cold and high-altitude stress",
+        "Health, disease and epidemiological anthropology",
+        "Growth stages and genetic, environmental, nutritional, cultural and socio-economic influences",
+        "Ageing, senescence, physique and methods of growth study"
+      ],
+      "notes": [
+        "Biocultural approaches examine interactions between biological processes and cultural practices. Adaptation may involve genetic, developmental, physiological and behavioural responses.",
+        "Epidemiology studies distribution and determinants of health events in populations. Anthropological analysis adds attention to lived experience, inequality, belief and access to care.",
+        "Growth is shaped by genes and environments, including nutrition, infection, care, stress and socio-economic conditions. Growth standards are population reference tools, not individual predictions."
+      ],
+      "test": [
+        {
+          "q": "A biocultural explanation studies:",
+          "o": [
+            "Genes without environment",
+            "Interactions between biological and cultural factors",
+            "Only political institutions",
+            "Only archaeological artefacts"
+          ],
+          "a": 1,
+          "w": "Biocultural analysis considers biological and cultural influences together."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Fertility, demography and applied anthropology",
+      "topics": [
+        "Menarche, menopause, fertility patterns and differentials",
+        "Biological, social and cultural demographic theories",
+        "Fecundity, fertility, natality and mortality",
+        "Sports, nutrition, forensic and applied anthropology",
+        "Personal identification, genetic counselling and DNA applications"
+      ],
+      "notes": [
+        "Fecundity refers to biological capacity to reproduce; fertility refers to actual reproductive performance. Demographic measures require clear denominators and reference periods.",
+        "Demographic behaviour reflects biological, social, economic, cultural and policy influences. Avoid explaining population patterns through a single variable.",
+        "Applied anthropology uses anthropological concepts and methods to address practical problems, while considering ethics, rights and the limits of intervention."
+      ],
+      "test": [
+        {
+          "q": "Fecundity is best distinguished from fertility as:",
+          "o": [
+            "Capacity to reproduce versus actual reproductive performance",
+            "Birth rate versus death rate",
+            "Migration versus urbanisation",
+            "Marriage versus descent"
+          ],
+          "a": 0,
+          "w": "Fecundity is biological reproductive capacity; fertility concerns actual reproductive outcomes."
+        }
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Indian prehistory and civilisation",
+      "topics": [
+        "Palaeolithic, Mesolithic, Neolithic and Neolithic-Chalcolithic cultures",
+        "Pre-Harappan, Harappan and post-Harappan cultures",
+        "Tribal contributions to Indian civilisation",
+        "Palaeo-anthropological evidence: Siwaliks and Narmada basin",
+        "Ethno-archaeology among foraging, fishing, pastoral and peasant communities"
+      ],
+      "notes": [
+        "Indian prehistory is reconstructed from archaeological sequences, settlement patterns, artefacts, subsistence remains and dating evidence.",
+        "The Indus/Harappan civilisation is studied through urban planning, craft production, exchange, subsistence, symbols and regional variation. Interpretations must distinguish evidence from speculation.",
+        "Ethno-archaeology uses present-day activities to frame questions about material traces, but analogies must be tested rather than assumed."
+      ],
+      "test": [
+        {
+          "q": "Ethno-archaeology primarily uses:",
+          "o": [
+            "Present-day communities to help interpret material processes, cautiously",
+            "Only written court records",
+            "Only genetic sequencing",
+            "Modern election data"
+          ],
+          "a": 0,
+          "w": "Ethno-archaeology studies relationships between living practices and material remains, with careful limits on analogy."
+        }
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Indian population and social institutions",
+      "topics": [
+        "Ethnic and linguistic elements and their distribution",
+        "Population structure and growth",
+        "Varnashram, Purushartha, Karma, Rina and rebirth",
+        "Caste, varna, dominant caste, mobility, jajmani and tribe-caste continuum",
+        "Sacred complex and nature-man-spirit complex",
+        "Influence of Buddhism, Jainism, Islam and Christianity"
+      ],
+      "notes": [
+        "Indian population studies require attention to regional, linguistic, social and historical diversity. Avoid treating communities as internally uniform or fixed biological types.",
+        "Caste is a historically changing system of social stratification and power. Varna and jati are not interchangeable categories; local relations and political economy shape practice.",
+        "Concepts such as Sanskritisation and dominant caste must be located in the scholar's argument and the evidence from specific settings."
+      ],
+      "test": [
+        {
+          "q": "Which distinction is important in analysing Indian social stratification?",
+          "o": [
+            "Varna and jati are identical in every context",
+            "Varna and jati are analytically distinct concepts",
+            "Caste never changes",
+            "All villages have the same hierarchy"
+          ],
+          "a": 1,
+          "w": "Varna and jati are distinct categories; local histories and social relations matter."
+        }
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Indian anthropology and village studies",
+      "topics": [
+        "Scholar-administrators and Indian anthropologists in tribal and caste studies",
+        "Indian village as a social system; settlement and inter-caste relations",
+        "Agrarian relations and globalisation",
+        "Linguistic and religious minorities and their status",
+        "Sanskritisation, Westernisation, modernisation and little/great traditions",
+        "Panchayati Raj, media and social change"
+      ],
+      "notes": [
+        "Village studies examine institutions and relations in context; they should not assume that villages are isolated or timeless.",
+        "Srinivas's concepts such as Sanskritisation and dominant caste are useful when defined accurately and applied with evidence. They do not explain every form of social change.",
+        "Social change can involve state policy, markets, migration, education, media, social movements and local agency."
+      ],
+      "test": [
+        {
+          "q": "Sanskritisation is a concept associated with:",
+          "o": [
+            "M. N. Srinivas",
+            "Charles Darwin",
+            "Bronislaw Malinowski",
+            "Lewis Henry Morgan"
+          ],
+          "a": 0,
+          "w": "M. N. Srinivas developed the concept in his work on social change in India."
+        }
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Tribal communities, development and constitutional safeguards",
+      "topics": [
+        "Tribal bio-genetic, linguistic and socio-economic diversity",
+        "Land alienation, poverty, indebtedness, literacy, employment, health and nutrition",
+        "Development projects, displacement, rehabilitation, forest policy, urbanisation and industrialisation",
+        "Safeguards for Scheduled Tribes, Scheduled Castes and other disadvantaged groups",
+        "Ethnicity, conflict, autonomy, regionalism and post-colonial change",
+        "Religion and tribal societies; comparative tribe and nation-state",
+        "Tribal administration, development programmes, PVTGs and NGOs",
+        "Role of anthropology in rural and tribal development"
+      ],
+      "notes": [
+        "Tribal communities are diverse; policy analysis should avoid homogenising labels and should include community rights, consent, livelihood, language and political representation.",
+        "Development projects can create benefits and costs unevenly. Good analysis examines displacement, compensation, rehabilitation, forest and land rights, service access and community participation.",
+        "Constitutional safeguards, protective legislation and welfare programmes should be studied alongside implementation gaps and local outcomes. Verify current provisions from official legal sources before citing them."
+      ],
+      "test": [
+        {
+          "q": "A sound anthropological assessment of a tribal development project should examine:",
+          "o": [
+            "Only expenditure totals",
+            "Rights, participation, displacement, livelihoods and outcomes",
+            "Only the project title",
+            "Only the number of contractors"
+          ],
+          "a": 1,
+          "w": "A rights-based assessment considers community participation and social, economic and cultural effects."
+        }
+      ]
+    }
+  ]
+}

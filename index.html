@@ -12,6 +12,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="theme-color" content="#070f2b">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/css/optional-prep.css">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 
@@ -754,6 +755,28 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   </div>
 </div>
 
+<!-- REQUIRED OPTIONAL SUBJECT ONBOARDING -->
+<div class="modal-backdrop optional-setup-backdrop" id="optionalSetupModal" hidden>
+  <div class="modal-card optional-setup-card" role="dialog" aria-modal="true" aria-labelledby="optionalSetupTitle">
+    <span class="eyebrow">PERSONALISED UPSC MAINS PATH</span>
+    <h2 id="optionalSetupTitle">Set up your optional subject</h2>
+    <p class="muted">Choose one optional subject to personalise your Paper I and Paper II syllabus, notes, tests and revision plan. You can change it later in your Notes workspace.</p>
+    <form id="optionalSetupForm">
+      <label for="optionalSubjectSelect">Your optional subject</label>
+      <select id="optionalSubjectSelect" required></select>
+      <label for="optionalStudyLanguage" style="margin-top:.8rem">Notes language</label>
+      <select id="optionalStudyLanguage"><option>Tamil + English</option><option>English</option><option>Tamil</option></select>
+      <label for="optionalStudyLevel" style="margin-top:.8rem">Starting level</label>
+      <select id="optionalStudyLevel"><option value="Beginner">Beginner — teach from the basics</option><option value="Intermediate">Intermediate — build exam-ready understanding</option><option value="Advanced">Advanced — answer writing and enrichment</option></select>
+      <p id="optionalSetupFeedback" class="muted" aria-live="polite"></p>
+      <div class="btn-row" style="margin-top:1rem">
+        <button class="btn primary" type="submit" style="flex:1">Save subject &amp; continue</button>
+        <button class="btn" id="optionalSetupLater" type="button">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- MAIN WORKSPACE -->
 <main class="main-wrap" id="mainContent" tabindex="-1">
 
@@ -1148,7 +1171,18 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   </section>
 
   <!-- 7. SUBJECT NOTES -->
-  <section id="notes" class="view-sec protected-view"><div class="card gold-top"><h2>Chapter Notes &amp; Detailed Explanations</h2><p class="muted">Every chapter has full notes, a point-by-point explanation, key terms and a self-test. Mark chapters as read to track your progress.</p><input id="nSearch" class="nsearch" type="search" placeholder="Search all 231 chapters (e.g. Article 21, Kesavananda, monsoon)…" aria-label="Search chapters"><div id="nSearchOut"></div><p class="pill warn" id="examNotesNote" hidden style="margin:.6rem 0"></p><div class="grid-3" id="ngrid"></div></div></section>
+  <section id="notes" class="view-sec protected-view">
+    <div class="card gold-top">
+      <h2>UPSC Syllabus &amp; Complete Notes Workspace</h2>
+      <p class="muted">Your General Studies notes remain available below. Your chosen optional subject now has a separate Paper I and Paper II syllabus workspace, topic tracking and unit tests.</p>
+      <div id="optionalSyllabusWorkspace" aria-live="polite"><p class="muted">Loading your optional syllabus…</p></div>
+      <div class="btn-row" style="margin:1rem 0"><button type="button" class="btn" id="openOptionalSetup">Change optional subject / language</button></div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:1.2rem 0">
+      <h2>General Studies Chapter Notes</h2>
+      <p class="muted">Search the existing General Studies chapter library and track chapter reading progress.</p>
+      <input id="nSearch" class="nsearch" type="search" placeholder="Search General Studies chapters (e.g. Article 21, monsoon)…" aria-label="Search chapters"><div id="nSearchOut"></div><p class="pill warn" id="examNotesNote" hidden style="margin:.6rem 0"></p><div class="grid-3" id="ngrid"></div>
+    </div>
+  </section>
 
   <!-- 8. DAILY PRESS & PIB -->
   <section id="press" class="view-sec protected-view">
@@ -1716,6 +1750,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     lastScore: null,
     learningHub: {}
   }));
+  window.TAD_OPTIONAL_PREP = state.optionalPrep || null;
 
   const $ = (id) => document.getElementById(id);
 
@@ -1982,6 +2017,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     saveUserState();
   });
 
+  window.addEventListener("tad:optionalPrepSave", (event) => {
+    const next = event && event.detail;
+    if (!next || typeof next !== "object" || !next.subject) return;
+    state.optionalPrep = next;
+    window.TAD_OPTIONAL_PREP = next;
+    localStorage.setItem("tad_state_v5", JSON.stringify(state));
+    saveUserState();
+    window.dispatchEvent(new CustomEvent("tad:optionalPrepChanged"));
+  });
+
   async function saveUserState() {
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
     renderKPIs();
@@ -2022,6 +2067,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       state = { ...state, ...udata.payload };
       localStorage.setItem("tad_state_v5", JSON.stringify(state));
     }
+    window.TAD_OPTIONAL_PREP = state.optionalPrep || null;
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: state.learningHub || {} }));
     renderAllUserModules();
     updateAuthUI();
@@ -3774,6 +3820,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
 <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
   <script src="assets/js/course-studio.js" defer></script>
+  <script src="assets/js/optional-prep.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
 </html>
