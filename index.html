@@ -3819,7 +3819,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
     const priorities = [];
     if (due.length) priorities.push({title:"Complete "+due.length+" due revision(s)",detail:due.slice(0,2).map(x=>x.topic).join(" · "),route:"tracker",label:"Open revision queue"});
-    if (weakSection) priorities.push({title:"Revisit "+weakSection.name,detail:"Lowest recorded MCQ accuracy: "+weakSection.accuracy.toFixed(1)+"%",route:"mock-exams",label:"Review mock analytics"});
+    if (weakSection) priorities.push({title:"Revisit "+weakSection.name,detail:"Lowest recorded MCQ accuracy: "+weakSection.accuracy.toFixed(1)+"%",route:"mockexams",label:"Review mock analytics"});
     if (!due.length && !weakSection) priorities.push({title:"Build today's study momentum",detail:"Choose one syllabus topic, study it and schedule its next revision.",route:"today",label:"Start a study session"});
     if (evaluations === 0) priorities.push({title:"Practise Mains answer writing",detail:"Save a rubric-based answer evaluation to begin tracking writing progress.",route:"mains",label:"Open answer writing"});
     $("tadCommandPriorities").innerHTML = priorities.slice(0,3).map(item=>'<article class="tad-command-item"><div><strong>'+safe(item.title)+'</strong><p class="muted">'+safe(item.detail)+'</p></div><a class="btn" href="#'+item.route+'" data-nav="'+item.route+'">'+safe(item.label)+'</a></article>').join("");
