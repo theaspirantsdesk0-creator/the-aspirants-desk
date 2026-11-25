@@ -119,7 +119,8 @@ function startQuiz(index){
  const durationSeconds=Math.max(180,questions.length*60);
  const quizRun={index,questions,secondsLeft:durationSeconds,timerId:null,submitted:false};
  activeQuiz=quizRun;
- host.innerHTML='<section class="card optional-quiz-card"><h3>Timed unit test: '+esc(unit.unit)+'</h3><p class="optional-quiz-timer" id="optionalQuizTimer" role="timer" aria-live="off">Time remaining: 05:00</p><p class="muted">Five questions · five minutes · unanswered questions count as skipped.</p><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
+ const initialMinutes=Math.floor(durationSeconds/60),initialSeconds=durationSeconds%60;
+ host.innerHTML='<section class="card optional-quiz-card"><h3>Timed unit test: '+esc(unit.unit)+'</h3><p class="optional-quiz-timer" id="optionalQuizTimer" role="timer" aria-live="off">Time remaining: '+String(initialMinutes).padStart(2,"0")+':'+String(initialSeconds).padStart(2,"0")+'</p><p class="muted">'+questions.length+' questions · '+Math.ceil(durationSeconds/60)+' minutes · unanswered questions count as skipped.</p><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
  $("optionalQuizForm").addEventListener("submit",async event=>{
   event.preventDefault();
   if(quizRun.submitted)return;
