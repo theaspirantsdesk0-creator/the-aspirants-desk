@@ -525,8 +525,13 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     const payload = saved?.payload && typeof saved.payload === "object" && !Array.isArray(saved.payload)
       ? { ...(saved.payload as Record<string, unknown>) } : {};
     const existing = Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations : [];
+    const weaknessLine = feedback.match(/(?:^|\\n)PRIORITY WEAKNESSES:\\s*(.+)/i)?.[1] ?? "";
+    const strengthLine = feedback.match(/(?:^|\\n)KEY STRENGTHS:\\s*(.+)/i)?.[1] ?? "";
+    const splitTags = (value: string) => value.split(/[;,]/).map((tag) => tag.trim())
+      .filter((tag) => tag && !/^(none|not identified|n\\/a)$/i.test(tag)).slice(0, 6);
     const record = {
       id: crypto.randomUUID(), subject, question, answer, feedback, wordLimit,
+      priorityWeaknesses: splitTags(weaknessLine), keyStrengths: splitTags(strengthLine),
       savedAt: new Date().toISOString(), label: "AI practice feedback — not an official UPSC score",
     };
     payload.answerEvaluations = [record, ...existing.filter((item) => item && typeof item === "object")].slice(0, 25);
@@ -628,7 +633,24 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
       wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
       weakTopics, unclassifiedMistakes, mockExams,
-      answerEvaluations: Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations.slice(0, 10) : [],
+      answerEvaluations: (Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations.slice(0, 15) : []).map((item) => {
+        if (!item || typeof item !== "object") return null;
+        const row = item as Record<string, unknown>;
+        const feedback = typeof row.feedback === "string" ? row.feedback : "";
+        const parseTags = (saved: unknown, pattern: RegExp) => Array.isArray(saved)
+          ? saved.filter((tag): tag is string => typeof tag === "string").slice(0, 6)
+          : (feedback.match(pattern)?.[1] ?? "").split(/[;,]/).map((tag) => tag.trim())
+              .filter((tag) => tag && !/^(none|not identified|n\\/a)$/i.test(tag)).slice(0, 6);
+        return {
+          id: typeof row.id === "string" ? row.id : null,
+          subject: typeof row.subject === "string" ? row.subject : "Practice",
+          question: typeof row.question === "string" ? row.question : "",
+          wordLimit: typeof row.wordLimit === "number" ? row.wordLimit : null,
+          savedAt: typeof row.savedAt === "string" ? row.savedAt : null, feedback,
+          priorityWeaknesses: parseTags(row.priorityWeaknesses, /(?:^|\\n)PRIORITY WEAKNESSES:\\s*(.+)/i),
+          keyStrengths: parseTags(row.keyStrengths, /(?:^|\\n)KEY STRENGTHS:\\s*(.+)/i),
+        };
+      }).filter(Boolean),
       lessons: {
         total: lessonTotalResult.count ?? 0,
         completed: lessonCompletedResult.count ?? 0,
