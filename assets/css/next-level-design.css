@@ -75,3 +75,23 @@ input,select,textarea{border-radius:10px}
 
 /* Anbuu mock examination insights */
 .tad-ai-mock-latest{display:grid;gap:.6rem}.tad-ai-mock-result{padding:.75rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.tad-ai-mock-result strong,.tad-ai-mock-result small{display:block}.tad-ai-mock-result small{margin-top:.3rem;color:var(--muted);line-height:1.45}.tad-ai-mock-section-list{display:grid;gap:.45rem;padding-left:1.1rem}.tad-ai-mock-section-list li{padding:.35rem 0}.tad-ai-mock-section-list strong,.tad-ai-mock-section-list span{display:block}.tad-ai-mock-section-list span{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+
+/* Mains answer-writing lab */
+.tad-answer-lab{margin:28px 0;padding:clamp(18px,3vw,30px);border:1px solid var(--tad-border,rgba(190,160,100,.24));border-radius:18px;background:var(--tad-surface,rgba(255,255,255,.025))}
+.tad-answer-lab-head>span{font-size:.72rem;letter-spacing:.14em;font-weight:700;color:var(--tad-gold,#c8a96b)}
+.tad-answer-lab-head h2{margin:.45rem 0;font-size:clamp(1.35rem,2.5vw,1.8rem)}
+.tad-answer-lab-head p,.tad-answer-lab-form>p{color:var(--tad-muted,#9ba3b2);line-height:1.6}
+.tad-answer-lab-form{display:grid;gap:14px;margin-top:20px}
+.tad-answer-lab-form label{display:grid;gap:7px;font-weight:600}
+.tad-answer-lab-form input,.tad-answer-lab-form textarea{width:100%;padding:12px 14px;border:1px solid var(--tad-border,rgba(190,160,100,.24));border-radius:10px;background:var(--tad-input,rgba(0,0,0,.14));color:inherit;font:inherit}
+.tad-answer-lab-form textarea{resize:vertical;line-height:1.55}
+.tad-answer-lab-row{display:flex;align-items:end;gap:14px;flex-wrap:wrap}
+.tad-answer-lab-row label{width:min(180px,100%)}
+.tad-answer-lab-row button{padding:12px 18px;border:0;border-radius:10px;background:var(--tad-gold,#c8a96b);color:#151923;font-weight:700;cursor:pointer}
+.tad-answer-history{margin-top:26px;padding-top:18px;border-top:1px solid var(--tad-border,rgba(190,160,100,.2))}
+.tad-answer-history-item{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--tad-border,rgba(190,160,100,.14))}
+.tad-answer-history-item small{color:var(--tad-muted,#9ba3b2)}
+.tad-answer-history-item p{margin:0;color:var(--tad-muted,#9ba3b2)}
+.tad-answer-history-item details{margin-top:6px}
+.tad-answer-history-feedback{white-space:pre-wrap;line-height:1.65;margin-top:10px;max-height:520px;overflow:auto}
+@media(max-width:600px){.tad-answer-lab-row{align-items:stretch}.tad-answer-lab-row label,.tad-answer-lab-row button{width:100%}}
