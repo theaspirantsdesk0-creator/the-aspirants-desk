@@ -15,7 +15,7 @@ const CATALOG=[
  {code:"UPSC-MAINS-ANTHRO-I",title:"UPSC Mains · Anthropology Paper I",stage:"mains",type:"Anthropology Paper I",optional:"Anthropology",duration:180,marks:250,expected:20},
  {code:"UPSC-MAINS-ANTHRO-II",title:"UPSC Mains · Anthropology Paper II",stage:"mains",type:"Anthropology Paper II",optional:"Anthropology",duration:180,marks:250,expected:20}
 ];
-let user=null,profile=null,optionalSubject="",papers=[],attempt=null,questions=[],answers={},marked=new Set(),index=0,timer=null,saveTimer=null,expiresAt=0,startedAt=0,submitting=false;
+let user=null,profile=null,optionalSubject="",papers=[],attempt=null,questions=[],answers={},marked=new Set(),index=0,timer=null,saveTimer=null,expiresAt=0,startedAt=0,submitting=false,saveQueue=Promise.resolve();
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=n=>String(Math.max(0,n)).padStart(2,"0");
 const timeLeft=()=>Math.max(0,Math.ceil((expiresAt-Date.now())/1000));
@@ -25,7 +25,7 @@ function admin(){return profile&&profile.role==="admin";}
 function readOptional(payload){
  const candidates=[payload?.optionalPrep?.subject,payload?.optionalSubject,payload?.optional_subject,payload?.optional?.subject,payload?.preferences?.optionalSubject];
  if(!candidates.some(v=>typeof v==="string"&&v.trim())){try{const local=JSON.parse(localStorage.getItem("tad_state_v5")||"{}");candidates.unshift(local?.optionalPrep?.subject);}catch(e){}}
- return candidates.find(v=>typeof v==="string"&&v.trim())||localStorage.getItem("tad_optional_subject")||"";
+ const found=candidates.find(v=>typeof v==="string"&&v.trim());if(found)return found;try{return localStorage.getItem("tad_optional_subject")||"";}catch(e){return ""}
 }
 async function boot(){
  if(!sb){root.innerHTML='<div class="card"><h2>Mock examination system</h2><p>Supabase is not connected in this browser session. Sign in again or reload the site.</p></div>';return;}
@@ -35,7 +35,7 @@ async function boot(){
   sb.from("profiles").select("role,display_name").eq("id",user.id).maybeSingle(),
   sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle()
  ]);
- profile=p.data||{role:"learner"};optionalSubject=readOptional(u.data?.payload||{});
+ if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});
  await loadPapers();await loadRecent();renderCatalog();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
@@ -89,7 +89,7 @@ async function resumeExam(id){
   const {data,error}=await sb.from("mock_exam_attempts").select("*").eq("id",id).eq("user_id",user.id).single();if(error)throw error;
   if(data.status!=="in_progress")return;
   const paper=papers.find(p=>p.id===data.paper_id);if(!paper)throw new Error("Paper is no longer available.");
-  const qs=await fetchPaperQuestions(paper.id);attempt=data;questions=qs;answers=data.answers||{};marked=new Set(data.marked_for_review||[]);index=Math.min(data.current_question||0,Math.max(0,qs.length-1));startedAt=new Date(data.started_at).getTime();expiresAt=new Date(data.expires_at).getTime();
+  const qs=await fetchPaperQuestions(paper.id);attempt=data;questions=qs;answers=data.answers||{};marked=new Set(data.marked_for_review||[]);index=Math.min(data.current_question||0,Math.max(0,qs.length-1));try{const local=JSON.parse(localStorage.getItem(DRAFT_PREFIX+id)||"null");if(local&&Number(local.updatedAt)>Date.parse(data.updated_at||data.started_at)){if(local.answers&&typeof local.answers==="object")answers={...answers,...local.answers};if(Array.isArray(local.marked))marked=new Set(local.marked);if(Number.isInteger(local.index))index=Math.min(Math.max(local.index,0),Math.max(0,qs.length-1));status("Recovered a newer local draft. Syncing it to your account…");}}catch(e){}startedAt=new Date(data.started_at).getTime();expiresAt=new Date(data.expires_at).getTime();
   if(timeLeft()<=0){await submitExam(true);return;}renderExam(paper);beginTimer();
  }catch(e){status("Unable to resume: "+e.message);}
 }
@@ -116,18 +116,30 @@ function renderQuestion(){
  $("mockMarkBtn").textContent=marked.has(q.id)?"Remove review mark":"Mark for review";
  $("mockPrevBtn").disabled=index===0;$("mockNextBtn").textContent=index===questions.length-1?"Review answers":"Next";
 }
-function setAnswer(id,value){answers[id]=value;status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(saveDraft,350);renderQuestionGrid();}
+function setAnswer(id,value){answers[id]=value;storeLocalDraft();status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft(),350);renderQuestionGrid();}
 function renderQuestionGrid(){
  const grid=$("mockQuestionGrid");grid.innerHTML=questions.map((q,i)=>'<button class="mock-qnum '+(String(answers[q.id]||"").trim()?'answered ':'')+(marked.has(q.id)?'review ':'')+(i===index?'current':'')+'" data-q="'+i+'" aria-label="Question '+(i+1)+'">'+(i+1)+'</button>').join("");
  grid.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{index=Number(b.dataset.q);renderQuestion();renderQuestionGrid();}));
  const answered=questions.filter(q=>String(answers[q.id]||"").trim()).length;
  $("mockAnsweredCount").textContent=answered+" answered · "+(questions.length-answered)+" unanswered";
 }
-function saveDraft(){
- if(!attempt||!sb)return;
- const snapshot={answers,marked:[...marked],index,updatedAt:Date.now()};
+function storeLocalDraft(){
+ if(!attempt)return;
+ const snapshot={answers:{...answers},marked:[...marked],index,updatedAt:Date.now()};
  try{localStorage.setItem(DRAFT_PREFIX+attempt.id,JSON.stringify(snapshot));}catch(e){}
- sb.from("mock_exam_attempts").update({answers,marked_for_review:[...marked],current_question:index,updated_at:new Date().toISOString()}).eq("id",attempt.id).eq("user_id",user.id).eq("status","in_progress").then(({error})=>status(error?"Cloud save failed; local draft retained":"All answers saved")).catch(()=>status("Cloud save unavailable; local draft retained"));
+}
+function saveDraft(){
+ if(!attempt||!sb)return Promise.resolve(false);
+ const current=attempt,attemptId=current.id,userId=user.id;
+ const snapshot={answers:{...answers},marked:[...marked],index};
+ storeLocalDraft();
+ saveQueue=saveQueue.catch(()=>false).then(async()=>{
+  const {error}=await sb.from("mock_exam_attempts").update({answers:snapshot.answers,marked_for_review:snapshot.marked,current_question:snapshot.index,updated_at:new Date().toISOString()}).eq("id",attemptId).eq("user_id",userId).eq("status","in_progress");
+  if(error)throw error;
+  if(attempt?.id===attemptId&&!submitting)status("All answers saved");
+  return true;
+ }).catch(()=>{if(attempt?.id===attemptId)status("Cloud save failed; local draft retained");return false;});
+ return saveQueue;
 }
 function beginTimer(){
  clearInterval(timer);updateTimer();timer=setInterval(()=>{updateTimer();if(timeLeft()<=0){clearInterval(timer);submitExam(true);}},1000);
@@ -142,14 +154,20 @@ async function submitExam(auto){
  if(!attempt||submitting)return;
  if(!auto&&!confirm(reviewSummary()))return;
  submitting=true;clearInterval(timer);clearTimeout(saveTimer);
- await sb.from("mock_exam_attempts").update({answers,marked_for_review:[...marked],current_question:index,updated_at:new Date().toISOString()}).eq("id",attempt.id).eq("user_id",user.id);
+ const synced=await saveDraft();
+ if(!synced){submitting=false;status("Your latest answers could not be synced. Your local draft is retained; check your connection and retry submission.");if(timeLeft()>0)beginTimer();return;}
  status(auto?"Time expired. Submitting examination…":"Submitting examination…");
  const {data,error}=await sb.rpc("submit_mock_exam",{p_attempt_id:attempt.id});
  if(error){submitting=false;status("Submission could not be confirmed: "+error.message+". Your saved answers remain available; retry submission.");return;}
  const result=data||{};const a=result.analytics||{};
  const paper=papers.find(p=>p.id===attempt.paper_id);
- const {error:historyError}=await sb.from("test_results").insert({user_id:user.id,exam:"UPSC Mock",test_name:paper?.title||"Full-length mock",score:Number(result.score||0),max_score:Number(result.max_score||paper?.total_marks||0),correct_count:Number(result.correct||0),wrong_count:Number(result.wrong||0),skipped_count:Number(result.skipped||0)});
- if(historyError)console.warn("Result history not written",historyError);
+ const resultKey="UPSC Mock Attempt "+attempt.id;
+ const {data:existingHistory,error:lookupError}=await sb.from("test_results").select("id").eq("user_id",user.id).eq("exam",resultKey).maybeSingle();
+ if(lookupError)console.warn("Could not check mock history idempotency",lookupError);
+ else if(!existingHistory){
+  const {error:historyError}=await sb.from("test_results").insert({user_id:user.id,exam:resultKey,test_name:paper?.title||"Full-length mock",score:Number(result.score||0),max_score:Number(result.max_score||paper?.total_marks||0),correct_count:Number(a.correct??result.correct??0),wrong_count:Number(a.wrong??result.wrong??0),skipped_count:Number(a.skipped??result.skipped??0)});
+  if(historyError)console.warn("Result history not written",historyError);
+ }
  try{localStorage.removeItem(DRAFT_PREFIX+attempt.id);}catch(e){}
  renderResult(result,paper);submitting=false;
 }
@@ -205,6 +223,8 @@ async function publishPaper(){
 }
 $("mockPublishBtn")?.addEventListener("click",publishPaper);
 bindControls();
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&attempt)saveDraft();});
+window.addEventListener("pagehide",()=>{if(attempt){storeLocalDraft();saveDraft();}});
 window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();}catch(e){}});
 boot().catch(e=>status("Mock system error: "+e.message));
 })();
