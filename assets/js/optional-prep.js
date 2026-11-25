@@ -18,6 +18,7 @@ function openSetup(){
  const saved=current();
  if($("optionalStudyLanguage"))$("optionalStudyLanguage").value=saved.language||"Tamil + English";
  if($("optionalStudyLevel"))$("optionalStudyLevel").value=saved.level||"Beginner";
+ $("optionalSetupLater").hidden=!saved.subject;
  $("optionalSetupModal").hidden=false;
  $("optionalSubjectSelect").focus();
 }
