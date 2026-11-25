@@ -203,6 +203,22 @@ def main() -> int:
                          "resetUserScopedState();"):
             check(required in optional_html, f"Account privacy isolation is missing: {required}")
 
+        check("function escapeMainsText(value)" in optional_html
+              and "escapeMainsText(context)" in optional_html
+              and "escapeMainsText(preview)" in optional_html,
+              "Saved Mains drafts must escape learner-written content before HTML rendering")
+        check('data-load-mains=' in optional_html and 'data-delete-mains=' in optional_html
+              and "setMainsPrompt" in optional_html,
+              "Saved Mains drafts must support loading and deleting drafts with their question context")
+        check('window.addEventListener("tad:mainsPromptSelected"' in optional_html
+              and 'id="mainsQuestionText"' in optional_html
+              and "TAD_ACTIVE_MAINS_PROMPT" in optional_html,
+              "Optional-subject answer practice must connect to the Mains writing pad")
+        check('mainsSeconds <= 0' in optional_html
+              and '"✓ Time Complete"' in optional_html
+              and '$("mainsStartTimerBtn").disabled = true' in optional_html,
+              "Mains timer must stop cleanly at zero and reset for a new answer mode")
+
     owner_workspace = ROOT / "assets" / "js" / "owner-learner-workspaces.js"
     check(owner_workspace.is_file(), "Owner learner workspace module is missing")
     if owner_workspace.is_file():
