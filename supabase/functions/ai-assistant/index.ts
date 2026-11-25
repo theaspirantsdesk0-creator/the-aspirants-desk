@@ -366,7 +366,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
           "EVALUATION MODE: Follow the user's requested JSON schema exactly. Return JSON only. Do not append mentor-state tags.");
         provider = "Groq";
       }
-      const match = raw.match(/\\{[\\s\\S]*\\}/);
+      const match = raw.match(/\{[\s\S]*\}/);
       if (!match) throw new Error("AI response did not contain a JSON evaluation");
       const parsed = JSON.parse(match[0]) as Record<string, unknown>;
       const criteria = Array.isArray(parsed.criteria) ? parsed.criteria.filter((item) =>
