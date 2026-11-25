@@ -40,7 +40,8 @@ function activeUnits(){
  if(!catalogue)return [];
  const subject=current().subject||"Anthropology";
  if(subject==="Anthropology")return catalogue.anthropology||[];
- return [];
+ const saved=current().customUnits&&current().customUnits[subject];
+ return Array.isArray(saved)?saved:[];
 }
 function render(){
  if(activeQuiz&&activeQuiz.timerId)clearInterval(activeQuiz.timerId);
@@ -99,13 +100,24 @@ function render(){
  <div id="optionalQuizHost" class="optional-quiz-host" aria-live="polite"></div>
  <p class="muted optional-disclaimer">These are beginner study notes and original unit checks, not official UPSC answers or verified previous-year questions. Cross-check facts with standard books and the official syllabus. The selected language setting is a learning preference; the current lesson text is primarily in English, so a full Tamil translation is not yet available.</p>
  `:`
- <div class="optional-coming-soon">
-  <h3>Subject selected — syllabus workspace prepared</h3>
-  <p>The official UPSC notification contains the detailed Paper I and Paper II syllabus for this subject. The structured topic-by-topic notes and original tests for this subject have not yet been authored in this release; they will not be replaced with invented syllabus text.</p>
-  <p><a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open the official UPSC 2026 notification and syllabus (PDF)</a></p>
-  <p class="muted">Your selection is saved. General Studies, CSAT, Essay and common learning modules remain available alongside your optional.</p>
- </div>`}
+ <div class="optional-source-note"><b>Official syllabus first:</b> Add exact unit headings for ${esc(subject)} from the official notification. This workspace does not invent syllabus topics. <a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open official UPSC 2026 notification (PDF)</a>.</div>
+ <section class="optional-builder card"><h3>Build your ${esc(subject)} syllabus tracker</h3><p class="muted">Add units from the official syllabus. Each unit gets notes, completion status, learning stage and spaced revision. Entries save to your study account.</p>
+ <form id="optionalCustomUnitForm" class="optional-custom-form"><label>Paper <select id="optionalCustomPaper"><option value="I">Paper I</option><option value="II">Paper II</option></select></label><label>Unit / syllabus heading <input id="optionalCustomTitle" required maxlength="140" placeholder="Enter exact syllabus heading"></label><label>Topics or sub-headings <textarea id="optionalCustomTopics" rows="3" placeholder="Add sub-topics, one per line"></textarea></label><button class="btn primary" type="submit">Add syllabus unit</button></form></section>
+ <div class="optional-unit-list">${filtered.map(u=>`
+ <article class="optional-unit" data-unit-card="${u.index}"><div class="optional-unit-top"><span class="pill">Paper ${esc(u.paper)}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark unit studied</label></div><h3>${esc(u.unit)}</h3>
+ <div class="optional-unit-tools"><label>Learning stage<select data-unit-mastery="${u.index}"><option value="not_started">Not started</option><option value="learning">Learning</option><option value="practised">Practised</option><option value="revision_due">Revision due</option><option value="mastered">Mastered</option></select></label></div>
+ ${u.topics&&u.topics.length?'<ul>'+u.topics.map(t=>'<li>'+esc(t)+'</li>').join("")+'</ul>':""}
+ <div class="optional-custom-notes"><label>Your study notes<textarea rows="5" data-custom-notes="${u.index}" placeholder="Definitions, scholars, examples and answer points…">${esc(u.notes||"")}</textarea></label><button class="btn" type="button" data-save-custom-notes="${u.index}">Save notes</button></div>
+ <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">Schedule revision</button><button class="btn" type="button" data-delete-custom-unit="${u.index}">Remove unit</button></div></article>`).join("")}</div>
+ <p class="muted optional-disclaimer">This is a learner-built tracker, not a completed subject-specific lesson bank. Verify headings and notes against the official syllabus and standard sources. Guided lessons, quizzes and model answers will be added in verified batches.</p>
+ `}
  `;
+ if(subject!=="Anthropology"){
+ const addForm=$("optionalCustomUnitForm");
+ if(addForm)addForm.addEventListener("submit",event=>{event.preventDefault();const title=$("optionalCustomTitle").value.trim();if(!title)return;const all={...(current().customUnits||{})},rows=Array.isArray(all[subject])?all[subject].slice():[];rows.push({paper:$("optionalCustomPaper").value,unit:title,topics:$("optionalCustomTopics").value.split("\\n").map(x=>x.trim()).filter(Boolean),notes:""});all[subject]=rows;window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:{...current(),customUnits:all}}));render();});
+ host.querySelectorAll("[data-save-custom-notes]").forEach(button=>button.addEventListener("click",()=>{const rows={...(current().customUnits||{})},list=(rows[subject]||[]).slice(),i=Number(button.dataset.saveCustomNotes);if(!list[i])return;list[i]={...list[i],notes:host.querySelector('[data-custom-notes="'+i+'"]').value};rows[subject]=list;window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:{...current(),customUnits:rows}}));button.textContent="Saved";}));
+ host.querySelectorAll("[data-delete-custom-unit]").forEach(button=>button.addEventListener("click",()=>{const rows={...(current().customUnits||{})},list=(rows[subject]||[]).slice(),i=Number(button.dataset.deleteCustomUnit);list.splice(i,1);rows[subject]=list;window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:{...current(),customUnits:rows}}));render();}));
+ }
  const change=$("changeOptionalSubject");if(change)change.addEventListener("click",openSetup);
  host.querySelectorAll("[data-paper]").forEach(b=>b.addEventListener("click",()=>{selectedPaper=b.dataset.paper;render();}));
  host.querySelectorAll("[data-unit-done]").forEach(box=>box.addEventListener("change",()=>{
