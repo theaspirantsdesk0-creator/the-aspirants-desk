@@ -652,6 +652,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <link rel="stylesheet" href="assets/css/mock-exams.css">
   <link rel="stylesheet" href="assets/css/next-level-design.css">
   <link rel="stylesheet" href="assets/css/dashboard-editorial.css">
+  <link rel="stylesheet" href="assets/css/concept-map.css">
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -689,6 +690,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   <a href="#flashcards" class="nav-link requires-auth" data-nav="flashcards">⚡ Flashcard Engine <span class="lock-tag">Login</span></a>
   <a href="#mains" class="nav-link requires-auth" data-nav="mains">✍️ Mains Writing Pad <span class="lock-tag">Login</span></a>
   <a href="#pyq" class="nav-link requires-auth" data-nav="pyq">🏛️ Verified PYQ Bank <span class="lock-tag">Login</span></a>
+  <a href="#concept-map" class="nav-link requires-auth" data-nav="concept-map">🧠 UPSC Concept Map <span class="lock-tag">Login</span></a>
   <a href="#mockexams" class="nav-link requires-auth" data-nav="mockexams">⏱️ Full-length Mock Exams <span class="lock-tag">Login</span></a>
 
   <div class="nav-grp">Planner, Tracker & Admin</div>
@@ -1189,6 +1191,47 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         </div>
         <p id="bdMistakeNote" style="font-size:.86rem;color:var(--warn);font-weight:600;margin:.8rem 0 0"></p>
       </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE UPSC CONCEPT MAP -->
+  <section id="concept-map" class="view-sec protected-view">
+    <div class="concept-hero">
+      <div><span class="eyebrow">CONNECT IDEAS · BUILD UNDERSTANDING</span><h1>UPSC Concept Map</h1>
+        <p>Explore how governance, society, economy, environment, ethics and Anthropology connect. Select a concept to reveal its links and a useful study prompt.</p>
+      </div>
+      <div class="concept-hero-mark" aria-hidden="true"><span>IDEA</span><b>↔</b><span>CONTEXT</span><b>↔</b><span>ANSWER</span></div>
+    </div>
+    <div class="concept-map-shell">
+      <div class="concept-map-toolbar">
+        <div class="concept-filter-row" role="group" aria-label="Filter concept map">
+          <button type="button" class="concept-filter active" data-concept-filter="all" aria-pressed="true">All concepts</button>
+          <button type="button" class="concept-filter" data-concept-filter="gs" aria-pressed="false">General Studies</button>
+          <button type="button" class="concept-filter" data-concept-filter="anthro" aria-pressed="false">Anthropology</button>
+          <button type="button" class="concept-filter" data-concept-filter="cross" aria-pressed="false">Cross-subject links</button>
+        </div>
+        <label class="concept-search-label" for="conceptMapSearch">Find a concept</label>
+        <input id="conceptMapSearch" type="search" placeholder="Search e.g. social justice, kinship, state…" autocomplete="off">
+      </div>
+      <div class="concept-map-layout">
+        <section class="concept-node-panel" aria-label="Concepts">
+          <div class="concept-panel-heading"><div><span class="eyebrow">EXPLORE THE NETWORK</span><h2>Concept constellation</h2></div><span id="conceptMapCount" class="concept-count">12 concepts</span></div>
+          <div id="conceptMapNodes" class="concept-node-grid" aria-live="polite"></div>
+          <p id="conceptMapEmpty" class="muted" hidden>No concepts match your search. Try another keyword or filter.</p>
+        </section>
+        <aside class="concept-detail-panel" aria-live="polite" aria-labelledby="conceptDetailTitle">
+          <span class="eyebrow">SELECTED CONCEPT</span>
+          <div id="conceptDetailCategory" class="concept-category">GENERAL STUDIES</div>
+          <h2 id="conceptDetailTitle">Constitutionalism</h2>
+          <p id="conceptDetailSummary" class="muted">Select a concept to explore its meaning and connections.</p>
+          <div class="concept-detail-divider"></div>
+          <h3>How it connects</h3>
+          <div id="conceptDetailLinks" class="concept-link-list"></div>
+          <div class="concept-study-prompt"><span class="eyebrow">THINK LIKE AN ASPIRANT</span><p id="conceptDetailPrompt">How do constitutional values shape public institutions and citizen experience?</p></div>
+          <div class="concept-action-row"><a class="btn primary" href="#notes" data-nav="notes">Open subject notes</a><a class="btn" href="#mains" data-nav="mains">Practise answer writing</a></div>
+        </aside>
+      </div>
+      <div class="concept-map-foot"><b>How to read this map:</b> Connections are curated learning relationships to help integrate topics across papers. They are not claims that UPSC officially groups these concepts together. Use the official syllabus and verified PYQ archive for exam-specific coverage.</div>
     </div>
   </section>
 
@@ -4653,6 +4696,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   })();
   </script>
   <script src="assets/js/pyq-inventory.js" defer></script>
+  <script src="assets/js/concept-map.js" defer></script>
   <script src="assets/js/dashboard.js" defer></script>
 <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
