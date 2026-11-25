@@ -885,6 +885,53 @@ def main() -> int:
           and "data/upsc/anthropology-mains-bank.json" in sw_source_for_mains,
           "Service worker must cache the Mains bank script and question data")
 
+    # Mains answer evaluation is authenticated, learner-scoped and clearly formative.
+    evaluation_js_path = ROOT / "assets" / "js" / "mains-evaluation.js"
+    evaluation_css_path = ROOT / "assets" / "css" / "mains-evaluation.css"
+    edge_path = ROOT / "supabase" / "functions" / "ai-assistant" / "index.ts"
+    if evaluation_js_path.is_file():
+        evaluation_js = evaluation_js_path.read_text(encoding="utf-8")
+        check('action:"evaluate_mains_answer"' in evaluation_js
+              and 'TAD_CAN_EVALUATE_MAINS' in evaluation_js
+              and 'TAD_SAVE_MAINS_EVALUATION' in evaluation_js
+              and 'tad:mainsEvaluationsUpdated' in evaluation_js,
+              "Mains evaluator must call the protected AI action and save private learner history")
+        check("AI-estimated practice mark" in evaluation_js
+              and "not an official UPSC" in evaluation_js,
+              "Mains evaluator must clearly label marks as formative AI estimates")
+        check(all(token in evaluation_js for token in ["criteria", "strengths", "improvements", "missing_points", "factual_cautions", "rewrite_plan"]),
+              "Mains evaluator must display the complete feedback rubric")
+    else:
+        check(False, "Mains evaluation browser module is missing")
+    check(evaluation_css_path.is_file(), "Mains evaluation stylesheet is missing")
+    if edge_path.is_file():
+        edge_source = edge_path.read_text(encoding="utf-8")
+        check('body.action === "evaluate_mains_answer"' in edge_source
+              and 'profile.role !== "learner"' in edge_source
+              and 'consume_ai_daily_quota' in edge_source,
+              "Mains evaluation backend must enforce learner role and the existing daily AI quota")
+        check("answerText.length > 8000" in edge_source
+              and 'raw.match(/\\\\{[\\\\s\\\\S]*\\\\}/)' not in edge_source,
+              "Mains evaluation backend must bound answer input and parse structured JSON safely")
+        check("AI-generated formative feedback" in edge_source
+              and "not an official UPSC score" in edge_source,
+              "Mains evaluation backend must not present AI estimates as official marks")
+    if index_path.is_file():
+        index_html = index_path.read_text(encoding="utf-8")
+        check('id="mainsEvaluateBtn"' in index_html
+              and 'id="mainsEvaluationResult"' in index_html
+              and 'window.TAD_SAVE_MAINS_EVALUATION' in index_html
+              and 'mainsEvaluations: []' in index_html,
+              "Mains evaluation UI must persist evaluations inside the signed-in learner payload")
+        check('assets/js/mains-evaluation.js' in index_html
+              and 'assets/css/mains-evaluation.css' in index_html
+              and 'window.TAD_SUPABASE = supabase' in index_html,
+              "Mains evaluation assets must use the existing authenticated Supabase client")
+    check("assets/js/mains-evaluation.js" in sw_source_for_mains
+          and "assets/css/mains-evaluation.css" in sw_source_for_mains
+          and "desk-v11-anbuu-mains-evaluation" in sw_source_for_mains,
+          "Service worker must cache and version the Mains evaluation feature")
+
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
     if ERRORS:
