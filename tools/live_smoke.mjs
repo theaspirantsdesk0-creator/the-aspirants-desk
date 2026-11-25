@@ -54,6 +54,66 @@ try {
   }
   if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank build did not appear on Pages within five minutes; last HTTP status=' + (response?.status() ?? 'no response'));
   await page.waitForTimeout(4000);
+  // Audit the published PYQ catalogue and its paper-level tracker. This guards
+  // against a verified PDF being counted without a matching tracker row, and
+  // against unverified question records becoming publicly available.
+  const pyqAudit = await page.evaluate(async () => {
+    const read = async path => {
+      const response = await fetch(path, { cache: 'no-store' });
+      if (!response.ok) throw new Error(path + ' returned HTTP ' + response.status);
+      return response.json();
+    };
+    const [manifest, questions, inventory] = await Promise.all([
+      read('data/pyq/verified-documents.json'),
+      read('data/pyq/questions.json'),
+      read('data/pyq/documents.json'),
+    ]);
+    const docs = Array.isArray(manifest.documents) ? manifest.documents : [];
+    const rows = Array.isArray(inventory.documents) ? inventory.documents : [];
+    const official = value => {
+      try {
+        const url = new URL(value);
+        return url.protocol === 'https:' && ['upsc.gov.in', 'www.upsc.gov.in'].includes(url.hostname);
+      } catch { return false; }
+    };
+    const ids = docs.map(doc => doc.id);
+    const invalidDocs = docs.filter(doc =>
+      !doc || doc.status !== 'verified' || !doc.verification?.verified_at ||
+      !doc.verification?.method || !doc.title || !official(doc.document_url)
+    );
+    const unmatchedDocs = docs.filter(doc => {
+      const paper = doc.category === 'General Studies' ? 'General Studies ' + doc.paper
+        : ['Optional', 'Literature'].includes(doc.category) ? 'Optional ' + doc.paper
+        : doc.paper;
+      const subject = ['Optional', 'Literature'].includes(doc.category) ? doc.subject : '';
+      const matches = rows.filter(row =>
+        row.year === doc.year && row.stage === doc.stage && row.paper === paper &&
+        (row.optional_subject || '') === subject
+      );
+      return matches.length !== 1 || !['verified', 'published'].includes(matches[0]?.status) ||
+        matches[0]?.document_url !== doc.document_url;
+    });
+    const invalidQuestions = (Array.isArray(questions) ? questions : []).filter(row =>
+      !row || row.status !== 'published' || row.verification?.status !== 'verified' ||
+      !row.question || !official(row.source?.document_url)
+    );
+    return {
+      manifestCount: docs.length,
+      uniqueIds: new Set(ids).size,
+      invalidDocs: invalidDocs.length,
+      unmatchedDocs: unmatchedDocs.length,
+      trackerVerifiedCount: rows.filter(row => ['verified', 'published'].includes(row.status)).length,
+      trackerPublishedCount: rows.filter(row => row.status === 'published').length,
+      questionRows: Array.isArray(questions) ? questions.length : -1,
+      invalidQuestions: invalidQuestions.length,
+    };
+  });
+  if (!pyqAudit.manifestCount || pyqAudit.uniqueIds !== pyqAudit.manifestCount ||
+      pyqAudit.invalidDocs || pyqAudit.unmatchedDocs ||
+      pyqAudit.trackerVerifiedCount !== pyqAudit.manifestCount ||
+      pyqAudit.invalidQuestions) {
+    throw new Error('Published PYQ provenance audit failed: ' + JSON.stringify(pyqAudit));
+  }
   const mentorNav = page.locator('a[data-nav="mentor"]');
   const mentorSection = page.locator('#mentor');
   if (await mentorNav.count() !== 1 || !(await mentorNav.isHidden())) {
