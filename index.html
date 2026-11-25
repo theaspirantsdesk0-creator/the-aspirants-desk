@@ -2144,6 +2144,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
   };
 
+  window.TAD_GET_TOPIC_PRACTICE_HISTORY = () => Array.isArray(state.practiceHistory) ? state.practiceHistory : [];
+
   window.TAD_RECORD_TOPIC_PRACTICE = async (record) => {
     if (!currentUser || !supabase || !record || typeof record !== "object") return false;
     state.practiceHistory = Array.isArray(state.practiceHistory) ? state.practiceHistory : [];
