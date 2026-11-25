@@ -134,3 +134,8 @@ After submitting a written mock examination, learners can request a separate Anb
 ## Mock improvement tracker
 
 The private performance panel compares the two most recent completed attempts for each paper using objective accuracy derived from correct and incorrect MCQ counts. It also compares the two most recent saved formative AI estimates for matching subject/section labels when both use the same maximum mark. It reads the signed-in learner's own mock attempts and their own answer-evaluation history. Comparisons are descriptive and should be interpreted alongside question difficulty and attempt conditions; they do not establish mastery or predict UPSC results. At least two completed attempts or two saved evaluations in the same comparison group are needed.
+
+
+## Personalised UPSC Study Command Centre
+
+The home dashboard now provides a private summary of the signed-in learner's saved study hours, selected-exam syllabus checklist, due spaced-revision topics, topic mastery, optional-subject selection, saved answer evaluations and recent completed mock attempts. It derives revision priorities from overdue scheduled topics and the weakest recorded objective section where attempt analytics exist. It links to the relevant study modules and refreshes when the learner's study state is saved or when manually requested. Mock attempt data is queried with the authenticated user ID filter. The dashboard does not invent progress: missing records are shown as zero or not yet recorded. Live multi-account/browser testing remains necessary.
