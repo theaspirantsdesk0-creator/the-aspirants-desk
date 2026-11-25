@@ -51,7 +51,7 @@ async function loadPapers(){
 async function loadAnalytics(){
  const host=$("mockAnalyticsContent");if(!host)return;
  host.innerHTML='<p class="mock-save">Loading your private performance history…</p>';
- const {data:rows,error}=await sb.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",user.id).eq("status","submitted").order("submitted_at",{ascending:false}).limit(100);
+ const {data:rows,error}=await sb.from("mock_exam_attempts").select("id,paper_id,status,submitted_at,score,max_score,analytics").eq("user_id",user.id).in("status",["submitted","expired"]).order("submitted_at",{ascending:false}).limit(100);
  if(error){host.innerHTML='<p class="mock-warning">Performance history could not be loaded: '+esc(error.message)+'</p>';return;}
  const attempts=rows||[];
  if(!attempts.length){host.innerHTML='<p class="muted">No completed mock attempts yet. Your reports will appear here after you submit a mock examination.</p>';return;}
@@ -62,13 +62,13 @@ async function loadAnalytics(){
   const isAnthro=String(a.paper.optional_subject||"").toLowerCase()==="anthropology";
   (isAnthro?groups.anthropology:a.paper.exam_stage==="prelims"?groups.prelims:groups.mains).push(a);
  });
- const scored=enriched.filter(a=>Number(a.max_score)>0&&Number(a.analytics?.objective_questions||a.analytics?.mcq_questions||0)>0);
+ const scored=enriched.filter(a=>Number(a.max_score)>0&&(Number(a.analytics?.correct||0)+Number(a.analytics?.wrong||0)+Number(a.analytics?.skipped||0))>0);
  const avg=scored.length?scored.reduce((s,a)=>s+Number(a.score||0)/Number(a.max_score)*100,0)/scored.length:null;
  const totalWritten=enriched.reduce((s,a)=>s+Number(a.analytics?.written_questions||0),0);
  const kpi=(value,label)=>'<div class="mock-analytics-kpi"><b>'+value+'</b><span>'+label+'</span></div>';
  const groupCard=(name,list)=>{
   const byPaper=new Map();
-  list.forEach(a=>{const key=a.paper.code;const x=byPaper.get(key)||{paper:a.paper,count:0,scored:[],latest:a.submitted_at};x.count++;if(Number(a.max_score)>0&&Number(a.analytics?.objective_questions||a.analytics?.mcq_questions||0)>0)x.scored.push(Number(a.score||0)/Number(a.max_score)*100);if(new Date(a.submitted_at||0)>new Date(x.latest||0))x.latest=a.submitted_at;byPaper.set(key,x);});
+  list.forEach(a=>{const key=a.paper.code;const x=byPaper.get(key)||{paper:a.paper,count:0,scored:[],latest:a.submitted_at};x.count++;if(Number(a.max_score)>0&&(Number(a.analytics?.correct||0)+Number(a.analytics?.wrong||0)+Number(a.analytics?.skipped||0))>0)x.scored.push(Number(a.score||0)/Number(a.max_score)*100);if(new Date(a.submitted_at||0)>new Date(x.latest||0))x.latest=a.submitted_at;byPaper.set(key,x);});
   const items=[...byPaper.values()].map(x=>'<div class="mock-analytics-row"><div><b>'+esc(x.paper.title)+'</b><div class="mock-save">'+x.count+' completed attempt(s) · latest '+(x.latest?new Date(x.latest).toLocaleDateString():"date unavailable")+'</div></div><div class="mock-analytics-score">'+(x.scored.length?(x.scored.reduce((s,n)=>s+n,0)/x.scored.length).toFixed(1)+'% objective avg':'Written review required')+'</div></div>').join("");
   return '<section class="mock-analytics-group"><h3>'+name+'</h3>'+(items||'<p class="mock-save">No attempts yet.</p>')+'</section>';
  };
@@ -220,6 +220,7 @@ function renderResult(r,paper){
  loadRecent();loadAnalytics();
 }
 function bindControls(){
+ $("mockAnalyticsRefresh")?.addEventListener("click",loadAnalytics);
  $("mockPrevBtn").addEventListener("click",()=>{if(index>0){index--;saveDraft();renderQuestion();renderQuestionGrid();}});
  $("mockNextBtn").addEventListener("click",()=>{if(index<questions.length-1){index++;saveDraft();renderQuestion();renderQuestionGrid();}else alert(reviewSummary());});
  $("mockMarkBtn").addEventListener("click",()=>{const id=questions[index].id;marked.has(id)?marked.delete(id):marked.add(id);saveDraft();renderQuestion();renderQuestionGrid();});
