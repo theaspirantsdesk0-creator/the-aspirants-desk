@@ -108,7 +108,25 @@ function startQuiz(index){
  $("optionalQuizForm").addEventListener("submit",event=>{
   event.preventDefault();const fd=new FormData(event.currentTarget);let score=0;
   const explanations=questions.map((q,i)=>{const got=Number(fd.get("q"+i));const ok=got===q.a;if(ok)score++;return '<p><b>Q'+(i+1)+': '+(ok?"Correct":"Review")+'.</b> '+esc(q.w)+'</p>';});
-  $("optionalQuizResult").innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4>'+explanations.join("");
+  const attemptedAt=new Date().toISOString();
+  const next={...current(),quizResults:[...(Array.isArray(current().quizResults)?current().quizResults:[]),{
+   subject:current().subject||"Anthropology",paper:unit.paper,unit:unit.unit,score,maxScore:questions.length,attemptedAt
+  }].slice(-100)};
+  window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
+  const resultHost=$("optionalQuizResult");
+  resultHost.innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p>';
+  const context=window.DESK_AUTH_CONTEXT;
+  if(context&&context.user&&context.supabase){
+   const {error}=await context.supabase.from("test_results").insert({
+    user_id:context.user.id,exam:"UPSC CSE",test_name:"Optional — "+(current().subject||"Anthropology")+" — "+unit.unit,
+    score,max_score:questions.length,correct_count:score,wrong_count:questions.length-score,skipped_count:0
+   });
+   const status=$("optionalQuizSaveStatus");
+   if(status)status.textContent=error?"Result is saved in your account payload; test-history sync will retry on your next save.":"Result saved to your private account test history.";
+  }else{
+   const status=$("optionalQuizSaveStatus");
+   if(status)status.textContent="Result saved on this device. Sign in to sync it to your private account.";
+  }
  });
  host.scrollIntoView({behavior:"smooth",block:"start"});
 }
