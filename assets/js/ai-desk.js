@@ -338,7 +338,7 @@ say(r.data.answer,"assistant");history.push({role:"user",content:message},{role:
 if(evaluation&&role==="learner"){
  const saved=await db.functions.invoke("ai-assistant",{body:{action:"save_answer_evaluation",...evaluation,feedback:r.data.answer}});
  if(saved.error||!saved.data?.saved){$("#tadAnswerStatus").textContent=saved.data?.error||"Feedback was generated, but saving failed. Please retry while connected.";}
- else{$("#tadAnswerStatus").textContent="Evaluation saved to your private learner history.";await loadProgress();}
+ else{$("#tadAnswerStatus").textContent="Evaluation saved to your private learner history.";await loadProgress().catch(()=>{});}
 }
 if(role==="learner"&&r.data.mentorState){state=r.data.mentorState;render();}
 status.textContent=(r.data.provider||"AI")+" · "+(r.data.remaining??"—")+" messages remaining today.";
