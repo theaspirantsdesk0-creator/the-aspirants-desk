@@ -2094,29 +2094,34 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   });
 
   async function saveUserState() {
-    localStorage.setItem("tad_state_v5", JSON.stringify(state));
+    const requestedUserId = currentUser?.id || null;
+    const payloadSnapshot = JSON.parse(JSON.stringify(state));
+    try { localStorage.setItem("tad_state_v5", JSON.stringify(payloadSnapshot)); }
+    catch (storageError) { console.warn("Local study cache unavailable:", storageError.message); }
     renderKPIs();
     renderStudyCommandCentre();
     if (window._tadKpi) window._tadKpi();
-    if (!supabase || !currentUser) return;
+    if (!supabase || !requestedUserId) return;
     try {
+      const savedAt = new Date().toISOString();
       const { error: userDataError } = await supabase.from("user_data").upsert({
-        user_id: currentUser.id,
-        payload: state,
-        updated_at: new Date().toISOString()
+        user_id: requestedUserId,
+        payload: payloadSnapshot,
+        updated_at: savedAt
       });
       if (userDataError) throw userDataError;
+      if (currentUser?.id !== requestedUserId) return;
       const { error: progressError } = await supabase.from("progress").upsert({
-        user_id: currentUser.id,
+        user_id: requestedUserId,
         summary: {
           display_name: userProfile.display_name,
           email: currentUser.email,
           target_exam: selectedExam,
-          hours: state.hours,
+          hours: payloadSnapshot.hours,
           syllabus_pct: sylPct(),
-          last_score: state.lastScore
+          last_score: payloadSnapshot.lastScore
         },
-        updated_at: new Date().toISOString()
+        updated_at: savedAt
       });
       if (progressError) throw progressError;
     } catch (e) {
@@ -2211,14 +2216,18 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
   async function loadUserState() {
     if (!supabase || !currentUser) return;
-    activateUserScope(currentUser.id);
-    const { data: prof } = await supabase.from("profiles").select("*").eq("id", currentUser.id).single();
+    const requestedUserId = currentUser.id;
+    activateUserScope(requestedUserId);
+    const { data: prof } = await supabase.from("profiles").select("*").eq("id", requestedUserId).single();
+    if (currentUser?.id !== requestedUserId) return;
     if (prof) userProfile = prof;
 
-    const { data: udata } = await supabase.from("user_data").select("payload").eq("user_id", currentUser.id).single();
+    const { data: udata } = await supabase.from("user_data").select("payload").eq("user_id", requestedUserId).single();
+    if (currentUser?.id !== requestedUserId) return;
     if (udata && udata.payload && Object.keys(udata.payload).length) {
       state = { ...state, ...udata.payload };
-      localStorage.setItem("tad_state_v5", JSON.stringify(state));
+      try { localStorage.setItem("tad_state_v5", JSON.stringify(state)); }
+      catch (storageError) { console.warn("Local study cache unavailable:", storageError.message); }
     }
     window.TAD_OPTIONAL_PREP = state.optionalPrep || null;
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: state.learningHub || {} }));
