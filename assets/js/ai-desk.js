@@ -395,6 +395,16 @@ const {data:{session}}=await db.auth.getSession();
 if(!session){role="guest";$("#tadAiRole").textContent="Sign in required";status.textContent="Please sign in to use Anbuu.";$("#tadAiSidebar").hidden=true;return;}
 const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).maybeSingle();
 role=!error&&p&&["learner","mentor","admin"].includes(p.role)?p.role:"guest";
+if(role==="admin"){
+ try{
+  const health=await invokeAI({action:"get_ai_status"});
+  if(!health.error&&health.data){
+   status.textContent=health.data.configured
+    ?"AI provider ready · "+(health.data.providers.gemini?"Gemini":"")+(health.data.providers.gemini&&health.data.providers.groq?" + ":"")+(health.data.providers.groq?"Groq":"")
+    :"AI is not configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase → Edge Functions → Secrets.";
+  }
+ }catch(_){status.textContent="Could not verify AI provider configuration. Check Supabase function logs.";}
+}
 $("#tadAiRole").textContent=role==="learner"?"Your personal study mentor":role==="guest"?"Role unavailable":role+" assistant";
 $("#tadAiSidebar").hidden=role!=="learner";
 if(role==="guest"){status.textContent="Your account role could not be verified.";return;}
