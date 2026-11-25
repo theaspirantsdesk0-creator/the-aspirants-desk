@@ -387,6 +387,11 @@ async function aiFunctionErrorMessage(error){
   const response=error&&error.context;
   if(response&&typeof response.clone==="function"){
    const payload=await response.clone().json();
+   if(payload&&payload.code==="AI_PROVIDER_NOT_CONFIGURED"){
+    return role==="admin"
+     ?"AI provider setup is incomplete. In Supabase Dashboard → Edge Functions → Secrets, add GEMINI_API_KEY or GROQ_API_KEY, save it, then retry. Never put provider keys in config.js, GitHub, or this chat."
+     :"Anbuu is temporarily unavailable because the site administrator has not completed the AI provider setup. Your saved study data is unaffected.";
+   }
    if(payload&&typeof payload.error==="string"&&payload.error.trim())return payload.error;
   }
  }catch(_){}
