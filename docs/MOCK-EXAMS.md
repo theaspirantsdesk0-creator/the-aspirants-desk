@@ -119,3 +119,8 @@ The full-length Prelims GS Paper I is also published as a 100-question, 120-minu
 ## Published full-length Anthropology Paper II
 
 **UPSC Mains · Anthropology Paper II · Full-Length Mock 01** is published as a 20-question, 180-minute, 250-mark original written practice paper, available to learners whose selected optional subject is Anthropology. It contains 10 questions carrying 10 marks and 10 questions carrying 15 marks across two sections: Indian culture, society and social institutions; and tribal communities, social change and applied anthropology. Every question includes a marking rubric and model-answer outline. Written answers are not automatically awarded marks. These are original practice questions, not official UPSC previous-year questions.
+
+
+## Learner mock performance analytics
+
+The mock examination workspace includes a private performance panel for the signed-in account. It summarises completed and expired attempts, separates Prelims, Mains GS and Anthropology optional papers, reports average objective accuracy only where MCQ analytics exist, and identifies weaker objective sections from recorded correct/wrong counts. Written responses are explicitly labelled as requiring separate rubric-based review; they are not treated as zero-scored answers or automatically graded. The report reads only attempts filtered by the current authenticated user and can be refreshed. A learner-facing end-to-end test with real submitted attempts is still required.
