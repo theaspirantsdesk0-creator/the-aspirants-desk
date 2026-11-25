@@ -77,3 +77,10 @@ For Anthropology papers set `optional_subject` to `"Anthropology"`. Learner visi
 - `public.submit_mock_exam` checks the authenticated user's attempt and calculates objective marks server-side.
 
 The first release includes the exam engine and secure publishing path. Full verified question banks must be authored/imported before the catalogue can offer live examinations. Section metadata is retained for section-level grouping and reporting; independent section countdown/locking is a follow-up enhancement.
+
+
+## Published full-length paper
+
+**UPSC Mains · Anthropology Paper I · Full-Length Mock 01** is now published for eligible learner accounts that have selected Anthropology as their optional subject. It contains 20 original written practice questions, a 3-hour timer, 250 total marks, 10 questions carrying 10 marks and 10 questions carrying 15 marks. Each question includes a marking rubric and a model-answer outline for review. These are original practice questions, not official UPSC previous-year questions. Written responses are saved but are not automatically graded; the rubric and model outline are reference material for self-review or mentor feedback.
+
+The full-length Prelims GS Paper I remains a separate publishing task and must not be treated as available until its complete 100-question bank and answer-key checks pass.
