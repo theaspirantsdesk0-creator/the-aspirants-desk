@@ -2090,6 +2090,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   async function saveUserState() {
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
     renderKPIs();
+    renderStudyCommandCentre();
     if (window._tadKpi) window._tadKpi();
     if (!supabase || !currentUser) return;
     try {
@@ -3774,6 +3775,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   });
 
   async function renderStudyCommandCentre() {
+    const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+
     const host = $("tadCommandKpis");
     if (!host) return;
     if (!currentUser) {
@@ -3819,10 +3822,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     if (weakSection) priorities.push({title:"Revisit "+weakSection.name,detail:"Lowest recorded MCQ accuracy: "+weakSection.accuracy.toFixed(1)+"%",route:"mock-exams",label:"Review mock analytics"});
     if (!due.length && !weakSection) priorities.push({title:"Build today's study momentum",detail:"Choose one syllabus topic, study it and schedule its next revision.",route:"today",label:"Start a study session"});
     if (evaluations === 0) priorities.push({title:"Practise Mains answer writing",detail:"Save a rubric-based answer evaluation to begin tracking writing progress.",route:"mains",label:"Open answer writing"});
-    $("tadCommandPriorities").innerHTML = priorities.slice(0,3).map(item=>'<article class="tad-command-item"><div><strong>'+item.title+'</strong><p class="muted">'+item.detail+'</p></div><a class="btn" href="#'+item.route+'" data-nav="'+item.route+'">'+item.label+'</a></article>').join("");
+    $("tadCommandPriorities").innerHTML = priorities.slice(0,3).map(item=>'<article class="tad-command-item"><div><strong>'+safe(item.title)+'</strong><p class="muted">'+safe(item.detail)+'</p></div><a class="btn" href="#'+item.route+'" data-nav="'+item.route+'">'+safe(item.label)+'</a></article>').join("");
     if (!priorities.length) $("tadCommandPriorities").innerHTML = '<p class="muted">No urgent revision priority is recorded. Continue your planned study session.</p>';
     const optional = state.optionalPrep?.subject || state.optionalPrep?.optionalSubject || "Not selected";
-    $("tadCommandProgress").innerHTML = '<div class="tad-command-item"><div><strong>'+selectedExam+'</strong><p class="muted">'+completed+' of '+topics.length+' syllabus areas marked complete</p></div><b>'+pct+'%</b></div><div class="tad-command-item"><div><strong>Topic mastery</strong><p class="muted">'+mastered+' topics marked mastered</p></div><a class="btn" href="#tracker" data-nav="tracker">Update</a></div><div class="tad-command-item"><div><strong>Optional subject</strong><p class="muted">'+optional+'</p></div><a class="btn" href="#optional" data-nav="optional">Open</a></div><div class="tad-command-item"><div><strong>Answer evaluations</strong><p class="muted">'+evaluations+' saved evaluation(s)</p></div><a class="btn" href="#anbuu" data-nav="anbuu">Review</a></div>';
+    $("tadCommandProgress").innerHTML = '<div class="tad-command-item"><div><strong>'+safe(selectedExam)+'</strong><p class="muted">'+completed+' of '+topics.length+' syllabus areas marked complete</p></div><b>'+pct+'%</b></div><div class="tad-command-item"><div><strong>Topic mastery</strong><p class="muted">'+mastered+' topics marked mastered</p></div><a class="btn" href="#tracker" data-nav="tracker">Update</a></div><div class="tad-command-item"><div><strong>Optional subject</strong><p class="muted">'+safe(optional)+'</p></div><a class="btn" href="#notes" data-nav="notes">Open</a></div><div class="tad-command-item"><div><strong>Answer evaluations</strong><p class="muted">'+evaluations+' saved evaluation(s)</p></div><a class="btn" href="#anbuu" data-nav="anbuu">Review</a></div>';
     $("tadCommandFoot").textContent = recentAttempt ? "Latest mock submitted "+(recentAttempt.submitted_at ? new Date(recentAttempt.submitted_at).toLocaleDateString() : "recently")+". Your summary is scoped to this account." : "No completed mock attempt is recorded yet. Your summary updates as you study.";
   }
 
