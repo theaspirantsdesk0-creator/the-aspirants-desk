@@ -2057,8 +2057,28 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     }
   }
 
+  function resetUserScopedState() {
+    // Never carry a previous account's private notes, drafts, attempts or progress
+    // into the next signed-in session on a shared browser/device.
+    state = {
+      hours: 0, sessions: [], syllabus: [], revisions: [],
+      mainsDrafts: [], mistakes: [], masteredCards: [],
+      lastScore: null, learningHub: {}
+    };
+    window.TAD_OPTIONAL_PREP = null;
+    localStorage.setItem("tad_state_v5", JSON.stringify(state));
+    localStorage.removeItem("tad.learningHub.v1");
+    window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: {} }));
+    renderAllUserModules();
+  }
+
   async function loadUserState() {
     if (!supabase || !currentUser) return;
+    const activeUserId = localStorage.getItem("tad_active_user_id");
+    if (activeUserId !== currentUser.id) {
+      resetUserScopedState();
+      localStorage.setItem("tad_active_user_id", currentUser.id);
+    }
     const { data: prof } = await supabase.from("profiles").select("*").eq("id", currentUser.id).single();
     if (prof) userProfile = prof;
 
@@ -2249,6 +2269,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     if (supabase) await supabase.auth.signOut();
     currentUser = null;
     userProfile = { role: "learner", display_name: "Guest" };
+    localStorage.removeItem("tad_active_user_id");
+    resetUserScopedState();
     updateAuthUI();
     navigateTo("home");
     toast("Signed out.");
@@ -3673,7 +3695,11 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       supabase.auth.onAuthStateChange(async (_event, session) => {
         currentUser = session ? session.user : null;
         if (currentUser) await loadUserState();
-        else updateAuthUI();
+        else {
+          localStorage.removeItem("tad_active_user_id");
+          resetUserScopedState();
+          updateAuthUI();
+        }
       });
     }
     updateAuthUI();
