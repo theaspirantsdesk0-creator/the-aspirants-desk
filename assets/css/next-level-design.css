@@ -113,3 +113,24 @@ input,select,textarea{border-radius:10px}
 .tad-ai-daily-plan-button{display:inline-flex;align-items:center;gap:8px;margin:10px 8px 0 0;padding:11px 15px;border:1px solid var(--tad-border,rgba(190,160,100,.3));border-radius:10px;background:var(--tad-surface,rgba(255,255,255,.04));color:inherit;font:inherit;font-weight:700;cursor:pointer}
 .tad-ai-daily-plan-button:hover{border-color:var(--tad-gold,#c8a96b)}
 .tad-ai-daily-plan-button:focus-visible{outline:2px solid var(--tad-gold,#c8a96b);outline-offset:3px}
+
+
+/* Syllabus completion and chapter reading dashboard */
+.tad-syllabus-progress{margin:1.3rem 0;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface-alt)}
+.tad-syllabus-progress-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.tad-syllabus-progress-head h3{margin:.2rem 0}
+.tad-syllabus-progress-head p{margin:.25rem 0 .8rem}
+.tad-syllabus-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:.65rem;margin:1rem 0}
+.tad-syllabus-metric{display:grid;gap:3px;padding:.85rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tad-syllabus-metric strong{font:800 1.45rem "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.tad-syllabus-metric span,.tad-syllabus-status{font-size:.78rem;color:var(--muted)}
+.tad-syllabus-controls{display:grid;grid-template-columns:auto minmax(150px,220px) minmax(180px,1fr);gap:.65rem;align-items:center;margin:1rem 0}
+.tad-syllabus-controls label{margin:0}
+.tad-syllabus-topic-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem}
+.tad-syllabus-topic{display:grid;gap:5px;padding:.8rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.tad-syllabus-topic.is-complete{border-left:4px solid var(--ok)}
+.tad-syllabus-topic strong{font-size:.9rem}
+.tad-syllabus-notes-summary{margin-top:1.2rem;padding-top:.8rem;border-top:1px solid var(--line)}
+.tad-syllabus-notes-summary h4{margin:.2rem 0 .5rem}
+.tad-syllabus-notes-summary ul{display:flex;gap:.5rem;flex-wrap:wrap;padding-left:1.2rem}
+@media(max-width:620px){.tad-syllabus-controls{grid-template-columns:1fr}.tad-syllabus-controls label{margin-bottom:-.4rem}.tad-syllabus-progress{padding:.8rem}}
