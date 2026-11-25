@@ -1230,10 +1230,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
       <div class="card accent-left" style="margin-bottom:1rem">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
-          <span class="pill warn">GS Paper II · Polity & Governance</span>
+          <span id="mainsQuestionPaper" class="pill warn">GS Paper II · Polity & Governance</span>
           <span style="font-weight:800;color:var(--accent)">⏱️ Exam Timer: <span id="mainsClock">07:00</span></span>
         </div>
-        <p style="font-weight:700;font-size:1.02rem;margin:.6rem 0">
+        <p id="mainsQuestionText" style="font-weight:700;font-size:1.02rem;margin:.6rem 0">
           Q. Examine the constitutional role and discretionary powers of the Governor in light of recent Supreme Court judgments on Article 200.
         </p>
         <div class="btn-row">
@@ -2636,18 +2636,56 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       clearInterval(mainsInterval); mainsInterval = null;
       mainsTargetWords = Number(btn.dataset.words);
       mainsSeconds = Number(btn.dataset.min) * 60;
+      $("mainsStartTimerBtn").textContent = "▶ Start Exam Timer";
+      $("mainsStartTimerBtn").disabled = false;
       renderMainsClock();
       $("mainsBox").dispatchEvent(new Event("input"));
     });
   });
 
   $("mainsStartTimerBtn").addEventListener("click", () => {
+    if (mainsSeconds <= 0) return;
     if (mainsInterval) { clearInterval(mainsInterval); mainsInterval = null; $("mainsStartTimerBtn").textContent = "▶ Resume Timer"; return; }
     $("mainsStartTimerBtn").textContent = "⏸ Pause Timer";
     mainsInterval = setInterval(() => {
       if (mainsSeconds > 0) { mainsSeconds--; renderMainsClock(); }
-      else { clearInterval(mainsInterval); mainsInterval = null; toast("Time up! Put your pen down."); }
+      if (mainsSeconds <= 0) {
+        clearInterval(mainsInterval); mainsInterval = null;
+        $("mainsStartTimerBtn").textContent = "✓ Time Complete";
+        $("mainsStartTimerBtn").disabled = true;
+        toast("Time up! Your answer remains available to save.");
+      }
     }, 1000);
+  });
+
+  const defaultMainsPaper = $("mainsQuestionPaper").textContent;
+  const defaultMainsQuestion = $("mainsQuestionText").textContent;
+  const defaultMainsFramework = $("mainsFrameworkBox").innerHTML;
+  window.TAD_ACTIVE_MAINS_PROMPT = null;
+  function setMainsPrompt(detail) {
+    if (detail && detail.prompt) {
+      window.TAD_ACTIVE_MAINS_PROMPT = {
+        subject: String(detail.subject || "Optional"),
+        unit: String(detail.unit || ""),
+        prompt: String(detail.prompt)
+      };
+      $("mainsQuestionPaper").textContent = [window.TAD_ACTIVE_MAINS_PROMPT.subject, window.TAD_ACTIVE_MAINS_PROMPT.unit].filter(Boolean).join(" · ");
+      $("mainsQuestionText").textContent = "Q. " + window.TAD_ACTIVE_MAINS_PROMPT.prompt;
+      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.</p>";
+      $("mainsBox").placeholder = "Write your answer to the optional-subject question shown above…";
+    } else {
+      window.TAD_ACTIVE_MAINS_PROMPT = null;
+      $("mainsQuestionPaper").textContent = defaultMainsPaper;
+      $("mainsQuestionText").textContent = defaultMainsQuestion;
+      $("mainsFrameworkBox").innerHTML = defaultMainsFramework;
+      $("mainsBox").placeholder = "Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward...";
+    }
+    $("mainsFrameworkBox").hidden = true;
+  }
+  window.addEventListener("tad:mainsPromptSelected", event => {
+    setMainsPrompt(event.detail);
+    $("mainsBox").value = "";
+    $("mainsBox").dispatchEvent(new Event("input"));
   });
 
   $("toggleFrameworkBtn").addEventListener("click", () => {
@@ -2670,22 +2708,78 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     a.click();
   });
 
-  function renderMainsDrafts() {
-    $("mainsDraftList").innerHTML = (state.mainsDrafts || []).map(d =>
-      `<li><b>${d.date} (${d.words} words):</b> ${d.text.slice(0, 160)}...</li>`
-    ).join("") || "<li>No saved Mains drafts yet.</li>";
+  function escapeMainsText(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
   }
+
+  function renderMainsDrafts() {
+    const drafts = Array.isArray(state.mainsDrafts) ? state.mainsDrafts : [];
+    $("mainsDraftList").innerHTML = drafts.map((draft, index) => {
+      const item = draft && typeof draft === "object" ? draft : {};
+      const context = [item.subject, item.unit, item.prompt].filter(Boolean).join(" · ");
+      const preview = String(item.text || "").slice(0, 160);
+      return `<li>
+        <b>${escapeMainsText(item.date || "Saved draft")} (${Number(item.words) || 0} words)</b>
+        ${context ? `<p class="muted">${escapeMainsText(context)}</p>` : ""}
+        <p>${escapeMainsText(preview)}${String(item.text || "").length > 160 ? "…" : ""}</p>
+        <div class="btn-row">
+          <button type="button" class="btn" data-load-mains="${index}">Open draft</button>
+          <button type="button" class="btn" data-delete-mains="${index}">Delete</button>
+        </div>
+      </li>`;
+    }).join("") || "<li>No saved Mains drafts yet.</li>";
+  }
+
+  $("mainsDraftList").addEventListener("click", event => {
+    const loadButton = event.target.closest("[data-load-mains]");
+    const deleteButton = event.target.closest("[data-delete-mains]");
+    if (loadButton) {
+      const draft = (state.mainsDrafts || [])[Number(loadButton.dataset.loadMains)];
+      if (!draft) return;
+      if (draft.prompt) {
+        setMainsPrompt({
+          subject: draft.subject || "Mains",
+          unit: draft.unit || "Saved question",
+          prompt: draft.prompt
+        });
+      } else {
+        setMainsPrompt(null);
+      }
+      $("mainsBox").value = String(draft.text || "");
+      $("mainsBox").dispatchEvent(new Event("input"));
+      $("mainsBox").focus();
+      toast("Saved Mains draft opened.");
+    } else if (deleteButton) {
+      const index = Number(deleteButton.dataset.deleteMains);
+      if (!Number.isInteger(index) || index < 0 || index >= (state.mainsDrafts || []).length) return;
+      state.mainsDrafts.splice(index, 1);
+      renderMainsDrafts();
+      saveUserState();
+      toast("Mains draft deleted.");
+    }
+  });
 
   $("saveMainsBtn").addEventListener("click", () => {
     const text = $("mainsBox").value.trim();
-    if (!text) return;
+    if (!text) { toast("Write an answer before saving."); return; }
     const words = text.split(/\s+/).filter(Boolean).length;
-    state.mainsDrafts.unshift({ date: new Date().toLocaleDateString(), words, text });
+    const activePrompt = window.TAD_ACTIVE_MAINS_PROMPT || {};
+    const fallbackPrompt = $("mainsQuestionText").textContent.replace(/^Q\.\s*/, "");
+    state.mainsDrafts = Array.isArray(state.mainsDrafts) ? state.mainsDrafts : [];
+    state.mainsDrafts.unshift({
+      date: new Date().toLocaleDateString(), words, text,
+      subject: activePrompt.subject || $("mainsQuestionPaper").textContent,
+      unit: activePrompt.unit || "",
+      prompt: activePrompt.prompt || fallbackPrompt
+    });
+    state.mainsDrafts = state.mainsDrafts.slice(0, 100);
     $("mainsBox").value = "";
-    $("mainsWordCount").textContent = `0 / ${mainsTargetWords} words`;
+    $("mainsBox").dispatchEvent(new Event("input"));
     renderMainsDrafts();
     saveUserState();
-    toast("Mains answer saved to cloud!");
+    toast("Mains draft saved to your study workspace.");
   });
 
   // Syllabus, Spaced Repetition & Mistake Log
