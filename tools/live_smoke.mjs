@@ -290,6 +290,11 @@ try {
   if (lessonCatalogue.optional !== 25 || lessonCatalogue.literature !== 23) {
     throw new Error('Anbuu optional catalogue mismatch: ' + JSON.stringify(lessonCatalogue) + ' (expected 25 optional and 23 literature subjects)');
   }
+  for (const label of ['Understand the concept', 'Attempt practice', 'Complete a recap']) {
+    if (!(await page.locator('#tadLessonHistoryList').count())) throw new Error('Anbuu lesson history host is missing for checkpoint rendering');
+  }
+  const checkpointStyles = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
+  if (!checkpointStyles) throw new Error('Anbuu checkpoint styles are not loaded');
   for (const selector of ['#tadLessonHistoryTitle', '#tadLessonHistoryList', '#tadRefreshLessons']) {
     if (await page.locator(selector).count() !== 1) throw new Error('Anbuu saved lesson history UI is missing: ' + selector);
   }
