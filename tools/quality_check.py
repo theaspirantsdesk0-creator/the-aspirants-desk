@@ -126,7 +126,7 @@ def main() -> int:
         required_assets = (
             "index.html", "offline.html", "manifest.webmanifest",
             "assets/css/ai-desk.css", "assets/css/design-system.css",
-            "assets/js/ai-desk.js", "assets/js/learning-hub.js",
+            "assets/js/ai-desk.js", "assets/js/owner-learner-workspaces.js", "assets/js/learning-hub.js",
             "assets/js/pyq-inventory.js", "assets/js/courses.js"
         )
         for asset in required_assets:
@@ -173,7 +173,7 @@ def main() -> int:
     if index.is_file():
         optional_html = index.read_text(encoding="utf-8")
         for required in ("optionalSetupModal", "optionalSetupForm", "optionalSyllabusWorkspace",
-                         "tad:optionalPrepSave", "assets/js/optional-prep.js"):
+                         "tad:optionalPrepSave", "assets/js/optional-prep.js", "assets/js/owner-learner-workspaces.js"):
             check(required in optional_html, f"Optional subject onboarding is not wired: {required}")
 
     js_files = [p for p in (ROOT / "assets").rglob("*.js") if p != ai_js]
