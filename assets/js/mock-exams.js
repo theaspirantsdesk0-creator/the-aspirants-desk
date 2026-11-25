@@ -192,9 +192,11 @@ async function publishPaper(){
  if(!admin())return;
  const code=$("mockPublishCode").value.trim();if(!code)return;
  const paper=papers.find(p=>p.code===code);if(!paper){status("Import the paper first.");return;}
- const {count,error}=await sb.from("mock_exam_questions").select("id",{count:"exact",head:true}).eq("paper_id",paper.id).eq("is_active",true);
+ const {data:items,error}=await sb.from("mock_exam_questions").select("id,question_type").eq("paper_id",paper.id).eq("is_active",true);
  if(error){status(error.message);return;}
- if(!count){status("Cannot publish an empty paper.");return;}
+ if(!items?.length){status("Cannot publish an empty paper.");return;}
+ const mcqIds=items.filter(q=>q.question_type==="mcq").map(q=>q.id);
+ if(mcqIds.length){const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id").in("question_id",mcqIds);if(keyError){status(keyError.message);return;}const ready=new Set((keys||[]).map(k=>k.question_id));if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ must have a verified answer key.");return;}}
  const {error:e}=await sb.from("mock_exam_papers").update({is_published:true,updated_at:new Date().toISOString()}).eq("id",paper.id);
  if(e){status("Publish failed: "+e.message);return;}
  await loadPapers();renderCatalog();status("Paper published for eligible learners.");
