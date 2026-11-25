@@ -121,6 +121,61 @@
           ],
           "a": 1,
           "w": "Participant observation combines observation with engagement in the setting being studied."
+        },
+        {
+          "q": "The comparative method in anthropology is useful because it: ",
+          "o": [
+            "Assumes all societies are identical",
+            "Identifies similarities and differences across cases while considering context",
+            "Replaces fieldwork with speculation",
+            "Ranks cultures on a single scale"
+          ],
+          "a": 1,
+          "w": "Comparison is useful when cases are contextualised; it does not imply a single scale of cultural development."
+        },
+        {
+          "q": "Ethnocentrism differs from cultural relativism because ethnocentrism: ",
+          "o": [
+            "Interprets practices in their context",
+            "Judges other practices through one's own cultural standards",
+            "Avoids all cultural interpretation",
+            "Studies only biological variation"
+          ],
+          "a": 1,
+          "w": "Ethnocentrism uses one's own standards as the measure; cultural relativism seeks contextual understanding."
+        },
+        {
+          "q": "Which statement best describes holism? ",
+          "o": [
+            "A focus on one isolated institution",
+            "An integrated study of biological, social, cultural and historical dimensions",
+            "A method limited to laboratory experiments",
+            "A claim that every society has the same institutions"
+          ],
+          "a": 1,
+          "w": "Holism studies connected dimensions of human life and avoids narrow single-factor explanations."
+        },
+        {
+          "q": "An emic account primarily represents: ",
+          "o": [
+            "The researcher's external analytical categories",
+            "Participants' own concepts and interpretations",
+            "Only numerical measurements",
+            "A universal law of evolution"
+          ],
+          "a": 1,
+          "w": "An emic account seeks to understand categories and meanings used by people in the setting."
+        },
+        {
+          "q": "A central ethical requirement before a research interview is: ",
+          "o": [
+            "Guaranteed publication",
+            "Informed and voluntary consent",
+            "Mandatory disclosure of identities",
+            "Assuming consent from community membership"
+          ],
+          "a": 1,
+          "w": "Participants should understand the study and agree voluntarily; consent is ongoing."
         }
       ],
       "lesson": {
@@ -270,6 +325,61 @@
           ],
           "a": 1,
           "w": "Mosaic evolution recognises that different features may change at different rates."
+        },
+        {
+          "q": "A hominin is generally understood as a member of: ",
+          "o": [
+            "The human lineage after its divergence from the lineage leading to chimpanzees",
+            "All mammals",
+            "Only living humans",
+            "All primates excluding humans"
+          ],
+          "a": 0,
+          "w": "Hominin refers to humans and extinct relatives on the human side of the evolutionary split."
+        },
+        {
+          "q": "Bipedalism refers to habitual locomotion using: ",
+          "o": [
+            "Four limbs",
+            "Two lower limbs",
+            "Arms alone",
+            "A tail"
+          ],
+          "a": 1,
+          "w": "Bipedalism is locomotion on two legs and is a key feature in human evolutionary studies."
+        },
+        {
+          "q": "The principle of common ancestry means that: ",
+          "o": [
+            "Modern species evolved from one another in a fixed ladder",
+            "Different lineages can descend from shared ancestral populations",
+            "Evolution has a predetermined goal",
+            "All species appeared simultaneously"
+          ],
+          "a": 1,
+          "w": "Common ancestry describes branching evolutionary relationships, not a ladder of progress."
+        },
+        {
+          "q": "Which evidence is especially useful for reconstructing locomotor adaptation in fossil hominins? ",
+          "o": [
+            "Only modern language data",
+            "Pelvic, femoral and foot morphology interpreted in context",
+            "Present-day political boundaries",
+            "Pottery decoration alone"
+          ],
+          "a": 1,
+          "w": "Postcranial anatomy can provide evidence about locomotion, although interpretations require multiple lines of evidence."
+        },
+        {
+          "q": "A primate trait commonly associated with depth perception is: ",
+          "o": [
+            "Forward-facing eyes",
+            "A complete absence of vision",
+            "External gills",
+            "A rigid exoskeleton"
+          ],
+          "a": 0,
+          "w": "Forward-facing eyes support overlapping visual fields and stereoscopic depth perception in many primates."
         }
       ],
       "lesson": {
@@ -425,6 +535,61 @@
           ],
           "a": 1,
           "w": "Mutations alter DNA sequences; their effects can vary and are not automatically harmful or beneficial."
+        },
+        {
+          "q": "Mitosis normally produces: ",
+          "o": [
+            "Four genetically varied haploid cells",
+            "Two daughter cells with the same chromosome number as the parent cell",
+            "Gametes only",
+            "A change in species"
+          ],
+          "a": 1,
+          "w": "Mitosis supports growth and tissue repair by producing daughter cells with the same chromosome number."
+        },
+        {
+          "q": "Meiosis is important because it: ",
+          "o": [
+            "Doubles chromosome number in every generation",
+            "Produces haploid cells and contributes to genetic variation",
+            "Occurs only in bacteria",
+            "Prevents recombination"
+          ],
+          "a": 1,
+          "w": "Meiosis reduces chromosome number and creates variation through processes including recombination and independent assortment."
+        },
+        {
+          "q": "A cell membrane is primarily composed of: ",
+          "o": [
+            "A phospholipid bilayer with associated proteins",
+            "Cellulose only in all organisms",
+            "DNA alone",
+            "Calcium carbonate"
+          ],
+          "a": 0,
+          "w": "The plasma membrane is a selectively permeable phospholipid bilayer containing proteins and other molecules."
+        },
+        {
+          "q": "Ribosomes are directly involved in: ",
+          "o": [
+            "Protein synthesis",
+            "DNA replication only",
+            "Lipid storage only",
+            "Cell movement in every organism"
+          ],
+          "a": 0,
+          "w": "Ribosomes translate messenger RNA to assemble proteins."
+        },
+        {
+          "q": "The term phenotype refers to: ",
+          "o": [
+            "Only the DNA sequence",
+            "Observable characteristics arising through genotype-environment interaction",
+            "A population's migration rate",
+            "A chromosome pair"
+          ],
+          "a": 1,
+          "w": "Phenotype includes observable traits shaped by genetic and environmental influences."
         }
       ],
       "lesson": {
@@ -579,6 +744,61 @@
           ],
           "a": 1,
           "w": "Relative dating places deposits or objects in sequence without necessarily giving a calendar age."
+        },
+        {
+          "q": "Stratigraphy helps archaeologists establish: ",
+          "o": [
+            "The sequence and relationships of deposits",
+            "The language spoken by every artefact maker",
+            "The exact identity of every ancient person",
+            "The political borders of prehistory"
+          ],
+          "a": 0,
+          "w": "Stratigraphy examines layers and their relationships, helping establish relative sequence."
+        },
+        {
+          "q": "A secure archaeological context is important because it: ",
+          "o": [
+            "Guarantees a single interpretation",
+            "Preserves relationships between finds and deposits for interpretation",
+            "Makes dating methods unnecessary",
+            "Proves cultural identity directly"
+          ],
+          "a": 1,
+          "w": "Context links artefacts with deposits and associated evidence; it strengthens but does not make interpretation automatic."
+        },
+        {
+          "q": "Microliths are best described as: ",
+          "o": [
+            "Small stone tools often used in composite implements",
+            "Large copper vessels",
+            "Written inscriptions",
+            "Fossilised seeds"
+          ],
+          "a": 0,
+          "w": "Microliths are small stone artefacts, often hafted as components of composite tools."
+        },
+        {
+          "q": "The Neolithic transition in India is best understood as: ",
+          "o": [
+            "A single event occurring everywhere at the same time",
+            "A regionally varied process involving food production and settlement changes",
+            "The immediate disappearance of foraging",
+            "A period defined only by iron tools"
+          ],
+          "a": 1,
+          "w": "Neolithic developments differed by region and involved varied combinations of cultivation, animal management and settlement."
+        },
+        {
+          "q": "Ethno-archaeological analogy should be used cautiously because: ",
+          "o": [
+            "Living communities are unchanged fossils of the past",
+            "Similar material practices can have different meanings in different contexts",
+            "Present-day observation is always irrelevant",
+            "Artefacts have no social context"
+          ],
+          "a": 1,
+          "w": "Analogies can suggest hypotheses, but present-day practices cannot simply be projected onto the past."
         }
       ],
       "lesson": {
@@ -739,6 +959,61 @@
           ],
           "a": 1,
           "w": "A household is a residential or resource-sharing unit and may not match family relationships exactly."
+        },
+        {
+          "q": "In kinship analysis, descent refers to: ",
+          "o": [
+            "Rules through which people trace socially recognised ancestry",
+            "The exchange value of goods",
+            "A method of stone-tool manufacture",
+            "A form of ecological succession"
+          ],
+          "a": 0,
+          "w": "Descent concerns culturally recognised links to ancestors and group membership."
+        },
+        {
+          "q": "A matrilineal system traces descent primarily through: ",
+          "o": [
+            "The father's line",
+            "The mother's line",
+            "The eldest resident's line",
+            "A purely geographical line"
+          ],
+          "a": 1,
+          "w": "Matrilineality traces descent through the female line; it does not necessarily mean women hold all authority."
+        },
+        {
+          "q": "Exogamy requires marriage: ",
+          "o": [
+            "Within a specified group",
+            "Outside a specified group",
+            "Only between cousins",
+            "Without any social rules"
+          ],
+          "a": 1,
+          "w": "Exogamy is a rule requiring marriage outside a defined group."
+        },
+        {
+          "q": "The distinction between family and household is that household usually refers to: ",
+          "o": [
+            "Only biological relatives",
+            "People sharing a domestic or residential arrangement, who may or may not be kin",
+            "A descent group spread across villages",
+            "A marriage alliance only"
+          ],
+          "a": 1,
+          "w": "Household is commonly a residential or domestic unit and need not consist only of biological relatives."
+        },
+        {
+          "q": "Alliance theory places particular emphasis on: ",
+          "o": [
+            "Marriage exchanges and relations created between groups",
+            "Only genetic inheritance",
+            "The classification of fossils",
+            "The origin of writing"
+          ],
+          "a": 0,
+          "w": "Alliance approaches examine marriage as a relationship linking groups through prescribed or structured exchanges."
         }
       ],
       "lesson": {
@@ -907,6 +1182,61 @@
           ],
           "a": 1,
           "w": "Property can involve multiple and overlapping rights held by individuals, households, communities or the state."
+        },
+        {
+          "q": "A political system without a centralised state may still maintain order through: ",
+          "o": [
+            "Kinship, councils, norms and negotiated authority",
+            "The absence of all rules",
+            "Only written constitutions",
+            "A single hereditary monarch in every case"
+          ],
+          "a": 0,
+          "w": "Political organisation can operate through decentralised institutions, norms and relationships."
+        },
+        {
+          "q": "Reciprocity in economic anthropology refers to: ",
+          "o": [
+            "Exchange between people or groups based on social relationships",
+            "Only state taxation",
+            "The absence of exchange",
+            "A biological mutation"
+          ],
+          "a": 0,
+          "w": "Reciprocity involves transfers shaped by social relations and expectations."
+        },
+        {
+          "q": "A rite of passage commonly involves: ",
+          "o": [
+            "A transition between socially recognised statuses",
+            "A census exercise only",
+            "A method of crop measurement",
+            "A type of fossil dating"
+          ],
+          "a": 0,
+          "w": "Rites of passage mark transitions such as birth, initiation, marriage or death."
+        },
+        {
+          "q": "The concept of liminality is associated with: ",
+          "o": [
+            "The transitional phase of a rite of passage",
+            "The final stage of fossilisation",
+            "A type of genetic drift",
+            "A system of land measurement"
+          ],
+          "a": 0,
+          "w": "Liminality describes an in-between phase during a status transition."
+        },
+        {
+          "q": "In anthropology, religion is commonly studied as: ",
+          "o": [
+            "A social and cultural phenomenon with varied meanings and practices",
+            "A single universal institution with identical forms",
+            "Only a matter of individual biology",
+            "A phenomenon outside social life"
+          ],
+          "a": 0,
+          "w": "Anthropologists examine religious beliefs, practices, institutions and meanings in their social contexts."
         }
       ],
       "lesson": {
@@ -1083,6 +1413,61 @@
           ],
           "a": 0,
           "w": "Boas emphasised historical particularism and context-specific empirical research."
+        },
+        {
+          "q": "Functionalism is broadly concerned with: ",
+          "o": [
+            "How social or cultural institutions contribute to connected systems of life",
+            "Only the origin of language",
+            "The classification of primate fossils",
+            "A universal ranking of societies"
+          ],
+          "a": 0,
+          "w": "Functionalist approaches examine relationships between institutions and social or cultural life."
+        },
+        {
+          "q": "Structuralism associated with Claude Lévi-Strauss emphasises: ",
+          "o": [
+            "Underlying structures and patterns of human thought expressed in cultural forms",
+            "Only individual economic choices",
+            "The rejection of comparison",
+            "A single linear model of evolution"
+          ],
+          "a": 0,
+          "w": "Structuralism seeks patterned relations, including binary oppositions, in cultural systems."
+        },
+        {
+          "q": "A key focus of cultural materialism is the relationship between: ",
+          "o": [
+            "Material conditions and social-cultural practices",
+            "Only myths and literary style",
+            "Individual personality and eye colour",
+            "Fossil age and sediment depth"
+          ],
+          "a": 0,
+          "w": "Cultural materialist approaches give analytical importance to material conditions such as production and environment."
+        },
+        {
+          "q": "Interpretive anthropology associated with Clifford Geertz emphasises: ",
+          "o": [
+            "Culture as webs of meaning requiring interpretation",
+            "Only genetic inheritance",
+            "The rejection of symbols",
+            "A purely numerical account of society"
+          ],
+          "a": 0,
+          "w": "Interpretive approaches examine symbols and meanings through contextual interpretation."
+        },
+        {
+          "q": "A major limitation of applying any single theoretical model is that it may: ",
+          "o": [
+            "Highlight some dimensions while overlooking others",
+            "Automatically explain every case",
+            "Remove the need for evidence",
+            "Eliminate historical change"
+          ],
+          "a": 0,
+          "w": "Theories guide analysis but can become reductive if treated as universal explanations."
         }
       ],
       "lesson": {
@@ -1265,6 +1650,61 @@
           ],
           "a": 0,
           "w": "Hymes developed the ethnography of communication to examine culturally organised communication practices."
+        },
+        {
+          "q": "The ethnography of communication examines: ",
+          "o": [
+            "Culturally organised patterns and contexts of communication",
+            "Only the anatomy of the vocal tract",
+            "Only written grammar",
+            "The distribution of fossil sites"
+          ],
+          "a": 0,
+          "w": "The approach studies how communication is organised and interpreted in social contexts."
+        },
+        {
+          "q": "A semi-structured interview uses: ",
+          "o": [
+            "A guiding set of questions with flexibility for follow-up",
+            "No research purpose",
+            "Only fixed yes/no answers in every case",
+            "A laboratory instrument"
+          ],
+          "a": 0,
+          "w": "Semi-structured interviews balance comparability with opportunities to explore participants' responses."
+        },
+        {
+          "q": "A sampling frame is: ",
+          "o": [
+            "A defined list or operational basis from which a sample is selected",
+            "A theory of cultural change",
+            "A fieldwork diary",
+            "A form of informed consent"
+          ],
+          "a": 0,
+          "w": "The sampling frame identifies the units from which the study's sample is drawn."
+        },
+        {
+          "q": "Reflexivity asks the researcher to examine: ",
+          "o": [
+            "How their position and relationships shape the research process",
+            "Only the spelling of interview questions",
+            "Whether participants agree with every conclusion",
+            "How to remove all interpretation"
+          ],
+          "a": 0,
+          "w": "Reflexivity recognises that researchers influence access, interaction and interpretation."
+        },
+        {
+          "q": "Triangulation is most accurately used to: ",
+          "o": [
+            "Compare evidence across methods or sources and examine convergence or disagreement",
+            "Guarantee that every result is true",
+            "Replace ethical review",
+            "Increase sample size without a plan"
+          ],
+          "a": 0,
+          "w": "Triangulation can strengthen or complicate interpretation by comparing independent forms of evidence."
         }
       ],
       "lesson": {
@@ -1446,6 +1886,61 @@
           ],
           "a": 0,
           "w": "Mutation introduces new variants into the genetic pool."
+        },
+        {
+          "q": "Hardy–Weinberg equilibrium assumes, among other conditions: ",
+          "o": [
+            "Random mating and no selection, mutation, migration or genetic drift",
+            "Strong selection in every generation",
+            "Only one allele in every population",
+            "Continuous migration at high levels"
+          ],
+          "a": 0,
+          "w": "The model's assumptions create a baseline for evaluating evolutionary forces."
+        },
+        {
+          "q": "Genetic drift has the strongest expected effect in: ",
+          "o": [
+            "Small populations",
+            "Infinitely large populations",
+            "Populations with no reproduction",
+            "Only populations with identical genotypes"
+          ],
+          "a": 0,
+          "w": "Random sampling effects are proportionally stronger in small populations."
+        },
+        {
+          "q": "An allele frequency is: ",
+          "o": [
+            "The proportion of a particular allele among copies of a gene in a population",
+            "The number of languages in a region",
+            "The age of a fossil",
+            "The percentage of households with electricity"
+          ],
+          "a": 0,
+          "w": "Allele frequency describes the relative occurrence of an allele in a defined population."
+        },
+        {
+          "q": "A founder effect occurs when: ",
+          "o": [
+            "A new population is established by a small number of individuals from a source population",
+            "All individuals migrate simultaneously",
+            "A population has no genetic variation",
+            "A trait is acquired during one person's lifetime"
+          ],
+          "a": 0,
+          "w": "A small founding group may carry a non-representative sample of source-population variation."
+        },
+        {
+          "q": "Human biological variation is best interpreted as: ",
+          "o": [
+            "Complex, overlapping and shaped by multiple historical and environmental processes",
+            "A set of sharply bounded natural races",
+            "A direct measure of cultural ability",
+            "A fixed hierarchy of populations"
+          ],
+          "a": 0,
+          "w": "Human variation is complex and clinal in many dimensions; rigid typologies are scientifically misleading."
         }
       ],
       "lesson": {
@@ -1601,6 +2096,61 @@
           ],
           "a": 0,
           "w": "Morbidity concerns illness or disease occurrence and burden."
+        },
+        {
+          "q": "Acclimatisation differs from genetic adaptation because acclimatisation: ",
+          "o": [
+            "Is an adjustment within an individual's lifetime",
+            "Always changes allele frequencies",
+            "Occurs only over thousands of generations",
+            "Is identical to natural selection"
+          ],
+          "a": 0,
+          "w": "Acclimatisation is an individual's physiological adjustment, not population-level genetic evolution."
+        },
+        {
+          "q": "A cross-sectional growth study measures: ",
+          "o": [
+            "Different participants at one point in time",
+            "The same participants repeatedly over many years",
+            "Only ancient skeletal remains",
+            "Only one person's entire life"
+          ],
+          "a": 0,
+          "w": "Cross-sectional studies compare groups at one time but can be affected by cohort differences."
+        },
+        {
+          "q": "In epidemiology, incidence generally refers to: ",
+          "o": [
+            "New cases occurring in a population over a specified period",
+            "All existing cases at one instant",
+            "The total number of hospital buildings",
+            "The average age of a population"
+          ],
+          "a": 0,
+          "w": "Incidence measures new cases over time among a defined population at risk."
+        },
+        {
+          "q": "A biocultural explanation of health would examine: ",
+          "o": [
+            "Biological processes alongside social, cultural and environmental conditions",
+            "Only genes",
+            "Only individual choice",
+            "Only climate"
+          ],
+          "a": 0,
+          "w": "Biocultural analysis considers interacting biological and social-environmental processes."
+        },
+        {
+          "q": "A longitudinal study is particularly useful for examining: ",
+          "o": [
+            "Change within the same participants over time",
+            "Only differences between unrelated age groups at one moment",
+            "A single archaeological layer",
+            "The distribution of languages without time data"
+          ],
+          "a": 0,
+          "w": "Following the same participants allows researchers to observe trajectories, while accounting for attrition and other limitations."
         }
       ],
       "lesson": {
@@ -1783,6 +2333,61 @@
           ],
           "a": 0,
           "w": "Applied anthropology brings research into practical settings while considering rights, participation and evidence."
+        },
+        {
+          "q": "Crude birth rate is commonly expressed as births per: ",
+          "o": [
+            "1,000 people in the mid-year population",
+            "100 households only",
+            "10,000 women of one age only",
+            "One million square kilometres"
+          ],
+          "a": 0,
+          "w": "Crude birth rate uses the total mid-year population as its denominator, commonly per 1,000."
+        },
+        {
+          "q": "The demographic transition model describes broad changes in: ",
+          "o": [
+            "Birth and death rates over time",
+            "Only migration between villages",
+            "Only language families",
+            "Only household size"
+          ],
+          "a": 0,
+          "w": "The model describes shifts from high to lower mortality and fertility, with varied national pathways."
+        },
+        {
+          "q": "Life expectancy at birth is: ",
+          "o": [
+            "A summary measure based on prevailing mortality rates",
+            "A guarantee of an individual's lifespan",
+            "The age of the oldest person in a village",
+            "A measure of fertility"
+          ],
+          "a": 0,
+          "w": "Life expectancy summarises mortality conditions; it is not an individual prediction."
+        },
+        {
+          "q": "Applied anthropology is distinctive because it: ",
+          "o": [
+            "Uses anthropological knowledge and methods to address practical issues",
+            "Avoids engagement with real-world institutions",
+            "Only studies prehistoric tools",
+            "Rejects evaluation"
+          ],
+          "a": 0,
+          "w": "Applied anthropology brings research and analysis into practical settings and should involve affected people."
+        },
+        {
+          "q": "A programme evaluation should distinguish outputs from outcomes because: ",
+          "o": [
+            "Delivering activities does not by itself demonstrate meaningful change",
+            "Outputs and outcomes always mean the same thing",
+            "Outcomes cannot be measured",
+            "Only expenditure matters"
+          ],
+          "a": 0,
+          "w": "Outputs record activities or services delivered; outcomes concern resulting changes."
         }
       ],
       "lesson": {
@@ -1966,6 +2571,61 @@
           ],
           "a": 1,
           "w": "Fossil classification may be debated and should be presented with evidence and uncertainty."
+        },
+        {
+          "q": "The Lower Palaeolithic Acheulean tradition is commonly associated with: ",
+          "o": [
+            "Bifacial handaxes and cleavers",
+            "Iron ploughs",
+            "Printed manuscripts",
+            "Polished copper coins"
+          ],
+          "a": 0,
+          "w": "Acheulean assemblages are widely associated with bifacial tools, including handaxes and cleavers."
+        },
+        {
+          "q": "The Harappan civilisation is especially noted archaeologically for: ",
+          "o": [
+            "Urban planning, drainage and standardised weights in several settlements",
+            "The earliest iron railways",
+            "A complete decipherment of its script",
+            "A single uniform settlement type"
+          ],
+          "a": 0,
+          "w": "Material evidence includes planned settlements, drainage and standardised weights; the script remains undeciphered."
+        },
+        {
+          "q": "A radiocarbon date is most directly applicable to: ",
+          "o": [
+            "Suitable once-living organic material",
+            "Any stone tool regardless of context",
+            "A modern political boundary",
+            "A metal artefact without associated organic material"
+          ],
+          "a": 0,
+          "w": "Radiocarbon dating estimates the age of suitable organic remains, subject to calibration and context."
+        },
+        {
+          "q": "The Narmada fossil evidence is discussed carefully because: ",
+          "o": [
+            "Its taxonomic interpretation has been debated",
+            "It proves a complete human evolutionary sequence",
+            "It is a written historical record",
+            "It has no geological context"
+          ],
+          "a": 0,
+          "w": "The classification and significance of the Narmada hominin fossil have been debated; answers should acknowledge uncertainty."
+        },
+        {
+          "q": "A key feature of Mesolithic assemblages in many regions is the use of: ",
+          "o": [
+            "Microlithic tools",
+            "Steel firearms",
+            "Printed books",
+            "Industrial plastics"
+          ],
+          "a": 0,
+          "w": "Microlithic technologies are commonly associated with Mesolithic contexts, though regional patterns vary."
         }
       ],
       "lesson": {
@@ -2150,6 +2810,61 @@
           ],
           "a": 0,
           "w": "Srinivas used Sanskritisation to analyse certain forms of social mobility and cultural change."
+        },
+        {
+          "q": "Varna and jati are best distinguished by stating that: ",
+          "o": [
+            "Varna is a broad textual-normative category while jati refers to many locally situated social groups",
+            "Both are identical terms for one national system",
+            "Jati is exclusively a biological category",
+            "Varna refers only to modern occupations"
+          ],
+          "a": 0,
+          "w": "The terms are related in some contexts but refer to different levels and forms of social classification."
+        },
+        {
+          "q": "M. N. Srinivas used the term dominant caste to analyse: ",
+          "o": [
+            "Local power based on factors such as numbers, resources and political influence",
+            "Only ritual purity in ancient texts",
+            "The origin of agriculture",
+            "Language family classification"
+          ],
+          "a": 0,
+          "w": "Dominant caste is a contextual concept for local power, not a universal caste ranking."
+        },
+        {
+          "q": "The jajmani concept is used to examine: ",
+          "o": [
+            "Patterned service and exchange relationships in some village settings",
+            "Only urban industrial wage contracts",
+            "Genetic inheritance",
+            "The evolution of primates"
+          ],
+          "a": 0,
+          "w": "Jajmani has been used to analyse reciprocal service and exchange, but should not be universalised."
+        },
+        {
+          "q": "The sacred complex framework is associated with: ",
+          "o": [
+            "L. P. Vidyarthi",
+            "Charles Darwin",
+            "Thomas Malthus",
+            "Gregor Mendel"
+          ],
+          "a": 0,
+          "w": "L. P. Vidyarthi developed the sacred complex framework in Indian anthropology."
+        },
+        {
+          "q": "A careful analysis of Sanskritisation should note that it: ",
+          "o": [
+            "Describes a status-claim process but does not automatically remove structural inequality",
+            "Guarantees equality for all groups",
+            "Is a biological process",
+            "Is identical to urbanisation"
+          ],
+          "a": 0,
+          "w": "Sanskritisation can describe cultural status claims, but does not itself dismantle structural inequality."
         }
       ],
       "lesson": {
@@ -2333,6 +3048,61 @@
           ],
           "a": 0,
           "w": "Panchayati Raj institutions provide a framework for rural local self-government."
+        },
+        {
+          "q": "A village study should avoid treating the village as: ",
+          "o": [
+            "An isolated and internally homogeneous unit",
+            "A setting with local institutions",
+            "A place linked to markets and migration",
+            "A site of social change"
+          ],
+          "a": 0,
+          "w": "Villages are internally diverse and connected to wider economic, political and social processes."
+        },
+        {
+          "q": "The little and great traditions framework examines: ",
+          "o": [
+            "Interactions between local cultural forms and wider traditions",
+            "A hierarchy of biological populations",
+            "Only prehistoric stone technologies",
+            "The stages of individual growth"
+          ],
+          "a": 0,
+          "w": "The framework studies cultural interaction and should not be used to rank traditions."
+        },
+        {
+          "q": "Panchayati Raj institutions are concerned with: ",
+          "o": [
+            "Rural local self-government",
+            "National monetary policy alone",
+            "International treaty enforcement",
+            "Archaeological dating"
+          ],
+          "a": 0,
+          "w": "Panchayati Raj provides constitutional and state-law frameworks for rural local governance."
+        },
+        {
+          "q": "Agrarian relations include relationships involving: ",
+          "o": [
+            "Land, labour, tenancy, credit and production",
+            "Only religious rituals",
+            "Only kinship terminology",
+            "Only language change"
+          ],
+          "a": 0,
+          "w": "Agrarian relations concern the organisation of land, labour and rural production and power."
+        },
+        {
+          "q": "A critical reading of colonial ethnographic records should consider: ",
+          "o": [
+            "The administrative purposes and assumptions that shaped classification",
+            "That all categories are neutral and timeless",
+            "That field evidence is always absent",
+            "That communities never changed"
+          ],
+          "a": 0,
+          "w": "Colonial records can be valuable but must be situated in the political and administrative contexts of their production."
         }
       ],
       "lesson": {
@@ -2518,6 +3288,61 @@
           ],
           "a": 1,
           "w": "Participatory approaches involve affected people in defining priorities, decisions, implementation and evaluation."
+        },
+        {
+          "q": "The Fifth and Sixth Schedules are part of India's constitutional framework concerning: ",
+          "o": [
+            "Administration of specified Scheduled Areas and tribal areas",
+            "The conduct of university examinations",
+            "International maritime boundaries",
+            "The national banking system"
+          ],
+          "a": 0,
+          "w": "The Schedules provide distinct constitutional arrangements for specified areas; their provisions should be read from official texts."
+        },
+        {
+          "q": "PVTG is an administrative category referring to: ",
+          "o": [
+            "Particularly Vulnerable Tribal Groups",
+            "Primary Village Tax Groups",
+            "Public Voluntary Training Grants",
+            "Protected Valley Tourism Zones"
+          ],
+          "a": 0,
+          "w": "PVTG is an official category used for targeted policy attention to certain tribal communities."
+        },
+        {
+          "q": "A sound rehabilitation assessment after displacement should examine: ",
+          "o": [
+            "Livelihood restoration, rights, services, participation and cultural continuity",
+            "Compensation amount alone",
+            "Only project completion time",
+            "Only the number of vehicles used"
+          ],
+          "a": 0,
+          "w": "Restoration is multidimensional and cannot be judged by compensation alone."
+        },
+        {
+          "q": "Participatory development requires: ",
+          "o": [
+            "Affected people to help shape priorities and decisions",
+            "Experts to decide without local consultation",
+            "Only one-way information campaigns",
+            "Avoiding evaluation"
+          ],
+          "a": 0,
+          "w": "Participation includes meaningful involvement in defining, implementing and evaluating interventions."
+        },
+        {
+          "q": "A social impact assessment examines: ",
+          "o": [
+            "Likely social consequences of a proposed policy or project",
+            "Only engineering material strength",
+            "Only the market price of land",
+            "Only a project's publicity plan"
+          ],
+          "a": 0,
+          "w": "Social impact assessment examines effects on people, institutions, livelihoods and relationships."
         }
       ],
       "lesson": {
