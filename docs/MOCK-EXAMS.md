@@ -149,3 +149,8 @@ The Anbuu daily-plan workflow now accepts a 90-, 120-, 150- or 180-minute study 
 ## UPSC Learning Intelligence Dashboard
 
 The Study Command Centre includes a topic mastery heatmap for the selected exam, a seven-day study-hours chart, a consecutive-day study streak, and a seven-day revision outlook. Mastery tiles read only saved topic statuses; untracked topics remain neutral. Streak and weekly activity use dated session records (`dateKey`). Older sessions containing only a time are excluded rather than assigned guessed dates. New study logs store the local calendar date. Revision outlook uses saved `topicRevisionSchedule.dueAt` dates. The report is account-scoped and does not predict exam scores. Browser interaction and multi-account testing remain necessary.
+
+
+## Personalised UPSC Weekly Review System
+
+The Study Command Centre now includes a seven-day review. It reads dated study sessions from the signed-in user's saved state, completed/expired mock attempts filtered by `user_id`, available objective scores and section breakdowns, saved answer evaluations, the selected exam's unfinished syllabus areas, and due spaced-revision records. The review displays dated answer evaluations only when a record contains a usable timestamp; otherwise it reports the total saved count and states that weekly dates are unavailable. Mock averages are shown only for attempts with a positive maximum score. Suggested priorities are generated from observed due revisions, recorded weak sections, incomplete syllabus areas, and missing dated answer-evaluation activity. It is a descriptive study aid, not an official UPSC assessment. Browser and real-user validation remain required.
