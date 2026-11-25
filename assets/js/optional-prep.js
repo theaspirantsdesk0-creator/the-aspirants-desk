@@ -87,7 +87,7 @@ function render(){
    <div class="optional-unit-top"><span class="pill">Paper ${u.paper}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark unit studied</label></div>
    <h3>${esc(u.unit)}</h3>
    <div class="optional-unit-tools"><label>Learning stage<select data-unit-mastery="${u.index}"><option value="not_started">Not started</option><option value="learning">Learning</option><option value="practised">Practised</option><option value="revision_due">Revision due</option><option value="mastered">Mastered</option></select></label><span class="optional-unit-quiz-meta">${(()=>{const rows=results.filter(x=>x.unit===u.unit);const last=rows[rows.length-1];return rows.length?rows.length+" test(s) · latest "+last.score+"/"+last.maxScore:"No test attempt yet";})()}</span></div>
-   <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?"Review due "+esc(revisions[subject+":"+u.index].dueAt):"Schedule revision"}</button>${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?'<button class="btn" type="button" data-complete-review="'+u.index+'">I reviewed this</button>':""}</div>
+   <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?"Scheduled · "+esc(revisions[subject+":"+u.index].dueAt):"Schedule revision"}</button>${revisions[subject+":"+u.index]&&!revisions[subject+":"+u.index].completed?'<button class="btn" type="button" data-complete-review="'+u.index+'">I reviewed this</button>':""}</div>
    <ul>${u.topics.map(t=>"<li>"+esc(t)+"</li>").join("")}</ul>
    ${u.lesson?`<section class="guided-lesson"><h4>Guided lesson</h4><p class="muted">${esc(u.lesson.objective||"")}</p>${(u.lesson.sections||[]).map((section,n)=>`<article><h5>${n+1}. ${esc(section.heading)}</h5>${(section.explanation||[]).map(p=>`<p>${esc(p)}</p>`).join("")}${section.example?`<p><b>Example:</b> ${esc(section.example)}</p>`:""}</article>`).join("")}${u.lesson.keyTerms?`<h5>Key terms</h5><dl>${u.lesson.keyTerms.map(t=>`<dt><b>${esc(t.term)}</b></dt><dd>${esc(t.meaning)}</dd>`).join("")}</dl>`:""}${u.lesson.scholarLens?`<h5>Scholar perspectives</h5><ul>${u.lesson.scholarLens.map(x=>`<li><b>${esc(x.scholar)}:</b> ${esc(x.idea)}</li>`).join("")}</ul>`:""}${u.lesson.answerPractice?`<h5>Mains answer practice</h5><p>${esc(u.lesson.answerPractice)}</p>`:""}${u.lesson.revisionPrompt?`<h5>Revision prompt</h5><p>${esc(u.lesson.revisionPrompt)}</p>`:""}${u.lesson.answerPractice?`<button class="btn" type="button" data-answer-practice="${u.index}">Open in Mains Writing Pad</button>`:""}</section>`:""}
    <details><summary>Open beginner notes and explanation</summary><div class="optional-notes-body">
@@ -111,8 +111,6 @@ function render(){
  host.querySelectorAll("[data-unit-done]").forEach(box=>box.addEventListener("change",()=>{
   const next={...current(),progress:{...(current().progress||{})}};
   next.progress[subject+":"+box.dataset.unitDone]=box.checked;
-  const masteryNext={...(next.mastery||{})};masteryNext[current().subject+":"+index]=score===questions.length?"mastered":score/questions.length>=.7?"practised":"revision_due";next.mastery=masteryNext;
-  if(score<questions.length){next.revisionSchedule={...(next.revisionSchedule||{}),[current().subject+":"+index]:{dueAt:dateAfter(1),intervalIndex:0,reviewCount:0,completed:false,updatedAt:attemptedAt,source:"unit_quiz"}};}
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   render();
  }));
@@ -163,6 +161,8 @@ function startQuiz(index){
    subject:current().subject||"Anthropology",paper:unit.paper,unit:unit.unit,score,maxScore:questions.length,
    wrongCount,skippedCount,attemptedAt
   }].slice(-100)};
+  const masteryNext={...(next.mastery||{})};masteryNext[current().subject+":"+index]=score===questions.length?"mastered":score/questions.length>=.7?"practised":"revision_due";next.mastery=masteryNext;
+  if(score<questions.length){next.revisionSchedule={...(next.revisionSchedule||{}),[current().subject+":"+index]:{dueAt:dateAfter(1),intervalIndex:0,reviewCount:0,completed:false,updatedAt:attemptedAt,source:"unit_quiz"}};}
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
   const resultHost=$("optionalQuizHost");
   if(!resultHost)return;
