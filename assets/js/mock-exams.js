@@ -37,7 +37,7 @@ async function boot(){
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();await loadAnalytics();
+ await loadPapers();await loadRecent();renderCatalog();initTopicPractice();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -48,6 +48,92 @@ async function loadPapers(){
   if(!qerror){const counts={};(qrows||[]).forEach(q=>counts[q.paper_id]=(counts[q.paper_id]||0)+1);papers.forEach(p=>p.question_count=counts[p.id]||0);}
  }
 }
+
+let practiceQuestions=[],practiceIndex=0,practiceCorrect=0,practiceWrong=0,practiceStartedAt=0,practiceSeconds=0,practiceTimer=null,practiceAnswered=false,practiceSubmitting=false;
+function practiceStatus(message){const el=$("mockPracticeStatus");if(el)el.textContent=message;}
+function practiceLabel(value){return String(value||"").replace(/[_-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());}
+function initTopicPractice(){
+ const paperSel=$("mockPracticePaper"),sectionSel=$("mockPracticeSection"),countSel=$("mockPracticeCount"),startBtn=$("mockPracticeStart");
+ if(!paperSel||!sectionSel||!countSel||!startBtn)return;
+ const available=papers.filter(p=>p.is_published&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
+ const previous=paperSel.value;
+ paperSel.innerHTML='<option value="">Choose a published paper</option>'+available.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.title)+'</option>').join("");
+ if(available.some(p=>p.id===previous))paperSel.value=previous;
+ const refreshSections=async()=>{
+  sectionSel.innerHTML='<option value="">Loading sections…</option>';sectionSel.disabled=true;startBtn.disabled=true;
+  const paper=available.find(p=>p.id===paperSel.value);
+  if(!paper){sectionSel.innerHTML='<option value="">Choose a section</option>';return;}
+  try{
+   const {data,error}=await sb.from("mock_exam_questions").select("section_key").eq("paper_id",paper.id).eq("is_active",true).eq("question_type","mcq").order("sort_order");
+   if(error)throw error;
+   const sections=[...new Set((data||[]).map(q=>q.section_key).filter(Boolean))];
+   sectionSel.innerHTML='<option value="">Choose a section</option>'+sections.map(s=>'<option value="'+esc(s)+'">'+esc(practiceLabel(s))+'</option>').join("");
+   sectionSel.disabled=!sections.length;
+   practiceStatus(sections.length?"Choose a section and question count.":"This published paper has no MCQ sections available for focused practice.");
+  }catch(e){sectionSel.innerHTML='<option value="">Sections unavailable</option>';practiceStatus("Could not load sections: "+e.message);}
+ };
+ paperSel.addEventListener("change",refreshSections);
+ sectionSel.addEventListener("change",()=>{startBtn.disabled=!(paperSel.value&&sectionSel.value);});
+ startBtn.addEventListener("click",startTopicPractice);
+ if(paperSel.value)refreshSections();
+ else if(!available.length)practiceStatus("No published MCQ papers are available for your selected optional-subject setting.");
+}
+async function startTopicPractice(){
+ const paper=papers.find(p=>p.id===$("mockPracticePaper")?.value),section=$("mockPracticeSection")?.value;
+ if(!paper||!section)return;
+ const start=$("mockPracticeStart");if(start)start.disabled=true;
+ practiceStatus("Preparing a randomised topic practice set…");
+ try{
+  const {data,error}=await sb.from("mock_exam_questions").select("id,section_key,question_no,question_type,prompt,options,marks,negative_marks,sort_order").eq("paper_id",paper.id).eq("section_key",section).eq("question_type","mcq").eq("is_active",true).order("sort_order").limit(200);
+  if(error)throw error;
+  const pool=data||[];if(!pool.length)throw new Error("No active MCQs are available in this section.");
+  const count=Math.min(Number($("mockPracticeCount")?.value||10),pool.length);
+  practiceQuestions=pool.map(q=>({...q})).sort(()=>Math.random()-.5).slice(0,count);
+  practiceIndex=0;practiceCorrect=0;practiceWrong=0;practiceAnswered=false;practiceSubmitting=false;practiceStartedAt=Date.now();practiceSeconds=count*60;
+  $("mockPracticeSession").hidden=false;
+  $("mockPracticeStart").disabled=false;
+  renderTopicPracticeQuestion();
+  clearInterval(practiceTimer);
+  practiceTimer=setInterval(()=>{practiceSeconds--;const clock=$("mockPracticeClock");if(clock)clock.textContent=Math.floor(Math.max(0,practiceSeconds)/60)+":"+String(Math.max(0,practiceSeconds)%60).padStart(2,"0");if(practiceSeconds<=0){clearInterval(practiceTimer);finishTopicPractice(true);}},1000);
+ }catch(e){practiceStatus("Practice set could not be started: "+e.message);if(start)start.disabled=false;}
+}
+function renderTopicPracticeQuestion(){
+ const host=$("mockPracticeSession"),q=practiceQuestions[practiceIndex];if(!host||!q)return;
+ const options=Array.isArray(q.options)?q.options:[];
+ host.innerHTML='<div class="mock-practice-top"><span>Question '+(practiceIndex+1)+' of '+practiceQuestions.length+'</span><b id="mockPracticeClock">'+Math.floor(practiceSeconds/60)+':'+String(practiceSeconds%60).padStart(2,"0")+'</b></div><div class="mock-progress"><span style="width:'+((practiceIndex)/practiceQuestions.length*100)+'%"></span></div><p class="mock-save">'+esc(practiceLabel(q.section_key))+' · '+Number(q.marks||2)+' marks</p><h3 class="mock-practice-prompt">'+esc(q.prompt)+'</h3><div class="mock-practice-options">'+options.map(o=>'<button type="button" class="mock-practice-option" data-practice-answer="'+esc(o.key)+'"><b>'+esc(o.key)+'.</b> '+esc(o.text)+'</button>').join("")+'</div><div id="mockPracticeFeedback" class="mock-practice-feedback" aria-live="polite"></div><div class="mock-actions"><button type="button" class="btn" id="mockPracticeNext" disabled>'+(practiceIndex===practiceQuestions.length-1?"Finish set":"Next question")+'</button></div>';
+ host.querySelectorAll("[data-practice-answer]").forEach(btn=>btn.addEventListener("click",()=>checkTopicPracticeAnswer(q,btn.dataset.practiceAnswer,btn)));
+ $("mockPracticeNext").addEventListener("click",()=>{if(practiceIndex>=practiceQuestions.length-1)finishTopicPractice(false);else{practiceIndex++;practiceAnswered=false;renderTopicPracticeQuestion();}});
+}
+async function checkTopicPracticeAnswer(q,answer,chosen){
+ if(practiceAnswered||practiceSubmitting)return;practiceSubmitting=true;
+ const buttons=$("mockPracticeSession").querySelectorAll("[data-practice-answer]");buttons.forEach(b=>b.disabled=true);
+ const feedback=$("mockPracticeFeedback");if(feedback)feedback.textContent="Checking your answer…";
+ try{
+  const {data,error}=await sb.rpc("check_published_practice_answer",{p_question_id:q.id,p_answer:answer});
+  if(error)throw error;
+  const result=Array.isArray(data)?data[0]:data;if(!result)throw new Error("No answer-check result was returned.");
+  practiceAnswered=true;
+  if(result.is_correct){practiceCorrect++;chosen.classList.add("is-correct");}
+  else{practiceWrong++;chosen.classList.add("is-wrong");buttons.forEach(b=>{if(b.dataset.practiceAnswer===result.correct_answer)b.classList.add("is-correct");});}
+  const mark=result.is_correct?Number(result.marks||0):-Number(result.negative_marks||0);
+  if(feedback)feedback.innerHTML='<strong class="'+(result.is_correct?"practice-good":"practice-bad")+'">'+(result.is_correct?"Correct":"Not quite")+' · '+(mark>0?"+":"")+mark.toFixed(2)+' marks</strong><p><b>Correct answer: '+esc(result.correct_answer)+'</b></p><p>'+esc(result.explanation||"No explanation was supplied for this question.")+'</p>';
+  const next=$("mockPracticeNext");if(next)next.disabled=false;
+ }catch(e){buttons.forEach(b=>b.disabled=false);if(feedback)feedback.textContent="Answer check failed: "+e.message+". You can retry.";chosen.disabled=false;}
+ finally{practiceSubmitting=false;}
+}
+async function finishTopicPractice(timeExpired){
+ clearInterval(practiceTimer);
+ const paper=papers.find(p=>p.id===$("mockPracticePaper")?.value),section=$("mockPracticeSection")?.value||"";
+ const total=practiceQuestions.length,accuracy=total?Math.round(practiceCorrect/total*100):0;
+ const elapsed=Math.max(0,Math.round((Date.now()-practiceStartedAt)/1000));
+ const net=practiceQuestions.reduce((n,q)=>n,0);
+ const record={topic:(paper?.title||"Practice")+" · "+practiceLabel(section),paperId:paper?.id||null,section,correct:practiceCorrect,wrong:practiceWrong,total,accuracy,elapsedSeconds:elapsed,timeExpired:Boolean(timeExpired)};
+ let saved=false;try{if(typeof window.TAD_RECORD_TOPIC_PRACTICE==="function")saved=await window.TAD_RECORD_TOPIC_PRACTICE(record);}catch(e){console.warn("Practice history save failed",e);}
+ const host=$("mockPracticeSession");if(host)host.innerHTML='<div class="mock-practice-result"><span class="eyebrow">PRACTICE COMPLETE</span><h3>'+accuracy+'% accuracy</h3><div class="mock-analytics-kpis"><div class="mock-analytics-kpi"><b>'+practiceCorrect+'</b><span>Correct</span></div><div class="mock-analytics-kpi"><b>'+practiceWrong+'</b><span>Incorrect</span></div><div class="mock-analytics-kpi"><b>'+total+'</b><span>Total questions</span></div></div><p>'+(timeExpired?"Time expired. ":"")+(accuracy<70?"A revision reminder has been scheduled for tomorrow. Review the explanations and retry this section.":"Good work. Continue with another section or revisit this one later.")+'</p><p class="mock-save">'+(saved?"Your practice result was saved to your private study history.":"Result shown for this session; sign in again if saving was unavailable.")+'</p><button type="button" class="btn primary" id="mockPracticeAgain">Build another set</button></div>';
+ practiceStatus("Completed "+(paper?.title||"practice")+" · "+practiceLabel(section));
+ $("mockPracticeAgain")?.addEventListener("click",()=>{if(host)host.hidden=true;practiceStatus("Choose a question count and start another set.");});
+}
+
 async function loadAnalytics(){
  const host=$("mockAnalyticsContent");if(!host)return;
  host.innerHTML='<p class="mock-save">Loading your private performance history…</p>';
@@ -384,6 +470,6 @@ $("mockPublishBtn")?.addEventListener("click",publishPaper);
 bindControls();
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&attempt)saveDraft();});
 window.addEventListener("pagehide",()=>{if(attempt){storeLocalDraft();saveDraft();}});
-window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();}catch(e){}});
+window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();initTopicPractice();}catch(e){}});
 boot().catch(e=>status("Mock system error: "+e.message));
 })();
