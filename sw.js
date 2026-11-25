@@ -1,14 +1,14 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v10-anthropology-mains-bank';
+var VERSION = 'desk-v11-anbuu-mains-evaluation';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
   'assets/css/ai-desk.css', 'assets/css/courses.css',
   'assets/css/course-studio.css', 'assets/css/design-system.css',
-  'assets/css/pyq-inventory.css',
+  'assets/css/pyq-inventory.css', 'assets/css/mains-evaluation.css',
   'assets/js/pyq-inventory.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
-  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json'
+  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'assets/js/mains-evaluation.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json'
 ];
 
 /* Network-first files: scripts/styles, config (public keys), service worker and data feeds. */
