@@ -229,6 +229,16 @@ function improvementAdvice(tag){
 }
 async function loadMainsImprovementDashboard(){
  const host=$("mainsImprovementContent");if(!host)return;
+ if(!host.dataset.bound){host.dataset.bound="1";host.addEventListener("click",async event=>{
+  const button=event.target.closest("[data-save-rewrite]");if(!button)return;
+  const id=button.dataset.saveRewrite,field=host.querySelector('[data-rewrite-answer="'+CSS.escape(id)+'"]');
+  if(!field)return;
+  const answer=field.value.trim();if(answer.length<20){button.textContent="Write a little more first";return;}
+  if(typeof window.TAD_SAVE_MAINS_DRAFT!=="function"){button.textContent="Sign in to save";return;}
+  button.disabled=true;button.textContent="Saving…";
+  const saved=await window.TAD_SAVE_MAINS_DRAFT({questionId:"rewrite-"+id,paperTitle:button.dataset.subject||"Mains rewrite",questionNo:"Rewrite",answer,wordCount:mainsStudioWordCount(answer),rewriteOf:id});
+  button.textContent=saved?"Rewrite saved privately":"Save failed · retry";button.disabled=false;
+ });}
  host.innerHTML='<p class="mock-save">Loading your private answer-writing evidence…</p>';
  try{
   const {data,error}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();
@@ -236,24 +246,39 @@ async function loadMainsImprovementDashboard(){
   const payload=data?.payload&&typeof data.payload==="object"?data.payload:{};
   const evaluations=Array.isArray(payload.answerEvaluations)?payload.answerEvaluations.filter(x=>x&&typeof x==="object"):[];
   const drafts=Array.isArray(payload.mainsDrafts)?payload.mainsDrafts:[];
-  const weaknesses=new Map(),strengths=new Map(),subjects=new Map();
+  const weaknesses=new Map(),strengths=new Map(),subjects=new Map(),rubric=new Map();
+  const scoreOf=e=>{const m=String(e.feedback||"").match(/FORMATIVE AI ESTIMATE:\s*([0-9.]+)\s*\/\s*([0-9.]+)/i);return m?{mark:Number(m[1]),max:Number(m[2])}:null;};
   evaluations.forEach(e=>{
    (Array.isArray(e.priorityWeaknesses)?e.priorityWeaknesses:[]).forEach(x=>weaknesses.set(x,(weaknesses.get(x)||0)+1));
    (Array.isArray(e.keyStrengths)?e.keyStrengths:[]).forEach(x=>strengths.set(x,(strengths.get(x)||0)+1));
-   const subject=String(e.subject||"Mains answer");const item=subjects.get(subject)||{count:0,words:[],latest:e.savedAt||""};
-   item.count++;item.words.push(String(e.answer||"").trim().split(/\s+/).filter(Boolean).length);
+   const subject=String(e.subject||"Mains answer"),item=subjects.get(subject)||{count:0,words:[],latest:e.savedAt||"",scores:[]};
+   item.count++;item.words.push(mainsStudioWordCount(e.answer||""));
    if(Date.parse(e.savedAt||"")>Date.parse(item.latest||""))item.latest=e.savedAt||"";
+   const score=scoreOf(e);if(score)item.scores.push({...score,date:e.savedAt||""});
    subjects.set(subject,item);
+   const feedback=String(e.feedback||"");
+   const rx=/^([^:\n]+):\s*([0-9.]+)\/([0-9.]+)\s*[—-]/gm;let match;
+   while((match=rx.exec(feedback))!==null){
+    const name=match[1].trim();if(!["Relevance and demand","Conceptual accuracy","Depth and analysis","Structure and coherence","Examples and evidence"].includes(name))continue;
+    const x=rubric.get(name)||{score:0,max:0,count:0};x.score+=Number(match[2]);x.max+=Number(match[3]);x.count++;rubric.set(name,x);
+   }
   });
-  const topWeak=[...weaknesses.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4);
-  const topStrong=[...strengths.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const topWeak=[...weaknesses.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4),topStrong=[...strengths.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4);
   const kpi=(v,l)=>'<div class="mock-analytics-kpi"><b>'+v+'</b><span>'+l+'</span></div>';
-  const subjectRows=[...subjects.entries()].sort((a,b)=>b[1].count-a[1].count).map(([name,x])=>'<div class="mock-analytics-row"><div><b>'+esc(name)+'</b><div class="mock-save">'+x.count+' saved evaluation(s) · latest '+(x.latest?new Date(x.latest).toLocaleDateString():"date unavailable")+'</div></div><div class="mock-analytics-score">Avg. '+Math.round(x.words.reduce((a,b)=>a+b,0)/x.words.length)+' words</div></div>').join("");
+  const subjectRows=[...subjects.entries()].sort((a,b)=>b[1].count-a[1].count).map(([name,x])=>{
+   x.scores.sort((a,b)=>Date.parse(a.date||"")-Date.parse(b.date||""));const latest=x.scores.at(-1),previous=x.scores.at(-2);
+   const trend=latest&&previous&&latest.max===previous.max?(latest.mark-previous.mark>=0?"+":"")+(latest.mark-previous.mark).toFixed(1)+" marks vs previous":latest?"Latest "+latest.mark+"/"+latest.max:"No saved estimate";
+   return '<div class="mock-analytics-row"><div><b>'+esc(name)+'</b><div class="mock-save">'+x.count+' saved evaluation(s) · latest '+(x.latest?new Date(x.latest).toLocaleDateString():"date unavailable")+'</div></div><div class="mock-analytics-score">Avg. '+Math.round(x.words.reduce((a,b)=>a+b,0)/x.words.length)+' words<br><small>'+esc(trend)+'</small></div></div>';
+  }).join("");
+  const rubricRows=[...rubric.entries()].map(([name,x])=>({name,average:x.max?x.score/x.count:0,max:x.max/x.count,count:x.count})).sort((a,b)=>a.average-b.average);
+  const rubricHtml=rubricRows.length?'<section class="mock-analytics-group"><h3>Rubric-wise performance</h3><p class="mock-save">Average criterion points per evaluation, based on saved AI feedback.</p>'+rubricRows.map(x=>'<div class="mains-rubric-row"><div><b>'+esc(x.name)+'</b><small>'+x.count+' evaluation(s)</small></div><div class="mains-rubric-track"><span style="width:'+Math.max(0,Math.min(100,x.average/x.max*100))+'%"></span></div><strong>'+x.average.toFixed(1)+' / '+x.max.toFixed(1)+'</strong></div>').join("")+'</section>':'';
   const weakHtml=topWeak.length?'<section class="mock-analytics-group"><h3>Recurring improvement priorities</h3>'+topWeak.map(([tag,count],i)=>'<div class="mains-improvement-focus"><div><b>'+(i+1)+'. '+esc(tag)+'</b><span class="mains-improvement-count">'+count+' occurrence(s)</span><p>'+esc(improvementAdvice(tag))+'</p></div></div>').join("")+'</section>':'<p class="mock-save">No priority weaknesses have been recorded yet. Complete an Anbuu evaluation to build your improvement profile.</p>';
   const strongHtml=topStrong.length?'<section class="mock-analytics-group"><h3>Strengths to retain</h3><div class="mains-improvement-tags">'+topStrong.map(([tag,count])=>'<span>'+esc(tag)+' · '+count+'</span>').join("")+'</div></section>':'';
   const recent=evaluations.slice().sort((a,b)=>Date.parse(b.savedAt||"")-Date.parse(a.savedAt||"")).slice(0,4);
-  const recentHtml=recent.length?'<section class="mock-analytics-group"><h3>Recent evaluated answers</h3>'+recent.map(e=>'<article class="mains-improvement-record"><div><b>'+esc(e.subject||"Mains answer")+'</b><p>'+esc(String(e.question||"").slice(0,260))+'</p><small>'+esc(e.savedAt?new Date(e.savedAt).toLocaleString():"Saved evaluation")+' · '+mainsStudioWordCount(e.answer||"")+' words</small></div><details><summary>Review feedback</summary><pre>'+esc(e.feedback||"No feedback text stored.")+'</pre></details></article>').join("")+'</section>':'';
-  host.innerHTML='<div class="mock-analytics-kpis">'+kpi(evaluations.length,"Saved evaluations")+kpi(drafts.length,"Saved drafts")+kpi(weaknesses.size,"Distinct improvement priorities")+kpi(strengths.size,"Recorded strengths")+'</div>'+weakHtml+strongHtml+(subjectRows?'<section class="mock-analytics-group"><h3>Practice by paper or subject</h3>'+subjectRows+'</section>':'')+recentHtml+'<p class="mock-save">This dashboard summarises saved feedback only. It does not invent marks or claim mastery; AI feedback is formative, not an official UPSC assessment.</p>';
+  const recentHtml=recent.length?'<section class="mock-analytics-group"><h3>Recent evaluated answers · rewrite practice</h3>'+recent.map((e,i)=>{
+   const id=String(e.id||("saved-"+i));return '<article class="mains-improvement-record"><div><b>'+esc(e.subject||"Mains answer")+'</b><p>'+esc(String(e.question||"").slice(0,260))+'</p><small>'+esc(e.savedAt?new Date(e.savedAt).toLocaleString():"Saved evaluation")+' · '+mainsStudioWordCount(e.answer||"")+' words</small></div><details><summary>Review feedback</summary><pre>'+esc(e.feedback||"No feedback text stored.")+'</pre></details><details class="mains-rewrite-exercise"><summary>Practise an improved rewrite</summary><p class="mock-save">Use the feedback above. Answer the same question again with clearer structure, stronger analysis and the missing points addressed.</p><textarea rows="6" maxlength="12000" data-rewrite-answer="'+esc(id)+'" placeholder="Write your improved answer…"></textarea><button type="button" class="btn" data-save-rewrite="'+esc(id)+'" data-subject="'+esc(e.subject||"Mains rewrite")+'">Save rewrite privately</button></details></article>';
+  }).join("")+'</section>':'';
+  host.innerHTML='<div class="mock-analytics-kpis">'+kpi(evaluations.length,"Saved evaluations")+kpi(drafts.length,"Saved drafts")+kpi(weaknesses.size,"Distinct improvement priorities")+kpi(strengths.size,"Recorded strengths")+'</div>'+weakHtml+strongHtml+rubricHtml+(subjectRows?'<section class="mock-analytics-group"><h3>Progress by paper or subject</h3>'+subjectRows+'</section>':'')+recentHtml+'<p class="mock-save">This dashboard summarises saved feedback only. Trends compare attempts within the same paper and mark scale. AI feedback is formative, not an official UPSC assessment.</p>';
  }catch(error){host.innerHTML='<p class="mock-warning">Your private answer-writing dashboard could not be loaded: '+esc(error.message||"Please retry.")+'</p>';}
 }
 
@@ -461,6 +486,8 @@ async function evaluateMockWrittenAnswer(q,paper,button){
    "FORMATIVE AI ESTIMATE: "+ev.estimated_mark+"/"+ev.max_marks,
    "Overall: "+String(ev.overall_feedback||""),
    "Word count: "+ev.word_count+" / "+ev.word_limit,
+   "PRIORITY WEAKNESSES: "+[...(Array.isArray(ev.improvements)?ev.improvements:[]),...(Array.isArray(ev.missing_points)?ev.missing_points:[])].filter(Boolean).slice(0,6).join("; "),
+   "KEY STRENGTHS: "+(Array.isArray(ev.strengths)?ev.strengths.filter(Boolean).slice(0,6).join("; "):""),
    "RUBRIC:",
    ...(Array.isArray(ev.criteria)?ev.criteria.map(row=>row.name+": "+row.score+"/"+row.max_score+" — "+row.feedback):[]),
    "STRENGTHS:",list(ev.strengths),
@@ -474,7 +501,7 @@ async function evaluateMockWrittenAnswer(q,paper,button){
   if(saved.error||!saved.data?.saved)throw new Error(saved.data?.error||"Evaluation generated but could not be saved.");
   if(host)host.textContent="Saved to your private answer history · formative estimate "+ev.estimated_mark+"/"+ev.max_marks+" · "+ev.word_count+" words";
   button.textContent="Evaluation saved";button.disabled=true;
-  loadAnalytics();
+  loadAnalytics();loadMainsImprovementDashboard();
  }catch(error){
   let message=error?.message||"Evaluation could not be completed.";
   try{const payload=error?.context&&typeof error.context.clone==="function"?await error.context.clone().json():null;if(payload?.error)message=payload.error;}catch(_){}
