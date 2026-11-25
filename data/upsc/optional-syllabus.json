@@ -548,15 +548,15 @@
           "w": "In DNA, adenine pairs with thymine, while guanine pairs with cytosine."
         },
         {
-          "q": "Meiosis is important because it: ",
+          "q": "Meiosis is important because it:",
           "o": [
-            "Doubles chromosome number in every generation",
             "Produces haploid cells and contributes to genetic variation",
-            "Occurs only in bacteria",
-            "Prevents recombination"
+            "Produces two identical diploid body cells",
+            "Occurs only in mature red blood cells",
+            "Prevents chromosome segregation"
           ],
-          "a": 1,
-          "w": "Meiosis reduces chromosome number and creates variation through processes including recombination and independent assortment."
+          "a": 0,
+          "w": "Meiosis produces haploid cells and generates genetic variation through recombination and independent assortment."
         },
         {
           "q": "A mutation is best defined as:",
@@ -2845,15 +2845,15 @@
           "w": "M. N. Srinivas developed the concept of dominant caste through village-based analysis."
         },
         {
-          "q": "The sacred complex framework is associated with: ",
+          "q": "Which framework examines relationships among sacred centres, specialists and performances?",
           "o": [
-            "L. P. Vidyarthi",
-            "Charles Darwin",
-            "Thomas Malthus",
-            "Gregor Mendel"
+            "Sacred complex",
+            "Demographic transition",
+            "Cultural materialism",
+            "Alliance theory"
           ],
           "a": 0,
-          "w": "L. P. Vidyarthi developed the sacred complex framework in Indian anthropology."
+          "w": "L. P. Vidyarthi's sacred complex framework examines sacred centres, specialists and performances."
         },
         {
           "q": "A careful analysis of Sanskritisation should note that it: ",
@@ -3061,15 +3061,15 @@
           "w": "Multi-sited research follows relationships and processes across locations rather than treating the village as closed."
         },
         {
-          "q": "The little and great traditions framework examines: ",
+          "q": "The little and great traditions framework examines:",
           "o": [
-            "Interactions between local cultural forms and wider traditions",
-            "A hierarchy of biological populations",
-            "Only prehistoric stone technologies",
-            "The stages of individual growth"
+            "Interaction between local cultural forms and wider traditions",
+            "A fixed hierarchy of biological populations",
+            "Only urban industrial employment",
+            "A sequence of geological deposits"
           ],
           "a": 0,
-          "w": "The framework studies cultural interaction and should not be used to rank traditions."
+          "w": "The framework analyses interaction between local and wider cultural traditions."
         },
         {
           "q": "A key contribution of S. C. Dube to Indian anthropology was his work on:",
@@ -3083,15 +3083,15 @@
           "w": "S. C. Dube is known for influential village studies and analysis of social change."
         },
         {
-          "q": "Agrarian relations include relationships involving: ",
+          "q": "Agrarian relations include relationships involving:",
           "o": [
             "Land, labour, tenancy, credit and production",
-            "Only religious rituals",
-            "Only kinship terminology",
-            "Only language change"
+            "Only religious ritual",
+            "Only language families",
+            "Only descent terminology"
           ],
           "a": 0,
-          "w": "Agrarian relations concern the organisation of land, labour and rural production and power."
+          "w": "Agrarian relations concern land, labour, tenancy, credit, production and rural power."
         },
         {
           "q": "A critical reading of colonial ethnographic records should consider: ",
@@ -3334,15 +3334,15 @@
           "w": "Free, prior and informed consent concerns meaningful community decision-making before actions affecting rights or resources."
         },
         {
-          "q": "A social impact assessment examines: ",
+          "q": "A social impact assessment examines:",
           "o": [
             "Likely social consequences of a proposed policy or project",
-            "Only engineering material strength",
-            "Only the market price of land",
-            "Only a project's publicity plan"
+            "Only the project's construction materials",
+            "Only the price of machinery",
+            "Only the project's media coverage"
           ],
           "a": 0,
-          "w": "Social impact assessment examines effects on people, institutions, livelihoods and relationships."
+          "w": "Social impact assessment identifies likely effects on people, livelihoods, institutions and relationships."
         }
       ],
       "lesson": {
