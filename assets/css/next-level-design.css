@@ -108,3 +108,8 @@ input,select,textarea{border-radius:10px}
 .tad-answer-performance-tags ul{display:flex;gap:8px;flex-wrap:wrap;padding:0;list-style:none}
 .tad-answer-performance-tags li{padding:7px 10px;border:1px solid var(--tad-border,rgba(190,160,100,.18));border-radius:999px;font-size:.9rem}
 .tad-answer-performance-action{margin-top:16px;padding:11px 15px;border:0;border-radius:10px;background:var(--tad-gold,#c8a96b);color:#151923;font-weight:700;cursor:pointer}
+
+/* Personalised daily UPSC plan action */
+.tad-ai-daily-plan-button{display:inline-flex;align-items:center;gap:8px;margin:10px 8px 0 0;padding:11px 15px;border:1px solid var(--tad-border,rgba(190,160,100,.3));border-radius:10px;background:var(--tad-surface,rgba(255,255,255,.04));color:inherit;font:inherit;font-weight:700;cursor:pointer}
+.tad-ai-daily-plan-button:hover{border-color:var(--tad-gold,#c8a96b)}
+.tad-ai-daily-plan-button:focus-visible{outline:2px solid var(--tad-gold,#c8a96b);outline-offset:3px}
