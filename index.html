@@ -13,6 +13,7 @@
 <meta name="theme-color" content="#070f2b">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="assets/css/optional-prep.css">
+<link rel="stylesheet" href="assets/css/mains-bank.css">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 
@@ -1262,6 +1263,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
       <h3 style="margin:1.2rem 0 .5rem">Saved Mains Answer Drafts</h3>
       <ul class="item-list" id="mainsDraftList"></ul>
+      <section id="mainsBankHost" class="mains-bank" aria-label="Anthropology Mains question bank"><p class="muted">Loading topic-wise Anthropology Mains practice questions…</p></section>
     </div>
   </section>
 
@@ -2671,8 +2673,11 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       };
       $("mainsQuestionPaper").textContent = [window.TAD_ACTIVE_MAINS_PROMPT.subject, window.TAD_ACTIVE_MAINS_PROMPT.unit].filter(Boolean).join(" · ");
       $("mainsQuestionText").textContent = "Q. " + window.TAD_ACTIVE_MAINS_PROMPT.prompt;
-      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.</p>";
+      const suggested = detail.framework || "Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.";
+      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>" + escapeMainsText(suggested) + "</p>";
       $("mainsBox").placeholder = "Write your answer to the optional-subject question shown above…";
+      const marksMode = document.querySelector('.mains-mode[data-words="' + (Number(detail.marks) === 15 ? 250 : 150) + '"]');
+      if (marksMode) marksMode.click();
     } else {
       window.TAD_ACTIVE_MAINS_PROMPT = null;
       $("mainsQuestionPaper").textContent = defaultMainsPaper;
@@ -3947,6 +3952,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/courses.js" defer></script>
   <script src="assets/js/course-studio.js" defer></script>
   <script src="assets/js/optional-prep.js" defer></script>
+  <script src="assets/js/mains-bank.js" defer></script>
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
 </body>
