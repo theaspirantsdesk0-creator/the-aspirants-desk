@@ -117,21 +117,22 @@ function studiedToday(row: UserDataRow | null, date: string, timezone: string): 
     || savedDraftToday;
 }
 
-function dueRevisionCounts(mentor: MentorStateRow | null, activity: UserDataRow | null, date: string): { due: number; overdue: number } {
+function dueRevisionCounts(mentor: MentorStateRow | null, activity: UserDataRow | null, date: string): { due: number; overdue: number; topics: string[] } {
   let due = 0;
   let overdue = 0;
-  const addDueDate = (dueDate: unknown, pending: boolean) => {
+  const topics: string[] = [];
+  const addDueDate = (dueDate: unknown, pending: boolean, label = "Revision task") => {
     if (!pending || typeof dueDate !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate)) return;
     const parsed = new Date(dueDate + "T00:00:00.000Z");
     if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) return;
-    if (dueDate <= date) { due++; if (dueDate < date) overdue++; }
+    if (dueDate <= date) { due++; if (dueDate < date) overdue++; if (topics.length < 3 && label.trim()) topics.push(label.trim().slice(0, 90)); }
   };
 
   const tasks = Array.isArray(mentor?.pending_tasks) ? mentor.pending_tasks : [];
   for (const task of tasks) {
     if (!task || typeof task !== "object" || Array.isArray(task)) continue;
     const item = task as Record<string, unknown>;
-    addDueDate(item.due_date, item.status === "pending");
+    addDueDate(item.due_date, item.status === "pending", typeof item.title === "string" ? item.title : "Study task");
   }
 
   // The syllabus revision queue is saved in each learner's private user_data payload.
@@ -143,10 +144,10 @@ function dueRevisionCounts(mentor: MentorStateRow | null, activity: UserDataRow 
     for (const value of Object.values(schedule as Record<string, unknown>)) {
       if (!value || typeof value !== "object" || Array.isArray(value)) continue;
       const item = value as Record<string, unknown>;
-      addDueDate(item.dueAt, item.completed !== true);
+      addDueDate(item.dueAt, item.completed !== true, typeof item.topic === "string" ? item.topic : "Syllabus revision");
     }
   }
-  return { due, overdue };
+  return { due, overdue, topics };
 }
 
 Deno.serve(async (request: Request) => {
@@ -211,7 +212,7 @@ Deno.serve(async (request: Request) => {
         : "";
       notification = JSON.stringify({
         title: "Anbuu revision reminder",
-        body: `${dueLabel}${overdueLabel}. Open Anbuu's Revision Planner to review them.`,
+        body: `${dueLabel}${overdueLabel}. ${revisions.topics.length ? `Next: ${revisions.topics.join(", ")}. ` : ""}Open Anbuu's Revision Planner.`,
         url: "./#anbuu",
         tag: "desk-revision-reminder",
       });
