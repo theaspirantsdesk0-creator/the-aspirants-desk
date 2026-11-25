@@ -219,3 +219,8 @@ The optional-subject selector includes the full subject list from the official U
 ## Sociology optional syllabus starter
 
 Added a Sociology syllabus starter with 25 unit headings (10 Paper I and 15 Paper II), organised from the official CSE 2026 notification, Part B, Sociology syllabus (printed pages 145–148). It is a syllabus map, not a completed lesson bank: no invented notes, MCQs, model answers or PYQs are presented as official. Learners can add personal subtopics and notes, track progress and schedule revisions. Official source: https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Examination-2026-Notice-E.pdf.
+
+
+## Public Administration and PSIR syllabus centres
+
+Added official-notification-aligned syllabus maps for Public Administration (26 units: 12 Paper I and 14 Paper II) and Political Science and International Relations (25 units: 11 Paper I and 14 Paper II). Unit titles and topic summaries are organised from UPSC CSE 2026 notification Part B: Public Administration printed pages 142–144; PSIR printed pages 136–139. These are structured syllabus maps, not completed lesson banks, model answers or official PYQs. Learners can add personal notes, track learning, search/filter by paper and schedule revision. Source: https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Examination-2026-Notice-E.pdf.
