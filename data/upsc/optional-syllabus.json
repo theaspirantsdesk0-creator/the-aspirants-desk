@@ -404,7 +404,93 @@
           "a": 0,
           "w": "Stratigraphic relationships can establish relative sequence when deposits are undisturbed."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Understand how archaeologists reconstruct past human life from material evidence, chronology and context.",
+        "sections": [
+          {
+            "heading": "What prehistoric archaeology studies",
+            "explanation": [
+              "Prehistoric archaeology studies human communities for periods where written records are absent or limited. It reconstructs past lifeways from tools, food remains, settlement traces, burials, art and environmental evidence.",
+              "An artefact is an object modified or used by people; an ecofact is a natural remain associated with human activity; a feature is a non-portable trace such as a hearth or post-hole."
+            ],
+            "example": "Stone tools found beside animal bones and a hearth can help researchers ask how a site was used, but each interpretation must be tested against context."
+          },
+          {
+            "heading": "The archaeological record and context",
+            "explanation": [
+              "The archaeological record is incomplete and shaped by preservation, later disturbance, excavation choices and sampling. Absence of an object is not automatically proof that people did not use it.",
+              "Provenience records the exact location of an object; association describes its relationship with other finds. Stratigraphy studies the sequence of deposits, while recognising that layers may be disturbed."
+            ]
+          },
+          {
+            "heading": "Dating the past",
+            "explanation": [
+              "Relative dating places materials in sequence, for example through stratigraphy and typology. It does not by itself provide a calendar age.",
+              "Chronometric methods estimate age in years. Radiocarbon dating is used for suitable once-living materials within its effective range; potassium-argon and argon-argon methods are important for some volcanic contexts. Dates require calibration, sample control and contextual interpretation."
+            ]
+          },
+          {
+            "heading": "Technology, subsistence and settlement",
+            "explanation": [
+              "Stone-tool classification can describe manufacturing techniques and forms, but tool type alone does not reveal every aspect of behaviour. Researchers examine use-wear, raw material sources and spatial distribution.",
+              "Subsistence is reconstructed through multiple lines of evidence, including animal bones, plant remains, residues, isotopes and settlement patterns. Seasonality, mobility and exchange may be inferred cautiously from combined evidence."
+            ]
+          },
+          {
+            "heading": "Indian prehistoric sequences",
+            "explanation": [
+              "The Palaeolithic is broadly associated with stone-tool technologies and varied foraging lifeways; the Mesolithic often includes microlithic technologies and regionally diverse adaptations; the Neolithic is associated in many regions with cultivation, animal management and more settled lifeways.",
+              "These are analytical periods, not identical stages experienced at the same time everywhere. Indian archaeological sequences vary by region, ecology and chronology; avoid presenting a single universal transition."
+            ]
+          },
+          {
+            "heading": "Interpretation and ethics",
+            "explanation": [
+              "Archaeological interpretation distinguishes observation from inference. A strong explanation states the evidence, the interpretation, alternative explanations and the limits of the data.",
+              "Sites and human remains require careful conservation, legal compliance, consultation and respect for descendant and local communities. Destructive sampling should be justified and documented."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Stratigraphy",
+            "meaning": "Study of the sequence and relationships of archaeological deposits."
+          },
+          {
+            "term": "Chronometric dating",
+            "meaning": "Methods that estimate an age in calendar or calendar-related units."
+          },
+          {
+            "term": "Typology",
+            "meaning": "Classification of artefacts by shared attributes and patterns."
+          },
+          {
+            "term": "Microlith",
+            "meaning": "A small stone tool, often used as part of a composite implement."
+          },
+          {
+            "term": "Taphonomy",
+            "meaning": "Study of processes affecting remains between deposition and discovery."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "V. Gordon Childe",
+            "idea": "Connected archaeological evidence with broader explanations of social and economic change; his models should be assessed against current regional evidence."
+          },
+          {
+            "scholar": "Lewis Binford",
+            "idea": "Helped develop processual archaeology, emphasising explicit research questions, systems and testable explanations."
+          },
+          {
+            "scholar": "Mortimer Wheeler",
+            "idea": "Popularised disciplined stratigraphic excavation methods in South Asian archaeology; excavation records remain essential for interpretation."
+          }
+        ],
+        "answerPractice": "In 200 words, explain how archaeological context and dating methods help reconstruct prehistoric lifeways. Use one Indian example and mention one limitation.",
+        "revisionPrompt": "Make a comparison table of relative dating and chronometric dating. Then explain why an artefact without secure context has limited interpretive value."
+      }
     },
     {
       "paper": "I",
@@ -434,7 +520,101 @@
           "a": 1,
           "w": "Cultural relativism seeks contextual understanding rather than ethnocentric ranking."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Explain how anthropologists study culture, social organisation, marriage, family and kinship using concepts and contextual evidence.",
+        "sections": [
+          {
+            "heading": "Culture and society",
+            "explanation": [
+              "Culture refers to learned and shared meanings, practices, knowledge and ways of life. It is dynamic, internally diverse and transmitted through social interaction; it is not a fixed checklist shared identically by every member.",
+              "Society refers to patterned relationships and institutions through which people organise collective life. Culture and society are related but not identical: one highlights meanings and practices, the other relationships and organisation."
+            ],
+            "example": "A festival can be studied as cultural expression and also as a social event involving kinship, work, authority, exchange and public space."
+          },
+          {
+            "heading": "Marriage: forms and functions",
+            "explanation": [
+              "Anthropologists compare marriage rules and practices such as monogamy and polygyny, residence patterns, partner selection, endogamy and exogamy. A category describes a pattern; it does not imply that every household follows it in the same way.",
+              "Marriage may organise alliance, rights, responsibilities, legitimacy, property and care, but its meanings vary across societies and historical periods. Avoid treating one form as universal or as the only basis of family life."
+            ]
+          },
+          {
+            "heading": "Family and household",
+            "explanation": [
+              "A family is commonly discussed through relationships of marriage, descent, parenthood and care. A household is a unit of residence and/or shared resources; it may include people who are not related and may exclude relatives living elsewhere.",
+              "Nuclear, extended and joint family are useful analytical terms, but real households change with migration, employment, education, life stage and economic conditions."
+            ]
+          },
+          {
+            "heading": "Descent, lineage and clan",
+            "explanation": [
+              "Descent rules connect people across generations. Unilineal descent traces recognised membership through one parental line; patrilineal and matrilineal systems are two forms. Bilateral reckoning recognises kin through both parental sides.",
+              "A lineage is commonly understood as a descent group whose members can trace links to a known ancestor. A clan may claim common descent from an ancestor whose exact genealogical links are not individually traced. Actual membership and authority require local study."
+            ]
+          },
+          {
+            "heading": "Kinship terminology and alliance",
+            "explanation": [
+              "Kinship terminology classifies relatives and may reflect distinctions of generation, side of family, age, gender or social role. Terms are not merely labels; they can communicate expectations and relationships.",
+              "Alliance approaches examine marriage as a relationship between groups. Claude Lévi-Strauss emphasised exchange and marriage alliances; these ideas should be used comparatively and critically, not as a universal explanation of every marriage system."
+            ]
+          },
+          {
+            "heading": "Residence, inheritance and change",
+            "explanation": [
+              "Post-marital residence patterns include patrilocal, matrilocal, neolocal and avunculocal arrangements. Residence rules are analytical patterns; actual households may be flexible.",
+              "Inheritance, authority and care arrangements are shaped by custom, law, economy, gender relations and individual choices. Migration, urbanisation and legal change can transform kinship without making kinship irrelevant."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Endogamy",
+            "meaning": "A norm or rule favouring marriage within a defined social group."
+          },
+          {
+            "term": "Exogamy",
+            "meaning": "A norm or rule requiring or favouring marriage outside a defined group."
+          },
+          {
+            "term": "Patrilineal descent",
+            "meaning": "Descent-group membership traced through the father's line."
+          },
+          {
+            "term": "Matrilineal descent",
+            "meaning": "Descent-group membership traced through the mother's line."
+          },
+          {
+            "term": "Bilateral kinship",
+            "meaning": "Recognition of kin through both maternal and paternal sides."
+          },
+          {
+            "term": "Household",
+            "meaning": "A residential and/or resource-sharing unit, not necessarily identical to a family."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Lewis Henry Morgan",
+            "idea": "Compared kinship terminology and proposed influential classifications; his nineteenth-century evolutionary framework must be read critically."
+          },
+          {
+            "scholar": "W. H. R. Rivers",
+            "idea": "Contributed genealogical methods to the systematic study of kinship and social organisation."
+          },
+          {
+            "scholar": "A. R. Radcliffe-Brown",
+            "idea": "Analysed kinship and social structure in relation to patterned social relationships and institutions."
+          },
+          {
+            "scholar": "Claude Lévi-Strauss",
+            "idea": "Developed alliance theory, examining marriage exchange and relations between groups."
+          }
+        ],
+        "answerPractice": "In 200 words, distinguish descent, residence and alliance approaches to kinship. Define each, cite one scholar and explain why local context matters.",
+        "revisionPrompt": "Draw a simple kinship diagram of a fictional family and label one lineage, one clan, one affinal relationship and a possible residence pattern."
+      }
     },
     {
       "paper": "I",
