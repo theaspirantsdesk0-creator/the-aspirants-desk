@@ -253,6 +253,15 @@ try {
   const revisionTab = page.locator('#tadAiRevisionTab');
   if (await revisionTab.count() !== 1) throw new Error('Anbuu Revision Planner tab is missing');
   // Verify Anbuu guided-learning UI and the complete optional-subject catalogue.
+  const aiDeskScriptResponse = await page.request.get(base + 'assets/js/ai-desk.js');
+  if (!aiDeskScriptResponse.ok()) throw new Error('Anbuu client script could not be fetched for checkpoint regression checks');
+  const aiDeskSource = await aiDeskScriptResponse.text();
+  for (const required of ['update_lesson_checkpoint', 'Understand the concept', 'Attempt practice', 'Complete a recap', 'Next priority:']) {
+    if (!aiDeskSource.includes(required)) throw new Error('Anbuu learning checkpoint feature is missing: ' + required);
+  }
+  const lessonEdge = await page.request.get(base + 'supabase/functions/ai-assistant/index.ts').catch(() => null);
+  // The private Edge Function source is intentionally not published; verify its public
+  // client contract in the shipped Anbuu bundle instead.
   const lessonStudio = page.locator('.tad-anbuu-lesson-studio');
   if (await lessonStudio.count() !== 1) throw new Error('Anbuu guided-learning studio is missing');
   for (const selector of ['#tadLessonTrack', '#tadLessonSubject', '#tadLessonTopic', '#tadLessonLanguage', '#tadLessonLevel', '#tadStartLesson']) {
