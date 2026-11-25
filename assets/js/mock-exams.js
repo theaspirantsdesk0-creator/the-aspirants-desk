@@ -90,7 +90,7 @@ async function resumeExam(id){
   if(data.status!=="in_progress")return;
   const paper=papers.find(p=>p.id===data.paper_id);if(!paper)throw new Error("Paper is no longer available.");
   const qs=await fetchPaperQuestions(paper.id);attempt=data;questions=qs;answers=data.answers||{};marked=new Set(data.marked_for_review||[]);index=Math.min(data.current_question||0,Math.max(0,qs.length-1));try{const local=JSON.parse(localStorage.getItem(DRAFT_PREFIX+id)||"null");if(local&&Number(local.updatedAt)>Date.parse(data.updated_at||data.started_at)){if(local.answers&&typeof local.answers==="object")answers={...answers,...local.answers};if(Array.isArray(local.marked))marked=new Set(local.marked);if(Number.isInteger(local.index))index=Math.min(Math.max(local.index,0),Math.max(0,qs.length-1));status("Recovered a newer local draft. Syncing it to your account…");}}catch(e){}startedAt=new Date(data.started_at).getTime();expiresAt=new Date(data.expires_at).getTime();
-  if(timeLeft()<=0){await submitExam(true);return;}renderExam(paper);beginTimer();
+  if(timeLeft()<=0){await submitExam(true);return;}renderExam(paper);beginTimer();saveDraft();
  }catch(e){status("Unable to resume: "+e.message);}
 }
 function renderExam(paper){
