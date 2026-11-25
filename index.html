@@ -817,6 +817,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <section><h3>Today's priorities</h3><div id="tadCommandPriorities" class="tad-command-list"><p class="muted">Your priorities will appear after sign-in.</p></div></section>
         <section><h3>Preparation progress</h3><div id="tadCommandProgress" class="tad-command-list"><p class="muted">Your progress will appear after sign-in.</p></div></section>
       </div>
+      <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p></section>
       <div class="tad-command-actions"><a class="btn primary" href="#today" data-nav="today">Start study session</a><a class="btn" href="#tracker" data-nav="tracker">Open preparation tracker</a><a class="btn" href="#anbuu" data-nav="anbuu">Ask Anbuu</a></div>
       <p class="tad-command-foot" id="tadCommandFoot" aria-live="polite">Sign in to see your private study summary.</p>
     </section>
@@ -2428,7 +2429,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       subj,
       hrs: cleanHrs,
       source,
-      date: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      date: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      dateKey: new Date().toLocaleDateString("en-CA")
     });
     renderStudySessions();
     saveUserState();
@@ -3774,6 +3776,34 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     `).join("");
   });
 
+  function renderStudyIntelligence(topics, dueItems) {
+    const kpis=$("tadIntelligenceKpis"), heat=$("tadMasteryHeatmap"), weekly=$("tadWeeklyStudyReport"), outlook=$("tadRevisionOutlook"), foot=$("tadIntelligenceFoot");
+    if(!kpis||!heat||!weekly||!outlook)return;
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const key=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    const today=new Date();today.setHours(0,0,0,0);
+    const sessions=Array.isArray(state.sessions)?state.sessions:[];
+    const dated=sessions.filter(s=>s&&/^\d{4}-\d{2}-\d{2}$/.test(String(s.dateKey||"")));
+    const days=new Set(dated.map(s=>s.dateKey));let streak=0,cur=new Date(today);
+    if(!days.has(key(cur)))cur.setDate(cur.getDate()-1);
+    while(days.has(key(cur))&&streak<365){streak++;cur.setDate(cur.getDate()-1);}
+    const start=new Date(today);start.setDate(start.getDate()-6);
+    const week=dated.filter(s=>{const d=new Date(s.dateKey+"T12:00:00");return d>=start&&d<=today;});
+    const hours=week.reduce((n,s)=>n+Math.max(0,Number(s.hrs)||0),0),active=new Set(week.map(s=>s.dateKey)).size;
+    const end=new Date(today);end.setDate(end.getDate()+7);
+    const upcoming=dueItems.filter(x=>x.dueAt&&new Date(x.dueAt+"T00:00:00")>today&&new Date(x.dueAt+"T00:00:00")<=end);
+    kpis.innerHTML=[[dated.length?streak+" day(s)":"Not tracked", "Study streak"],[hours.toFixed(1)+"h","Study hours · 7 days"],[active+"/7","Active study days"],[upcoming.length,"Revisions next 7 days"]].map(x=>"<div><strong>"+esc(x[0])+"</strong><span>"+esc(x[1])+"</span></div>").join("");
+    const labels={learning:"Learning",practised:"Practised",revision_due:"Revision due",mastered:"Mastered",not_started:"Not started / untracked"};
+    heat.replaceChildren();
+    topics.forEach(topic=>{const status=labels[state.topicMastery?.[selectedExam+"::"+topic]?.status]?state.topicMastery[selectedExam+"::"+topic].status:"not_started";const tile=document.createElement("div");tile.className="tad-mastery-tile stage-"+status;const name=document.createElement("strong");name.textContent=topic;const tag=document.createElement("span");tag.textContent=labels[status];tile.append(name,tag);heat.append(tile);});
+    const bars=Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);const k=key(d);return {k,label:d.toLocaleDateString(undefined,{weekday:"short"}),h:week.filter(s=>s.dateKey===k).reduce((n,s)=>n+Math.max(0,Number(s.hrs)||0),0)};});
+    const max=Math.max(.5,...bars.map(x=>x.h));
+    weekly.innerHTML="<div class='tad-week-bars'>"+bars.map(x=>"<div class='tad-week-day'><div class='tad-week-track'><i style='height:"+Math.round(x.h/max*100)+"%'></i></div><b>"+x.h.toFixed(1)+"h</b><span>"+esc(x.label)+"</span></div>").join("")+"</div><p class='muted'>"+(dated.length?hours.toFixed(1)+" hours across "+active+" active day(s).":"No dated sessions yet. New study logs will populate this report.")+"</p>";
+    const rows=dueItems.filter(x=>x.dueAt).slice().sort((a,b)=>String(a.dueAt).localeCompare(String(b.dueAt))).slice(0,5);
+    outlook.innerHTML=rows.length?"<ul class='tad-outlook-list'>"+rows.map(x=>"<li><strong>"+esc(x.topic)+"</strong><span>"+esc(x.dueAt)+" · "+(new Date(x.dueAt+"T00:00:00")<=today?"Due / overdue":"Upcoming")+"</span></li>").join("")+"</ul>":"<p class='muted'>No active scheduled revisions. Schedule a topic from the syllabus tracker.</p>";
+    foot.textContent=dated.length?"Streak and weekly hours use only dated session records. Older time-only logs are excluded; revision outlook uses saved due dates.":"Older time-only logs are excluded. Study streak and weekly history begin with newly logged dated sessions.";
+  }
+
   async function renderStudyCommandCentre() {
     const safe = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 
@@ -3827,6 +3857,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       generatedAt: new Date().toISOString()
     };
     window.dispatchEvent(new CustomEvent("tad:study-context-updated"));
+    renderStudyIntelligence(topics, active);
     const metric = (value,label) => '<div class="tad-command-kpi"><strong>'+value+'</strong><span>'+label+'</span></div>';
     host.innerHTML = metric(Number(state.hours || 0).toFixed(1)+"h","Study hours logged") + metric(pct+"%","Syllabus checklist") + metric(due.length,"Revisions due") + metric(mockCount,"Completed mock attempts");
     const priorities = [];
