@@ -509,9 +509,12 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
   }
   if (body.action === "get_progress") {
     if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
-    const [testsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult, lessonActiveResult] = await Promise.all([
+    const [testsResult, mockAttemptsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult, lessonActiveResult] = await Promise.all([
       adminClient.from("test_results").select("exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")
         .eq("user_id", authData.user.id).order("created_at", { ascending: false }).limit(30),
+      adminClient.from("mock_exam_attempts").select("id,paper_id,status,score,max_score,analytics,submitted_at")
+        .eq("user_id", authData.user.id).in("status", ["submitted", "expired"])
+        .order("submitted_at", { ascending: false }).limit(30),
       adminClient.from("user_data").select("payload").eq("user_id", authData.user.id).maybeSingle(),
       adminClient.from("anbuu_lesson_history").select("id", { count: "exact", head: true })
         .eq("user_id", authData.user.id),
@@ -534,13 +537,38 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       return json({ error: "Could not load your guided-lesson progress." }, 500, origin);
     }
     if (testsResult.error) return json({ error: "Could not load your learning history." }, 500, origin);
-    const tests = (testsResult.data ?? []).map((t) => ({
-      exam: String(t.exam ?? "Practice"), name: String(t.test_name ?? "Mock test"),
+    if (mockAttemptsResult.error) return json({ error: "Could not load your mock-exam analytics." }, 500, origin);
+    const attempts = mockAttemptsResult.data ?? [];
+    const paperIds = [...new Set(attempts.map((a) => a.paper_id).filter(Boolean))];
+    const papersResult = paperIds.length
+      ? await adminClient.from("mock_exam_papers").select("id,title,exam_stage,paper_type,optional_subject").in("id", paperIds)
+      : { data: [], error: null };
+    if (papersResult.error) return json({ error: "Could not load mock-exam paper details." }, 500, origin);
+    const paperById = new Map((papersResult.data ?? []).map((paper) => [paper.id, paper]));
+    const mockExams = attempts.map((attempt) => {
+      const paper = paperById.get(attempt.paper_id);
+      const analytics = attempt.analytics && typeof attempt.analytics === "object" ? attempt.analytics : {};
+      return {
+        id: attempt.id, name: String(paper?.title ?? paper?.paper_type ?? "UPSC mock examination"),
+        exam: String(paper?.exam_stage ?? "Mock examination"),
+        paperType: String(paper?.paper_type ?? "Mock paper"),
+        optionalSubject: paper?.optional_subject ?? null,
+        score: Number(attempt.score ?? 0), maxScore: Number(attempt.max_score ?? 0),
+        correct: Number(analytics.correct ?? 0), wrong: Number(analytics.wrong ?? 0),
+        skipped: Number(analytics.skipped ?? 0), date: attempt.submitted_at,
+        percentage: Number(attempt.max_score) > 0 ? Math.round(Number(attempt.score) / Number(attempt.max_score) * 100) : null,
+        sectionBreakdown: analytics.section_breakdown && typeof analytics.section_breakdown === "object" ? analytics.section_breakdown : {},
+        writtenQuestions: Number(analytics.written_questions ?? 0),
+      };
+    });
+    const legacyTests = (testsResult.data ?? []).map((t) => ({
+      exam: String(t.exam ?? "Practice"), name: String(t.test_name ?? "Practice test"),
       score: Number(t.score ?? 0), maxScore: Number(t.max_score ?? 0),
       correct: Number(t.correct_count ?? 0), wrong: Number(t.wrong_count ?? 0),
       skipped: Number(t.skipped_count ?? 0), date: t.created_at,
       percentage: Number(t.max_score) > 0 ? Math.round(Number(t.score) / Number(t.max_score) * 100) : null,
     }));
+    const tests = [...mockExams, ...legacyTests].sort((a, b) => Date.parse(String(b.date ?? "")) - Date.parse(String(a.date ?? ""))).slice(0, 30);
     const now = Date.now(), weekMs = 7 * 24 * 60 * 60 * 1000;
     const current = tests.filter(t => Date.parse(String(t.date)) >= now - weekMs);
     const previous = tests.filter(t => Date.parse(String(t.date)) >= now - 2 * weekMs && Date.parse(String(t.date)) < now - weekMs);
@@ -570,7 +598,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     return json({ progress: { tests, weekly: { tests: current.length, average: average(current),
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
       wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
-      weakTopics, unclassifiedMistakes,
+      weakTopics, unclassifiedMistakes, mockExams,
       lessons: {
         total: lessonTotalResult.count ?? 0,
         completed: lessonCompletedResult.count ?? 0,
