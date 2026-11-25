@@ -741,7 +741,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
   }
   history.push({ role: "user", content: body.message.trim() });
 
-  if (!GEMINI_KEY && !GROQ_KEY) return json({ error: "AI provider keys have not been configured by the administrator." }, 503, origin);
+  if (!GEMINI_KEY && !GROQ_KEY) return json({ code: "AI_PROVIDER_NOT_CONFIGURED", error: "AI provider setup is incomplete. The administrator must configure GEMINI_API_KEY or GROQ_API_KEY in Supabase Edge Function Secrets." }, 503, origin);
   const retrievedContext = await buildGroundedContext(body.message.trim());
 
 
