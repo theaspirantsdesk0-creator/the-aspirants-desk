@@ -108,8 +108,21 @@ function renderLessonHistory(){
   const stateTag=document.createElement("span");stateTag.className="tad-lesson-state tad-lesson-state-"+lesson.status;stateTag.textContent=lesson.status==="in_progress"?"In progress":lesson.status==="paused"?"Paused":"Completed";
   head.append(title,stateTag);
   const meta=document.createElement("small");meta.textContent=(lesson.track==="gs"?"General Studies":lesson.track==="literature"?"Literature optional":"UPSC optional")+" · "+lesson.level+" · Started "+(lesson.created_at?new Date(lesson.created_at).toLocaleDateString():"date unavailable");
+  const checkpoints=["concept","practice","recap"],labels={concept:"Understand the concept",practice:"Attempt practice",recap:"Complete a recap"};
+  const completed=Array.isArray(lesson.checkpoint_completed)?lesson.checkpoint_completed:[];
+  const progress=document.createElement("div");progress.className="tad-lesson-checkpoint-progress";
+  const progressLabel=document.createElement("span");progressLabel.textContent=completed.length+" of 3 learning checkpoints";
+  const progressTrack=document.createElement("span");progressTrack.className="tad-lesson-progress-track";progressTrack.setAttribute("role","progressbar");progressTrack.setAttribute("aria-valuemin","0");progressTrack.setAttribute("aria-valuemax","3");progressTrack.setAttribute("aria-valuenow",String(completed.length));progressTrack.setAttribute("aria-label","Lesson checkpoint progress");
+  const progressFill=document.createElement("i");progressFill.style.width=(completed.length/3*100)+"%";progressTrack.append(progressFill);progress.append(progressLabel,progressTrack);
+  const checkpointList=document.createElement("div");checkpointList.className="tad-lesson-checkpoints";
+  checkpoints.forEach(key=>{
+   const done=completed.includes(key),button=document.createElement("button");button.type="button";button.className="tad-lesson-checkpoint"+(done?" is-complete":"");button.textContent=(done?"✓ ":"○ ")+labels[key];button.setAttribute("aria-pressed",String(done));button.disabled=lesson.status==="completed";
+   button.addEventListener("click",()=>updateLessonCheckpoint(lesson.id,key,!done));checkpointList.append(button);
+  });
+  const recommendation=document.createElement("p");recommendation.className="tad-lesson-recommendation";
+  recommendation.textContent=completed.length===3?"Next: return to this topic in your revision queue for spaced recall.":!completed.includes("concept")?"Next priority: revisit the core explanation and make sure the main idea is clear.":!completed.includes("practice")?"Next priority: attempt a short set of practice questions without looking at the notes.":"Next priority: write a brief recap from memory and list any remaining doubts.";
   const actions=document.createElement("div");actions.className="tad-lesson-history-actions";
-  const resume=document.createElement("button");resume.type="button";resume.textContent="Continue with recap";resume.addEventListener("click",()=>sendMessage("Continue this saved lesson with a short, honest recap and the next small teaching step. Ask one understanding-check question and wait for my reply.",lesson.id));
+  const resume=document.createElement("button");resume.type="button";resume.textContent="Continue with recap";resume.addEventListener("click",()=>sendMessage("Continue this saved lesson with a short, honest recap. My recorded checkpoints: "+completed.join(", ")+". Recommend the next unfinished learning checkpoint, teach only one small step, ask one understanding-check question and wait for my reply.",lesson.id));
   actions.append(resume);
   const toggle=document.createElement("button");toggle.type="button";
   if(lesson.status==="completed"){toggle.textContent="Reopen";toggle.addEventListener("click",()=>updateLesson(lesson.id,"in_progress"));}
@@ -117,7 +130,7 @@ function renderLessonHistory(){
   else{toggle.textContent="Pause";toggle.addEventListener("click",()=>updateLesson(lesson.id,"paused"));}
   actions.append(toggle);
   if(lesson.status!=="completed"){const done=document.createElement("button");done.type="button";done.textContent="Complete + add revision task";done.addEventListener("click",()=>updateLesson(lesson.id,"completed"));actions.append(done);}
-  card.append(head,meta,actions);host.append(card);
+  card.append(head,meta,progress,checkpointList,recommendation,actions);host.append(card);
  });
 }
 async function loadLessons(){
@@ -135,6 +148,17 @@ async function updateLesson(id,nextStatus){
   await Promise.all([loadLessons(),loadState(),loadProgress()]);
   if(nextStatus==="completed")status.textContent="Lesson completed. A revision task is now in your Pending tasks list.";
  }catch(e){status.textContent=e.message||"Lesson progress could not be updated. Try again.";}
+}
+async function updateLessonCheckpoint(lessonId,checkpoint,completed){
+ try{
+  const r=await db.functions.invoke("ai-assistant",{body:{action:"update_lesson_checkpoint",lessonId,checkpoint,completed}});
+  if(r.error)throw r.error;
+  const updated=r.data?.lesson;
+  if(!updated)throw new Error("No saved checkpoint update was returned.");
+  lessonRows=lessonRows.map(item=>item.id===lessonId?{...item,...updated}:item);
+  renderLessonHistory();
+  status.textContent=completed?"Learning checkpoint saved and synced.":"Learning checkpoint reopened.";
+ }catch(e){status.textContent=e.message||"Checkpoint could not be saved. Please try again.";}
 }
 $("#tadRefreshLessons").addEventListener("click",()=>loadLessons().catch(()=>{status.textContent="Could not refresh lesson history."; }));
 async function loadState(){const r=await db.functions.invoke("ai-assistant",{body:{action:"get_state"}});if(r.error)throw r.error;state=r.data?.mentorState||empty();render();}
