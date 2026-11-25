@@ -3457,5 +3457,254 @@
         "revisionPrompt": "Prepare a checklist for evaluating a development project affecting a tribal community: participation, consent, land and resource rights, livelihood, culture, services, grievance process and long-term outcomes."
       }
     }
+  ],
+  "sociology": [
+    {
+      "paper": "I",
+      "unit": "Sociology — the Discipline",
+      "topics": [
+        "Modernity and social changes in Europe; emergence of Sociology",
+        "Scope of Sociology and comparison with other social sciences",
+        "Sociology and common sense"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Sociology as Science",
+      "topics": [
+        "Science, scientific method and critique",
+        "Major theoretical strands of research methodology",
+        "Positivism and its critique",
+        "Fact, value and objectivity",
+        "Non-positivist methodologies"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Research Methods and Analysis",
+      "topics": [
+        "Qualitative and quantitative methods",
+        "Techniques of data collection",
+        "Variables, sampling and hypothesis",
+        "Reliability and validity"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Sociological Thinkers",
+      "topics": [
+        "Karl Marx: historical materialism, mode of production, alienation and class struggle",
+        "Émile Durkheim: division of labour, social fact, suicide, religion and society",
+        "Max Weber: social action, ideal types, authority, bureaucracy and Protestant ethic",
+        "Talcott Parsons: social system and pattern variables",
+        "Robert K. Merton: manifest and latent functions, conformity, deviance and reference groups",
+        "George Herbert Mead: self and identity"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Stratification and Mobility",
+      "topics": [
+        "Equality, inequality, hierarchy, exclusion, poverty and deprivation",
+        "Structural-functionalist, Marxist and Weberian theories",
+        "Class, status groups, gender, ethnicity and race",
+        "Open and closed systems; types and sources of social mobility"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Works and Economic Life",
+      "topics": [
+        "Social organisation of work in slave, feudal and industrial-capitalist societies",
+        "Formal and informal organisation of work",
+        "Labour and society"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Politics and Society",
+      "topics": [
+        "Sociological theories of power",
+        "Power elite, bureaucracy, pressure groups and political parties",
+        "Nation, state, citizenship, democracy, civil society and ideology",
+        "Protest, agitation, social movements, collective action and revolution"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Religion and Society",
+      "topics": [
+        "Sociological theories of religion",
+        "Animism, monism, pluralism, sects and cults",
+        "Religion in modern society: science, secularisation, revivalism and fundamentalism"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Systems of Kinship",
+      "topics": [
+        "Family, household and marriage",
+        "Types and forms of family",
+        "Lineage and descent",
+        "Patriarchy and sexual division of labour",
+        "Contemporary trends"
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Social Change in Modern Society",
+      "topics": [
+        "Sociological theories of social change",
+        "Development and dependency",
+        "Agents of social change",
+        "Education, science, technology and social change"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Perspectives on the Study of Indian Society",
+      "topics": [
+        "Indology: G. S. Ghurye",
+        "Structural functionalism: M. N. Srinivas",
+        "Marxist sociology: A. R. Desai"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Impact of Colonial Rule on Indian Society",
+      "topics": [
+        "Social background of Indian nationalism",
+        "Modernisation of Indian tradition",
+        "Protests and movements during the colonial period",
+        "Social reforms"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Rural and Agrarian Social Structure",
+      "topics": [
+        "The idea of the Indian village and village studies",
+        "Agrarian social structure",
+        "Evolution of land-tenure systems and land reforms"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Caste System",
+      "topics": [
+        "G. S. Ghurye, M. N. Srinivas, Louis Dumont and André Béteille perspectives",
+        "Features of the caste system",
+        "Forms and perspectives on untouchability"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Tribal Communities in India",
+      "topics": [
+        "Definitional problems and geographical spread",
+        "Colonial policies and tribes",
+        "Issues of integration and autonomy"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Social Classes in India",
+      "topics": [
+        "Agrarian class structure",
+        "Industrial class structure",
+        "Middle classes in India"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Systems of Kinship in India",
+      "topics": [
+        "Lineage and descent in India",
+        "Types of kinship systems",
+        "Family and marriage in India",
+        "Household dimensions of family",
+        "Patriarchy, entitlements and sexual division of labour"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Religion and Society in India",
+      "topics": [
+        "Religious communities in India",
+        "Problems of religious minorities"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Visions of Social Change in India",
+      "topics": [
+        "Development planning and mixed economy",
+        "Constitution, law and social change",
+        "Education and social change"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Rural and Agrarian Transformation in India",
+      "topics": [
+        "Rural development programmes, Community Development Programme, cooperatives and poverty alleviation",
+        "Green Revolution and social change",
+        "Changing modes of production in Indian agriculture",
+        "Rural labour, bondage and migration"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Industrialisation and Urbanisation in India",
+      "topics": [
+        "Evolution of modern industry in India",
+        "Growth of urban settlements",
+        "Working class: structure, growth and class mobilisation",
+        "Informal sector and child labour",
+        "Slums and deprivation in urban areas"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Politics and Society in India",
+      "topics": [
+        "Nation, democracy and citizenship",
+        "Political parties, pressure groups and social and political elite",
+        "Regionalism and decentralisation of power",
+        "Secularisation"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Social Movements in Modern India",
+      "topics": [
+        "Peasant and farmers' movements",
+        "Women's movement",
+        "Backward classes and Dalit movements",
+        "Environmental movements",
+        "Ethnicity and identity movements"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Population Dynamics",
+      "topics": [
+        "Population size, growth, composition and distribution",
+        "Birth, death and migration",
+        "Population policy and family planning",
+        "Ageing, sex ratios, child and infant mortality, reproductive health"
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Challenges of Social Transformation",
+      "topics": [
+        "Development crisis: displacement, environmental problems and sustainability",
+        "Poverty, deprivation and inequalities",
+        "Violence against women and caste conflicts",
+        "Ethnic conflicts, communalism and religious revivalism",
+        "Illiteracy and disparities in education"
+      ]
+    }
   ]
 }
