@@ -37,7 +37,7 @@ async function boot(){
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});savedPracticeHistory=typeof window.TAD_GET_TOPIC_PRACTICE_HISTORY==="function"?window.TAD_GET_TOPIC_PRACTICE_HISTORY().slice(0,50):(Array.isArray(u.data?.payload?.practiceHistory)?u.data.payload.practiceHistory.slice(0,50):[]);
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();initTopicPractice();renderTopicPracticeHistory();await loadAnalytics();
+ await loadPapers();await loadRecent();renderCatalog();initTopicPractice();initMainsTopicStudio();renderTopicPracticeHistory();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -141,6 +141,76 @@ async function finishTopicPractice(timeExpired){
  const host=$("mockPracticeSession");if(host)host.innerHTML='<div class="mock-practice-result"><span class="eyebrow">PRACTICE COMPLETE</span><h3>'+accuracy+'% accuracy</h3><div class="mock-analytics-kpis"><div class="mock-analytics-kpi"><b>'+practiceCorrect+'</b><span>Correct</span></div><div class="mock-analytics-kpi"><b>'+practiceWrong+'</b><span>Incorrect</span></div><div class="mock-analytics-kpi"><b>'+skipped+'</b><span>Unanswered</span></div><div class="mock-analytics-kpi"><b>'+total+'</b><span>Total questions</span></div></div><p>'+(timeExpired?"Time expired. ":"")+(accuracy<70?"A revision reminder has been scheduled for tomorrow. Review the explanations and retry this section.":"Good work. Continue with another section or revisit this one later.")+'</p><p class="mock-save">'+(saved?"Saved on this device; cloud sync is attempted when connected.":"Result shown for this session; local saving was unavailable.")+'</p><button type="button" class="btn primary" id="mockPracticeAgain">Build another set</button></div>';
  practiceStatus("Completed "+(paper?.title||"practice")+" · "+practiceLabel(section));
  $("mockPracticeAgain")?.addEventListener("click",()=>{if(host)host.hidden=true;practiceStatus("Choose a question count and start another set.");});
+}
+
+
+let mainsStudioQuestions=[],mainsStudioQuestion=null,mainsStudioTimer=null,mainsStudioRemaining=0,mainsStudioRunning=false,mainsStudioSaveTimer=null,mainsStudioDirty=false;
+function mainsStudioStatus(message){const el=$("mainsStudioSaveStatus");if(el)el.textContent=message;}
+function mainsStudioWordCount(value){return String(value||"").trim().split(/\s+/).filter(Boolean).length;}
+function mainsStudioClock(){const el=$("mainsStudioClock");if(el)el.textContent=Math.floor(mainsStudioRemaining/60)+":"+String(mainsStudioRemaining%60).padStart(2,"0");}
+function mainsStudioDrafts(){return typeof window.TAD_GET_MAINS_DRAFTS==="function"?window.TAD_GET_MAINS_DRAFTS():[];}
+function mainsStudioDraftFor(id){return mainsStudioDrafts().find(x=>x.questionId===id);}
+function renderMainsStudioHistory(){
+ const host=$("mainsStudioHistory");if(!host)return;
+ const rows=mainsStudioDrafts().slice(0,5);
+ host.innerHTML=rows.length?'<h3>Recent saved drafts</h3>'+rows.map(x=>'<div class="mains-studio-history-row"><span>'+esc(x.paperTitle||"Mains paper")+' · Q'+esc(x.questionNo||"")+'</span><small>'+esc(x.updatedAt?new Date(x.updatedAt).toLocaleString():"Saved")+'</small></div>').join(""):'<p class="mock-save">Your saved answer drafts will appear here.</p>';
+}
+function mainsStudioRenderQuestion(){
+ const q=mainsStudioQuestion,panel=$("mainsStudioQuestionPanel");if(!q||!panel)return;
+ panel.hidden=false;
+ $("mainsStudioMeta").textContent=practiceLabel(q.section_key)+" · "+q.marks+" marks · "+q.word_limit+" words";
+ $("mainsStudioPrompt").textContent=q.prompt;
+ const rubric=Array.isArray(q.rubric)?q.rubric:[];
+ $("mainsStudioRubric").innerHTML=rubric.length?'<b>Question coverage checklist</b><ul>'+rubric.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':'<span>No rubric checklist was supplied for this question.</span>';
+ const draft=mainsStudioDraftFor(q.id);$("mainsStudioAnswer").value=draft?.answer||"";
+ $("mainsStudioLimit").textContent="Suggested limit: "+q.word_limit+" words";
+ $("mainsStudioWordCount").textContent=mainsStudioWordCount($("mainsStudioAnswer").value)+" words";
+ mainsStudioRemaining=Number(q.marks)===15?11*60:7*60;mainsStudioRunning=false;clearInterval(mainsStudioTimer);mainsStudioClock();
+ $("mainsStudioTimer").textContent="Start timer";$("mainsStudioEvaluationStatus").textContent="";
+ mainsStudioStatus(draft?"Restored your saved draft · "+new Date(draft.updatedAt).toLocaleString():"New answer · save is available while signed in.");
+}
+async function mainsStudioSaveDraft(){
+ if(!mainsStudioQuestion)return;
+ const answer=$("mainsStudioAnswer").value;
+ if(!user||typeof window.TAD_SAVE_MAINS_DRAFT!=="function"){mainsStudioStatus("Sign in to save this answer to your private account.");return false;}
+ const saved=await window.TAD_SAVE_MAINS_DRAFT({questionId:mainsStudioQuestion.id,paperId:mainsStudioQuestion.paper_id,paperTitle:$("mainsStudioPaper").selectedOptions[0]?.textContent||"",questionNo:mainsStudioQuestion.question_no,section:mainsStudioQuestion.section_key,answer,wordCount:mainsStudioWordCount(answer)});
+ mainsStudioDirty=!saved;
+ mainsStudioStatus(saved?"Draft saved to your account · "+new Date().toLocaleTimeString():"Cloud save failed. Your text remains in this session; retry saving.");
+ renderMainsStudioHistory();return saved;
+}
+function mainsStudioQueueSave(){
+ mainsStudioDirty=true;mainsStudioStatus("Unsaved changes · saving shortly…");
+ clearTimeout(mainsStudioSaveTimer);mainsStudioSaveTimer=setTimeout(()=>mainsStudioSaveDraft(),1100);
+}
+async function loadMainsStudioQuestions(){
+ const paperId=$("mainsStudioPaper")?.value,sel=$("mainsStudioQuestion");if(!sel)return;
+ sel.disabled=true;sel.innerHTML='<option value="">Loading questions…</option>';
+ if(!paperId){sel.innerHTML='<option value="">Choose a question</option>';return;}
+ try{
+  const {data,error}=await sb.from("mock_exam_questions").select("id,paper_id,section_key,question_no,question_type,prompt,marks,word_limit,rubric,sort_order").eq("paper_id",paperId).eq("is_active",true).eq("question_type","written").order("sort_order");
+  if(error)throw error;mainsStudioQuestions=data||[];
+  sel.innerHTML='<option value="">Choose a question</option>'+mainsStudioQuestions.map(q=>'<option value="'+esc(q.id)+'">'+esc("Q"+q.question_no+" · "+practiceLabel(q.section_key)+" · "+q.marks+" marks")+'</option>').join("");
+  sel.disabled=!mainsStudioQuestions.length;
+  if(!mainsStudioQuestions.length)mainsStudioStatus("No published written questions are available in this paper.");
+ }catch(e){sel.innerHTML='<option value="">Could not load questions</option>';mainsStudioStatus("Question loading failed: "+e.message);}
+}
+function initMainsTopicStudio(){
+ const paperSel=$("mainsStudioPaper"),questionSel=$("mainsStudioQuestion");if(!paperSel||!questionSel)return;
+ const available=papers.filter(p=>p.is_published&&p.paper_type==="mains"&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
+ const previous=paperSel.value;
+ paperSel.innerHTML='<option value="">Choose a published Mains paper</option>'+available.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.title)+'</option>').join("");
+ paperSel.value=available.some(p=>p.id===previous)?previous:"";
+ if(!paperSel.dataset.bound){
+  paperSel.dataset.bound="1";paperSel.addEventListener("change",loadMainsStudioQuestions);
+  questionSel.addEventListener("change",()=>{mainsStudioQuestion=mainsStudioQuestions.find(q=>q.id===questionSel.value)||null;if(mainsStudioQuestion)mainsStudioRenderQuestion();else $("mainsStudioQuestionPanel").hidden=true;});
+  $("mainsStudioAnswer").addEventListener("input",()=>{$("mainsStudioWordCount").textContent=mainsStudioWordCount($("mainsStudioAnswer").value)+" words";mainsStudioQueueSave();});
+  $("mainsStudioSave").addEventListener("click",()=>{clearTimeout(mainsStudioSaveTimer);mainsStudioSaveDraft();});
+  $("mainsStudioClear").addEventListener("click",async()=>{if(!mainsStudioQuestion)return;if(!confirm("Delete this saved draft?"))return;clearTimeout(mainsStudioSaveTimer);$("mainsStudioAnswer").value="";if(typeof window.TAD_DELETE_MAINS_DRAFT==="function")await window.TAD_DELETE_MAINS_DRAFT(mainsStudioQuestion.id);$("mainsStudioWordCount").textContent="0 words";mainsStudioStatus("Draft cleared.");renderMainsStudioHistory();});
+  $("mainsStudioTimer").addEventListener("click",()=>{if(mainsStudioRunning){clearInterval(mainsStudioTimer);mainsStudioRunning=false;$("mainsStudioTimer").textContent="Resume timer";return;}if(mainsStudioRemaining<=0)mainsStudioRemaining=Number(mainsStudioQuestion?.marks)===15?11*60:7*60;mainsStudioRunning=true;$("mainsStudioTimer").textContent="Pause timer";mainsStudioTimer=setInterval(()=>{mainsStudioRemaining=Math.max(0,mainsStudioRemaining-1);mainsStudioClock();if(mainsStudioRemaining===0){clearInterval(mainsStudioTimer);mainsStudioRunning=false;$("mainsStudioTimer").textContent="Restart timer";mainsStudioStatus("Time is up. Your answer remains editable and saved.");}},1000);});
+  $("mainsStudioEvaluate").addEventListener("click",async()=>{if(!mainsStudioQuestion)return;const answer=$("mainsStudioAnswer").value.trim();if(answer.length<40){$("mainsStudioEvaluationStatus").textContent="Write at least 40 characters before evaluation.";return;}await mainsStudioSaveDraft();answers[mainsStudioQuestion.id]=answer;const paper=papers.find(p=>p.id===$("mainsStudioPaper").value);const button=$("mainsStudioEvaluate");button.disabled=true;const old=button.textContent;button.textContent="Evaluating…";$("mainsStudioEvaluationStatus").textContent="Anbuu is preparing formative feedback…";await evaluateMockWrittenAnswer(mainsStudioQuestion,paper,button);if(button.disabled&&button.textContent==="Evaluation saved")$("mainsStudioEvaluationStatus").textContent="Evaluation saved to your answer history. See its result in your saved Mains evaluations.";else{$("mainsStudioEvaluationStatus").textContent="Evaluation did not complete. Check provider configuration and try again.";button.disabled=false;button.textContent=old;}});
+ }
+ if(paperSel.value)loadMainsStudioQuestions();
+ renderMainsStudioHistory();
 }
 
 async function loadAnalytics(){
@@ -479,6 +549,6 @@ $("mockPublishBtn")?.addEventListener("click",publishPaper);
 bindControls();
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&attempt)saveDraft();});
 window.addEventListener("pagehide",()=>{if(attempt){storeLocalDraft();saveDraft();}});
-window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();initTopicPractice();}catch(e){}});
+window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();initTopicPractice();initMainsTopicStudio();}catch(e){}});
 boot().catch(e=>status("Mock system error: "+e.message));
 })();
