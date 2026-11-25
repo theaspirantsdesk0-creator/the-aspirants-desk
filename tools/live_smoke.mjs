@@ -114,6 +114,26 @@ try {
       pyqAudit.invalidQuestions) {
     throw new Error('Published PYQ provenance audit failed: ' + JSON.stringify(pyqAudit));
   }
+  // Verify that the official PDF catalogue filters independently of question records.
+  const verifiedDocCards = page.locator('#verifiedPyqDocuments .verified-doc-card');
+  await page.locator('#verifiedPyqDocuments').waitFor({ state: 'visible' });
+  await page.waitForFunction(() => document.querySelectorAll('#verifiedPyqDocuments .verified-doc-card').length > 0, { timeout: 15000 });
+  const allDocumentCards = await verifiedDocCards.count();
+  if (allDocumentCards !== pyqAudit.manifestCount) {
+    throw new Error('Verified PDF catalogue UI count does not match its manifest: ' + allDocumentCards + ' vs ' + pyqAudit.manifestCount);
+  }
+  await page.locator('#verifiedPyqYear').selectOption('2021');
+  if (await verifiedDocCards.count() !== 1) throw new Error('Verified PDF year filter did not isolate the 2021 document');
+  await page.locator('#verifiedPyqYear').selectOption('ALL');
+  await page.locator('#verifiedPyqStage').selectOption('Prelims');
+  const prelimsDocumentCount = await verifiedDocCards.count();
+  if (prelimsDocumentCount < 1 || prelimsDocumentCount >= allDocumentCards) throw new Error('Verified PDF stage filter returned an unexpected count: ' + prelimsDocumentCount);
+  await page.locator('#verifiedPyqStage').selectOption('ALL');
+  await page.locator('#verifiedPyqSearch').fill('Anthropology');
+  const anthropologyDocumentCount = await verifiedDocCards.count();
+  if (anthropologyDocumentCount < 1 || anthropologyDocumentCount >= allDocumentCards) throw new Error('Verified PDF search filter returned an unexpected count: ' + anthropologyDocumentCount);
+  await page.locator('#verifiedPyqSearch').fill('');
+  if (await verifiedDocCards.count() !== allDocumentCards) throw new Error('Clearing the verified PDF search did not restore all documents');
   const mentorNav = page.locator('a[data-nav="mentor"]');
   const mentorSection = page.locator('#mentor');
   if (await mentorNav.count() !== 1 || !(await mentorNav.isHidden())) {
