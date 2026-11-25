@@ -1,12 +1,12 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v37-concept-map';
+var VERSION = 'desk-v38-press-intelligence';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
   'assets/css/ai-desk.css', 'assets/css/next-level-design.css', 'assets/css/courses.css',
-  'assets/css/course-studio.css', 'assets/css/design-system.css', 'assets/css/dashboard-editorial.css', 'assets/css/concept-map.css',
+  'assets/css/course-studio.css', 'assets/css/design-system.css', 'assets/css/dashboard-editorial.css', 'assets/css/concept-map.css', 'assets/css/press-intelligence.css',
   'assets/css/pyq-inventory.css', 'assets/css/mains-evaluation.css',
-  'assets/js/pyq-inventory.js', 'assets/js/concept-map.js', 'assets/js/dashboard.js',
+  'assets/js/pyq-inventory.js', 'assets/js/concept-map.js', 'assets/js/press-intelligence.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
   'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/optional-guided-content.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/js/mock-exams.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'assets/js/mains-evaluation.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json'
 ];
