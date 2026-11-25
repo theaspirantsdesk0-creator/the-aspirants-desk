@@ -3979,6 +3979,127 @@
         "Communication and morale",
         "Motivation: content, process and contemporary theories",
         "Traditional and modern theories of leadership"
+      ],
+      "notes": "Administrative behaviour studies how public servants and groups make decisions and work together. It links formal rules with communication, motivation, morale and leadership.",
+      "lesson": {
+        "objective": "Understand decision-making, communication, motivation and leadership in public organisations.",
+        "sections": [
+          {
+            "heading": "Decision-making",
+            "explanation": [
+              "Decision-making identifies a problem, develops alternatives, considers consequences and selects a course of action. Herbert Simon placed decision-making at the centre of administration.",
+              "The comprehensive rational model assumes clear goals and extensive information. Bounded rationality recognises limits of time, information and human capacity. Incrementalism explains decisions as gradual adjustments."
+            ],
+            "example": "A district team compares feasible service-delivery changes within its available staff, time and budget."
+          },
+          {
+            "heading": "Communication and morale",
+            "explanation": [
+              "Communication transfers instructions, information, feedback and shared meaning. It can flow downward, upward, horizontally or through networks. Clarity, suitable channels and feedback improve coordination.",
+              "Barriers include hierarchy, jargon, information overload and fear of speaking up. Morale reflects employees' confidence and sense of belonging; fairness, recognition, working conditions and trust can affect it."
+            ],
+            "example": "A frontline feedback mechanism may reveal a service bottleneck that senior-level reports miss."
+          },
+          {
+            "heading": "Motivation and leadership",
+            "explanation": [
+              "Maslow discussed a hierarchy of needs; Herzberg distinguished hygiene factors from motivators; McGregor contrasted Theory X and Theory Y; Vroom examined expectancy, instrumentality and the value of outcomes.",
+              "Leadership theories include trait, behavioural, situational, transactional and transformational approaches. Public leadership must also consider ethics, accountability and coordination."
+            ],
+            "example": "A supervisor can combine clear standards with participation, recognition and staff development."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Bounded rationality",
+            "meaning": "Decision-making within limits of information, time and cognitive capacity."
+          },
+          {
+            "term": "Morale",
+            "meaning": "The confidence, satisfaction and shared spirit of people in an organisation."
+          },
+          {
+            "term": "Expectancy theory",
+            "meaning": "A motivation approach linking effort, expected performance and valued outcomes."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Herbert Simon",
+            "idea": "Explained bounded rationality and the central role of decision-making."
+          },
+          {
+            "scholar": "Abraham Maslow",
+            "idea": "Proposed a hierarchy of needs as a framework for understanding motivation."
+          },
+          {
+            "scholar": "Frederick Herzberg",
+            "idea": "Distinguished hygiene factors from motivators."
+          },
+          {
+            "scholar": "Douglas McGregor",
+            "idea": "Used Theory X and Theory Y to describe contrasting managerial assumptions."
+          }
+        ],
+        "answerPractice": "Explain the relevance and limits of bounded rationality in public-sector decision-making, using an administrative example.",
+        "revisionPrompt": "Compare two motivation theories and identify how a public manager could apply them without treating them as universal rules."
+      },
+      "test": [
+        {
+          "q": "Bounded rationality recognises that decision-makers:",
+          "o": [
+            "Always have complete information",
+            "Face limits of information, time and capacity",
+            "Never compare alternatives",
+            "Decide only through voting"
+          ],
+          "a": 1,
+          "w": "Bounded rationality explains decisions under real-world limits."
+        },
+        {
+          "q": "The incremental model emphasises:",
+          "o": [
+            "Small adjustments over time",
+            "One perfect calculation",
+            "Random action without goals",
+            "Only judicial review"
+          ],
+          "a": 0,
+          "w": "Incrementalism describes gradual adjustments rather than comprehensive one-time decisions."
+        },
+        {
+          "q": "Communication from staff to senior officers is:",
+          "o": [
+            "Downward",
+            "Upward",
+            "External only",
+            "Informal only"
+          ],
+          "a": 1,
+          "w": "Upward communication conveys feedback and information to higher levels."
+        },
+        {
+          "q": "Herzberg distinguished:",
+          "o": [
+            "Hygiene factors and motivators",
+            "State and civil society",
+            "Input and output",
+            "Rights and duties"
+          ],
+          "a": 0,
+          "w": "Herzberg's two-factor theory separates factors preventing dissatisfaction from motivators."
+        },
+        {
+          "q": "McGregor's Theory Y generally assumes people can:",
+          "o": [
+            "Avoid all responsibility",
+            "Exercise self-direction under suitable conditions",
+            "Work only under punishment",
+            "Never contribute ideas"
+          ],
+          "a": 1,
+          "w": "Theory Y reflects a more participative view of motivation and responsibility."
+        }
       ]
     },
     {
@@ -3990,6 +4111,123 @@
         "Ministries, departments, corporations and companies",
         "Boards, commissions, ad hoc and advisory bodies",
         "Headquarters-field relationships, regulatory authorities and public-private partnerships"
+      ],
+      "notes": "Organisation theory studies how public institutions are structured, coordinated and adapted to their environments. It examines formal authority, informal relationships and the design of administrative bodies.",
+      "lesson": {
+        "objective": "Understand systems theory, contingency theory and common forms of public organisation.",
+        "sections": [
+          {
+            "heading": "Systems and contingency theories",
+            "explanation": [
+              "Systems theory views organisations as open systems receiving inputs, transforming them through processes, producing outputs and responding to feedback from their environment.",
+              "Contingency theory argues there is no single best structure for every situation. Design should reflect tasks, technology, size, uncertainty and the external environment."
+            ],
+            "example": "A disaster-response unit may need flexible coordination, while a records office may rely on standardised processes."
+          },
+          {
+            "heading": "Organisational structures",
+            "explanation": [
+              "Line, line-and-staff, functional, divisional and matrix structures distribute authority and expertise differently. Formal structure defines official roles; informal organisation consists of relationships and networks created through everyday interaction.",
+              "Specialised units need coordination to avoid duplication, gaps and conflicting instructions."
+            ],
+            "example": "A cross-department team can coordinate health, education and local-government responsibilities for one programme."
+          },
+          {
+            "heading": "Public organisations and networks",
+            "explanation": [
+              "Government operates through ministries, departments, public corporations, companies, boards, commissions and advisory bodies. Their legal basis, autonomy, functions and accountability differ.",
+              "Headquarters-field relationships, regulators and public-private partnerships raise questions about delegation, oversight and the public interest."
+            ],
+            "example": "A regulator may require technical independence, but its powers and decisions remain subject to law and accountability."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Open system",
+            "meaning": "An organisation interacting with its environment through inputs, outputs and feedback."
+          },
+          {
+            "term": "Contingency theory",
+            "meaning": "The view that organisational design should fit the situation rather than follow one universal model."
+          },
+          {
+            "term": "Matrix structure",
+            "meaning": "An arrangement combining functional and project-based coordination."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Daniel Katz and Robert Kahn",
+            "idea": "Developed influential open-systems analysis of organisations."
+          },
+          {
+            "scholar": "Joan Woodward",
+            "idea": "Linked organisational structure with technology and context."
+          },
+          {
+            "scholar": "Tom Burns and G. M. Stalker",
+            "idea": "Compared mechanistic and organic organisational forms in relation to environmental change."
+          }
+        ],
+        "answerPractice": "Explain how systems and contingency theories help design public organisations. Illustrate with a public-sector example.",
+        "revisionPrompt": "Draw an input-process-output-feedback diagram for a government department and identify two coordination challenges."
+      },
+      "test": [
+        {
+          "q": "Systems theory primarily views an organisation as:",
+          "o": [
+            "A closed unit unaffected by its environment",
+            "An open system interacting with its environment",
+            "Unrelated individuals",
+            "A legal document only"
+          ],
+          "a": 1,
+          "w": "Systems theory highlights inputs, processes, outputs and feedback."
+        },
+        {
+          "q": "Contingency theory argues that:",
+          "o": [
+            "One structure fits every organisation",
+            "Design should fit context and tasks",
+            "Formal structures are never needed",
+            "Technology has no effect"
+          ],
+          "a": 1,
+          "w": "Contingency theory rejects a universal best structure."
+        },
+        {
+          "q": "An informal organisation refers mainly to:",
+          "o": [
+            "Relationships and networks emerging through interaction",
+            "The official chart only",
+            "The law creating a department",
+            "The annual budget"
+          ],
+          "a": 0,
+          "w": "Informal organisation consists of social relationships not fully captured by formal charts."
+        },
+        {
+          "q": "A matrix structure often involves:",
+          "o": [
+            "A single reporting line in all cases",
+            "Functional and project dimensions",
+            "No specialised roles",
+            "No accountability"
+          ],
+          "a": 1,
+          "w": "Matrix arrangements combine functional expertise with project coordination."
+        },
+        {
+          "q": "A regulator's operational independence should be balanced by:",
+          "o": [
+            "No oversight",
+            "Lawful powers, transparency and review",
+            "Exemption from law",
+            "Private control"
+          ],
+          "a": 1,
+          "w": "Independence must be balanced with legal accountability and public oversight."
+        }
       ]
     },
     {
@@ -4503,6 +4741,131 @@
         "John Stuart Mill",
         "Karl Marx and Antonio Gramsci",
         "Hannah Arendt"
+      ],
+      "notes": "Western political thought contains different arguments about justice, authority, freedom and political order. Thinkers should be compared through their historical settings and the questions they sought to answer.",
+      "lesson": {
+        "objective": "Compare major Western political thinkers and the central questions in their political philosophy.",
+        "sections": [
+          {
+            "heading": "Ancient political thought",
+            "explanation": [
+              "Plato examined justice and the proper ordering of the city, associating political rule with knowledge and philosophical understanding. His ideal state raises questions about expertise and participation.",
+              "Aristotle compared constitutions and described humans as political beings. He connected political community with the good life and examined different forms of rule."
+            ],
+            "example": "Comparing Plato and Aristotle can illuminate the relationship between political knowledge, citizenship and institutions."
+          },
+          {
+            "heading": "Early modern state and liberalism",
+            "explanation": [
+              "Machiavelli analysed political power and statecraft amid instability, raising questions about political necessity and ethics. Hobbes defended a strong sovereign as a response to insecurity in the state of nature.",
+              "Locke argued for natural rights, consent and limited government, providing an influential foundation for liberal constitutional thought."
+            ],
+            "example": "Debates about emergency powers can be read alongside Hobbes's concern for security and Locke's concern for rights and limited authority."
+          },
+          {
+            "heading": "Modern liberty, class and totalitarianism",
+            "explanation": [
+              "J. S. Mill defended individual liberty and freedom of discussion, allowing limits on conduct that harms others. Marx analysed class relations and exploitation; Gramsci examined hegemony and how consent helps sustain power.",
+              "Hannah Arendt studied totalitarianism, political action and the public realm. Her work highlights plurality and participation as important dimensions of political life."
+            ],
+            "example": "Debates about speech can connect Mill's liberty principle with questions about power and public participation."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "State of nature",
+            "meaning": "A hypothetical condition used by social-contract thinkers to examine political authority."
+          },
+          {
+            "term": "Hegemony",
+            "meaning": "Leadership or domination sustained partly through consent, ideas and institutions."
+          },
+          {
+            "term": "Harm principle",
+            "meaning": "Mill's principle that coercive interference with liberty needs a harm-to-others justification."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Plato",
+            "idea": "Examined justice and the ideal political order in The Republic."
+          },
+          {
+            "scholar": "Aristotle",
+            "idea": "Compared constitutions and understood humans as political beings."
+          },
+          {
+            "scholar": "John Locke",
+            "idea": "Defended natural rights, consent and limited government."
+          },
+          {
+            "scholar": "Antonio Gramsci",
+            "idea": "Analysed hegemony and the role of consent in political domination."
+          },
+          {
+            "scholar": "Hannah Arendt",
+            "idea": "Studied totalitarianism, political action and plurality."
+          }
+        ],
+        "answerPractice": "Compare Hobbes and Locke on the social contract, the purpose of government and limits on political authority.",
+        "revisionPrompt": "Prepare a thinker matrix for Plato, Aristotle, Machiavelli, Hobbes, Locke, Mill, Marx, Gramsci and Arendt."
+      },
+      "test": [
+        {
+          "q": "Aristotle described humans as:",
+          "o": [
+            "Economic animals only",
+            "Political animals",
+            "Isolated individuals by nature",
+            "Subjects without civic roles"
+          ],
+          "a": 1,
+          "w": "Aristotle linked human life with participation in political community."
+        },
+        {
+          "q": "Hobbes justified a strong sovereign mainly to address:",
+          "o": [
+            "Insecurity and conflict",
+            "Unlimited private property",
+            "Abolition of law",
+            "Industrial alienation"
+          ],
+          "a": 0,
+          "w": "Hobbes argued sovereign authority could provide security."
+        },
+        {
+          "q": "Locke's political thought is associated with:",
+          "o": [
+            "Natural rights and consent",
+            "Philosopher kings",
+            "Abolition of all government",
+            "Historical materialism"
+          ],
+          "a": 0,
+          "w": "Locke defended natural rights, consent and limited government."
+        },
+        {
+          "q": "Mill's harm principle concerns:",
+          "o": [
+            "Justifying limits on individual liberty",
+            "Creating a sovereign state",
+            "Abolishing public debate",
+            "Class struggle"
+          ],
+          "a": 0,
+          "w": "Mill argued coercive interference requires a harm-to-others justification."
+        },
+        {
+          "q": "Gramsci's hegemony highlights:",
+          "o": [
+            "Consent and cultural leadership in sustaining power",
+            "Only military conquest",
+            "Absence of ideology",
+            "Separation of economy from society"
+          ],
+          "a": 0,
+          "w": "Gramsci examined how power can be sustained through consent, ideas and institutions."
+        }
       ]
     },
     {
@@ -4513,6 +4876,127 @@
         "Militant and revolutionary movements",
         "Peasant and workers’ movements",
         "Liberal, socialist, Marxist, radical humanist and Dalit perspectives on nationalism"
+      ],
+      "notes": "Indian nationalism developed through multiple strategies and social movements. Its history includes constitutional politics, mass mobilisation, revolutionary activity, labour and peasant movements, and competing ideas about freedom.",
+      "lesson": {
+        "objective": "Understand the plurality of strategies and ideological perspectives within Indian nationalism.",
+        "sections": [
+          {
+            "heading": "Constitutional and mass strategies",
+            "explanation": [
+              "Constitutional nationalists used petitions, legislative participation, public debate and institutional reform to challenge colonial rule. These methods reflected different assessments of political opportunity.",
+              "Gandhian mass politics expanded the scale of mobilisation through satyagraha, non-cooperation and civil disobedience. These methods linked resistance with public participation and non-violent discipline."
+            ],
+            "example": "Non-Cooperation and Civil Disobedience illustrate mobilisation beyond formal legislative forums."
+          },
+          {
+            "heading": "Revolutionary, peasant and worker movements",
+            "explanation": [
+              "Revolutionary groups adopted different forms of resistance and drew on varied ideological influences. They should be studied in their specific regional and political contexts.",
+              "Peasant and worker movements brought agrarian distress, labour conditions, wages, land relations and social justice into nationalist politics. Anti-colonial mobilisation was not limited to elite organisations."
+            ],
+            "example": "An agrarian movement might combine opposition to colonial policy with demands about rent, debt or land rights."
+          },
+          {
+            "heading": "Ideological interpretations",
+            "explanation": [
+              "Liberal, socialist, Marxist, radical humanist and Dalit perspectives interpreted colonialism and political freedom differently. Some emphasised constitutional rights and representation; others foregrounded class relations, social equality or caste transformation.",
+              "A strong answer recognises both shared opposition to colonial rule and disagreements about the social content of independence."
+            ],
+            "example": "Different perspectives reveal why political independence and social emancipation were connected but not always understood in the same way."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Satyagraha",
+            "meaning": "A method of non-violent resistance grounded in truth and disciplined action."
+          },
+          {
+            "term": "Non-cooperation",
+            "meaning": "Withdrawal of support from institutions or practices regarded as unjust."
+          },
+          {
+            "term": "Radical Humanism",
+            "meaning": "M. N. Roy's later philosophical orientation centred on reason, freedom and human agency."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "M. K. Gandhi",
+            "idea": "Placed satyagraha, non-violence and constructive work at the centre of mass politics."
+          },
+          {
+            "scholar": "Jawaharlal Nehru",
+            "idea": "Linked anti-colonial nationalism with secularism, democracy and planned development."
+          },
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Insisted that political freedom must be connected with social democracy and annihilation of caste."
+          },
+          {
+            "scholar": "M. N. Roy",
+            "idea": "Later developed a Radical Humanist account centred on reason and freedom."
+          }
+        ],
+        "answerPractice": "Discuss the different strategies used in the Indian national movement. Explain how mass mobilisation widened anti-colonial politics.",
+        "revisionPrompt": "Compare constitutionalist, Gandhian, revolutionary, socialist and Dalit perspectives on the meaning of national freedom."
+      },
+      "test": [
+        {
+          "q": "Gandhian mass politics is associated with:",
+          "o": [
+            "Satyagraha and non-cooperation",
+            "Scientific Management",
+            "Absolute monarchy",
+            "Politics-administration dichotomy"
+          ],
+          "a": 0,
+          "w": "Gandhi used satyagraha, non-cooperation and civil disobedience as methods of mass resistance."
+        },
+        {
+          "q": "Constitutional nationalists commonly used:",
+          "o": [
+            "Petitions, public debate and legislative participation",
+            "Only armed rebellion",
+            "Only secret societies",
+            "Withdrawal from every public institution"
+          ],
+          "a": 0,
+          "w": "Constitutional methods included petitions, debate and institutional participation."
+        },
+        {
+          "q": "Peasant and worker movements brought which concerns into nationalist politics?",
+          "o": [
+            "Land, rent, wages and labour conditions",
+            "Diplomatic immunity",
+            "Judicial appointments only",
+            "Foreign tariffs only"
+          ],
+          "a": 0,
+          "w": "Peasant and worker struggles highlighted agrarian and labour questions."
+        },
+        {
+          "q": "A Dalit perspective on national freedom particularly stresses:",
+          "o": [
+            "Social equality and annihilation of caste",
+            "Restoration of hereditary hierarchy",
+            "Exclusion from representation",
+            "Absence of safeguards"
+          ],
+          "a": 0,
+          "w": "Ambedkarite perspectives link freedom with social democracy and caste annihilation."
+        },
+        {
+          "q": "A balanced study of Indian nationalism should recognise:",
+          "o": [
+            "Only one uniform strategy",
+            "Shared anti-colonial aims alongside ideological differences",
+            "No role for social movements",
+            "No social meaning of independence"
+          ],
+          "a": 1,
+          "w": "Indian nationalism involved varied strategies and perspectives."
+        }
       ]
     },
     {
