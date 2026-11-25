@@ -1,0 +1,78 @@
+# Full-length mock examinations
+
+The Mock Examinations workspace is available from the learner sidebar. It uses the existing Supabase sign-in and role model.
+
+## Paper catalogue
+
+The workspace reserves these full-length UPSC formats:
+
+| Paper | Questions | Duration | Marks |
+|---|---:|---:|---:|
+| Prelims GS Paper I | 100 | 120 minutes | 200 |
+| Prelims CSAT Paper II | 80 | 120 minutes | 200 |
+| Mains GS I, II, III and IV | 20 each | 180 minutes | 250 each |
+| Anthropology Paper I and II | 20 each | 180 minutes | 250 each |
+
+A paper is not available to learners until an owner/admin imports and publishes its question set. This prevents placeholder or unverified questions from being presented as a finished mock exam.
+
+## Owner import format
+
+Open **Owner · Mock paper publishing** and paste a JSON object:
+
+```json
+{
+  "code": "UPSC-PRELIMS-GS1",
+  "title": "UPSC Prelims GS Paper I · Mock 01",
+  "exam_stage": "prelims",
+  "paper_type": "GS Paper I",
+  "duration_minutes": 120,
+  "total_marks": 200,
+  "optional_subject": null,
+  "sections": [
+    { "key": "history", "title": "History", "duration_minutes": 20 }
+  ],
+  "questions": [
+    {
+      "section_key": "history",
+      "question_no": 1,
+      "question_type": "mcq",
+      "prompt": "Insert a reviewed question here.",
+      "options": [
+        { "key": "A", "text": "Option A" },
+        { "key": "B", "text": "Option B" },
+        { "key": "C", "text": "Option C" },
+        { "key": "D", "text": "Option D" }
+      ],
+      "correct_answer": "A",
+      "explanation": "Explain why A is correct.",
+      "marks": 2,
+      "negative_marks": 0.66
+    }
+  ]
+}
+```
+
+For Mains, use `"question_type": "written"`, provide a `word_limit`, `marks`, and a `rubric` array. A `model_answer` may be included for later review. Written answers are stored, but are not automatically graded.
+
+For Anthropology papers set `optional_subject` to `"Anthropology"`. Learner visibility follows the optional subject saved in their profile data. Do not mark a paper published until its question count matches the full-length format and every MCQ has a non-empty answer key.
+
+## Learner features
+
+- One paper countdown, with automatic submission at expiry.
+- Question palette, previous/next navigation, answer state and review flags.
+- Autosave to the learner's Supabase attempt and a local recovery draft.
+- Resume unfinished attempts after signing in again.
+- Objective scoring is calculated server-side. Answer keys are stored in a separate admin-only table and are not returned with learner questions.
+- Section-wise objective score, correct, incorrect and unanswered counts.
+- Written responses are preserved for rubric-based review; no automatic marks are claimed.
+
+## Data and access control
+
+- `mock_exam_papers`: paper metadata and publication state.
+- `mock_exam_questions`: learner-visible prompts/options and owner-managed question content.
+- `mock_exam_answer_keys`: owner/admin-only answer keys, explanations and model answers.
+- `mock_exam_attempts`: per-user saved answers, timer expiry, review flags and final analytics.
+- RLS restricts attempts to their owner (plus owner/admin oversight). Only published papers can be attempted.
+- `public.submit_mock_exam` checks the authenticated user's attempt and calculates objective marks server-side.
+
+The first release includes the exam engine and secure publishing path. Full verified question banks must be authored/imported before the catalogue can offer live examinations. Section metadata is retained for section-level grouping and reporting; independent section countdown/locking is a follow-up enhancement.
