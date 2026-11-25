@@ -40,8 +40,9 @@ function activeUnits(){
  if(!catalogue)return [];
  const subject=current().subject||"Anthropology";
  if(subject==="Anthropology")return catalogue.anthropology||[];
+ const official=catalogue[subject.toLowerCase()];
  const saved=current().customUnits&&current().customUnits[subject];
- return Array.isArray(saved)?saved:[];
+ return [...(Array.isArray(official)?official:[]),...(Array.isArray(saved)?saved.map((u,i)=>({...u,custom:true,customIndex:i})):[])];
 }
 function render(){
  if(activeQuiz&&activeQuiz.timerId)clearInterval(activeQuiz.timerId);
@@ -100,7 +101,7 @@ function render(){
  <div id="optionalQuizHost" class="optional-quiz-host" aria-live="polite"></div>
  <p class="muted optional-disclaimer">These are beginner study notes and original unit checks, not official UPSC answers or verified previous-year questions. Cross-check facts with standard books and the official syllabus. The selected language setting is a learning preference; the current lesson text is primarily in English, so a full Tamil translation is not yet available.</p>
  `:`
- <div class="optional-source-note"><b>Official syllabus first:</b> Add exact unit headings for ${esc(subject)} from the official notification. This workspace does not invent syllabus topics. <a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open official UPSC 2026 notification (PDF)</a>.</div>
+ <div class="optional-source-note"><b>Official syllabus first:</b> Official syllabus headings are preloaded where available. Add further exact headings from the notification as needed; this workspace does not invent syllabus topics. <a href="${SOURCE}" target="_blank" rel="noopener noreferrer">Open official UPSC 2026 notification (PDF)</a>.</div>
  <section class="optional-builder card"><h3>Build your ${esc(subject)} syllabus tracker</h3><p class="muted">Add units from the official syllabus. Each unit gets notes, completion status, learning stage and spaced revision. Entries save to your study account.</p>
  <form id="optionalCustomUnitForm" class="optional-custom-form"><label>Paper <select id="optionalCustomPaper"><option value="I">Paper I</option><option value="II">Paper II</option></select></label><label>Unit / syllabus heading <input id="optionalCustomTitle" required maxlength="140" placeholder="Enter exact syllabus heading"></label><label>Topics or sub-headings <textarea id="optionalCustomTopics" rows="3" placeholder="Add sub-topics, one per line"></textarea></label><button class="btn primary" type="submit">Add syllabus unit</button></form></section>
  <div class="optional-unit-list">${filtered.map(u=>`
@@ -108,7 +109,7 @@ function render(){
  <div class="optional-unit-tools"><label>Learning stage<select data-unit-mastery="${u.index}"><option value="not_started">Not started</option><option value="learning">Learning</option><option value="practised">Practised</option><option value="revision_due">Revision due</option><option value="mastered">Mastered</option></select></label></div>
  ${u.topics&&u.topics.length?'<ul>'+u.topics.map(t=>'<li>'+esc(t)+'</li>').join("")+'</ul>':""}
  <div class="optional-custom-notes"><label>Your study notes<textarea rows="5" data-custom-notes="${u.index}" placeholder="Definitions, scholars, examples and answer points…">${esc(u.notes||"")}</textarea></label><button class="btn" type="button" data-save-custom-notes="${u.index}">Save notes</button></div>
- <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">Schedule revision</button><button class="btn" type="button" data-delete-custom-unit="${u.index}">Remove unit</button></div></article>`).join("")}</div>
+ <div class="optional-unit-revision"><button class="btn" type="button" data-schedule-review="${u.index}">Schedule revision</button>${u.custom?'<button class="btn" type="button" data-delete-custom-unit="'+u.customIndex+'">Remove unit</button>':""}</div></article>`).join("")}</div>
  <p class="muted optional-disclaimer">This is a learner-built tracker, not a completed subject-specific lesson bank. Verify headings and notes against the official syllabus and standard sources. Guided lessons, quizzes and model answers will be added in verified batches.</p>
  `}
  `;
