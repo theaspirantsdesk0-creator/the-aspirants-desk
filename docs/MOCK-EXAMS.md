@@ -124,3 +124,8 @@ The full-length Prelims GS Paper I is also published as a 100-question, 120-minu
 ## Learner mock performance analytics
 
 The mock examination workspace includes a private performance panel for the signed-in account. It summarises completed and expired attempts, separates Prelims, Mains GS and Anthropology optional papers, reports average objective accuracy only where MCQ analytics exist, and identifies weaker objective sections from recorded correct/wrong counts. Written responses are explicitly labelled as requiring separate rubric-based review; they are not treated as zero-scored answers or automatically graded. The report reads only attempts filtered by the current authenticated user and can be refreshed. A learner-facing end-to-end test with real submitted attempts is still required.
+
+
+## Anbuu evaluation for submitted Mains mock answers
+
+After submitting a written mock examination, learners can request a separate Anbuu evaluation for each answered written question. The workflow sends the question, response, paper/section context, marks and word limit to the existing authenticated Mains evaluation action, then saves the returned rubric feedback to that learner's private answer-evaluation history. Supported full-length Mains formats are 10 marks/150 words and 15 marks/250 words. Empty or very short answers are not sent. Each evaluation uses the learner's daily AI allowance and requires the site AI provider to be configured. Estimates are formative learning feedback, not official UPSC marks; objective mock scores remain separate. A real learner attempt and provider-backed evaluation are still required for end-to-end validation.
