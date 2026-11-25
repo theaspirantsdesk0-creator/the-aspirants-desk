@@ -2636,18 +2636,56 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       clearInterval(mainsInterval); mainsInterval = null;
       mainsTargetWords = Number(btn.dataset.words);
       mainsSeconds = Number(btn.dataset.min) * 60;
+      $("mainsStartTimerBtn").textContent = "▶ Start Exam Timer";
+      $("mainsStartTimerBtn").disabled = false;
       renderMainsClock();
       $("mainsBox").dispatchEvent(new Event("input"));
     });
   });
 
   $("mainsStartTimerBtn").addEventListener("click", () => {
+    if (mainsSeconds <= 0) return;
     if (mainsInterval) { clearInterval(mainsInterval); mainsInterval = null; $("mainsStartTimerBtn").textContent = "▶ Resume Timer"; return; }
     $("mainsStartTimerBtn").textContent = "⏸ Pause Timer";
     mainsInterval = setInterval(() => {
       if (mainsSeconds > 0) { mainsSeconds--; renderMainsClock(); }
-      else { clearInterval(mainsInterval); mainsInterval = null; toast("Time up! Put your pen down."); }
+      if (mainsSeconds <= 0) {
+        clearInterval(mainsInterval); mainsInterval = null;
+        $("mainsStartTimerBtn").textContent = "✓ Time Complete";
+        $("mainsStartTimerBtn").disabled = true;
+        toast("Time up! Your answer remains available to save.");
+      }
     }, 1000);
+  });
+
+  const defaultMainsPaper = $("mainsQuestionPaper").textContent;
+  const defaultMainsQuestion = $("mainsQuestionText").textContent;
+  const defaultMainsFramework = $("mainsFrameworkBox").innerHTML;
+  window.TAD_ACTIVE_MAINS_PROMPT = null;
+  function setMainsPrompt(detail) {
+    if (detail && detail.prompt) {
+      window.TAD_ACTIVE_MAINS_PROMPT = {
+        subject: String(detail.subject || "Optional"),
+        unit: String(detail.unit || ""),
+        prompt: String(detail.prompt)
+      };
+      $("mainsQuestionPaper").textContent = [window.TAD_ACTIVE_MAINS_PROMPT.subject, window.TAD_ACTIVE_MAINS_PROMPT.unit].filter(Boolean).join(" · ");
+      $("mainsQuestionText").textContent = "Q. " + window.TAD_ACTIVE_MAINS_PROMPT.prompt;
+      $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.</p>";
+      $("mainsBox").placeholder = "Write your answer to the optional-subject question shown above…";
+    } else {
+      window.TAD_ACTIVE_MAINS_PROMPT = null;
+      $("mainsQuestionPaper").textContent = defaultMainsPaper;
+      $("mainsQuestionText").textContent = defaultMainsQuestion;
+      $("mainsFrameworkBox").innerHTML = defaultMainsFramework;
+      $("mainsBox").placeholder = "Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward...";
+    }
+    $("mainsFrameworkBox").hidden = true;
+  }
+  window.addEventListener("tad:mainsPromptSelected", event => {
+    setMainsPrompt(event.detail);
+    $("mainsBox").value = "";
+    $("mainsBox").dispatchEvent(new Event("input"));
   });
 
   $("toggleFrameworkBtn").addEventListener("click", () => {
@@ -2701,17 +2739,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       const draft = (state.mainsDrafts || [])[Number(loadButton.dataset.loadMains)];
       if (!draft) return;
       if (draft.prompt) {
-        const promptDetail = {
+        setMainsPrompt({
           subject: draft.subject || "Mains",
           unit: draft.unit || "Saved question",
           prompt: draft.prompt
-        };
-        window.TAD_ACTIVE_MAINS_PROMPT = promptDetail;
-        $("mainsQuestionPaper").textContent = [promptDetail.subject, promptDetail.unit].filter(Boolean).join(" · ");
-        $("mainsQuestionText").textContent = "Q. " + promptDetail.prompt;
-        $("mainsFrameworkBox").innerHTML = "<b>Suggested answer structure</b><p>Define the key concept, organise the main dimensions under clear headings, use relevant evidence or scholars, assess limitations and conclude directly.</p>";
+        });
       } else {
-        window.TAD_ACTIVE_MAINS_PROMPT = null;
+        setMainsPrompt(null);
       }
       $("mainsBox").value = String(draft.text || "");
       $("mainsBox").dispatchEvent(new Event("input"));
