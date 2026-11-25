@@ -312,7 +312,7 @@ Deno.serve(async (req: Request) => {
     }
     if (!quota[0].allowed) return json({ error: "Today's AI evaluation limit has been reached. Please try again tomorrow." }, 429, origin);
 
-    const wordCount = answerText.split(/\\s+/).filter(Boolean).length;
+    const wordCount = answerText.split(/\s+/).filter(Boolean).length;
     const evaluationPrompt = `Evaluate this learner's UPSC Mains practice answer as a careful educational writing coach.
 Return ONLY one valid JSON object. Do not use markdown fences or text outside JSON.
 This is formative AI feedback, not an official UPSC score. Be fair, specific, constructive and cautious. Assess only the question and answer supplied. Do not invent facts, citations, court cases, scholars, constitutional provisions or sources. If a claim needs checking, flag it as a caution rather than asserting a correction without evidence.
