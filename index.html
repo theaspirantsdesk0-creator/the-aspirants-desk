@@ -1786,6 +1786,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     hours: 0,
     sessions: [],
     syllabus: [],
+    topicMastery: {},
     revisions: [],
     mainsDrafts: [],
     mainsEvaluations: [],
@@ -2127,7 +2128,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     // Never carry a previous account's private notes, drafts, attempts or progress
     // into the next signed-in session on a shared browser/device.
     state = {
-      hours: 0, sessions: [], syllabus: [], revisions: [],
+      hours: 0, sessions: [], syllabus: [], topicMastery: {}, revisions: [],
       mainsDrafts: [], mainsEvaluations: [], mistakes: [], masteredCards: [],
       lastScore: null, learningHub: {}
     };
@@ -2889,7 +2890,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       readBySubject.set(subject, (readBySubject.get(subject) || 0) + 1);
     });
     const metric = (label, value) => '<div class="tad-syllabus-metric"><strong>' + value + '</strong><span>' + label + '</span></div>';
-    metrics.innerHTML = metric("Syllabus areas", total) + metric("Marked complete", completed.length) + metric("Remaining", remaining) + metric("Chapter notes read", readRows.length) + metric("Saved revision topics", Array.isArray(state.revisions) ? state.revisions.length : 0) + metric("Saved practice mistakes", Array.isArray(state.mistakes) ? state.mistakes.length : 0);
+    state.topicMastery = state.topicMastery && typeof state.topicMastery === "object" ? state.topicMastery : {};
+    const masteryStages = ["not_started", "learning", "practised", "revision_due", "mastered"];
+    const masteryCounts = Object.fromEntries(masteryStages.map(stage => [stage, tp.filter(topic => (state.topicMastery[selectedExam + "::" + topic] || {}).status === stage).length]));
+    metrics.innerHTML = metric("Syllabus areas", total) + metric("Self-marked complete", completed.length) + metric("Learning", masteryCounts.learning) + metric("Practised", masteryCounts.practised) + metric("Revision due", masteryCounts.revision_due) + metric("Mastered", masteryCounts.mastered);
     const filter = $("tadSyllabusFilter"), search = $("tadSyllabusSearch");
     const mode = filter ? filter.value : "all", query = search ? search.value.trim().toLowerCase() : "";
     const visible = tp.filter(topic => {
@@ -2903,10 +2907,29 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     } else visible.forEach(topic => {
       const done = completed.includes(topic), row = document.createElement("article");
       row.className = "tad-syllabus-topic" + (done ? " is-complete" : "");
-      const title = document.createElement("strong"); title.textContent = topic;
+      const title = document.createElement("strong"); title.className = "tad-mastery-title"; title.textContent = topic;
+      const key = selectedExam + "::" + topic;
+      const record = state.topicMastery[key] && typeof state.topicMastery[key] === "object" ? state.topicMastery[key] : {};
       const status = document.createElement("span"); status.className = "tad-syllabus-status";
-      status.textContent = done ? "Completed (self-marked)" : "Not marked complete";
-      row.append(title, status); list.append(row);
+      status.textContent = done ? "Checklist: self-marked complete" : "Checklist: not marked complete";
+      const masteryWrap = document.createElement("label"); masteryWrap.className = "tad-mastery-control";
+      const masteryLabel = document.createElement("span"); masteryLabel.textContent = "Your learning stage";
+      const select = document.createElement("select"); select.dataset.masteryTopic = key;
+      [["not_started","Not started"],["learning","Learning"],["practised","Practised"],["revision_due","Revision due"],["mastered","Mastered"]].forEach(([value,label]) => {
+        const option = document.createElement("option"); option.value = value; option.textContent = label; select.append(option);
+      });
+      select.value = ["not_started","learning","practised","revision_due","mastered"].includes(record.status) ? record.status : "not_started";
+      const updated = document.createElement("small"); updated.className = "tad-mastery-updated";
+      updated.textContent = record.updatedAt ? "Updated " + new Date(record.updatedAt).toLocaleDateString() : "No stage recorded yet";
+      masteryWrap.append(masteryLabel, select, updated);
+      row.append(title, status, masteryWrap); list.append(row);
+      select.addEventListener("change", () => {
+        state.topicMastery = state.topicMastery && typeof state.topicMastery === "object" ? state.topicMastery : {};
+        state.topicMastery[key] = { status: select.value, updatedAt: new Date().toISOString() };
+        saveUserState();
+        renderSyllabus();
+        toast("Learning stage saved.");
+      });
     });
     notes.replaceChildren();
     const noteHeading = document.createElement("h4"); noteHeading.textContent = "Chapter-note reading activity";
@@ -2931,7 +2954,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   function renderTopicLearningPathways(topics, host) {
     const section = document.createElement("section"); section.className = "tad-topic-pathways";
     const heading = document.createElement("h4"); heading.textContent = "Topic learning pathways";
-    const intro = document.createElement("p"); intro.className = "muted"; intro.textContent = "Move from a syllabus area to matching chapter notes, practice questions and tests. These links do not mark a topic complete.";
+    const intro = document.createElement("p"); intro.className = "muted"; intro.textContent = "Move from a syllabus area to matching chapter notes, practice questions and tests. Set each learning stage separately; Mastered is your own confirmation, not an automatic score.";
     section.append(heading, intro);
     const list = document.createElement("div"); list.className = "tad-topic-pathway-list";
     const searchTerms = {"Indian Polity & Constitution":"Polity Constitution","Modern Indian History":"Modern Indian History","Indian Economy":"Economy","Physical & Indian Geography":"Geography","Environment & Ecology":"Environment Ecology","Ethics, Integrity & Aptitude":"Ethics Integrity","Indian & Tamil Nadu Economy":"Economy Tamil Nadu","Geography of India & Tamil Nadu":"Geography Tamil Nadu","General Science":"General Science","Current Affairs":"Current Affairs","Tamil Nadu History & Culture":"Tamil Nadu History"};
