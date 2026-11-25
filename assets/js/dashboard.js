@@ -9,7 +9,7 @@
       const response=await fetch("data/pyq/verified-documents.json",{cache:"no-store"});
       if(!response.ok)throw new Error("HTTP "+response.status);
       const payload=await response.json();
-      const docs=Array.isArray(payload.documents)?payload.documents.filter(doc=>doc.status==="verified"&&/^https:\/\/www\.upsc\.gov\.in\//.test(doc.document_url||"")):[];
+      const docs=Array.isArray(payload.documents)?payload.documents.filter(doc=>doc.status==="verified"&&/^https:\/\/(?:www\.)?upsc\.gov\.in\//.test(doc.document_url||"")):[];
       host.textContent=docs.length+" official UPSC PDFs currently verified. Open the archive to view the paper list.";
     }catch(_){host.textContent="Verified paper totals are temporarily unavailable.";}
   }
