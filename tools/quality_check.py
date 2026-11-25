@@ -168,6 +168,10 @@ def main() -> int:
                   "Anthropology syllabus map must cover Paper I and Paper II")
             check(all(unit.get("topics") and unit.get("notes") and unit.get("test") for unit in anthro_units),
                   "Each published Anthropology unit must include topics, notes and a self-test")
+            guided_units = [unit for unit in anthro_units if unit.get("lesson")]
+            check(len(guided_units) >= 2, "Anthropology must include guided teacher-led lessons")
+            check(all(unit["lesson"].get("sections") and unit["lesson"].get("keyTerms") and unit["lesson"].get("answerPractice") for unit in guided_units),
+                  "Guided Anthropology lessons must include sections, key terms and Mains answer practice")
         except (OSError, json.JSONDecodeError) as exc:
             check(False, f"Optional syllabus catalogue is invalid JSON: {exc}")
     if index.is_file():
