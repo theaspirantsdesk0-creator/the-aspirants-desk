@@ -1210,7 +1210,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
       <p class="muted">Target coverage: Prelims GS Paper I and CSAT; Mains Essay and GS I–IV; all 25 optional subjects and 23 literature choices. Official papers are linked to UPSC rather than copied wholesale into this website.</p>
       <h3>Verified official paper documents</h3>
-      <p class="muted">These are individually checked UPSC-hosted PDFs. This list grows only when exact paper metadata and source links are confirmed.</p>
+      <p class="muted">These are individually checked UPSC-hosted PDFs. Filter this document catalogue independently of published question records.</p>
+      <div class="form-grid" style="margin:.8rem 0">
+        <div><label for="verifiedPyqYear">Document year</label><select id="verifiedPyqYear"><option value="ALL">All years</option></select></div>
+        <div><label for="verifiedPyqStage">Exam stage</label><select id="verifiedPyqStage"><option value="ALL">All stages</option></select></div>
+        <div><label for="verifiedPyqCategory">Paper category</label><select id="verifiedPyqCategory"><option value="ALL">All categories</option></select></div>
+        <div><label for="verifiedPyqSearch">Search paper documents</label><input id="verifiedPyqSearch" type="search" placeholder="Search year, subject or paper"></div>
+      </div>
+      <div id="verifiedPyqResultCount" class="muted" aria-live="polite"></div>
       <div id="verifiedPyqDocuments" class="verified-docs-grid" aria-live="polite"><p class="muted">Loading verified UPSC documents…</p></div>
       <div class="card" style="margin-top:1rem">
         <h3>All optional subjects — Paper I &amp; Paper II</h3>
@@ -2795,15 +2802,51 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
             console.warn("PYQ paper inventory failed:", inventoryError);
           }
         }
-        verifiedDocsHost.innerHTML = docs.length ? docs.map(doc =>
-          '<article class="verified-doc-card"><div class="verified-doc-topline"><span class="verified-doc-year">' + esc(doc.year) + '</span>' +
-          '<span class="verified-doc-category">' + esc(doc.category) + '</span></div>' +
-          '<div class="verified-doc-main"><p class="verified-doc-stage">' + esc(doc.stage) + ' · ' + esc(doc.exam) + '</p>' +
-          '<h4>' + esc(doc.title) + '</h4><p class="verified-doc-meta">Checked ' + esc(doc.verification.verified_at) +
-          ' <span aria-hidden="true">·</span> ' + esc(doc.paper) + '</p></div>' +
-          '<a class="verified-doc-link" href="' + esc(doc.document_url) +
-          '" target="_blank" rel="noopener noreferrer"><span>Open official paper</span><span aria-hidden="true">↗</span></a></article>'
-        ).join("") : '<p class="muted">No individually verified paper links are published yet.</p>';
+        const docYear = $("verifiedPyqYear");
+        const docStage = $("verifiedPyqStage");
+        const docCategory = $("verifiedPyqCategory");
+        const docSearch = $("verifiedPyqSearch");
+        const docCount = $("verifiedPyqResultCount");
+        if (docYear && docStage && docCategory && docSearch && docCount) {
+          const oldFilters = { year: docYear.value, stage: docStage.value, category: docCategory.value };
+          const years = [...new Set(docs.map(doc => String(doc.year)))].sort((a,b) => Number(b)-Number(a));
+          const stages = [...new Set(docs.map(doc => doc.stage).filter(Boolean))].sort();
+          const categories = [...new Set(docs.map(doc => doc.category).filter(Boolean))].sort();
+          docYear.innerHTML = '<option value="ALL">All years</option>' + years.map(value => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
+          docStage.innerHTML = '<option value="ALL">All stages</option>' + stages.map(value => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
+          docCategory.innerHTML = '<option value="ALL">All categories</option>' + categories.map(value => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
+          docYear.value = years.includes(oldFilters.year) ? oldFilters.year : "ALL";
+          docStage.value = stages.includes(oldFilters.stage) ? oldFilters.stage : "ALL";
+          docCategory.value = categories.includes(oldFilters.category) ? oldFilters.category : "ALL";
+          const renderVerifiedDocuments = () => {
+            const year = docYear.value, stage = docStage.value, category = docCategory.value;
+            const term = docSearch.value.trim().toLowerCase();
+            const filtered = docs.filter(doc =>
+              (year === "ALL" || String(doc.year) === year) &&
+              (stage === "ALL" || doc.stage === stage) &&
+              (category === "ALL" || doc.category === category) &&
+              (!term || [doc.title, doc.exam, doc.subject, doc.paper, doc.category, doc.stage, doc.year].filter(Boolean).join(" ").toLowerCase().includes(term))
+            );
+            docCount.textContent = filtered.length + " of " + docs.length + " verified official paper documents shown.";
+            verifiedDocsHost.innerHTML = filtered.length ? filtered.map(doc =>
+              '<article class="verified-doc-card"><div class="verified-doc-topline"><span class="verified-doc-year">' + esc(doc.year) + '</span>' +
+              '<span class="verified-doc-category">' + esc(doc.category) + '</span></div>' +
+              '<div class="verified-doc-main"><p class="verified-doc-stage">' + esc(doc.stage) + ' · ' + esc(doc.exam) + '</p>' +
+              '<h4>' + esc(doc.title) + '</h4><p class="verified-doc-meta">Checked ' + esc(doc.verification.verified_at) +
+              ' <span aria-hidden="true">·</span> ' + esc(doc.paper) + '</p></div>' +
+              '<a class="verified-doc-link" href="' + esc(doc.document_url) +
+              '" target="_blank" rel="noopener noreferrer"><span>Open official paper</span><span aria-hidden="true">↗</span></a></article>'
+            ).join("") : '<p class="muted">No verified paper documents match these filters. Try another year, stage, category or search term.</p>';
+          };
+          if (docYear.dataset.bound !== "1") {
+            [docYear, docStage, docCategory].forEach(el => el.addEventListener("change", renderVerifiedDocuments));
+            docSearch.addEventListener("input", renderVerifiedDocuments);
+            docYear.dataset.bound = "1";
+          }
+          renderVerifiedDocuments();
+        } else {
+          verifiedDocsHost.innerHTML = '<p class="muted">Document filters are unavailable. Use the official UPSC indexes above.</p>';
+        }
       } catch (error) {
         verifiedDocsHost.innerHTML = '<p class="muted">The verified document list is temporarily unavailable. Use the official UPSC indexes above.</p>';
         console.warn("Verified UPSC document list failed:", error);
