@@ -662,6 +662,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
   <div class="nav-grp">Overview & Info</div>
   <a href="#home" class="nav-link active" data-nav="home">📊 Dashboard Overview</a>
+  <a href="#upsc-2027" class="nav-link" data-nav="upsc-2027">🗓️ UPSC 2027 Command Centre</a>
   <a href="#about-app" class="nav-link" data-nav="about-app">🧭 About the App</a>
   <a href="#founder" class="nav-link" data-nav="founder">👤 Founder & Owner</a>
   <a href="#updates" class="nav-link" data-nav="updates">📅 Exam Notifications</a>
@@ -928,6 +929,59 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <p style="font-size:.85rem;color:var(--muted)">Syllabus progress bar, 1-3-7-21-45 day revision planner, and test mistake review.</p>
         <button type="button" class="btn primary open-protected" data-target="tracker">Open Tracker</button>
       </div>
+    </div>
+  </section>
+
+  <!-- UPSC 2027 COMMAND CENTRE -->
+  <section id="upsc-2027" class="view-sec">
+    <div class="dash-hero">
+      <div>
+        <span class="eyebrow">UPSC CIVIL SERVICES · 2027</span>
+        <h1>One attempt. A clear roadmap.</h1>
+        <p>Track the official examination milestones, organise your preparation and keep the next action visible. Dates below are taken from the UPSC Annual Calendar 2027 and may be revised by UPSC.</p>
+        <div class="btn-row">
+          <a class="btn primary" href="https://www.upsc.gov.in/examinations/exam-calendar" target="_blank" rel="noopener">Official UPSC exam calendar ↗</a>
+          <a class="btn" href="https://www.upsc.gov.in/previous-exam-details/" target="_blank" rel="noopener">UPSC previous exam details ↗</a>
+        </div>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.96);color:#0c1730">
+        <span class="pill warn">Preliminary examination</span>
+        <div style="font:800 clamp(2rem,5vw,3.2rem) 'Bricolage Grotesque',sans-serif;line-height:1.1;margin:.65rem 0" id="upscPrelimsCountdown">—</div>
+        <b>23 May 2027</b>
+        <p class="muted" style="margin:.35rem 0 0">Scheduled date · Civil Services (Preliminary) Examination, 2027</p>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-bottom:1.2rem">
+      <article class="card gold-top"><span class="pill">Notification</span><h2 style="margin:.45rem 0">13 January 2027</h2><p class="muted">Scheduled notification date for CSE 2027.</p></article>
+      <article class="card gold-top"><span class="pill">Application deadline</span><h2 style="margin:.45rem 0">2 February 2027</h2><p class="muted">Scheduled last date to receive applications.</p></article>
+      <article class="card gold-top"><span class="pill">Main examination</span><h2 style="margin:.45rem 0">20 August 2027</h2><p class="muted">Scheduled commencement date; five days.</p></article>
+    </div>
+    <div class="grid-2">
+      <section class="card">
+        <h2>Preparation command checklist</h2>
+        <p class="muted">Tick each milestone as you complete it. Your checklist is saved in this browser on this device.</p>
+        <div id="upsc2027Checklist" style="display:grid;gap:.7rem">
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="syllabus" style="width:auto;margin-top:.25rem"> <span><b>Understand the syllabus</b><small class="muted" style="display:block">Map Prelims, CSAT, Mains GS, Essay and optional papers.</small></span></label>
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="foundation" style="width:auto;margin-top:.25rem"> <span><b>Build the foundation</b><small class="muted" style="display:block">Complete essential NCERT and standard-book basics.</small></span></label>
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="optional" style="width:auto;margin-top:.25rem"> <span><b>Develop the optional subject</b><small class="muted" style="display:block">Cover the syllabus in sequence and make revision notes.</small></span></label>
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="current" style="width:auto;margin-top:.25rem"> <span><b>Maintain current-affairs notes</b><small class="muted" style="display:block">Connect important events with syllabus topics.</small></span></label>
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="csat" style="width:auto;margin-top:.25rem"> <span><b>Practise CSAT consistently</b><small class="muted" style="display:block">Build comprehension, reasoning and quantitative aptitude.</small></span></label>
+          <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="writing" style="width:auto;margin-top:.25rem"> <span><b>Practise answer writing and revision</b><small class="muted" style="display:block">Use timed answers, feedback and spaced revision.</small></span></label>
+        </div>
+        <div style="margin-top:1rem"><div class="bar-track"><div class="bar-fill" id="upsc2027ProgressFill"></div></div><b id="upsc2027ProgressText">0 of 6 milestones complete</b></div>
+        <button type="button" class="btn" id="upsc2027Reset" style="margin-top:.8rem">Reset checklist</button>
+      </section>
+      <section class="card">
+        <h2>How to use this command centre</h2>
+        <ol class="tl">
+          <li><b>Study the syllabus first.</b> Keep every book, note and test linked to a syllabus heading.</li>
+          <li><b>Keep one source per subject.</b> Finish and revise it before adding more material.</li>
+          <li><b>Practise both stages.</b> Do not postpone CSAT or Mains answer writing until the final months.</li>
+          <li><b>Review mistakes weekly.</b> Convert every repeated mistake into a revision task.</li>
+          <li><b>Verify official updates.</b> The UPSC calendar and notifications take priority over this dashboard.</li>
+        </ol>
+        <div class="tipbox"><b>Important:</b> The dates shown are scheduled dates in the UPSC Annual Calendar 2027 published on 20 May 2026. UPSC states that dates may be altered. Check the official calendar and notification before making application or travel decisions.</div>
+      </section>
     </div>
   </section>
 
@@ -1590,9 +1644,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 <script>
 (function () {
   const OWNER_EMAIL = "theaspirantsdesk0@gmail.com";
-  const PUBLIC_VIEWS = new Set(["home", "about-app", "founder", "updates", "legal", "directory", "library", "connect"]);
+  const PUBLIC_VIEWS = new Set(["home", "upsc-2027", "about-app", "founder", "updates", "legal", "directory", "library", "connect"]);
   const VIEW_TITLES = {
     "home": "Dashboard Overview",
+    "upsc-2027": "UPSC 2027 Command Centre",
     "anbuu": "Anbuu · AI Study Mentor",
     "about-app": "About the App",
     "founder": "Founder & Website Owner",
@@ -3651,6 +3706,47 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   if (n && n.nodeType === 3) n.nodeValue = n.nodeValue.replace(/^\s*[\p{Extended_Pictographic}\uFE0F\u200D]+\s*/u, "");
 });
 </script>
+  <script>
+  (function(){
+    const target=new Date(2027,4,23,0,0,0);
+    const out=document.getElementById("upscPrelimsCountdown");
+    if(out){
+      const update=()=>{
+        const days=Math.max(0,Math.ceil((target.getTime()-Date.now())/86400000));
+        out.textContent=days===0?"Exam day":days+" days";
+      };
+      update();
+    }
+    const host=document.getElementById("upsc2027Checklist");
+    if(!host)return;
+    const key="tad_upsc2027_roadmap_v1";
+    let saved={};
+    try{saved=JSON.parse(localStorage.getItem(key)||"{}")||{};}catch(_){saved={};}
+    const boxes=Array.from(host.querySelectorAll("[data-roadmap]"));
+    const paint=()=>{
+      const done=boxes.filter(box=>box.checked).length;
+      const text=document.getElementById("upsc2027ProgressText");
+      const fill=document.getElementById("upsc2027ProgressFill");
+      if(text)text.textContent=done+" of "+boxes.length+" milestones complete";
+      if(fill)fill.style.width=(boxes.length?done/boxes.length*100:0)+"%";
+    };
+    boxes.forEach(box=>{
+      box.checked=Boolean(saved[box.dataset.roadmap]);
+      box.addEventListener("change",()=>{
+        saved[box.dataset.roadmap]=box.checked;
+        try{localStorage.setItem(key,JSON.stringify(saved));}catch(_){}
+        paint();
+      });
+    });
+    const reset=document.getElementById("upsc2027Reset");
+    if(reset)reset.addEventListener("click",()=>{
+      saved={};boxes.forEach(box=>box.checked=false);
+      try{localStorage.removeItem(key);}catch(_){}
+      paint();
+    });
+    paint();
+  })();
+  </script>
   <script src="assets/js/dashboard.js" defer></script>
 <script src="assets/js/learning-hub.js" defer></script>
   <script src="assets/js/courses.js" defer></script>
