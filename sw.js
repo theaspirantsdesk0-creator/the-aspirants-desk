@@ -1,10 +1,10 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v34-signature-analysis-labs';
+var VERSION = 'desk-v35-editorial-dashboard';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
   'assets/css/ai-desk.css', 'assets/css/next-level-design.css', 'assets/css/courses.css',
-  'assets/css/course-studio.css', 'assets/css/design-system.css',
+  'assets/css/course-studio.css', 'assets/css/design-system.css', 'assets/css/dashboard-editorial.css',
   'assets/css/pyq-inventory.css', 'assets/css/mains-evaluation.css',
   'assets/js/pyq-inventory.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
