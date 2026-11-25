@@ -3717,6 +3717,123 @@
         "New Public Administration and Public Choice approach",
         "Liberalisation, privatisation and globalisation",
         "Good governance and New Public Management"
+      ],
+      "notes": "Public Administration studies how public institutions organise people, money, rules and services to implement collective decisions. It includes executive activity, policy implementation, public accountability and the relationship between citizens and the state.",
+      "lesson": {
+        "objective": "Build a clear foundation: what public administration studies, why it matters, and how the discipline has changed.",
+        "sections": [
+          {
+            "heading": "Meaning and scope",
+            "explanation": [
+              "Public administration can be understood narrowly as the organisation and management of government executive work, and broadly as the formulation and implementation of public policy through public institutions and networks.",
+              "Its scope includes organisation, personnel, finance, policy implementation, public service delivery, regulation, accountability and relations between government and citizens."
+            ],
+            "example": "A public health programme involves policy design, budgets, frontline staff, procurement, monitoring and grievance redressal."
+          },
+          {
+            "heading": "Why the discipline matters",
+            "explanation": [
+              "Public administration converts public decisions into services and outcomes. Its quality affects inclusion, trust, rule of law, efficiency and the everyday experience of citizens.",
+              "It is both an academic discipline that explains administrative institutions and a practical activity concerned with governing and delivering public services."
+            ],
+            "example": "A legal entitlement has limited value if eligible citizens cannot access the service because procedures are confusing or offices are inaccessible."
+          },
+          {
+            "heading": "Wilson and the changing discipline",
+            "explanation": [
+              "Woodrow Wilson's 1887 essay is commonly treated as an important landmark in the development of public administration as a distinct field. He called for systematic study of administration and raised questions about the relationship between politics and administration.",
+              "The field later expanded beyond a narrow concern with efficiency. New Public Administration highlighted social equity and responsiveness; Public Choice examined incentives and institutional behaviour; New Public Management emphasised performance, competition and managerial tools. These approaches are influential perspectives, not universal solutions."
+            ],
+            "example": "A service reform should consider not only speed and cost but also fairness, access, transparency and accountability."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Public administration",
+            "meaning": "The study and practice of organising public institutions and implementing public policy."
+          },
+          {
+            "term": "Social equity",
+            "meaning": "Fairness in the distribution of public services, opportunities and administrative burdens."
+          },
+          {
+            "term": "New Public Management",
+            "meaning": "A reform approach that applies selected private-sector management ideas such as performance measurement and service standards to public organisations."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Woodrow Wilson",
+            "idea": "Advocated systematic study of administration and is associated with the early development of the discipline."
+          },
+          {
+            "scholar": "Dwight Waldo",
+            "idea": "Questioned the idea that administration is purely technical and highlighted its values and democratic context."
+          },
+          {
+            "scholar": "H. George Frederickson",
+            "idea": "A leading voice associated with social equity in New Public Administration."
+          }
+        ],
+        "answerPractice": "Explain the meaning and significance of Public Administration. In your answer, connect policy implementation, public service delivery and accountability.",
+        "revisionPrompt": "Compare the narrow and broad meanings of Public Administration. Then explain why efficiency alone is not enough to judge public services."
+      },
+      "test": [
+        {
+          "q": "Public Administration is most accurately concerned with:",
+          "o": [
+            "Only private business management",
+            "The organisation of public institutions and implementation of public policy",
+            "Only judicial interpretation",
+            "Only election campaigning"
+          ],
+          "a": 1,
+          "w": "Public Administration studies public institutions, administrative processes and policy implementation."
+        },
+        {
+          "q": "Woodrow Wilson's 1887 essay is significant mainly because it:",
+          "o": [
+            "Rejected systematic study of administration",
+            "Helped establish administration as a distinct field of study",
+            "Created the Indian Constitution",
+            "Introduced the welfare state"
+          ],
+          "a": 1,
+          "w": "Wilson's essay is widely treated as a landmark in the development of Public Administration as a discipline."
+        },
+        {
+          "q": "Which concern is especially associated with New Public Administration?",
+          "o": [
+            "Social equity and responsiveness",
+            "Profit maximisation alone",
+            "Abolition of public accountability",
+            "Replacing all public institutions"
+          ],
+          "a": 0,
+          "w": "New Public Administration emphasised social equity, relevance and responsiveness."
+        },
+        {
+          "q": "Public Choice approaches commonly analyse:",
+          "o": [
+            "Administrative behaviour through incentives and choice",
+            "Only historical monuments",
+            "Language acquisition",
+            "Judicial precedent alone"
+          ],
+          "a": 0,
+          "w": "Public Choice applies economic reasoning to incentives, institutions and individual choices."
+        },
+        {
+          "q": "A balanced assessment of a public service should consider:",
+          "o": [
+            "Speed alone",
+            "Cost alone",
+            "Efficiency, equity, access and accountability",
+            "The number of offices alone"
+          ],
+          "a": 2,
+          "w": "Public services must be assessed through multiple public values, not efficiency alone."
+        }
       ]
     },
     {
@@ -3731,6 +3848,127 @@
         "C. I. Barnard: Functions of the Executive",
         "Herbert Simon: decision-making theory",
         "Participative management: Likert, Argyris and McGregor"
+      ],
+      "notes": "Administrative thought developed through several approaches to organisation and management. Classical thinkers emphasised structure, rules and efficiency; later approaches examined people, decision-making, motivation and participation.",
+      "lesson": {
+        "objective": "Understand the major traditions of administrative thought and learn to compare their assumptions and limitations.",
+        "sections": [
+          {
+            "heading": "Classical approaches",
+            "explanation": [
+              "Scientific Management, associated with F. W. Taylor, sought to improve work processes through systematic observation, standardisation and attention to efficiency. Administrative management thinkers examined principles and functions of organisation.",
+              "Max Weber's ideal-type bureaucracy emphasised hierarchy, defined jurisdiction, written rules, expertise and impersonal conduct. These features can support predictability and continuity, though rigid procedures may also create delay and inflexibility."
+            ],
+            "example": "A clearly defined recruitment procedure can reduce arbitrariness, but excessive paperwork can make a service inaccessible."
+          },
+          {
+            "heading": "Human relations and behavioural approaches",
+            "explanation": [
+              "The Human Relations School drew attention to informal groups, morale, communication and social needs at work. It challenged the idea that employees respond only to financial incentives.",
+              "Herbert Simon shifted attention to actual decision-making. His idea of bounded rationality recognises that administrators make choices with limited information, time and cognitive capacity."
+            ],
+            "example": "A district team may choose a workable response using available evidence and time rather than an impossible search for perfect information."
+          },
+          {
+            "heading": "Participation and contemporary relevance",
+            "explanation": [
+              "Mary Parker Follett emphasised coordination, constructive conflict resolution and participation. Chester Barnard examined cooperation and the role of communication in organisations.",
+              "Later thinkers such as Likert, Argyris and McGregor explored participation, organisational learning and assumptions about human motivation. No single theory fits every administrative setting; context and institutional purpose matter."
+            ],
+            "example": "A reform team that consults frontline staff may identify practical obstacles that a top-down circular misses."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Bureaucracy",
+            "meaning": "A rule-based administrative form with hierarchy, defined roles, written records and specialised expertise."
+          },
+          {
+            "term": "Bounded rationality",
+            "meaning": "Decision-making under limits of information, time and human capacity."
+          },
+          {
+            "term": "Human relations",
+            "meaning": "An approach that recognises social relationships, morale and informal groups at work."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "F. W. Taylor",
+            "idea": "Scientific Management: systematic study and standardisation of work to improve efficiency."
+          },
+          {
+            "scholar": "Max Weber",
+            "idea": "Ideal-type legal-rational bureaucracy based on rules, hierarchy and specialised offices."
+          },
+          {
+            "scholar": "Herbert Simon",
+            "idea": "Bounded rationality and the centrality of decision-making in administration."
+          },
+          {
+            "scholar": "Mary Parker Follett",
+            "idea": "Coordination, participation and constructive integration of differences."
+          }
+        ],
+        "answerPractice": "Compare Weber's bureaucratic model with the Human Relations approach. Explain how each contributes to understanding public organisations.",
+        "revisionPrompt": "Make a two-column comparison of classical and behavioural approaches. Add one strength and one limitation for each."
+      },
+      "test": [
+        {
+          "q": "Scientific Management is most closely associated with:",
+          "o": [
+            "F. W. Taylor",
+            "Herbert Simon",
+            "Mary Parker Follett",
+            "Elton Mayo"
+          ],
+          "a": 0,
+          "w": "Taylor is associated with Scientific Management and systematic study of work."
+        },
+        {
+          "q": "Which is a feature of Weber's ideal-type bureaucracy?",
+          "o": [
+            "Personal favour as the main basis of decisions",
+            "Defined jurisdiction and rule-bound authority",
+            "Absence of hierarchy",
+            "No written records"
+          ],
+          "a": 1,
+          "w": "Weber's model includes hierarchy, rules, defined offices and specialised competence."
+        },
+        {
+          "q": "The Human Relations School highlighted the importance of:",
+          "o": [
+            "Informal groups and morale",
+            "Only mechanical work measurement",
+            "Eliminating communication",
+            "Replacing all rules with discretion"
+          ],
+          "a": 0,
+          "w": "Human Relations thinkers examined social needs, group relations and morale."
+        },
+        {
+          "q": "Bounded rationality is associated with:",
+          "o": [
+            "Herbert Simon",
+            "F. W. Taylor",
+            "Max Weber",
+            "Woodrow Wilson"
+          ],
+          "a": 0,
+          "w": "Simon explained that decision-makers operate with limited information and capacity."
+        },
+        {
+          "q": "Mary Parker Follett is especially associated with:",
+          "o": [
+            "Coordination and constructive conflict resolution",
+            "The ideal-type bureaucracy",
+            "Scientific work measurement",
+            "The politics-administration dichotomy alone"
+          ],
+          "a": 0,
+          "w": "Follett wrote about coordination, participation and integrating differences."
+        }
       ]
     },
     {
@@ -3999,6 +4237,127 @@
         "Democracy: classical and contemporary theories; representative, participatory and deliberative models",
         "Power: hegemony, ideology and legitimacy",
         "Political ideologies: liberalism, socialism, Marxism, fascism, Gandhism and feminism"
+      ],
+      "notes": "Political theory examines political concepts, institutions, power and competing ideas about how society should be governed. It combines normative questions about what ought to be with empirical analysis of how politics works.",
+      "lesson": {
+        "objective": "Learn what political theory studies and distinguish its major approaches and core concepts.",
+        "sections": [
+          {
+            "heading": "Meaning and purpose",
+            "explanation": [
+              "Political theory is the systematic study of political ideas, values, institutions and practices. It asks descriptive questions about how power operates and normative questions about justice, liberty, equality and legitimate authority.",
+              "It helps clarify concepts, examine arguments and evaluate political arrangements. Political concepts are contested: thinkers may use the same word but defend different meanings."
+            ],
+            "example": "A debate about a welfare scheme may involve liberty, equality, rights, justice and the proper role of the state."
+          },
+          {
+            "heading": "Approaches to political theory",
+            "explanation": [
+              "Normative theory evaluates political arrangements using values such as justice, freedom and equality. Empirical approaches examine political behaviour and institutions using evidence. Historical approaches study how political ideas developed in context.",
+              "Contemporary approaches include feminist, post-colonial and critical perspectives that examine exclusion, hierarchy and whose experiences are represented in political thought."
+            ],
+            "example": "A constitutional provision can be studied historically, assessed normatively and examined empirically through its implementation."
+          },
+          {
+            "heading": "State, power and legitimacy",
+            "explanation": [
+              "The state is commonly understood through institutions that claim authority over a territory and population. Liberal theories emphasise individual rights and limited government; Marxist approaches analyse class and material power; pluralist approaches focus on competition among organised groups; feminist and post-colonial approaches question structures of domination and exclusion.",
+              "Power is the capacity to shape decisions, agendas or beliefs. Legitimacy concerns whether authority is regarded as rightful. Authority supported by law and public acceptance is more stable than coercion alone."
+            ],
+            "example": "A policy may be legally authorised yet face a legitimacy challenge if affected communities consider the process unfair."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Normative theory",
+            "meaning": "Political analysis concerned with values and judgments about what ought to be."
+          },
+          {
+            "term": "Empirical approach",
+            "meaning": "Study of political phenomena through observation and evidence."
+          },
+          {
+            "term": "Legitimacy",
+            "meaning": "The recognised rightfulness of political authority."
+          },
+          {
+            "term": "Pluralism",
+            "meaning": "An approach that sees political power as distributed among competing groups and associations."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "John Rawls",
+            "idea": "A theory of justice based on equal basic liberties and principles governing social and economic inequalities."
+          },
+          {
+            "scholar": "Robert Dahl",
+            "idea": "A major pluralist theorist who studied power, participation and democratic competition."
+          },
+          {
+            "scholar": "Carole Pateman",
+            "idea": "A feminist political theorist who examined participation and the limits of conventional democratic theory."
+          }
+        ],
+        "answerPractice": "Define political theory and explain why normative and empirical approaches are both important to its study.",
+        "revisionPrompt": "Choose one public policy debate and identify the political concepts of power, legitimacy, equality and rights involved in it."
+      },
+      "test": [
+        {
+          "q": "Political theory primarily studies:",
+          "o": [
+            "Only election dates",
+            "Political ideas, values, institutions and practices",
+            "Only international trade",
+            "Only administrative accounting"
+          ],
+          "a": 1,
+          "w": "Political theory examines political concepts, arguments, institutions and practices."
+        },
+        {
+          "q": "A normative approach is mainly concerned with:",
+          "o": [
+            "What ought to be",
+            "Only counting votes",
+            "Only describing past events",
+            "Only measuring population"
+          ],
+          "a": 0,
+          "w": "Normative theory evaluates political arrangements through values and principles."
+        },
+        {
+          "q": "Which concept refers to the recognised rightfulness of authority?",
+          "o": [
+            "Legitimacy",
+            "Federalism",
+            "Socialisation",
+            "Bureaucracy"
+          ],
+          "a": 0,
+          "w": "Legitimacy concerns whether political authority is accepted as rightful."
+        },
+        {
+          "q": "Pluralist approaches generally emphasise:",
+          "o": [
+            "Competition among multiple groups and associations",
+            "Power held only by one class in every case",
+            "The absence of organised interests",
+            "Politics without institutions"
+          ],
+          "a": 0,
+          "w": "Pluralism studies how organised groups compete and influence political decisions."
+        },
+        {
+          "q": "A feminist approach to political theory often asks:",
+          "o": [
+            "How gendered power and exclusion shape political life",
+            "How to remove all political rights",
+            "Only how markets set prices",
+            "Only how borders are mapped"
+          ],
+          "a": 0,
+          "w": "Feminist theory examines gender, power, representation and exclusions in political thought and institutions."
+        }
       ]
     },
     {
@@ -4011,6 +4370,127 @@
         "M. K. Gandhi",
         "B. R. Ambedkar",
         "M. N. Roy"
+      ],
+      "notes": "Indian political thought includes diverse traditions and arguments about statecraft, ethics, social order, religious life, freedom and justice. These traditions should be studied in their historical contexts rather than treated as one uniform doctrine.",
+      "lesson": {
+        "objective": "Identify major strands in Indian political thought and compare their concerns without flattening their historical differences.",
+        "sections": [
+          {
+            "heading": "Ancient traditions and statecraft",
+            "explanation": [
+              "Indian political thought includes multiple textual and philosophical traditions. The Arthashastra, associated with Kautilya, discusses statecraft, administration, diplomacy, taxation and security. Dharmashastra traditions address duties, social order and normative rules, while Buddhist political ideas include ethical conduct, compassion and the responsibilities of rulers.",
+              "These sources differ in purpose and context. They should not be reduced to a single timeless model of Indian politics."
+            ],
+            "example": "A comparison of the Arthashastra and Buddhist political ideas can examine both practical governance and ethical limits on power."
+          },
+          {
+            "heading": "Modern reform and nationalism",
+            "explanation": [
+              "Modern Indian thinkers responded to colonial rule, social reform, religious identity, education and political representation in different ways. Sir Syed Ahmad Khan advocated modern education and institution-building among Indian Muslims in the context of nineteenth-century change.",
+              "Sri Aurobindo connected nationalism with cultural and spiritual ideas and later developed a broader philosophical outlook. Gandhi placed truth, non-violence, swaraj and constructive work at the centre of political action."
+            ],
+            "example": "When comparing thinkers, locate each argument in its historical setting and identify the problem it sought to address."
+          },
+          {
+            "heading": "Equality, caste and democratic transformation",
+            "explanation": [
+              "B. R. Ambedkar analysed caste as a system of graded inequality and argued for social democracy, constitutional safeguards and the annihilation of caste. M. N. Roy moved from revolutionary Marxism toward Radical Humanism, emphasising reason, freedom and human agency.",
+              "Indian political thought is internally diverse. A strong answer compares thinkers through concepts, context, methods and their understanding of justice and political change."
+            ],
+            "example": "A comparison of Gandhi and Ambedkar can examine their different approaches to caste, social reform, political representation and the means of transformation."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Swaraj",
+            "meaning": "Self-rule; in Gandhi's thought it also carried ethical and social meanings beyond a transfer of political power."
+          },
+          {
+            "term": "Statecraft",
+            "meaning": "Practical knowledge concerning governance, diplomacy, administration and the exercise of state power."
+          },
+          {
+            "term": "Social democracy",
+            "meaning": "A social order grounded in liberty, equality and fraternity, not merely electoral institutions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Kautilya",
+            "idea": "Associated with the Arthashastra and systematic discussion of statecraft, administration and diplomacy."
+          },
+          {
+            "scholar": "M. K. Gandhi",
+            "idea": "Developed ideas of satyagraha, non-violence, swaraj and constructive programme."
+          },
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Emphasised annihilation of caste, constitutional democracy and social equality."
+          },
+          {
+            "scholar": "M. N. Roy",
+            "idea": "Developed Radical Humanism, stressing reason, freedom and human agency."
+          }
+        ],
+        "answerPractice": "Compare Gandhi and Ambedkar on social transformation. Present their arguments in historical context and identify areas of convergence and difference.",
+        "revisionPrompt": "Prepare a thinker-wise table: historical context, central concepts, view of the state, method of change and contribution."
+      },
+      "test": [
+        {
+          "q": "The Arthashastra is most closely associated with:",
+          "o": [
+            "Kautilya",
+            "B. R. Ambedkar",
+            "M. N. Roy",
+            "Sir Syed Ahmad Khan"
+          ],
+          "a": 0,
+          "w": "Kautilya is traditionally associated with the Arthashastra and its discussion of statecraft."
+        },
+        {
+          "q": "Gandhi's political thought prominently includes:",
+          "o": [
+            "Satyagraha and swaraj",
+            "Scientific Management",
+            "Bounded rationality",
+            "The politics-administration dichotomy"
+          ],
+          "a": 0,
+          "w": "Satyagraha, non-violence and swaraj are central themes in Gandhi's political thought."
+        },
+        {
+          "q": "Ambedkar's critique of caste is closely connected with his argument for:",
+          "o": [
+            "Social equality and constitutional democracy",
+            "Hereditary political privilege",
+            "Abolition of universal citizenship",
+            "Rule by unelected elites"
+          ],
+          "a": 0,
+          "w": "Ambedkar linked the struggle against caste with liberty, equality, fraternity and constitutional democracy."
+        },
+        {
+          "q": "Sir Syed Ahmad Khan is notably associated with:",
+          "o": [
+            "Modern education and reform",
+            "The Arthashastra",
+            "Radical Humanism",
+            "The doctrine of scientific management"
+          ],
+          "a": 0,
+          "w": "Sir Syed promoted modern education and institution-building in nineteenth-century India."
+        },
+        {
+          "q": "M. N. Roy's later political philosophy is known as:",
+          "o": [
+            "Radical Humanism",
+            "New Public Management",
+            "Pluralist federalism",
+            "Scientific Socialism only"
+          ],
+          "a": 0,
+          "w": "Roy developed Radical Humanism, emphasising reason, freedom and human agency."
+        }
       ]
     },
     {
