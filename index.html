@@ -1787,7 +1787,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     sessions: [],
     syllabus: [],
     topicMastery: {},
-    revisions: [],
+    topicRevisionSchedule: {},
+    revisions: []
     mainsDrafts: [],
     mainsEvaluations: [],
     mistakes: [],
@@ -2128,7 +2129,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     // Never carry a previous account's private notes, drafts, attempts or progress
     // into the next signed-in session on a shared browser/device.
     state = {
-      hours: 0, sessions: [], syllabus: [], topicMastery: {}, revisions: [],
+      hours: 0, sessions: [], syllabus: [], topicMastery: {}, topicRevisionSchedule: {}, revisions: [],
       mainsDrafts: [], mainsEvaluations: [], mistakes: [], masteredCards: [],
       lastScore: null, learningHub: {}
     };
@@ -2922,7 +2923,17 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       const updated = document.createElement("small"); updated.className = "tad-mastery-updated";
       updated.textContent = record.updatedAt ? "Updated " + new Date(record.updatedAt).toLocaleDateString() : "No stage recorded yet";
       masteryWrap.append(masteryLabel, select, updated);
-      row.append(title, status, masteryWrap); list.append(row);
+      const scheduleButton = document.createElement("button"); scheduleButton.type = "button"; scheduleButton.className = "btn tad-topic-schedule-button";
+      const scheduled = state.topicRevisionSchedule && state.topicRevisionSchedule[key];
+      scheduleButton.textContent = scheduled && !scheduled.completed ? "Revision scheduled · " + scheduled.dueAt : "Schedule review";
+      scheduleButton.disabled = Boolean(scheduled && !scheduled.completed);
+      scheduleButton.addEventListener("click", () => {
+        state.topicRevisionSchedule = state.topicRevisionSchedule && typeof state.topicRevisionSchedule === "object" ? state.topicRevisionSchedule : {};
+        state.topicRevisionSchedule[key] = { exam: selectedExam, topic, createdAt: new Date().toISOString(), intervalIndex: 0,
+          dueAt: tadDateAfterDays(TOPIC_REVISION_INTERVALS[0]), reviewCount: 0, snoozeCount: 0, completed: false };
+        saveUserState(); renderSyllabus(); toast("First revision scheduled for tomorrow.");
+      });
+      row.append(title, status, masteryWrap, scheduleButton); list.append(row);
       select.addEventListener("change", () => {
         state.topicMastery = state.topicMastery && typeof state.topicMastery === "object" ? state.topicMastery : {};
         state.topicMastery[key] = { status: select.value, updatedAt: new Date().toISOString() };
@@ -2950,7 +2961,74 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       notes.append(ul);
     }
     renderTopicLearningPathways(tp, notes);
+    renderTopicRevisionQueue(tp, notes);
   }
+  const TOPIC_REVISION_INTERVALS = [1, 3, 7, 21, 45];
+  function tadDateAfterDays(days) {
+    const date = new Date(); date.setHours(12, 0, 0, 0); date.setDate(date.getDate() + days);
+    return date.toISOString().slice(0, 10);
+  }
+  function renderTopicRevisionQueue(topics, host) {
+    state.topicRevisionSchedule = state.topicRevisionSchedule && typeof state.topicRevisionSchedule === "object" ? state.topicRevisionSchedule : {};
+    const section = document.createElement("section"); section.className = "tad-topic-revision-queue";
+    const heading = document.createElement("h4"); heading.textContent = "Automatic spaced-revision queue";
+    const intro = document.createElement("p"); intro.className = "muted";
+    intro.textContent = "Schedule a syllabus topic once, then review it at 1, 3, 7, 21 and 45-day intervals. Due dates use your local study date.";
+    section.append(heading, intro);
+    const rows = Object.entries(state.topicRevisionSchedule).map(([key, value]) => ({key, ...(value || {})})).filter(item => item.topic && item.exam);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const active = rows.filter(item => !item.completed);
+    const due = active.filter(item => item.dueAt && new Date(item.dueAt + "T00:00:00") <= today);
+    const stats = document.createElement("div"); stats.className = "tad-revision-metrics";
+    [["Due / overdue", due.length], ["Upcoming", active.length - due.length], ["Cycle completed", rows.filter(item => item.completed).length]].forEach(([label,value]) => {
+      const metric = document.createElement("div"); metric.className = "tad-revision-metric";
+      const strong = document.createElement("strong"); strong.textContent = String(value);
+      const small = document.createElement("span"); small.textContent = label;
+      metric.append(strong, small); stats.append(metric);
+    });
+    section.append(stats);
+    const list = document.createElement("div"); list.className = "tad-revision-queue-list";
+    const visible = rows.filter(item => !item.completed).sort((a,b) => String(a.dueAt || "9999-12-31").localeCompare(String(b.dueAt || "9999-12-31"))).slice(0, 12);
+    if (!visible.length) {
+      const empty = document.createElement("p"); empty.className = "muted";
+      empty.textContent = "No syllabus topics scheduled yet. Use Schedule review on a topic card to start.";
+      list.append(empty);
+    }
+    visible.forEach(item => {
+      const card = document.createElement("article"); card.className = "tad-revision-queue-item";
+      const details = document.createElement("div");
+      const title = document.createElement("strong"); title.textContent = item.topic;
+      const meta = document.createElement("small");
+      const dueDate = item.dueAt ? new Date(item.dueAt + "T00:00:00") : null;
+      const overdue = dueDate && dueDate < today;
+      meta.textContent = item.exam + " · " + (overdue ? "Overdue · " : dueDate && dueDate.getTime() === today.getTime() ? "Due today · " : "Due · ") +
+        (dueDate && !Number.isNaN(dueDate.getTime()) ? dueDate.toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"}) : "Date not set") +
+        " · Review " + (Number(item.intervalIndex || 0) + 1) + " of 5";
+      details.append(title, meta);
+      const actions = document.createElement("div"); actions.className = "tad-revision-queue-actions";
+      const reviewed = document.createElement("button"); reviewed.type = "button"; reviewed.className = "btn primary"; reviewed.textContent = "Mark reviewed";
+      reviewed.addEventListener("click", () => {
+        const record = state.topicRevisionSchedule[item.key]; if (!record || record.completed) return;
+        record.lastReviewedAt = new Date().toISOString(); record.reviewCount = Number(record.reviewCount || 0) + 1;
+        const next = Number(record.intervalIndex || 0) + 1;
+        if (next >= TOPIC_REVISION_INTERVALS.length) { record.completed = true; record.completedAt = record.lastReviewedAt; }
+        else { record.intervalIndex = next; record.dueAt = tadDateAfterDays(TOPIC_REVISION_INTERVALS[next]); }
+        saveUserState(); renderSyllabus(); toast(record.completed ? "Revision cycle completed. Mastery remains your decision." : "Next spaced review scheduled.");
+      });
+      const snooze = document.createElement("button"); snooze.type = "button"; snooze.className = "btn"; snooze.textContent = "Snooze 1 day";
+      snooze.addEventListener("click", () => {
+        const record = state.topicRevisionSchedule[item.key]; if (!record || record.completed) return;
+        const base = record.dueAt && new Date(record.dueAt + "T12:00:00");
+        const next = base && !Number.isNaN(base.getTime()) ? base : new Date();
+        next.setDate(next.getDate() + 1); record.dueAt = next.toISOString().slice(0,10);
+        record.snoozeCount = Number(record.snoozeCount || 0) + 1;
+        saveUserState(); renderSyllabus(); toast("Revision postponed by one day.");
+      });
+      actions.append(reviewed, snooze); card.append(details, actions); list.append(card);
+    });
+    section.append(list); host.append(section);
+  }
+
   function renderTopicLearningPathways(topics, host) {
     const section = document.createElement("section"); section.className = "tad-topic-pathways";
     const heading = document.createElement("h4"); heading.textContent = "Topic learning pathways";
