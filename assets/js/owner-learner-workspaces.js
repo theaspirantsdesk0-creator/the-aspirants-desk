@@ -24,6 +24,10 @@
     if (!panel) return;
     if (!context || !context.user || !context.profile || context.profile.role !== "admin" || !context.supabase) {
       panel.hidden = true;
+      const rows = document.getElementById("ownerLearnerWorkspaceRows");
+      const status = document.getElementById("ownerLearnerWorkspaceStatus");
+      if (rows) rows.innerHTML = "";
+      if (status) status.textContent = "Owner access required. Private learner records are not available in this session.";
       return;
     }
     panel.hidden = false;
@@ -34,15 +38,16 @@
     status.textContent = "Loading private learner workspaces…";
     try {
       const db = context.supabase;
-      const [profilesResult, dataResult, testsResult, attemptsResult, lessonsResult, mentorResult] = await Promise.all([
-        db.from("profiles").select("id,display_name,role,target_exam").order("display_name"),
+      const [profilesResult, dataResult, progressResult, testsResult, attemptsResult, lessonsResult, mentorResult] = await Promise.all([
+        db.from("profiles").select("id,display_name,role,created_at").order("display_name"),
         db.from("user_data").select("user_id,payload,updated_at").order("updated_at", { ascending: false }),
+        db.from("progress").select("user_id,summary,updated_at"),
         db.from("test_results").select("user_id,exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at").order("created_at", { ascending: false }).limit(500),
         db.from("pyq_attempts").select("user_id,question_id,selected_option,answer_text,is_correct,marks_awarded,feedback,attempted_at").order("attempted_at", { ascending: false }).limit(500),
         db.from("anbuu_lesson_history").select("user_id,track,subject,topic,level,status,updated_at,checkpoint_completed").order("updated_at", { ascending: false }).limit(500),
         db.from("anbuu_mentor_state").select("user_id,active_study_plan,doubt_log,pending_tasks,updated_at")
       ]);
-      for (const result of [profilesResult, dataResult, testsResult, attemptsResult, lessonsResult, mentorResult]) {
+      for (const result of [profilesResult, dataResult, progressResult, testsResult, attemptsResult, lessonsResult, mentorResult]) {
         if (result.error) throw result.error;
       }
       const byUser = result => {
@@ -54,6 +59,7 @@
         return map;
       };
       const payloadByUser = new Map((dataResult.data || []).map(item => [item.user_id, item]));
+      const progressByUser = new Map((progressResult.data || []).map(item => [item.user_id, item]));
       const testsByUser = byUser(testsResult);
       const attemptsByUser = byUser(attemptsResult);
       const lessonsByUser = byUser(lessonsResult);
@@ -62,6 +68,8 @@
       rows.innerHTML = profiles.map(profile => {
         const record = payloadByUser.get(profile.id);
         const payload = record && record.payload && typeof record.payload === "object" ? record.payload : {};
+        const progressRecord = progressByUser.get(profile.id);
+        const progressSummary = progressRecord && progressRecord.summary && typeof progressRecord.summary === "object" ? progressRecord.summary : {};
         const optional = payload.optionalPrep || {};
         const tests = testsByUser.get(profile.id) || [];
         const attempts = attemptsByUser.get(profile.id) || [];
