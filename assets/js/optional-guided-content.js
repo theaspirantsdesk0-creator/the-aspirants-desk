@@ -17,6 +17,17 @@ function renderGuided(){
   const index=Number(card.dataset.unitCard),unit=units[index];
   if(!unit)return;
   const lesson=unit.lesson;
+  const notesBox=card.querySelector(".optional-custom-notes");
+  if(notesBox){
+   const savedNotes=(state().studyNotes||{})[subject+":"+index]||"";
+   const coreNotes=Array.isArray(unit.notes)?unit.notes:(unit.notes?[unit.notes]:[]);
+   const personal=document.createElement("section");
+   personal.className="optional-custom-notes optional-guided-added";
+   personal.innerHTML=(coreNotes.length?'<h4>Core study notes</h4>'+coreNotes.map(p=>'<p>'+esc(p)+'</p>').join(""):"")+
+    '<h4>Your private study notes</h4><label><span>Add your own definitions, examples and answer points</span><textarea rows="5" data-guided-notes="'+index+'" placeholder="Write your own notes for this unit...">'+esc(savedNotes)+'</textarea></label>'+
+    '<button class="btn" type="button" data-guided-notes-save="'+index+'">Save my notes</button><p class="muted" style="font-size:.8rem">Saved with your optional-subject progress. Sign in to sync across devices.</p>';
+   notesBox.replaceWith(personal);
+  }
   if(lesson){
    const section=document.createElement("section");
    section.className="guided-lesson optional-guided-added";
@@ -65,6 +76,18 @@ host.addEventListener("submit",event=>{
  form.querySelectorAll("input,button").forEach(el=>el.disabled=true);
 });
 host.addEventListener("click",event=>{
+ const save=event.target.closest("[data-guided-notes-save]");
+ if(save){
+  const index=Number(save.dataset.guidedNotesSave);
+  const heading=host.querySelector(".optional-prep-head h2");
+  const subject=heading?heading.textContent.trim():"";
+  const field=host.querySelector('[data-guided-notes="'+index+'"]');
+  if(!subject||!field)return;
+  const old=state();
+  const next={...old,studyNotes:{...(old.studyNotes||{}),[subject+":"+index]:field.value}};
+  window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
+  return;
+ }
  const button=event.target.closest("[data-guided-answer]");
  if(!button)return;
  const index=Number(button.dataset.guidedAnswer),heading=host.querySelector(".optional-prep-head h2");
