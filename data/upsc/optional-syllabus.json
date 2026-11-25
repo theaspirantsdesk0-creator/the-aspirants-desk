@@ -537,15 +537,15 @@
           "w": "Mutations alter DNA sequences; their effects can vary and are not automatically harmful or beneficial."
         },
         {
-          "q": "Mitosis normally produces: ",
+          "q": "During DNA replication, complementary base pairing means that adenine pairs with:",
           "o": [
-            "Four genetically varied haploid cells",
-            "Two daughter cells with the same chromosome number as the parent cell",
-            "Gametes only",
-            "A change in species"
+            "Thymine in DNA",
+            "Cytosine",
+            "Guanine",
+            "Uracil in all DNA"
           ],
-          "a": 1,
-          "w": "Mitosis supports growth and tissue repair by producing daughter cells with the same chromosome number."
+          "a": 0,
+          "w": "In DNA, adenine pairs with thymine, while guanine pairs with cytosine."
         },
         {
           "q": "Meiosis is important because it: ",
@@ -559,15 +559,15 @@
           "w": "Meiosis reduces chromosome number and creates variation through processes including recombination and independent assortment."
         },
         {
-          "q": "A cell membrane is primarily composed of: ",
+          "q": "A mutation is best defined as:",
           "o": [
-            "A phospholipid bilayer with associated proteins",
-            "Cellulose only in all organisms",
-            "DNA alone",
-            "Calcium carbonate"
+            "A heritable change in genetic material",
+            "Any temporary change in behaviour",
+            "A change in body temperature",
+            "A social rule"
           ],
           "a": 0,
-          "w": "The plasma membrane is a selectively permeable phospholipid bilayer containing proteins and other molecules."
+          "w": "Mutation is a change in genetic material; its effects vary and it is a source of genetic variation."
         },
         {
           "q": "Ribosomes are directly involved in: ",
@@ -2834,15 +2834,15 @@
           "w": "Dominant caste is a contextual concept for local power, not a universal caste ranking."
         },
         {
-          "q": "The jajmani concept is used to examine: ",
+          "q": "The concept of dominant caste is most closely associated with which scholar?",
           "o": [
-            "Patterned service and exchange relationships in some village settings",
-            "Only urban industrial wage contracts",
-            "Genetic inheritance",
-            "The evolution of primates"
+            "M. N. Srinivas",
+            "L. P. Vidyarthi",
+            "Thomas Malthus",
+            "Franz Boas"
           ],
           "a": 0,
-          "w": "Jajmani has been used to analyse reciprocal service and exchange, but should not be universalised."
+          "w": "M. N. Srinivas developed the concept of dominant caste through village-based analysis."
         },
         {
           "q": "The sacred complex framework is associated with: ",
@@ -3050,15 +3050,15 @@
           "w": "Panchayati Raj institutions provide a framework for rural local self-government."
         },
         {
-          "q": "A village study should avoid treating the village as: ",
+          "q": "A multi-sited approach to village research is useful for studying:",
           "o": [
-            "An isolated and internally homogeneous unit",
-            "A setting with local institutions",
-            "A place linked to markets and migration",
-            "A site of social change"
+            "Connections among village, town, migration and institutions",
+            "Only one household in isolation",
+            "A single archaeological layer",
+            "Only physical growth"
           ],
           "a": 0,
-          "w": "Villages are internally diverse and connected to wider economic, political and social processes."
+          "w": "Multi-sited research follows relationships and processes across locations rather than treating the village as closed."
         },
         {
           "q": "The little and great traditions framework examines: ",
@@ -3072,15 +3072,15 @@
           "w": "The framework studies cultural interaction and should not be used to rank traditions."
         },
         {
-          "q": "Panchayati Raj institutions are concerned with: ",
+          "q": "A key contribution of S. C. Dube to Indian anthropology was his work on:",
           "o": [
-            "Rural local self-government",
-            "National monetary policy alone",
-            "International treaty enforcement",
-            "Archaeological dating"
+            "Indian village society and social change",
+            "The Hardy–Weinberg principle",
+            "The ethnography of communication",
+            "Mendelian inheritance"
           ],
           "a": 0,
-          "w": "Panchayati Raj provides constitutional and state-law frameworks for rural local governance."
+          "w": "S. C. Dube is known for influential village studies and analysis of social change."
         },
         {
           "q": "Agrarian relations include relationships involving: ",
@@ -3323,15 +3323,15 @@
           "w": "Restoration is multidimensional and cannot be judged by compensation alone."
         },
         {
-          "q": "Participatory development requires: ",
+          "q": "The principle of free, prior and informed consent is especially relevant when:",
           "o": [
-            "Affected people to help shape priorities and decisions",
-            "Experts to decide without local consultation",
-            "Only one-way information campaigns",
-            "Avoiding evaluation"
+            "Projects or research affect community lands, resources or rights",
+            "Choosing a font for a report",
+            "Calculating a crude birth rate",
+            "Dating a stone tool"
           ],
           "a": 0,
-          "w": "Participation includes meaningful involvement in defining, implementing and evaluating interventions."
+          "w": "Free, prior and informed consent concerns meaningful community decision-making before actions affecting rights or resources."
         },
         {
           "q": "A social impact assessment examines: ",
