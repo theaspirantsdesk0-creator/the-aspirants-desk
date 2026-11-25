@@ -192,6 +192,14 @@ def main() -> int:
                          'db.from("progress").select("user_id,summary,updated_at")',
                          "Private learner records are not available"):
             check(required in owner_source, f"Owner/learner access separation is missing: {required}")
+        check('db.from("test_results").select("user_id,exam,test_name,score,max_score,correct_count,wrong_count,skipped_count,created_at")' in owner_source,
+              "Owner workspace must read learner test history")
+        check('db.from("pyq_attempts").select("user_id,question_id,selected_option,answer_text,is_correct,marks_awarded,feedback,attempted_at")' in owner_source,
+              "Owner workspace must read learner paper attempts")
+    if optional_js.is_file():
+        optional_source = optional_js.read_text(encoding="utf-8")
+        check("quizResults" in optional_source and 'from("test_results").insert' in optional_source,
+              "Optional unit test results must be saved to the learner's private account history")
         check('select("id,display_name,role,target_exam")' not in owner_source,
               "Owner workspace queries a target_exam profile column that does not exist")
 
