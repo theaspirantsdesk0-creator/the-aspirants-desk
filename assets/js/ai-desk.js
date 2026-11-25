@@ -381,6 +381,18 @@ else if(!messages.childElementCount)say(role==="admin"?"Admin Desk ready. Drafts
 opened=true;
 }
 async function task(id,next,dueDate=null,reviewResult=null){try{const r=await db.functions.invoke("ai-assistant",{body:{action:"update_task",taskId:id,status:next,...(dueDate?{dueDate}:{}),...(reviewResult?{reviewResult}:{})}});if(r.error)throw r.error;state=r.data.mentorState;render();status.textContent=reviewResult?"Review saved. Next review scheduled from your confidence rating.":dueDate?"Revision postponed and saved.":next==="completed"?"Revision marked complete.":"Task restored to pending."; }catch(e){status.textContent="Task could not be saved. Please try again.";}}
+async function aiFunctionErrorMessage(error){
+ let message=error&&typeof error.message==="string"?error.message:"Anbuu could not respond right now.";
+ try{
+  const response=error&&error.context;
+  if(response&&typeof response.clone==="function"){
+   const payload=await response.clone().json();
+   if(payload&&typeof payload.error==="string"&&payload.error.trim())return payload.error;
+  }
+ }catch(_){}
+ if(/non-2xx status code/i.test(message))return "Anbuu's server returned an error. Please retry in a moment; if it continues, share the time of the failed request with the site owner.";
+ return message;
+}
 async function sendMessage(message,lessonId=null,evaluation=null){
 if(!message||busy)return;if(role==="guest"){status.textContent="Sign in with a learner, mentor or admin account.";return;}
 busy=true;send.disabled=true;input.value="";if(lessonId){history=[];messages.replaceChildren();}say(message,"user");
@@ -393,7 +405,7 @@ if(evaluation&&role==="learner"){
 }
 if(role==="learner"&&r.data.mentorState){state=r.data.mentorState;render();}
 status.textContent=(r.data.provider||"AI")+" · "+(r.data.remaining??"—")+" messages remaining today.";
-}catch(e){say(e.message||"Anbuu could not respond right now.","assistant");status.textContent="Request failed. Check your connection and try again.";}
+}catch(e){const detail=await aiFunctionErrorMessage(e);say(detail,"assistant");status.textContent="Request failed. Check your connection and try again.";console.error("Anbuu request failed:",e);}
 finally{busy=false;send.disabled=false;input.focus();}
 }
 const prompts={plan:"Help me create a realistic study plan. Ask for my exam goal, syllabus, timeline and daily available study time only if missing. Save the agreed plan.",doubts:"Summarise my recurring doubts from this conversation and saved learning context in 2–3 bullets. Update my doubt log if useful.",tasks:"Give me 1–3 concrete tasks for today based on my active study plan, pending tasks and today's lesson. Save the updated task list."};
