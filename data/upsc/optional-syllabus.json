@@ -914,7 +914,114 @@
           "a": 1,
           "w": "Methodology explains and justifies the approach and methods used."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Learn how anthropologists study language, communication and social life, and how research questions are converted into ethical field methods and evidence.",
+        "sections": [
+          {
+            "heading": "Language as a human system",
+            "explanation": [
+              "Language is a rule-governed system of symbols used to communicate meaning. It includes patterned sounds or signs, vocabulary, grammar and shared conventions. Human languages are diverse, dynamic and capable of expressing new ideas.",
+              "Anthropologists study language not only as a structure but also as social action. Language choices can communicate identity, respect, authority, belonging and distance."
+            ],
+            "example": "The way a person addresses a teacher, elder, friend or official may change with setting, relationship and expectations."
+          },
+          {
+            "heading": "Verbal and non-verbal communication",
+            "explanation": [
+              "Verbal communication uses spoken or signed language. Non-verbal communication includes gesture, posture, gaze, facial expression, silence, spatial arrangement and other culturally interpreted signals.",
+              "Meaning depends on context. A gesture or silence should not be assigned a universal meaning without examining local conventions and the relationship between participants."
+            ]
+          },
+          {
+            "heading": "Language, identity and social context",
+            "explanation": [
+              "Sociolinguistic analysis examines variation by region, age, social setting, occupation and interaction. Code-switching and multilingual practice can be resources for communication and identity rather than signs of confusion.",
+              "Language can be linked with power and inequality through education, administration, media and access to public services. Language shift, maintenance and revitalisation are important areas of anthropological study."
+            ]
+          },
+          {
+            "heading": "Technique, method and methodology",
+            "explanation": [
+              "A technique is a particular data-gathering tool, such as an interview schedule or an observation checklist. A method is an organised procedure for collecting or analysing evidence. Methodology explains the reasoning behind the research design and method choices.",
+              "A good methodology connects the research question, sampling, field relationships, evidence, analysis and ethics. The most sophisticated tool is not useful if it cannot answer the actual question."
+            ]
+          },
+          {
+            "heading": "Core fieldwork methods",
+            "explanation": [
+              "Participant observation involves observing everyday activity while engaging appropriately in the setting. Interviews may be structured, semi-structured or open-ended. Questionnaires and schedules help record comparable information when carefully designed.",
+              "Genealogies map relationships and descent; life histories and oral histories document remembered experience; case studies explore a bounded issue in depth; participatory methods involve people in defining questions or interpreting findings.",
+              "Sampling choices affect what can be concluded. Researchers should explain who was included, who may be missing and why the sample fits the research question."
+            ]
+          },
+          {
+            "heading": "Analysis, triangulation and presentation",
+            "explanation": [
+              "Qualitative analysis may involve coding, comparison, identifying themes and interpreting narratives in context. Quantitative analysis summarises patterns using appropriate measures and transparent assumptions.",
+              "Triangulation compares evidence from different methods, sources or researchers. It can strengthen an interpretation, reveal contradictions or show that a finding is context-dependent; it does not automatically make a conclusion true.",
+              "Reports should distinguish field observations, participants' accounts and the researcher's interpretation. Tables, diagrams and quotations should support rather than replace the argument."
+            ]
+          },
+          {
+            "heading": "Research ethics and reflexivity",
+            "explanation": [
+              "Ethical fieldwork requires informed and ongoing consent, privacy protection, careful handling of sensitive information, respect for local protocols and avoidance of harm. Consent is a process, not merely a signature.",
+              "Reflexivity means examining how a researcher's background, role, expectations and relationships shape access, interaction and interpretation. Researchers should document limitations and avoid presenting one person's account as the voice of an entire community."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Sociolinguistics",
+            "meaning": "Study of relationships between language and social life."
+          },
+          {
+            "term": "Code-switching",
+            "meaning": "Alternating between languages or varieties within an interaction or situation."
+          },
+          {
+            "term": "Participant observation",
+            "meaning": "A field method combining observation with appropriate participation in everyday settings."
+          },
+          {
+            "term": "Genealogy",
+            "meaning": "A systematic record or diagram of relationships and descent."
+          },
+          {
+            "term": "Triangulation",
+            "meaning": "Comparison of evidence from multiple methods, sources or perspectives."
+          },
+          {
+            "term": "Reflexivity",
+            "meaning": "Critical examination of how the researcher's position influences research."
+          },
+          {
+            "term": "Informed consent",
+            "meaning": "Voluntary agreement based on a clear understanding of the research and its implications."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Bronisław Malinowski",
+            "idea": "Established participant observation as a central fieldwork tradition through sustained engagement in everyday social life."
+          },
+          {
+            "scholar": "W. H. R. Rivers",
+            "idea": "Contributed systematic genealogical methods to the study of kinship and social organisation."
+          },
+          {
+            "scholar": "Franz Boas",
+            "idea": "Emphasised careful linguistic documentation and the study of language within cultural and historical contexts."
+          },
+          {
+            "scholar": "Dell Hymes",
+            "idea": "Developed the ethnography of communication, focusing on culturally organised rules and contexts of speaking."
+          }
+        ],
+        "answerPractice": "Explain the difference between technique, method and methodology. Discuss any three anthropological fieldwork methods and show how ethical safeguards improve the quality of evidence.",
+        "revisionPrompt": "Design a short fieldwork plan for studying language use in a multilingual public setting. State the question, two methods, a sampling consideration and three ethical safeguards."
+      }
     },
     {
       "paper": "I",
@@ -1055,7 +1162,116 @@
           "a": 1,
           "w": "Biocultural analysis considers biological and cultural influences together."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Explain human adaptation and health through biocultural and ecological approaches, and understand growth and ageing as processes shaped by interacting influences.",
+        "sections": [
+          {
+            "heading": "Ecological anthropology and the biocultural approach",
+            "explanation": [
+              "Ecological anthropology studies relationships between people, other organisms and physical environments. It examines how livelihood, technology, culture, institutions and environmental conditions shape one another.",
+              "The biocultural approach connects biological processes with social and cultural conditions. It avoids explaining health or adaptation through genes, climate or behaviour alone."
+            ],
+            "example": "A study of nutrition may examine food availability, household distribution, work patterns, local knowledge, infection and access to public services together."
+          },
+          {
+            "heading": "Human responses to environmental stress",
+            "explanation": [
+              "Humans respond to environmental conditions through short-term physiological adjustment, developmental change, behavioural practices and, over many generations, population-level genetic adaptation. These processes are distinct and should not be confused.",
+              "Heat, cold and high-altitude environments create different demands. Clothing, housing, work schedules, diet, technology and social support can modify exposure and vulnerability.",
+              "Responses vary among individuals and populations. Avoid assuming that one visible trait or one population average predicts an individual's capacity."
+            ]
+          },
+          {
+            "heading": "Health, disease and epidemiological anthropology",
+            "explanation": [
+              "Epidemiology studies the distribution and determinants of health-related conditions in populations. It asks who is affected, where, when and under what circumstances, using clear definitions and appropriate denominators.",
+              "Anthropological analysis adds attention to illness experience, local explanations, stigma, care-seeking, household resources, inequality and relationships between communities and health institutions.",
+              "A useful framework distinguishes disease as a clinically described condition, illness as lived experience and sickness as a socially recognised status. These dimensions may overlap but are not identical."
+            ]
+          },
+          {
+            "heading": "Growth and development across the life course",
+            "explanation": [
+              "Growth refers to measurable changes in body size and proportions; development includes broader changes in function and capability. Both unfold across the life course and reflect interactions among heredity, nutrition, health, care and social conditions.",
+              "Growth studies use measures such as height, weight and body proportions, collected with standardised methods. Age accuracy, equipment, measurement error and appropriate reference populations matter.",
+              "Population growth references describe patterns in defined reference groups. They are not a diagnosis or a prediction of an individual person's future."
+            ]
+          },
+          {
+            "heading": "Nutrition, environment and inequality",
+            "explanation": [
+              "Nutrition, infection, sanitation, housing, stress, care practices and access to services can influence growth and health. Their effects may accumulate over time and differ by socio-economic circumstances.",
+              "Anthropologists examine how food systems, gender roles, work, cultural meaning and public policy influence nutritional outcomes. A biological measurement should be interpreted alongside the conditions that produced it."
+            ]
+          },
+          {
+            "heading": "Ageing, senescence and physique",
+            "explanation": [
+              "Ageing is a life-course process involving biological, social and cultural dimensions. Senescence refers to age-associated changes in biological function; its timing and expression vary across people and contexts.",
+              "Physique studies describe body form using defined measurements and classifications. Such categories have limits and should not be used to infer personality, ability or social worth.",
+              "Research on ageing should consider health, work, family roles, social support, environment and the meanings attached to age in different communities."
+            ]
+          },
+          {
+            "heading": "Methods and interpretation",
+            "explanation": [
+              "Cross-sectional studies compare people of different ages at one point in time; longitudinal studies follow the same participants over time. Each has strengths and limitations, including cohort effects, attrition and resource demands.",
+              "Sound interpretation combines measurements with contextual data, reports uncertainty and avoids reducing complex health differences to a single cause."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Biocultural approach",
+            "meaning": "Analysis of interactions between biological processes and cultural, social and environmental conditions."
+          },
+          {
+            "term": "Acclimatisation",
+            "meaning": "Shorter-term physiological adjustment to environmental conditions during an individual's lifetime."
+          },
+          {
+            "term": "Epidemiology",
+            "meaning": "Study of the distribution and determinants of health-related conditions in populations."
+          },
+          {
+            "term": "Morbidity",
+            "meaning": "Occurrence or burden of illness or disease in a population."
+          },
+          {
+            "term": "Senescence",
+            "meaning": "Age-associated changes in biological function."
+          },
+          {
+            "term": "Longitudinal study",
+            "meaning": "Research that follows the same participants over a period of time."
+          },
+          {
+            "term": "Cohort effect",
+            "meaning": "Differences associated with the historical experiences of groups born or observed in different periods."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Julian Steward",
+            "idea": "Developed cultural ecology, examining relationships between cultural practices and environmental conditions."
+          },
+          {
+            "scholar": "Roy Rappaport",
+            "idea": "Showed how ecological analysis can connect ritual, social organisation and environmental relationships."
+          },
+          {
+            "scholar": "Franz Boas",
+            "idea": "Contributed to the study of growth and human variation, including the importance of environmental and developmental context."
+          },
+          {
+            "scholar": "James Tanner",
+            "idea": "Made influential contributions to the scientific study of human growth and development."
+          }
+        ],
+        "answerPractice": "What is the biocultural approach to human health? Explain how environmental, nutritional and socio-economic conditions may interact with biological growth and ageing.",
+        "revisionPrompt": "Create a flowchart linking environment, livelihood, nutrition, infection, care and growth. Add one example of a short-term adjustment and one population-level adaptation."
+      }
     },
     {
       "paper": "I",
@@ -1084,7 +1300,117 @@
           "a": 0,
           "w": "Fecundity is biological reproductive capacity; fertility concerns actual reproductive outcomes."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Understand basic demographic concepts and explain fertility, mortality and population change through biological, social, cultural and policy factors, while recognising applied anthropology's ethical role.",
+        "sections": [
+          {
+            "heading": "Core demographic concepts",
+            "explanation": [
+              "Demography studies the size, composition, distribution and change of human populations. Population change is commonly analysed through births, deaths and migration.",
+              "Fecundity refers to biological capacity for reproduction, while fertility refers to actual reproductive performance. Natality concerns births in a population; mortality concerns deaths. Each measure requires a defined population and reference period.",
+              "Rates and ratios are meaningful only when their numerator, denominator, age range and time period are stated clearly. Crude measures can hide important differences in population structure."
+            ]
+          },
+          {
+            "heading": "Fertility patterns and differentials",
+            "explanation": [
+              "Fertility patterns vary with age structure, health, education, livelihood, marriage patterns, family expectations, access to services and public policy. No single factor explains every population.",
+              "Anthropologists study how people make decisions within households and communities, including the influence of gender relations, care responsibilities, economic security and cultural expectations.",
+              "Menarche and menopause may be considered in life-course and population research, but individual experiences vary. They should not be treated as simple explanations for wider demographic patterns."
+            ]
+          },
+          {
+            "heading": "Theories of population change",
+            "explanation": [
+              "Malthus argued that population could grow faster than subsistence resources under certain conditions, creating pressures that he described through preventive and positive checks. His assumptions and historical predictions have been widely debated.",
+              "Demographic transition theory describes broad historical shifts from high birth and death rates to lower rates as mortality and fertility patterns change. Timing and pathways differ across countries and communities.",
+              "Anthropological approaches complement large-scale models by examining household decisions, migration, inequality, local meanings and the institutions shaping demographic behaviour."
+            ]
+          },
+          {
+            "heading": "Reading population measures critically",
+            "explanation": [
+              "A population pyramid shows age and sex composition at a point in time. Age-specific rates help compare groups more carefully than crude totals when age structures differ.",
+              "Life expectancy is a summary measure based on mortality patterns, not a promise about an individual's lifespan. Population projections are conditional estimates that depend on assumptions about future fertility, mortality and migration.",
+              "When comparing places, check definitions, coverage, data quality and whether the same time periods and denominators are being used."
+            ]
+          },
+          {
+            "heading": "Applied anthropology",
+            "explanation": [
+              "Applied anthropology uses anthropological concepts and methods in practical settings such as public health, education, development, heritage, organisations and policy. It seeks to understand problems with the people affected, not simply design interventions for them.",
+              "Action-oriented work may involve needs assessment, participatory research, programme design, implementation and evaluation. Good practice includes community participation, transparency, accountability and attention to unintended effects.",
+              "Applied work should distinguish evidence of activity from evidence of outcome. A programme being delivered does not by itself show that it improved people's lives."
+            ]
+          },
+          {
+            "heading": "Forensic, sports, nutrition and genetic applications",
+            "explanation": [
+              "Forensic anthropology may contribute to the scientific assessment of human remains and identification processes within legal and professional standards. Conclusions should state uncertainty and should not exceed what the evidence supports.",
+              "Sports and nutrition anthropology examine relationships among physical activity, environment, food practices, culture and performance or health. Interpretations should avoid simplistic body-type stereotypes.",
+              "Genetic counselling and DNA applications raise questions of informed consent, privacy, data security, family implications, uncertainty and equitable access. Anthropological analysis considers how results are understood and used within social contexts."
+            ]
+          },
+          {
+            "heading": "Ethics, rights and evaluation",
+            "explanation": [
+              "Applied research must protect privacy, obtain appropriate consent, recognise community knowledge and avoid stigmatising people or groups. Sensitive demographic and genetic information requires especially careful governance.",
+              "Evaluation should include whose priorities shaped the intervention, who benefited, who may have been excluded, what changed and what evidence supports the conclusion."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Demography",
+            "meaning": "Study of population size, composition, distribution and change."
+          },
+          {
+            "term": "Fecundity",
+            "meaning": "Biological capacity to reproduce."
+          },
+          {
+            "term": "Fertility",
+            "meaning": "Actual reproductive performance measured at individual or population level."
+          },
+          {
+            "term": "Natality",
+            "meaning": "Occurrence or rate of births in a population."
+          },
+          {
+            "term": "Mortality",
+            "meaning": "Occurrence or rate of deaths in a population."
+          },
+          {
+            "term": "Demographic transition",
+            "meaning": "Model describing broad shifts in birth and death rates during population change."
+          },
+          {
+            "term": "Applied anthropology",
+            "meaning": "Use of anthropological knowledge and methods to address practical issues."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Thomas Robert Malthus",
+            "idea": "Proposed an influential theory linking population growth and resource constraints; later demographic and technological changes challenge simple readings of the model."
+          },
+          {
+            "scholar": "Frank W. Notestein",
+            "idea": "Helped formulate demographic transition theory as a model of changing fertility and mortality patterns."
+          },
+          {
+            "scholar": "John Caldwell",
+            "idea": "Explored intergenerational wealth flows and social explanations of fertility change."
+          },
+          {
+            "scholar": "Sol Tax",
+            "idea": "Associated with action anthropology, emphasising collaborative work with communities and practical problem-solving."
+          }
+        ],
+        "answerPractice": "Differentiate fecundity, fertility, natality and mortality. Explain how demographic transition theory can be enriched by anthropological attention to household decisions, inequality and local context.",
+        "revisionPrompt": "Prepare a four-term comparison table for fecundity, fertility, natality and mortality. Then list three ethical safeguards for an applied demographic or genetic research project."
+      }
     },
     {
       "paper": "II",

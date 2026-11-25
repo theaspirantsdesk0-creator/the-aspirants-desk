@@ -169,9 +169,23 @@ def main() -> int:
             check(all(unit.get("topics") and unit.get("notes") and unit.get("test") for unit in anthro_units),
                   "Each published Anthropology unit must include topics, notes and a self-test")
             guided_units = [unit for unit in anthro_units if unit.get("lesson")]
-            check(len(guided_units) >= 2, "Anthropology must include guided teacher-led lessons")
+            check(len(guided_units) >= 11, "Anthropology must include the current guided teacher-led lesson coverage")
             check(all(unit["lesson"].get("sections") and unit["lesson"].get("keyTerms") and unit["lesson"].get("answerPractice") for unit in guided_units),
                   "Guided Anthropology lessons must include sections, key terms and Mains answer practice")
+            check(all(
+                all(isinstance(section.get("heading"), str) and section.get("heading")
+                    and isinstance(section.get("explanation"), list) and section.get("explanation")
+                    for section in unit["lesson"].get("sections", []))
+                for unit in guided_units
+            ), "Every guided Anthropology lesson section must have a heading and explanatory content")
+            check(all(
+                all(isinstance(question.get("q"), str) and question.get("q")
+                    and isinstance(question.get("o"), list) and len(question.get("o", [])) >= 2
+                    and isinstance(question.get("a"), int) and 0 <= question.get("a", -1) < len(question.get("o", []))
+                    and isinstance(question.get("w"), str) and question.get("w")
+                    for question in unit.get("test", []))
+                for unit in anthro_units
+            ), "Every Anthropology self-test must have valid options, answer index and explanation")
         except (OSError, json.JSONDecodeError) as exc:
             check(False, f"Optional syllabus catalogue is invalid JSON: {exc}")
     if index.is_file():
@@ -204,6 +218,12 @@ def main() -> int:
         optional_source = optional_js.read_text(encoding="utf-8")
         check("quizResults" in optional_source and 'from("test_results").insert' in optional_source,
               "Optional unit test results must be saved to the learner's private account history")
+        check("submitButton.disabled=true" in optional_source
+              and "could not be confirmed" in optional_source
+              and "Attempt recorded in this browser only" in optional_source,
+              "Optional unit tests must prevent duplicate submissions and report local/cloud save status accurately")
+        check("Units studied" in optional_source and "Mark unit studied" in optional_source,
+              "Optional workspace progress labels must match unit-level completion tracking")
         check('select("id,display_name,role,target_exam")' not in owner_source,
               "Owner workspace queries a target_exam profile column that does not exist")
 
