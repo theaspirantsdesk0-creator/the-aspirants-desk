@@ -26,7 +26,7 @@
   ],
   "inventory_summary": {
     "expected_paper_entries": 2575,
-    "verified_entries": 24,
+    "verified_entries": 25,
     "published_entries": 0,
     "note": "Every row starts as not_checked. A direct document URL is added only after locating the exact official PDF. 'source_found' means a candidate official document has been located but not yet checked against its metadata; 'verified' requires opening the PDF and confirming year, exam, subject, and paper."
   },
@@ -46856,16 +46856,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper II (CSAT)",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-II-26052025.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2025 — General Studies Paper II (CSAT)",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists this under Civil Services (Preliminary) Examination, 2025 as General Studies Paper II; exact PDF URL resolved from the archive link.",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-essay-2025",
