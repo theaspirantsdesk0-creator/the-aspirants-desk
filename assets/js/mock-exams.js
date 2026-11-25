@@ -23,7 +23,8 @@ const sectionName=q=>q.section_key||"Main";
 function status(msg){const el=$("mockStatus");if(el)el.textContent=msg;}
 function admin(){return profile&&profile.role==="admin";}
 function readOptional(payload){
- const candidates=[payload?.optionalSubject,payload?.optional_subject,payload?.optional?.subject,payload?.preferences?.optionalSubject];
+ const candidates=[payload?.optionalPrep?.subject,payload?.optionalSubject,payload?.optional_subject,payload?.optional?.subject,payload?.preferences?.optionalSubject];
+ if(!candidates.some(v=>typeof v==="string"&&v.trim())){try{const local=JSON.parse(localStorage.getItem("tad_state_v5")||"{}");candidates.unshift(local?.optionalPrep?.subject);}catch(e){}}
  return candidates.find(v=>typeof v==="string"&&v.trim())||localStorage.getItem("tad_optional_subject")||"";
 }
 async function boot(){
@@ -195,6 +196,7 @@ async function publishPaper(){
  const {data:items,error}=await sb.from("mock_exam_questions").select("id,question_type").eq("paper_id",paper.id).eq("is_active",true);
  if(error){status(error.message);return;}
  if(!items?.length){status("Cannot publish an empty paper.");return;}
+ const expected=expectedFor(code);if(expected&&items.length!==expected){status("This is a full-length paper: "+expected+" questions are required, but "+items.length+" are imported.");return;}
  const mcqIds=items.filter(q=>q.question_type==="mcq").map(q=>q.id);
  if(mcqIds.length){const {data:keys,error:keyError}=await sb.from("mock_exam_answer_keys").select("question_id").in("question_id",mcqIds);if(keyError){status(keyError.message);return;}const ready=new Set((keys||[]).map(k=>k.question_id));if(mcqIds.some(id=>!ready.has(id))){status("Cannot publish: every MCQ must have a verified answer key.");return;}}
  const {error:e}=await sb.from("mock_exam_papers").update({is_published:true,updated_at:new Date().toISOString()}).eq("id",paper.id);
@@ -203,5 +205,6 @@ async function publishPaper(){
 }
 $("mockPublishBtn")?.addEventListener("click",publishPaper);
 bindControls();
+window.addEventListener("tad:optionalPrepChanged",async()=>{try{const {data}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();optionalSubject=readOptional(data?.payload||{});renderCatalog();}catch(e){}});
 boot().catch(e=>status("Mock system error: "+e.message));
 })();
