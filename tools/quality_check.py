@@ -9,6 +9,7 @@ import sys
 import tempfile
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlparse
 from publish_generated import merge_json
 from upsc_angles import fallback_upsc_angle
 from pyq import validate_records, build_coverage_report
@@ -26,6 +27,13 @@ def check(condition: bool, message: str) -> None:
     CHECKS += 1
     if not condition:
         ERRORS.append(message)
+
+def is_official_upsc_url(value: str) -> bool:
+    try:
+        parsed = urlparse(value)
+        return parsed.scheme == "https" and parsed.hostname in {"upsc.gov.in", "www.upsc.gov.in"}
+    except (TypeError, ValueError):
+        return False
 
 
 class Scripts(HTMLParser):
@@ -460,12 +468,22 @@ def main() -> int:
     verified_rows = verified_docs.get("documents", [])
     check(len(verified_rows) >= 1, "At least one official UPSC PDF must be individually verified")
     check(all(row.get("status") == "verified"
-              and row.get("document_url", "").startswith("https://")
-              and "upsc.gov.in/" in row.get("document_url", "")
+              and is_official_upsc_url(row.get("document_url", ""))
               and row.get("verification", {}).get("verified_at")
               and row.get("verification", {}).get("method")
               for row in verified_rows),
-          "Every displayed official PDF must have an UPSC URL and verification metadata")
+          "Every displayed official PDF must have an exact UPSC hostname and verification metadata")
+    check(is_official_upsc_url("https://upsc.gov.in/paper.pdf")
+          and is_official_upsc_url("https://www.upsc.gov.in/paper.pdf")
+          and not is_official_upsc_url("https://evilupsc.gov.in/paper.pdf")
+          and not is_official_upsc_url("https://upsc.gov.in.evil.example/paper.pdf")
+          and not is_official_upsc_url("http://upsc.gov.in/paper.pdf"),
+          "Official UPSC URL validation must reject lookalike hosts and non-HTTPS links")
+    check("function isOfficialUpscUrl" in html and
+          'host === "upsc.gov.in"' in html and 'host === "www.upsc.gov.in"' in html and
+          "isOfficialUpscUrl(row.source.document_url)" in html and
+          "isOfficialUpscUrl(doc.document_url)" in html,
+          "The browser must validate exact UPSC hostnames before displaying official links")
     check(len({row.get("id") for row in verified_rows}) == len(verified_rows),
           "Verified official document IDs must be unique")
 
