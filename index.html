@@ -1772,7 +1772,9 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   const sbUrl = window.DESK_SUPABASE_URL || "";
   const sbKey = window.DESK_SUPABASE_ANON_KEY || "";
   const supabase = (window.supabase && sbUrl && sbKey)
-    ? window.supabase.createClient(sbUrl, sbKey)
+    ? (window.TAD_SUPABASE || (window.TAD_SUPABASE = window.supabase.createClient(sbUrl, sbKey, {
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+      })))
     : null;
   window.TAD_SUPABASE = supabase;
 
@@ -4072,14 +4074,24 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         currentUser = data.session.user;
         await loadUserState();
       }
-      supabase.auth.onAuthStateChange(async (_event, session) => {
-        currentUser = session ? session.user : null;
-        if (currentUser) await loadUserState();
-        else {
+      let lastAuthUserId = currentUser?.id || null;
+      supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === "TOKEN_REFRESHED") {
+          if (session?.user) currentUser = session.user;
+          return;
+        }
+        if (event === "SIGNED_OUT" || !session?.user) {
+          currentUser = null;
+          lastAuthUserId = null;
           localStorage.removeItem("tad_active_user_id");
           resetUserScopedState();
           updateAuthUI();
+          return;
         }
+        currentUser = session.user;
+        const changed = lastAuthUserId !== session.user.id;
+        lastAuthUserId = session.user.id;
+        if (changed || event === "SIGNED_IN" || event === "USER_UPDATED") await loadUserState();
       });
     }
     updateAuthUI();
