@@ -2672,7 +2672,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         marks: Number(detail.marks) === 15 ? 15 : 10,
         wordLimit: Number(detail.wordLimit) || (Number(detail.marks) === 15 ? 250 : 150),
         durationMinutes: Number(detail.durationMinutes) || (Number(detail.marks) === 15 ? 11 : 7),
-        bankId: String(detail.bankId || "")
+        bankId: String(detail.bankId || ""),
+        framework: String(detail.framework || "")
       };
       $("mainsQuestionPaper").textContent = [window.TAD_ACTIVE_MAINS_PROMPT.subject, window.TAD_ACTIVE_MAINS_PROMPT.unit].filter(Boolean).join(" · ");
       $("mainsQuestionText").textContent = "Q. " + window.TAD_ACTIVE_MAINS_PROMPT.prompt;
@@ -2784,7 +2785,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       marks: activePrompt.marks || (mainsTargetWords === 250 ? 15 : 10),
       wordLimit: mainsTargetWords,
       durationMinutes: activePrompt.durationMinutes || (mainsTargetWords === 250 ? 11 : 7),
-      bankId: activePrompt.bankId || ""
+      bankId: activePrompt.bankId || "",
+      framework: activePrompt.framework || ""
     });
     state.mainsDrafts = state.mainsDrafts.slice(0, 100);
     $("mainsBox").value = "";
