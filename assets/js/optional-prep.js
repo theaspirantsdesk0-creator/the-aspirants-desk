@@ -105,7 +105,7 @@ function startQuiz(index){
  if(!questions.length){host.textContent="A test for this unit is being prepared.";return;}
  activeQuiz={index,questions};
  host.innerHTML='<section class="card optional-quiz-card"><h3>Unit check: '+esc(unit.unit)+'</h3><form id="optionalQuizForm">'+questions.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+esc(q.q)+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'" required> '+esc(o)+'</label>').join("")+'</fieldset>').join("")+'<button class="btn primary" type="submit">Submit answers</button></form><div id="optionalQuizResult" role="status"></div></section>';
- $("optionalQuizForm").addEventListener("submit",event=>{
+ $("optionalQuizForm").addEventListener("submit",async event=>{
   event.preventDefault();const fd=new FormData(event.currentTarget);let score=0;
   const explanations=questions.map((q,i)=>{const got=Number(fd.get("q"+i));const ok=got===q.a;if(ok)score++;return '<p><b>Q'+(i+1)+': '+(ok?"Correct":"Review")+'.</b> '+esc(q.w)+'</p>';});
   const attemptedAt=new Date().toISOString();
