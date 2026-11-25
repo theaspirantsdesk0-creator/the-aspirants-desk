@@ -176,6 +176,25 @@ def main() -> int:
                          "tad:optionalPrepSave", "assets/js/optional-prep.js", "assets/js/owner-learner-workspaces.js"):
             check(required in optional_html, f"Optional subject onboarding is not wired: {required}")
 
+        # Shared-device account isolation: private learner state must be reset
+        # whenever a different account signs in or the active account signs out.
+        for required in ("function resetUserScopedState()", "tad_active_user_id",
+                         'localStorage.removeItem("tad.learningHub.v1")',
+                         "resetUserScopedState();"):
+            check(required in optional_html, f"Account privacy isolation is missing: {required}")
+
+    owner_workspace = ROOT / "assets" / "js" / "owner-learner-workspaces.js"
+    check(owner_workspace.is_file(), "Owner learner workspace module is missing")
+    if owner_workspace.is_file():
+        owner_source = owner_workspace.read_text(encoding="utf-8")
+        run_node_check(owner_source, "assets/js/owner-learner-workspaces.js")
+        for required in ('context.profile.role !== "admin"', "panel.hidden = true",
+                         'db.from("progress").select("user_id,summary,updated_at")',
+                         "Private learner records are not available"):
+            check(required in owner_source, f"Owner/learner access separation is missing: {required}")
+        check('select("id,display_name,role,target_exam")' not in owner_source,
+              "Owner workspace queries a target_exam profile column that does not exist")
+
     js_files = [p for p in (ROOT / "assets").rglob("*.js") if p != ai_js]
     for path in js_files:
         run_node_check(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
@@ -748,7 +767,8 @@ def main() -> int:
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
         sw_source = sw_file.read_text(encoding="utf-8")
-        check("desk-v8-optional-prep" in sw_source and "(?:js|css)" in sw_source,
+        check(bool(re.search(r"var VERSION = ['\"]desk-v\d+[-\w]*['\"];", sw_source))
+              and "(?:js|css)" in sw_source,
               "Service worker must version its cache and refresh scripts/styles while online")
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")
