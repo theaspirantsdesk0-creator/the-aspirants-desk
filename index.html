@@ -1740,6 +1740,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <div id="mockStatus" class="mock-save" role="status" aria-live="polite">Connecting to your examination workspace…</div>
       <div id="mockCatalogView" class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:.7rem;flex-wrap:wrap"><div><h2 style="margin:0">Examination library</h2><p class="muted" style="margin:.2rem 0">Papers appear here after the owner publishes their verified question sets.</p></div><button class="btn" id="mockRefreshBtn">Refresh papers</button></div><div id="mockResumeBox" style="margin:.8rem 0"></div><div id="mockPaperList" class="mock-grid"></div></div>
       <section id="mockTopicPractice" class="card mock-topic-practice"><div class="mock-analytics-heading"><div><span class="eyebrow">SMART TOPIC PRACTICE</span><h2>Build a focused practice set</h2><p class="muted">Choose a published paper, section and question count. Each answer is checked securely and explained after you respond.</p></div></div><div class="mock-practice-controls"><label>Paper<select id="mockPracticePaper"><option value="">Choose a published paper</option></select></label><label>Section<select id="mockPracticeSection" disabled><option value="">Choose a section</option></select></label><label>Questions<select id="mockPracticeCount"><option value="5">5 questions</option><option value="10" selected>10 questions</option><option value="15">15 questions</option></select></label><button class="btn primary" id="mockPracticeStart" type="button" disabled>Start practice</button></div><div id="mockPracticeStatus" class="mock-save" role="status" aria-live="polite">Select a paper to load its available MCQ sections.</div><div id="mockPracticeSession" class="mock-practice-session" hidden></div><div id="mockPracticeHistory" class="mock-practice-history"></div></section>
+      <section id="mainsTopicStudio" class="card mains-topic-studio"><div class="mock-analytics-heading"><div><span class="eyebrow">MAINS ANSWER LAB</span><h2>Topic-wise written practice</h2><p class="muted">Choose a published GS or Anthropology question, write within the suggested word limit and save your draft as you work.</p></div></div><div class="mains-studio-controls"><label>Paper<select id="mainsStudioPaper"><option value="">Choose a published Mains paper</option></select></label><label>Question<select id="mainsStudioQuestion" disabled><option value="">Choose a question</option></select></label></div><div id="mainsStudioQuestionPanel" hidden><div class="mains-studio-question"><div class="mock-meta" id="mainsStudioMeta"></div><h3 id="mainsStudioPrompt"></h3><div class="mains-studio-rubric" id="mainsStudioRubric"></div></div><div class="mains-studio-toolbar"><span id="mainsStudioWordCount">0 words</span><span id="mainsStudioLimit"></span><span id="mainsStudioClock">07:00</span></div><textarea id="mainsStudioAnswer" rows="10" maxlength="12000" placeholder="Write your structured answer here…"></textarea><div class="mains-studio-actions"><button type="button" class="btn" id="mainsStudioTimer">Start timer</button><button type="button" class="btn" id="mainsStudioSave">Save draft</button><button type="button" class="btn" id="mainsStudioClear">Clear draft</button><button type="button" class="btn primary" id="mainsStudioEvaluate">Evaluate with Anbuu</button></div><p id="mainsStudioSaveStatus" class="mock-save" role="status" aria-live="polite">Drafts are private to your signed-in account.</p><div id="mainsStudioEvaluationStatus" class="mock-save" aria-live="polite"></div></div><div id="mainsStudioHistory" class="mains-studio-history"></div></section>
       <section id="mockAnalyticsPanel" class="card mock-analytics-panel"><div class="mock-analytics-heading"><div><h2>My performance analytics</h2><p class="muted">Your completed GS and Anthropology mock history, objective accuracy and revision priorities.</p></div><button class="btn" id="mockAnalyticsRefresh" type="button">Refresh report</button></div><div id="mockAnalyticsContent" aria-live="polite"><p class="mock-save">Your report will load after sign-in.</p></div></section>
       <div id="mockExamView" class="mock-hidden">
         <div class="card" style="margin-bottom:.8rem"><div style="display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap;align-items:center"><div><h2 id="mockExamTitle" style="margin:0"></h2><div class="muted" id="mockExamSub"></div></div><div style="text-align:right"><div class="mock-clock" id="mockClock">02:00:00</div><div class="mock-save">Remaining time</div></div></div><div class="mock-progress" style="margin-top:.8rem"><span id="mockProgressFill"></span></div><div class="mock-save" id="mockQuestionPosition"></div></div>
@@ -2142,6 +2143,24 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       window.dispatchEvent(new CustomEvent("tad:mainsEvaluationsUpdated"));
       return false;
     }
+  };
+
+  window.TAD_GET_MAINS_DRAFTS = () => Array.isArray(state.mainsDrafts) ? state.mainsDrafts : [];
+  window.TAD_SAVE_MAINS_DRAFT = async (draft) => {
+    if (!currentUser || !supabase || !draft || !draft.questionId) return false;
+    state.mainsDrafts = Array.isArray(state.mainsDrafts) ? state.mainsDrafts : [];
+    const row = { ...draft, updatedAt: new Date().toISOString() };
+    const index = state.mainsDrafts.findIndex(x => x.questionId === row.questionId);
+    if (index >= 0) state.mainsDrafts[index] = row; else state.mainsDrafts.unshift(row);
+    state.mainsDrafts = state.mainsDrafts.slice(0, 100);
+    await saveUserState();
+    return true;
+  };
+  window.TAD_DELETE_MAINS_DRAFT = async (questionId) => {
+    if (!currentUser || !supabase) return false;
+    state.mainsDrafts = (Array.isArray(state.mainsDrafts) ? state.mainsDrafts : []).filter(x => x.questionId !== questionId);
+    await saveUserState();
+    return true;
   };
 
   window.TAD_GET_TOPIC_PRACTICE_HISTORY = () => Array.isArray(state.practiceHistory) ? state.practiceHistory : [];
