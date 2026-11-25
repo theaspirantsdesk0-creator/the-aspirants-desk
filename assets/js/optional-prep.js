@@ -75,7 +75,7 @@ function render(){
    <div class="optional-unit-top"><span class="pill">Paper ${u.paper}</span><label class="optional-done"><input type="checkbox" data-unit-done="${u.index}" ${progress[subject+":"+u.index]?"checked":""}> Mark unit studied</label></div>
    <h3>${esc(u.unit)}</h3>
    <ul>${u.topics.map(t=>"<li>"+esc(t)+"</li>").join("")}</ul>
-   ${u.lesson?`<section class="guided-lesson"><h4>Guided lesson</h4><p class="muted">${esc(u.lesson.objective||"")}</p>${(u.lesson.sections||[]).map((section,n)=>`<article><h5>${n+1}. ${esc(section.heading)}</h5>${(section.explanation||[]).map(p=>`<p>${esc(p)}</p>`).join("")}${section.example?`<p><b>Example:</b> ${esc(section.example)}</p>`:""}</article>`).join("")}${u.lesson.keyTerms?`<h5>Key terms</h5><dl>${u.lesson.keyTerms.map(t=>`<dt><b>${esc(t.term)}</b></dt><dd>${esc(t.meaning)}</dd>`).join("")}</dl>`:""}${u.lesson.scholarLens?`<h5>Scholar perspectives</h5><ul>${u.lesson.scholarLens.map(x=>`<li><b>${esc(x.scholar)}:</b> ${esc(x.idea)}</li>`).join("")}</ul>`:""}${u.lesson.answerPractice?`<h5>Mains answer practice</h5><p>${esc(u.lesson.answerPractice)}</p>`:""}${u.lesson.revisionPrompt?`<h5>Revision prompt</h5><p>${esc(u.lesson.revisionPrompt)}</p>`:""}</section>`:""}
+   ${u.lesson?`<section class="guided-lesson"><h4>Guided lesson</h4><p class="muted">${esc(u.lesson.objective||"")}</p>${(u.lesson.sections||[]).map((section,n)=>`<article><h5>${n+1}. ${esc(section.heading)}</h5>${(section.explanation||[]).map(p=>`<p>${esc(p)}</p>`).join("")}${section.example?`<p><b>Example:</b> ${esc(section.example)}</p>`:""}</article>`).join("")}${u.lesson.keyTerms?`<h5>Key terms</h5><dl>${u.lesson.keyTerms.map(t=>`<dt><b>${esc(t.term)}</b></dt><dd>${esc(t.meaning)}</dd>`).join("")}</dl>`:""}${u.lesson.scholarLens?`<h5>Scholar perspectives</h5><ul>${u.lesson.scholarLens.map(x=>`<li><b>${esc(x.scholar)}:</b> ${esc(x.idea)}</li>`).join("")}</ul>`:""}${u.lesson.answerPractice?`<h5>Mains answer practice</h5><p>${esc(u.lesson.answerPractice)}</p>`:""}${u.lesson.revisionPrompt?`<h5>Revision prompt</h5><p>${esc(u.lesson.revisionPrompt)}</p>`:""}${u.lesson.answerPractice?`<button class="btn" type="button" data-answer-practice="${u.index}">Open in Mains Writing Pad</button>`:""}</section>`:""}
    <details><summary>Open beginner notes and explanation</summary><div class="optional-notes-body">
     <h4>Core explanation</h4>${u.notes.map(n=>"<p>"+esc(n)+"</p>").join("")}
     <h4>Study checklist</h4><ul><li>Define every key term in your own words.</li><li>Prepare one scholar / example / case study where relevant.</li><li>Draw a diagram, flowchart or comparison table where it improves clarity.</li><li>Attempt one 150–250 word answer and review relevance, evidence and structure.</li></ul>
@@ -101,6 +101,15 @@ function render(){
   render();
  }));
  host.querySelectorAll("[data-unit-quiz]").forEach(button=>button.addEventListener("click",()=>startQuiz(Number(button.dataset.unitQuiz))));
+ host.querySelectorAll("[data-answer-practice]").forEach(button=>button.addEventListener("click",()=>{
+  const selected=activeUnits()[Number(button.dataset.answerPractice)];
+  if(!selected||!selected.lesson||!selected.lesson.answerPractice)return;
+  window.dispatchEvent(new CustomEvent("tad:mainsPromptSelected",{detail:{
+   subject:current().subject||"Anthropology",unit:selected.unit,prompt:selected.lesson.answerPractice
+  }}));
+  const mainsLink=document.querySelector('[data-nav="mains"]');
+  if(mainsLink)mainsLink.click();
+ }));
 }
 function startQuiz(index){
  const unit=activeUnits()[index],host=$("optionalQuizHost");if(!unit||!host)return;
