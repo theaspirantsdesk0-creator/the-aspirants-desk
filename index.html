@@ -819,7 +819,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       </div>
       <section class="tad-intelligence" aria-labelledby="tadIntelligenceTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">LEARNING INTELLIGENCE</span><h3 id="tadIntelligenceTitle">Your preparation signals</h3><p class="muted">A transparent view of what you have tracked—not a prediction of your exam result.</p></div><span class="tad-intelligence-period">Last 7 days · local dates</span></div><div class="tad-intelligence-kpis" id="tadIntelligenceKpis" aria-live="polite"></div><div class="tad-intelligence-grid"><section><h4>Syllabus mastery map</h4><p class="muted">Tiles reflect your saved topic status. Untracked topics remain neutral.</p><div id="tadMasteryHeatmap" class="tad-mastery-heatmap"></div><div class="tad-heatmap-legend"><span><i></i>Not started / untracked</span><span><i class="stage-learning"></i>Learning</span><span><i class="stage-practised"></i>Practised</span><span><i class="stage-revision_due"></i>Revision due</span><span><i class="stage-mastered"></i>Mastered</span></div></section><section><h4>Seven-day study report</h4><div id="tadWeeklyStudyReport"></div><h4 class="tad-intelligence-subhead">Revision outlook</h4><div id="tadRevisionOutlook"></div></section></div><p class="tad-intelligence-foot" id="tadIntelligenceFoot">Study streak begins when dated sessions are recorded.</p></section>
       <section class="tad-weekly-review" aria-labelledby="tadWeeklyReviewTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">WEEKLY REVIEW</span><h3 id="tadWeeklyReviewTitle">Your seven-day preparation review</h3><p class="muted">A review of recorded activity and the next practical priorities.</p></div><button type="button" class="btn" id="tadWeeklyReviewRefresh">Refresh report</button></div><div id="tadWeeklyReviewBody" aria-live="polite"><p class="muted">Loading your private weekly review…</p></div></section>
-      <section class="tad-weakness-engine" aria-labelledby="tadWeaknessTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">TARGETED IMPROVEMENT</span><h3 id="tadWeaknessTitle">Weakness-to-Mastery Engine</h3><p class="muted">Turn recorded mistakes and revision gaps into a manageable practice queue.</p></div><button type="button" class="btn" id="tadWeaknessRefresh">Refresh</button></div><div id="tadWeaknessSummary" class="tad-review-metrics"></div><div id="tadWeaknessQueue" aria-live="polite"><p class="muted">Loading your improvement queue…</p></div><p class="tad-intelligence-foot">Only saved learner records are used. A topic is not labelled weak unless a recorded mistake or saved feedback identifies it.</p></section>
+      <section class="tad-weakness-engine" aria-labelledby="tadWeaknessTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">TARGETED IMPROVEMENT</span><h3 id="tadWeaknessTitle">Weakness-to-Mastery Engine</h3><p class="muted">Turn recorded mistakes and revision gaps into a manageable practice queue.</p></div><button type="button" class="btn" id="tadWeaknessRefresh">Refresh</button></div><div id="tadWeaknessSummary" class="tad-review-metrics"></div><div id="tadWeaknessQueue" aria-live="polite"><p class="muted">Loading your improvement queue…</p></div><section class="tad-daily-mission" aria-labelledby="tadMissionTitle"><div class="tad-intelligence-head"><div><span class="eyebrow">DAILY EXECUTION PLAN</span><h4 id="tadMissionTitle">Today’s UPSC Mission</h4><p class="muted">Turn your saved priorities into a time-boxed plan. Your checkmarks sync with your account.</p></div><label class="tad-mission-duration">Available time<select id="tadMissionDuration"><option value="90">90 minutes</option><option value="120" selected>2 hours</option><option value="150">2.5 hours</option><option value="180">3 hours</option></select></label></div><div class="tad-mission-toolbar"><button type="button" class="btn primary" id="tadMissionGenerate">Build / refresh today’s mission</button><span id="tadMissionStatus" class="muted" aria-live="polite">Build a realistic plan from your current study signals.</span></div><div id="tadMissionProgress" class="tad-mission-progress" hidden></div><ol id="tadMissionTasks" class="tad-mission-tasks" aria-live="polite"><li class="muted">Your daily tasks will appear here.</li></ol></section><p class="tad-intelligence-foot">Only saved learner records are used. A topic is not labelled weak unless a recorded mistake or saved feedback identifies it.</p></section>
       <div class="tad-command-actions"><a class="btn primary" href="#today" data-nav="today">Start study session</a><a class="btn" href="#tracker" data-nav="tracker">Open preparation tracker</a><a class="btn" href="#anbuu" data-nav="anbuu">Ask Anbuu</a></div>
       <p class="tad-command-foot" id="tadCommandFoot" aria-live="polite">Sign in to see your private study summary.</p>
     </section>
@@ -2190,8 +2190,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     // into the next signed-in session on a shared browser/device.
     state = {
       hours: 0, sessions: [], syllabus: [], topicMastery: {}, topicRevisionSchedule: {}, revisions: [],
-      mainsDrafts: [], mainsEvaluations: [], mistakes: [], masteredCards: [],
-      lastScore: null, learningHub: {}, practiceHistory: []
+      mainsDrafts: [], mainsEvaluations: [], answerEvaluations: [], mistakes: [], masteredCards: [],
+      lastScore: null, learningHub: {}, practiceHistory: [], dailyMissionPlan: null, optionalPrep: null
     };
     window.TAD_OPTIONAL_PREP = null;
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
@@ -3954,6 +3954,48 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     unfinished.slice(0,4).forEach((topic,i)=>add("syllabus",topic,"Syllabus not yet marked complete · "+(mastery[selectedExam+"::"+topic]?.status||"not started"),45-i));
     if(run!==tadRevisionEngineRun||!currentUser||currentUser.id!==requestedUserId)return;
     tasks.sort((a,b)=>b.priority-a.priority);
+    const missionDate=tadDateAfterDays(0);
+    const missionHost=$("tadMissionTasks"),missionStatus=$("tadMissionStatus"),missionProgress=$("tadMissionProgress");
+    const currentMission=state.dailyMissionPlan&&state.dailyMissionPlan.date===missionDate?state.dailyMissionPlan:null;
+    const paintMission=()=>{
+      const plan=state.dailyMissionPlan&&state.dailyMissionPlan.date===missionDate?state.dailyMissionPlan:null;
+      if(!missionHost)return;
+      if(!plan||!Array.isArray(plan.tasks)||!plan.tasks.length){missionHost.innerHTML='<li class="muted">Build today’s mission to turn your priorities into manageable study blocks.</li>';if(missionProgress)missionProgress.hidden=true;return;}
+      const done=plan.tasks.filter(t=>t.done).length,total=plan.tasks.length,minutes=plan.tasks.reduce((n,t)=>n+Number(t.minutes||0),0);
+      if(missionProgress){missionProgress.hidden=false;missionProgress.innerHTML='<div><strong>'+done+'/'+total+' tasks complete</strong><span>'+Math.round(done/total*100)+'% · '+minutes+' planned minutes</span></div><div class="tad-mission-track"><i style="width:'+(done/total*100)+'%"></i></div>';}
+      missionHost.innerHTML=plan.tasks.map((t,i)=>'<li class="'+(t.done?'is-done':'')+'"><label><input type="checkbox" data-mission-done="'+i+'" '+(t.done?'checked':'')+'><span><b>'+esc(t.title)+'</b><small>'+esc(t.detail||"Focused study block")+'</small></span></label><em>'+Number(t.minutes||0)+' min</em></li>').join("");
+      if(missionStatus)missionStatus.textContent='Saved for '+missionDate+' · '+plan.duration+' minutes · unfinished tasks can be carried into your next plan.';
+    };
+    if(currentMission&&$("tadMissionDuration"))$("tadMissionDuration").value=String(currentMission.duration||120);
+    if($("tadMissionGenerate")&&!$("tadMissionGenerate").dataset.bound){
+      $("tadMissionGenerate").dataset.bound="1";
+      $("tadMissionGenerate").addEventListener("click",()=>{
+        if(!currentUser){toast("Sign in to save your daily mission.");return;}
+        const duration=Number($("tadMissionDuration")?.value||120),previous=state.dailyMissionPlan;
+        const carry=previous&&previous.date!==missionDate&&Array.isArray(previous.tasks)?previous.tasks.filter(t=>!t.done).slice(0,2):[];
+        const picks=[];
+        carry.forEach(t=>picks.push({kind:"carry",topic:t.title,detail:"Carried forward from "+previous.date+": "+(t.detail||"unfinished study block"),priority:120}));
+        tasks.slice(0,4).forEach(t=>{if(picks.length<4)picks.push(t);});
+        if(!picks.length&&syllabus.length){const topic=syllabus.find(t=>!(state.syllabus||[]).includes(sylKey(t)))||syllabus[0];picks.push({kind:"syllabus",topic,detail:"Steady syllabus progress · no urgent weakness signal recorded",priority:1});}
+        if(!picks.length)picks.push({kind:"maintenance",topic:"Active recall and weekly consolidation",detail:"Review your notes and record one learning outcome",priority:1});
+        const weights=picks.length===1?[1]:picks.length===2?[.55,.45]:picks.length===3?[.4,.35,.25]:[.35,.25,.22,.18];
+        let remaining=duration;
+        const planTasks=picks.map((x,i)=>{const mins=i===picks.length-1?remaining:Math.max(10,Math.round(duration*weights[i]/5)*5);remaining-=mins;return{id:missionDate+"-"+i+"-"+String(x.topic).slice(0,24),title:x.topic,detail:x.detail,kind:x.kind,minutes:mins,done:false};});
+        planTasks[planTasks.length-1].minutes+=remaining;
+        state.dailyMissionPlan={date:missionDate,duration,tasks:planTasks,updatedAt:new Date().toISOString()};
+        saveUserState();paintMission();toast("Today’s mission saved to your account.");
+      });
+    }
+    if(missionHost&&!missionHost.dataset.bound){
+      missionHost.dataset.bound="1";
+      missionHost.addEventListener("change",event=>{
+        const input=event.target.closest("[data-mission-done]");if(!input)return;
+        const plan=state.dailyMissionPlan;if(!plan||plan.date!==missionDate)return;
+        const task=plan.tasks[Number(input.dataset.missionDone)];if(!task)return;
+        task.done=input.checked;plan.updatedAt=new Date().toISOString();saveUserState();paintMission();
+      });
+    }
+    paintMission();
     const activeDue=due.filter(x=>x.dueAt<=tadDateAfterDays(0)).length;
     summary.innerHTML=[[mistakes.length,"Saved mistakes"],[mockWeak.length,"Weak mock sections"],[weaknessTags.size,"Mains feedback signals"],[activeDue,"Due / overdue revisions"]].map(x=>'<div class="tad-review-metric"><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></div>').join("");
     const labels={mock:"Mock result",answer:"Mains feedback",mistake:"Recorded mistake",revision:"Scheduled revision",syllabus:"Syllabus priority"};
