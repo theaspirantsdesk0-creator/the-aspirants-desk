@@ -294,7 +294,90 @@
           "a": 1,
           "w": "Translation reads mRNA codons at ribosomes to assemble a polypeptide."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Build a clear foundation in cells, inheritance and the biological processes that make life possible.",
+        "sections": [
+          {
+            "heading": "The cell as the basic unit",
+            "explanation": [
+              "The cell is the basic structural and functional unit of living organisms. Cells carry out metabolism, maintain internal conditions, respond to their surroundings and reproduce.",
+              "Prokaryotic cells lack a membrane-bound nucleus; eukaryotic cells have a nucleus and specialised organelles. Human cells are eukaryotic."
+            ],
+            "example": "A human muscle cell and a nerve cell have different structures because they perform different functions, while sharing the same basic cellular organisation."
+          },
+          {
+            "heading": "DNA, genes and chromosomes",
+            "explanation": [
+              "DNA stores hereditary information. A gene is a functional sequence of DNA; genes influence traits through products such as RNA and proteins, often in interaction with other genes and the environment.",
+              "Chromosomes are organised DNA-protein structures. Humans typically have 46 chromosomes in most body cells, arranged in 23 pairs. Gametes typically carry 23 chromosomes."
+            ]
+          },
+          {
+            "heading": "Cell division",
+            "explanation": [
+              "Mitosis produces two daughter cells with broadly the same chromosome number as the parent cell and supports growth and tissue repair.",
+              "Meiosis produces gametes and reduces chromosome number by half. Recombination and independent assortment contribute to genetic variation."
+            ]
+          },
+          {
+            "heading": "Inheritance and variation",
+            "explanation": [
+              "Mendelian inheritance explains patterns involving dominant and recessive alleles in some traits. Many human traits are polygenic and influenced by environment, so simple dominant-recessive models do not explain every trait.",
+              "Mutation introduces new genetic variants. Recombination reshuffles existing variants. Both contribute to variation on which evolutionary processes can act."
+            ]
+          },
+          {
+            "heading": "Biocultural interpretation",
+            "explanation": [
+              "Human biological traits should be understood with attention to development, ecology, culture and history. Avoid treating socially defined categories as fixed biological divisions.",
+              "Nutrition, disease exposure, physical activity, altitude and social conditions can interact with biological development and health."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Cell",
+            "meaning": "Basic structural and functional unit of living organisms."
+          },
+          {
+            "term": "Gene",
+            "meaning": "A DNA sequence with a functional role, often coding for a product or regulating activity."
+          },
+          {
+            "term": "Chromosome",
+            "meaning": "An organised DNA-protein structure carrying genetic information."
+          },
+          {
+            "term": "Mitosis",
+            "meaning": "Cell division that generally maintains chromosome number."
+          },
+          {
+            "term": "Meiosis",
+            "meaning": "Cell division that produces haploid reproductive cells."
+          },
+          {
+            "term": "Recombination",
+            "meaning": "Exchange or reshuffling of genetic material that creates new allele combinations."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Gregor Mendel",
+            "idea": "Established foundational inheritance principles through experiments on pea plants."
+          },
+          {
+            "scholar": "Rosalind Franklin",
+            "idea": "Her X-ray diffraction work provided crucial evidence for understanding DNA structure."
+          },
+          {
+            "scholar": "James Watson and Francis Crick",
+            "idea": "Proposed the double-helix model, drawing on experimental evidence including Franklin's work."
+          }
+        ],
+        "answerPractice": "Explain how meiosis contributes to genetic variation. Include recombination and independent assortment, and distinguish meiosis from mitosis.",
+        "revisionPrompt": "Draw a simple flow: DNA → gene → chromosome organisation → inheritance. Explain where mutation and recombination contribute variation."
+      }
     },
     {
       "paper": "I",
@@ -472,7 +555,89 @@
           "a": 1,
           "w": "Random sampling effects are proportionally stronger in small populations."
         }
-      ]
+      ],
+      "lesson": {
+        "objective": "Understand the basic concepts used to study human heredity, genetic variation and populations.",
+        "sections": [
+          {
+            "heading": "From genotype to phenotype",
+            "explanation": [
+              "Genotype refers to an individual's genetic constitution at relevant loci. Phenotype refers to observable characteristics produced through interactions among genotype, development and environment.",
+              "A phenotype is not always a direct read-out of one gene. Many traits are polygenic and shaped by environmental conditions."
+            ]
+          },
+          {
+            "heading": "Alleles and population frequencies",
+            "explanation": [
+              "An allele is a version of a genetic sequence at a particular locus. Population genetics studies how allele and genotype frequencies vary and change in populations.",
+              "Hardy–Weinberg equilibrium is a baseline model. Under ideal assumptions—large population, random mating, no selection, mutation or migration—allele frequencies remain stable across generations. Real populations may depart from these assumptions."
+            ]
+          },
+          {
+            "heading": "Forces changing genetic variation",
+            "explanation": [
+              "Mutation creates new variants; gene flow moves variants between populations; genetic drift changes frequencies randomly; natural selection produces non-random differences in reproductive success associated with heritable variation.",
+              "These forces can operate together. Their relative importance depends on population history, size, migration patterns and environmental context."
+            ]
+          },
+          {
+            "heading": "Human variation and interpretation",
+            "explanation": [
+              "Human genetic variation is distributed in complex patterns shaped by ancestry, migration, adaptation, drift and population history. Variation within populations is substantial, and boundaries between populations are not simple or timeless.",
+              "Anthropological interpretation should avoid converting social labels into rigid biological types. Population-level patterns do not determine an individual's abilities or worth."
+            ]
+          },
+          {
+            "heading": "Methods and ethical responsibilities",
+            "explanation": [
+              "Researchers use family studies, twin studies, molecular markers and population-level analyses, each with assumptions and limitations. Findings require careful sampling and statistical interpretation.",
+              "Genetic research raises ethical questions about consent, privacy, stigma, community participation and how results are communicated."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Genotype",
+            "meaning": "Genetic constitution at one or more loci."
+          },
+          {
+            "term": "Phenotype",
+            "meaning": "Observable characteristics shaped by genes and environment."
+          },
+          {
+            "term": "Allele frequency",
+            "meaning": "Proportion of a particular allele among gene copies in a population."
+          },
+          {
+            "term": "Hardy–Weinberg equilibrium",
+            "meaning": "A theoretical baseline describing stable genotype frequencies under specified ideal assumptions."
+          },
+          {
+            "term": "Genetic drift",
+            "meaning": "Random fluctuation in allele frequencies, especially influential in small populations."
+          },
+          {
+            "term": "Gene flow",
+            "meaning": "Transfer of genetic variants between populations through migration and reproduction."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "G. H. Hardy and Wilhelm Weinberg",
+            "idea": "Independently formulated the equilibrium principle used as a baseline in population genetics."
+          },
+          {
+            "scholar": "Theodosius Dobzhansky",
+            "idea": "Connected genetic variation within populations to evolutionary processes in the modern synthesis."
+          },
+          {
+            "scholar": "Sewall Wright",
+            "idea": "Developed influential work on genetic drift, population structure and evolutionary change."
+          }
+        ],
+        "answerPractice": "What is the significance and limitation of the Hardy–Weinberg principle in studying human populations? Explain the assumptions and two forces that can disturb equilibrium.",
+        "revisionPrompt": "Compare mutation, selection, drift and gene flow in a four-column table: definition, whether random, population-level effect and an example."
+      }
     },
     {
       "paper": "I",
