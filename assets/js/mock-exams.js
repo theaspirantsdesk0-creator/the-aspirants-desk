@@ -54,7 +54,7 @@ async function loadRecent(){
 function expectedFor(code){return CATALOG.find(x=>x.code===code)?.expected||0;}
 function renderCatalog(){
  const host=$("mockPaperList");if(!host)return;
- const visible=papers.filter(p=>p.is_published||admin()).filter(p=>!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase());
+ const visible=papers.filter(p=>p.is_published||admin()).filter(p=>!p.optional_subject||(optionalSubject&&p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
  const cards=CATALOG.map(c=>{
   const p=visible.find(x=>x.code===c.code);
   const count=p?questionsCount(p):0;
