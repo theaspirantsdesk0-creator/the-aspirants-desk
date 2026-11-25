@@ -23,6 +23,9 @@ function renderEvaluation(record){
  <p class="mains-evaluation-disclaimer">AI-generated formative feedback. The mark is an estimate, not an official UPSC score. Verify factual cautions against reliable sources.</p>`;
 }
 function renderHistory(){
+ if(typeof window.TAD_CAN_EVALUATE_MAINS!=="function"||!window.TAD_CAN_EVALUATE_MAINS()){
+  history.textContent="Sign in with your learner account to view your private evaluation history.";return;
+ }
  const rows=typeof window.TAD_GET_MAINS_EVALUATIONS==="function"?window.TAD_GET_MAINS_EVALUATIONS():[];
  if(!rows.length){history.textContent="No evaluations saved yet. Complete an answer and request feedback to start your history.";return;}
  history.innerHTML='<div class="mains-evaluation-history-list">'+rows.slice(0,10).map((r,i)=>'<article class="mains-evaluation-history-item"><div><b>'+esc(r.evaluation?.estimated_mark)+' / '+esc(r.evaluation?.max_marks)+'</b><p>'+esc(r.prompt||"Mains answer")+'</p><small>'+esc(r.evaluatedAt?new Date(r.evaluatedAt).toLocaleString():"Saved evaluation")+'</small></div><button type="button" class="btn" data-view-evaluation="'+i+'">View</button></article>').join("")+'</div>';
@@ -36,7 +39,7 @@ btn.addEventListener("click",async()=>{
   setStatus("Sign in with a learner account to evaluate and privately save your answer history.","error");return;
  }
  const answer=$("mainsBox")?.value.trim()||"";
- const prompt=activePrompt||{};
+ const prompt=window.TAD_ACTIVE_MAINS_PROMPT||activePrompt||{};
  const question=prompt.prompt||($("mainsQuestionText")?.textContent||"").replace(/^Q\.\s*/,"");
  const marks=Number(prompt.marks)||((Number(prompt.wordLimit)||150)===250?15:10);
  const wordLimit=Number(prompt.wordLimit)|| (marks===15?250:150);
