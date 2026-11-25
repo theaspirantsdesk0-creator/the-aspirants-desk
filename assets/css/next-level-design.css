@@ -145,3 +145,12 @@ input,select,textarea{border-radius:10px}
 .tad-topic-pathway-actions .btn,.tad-optional-pathway-actions .btn{font-size:.78rem;padding:.45rem .65rem}
 .tad-optional-pathway-actions{align-items:center;margin-top:1rem;padding:.8rem;border:1px dashed var(--line);border-radius:10px}
 .tad-optional-pathway-actions span{font-weight:700;margin-right:.25rem}
+
+/* Topic mastery controls */
+.tad-syllabus-topic{align-items:start}
+.tad-mastery-control{display:grid;grid-template-columns:minmax(110px,1fr) minmax(150px,220px);align-items:center;gap:.35rem .7rem;width:100%;margin-top:.55rem}
+.tad-mastery-control>span{font-size:.78rem;font-weight:700;color:var(--muted)}
+.tad-mastery-control select{width:100%;min-width:0;padding:.55rem .65rem;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink)}
+.tad-mastery-updated{grid-column:2;font-size:.72rem;color:var(--muted)}
+.tad-mastery-title{display:block}
+@media(max-width:560px){.tad-mastery-control{grid-template-columns:1fr}.tad-mastery-updated{grid-column:1}}
