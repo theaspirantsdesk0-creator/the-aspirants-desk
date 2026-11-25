@@ -525,10 +525,10 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     const payload = saved?.payload && typeof saved.payload === "object" && !Array.isArray(saved.payload)
       ? { ...(saved.payload as Record<string, unknown>) } : {};
     const existing = Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations : [];
-    const weaknessLine = feedback.match(/(?:^|\\n)PRIORITY WEAKNESSES:\\s*(.+)/i)?.[1] ?? "";
-    const strengthLine = feedback.match(/(?:^|\\n)KEY STRENGTHS:\\s*(.+)/i)?.[1] ?? "";
+    const weaknessLine = feedback.match(/PRIORITY WEAKNESSES:\s*([^\r\n]+)/i)?.[1] ?? "";
+    const strengthLine = feedback.match(/KEY STRENGTHS:\s*([^\r\n]+)/i)?.[1] ?? "";
     const splitTags = (value: string) => value.split(/[;,]/).map((tag) => tag.trim())
-      .filter((tag) => tag && !/^(none|not identified|n\\/a)$/i.test(tag)).slice(0, 6);
+      .filter((tag) => tag && !["none", "not identified", "n/a"].includes(tag.toLowerCase())).slice(0, 6);
     const record = {
       id: crypto.randomUUID(), subject, question, answer, feedback, wordLimit,
       priorityWeaknesses: splitTags(weaknessLine), keyStrengths: splitTags(strengthLine),
@@ -640,15 +640,15 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
         const parseTags = (saved: unknown, pattern: RegExp) => Array.isArray(saved)
           ? saved.filter((tag): tag is string => typeof tag === "string").slice(0, 6)
           : (feedback.match(pattern)?.[1] ?? "").split(/[;,]/).map((tag) => tag.trim())
-              .filter((tag) => tag && !/^(none|not identified|n\\/a)$/i.test(tag)).slice(0, 6);
+      .filter((tag) => tag && !["none", "not identified", "n/a"].includes(tag.toLowerCase())).slice(0, 6);
         return {
           id: typeof row.id === "string" ? row.id : null,
           subject: typeof row.subject === "string" ? row.subject : "Practice",
           question: typeof row.question === "string" ? row.question : "",
           wordLimit: typeof row.wordLimit === "number" ? row.wordLimit : null,
           savedAt: typeof row.savedAt === "string" ? row.savedAt : null, feedback,
-          priorityWeaknesses: parseTags(row.priorityWeaknesses, /(?:^|\\n)PRIORITY WEAKNESSES:\\s*(.+)/i),
-          keyStrengths: parseTags(row.keyStrengths, /(?:^|\\n)KEY STRENGTHS:\\s*(.+)/i),
+          priorityWeaknesses: parseTags(row.priorityWeaknesses, /PRIORITY WEAKNESSES:\s*([^\r\n]+)/i),
+          keyStrengths: parseTags(row.keyStrengths, /KEY STRENGTHS:\s*([^\r\n]+)/i),
         };
       }).filter(Boolean),
       lessons: {
