@@ -1,5 +1,5 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v7-offline-shell';
+var VERSION = 'desk-v8-optional-prep';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
@@ -8,7 +8,7 @@ var CORE_ASSETS = [
   'assets/css/pyq-inventory.css',
   'assets/js/pyq-inventory.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
-  'assets/js/course-studio.js', 'assets/js/ai-desk.js'
+  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/ai-desk.js', 'assets/css/optional-prep.css', 'data/upsc/optional-syllabus.json'
 ];
 
 /* Network-first files: scripts/styles, config (public keys), service worker and data feeds. */
