@@ -253,6 +253,12 @@ try {
   const revisionTab = page.locator('#tadAiRevisionTab');
   if (await revisionTab.count() !== 1) throw new Error('Anbuu Revision Planner tab is missing');
   // Verify Anbuu guided-learning UI and the complete optional-subject catalogue.
+  const aiDeskScriptResponse = await page.request.get(base + 'assets/js/ai-desk.js');
+  if (!aiDeskScriptResponse.ok()) throw new Error('Anbuu client script could not be fetched for checkpoint regression checks');
+  const aiDeskSource = await aiDeskScriptResponse.text();
+  for (const required of ['update_lesson_checkpoint', 'Understand the concept', 'Attempt practice', 'Complete a recap', 'Next priority:']) {
+    if (!aiDeskSource.includes(required)) throw new Error('Anbuu learning checkpoint feature is missing: ' + required);
+  }
   const lessonStudio = page.locator('.tad-anbuu-lesson-studio');
   if (await lessonStudio.count() !== 1) throw new Error('Anbuu guided-learning studio is missing');
   for (const selector of ['#tadLessonTrack', '#tadLessonSubject', '#tadLessonTopic', '#tadLessonLanguage', '#tadLessonLevel', '#tadStartLesson']) {
@@ -290,6 +296,11 @@ try {
   if (lessonCatalogue.optional !== 25 || lessonCatalogue.literature !== 23) {
     throw new Error('Anbuu optional catalogue mismatch: ' + JSON.stringify(lessonCatalogue) + ' (expected 25 optional and 23 literature subjects)');
   }
+  for (const label of ['Understand the concept', 'Attempt practice', 'Complete a recap']) {
+    if (!(await page.locator('#tadLessonHistoryList').count())) throw new Error('Anbuu lesson history host is missing for checkpoint rendering');
+  }
+  const checkpointStyles = await page.evaluate(() => [...document.styleSheets].some(s => s.href && s.href.includes('ai-desk.css')));
+  if (!checkpointStyles) throw new Error('Anbuu checkpoint styles are not loaded');
   for (const selector of ['#tadLessonHistoryTitle', '#tadLessonHistoryList', '#tadRefreshLessons']) {
     if (await page.locator(selector).count() !== 1) throw new Error('Anbuu saved lesson history UI is missing: ' + selector);
   }
