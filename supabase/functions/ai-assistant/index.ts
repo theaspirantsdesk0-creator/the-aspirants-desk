@@ -410,7 +410,9 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       }, 200, origin);
     } catch (error) {
       console.error("Mains answer evaluation failed:", error instanceof Error ? error.message : "unknown error");
-      return json({ error: "Anbuu could not produce a reliable evaluation this time. Please retry once, or save your answer and try later." }, 502, origin);
+      const { data: restoredRemaining, error: refundError } = await adminClient.rpc("release_ai_daily_quota", { p_user_id: authData.user.id, p_daily_limit: 20 });
+      if (refundError) console.error("Mains evaluation quota refund failed:", refundError.message);
+      return json({ error: "Anbuu could not produce a reliable evaluation this time. Your daily allowance was restored when possible; please retry once or save your answer and try later.", remaining: refundError ? quota[0].remaining : restoredRemaining }, 502, origin);
     }
   }
 
@@ -882,6 +884,8 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       remaining: quota[0].remaining, mentorState: profile.role === "learner" ? mentorState : null }, 200, origin);
   } catch (error) {
     console.error("AI provider request failed:", String(error).slice(0, 800));
-    return json({ error: "The AI service is busy or unavailable. Your message quota was used; please try again later.", remaining: quota[0].remaining }, 502, origin);
+    const { data: restoredRemaining, error: refundError } = await adminClient.rpc("release_ai_daily_quota", { p_user_id: authData.user.id, p_daily_limit: 20 });
+    if (refundError) console.error("AI chat quota refund failed:", refundError.message);
+    return json({ error: "The AI service is busy or unavailable. Your daily allowance was restored when possible; please try again later.", remaining: refundError ? quota[0].remaining : restoredRemaining }, 502, origin);
   }
 });
