@@ -744,6 +744,17 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     const studyHours = typeof payload.hours === "number" ? payload.hours : null;
     const lastSavedScore = typeof payload.lastScore === "number" ? payload.lastScore : null;
     const mistakeRows = Array.isArray(payload.mistakes) ? payload.mistakes : [];
+    const answerEvaluationSummary = (Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations : [])
+      .slice(0, 5).map((item) => {
+        if (!item || typeof item !== "object") return null;
+        const row = item as Record<string, unknown>;
+        return {
+          subject: typeof row.subject === "string" ? row.subject : "Practice",
+          wordLimit: typeof row.wordLimit === "number" ? row.wordLimit : null,
+          savedAt: typeof row.savedAt === "string" ? row.savedAt : null,
+          feedback: typeof row.feedback === "string" ? row.feedback.slice(0, 650) : "",
+        };
+      }).filter(Boolean);
     const mistakeTopics = mistakeRows.slice(0, 12).map((item) => {
       if (!item || typeof item !== "object") return "";
       const row = item as Record<string, unknown>;
@@ -781,7 +792,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       }));
     if (lessonHistoryResult.error) console.error("Anbuu lesson context read failed:", lessonHistoryResult.error.message);
     learnerContext = "PRIVATE LEARNER STUDY SUMMARY (de-identified; use only to personalise advice; do not repeat identifiers): " +
-      JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests }).slice(0, 2200) +
+      JSON.stringify({ studyHours, lastSavedScore, mistakeTopics, recentTests, recentAnswerFeedback: answerEvaluationSummary }).slice(0, 3600) +
       "\nSAVED GUIDED-LESSON HISTORY (authoritative metadata; newest first; do not infer mastery): " +
       JSON.stringify(lessonHistory).slice(0, 1800) +
       (resumedLesson ? "\nCURRENT RESUMED LESSON (verified from this learner's saved record; metadata only, not a transcript): " +
