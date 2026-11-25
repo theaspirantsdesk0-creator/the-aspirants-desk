@@ -112,6 +112,41 @@ def main() -> int:
     if ai_js.is_file():
         run_node_check(ai_js.read_text(encoding="utf-8"), "assets/js/ai-desk.js")
 
+
+    # PWA offline shell: core learner scripts/styles must be precached and syntax-valid.
+    sw_path = ROOT / "sw.js"
+    offline_path = ROOT / "offline.html"
+    manifest_path = ROOT / "manifest.webmanifest"
+    check(sw_path.is_file(), "Service worker is missing")
+    check(offline_path.is_file(), "Offline fallback page is missing")
+    check(manifest_path.is_file(), "PWA manifest is missing")
+    if sw_path.is_file():
+        sw_source = sw_path.read_text(encoding="utf-8")
+        run_node_check(sw_source, "sw.js")
+        required_assets = (
+            "index.html", "offline.html", "manifest.webmanifest",
+            "assets/css/ai-desk.css", "assets/css/design-system.css",
+            "assets/js/ai-desk.js", "assets/js/learning-hub.js",
+            "assets/js/pyq-inventory.js", "assets/js/courses.js"
+        )
+        for asset in required_assets:
+            check("'" + asset + "'" in sw_source or '"'+asset+'"' in sw_source,
+                  f"Service worker does not precache required app asset: {asset}")
+        check("caches.match('offline.html')" in sw_source,
+              "Service worker navigation fallback must show the offline page when the app shell is unavailable")
+    if manifest_path.is_file():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            check(manifest.get("start_url") == "./", "PWA start_url must remain relative to the GitHub Pages project path")
+            check(manifest.get("scope") == "./", "PWA scope must remain relative to the GitHub Pages project path")
+            check(manifest.get("display") == "standalone", "PWA display mode should remain standalone")
+        except (OSError, json.JSONDecodeError) as exc:
+            check(False, f"PWA manifest is invalid JSON: {exc}")
+    if offline_path.is_file():
+        offline_html = offline_path.read_text(encoding="utf-8")
+        check("Try again" in offline_html and "You're offline" in offline_html,
+              "Offline fallback must explain the connection state and offer retry")
+
     js_files = [p for p in (ROOT / "assets").rglob("*.js") if p != ai_js]
     for path in js_files:
         run_node_check(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)))
@@ -684,7 +719,7 @@ def main() -> int:
     sw_file = ROOT / "sw.js"
     if sw_file.is_file():
         sw_source = sw_file.read_text(encoding="utf-8")
-        check("desk-v6-fresh-assets" in sw_source and "(?:js|css)" in sw_source,
+        check("desk-v7-offline-shell" in sw_source and "(?:js|css)" in sw_source,
               "Service worker must version its cache and refresh scripts/styles while online")
     # Offline current-affairs notes must be cautious syllabus pointers, not invented facts.
     polity_angle = fallback_upsc_angle("Polity")

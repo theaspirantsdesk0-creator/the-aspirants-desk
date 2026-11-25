@@ -1,17 +1,30 @@
-/* The Aspirant's Desk service worker — offline shell and Web Push. */
-var VERSION = 'desk-v6-fresh-assets';
-var SHELL = ['./', 'index.html', 'manifest.webmanifest', 'config.js', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
+/* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
+var VERSION = 'desk-v7-offline-shell';
+var CORE_ASSETS = [
+  './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
+  'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
+  'assets/css/ai-desk.css', 'assets/css/courses.css',
+  'assets/css/course-studio.css', 'assets/css/design-system.css',
+  'assets/css/pyq-inventory.css',
+  'assets/js/pyq-inventory.js', 'assets/js/dashboard.js',
+  'assets/js/learning-hub.js', 'assets/js/courses.js',
+  'assets/js/course-studio.js', 'assets/js/ai-desk.js'
+];
 
-/* Network-first files: scripts/styles, config (keys), service worker and data feeds. */
+/* Network-first files: scripts/styles, config (public keys), service worker and data feeds. */
 function isFresh(url) {
   var p = new URL(url).pathname;
-  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) || /\/sw\.js$/.test(p) || /\.(?:js|css)$/.test(p);
+  return /\/config\.js$/.test(p) || /\/data\/.*\.json$/.test(p) ||
+    /\/sw\.js$/.test(p) || /\.(?:js|css)$/.test(p);
 }
 
 self.addEventListener('install', function (event) {
   event.waitUntil(caches.open(VERSION).then(function (cache) {
-    return Promise.all(SHELL.map(function (url) {
-      return cache.add(new Request(url, { cache: 'reload' })).catch(function () {});
+    return Promise.all(CORE_ASSETS.map(function (url) {
+      return cache.add(new Request(url, { cache: 'reload' })).catch(function (error) {
+        /* Optional icons may be absent in a development preview; keep install resilient. */
+        return Promise.resolve(null);
+      });
     }));
   }).then(function () { return self.skipWaiting(); }));
 });
@@ -28,16 +41,20 @@ self.addEventListener('fetch', function (event) {
 
   if (request.mode === 'navigate') {
     event.respondWith(fetch(request).then(function (response) {
-      var copy = response.clone();
-      caches.open(VERSION).then(function (cache) { cache.put('index.html', copy); });
+      if (response && response.ok) {
+        var copy = response.clone();
+        caches.open(VERSION).then(function (cache) { cache.put('index.html', copy); });
+      }
       return response;
     }).catch(function () {
-      return caches.match('index.html').then(function (cached) { return cached || caches.match('./'); });
+      return caches.match('index.html').then(function (cached) {
+        return cached || caches.match('offline.html');
+      });
     }));
     return;
   }
 
-  /* Network-first for scripts, styles, config and data: latest when online, cached copy only offline. */
+  /* Network-first for scripts, styles, config and data: latest online, cached copy offline. */
   if (isFresh(request.url)) {
     event.respondWith(fetch(request, { cache: 'no-store' }).then(function (response) {
       if (response && response.ok) {
@@ -50,14 +67,14 @@ self.addEventListener('fetch', function (event) {
   }
 
   event.respondWith(caches.match(request).then(function (cached) {
-    var network = fetch(request).then(function (response) {
+    if (cached) return cached;
+    return fetch(request).then(function (response) {
       if (response && response.ok) {
         var copy = response.clone();
         caches.open(VERSION).then(function (cache) { cache.put(request, copy); });
       }
       return response;
-    }).catch(function () { return cached; });
-    return cached || network;
+    }).catch(function () { return caches.match('offline.html'); });
   }));
 });
 
