@@ -40,7 +40,11 @@ async function boot(){
 }
 async function loadPapers(){
  const {data,error}=await sb.from("mock_exam_papers").select("id,code,title,exam_stage,paper_type,optional_subject,duration_minutes,total_marks,is_published,sections").order("created_at",{ascending:false});
- if(error){status("Could not load examination papers: "+error.message);papers=[];}else papers=data||[];
+ if(error){status("Could not load examination papers: "+error.message);papers=[];}else{
+  papers=data||[];
+  const {data:qrows,error:qerror}=await sb.from("mock_exam_questions").select("paper_id").eq("is_active",true);
+  if(!qerror){const counts={};(qrows||[]).forEach(q=>counts[q.paper_id]=(counts[q.paper_id]||0)+1);papers.forEach(p=>p.question_count=counts[p.id]||0);}
+ }
 }
 async function loadRecent(){
  const {data}=await sb.from("mock_exam_attempts").select("id,paper_id,status,updated_at,expires_at").eq("user_id",user.id).eq("status","in_progress").order("updated_at",{ascending:false}).limit(5);
@@ -197,7 +201,5 @@ async function publishPaper(){
 }
 $("mockPublishBtn")?.addEventListener("click",publishPaper);
 bindControls();
-const originalImport=importPaper;
-$("mockImportBtn").addEventListener("click",()=>{});
 boot().catch(e=>status("Mock system error: "+e.message));
 })();
