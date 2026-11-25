@@ -2106,6 +2106,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     localStorage.removeItem("tad.learningHub.v1");
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: {} }));
     renderAllUserModules();
+    window.dispatchEvent(new CustomEvent("tad:mainsStateReady"));
   }
 
   function activateUserScope(userId) {
@@ -2131,6 +2132,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     window.dispatchEvent(new CustomEvent("tad:learningHubLoaded", { detail: state.learningHub || {} }));
     renderAllUserModules();
     updateAuthUI();
+    window.dispatchEvent(new CustomEvent("tad:mainsStateReady"));
     if (isOwner()) {
       loadAdminLearners();
       loadAdminMentorManagement();
