@@ -1004,8 +1004,8 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     </div>
     <div class="grid-2">
       <section class="card">
-        <h2>Preparation command checklist</h2>
-        <p class="muted">Tick each milestone as you complete it. Your checklist is saved in this browser on this device.</p>
+        <div class="roadmap-title-row"><div><span class="eyebrow">YOUR 2027 STUDY ROUTE</span><h2>Preparation command checklist</h2></div><span class="roadmap-local-tag">Device-saved checklist</span></div>
+        <p class="muted">Mark milestones as you complete them. This checklist is stored in this browser on this device; it is separate from your cloud syllabus tracker.</p>
         <div id="upsc2027Checklist" style="display:grid;gap:.7rem">
           <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="syllabus" style="width:auto;margin-top:.25rem"> <span><b>Understand the syllabus</b><small class="muted" style="display:block">Map Prelims, CSAT, Mains GS, Essay and optional papers.</small></span></label>
           <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="foundation" style="width:auto;margin-top:.25rem"> <span><b>Build the foundation</b><small class="muted" style="display:block">Complete essential NCERT and standard-book basics.</small></span></label>
@@ -1014,7 +1014,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="csat" style="width:auto;margin-top:.25rem"> <span><b>Practise CSAT consistently</b><small class="muted" style="display:block">Build comprehension, reasoning and quantitative aptitude.</small></span></label>
           <label style="display:flex;gap:.65rem;align-items:flex-start"><input type="checkbox" data-roadmap="writing" style="width:auto;margin-top:.25rem"> <span><b>Practise answer writing and revision</b><small class="muted" style="display:block">Use timed answers, feedback and spaced revision.</small></span></label>
         </div>
-        <div style="margin-top:1rem"><div class="bar-track"><div class="bar-fill" id="upsc2027ProgressFill"></div></div><b id="upsc2027ProgressText">0 of 6 milestones complete</b></div>
+        <div class="roadmap-progress-wrap"><div class="roadmap-progress-meta"><b id="upsc2027ProgressText">0 of 6 milestones complete</b><strong id="upsc2027ProgressPercent">0%</strong></div><div class="bar-track roadmap-progress-track" role="progressbar" aria-label="UPSC 2027 roadmap checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar-fill" id="upsc2027ProgressFill"></div></div></div><nav class="roadmap-shortcuts" aria-label="Preparation workspace shortcuts"><a href="#notes" data-nav="notes">Study notes</a><a href="#learning-hub" data-nav="learning-hub">Guided lessons</a><a href="#dailytest" data-nav="dailytest">Prelims practice</a><a href="#mains" data-nav="mains">Mains writing</a><a href="#tracker" data-nav="tracker">Revision tracker</a></nav>
         <button type="button" class="btn" id="upsc2027Reset" style="margin-top:.8rem">Reset checklist</button>
       </section>
       <section class="card">
@@ -4627,8 +4627,13 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
       const done=boxes.filter(box=>box.checked).length;
       const text=document.getElementById("upsc2027ProgressText");
       const fill=document.getElementById("upsc2027ProgressFill");
+      const percent=boxes.length?Math.round(done/boxes.length*100):0;
+      const pct=document.getElementById("upsc2027ProgressPercent");
+      const track=fill&&fill.parentElement;
       if(text)text.textContent=done+" of "+boxes.length+" milestones complete";
-      if(fill)fill.style.width=(boxes.length?done/boxes.length*100:0)+"%";
+      if(pct)pct.textContent=percent+"%";
+      if(fill)fill.style.width=percent+"%";
+      if(track)track.setAttribute("aria-valuenow",String(percent));
     };
     boxes.forEach(box=>{
       box.checked=Boolean(saved[box.dataset.roadmap]);
