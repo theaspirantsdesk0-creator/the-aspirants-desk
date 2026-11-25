@@ -133,9 +133,10 @@ function startQuiz(index){
    wrongCount,skippedCount,attemptedAt
   }].slice(-100)};
   window.dispatchEvent(new CustomEvent("tad:optionalPrepSave",{detail:next}));
-  const resultHost=$("optionalQuizResult");
-  resultHost.innerHTML='<h4>Score: '+score+' / '+questions.length+'</h4><p>Incorrect: '+wrongCount+' · Skipped: '+skippedCount+'</p>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p>';
-  const status=$("optionalQuizSaveStatus");
+  const resultHost=$("optionalQuizHost");
+  if(!resultHost)return;
+  resultHost.innerHTML='<section class="card optional-quiz-card"><h3>Test result</h3><h4>Score: '+score+' / '+questions.length+'</h4><p>Incorrect: '+wrongCount+' · Skipped: '+skippedCount+'</p>'+explanations.join("")+'<p class="muted" id="optionalQuizSaveStatus" role="status">Saving this result to your private study workspace…</p></section>';
+  const status=resultHost.querySelector("#optionalQuizSaveStatus");
   const context=window.DESK_AUTH_CONTEXT;
   if(context&&context.user&&context.user.id&&context.supabase&&typeof context.supabase.from==="function"){
    try{
