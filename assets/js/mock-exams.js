@@ -37,7 +37,7 @@ async function boot(){
  ]);
  if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});savedPracticeHistory=typeof window.TAD_GET_TOPIC_PRACTICE_HISTORY==="function"?window.TAD_GET_TOPIC_PRACTICE_HISTORY().slice(0,50):(Array.isArray(u.data?.payload?.practiceHistory)?u.data.payload.practiceHistory.slice(0,50):[]);
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();initTopicPractice();initMainsTopicStudio();renderTopicPracticeHistory();await loadAnalytics();
+ await loadPapers();await loadRecent();renderCatalog();initTopicPractice();initMainsTopicStudio();renderTopicPracticeHistory();loadMainsImprovementDashboard();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -197,6 +197,7 @@ async function loadMainsStudioQuestions(){
 }
 function initMainsTopicStudio(){
  const paperSel=$("mainsStudioPaper"),questionSel=$("mainsStudioQuestion");if(!paperSel||!questionSel)return;
+ const refresh=$("mainsImprovementRefresh");if(refresh&&!refresh.dataset.bound){refresh.dataset.bound="1";refresh.addEventListener("click",loadMainsImprovementDashboard);}
  const available=papers.filter(p=>p.is_published&&p.exam_stage==="mains"&&(!p.optional_subject||!optionalSubject||p.optional_subject.toLowerCase()===optionalSubject.toLowerCase()));
  const previous=paperSel.value;
  paperSel.innerHTML='<option value="">Choose a published Mains paper</option>'+available.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.title)+'</option>').join("");
@@ -212,6 +213,48 @@ function initMainsTopicStudio(){
  }
  if(paperSel.value)loadMainsStudioQuestions();
  renderMainsStudioHistory();
+}
+
+
+function improvementAdvice(tag){
+ const t=String(tag||"").toLowerCase();
+ if(/structure|organisation|organization|coherence/.test(t))return "Use a direct introduction, 3–4 logically ordered headings, connected analysis and a concise conclusion.";
+ if(/example|case|evidence|data|illustration/.test(t))return "Add one relevant Indian example, case study, scholar, committee or verified data point where it strengthens the argument.";
+ if(/analysis|critical|evaluation|depth/.test(t))return "Move beyond description: explain causes, implications, limitations and a balanced judgement.";
+ if(/concept|definition|theory|thinker|scholar/.test(t))return "Begin with a precise definition, then use the relevant concept, thinker or theoretical lens accurately.";
+ if(/demand|directive|question|relevance/.test(t))return "Underline the directive and split the question into every demand; give each demand explicit coverage.";
+ if(/conclusion|way forward|solution/.test(t))return "End with a question-linked conclusion or feasible way forward instead of repeating the introduction.";
+ if(/fact|accuracy|factual|current/.test(t))return "Verify factual claims and dates; avoid unsupported generalisations and qualify uncertain claims.";
+ return "Turn this weakness into a visible checklist item and deliberately address it in your next answer.";
+}
+async function loadMainsImprovementDashboard(){
+ const host=$("mainsImprovementContent");if(!host)return;
+ host.innerHTML='<p class="mock-save">Loading your private answer-writing evidence…</p>';
+ try{
+  const {data,error}=await sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle();
+  if(error)throw error;
+  const payload=data?.payload&&typeof data.payload==="object"?data.payload:{};
+  const evaluations=Array.isArray(payload.answerEvaluations)?payload.answerEvaluations.filter(x=>x&&typeof x==="object"):[];
+  const drafts=Array.isArray(payload.mainsDrafts)?payload.mainsDrafts:[];
+  const weaknesses=new Map(),strengths=new Map(),subjects=new Map();
+  evaluations.forEach(e=>{
+   (Array.isArray(e.priorityWeaknesses)?e.priorityWeaknesses:[]).forEach(x=>weaknesses.set(x,(weaknesses.get(x)||0)+1));
+   (Array.isArray(e.keyStrengths)?e.keyStrengths:[]).forEach(x=>strengths.set(x,(strengths.get(x)||0)+1));
+   const subject=String(e.subject||"Mains answer");const item=subjects.get(subject)||{count:0,words:[],latest:e.savedAt||""};
+   item.count++;item.words.push(String(e.answer||"").trim().split(/\s+/).filter(Boolean).length);
+   if(Date.parse(e.savedAt||"")>Date.parse(item.latest||""))item.latest=e.savedAt||"";
+   subjects.set(subject,item);
+  });
+  const topWeak=[...weaknesses.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const topStrong=[...strengths.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const kpi=(v,l)=>'<div class="mock-analytics-kpi"><b>'+v+'</b><span>'+l+'</span></div>';
+  const subjectRows=[...subjects.entries()].sort((a,b)=>b[1].count-a[1].count).map(([name,x])=>'<div class="mock-analytics-row"><div><b>'+esc(name)+'</b><div class="mock-save">'+x.count+' saved evaluation(s) · latest '+(x.latest?new Date(x.latest).toLocaleDateString():"date unavailable")+'</div></div><div class="mock-analytics-score">Avg. '+Math.round(x.words.reduce((a,b)=>a+b,0)/x.words.length)+' words</div></div>').join("");
+  const weakHtml=topWeak.length?'<section class="mock-analytics-group"><h3>Recurring improvement priorities</h3>'+topWeak.map(([tag,count],i)=>'<div class="mains-improvement-focus"><div><b>'+(i+1)+'. '+esc(tag)+'</b><span class="mains-improvement-count">'+count+' occurrence(s)</span><p>'+esc(improvementAdvice(tag))+'</p></div></div>').join("")+'</section>':'<p class="mock-save">No priority weaknesses have been recorded yet. Complete an Anbuu evaluation to build your improvement profile.</p>';
+  const strongHtml=topStrong.length?'<section class="mock-analytics-group"><h3>Strengths to retain</h3><div class="mains-improvement-tags">'+topStrong.map(([tag,count])=>'<span>'+esc(tag)+' · '+count+'</span>').join("")+'</div></section>':'';
+  const recent=evaluations.slice().sort((a,b)=>Date.parse(b.savedAt||"")-Date.parse(a.savedAt||"")).slice(0,4);
+  const recentHtml=recent.length?'<section class="mock-analytics-group"><h3>Recent evaluated answers</h3>'+recent.map(e=>'<article class="mains-improvement-record"><div><b>'+esc(e.subject||"Mains answer")+'</b><p>'+esc(String(e.question||"").slice(0,260))+'</p><small>'+esc(e.savedAt?new Date(e.savedAt).toLocaleString():"Saved evaluation")+' · '+mainsStudioWordCount(e.answer||"")+' words</small></div><details><summary>Review feedback</summary><pre>'+esc(e.feedback||"No feedback text stored.")+'</pre></details></article>').join("")+'</section>':'';
+  host.innerHTML='<div class="mock-analytics-kpis">'+kpi(evaluations.length,"Saved evaluations")+kpi(drafts.length,"Saved drafts")+kpi(weaknesses.size,"Distinct improvement priorities")+kpi(strengths.size,"Recorded strengths")+'</div>'+weakHtml+strongHtml+(subjectRows?'<section class="mock-analytics-group"><h3>Practice by paper or subject</h3>'+subjectRows+'</section>':'')+recentHtml+'<p class="mock-save">This dashboard summarises saved feedback only. It does not invent marks or claim mastery; AI feedback is formative, not an official UPSC assessment.</p>';
+ }catch(error){host.innerHTML='<p class="mock-warning">Your private answer-writing dashboard could not be loaded: '+esc(error.message||"Please retry.")+'</p>';}
 }
 
 async function loadAnalytics(){
