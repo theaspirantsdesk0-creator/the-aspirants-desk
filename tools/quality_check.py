@@ -169,7 +169,7 @@ def main() -> int:
             check(all(unit.get("topics") and unit.get("notes") and unit.get("test") for unit in anthro_units),
                   "Each published Anthropology unit must include topics, notes and a self-test")
             guided_units = [unit for unit in anthro_units if unit.get("lesson")]
-            check(len(guided_units) >= 11, "Anthropology must include the current guided teacher-led lesson coverage")
+            check(len(guided_units) == len(anthro_units), "Every mapped Anthropology unit must include a guided teacher-led lesson")
             check(all(unit["lesson"].get("sections") and unit["lesson"].get("keyTerms") and unit["lesson"].get("answerPractice") for unit in guided_units),
                   "Guided Anthropology lessons must include sections, key terms and Mains answer practice")
             check(all(
