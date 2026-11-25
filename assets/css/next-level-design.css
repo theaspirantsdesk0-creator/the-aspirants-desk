@@ -156,13 +156,18 @@ input,select,textarea{border-radius:10px}
 @media(max-width:560px){.tad-mastery-control{grid-template-columns:1fr}.tad-mastery-updated{grid-column:1}}
 
 /* Automatic topic revision queue */
-.tad-topic-revision-queue{margin-top:1.2rem;padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tad-topic-revision-queue{margin-top:1.2rem;padding:clamp(1rem,2vw,1.35rem);border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-alt));box-shadow:0 12px 30px rgba(8,18,36,.07)}
+.tad-topic-revision-queue h4{font-size:1.08rem;letter-spacing:-.02em;margin:0 0 .35rem}
+.tad-topic-revision-queue>p{max-width:65ch;line-height:1.55}
 .tad-revision-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.55rem;margin:.8rem 0}
-.tad-revision-metric{display:grid;gap:2px;padding:.7rem;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt)}
+.tad-revision-metric{display:grid;gap:3px;padding:.8rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:0 4px 14px rgba(8,18,36,.04)}
 .tad-revision-metric strong{font:800 1.3rem "Bricolage Grotesque",sans-serif;color:var(--accent)}
 .tad-revision-metric span,.tad-revision-queue-item small{font-size:.76rem;color:var(--muted)}
 .tad-revision-queue-list{display:grid;gap:.55rem}
-.tad-revision-queue-item{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;padding:.75rem;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt)}
+.tad-revision-queue-item{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;padding:.85rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);transition:border-color .18s ease,transform .18s ease}
+.tad-revision-queue-item:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tad-revision-queue-item strong{font-weight:750;line-height:1.35}
+.tad-revision-queue-item small{line-height:1.5}
 .tad-revision-queue-item>div:first-child{display:grid;gap:3px;min-width:180px}
 .tad-revision-queue-actions{display:flex;gap:.4rem;flex-wrap:wrap}
 .tad-revision-queue-actions .btn,.tad-topic-schedule-button{font-size:.78rem;padding:.4rem .65rem}
