@@ -1251,7 +1251,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         </div>
       </div>
 
-      <textarea id="mainsBox" rows="11" placeholder="Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward..."></textarea>
+      <textarea id="mainsBox" rows="11" maxlength="8000" placeholder="Structure your answer: Introduction → Subheadings & Bullet Points → Articles / SC Cases → Way Forward..."></textarea>
       <section id="mainsEvaluationPanel" class="mains-evaluation" aria-labelledby="mainsEvaluationTitle">
         <div class="mains-evaluation-heading">
           <div><span class="eyebrow">ANBUU · ANSWER REVIEW</span><h3 id="mainsEvaluationTitle">Evaluate my Mains answer</h3>
@@ -2077,7 +2077,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     if (!window.TAD_CAN_EVALUATE_MAINS() || !record || typeof record !== "object") return false;
     state.mainsEvaluations = Array.isArray(state.mainsEvaluations) ? state.mainsEvaluations : [];
     state.mainsEvaluations.unshift(record);
-    state.mainsEvaluations = state.mainsEvaluations.slice(0, 50);
+    state.mainsEvaluations = state.mainsEvaluations.slice(0, 20);
     localStorage.setItem("tad_state_v5", JSON.stringify(state));
     try {
       const { error } = await supabase.from("user_data").upsert({
