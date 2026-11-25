@@ -507,6 +507,35 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     if (!data) return json({ error: "That lesson was not found in your account." }, 404, origin);
     return json({ lesson: data }, 200, origin);
   }
+  if (body.action === "save_answer_evaluation") {
+    if (profile.role !== "learner") return json({ error: "Answer-writing history is available to learner accounts only." }, 403, origin);
+    const subject = typeof body.subject === "string" ? body.subject.trim() : "";
+    const question = typeof body.question === "string" ? body.question.trim() : "";
+    const answer = typeof body.answer === "string" ? body.answer.trim() : "";
+    const feedback = typeof body.feedback === "string" ? body.feedback.trim() : "";
+    const wordLimit = Number(body.wordLimit);
+    if (!subject || subject.length > 120 || !question || question.length > 2500 ||
+        !answer || answer.length > 8000 || !feedback || feedback.length > 12000 ||
+        !Number.isInteger(wordLimit) || wordLimit < 1 || wordLimit > 1000) {
+      return json({ error: "The answer evaluation could not be saved because one or more fields are invalid." }, 400, origin);
+    }
+    const { data: saved, error: readError } = await adminClient.from("user_data")
+      .select("payload").eq("user_id", authData.user.id).maybeSingle();
+    if (readError) return json({ error: "Could not load your learner notebook before saving this evaluation." }, 500, origin);
+    const payload = saved?.payload && typeof saved.payload === "object" && !Array.isArray(saved.payload)
+      ? { ...(saved.payload as Record<string, unknown>) } : {};
+    const existing = Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations : [];
+    const record = {
+      id: crypto.randomUUID(), subject, question, answer, feedback, wordLimit,
+      savedAt: new Date().toISOString(), label: "AI practice feedback — not an official UPSC score",
+    };
+    payload.answerEvaluations = [record, ...existing.filter((item) => item && typeof item === "object")].slice(0, 25);
+    const { error: saveError } = await adminClient.from("user_data").upsert({
+      user_id: authData.user.id, payload, updated_at: new Date().toISOString(),
+    }, { onConflict: "user_id" });
+    if (saveError) return json({ error: "Your evaluation was generated, but its history could not be saved. Please retry." }, 500, origin);
+    return json({ saved: true, evaluation: { id: record.id, subject: record.subject, wordLimit: record.wordLimit, savedAt: record.savedAt } }, 201, origin);
+  }
   if (body.action === "get_progress") {
     if (profile.role !== "learner") return json({ error: "Progress reports are available to learner accounts only." }, 403, origin);
     const [testsResult, mockAttemptsResult, savedResult, lessonTotalResult, lessonCompletedResult, lessonInProgressResult, lessonPausedResult, lessonRecentResult, lessonActiveResult] = await Promise.all([
@@ -599,6 +628,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       previousAverage: average(previous), correct: current.reduce((n,t) => n+t.correct,0),
       wrong: current.reduce((n,t) => n+t.wrong,0), skipped: current.reduce((n,t) => n+t.skipped,0) },
       weakTopics, unclassifiedMistakes, mockExams,
+      answerEvaluations: Array.isArray(payload.answerEvaluations) ? payload.answerEvaluations.slice(0, 10) : [],
       lessons: {
         total: lessonTotalResult.count ?? 0,
         completed: lessonCompletedResult.count ?? 0,
