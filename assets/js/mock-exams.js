@@ -15,7 +15,7 @@ const CATALOG=[
  {code:"UPSC-MAINS-ANTHRO-I",title:"UPSC Mains · Anthropology Paper I",stage:"mains",type:"Anthropology Paper I",optional:"Anthropology",duration:180,marks:250,expected:20},
  {code:"UPSC-MAINS-ANTHRO-II",title:"UPSC Mains · Anthropology Paper II",stage:"mains",type:"Anthropology Paper II",optional:"Anthropology",duration:180,marks:250,expected:20}
 ];
-let user=null,profile=null,optionalSubject="",papers=[],attempt=null,questions=[],answers={},marked=new Set(),index=0,timer=null,saveTimer=null,expiresAt=0,startedAt=0,submitting=false,saveQueue=Promise.resolve();
+let user=null,profile=null,optionalSubject="",papers=[],attempt=null,questions=[],answers={},marked=new Set(),index=0,timer=null,saveTimer=null,expiresAt=0,startedAt=0,submitting=false,saveQueue=Promise.resolve(),savedPracticeHistory=[];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=n=>String(Math.max(0,n)).padStart(2,"0");
 const timeLeft=()=>Math.max(0,Math.ceil((expiresAt-Date.now())/1000));
@@ -35,9 +35,9 @@ async function boot(){
   sb.from("profiles").select("role,display_name").eq("id",user.id).maybeSingle(),
   sb.from("user_data").select("payload").eq("user_id",user.id).maybeSingle()
  ]);
- if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});
+ if(p.error||!p.data){root.innerHTML='<div class="card"><h2>Account role could not be verified</h2><p>Reload after signing in. Mock examination access is paused until your account permissions can be checked.</p></div>';return;}profile=p.data;optionalSubject=readOptional(u.data?.payload||{});savedPracticeHistory=Array.isArray(u.data?.payload?.practiceHistory)?u.data.payload.practiceHistory.slice(0,50):[];
  if(profile.role!=="learner"&&!admin()){root.innerHTML='<div class="card"><h2>Mock examinations are for learner accounts</h2><p>Sign in with a learner account to attempt papers. Owner/admin access remains available for paper management.</p></div>';return;}
- await loadPapers();await loadRecent();renderCatalog();initTopicPractice();await loadAnalytics();
+ await loadPapers();await loadRecent();renderCatalog();initTopicPractice();renderTopicPracticeHistory();await loadAnalytics();
  if(admin())$("mockAdminPanel").classList.remove("mock-hidden");
 }
 async function loadPapers(){
@@ -52,6 +52,11 @@ async function loadPapers(){
 let practiceQuestions=[],practiceIndex=0,practiceCorrect=0,practiceWrong=0,practiceStartedAt=0,practiceSeconds=0,practiceTimer=null,practiceAnswered=false,practiceSubmitting=false;
 function practiceStatus(message){const el=$("mockPracticeStatus");if(el)el.textContent=message;}
 function practiceLabel(value){return String(value||"").replace(/[_-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());}
+function renderTopicPracticeHistory(){
+ const host=$("mockPracticeHistory");if(!host)return;
+ const rows=savedPracticeHistory.slice(0,5);
+ host.innerHTML=rows.length?'<h3>Recent topic practice</h3>'+rows.map(x=>'<div class="mock-practice-history-row"><div><b>'+esc(x.topic||"Topic practice")+'</b><span>'+esc(x.completedAt?new Date(x.completedAt).toLocaleString():"Saved result")+'</span></div><strong>'+Number(x.accuracy||0)+'% · '+Number(x.correct||0)+'/'+Number(x.total||0)+'</strong></div>').join(""):'<p class="mock-save">Your recent practice results will appear here after your first completed set.</p>';
+}
 function initTopicPractice(){
  const paperSel=$("mockPracticePaper"),sectionSel=$("mockPracticeSection"),countSel=$("mockPracticeCount"),startBtn=$("mockPracticeStart");
  if(!paperSel||!sectionSel||!countSel||!startBtn)return;
@@ -129,11 +134,11 @@ async function finishTopicPractice(timeExpired){
  const paper=papers.find(p=>p.id===$("mockPracticePaper")?.value),section=$("mockPracticeSection")?.value||"";
  const total=practiceQuestions.length,accuracy=total?Math.round(practiceCorrect/total*100):0;
  const elapsed=Math.max(0,Math.round((Date.now()-practiceStartedAt)/1000));
- const net=practiceQuestions.reduce((n,q)=>n,0);
  const skipped=Math.max(0,total-practiceCorrect-practiceWrong);
  const record={topic:(paper?.title||"Practice")+" · "+practiceLabel(section),paperId:paper?.id||null,section,correct:practiceCorrect,wrong:practiceWrong,skipped,total,accuracy,elapsedSeconds:elapsed,timeExpired:Boolean(timeExpired)};
  let saved=false;try{if(typeof window.TAD_RECORD_TOPIC_PRACTICE==="function")saved=await window.TAD_RECORD_TOPIC_PRACTICE(record);}catch(e){console.warn("Practice history save failed",e);}
- const host=$("mockPracticeSession");if(host)host.innerHTML='<div class="mock-practice-result"><span class="eyebrow">PRACTICE COMPLETE</span><h3>'+accuracy+'% accuracy</h3><div class="mock-analytics-kpis"><div class="mock-analytics-kpi"><b>'+practiceCorrect+'</b><span>Correct</span></div><div class="mock-analytics-kpi"><b>'+practiceWrong+'</b><span>Incorrect</span></div><div class="mock-analytics-kpi"><b>'+total+'</b><span>Total questions</span></div></div><p>'+(timeExpired?"Time expired. ":"")+(accuracy<70?"A revision reminder has been scheduled for tomorrow. Review the explanations and retry this section.":"Good work. Continue with another section or revisit this one later.")+'</p><p class="mock-save">'+(saved?"Your practice result was saved to your private study history.":"Result shown for this session; sign in again if saving was unavailable.")+'</p><button type="button" class="btn primary" id="mockPracticeAgain">Build another set</button></div>';
+ if(saved){savedPracticeHistory.unshift({...record,completedAt:new Date().toISOString()});savedPracticeHistory=savedPracticeHistory.slice(0,50);renderTopicPracticeHistory();}
+ const host=$("mockPracticeSession");if(host)host.innerHTML='<div class="mock-practice-result"><span class="eyebrow">PRACTICE COMPLETE</span><h3>'+accuracy+'% accuracy</h3><div class="mock-analytics-kpis"><div class="mock-analytics-kpi"><b>'+practiceCorrect+'</b><span>Correct</span></div><div class="mock-analytics-kpi"><b>'+practiceWrong+'</b><span>Incorrect</span></div><div class="mock-analytics-kpi"><b>'+skipped+'</b><span>Unanswered</span></div><div class="mock-analytics-kpi"><b>'+total+'</b><span>Total questions</span></div></div><p>'+(timeExpired?"Time expired. ":"")+(accuracy<70?"A revision reminder has been scheduled for tomorrow. Review the explanations and retry this section.":"Good work. Continue with another section or revisit this one later.")+'</p><p class="mock-save">'+(saved?"Your practice result was saved to your private study history.":"Result shown for this session; sign in again if saving was unavailable.")+'</p><button type="button" class="btn primary" id="mockPracticeAgain">Build another set</button></div>';
  practiceStatus("Completed "+(paper?.title||"practice")+" · "+practiceLabel(section));
  $("mockPracticeAgain")?.addEventListener("click",()=>{if(host)host.hidden=true;practiceStatus("Choose a question count and start another set.");});
 }
