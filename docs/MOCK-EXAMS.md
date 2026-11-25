@@ -194,3 +194,8 @@ The Study Command Centre includes an account-synced daily mission planner. Learn
 ## Weekly targets and achievements
 
 The learner Study Command Centre includes configurable rolling-seven-day study-hour and active-day targets. Targets are stored in the learner's existing `user_data.payload` as `studyGoals` and default to 10 hours / 5 active days when unset. The achievement shelf derives unlocked milestones from dated study sessions, recorded hours, completed syllabus topics and topic mastery; it does not fabricate activity or award marks for unrecorded work. Older time-only session records are excluded from dated weekly goals.
+
+
+## Unified performance intelligence dashboard
+
+The Study Command Centre includes a private performance overview. It reads only the signed-in user's submitted/expired mock attempts and published paper metadata, grouping results into Prelims, Mains General Studies and Anthropology optional. Objective accuracy is calculated only from recorded correct/incorrect MCQ analytics; written responses are counted separately and never treated as automatically graded. Saved `answerEvaluations` (or the legacy `mainsEvaluations` fallback) are grouped by their recorded subject. Formative percentages are extracted only when the saved feedback contains a `FORMATIVE AI ESTIMATE: mark/max` line, and are labelled as formative rather than official marks. Empty data states explain what evidence is needed. Refresh is available and async responses are discarded after an account switch.
