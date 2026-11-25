@@ -26,7 +26,7 @@
   ],
   "inventory_summary": {
     "expected_paper_entries": 2575,
-    "verified_entries": 16,
+    "verified_entries": 25,
     "published_entries": 0,
     "note": "Every row starts as not_checked. A direct document URL is added only after locating the exact official PDF. 'source_found' means a candidate official document has been located but not yet checked against its metadata; 'verified' requires opening the PDF and confirming year, exam, subject, and paper."
   },
@@ -40988,16 +40988,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper I",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://upsc.gov.in/uploads/2026/07/general-studies-paper-i-7-1.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2022 — General Studies Paper I",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC-hosted PDF search result; document heading identifies CIVIL SERVICES (P) EXAM-2022 and General Studies Paper I.",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "prelims-general-studies-paper-ii-csat-2022",
@@ -42974,16 +42974,16 @@
       "stage": "Mains",
       "paper": "Essay",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ESSAY-180923.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — Essay",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 Essay paper; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages).",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-general-studies-paper-i-2023",
@@ -42992,16 +42992,16 @@
       "stage": "Mains",
       "paper": "General Studies Paper I",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-I-180923.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — General Studies Paper I",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 General Studies Paper I; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages).",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-general-studies-paper-ii-2023",
@@ -43010,16 +43010,16 @@
       "stage": "Mains",
       "paper": "General Studies Paper II",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-II-180923.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — General Studies Paper II",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 General Studies Paper II and its exact official PDF URL; the PDF preview exceeded the retrieval service limit.",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-general-studies-paper-iii-2023",
@@ -43028,16 +43028,16 @@
       "stage": "Mains",
       "paper": "General Studies Paper III",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-III-180923.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — General Studies Paper III",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 General Studies Paper III; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages).",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-general-studies-paper-iv-2023",
@@ -43046,16 +43046,16 @@
       "stage": "Mains",
       "paper": "General Studies Paper IV",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-GENERAL-STUDIES-PAPER-IV-180923.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — General Studies Paper IV",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 General Studies Paper IV and its exact official PDF URL; PDF preview exceeded the retrieval service size limit.",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "optional-agriculture-optional-paper-i-2023",
@@ -43141,16 +43141,16 @@
       "paper": "Optional Paper I",
       "optional_subject": "Anthropology",
       "optional_category": "optional",
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year, subject, and paper number in the official UPSC index; do not infer availability from another year."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ANTHROPOLOGY-PAPER-I-29092023.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — Anthropology Paper I",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 Anthropology Paper I; exact PDF URL resolved from the archive link and PDF opened successfully (6 pages).",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "optional-anthropology-optional-paper-ii-2023",
@@ -43160,16 +43160,16 @@
       "paper": "Optional Paper II",
       "optional_subject": "Anthropology",
       "optional_category": "optional",
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year, subject, and paper number in the official UPSC index; do not infer availability from another year."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSM-23-ANTHROPOLOGY-PAPER-II-29092023.pdf",
+      "document_title": "Civil Services (Main) Examination, 2023 — Anthropology Paper II",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists the 2023 Anthropology Paper II; exact PDF URL resolved from the archive link and PDF opened successfully (4 pages).",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "optional-botany-optional-paper-i-2023",
@@ -46856,16 +46856,16 @@
       "stage": "Prelims",
       "paper": "General Studies Paper II (CSAT)",
       "optional_subject": null,
-      "status": "not_checked",
+      "status": "verified",
       "official_index_ids": [
         "upsc-current-index",
         "upsc-archive-index"
       ],
-      "document_url": null,
-      "document_title": null,
-      "verified_at": null,
-      "verification_method": null,
-      "notes": "Locate the exact year-and-paper entry in the official UPSC index; add a direct PDF URL only after opening and confirming the document."
+      "document_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-II-26052025.pdf",
+      "document_title": "Civil Services (Preliminary) Examination, 2025 — General Studies Paper II (CSAT)",
+      "verified_at": "2026-11-24",
+      "verification_method": "Official UPSC archive lists this under Civil Services (Preliminary) Examination, 2025 as General Studies Paper II; exact PDF URL resolved from the archive link.",
+      "notes": "Verified against the exact official UPSC-hosted PDF and matching examination year, stage, subject, and paper."
     },
     {
       "id": "mains-essay-2025",
