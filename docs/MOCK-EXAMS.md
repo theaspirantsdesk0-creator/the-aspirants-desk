@@ -44,7 +44,8 @@ Open **Owner · Mock paper publishing** and paste a JSON object:
         { "key": "D", "text": "Option D" }
       ],
       "correct_answer": "A",
-      "explanation": "Explain why A is correct.",
+      "explanation": "Explain why A is correct, including the relevant concept.",
+      "source": "Original practice question",
       "marks": 2,
       "negative_marks": 0.66
     }
@@ -52,7 +53,7 @@ Open **Owner · Mock paper publishing** and paste a JSON object:
 }
 ```
 
-For Mains, use `"question_type": "written"`, provide a `word_limit`, `marks`, and a `rubric` array. A `model_answer` may be included for later review. Written answers are stored, but are not automatically graded.
+For Mains, use `"question_type": "written"`, provide a `word_limit`, `marks`, a `source` provenance note, and a `rubric` array with at least two criteria. A `model_answer` may be included for later review. For MCQs, provide exactly four non-empty A–D options, a valid `correct_answer`, an explanation of at least 20 characters, and a `source` note. Use `"source": "Original practice question"` for newly authored practice questions; for an official PYQ, cite the official exam/year or a reliable primary source. The importer validates all question data before replacing an existing paper, and publishing checks answer keys, explanations, provenance and written rubrics. A matching full-length paper code must contain its required question count. Written answers are stored, but are not automatically graded.
 
 For Anthropology papers set `optional_subject` to `"Anthropology"`. Learner visibility follows the optional subject saved in their profile data. Do not mark a paper published until its question count matches the full-length format and every MCQ has a non-empty answer key.
 
