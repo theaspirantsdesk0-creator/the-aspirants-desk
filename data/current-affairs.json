@@ -1,6 +1,691 @@
 {
- "updated": "2026-11-25T14:56:51+00:00",
+ "updated": "2026-11-26T14:54:08+00:00",
  "items": [
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "More migrant children in aided than in govt. schools in Keralam",
+   "link": "https://www.thehindu.com/news/national/kerala/more-migrant-children-in-aided-schools-than-govt-in-keralam/article71746785.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Total number of migrant children in Classes I to X across government, aided, and unaided sectors crossed 25,000 in 2025-26 academic year"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Yaduveer sees red over unauthorised flexes flooding the city",
+   "link": "https://www.thehindu.com/news/national/karnataka/yaduveer-sees-red-over-unauthorised-flexes-flooding-the-city/article71747300.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Farmers protest demanding release of Bhadra water in Shivamogga",
+   "link": "https://www.thehindu.com/news/national/karnataka/farmers-protest-demanding-release-of-bhadra-water-in-shivamogga/article71746334.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Court grants interim bail to third accused in Vipanchika suicide case",
+   "link": "https://www.thehindu.com/news/national/kerala/court-grants-interim-bail-to-third-accused-in-vipanchika-suicide-case/article71746489.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Audit seeks clarification on 36 transactions worth ₹19 lakh in Agriculture Department",
+   "link": "https://www.thehindu.com/news/national/karnataka/audit-seeks-clarification-on-36-transactions-worth-19-lakh-in-agriculture-department/article71738115.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Employees are saying there have been misappropriation of funds through private bank accounts, manipulation of recipient IDs and diversion of salary and subsidy payments"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "₹60 lakh sanctioned as special aid for Edamalakkudy panchayat",
+   "link": "https://www.thehindu.com/news/national/kerala/60-lakh-sanctioned-as-special-aid-for-edamalakkudy-panchayat/article71747185.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Duplicate entries flagged in de-novo electoral rolls too",
+   "link": "https://www.thehindu.com/news/national/telangana/duplicate-entries-flagged-in-de-novo-electoral-rolls-too/article71746662.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "TPCC flags at least three such instances in a single constituency (Bahadurpura)"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "No need for CBI probe in Kallakurichi TVK MLA case: Thirumavalavan",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/no-need-for-cbi-probe-in-kallakurichi-tvk-mla-case-says-thirumavalavan/article71746154.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Tamil Nadu government is taking appropriate legal action, says VCK leader"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Govt. views death of elderly man in Thrissur MCH washroom seriously: Keralam Minister",
+   "link": "https://www.thehindu.com/news/national/kerala/govt-views-death-of-elderly-man-in-thrissur-mch-washroom-seriously-keralam-minister/article71747082.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Minister says it will be examined whether the washroom where the body was found on November 21, 2026 had been cleaned on the previous days"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Congress leader Manickam Tagore questions Udhayanidhi’s meeting with Tamil Nadu Governor",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/congress-leader-manickam-tagore-questions-udhayanidhi-stalin-meeting-with-tamil-nadu-governor/article71746400.ece",
+   "topic": "Polity",
+   "upsc_angle": "Potential relevance — GS Paper II / Prelims: constitutional institutions, governance, federal relations and accountability. Read the source to identify the specific institution, provision and facts; this is a syllabus link, not a prediction.",
+   "ai_status": "template",
+   "source_summary": "The Tamil Nadu Congress chief recalls DMK leader’s earlier remarks describing the Governor as a ‘postman’ and raises doubts over DMK-BJP understanding."
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "History-sheeter held for brutal assault at eatery",
+   "link": "https://www.thehindu.com/news/national/kerala/history-sheeter-held-for-brutal-assault-at-eatery/article71746529.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "BJP national office-bearers to meet from Friday; PM Modi likely to attend",
+   "link": "https://www.thehindu.com/news/national/bjp-national-office-bearers-to-meet-from-friday-pm-modi-likely-to-attend/article71746727.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Two-day meeting at Pusa campus, to be chaired by party chief Nitin Nabin, is expected to deliberate on organisational matters ahead of 2027 Assembly elections"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "YSRCP accuses coalition government of undermining constitutional values",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ysrcp-accuses-coalition-government-of-undermining-constitutional-values/article71745785.ece",
+   "topic": "Polity",
+   "upsc_angle": "Potential relevance — GS Paper II / Prelims: constitutional institutions, governance, federal relations and accountability. Read the source to identify the specific institution, provision and facts; this is a syllabus link, not a prediction.",
+   "ai_status": "template",
+   "source_summary": "The opposition party leaders call for restoration of constitutional governance, social justice and democratic rights in the State"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Constitution is hard earned, we need to protect it, says Congress leader Balasaheb Thorat",
+   "link": "https://www.thehindu.com/news/cities/mumbai/constitution-is-hard-earned-we-need-to-protect-it-says-congress-leader-balasaheb-thorat/article71746965.ece",
+   "topic": "Polity",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Mega job mela in Bukkapatnam on November 28",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/mega-job-mela-in-bukkapatnam-on-november-28/article71746666.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "All election guarantees fulfilled, says Arvind Kejriwal; Opp. slams AAP of misusing public resources",
+   "link": "https://www.thehindu.com/news/national/punjab/all-election-guarantees-fulfilled-says-arvind-kejriwal-opp-slams-aap-of-misusing-public-resources/article71746999.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The Opposition parties accuse AAP of misusing Punjab’s public resources to organise a party event while the State grapples with a mounting financial crisis"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Karnataka seeks national portal to track substandard drugs",
+   "link": "https://www.thehindu.com/news/national/karnataka/karnataka-seeks-national-portal-to-track-substandard-drugs/article71747077.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "16-yr-old dies at construction site in  Kottayam after scaffolding collapses",
+   "link": "https://www.thehindu.com/news/national/kerala/16-yr-old-dies-at-construction-site-in-kottayam-after-scaffolding-collapses/article71747006.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "BMTC invites bids for 200 mini-buses to improve last-mile Bengaluru metro connectivity and serve narrow roads",
+   "link": "https://www.thehindu.com/news/national/karnataka/bmtc-invites-bids-for-200-mini-buses-to-improve-last-mile-bengaluru-metro-connectivity-and-serve-narrow-roads/article71746652.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Non-AC BS-VI diesel buses to be inducted in seven-metre and 11-metre categories, to be equipped with safety cameras, GPS-based tracking and passenger-information systems"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Service is the true source of happiness, says Andhra Pradesh CM Naidu",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/service-is-the-true-source-of-happiness-says-andhra-pradesh-cm-naidu/article71746391.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Efforts are on to develop the Tirumala as a ‘Divya Kshetram’, says Chief Minister Naidu"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Chandrababu Naidu, wife visit Sri Venkateswara Swamy temple in Palvancha",
+   "link": "https://www.thehindu.com/news/national/telangana/chandrababu-naidu-wife-visit-sri-venkateswara-swamy-temple-in-palvancha/article71746765.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "India’s Constitution is the bedrock of its democracy: Lok Sabha Speaker",
+   "link": "https://www.thehindu.com/news/national/indias-constitution-is-the-bedrock-of-its-democracy-lok-sabha-speaker/article71746571.ece",
+   "topic": "Polity",
+   "ai_status": "pending",
+   "source_summary": "Addressing young participants on Constitution Day, Mr. Birla said it had guided the world’s largest democracy through successive phases of transformation while preserving its unity amidst extraordinary diversity"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Mysuru summit: Industry leaders call for wider adoption of AI in industrial operations",
+   "link": "https://www.thehindu.com/news/national/karnataka/mysuru-summit-industry-leaders-call-for-wider-adoption-of-ai-in-industrial-operations/article71746151.ece",
+   "topic": "International relations",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Two persons held for illegal sand mining from Palar river in Ranipet",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/two-persons-held-for-illegal-sand-mining-from-palar-river-in-ranipet/article71746434.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Police said the drivers told them that the sand was mined from dry river bed to sell the consignment to retail traders"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "100% placement record drives demand for GTTC courses in Karnataka, intake increases to 6,000",
+   "link": "https://www.thehindu.com/news/national/karnataka/100-placement-record-drives-demand-for-gttc-courses-in-karnataka-intake-increases-to-6000/article71746663.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Nearly 10,000 applications received this academic year; government plans six-month aerospace courses and foreign language training to meet industry requirements"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Action sought against author during Hubballi protest over remarks on Basavanna",
+   "link": "https://www.thehindu.com/news/national/karnataka/action-sought-against-author-during-hubballi-protest-over-remarks-on-basavanna/article71746535.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Members of people’s organisations stage protest condemning derogatory remarks about the 12th century social reformer and the Constitution"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Two-thirds of adolescents in India are deficient in vitamin B12: ICMR survey",
+   "link": "https://www.thehindu.com/sci-tech/health/two-thirds-of-adolescents-in-india-are-deficient-in-vitamin-b12-icmr-survey/article71746253.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Findings raise concerns about the long-term consequences of nutritional deficiencies across generations, particularly among children, adolescents, and pregnant women"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "India under-investing on net-zero ambitions, needs to invest $500bn a year: Report",
+   "link": "https://www.thehindu.com/news/national/india-under-investing-on-net-zero-ambitions-needs-to-invest-500bn-a-year-report/article71747032.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "“The country is investing only about $135 billion per year on such initiatives as against the requirement to put more than $500 billion,” the report by BCG and industry body IVCA said"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Naidu dumped Rayalaseema lift scheme due to political understanding with Congress: Jagan",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/naidu-dumped-rayalaseema-lift-scheme-due-to-political-understanding-with-congress-jagan/article71746374.ece",
+   "topic": "Schemes and society",
+   "ai_status": "pending",
+   "source_summary": "The YSRCP president questions how a scheme that does not seek additional allocations or create new reservoirs can be portrayed as a threat to the interests of other States"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "138 medical shops served notices over illegal sale of abortion kits in Telangana",
+   "link": "https://www.thehindu.com/news/national/telangana/138-medical-shops-served-notices-over-illegal-sale-of-abortion-kits-in-telangana/article71747004.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "YSRCP leader Chevireddy alleges officials colluded to ensure unanimous victories for NDA candidates",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/ysrcp-leader-chevireddy-alleges-officials-colluded-to-ensure-unanimous-victories-for-nda-candidates/article71745816.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "MCC’s to give completion certificates to eligible buildings",
+   "link": "https://www.thehindu.com/news/national/karnataka/mccs-to-give-completion-certificates-to-eligible-buildings/article71747218.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Expired food, mouldy sugarcane seized during surprise inspections in Kozhikode",
+   "link": "https://www.thehindu.com/news/national/kerala/expired-food-mouldy-sugarcane-seized-during-surprise-inspections-in-kozhikode/article71746412.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Inspections found several violations of food safety and sanitation norms, including the storage of perishable ingredients in unhygienic freezers and poorly maintained kitchens"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Tiruvannamalai railway station nets over ₹60 lakh revenue during Karthigai Deepam",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/tiruvannamalai-railway-station-nets-over-60-lakh-revenue-during-karthigai-deepam/article71746775.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Tiruchi Railway Division had made comprehensive arrangements for issue of tickets, crowd management, and had operated 24 special trains to the temple town to clear the extra rush"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Constitution Day updates on November 26, 2026",
+   "link": "https://www.thehindu.com/news/national/constitution-day-indian-democracy-pm-modi-congress-samvidhan-raksha-march-november-26-2026-live-updates/article71745137.ece",
+   "topic": "Polity",
+   "ai_status": "pending",
+   "source_summary": "PM Modi said the Constitution is a priceless heritage of Indian democracy, one that will continue to guide in realising the resolve of a developed India"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Mahalakshmi deepa puja in Visakhapatnam on November 27",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/mahalakshmi-deepa-puja-in-visakhapatnam-on-november-27/article71746659.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Couple killed in road accident while travelling to vote in Nellore district",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/couple-killed-in-road-accident-while-travelling-to-vote-in-nellore-district/article71746440.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Kallakurichi TVK MLA case: DMK former MP moves Madras High Court seeking CBI probe",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/kallakurichi-tvk-mla-case-dmk-former-mp-moves-madras-high-court-seeking-cbi-probe/article71746416.ece",
+   "topic": "Polity",
+   "ai_status": "pending",
+   "source_summary": "Kanimozhi N.V.N. Somu files a public interest litigation petition insisting upon appointment of a retired High Court judge to monitor the CBI probe"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Governor Arlekar writes to CM Vijay expressing concerns over Vice-Chancellor vacancies in State universities",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/governor-arlekar-writes-to-cm-vijay-expressing-concerns-over-vice-chancellor-vacancies-in-state-universities/article71746713.ece",
+   "topic": "Polity",
+   "ai_status": "pending",
+   "source_summary": "Arlekar flags the consequential delay in conducting convocations, which affect the day-to-day administration of the universities"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "PMR dept. at Kozhikode MCH to celebrate golden jubilee",
+   "link": "https://www.thehindu.com/news/national/kerala/pmr-dept-at-kozhikode-mch-to-celebrate-golden-jubilee/article71742495.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Sooraj Rajagopal, Head of the Department, told the media on Wednesday that K. Jayanth, MLA, would open the week-long celebrations titled ‘Ability Week’ on November 27"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Tension at Nagarjunasagar as A.P. releases water to right canal unilaterally",
+   "link": "https://www.thehindu.com/news/national/telangana/tension-at-nagarjunasagar-as-ap-releases-water-to-right-canal-unilaterally/article71746621.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Telangana engineers oppose water release by AP; After AP’s refusal to stop release, Telangana starts releasing water to left canal"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Motorists welcome multi-lane free flow tolling system at Walajah toll plaza in Ranipet",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/motorists-welcome-multi-lane-free-flow-tolling-system-at-walajah-toll-plaza-in-ranipet/article71746430.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The new toll system allows vehicles to pass without stopping and uses ANPR cameras and FASTag readers to auto-collect toll fares; about 9.81 lakh vehicles crossed the toll plaza in October 2026 alone"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Congress workers in Palakkad send gooseberries to Kasaragod MP Rajmohan Unnithan in protest",
+   "link": "https://www.thehindu.com/news/national/kerala/congress-workers-in-palakkad-send-gooseberries-to-kasaragod-mp-rajmohan-unnithan-in-protest/article71746780.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "In response to his remarks against Vadakara MP Shafi Parambil, they send a parcel of gooseberries to Unnithan, accompanied by a sarcastic note suggesting that he perform Nellikkathalam (a treatment with gooseberry)"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Sanitary workers get special darshan at Arunachaleswara temple",
+   "link": "https://www.thehindu.com/news/national/tamil-nadu/sanitary-workers-get-special-darshan-at-arunachaleswara-temple/article71746417.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The darshan was provided after sanitary workers removed over 600 tonnes of waste that was generated on Maha Deepam day"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Call for stronger inter-State coordination to combat spurious, adulterated drugs",
+   "link": "https://www.thehindu.com/news/national/karnataka/call-for-stronger-inter-state-coordination-to-combat-spurious-adulterated-drugs/article71746893.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "KEA denies question paper leak, says repeated questions in recruitment exams intentional",
+   "link": "https://www.thehindu.com/news/national/karnataka/kea-denies-question-paper-leak-says-repeated-questions-in-recruitment-exams-intentional/article71746710.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "SCR surpasses rooftop solar target, commissions 6.9 MW capacity",
+   "link": "https://www.thehindu.com/news/national/telangana/scr-surpasses-rooftop-solar-target-commissions-69-mw-capacity/article71745815.ece",
+   "topic": "Schemes and society",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Forest Department to capture one tusker in Chikkamagaluru",
+   "link": "https://www.thehindu.com/news/national/karnataka/forest-department-to-capture-one-tusker-in-chikkamagaluru/article71746912.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Constitutional rights must go hand in hand with fundamental duties: Annamayya Collector",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/constitutional-rights-must-go-hand-in-hand-with-fundamental-duties-annamayya-collector/article71746619.ece",
+   "topic": "Polity",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Initiative to take Constitution Day event to taluk centres welcomed",
+   "link": "https://www.thehindu.com/news/national/karnataka/initiative-to-take-constitution-day-event-to-taluk-centres-welcomed/article71746656.ece",
+   "topic": "Polity",
+   "ai_status": "pending",
+   "source_summary": "Minister Shivaraj Tangadagi was speaking after inaugurating a Constitution Day event organised in Karatagi"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Government estimates record food grains production in 2025-26",
+   "link": "https://www.thehindu.com/news/national/india-foodgrains-record-production-rice-wheat-2026-shivraj-singh-chouhan/article71745422.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Figures of wheat and rice production underline the continued strength of India’s two major foodgrain crops and the country’s capacity to maintain high levels of production, Shivraj Chouhan said"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Crop insurance coverage is more than double in Kharif-2026, says Agriculture Minister Atchannaidu",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/crop-insurance-coverage-is-more-than-double-in-kharif-2026-says-agriculture-minister-atchannaidu/article71746465.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "With 55% of the cultivated area being covered, Andhra Pradesh ranks sixth nationally in terms of insured area, the Minister asserts, rejecting YSRCP allegation that the coalition government is neglecting farmers"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Carbohydrate quality, not quantity, must drive future nutrition research, says CFTRI chief",
+   "link": "https://www.thehindu.com/news/national/telangana/carbohydrate-quality-not-quantity-must-drive-future-nutrition-research-says-cftri-chief/article71745576.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Keralam’s draft excise policy seeks to make alcohol abuse mitigation a State responsibility",
+   "link": "https://www.thehindu.com/news/national/kerala/keralams-draft-excise-policy-seeks-to-make-alcohol-abuse-mitigation-a-state-responsibility/article71746804.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "Chief Minister V.D. Satheesan constitutes a UDF subcommittee to weigh the economic, social and political facets of the blueprint submitted by the Excise department before the Cabinet finalises the policy. Excise Minister M. Liju says the government envisages an expanded community role for the Excise department that goes beyond licensing and enforcement"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "SP-Congress seat-sharing: the uneasy arithmetic of U.P.’s Opposition alliance",
+   "link": "https://www.thehindu.com/news/national/uttar-pradesh/sp-congress-seat-sharing-the-uneasy-arithmetic-of-ups-opposition-alliance/article71746381.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "As the Samajwadi Party unilaterally declares five candidates after floating a 26-seat formula for Congress, old wounds, local turf wars, competing memories, and a tug-of-war over Muslim votes test the alliance in UP"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Infosys to hire 7,500 freshers by 2032 for Visakhapatnam campus",
+   "link": "https://www.thehindu.com/news/national/andhra-pradesh/infosys-to-hire-7500-freshers-by-2032-for-visakhapatnam-campus/article71746382.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Karnataka can independently benchmark drug regulatory system against WHO standards: Union Health Secretary",
+   "link": "https://www.thehindu.com/news/national/karnataka/karnataka-can-independently-benchmark-drug-regulatory-system-against-who-standards-union-health-secretary/article71746745.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "She urges the CDSCO to examine the parameters considered by the WHO while assessing national regulatory authorities and explore how these could be adapted for State-level benchmarking"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Palakkad Collector urges students to uphold constitutional values",
+   "link": "https://www.thehindu.com/news/national/kerala/palakkad-collector-urges-students-to-uphold-constitutional-values/article71746770.ece",
+   "topic": "Polity",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "State govt. urged to resume operations at Shivamogga Airport through VGF",
+   "link": "https://www.thehindu.com/news/national/karnataka/state-govt-urged-to-resume-operations-at-shivamogga-airport-through-vgf/article71746342.ece",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "The Hindu: National",
+   "title": "Vellappally Natesan says he has ‘no differences’ with Keralam CM Satheesan",
+   "link": "https://www.thehindu.com/news/national/kerala/vellappally-natesan-says-he-has-no-differences-with-keralam-cm-satheesan/article71746015.ece",
+   "topic": "General",
+   "ai_status": "pending",
+   "source_summary": "The remarks came against the backdrop of repeated criticism and exchanges between Natesan and Satheesan before UDF came to power following Assembly election earlier this year."
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "भारत की राष्ट्रपति भारत के उच्चतम न्यायालय द्वारा आयोजित संविधान दिवस समारोह में शामिल हुईं",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342201",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "भारत की राष्ट्रपति 27 नवंबर से 2 दिसंबर, 2026 तक केरलम, मिजोरम और नागालैंड का दौरा करेंगी",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342177",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "पंचायती राज मंत्रालय ने संविधान दिवस मनाया; देशभर के पंचायतों और ग्रामीण स्थानीय निकायों ने स्थानीय भाषाओं में प्रस्तावना का सामूहिक पाठ किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342176",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "संविधान दिवस 2026 पूरे देश में उत्साह और व्यापक जनभागीदारी के साथ मनाया गया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342187",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "भूमि संसाधन विभाग ने श्रीलंकाई प्रतिनिधिमंडल के समक्ष भूमि अभिलेख आधुनिकीकरण पहलों का प्रदर्शन किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342173",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "शहरी चुनौती कोष के अंतर्गत बाजार आधारित वित्तपोषण को बढ़ावा देने के लिए राष्ट्रीय कार्यशाला का आयोजन",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342143",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "“एक इंसान के लिए छुट्टी, दूसरे के लिए रोजमर्रा की जद्दोजहद”: इफ्फी 2026 में अ फ्यू डेज़ इन द सन में दो अलग-अलग दुनियाओं का आमना-सामना",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342190",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "भारत का संविधान लोकतंत्र, राष्ट्रीय एकता और इसकी प्रगति की आधारशिला है: लोक सभा अध्यक्ष",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342084",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "45वें भारत अंतर्राष्ट्रीय व्यापार मेला 2026 में सामाजिक न्याय और अधिकारिता मंत्रालय के मंडप ने 25 नवंबर तक 1.81 करोड़ रुपये से अधिक की बिक्री का आंकड़ा पार किया; ग्राहकों के शानदार समर्थन से कारीगरों के लिए आजीविका के अवसर बढ़े हैं",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342166",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "केंद्रीय स्वास्थ्य सचिव सुश्री पुण्य सलिला श्रीवास्तव ने सुरक्षित खाद्य पदार्थ और गुणवत्तापूर्ण दवाएं सुनिश्चित करने में राज्य स्तर पर नियामक क्षमता मजबूत बनाने का आह्वान किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342132",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "सीएसआईआर – आईआईएम, जम्मू को डीआईडीएसी इंडिया अवॉर्ड्स 2026 में “कौशल एवं उच्च शिक्षा में अग्रणी संस्थान” का पुरस्कार",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342222",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "सीएसआईआर-एनआईएससीपीआर ने पुस्तकालयों के लिए कृत्रिम बुद्धिमत्ता पर क्षमता विकास कार्यक्रम आयोजित किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342095",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "ईमानदार रहें, धैर्य रखें और अपनी कला के प्रति वफ़ादार रहें: मुकेश छाबड़ा ने इफ़्फ़ी 2026 मास्टरक्लास में कास्टिंग और अभिनय के रहस्य साझा किए",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342101",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "सौर कण घटनाओं का पता लगाने का नया तरीका ज़मीन-आधारित अवलोकनों के भौगोलिक दायरे को बढ़ा सकता है",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342107",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "केंद्रीय संस्कृति एवं पर्यटन मंत्री श्री गजेंद्र सिंह शेखावत ने श्री गुरु तेग बहादुर जी के 350वें शहीदी दिवस के स्मरणोत्सव के समापन कार्यक्रम में भाग लिया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342159",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "संविधान दिवस 2026 के अवसर पर भारतीय संविधान का अद्यतन संस्करण सभी 22 अनुसूचित भाषाओं में जारी",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342172",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "केंद्रीय स्वास्थ्य सचिव श्रीमती पुण्य सलिला श्रीवास्तव ने प्रधानमंत्री श्री नरेन्द्र मोदी द्वारा स्वास्थ्य क्षेत्र में अधिक निवेश और सार्वजनिक-निजी भागीदारी पर जोर दिए जाने को रेखांकित किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342138",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "बिहार के पटना में ‘राष्ट्रीय दुग्ध दिवस 2026’ मनाया गया; इस अवसर पर कई महत्वपूर्ण पहलों का शुभारंभ और डेयरी तथा पशुधन से जुड़ी प्रमुख बुनियादी ढांचा परियोजनाओं का लोकार्पण किया गया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342183",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "उपराष्ट्रपति ने संविधान दिवस के अवसर पर भारत के संविधान के अद्यतन संस्करणों का सभी 22 अनुसूचित भाषाओं में विमोचन किया",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342073",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional press releases",
+   "title": "प्रधानमंत्री पुरस्कार (पीएमए) के अंतर्गत सम्मानित पहलों की निरंतरता और पुनरावृत्ति विषय पर राष्ट्रीय सुशासन वेबिनार श्रृंखला का 42वां वेबिनार 26 नवंबर, 2026 को आयोजित",
+   "link": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2342055",
+   "topic": "General",
+   "ai_status": "pending"
+  },
+  {
+   "date": "2026-11-26",
+   "source": "PIB: Regional features",
+   "title": "चीतों की वापसी और बढ़ती रफ्तार",
+   "link": "https://pib.gov.in/FeaturesDeatils.aspx?NoteId=160909&ModuleId=2",
+   "topic": "General",
+   "ai_status": "pending"
+  },
   {
    "date": "2026-11-25",
    "source": "The Hindu: National",
@@ -7169,598 +7854,6 @@
    "title": "UPSC Key: Reciprocal Tariffs, PM Internship Scheme and Demography Committee",
    "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-reciprocal-tariffs-pm-internship-scheme-and-demography-committee-10931146/",
    "topic": "Schemes and society",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-21",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Gender-based violence and promises of modernity",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/gender-based-violence-and-promises-of-modernity-10931041/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-21",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 2: India–ASEAN relations and Supreme Court’s ruling on reservation (Week 177)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-2-week-177-10930122/",
-   "topic": "Polity",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-21",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | What is the difference between Executive Magistrate and Judicial Magistrate?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-executive-magistrate-vs-judicial-magistrate-upsc-10930479/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-20",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Prelims 2027 Polity Quiz (Week 185): MCQs on right to access the Internet in India, peace bond, and more",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-prelims-2027-polity-quiz-week-185-10929348/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-20",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "How to prevent rainfall deficiency from becoming drought disaster",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/how-to-prevent-rainfall-deficiency-from-becoming-drought-disaster-10929717/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-20",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Ethnic Conflicts in Manipur, Disinvestment and Free Trade Agreement",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-ethnic-conflicts-in-manipur-disinvestment-and-free-trade-agreement-10929665/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-20",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 3: Rising public debt in advanced economies and Montreal Protocol (Week 177)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-3-week-177-10929175/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-20",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | India now has 103 Ramsar Sites: Why are wetlands important?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-indias-103-ramsar-sites-why-wetlands-important-upsc-10929119/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-19",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials daily subject quiz : History and Culture MCQs on Tantricism, Durga Saptashati, Chola history, and more",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-quiz-history-culture-mcqs-tantricism-durga-chola-10927552/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-19",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Can monetary policy address inflation arising from supply-side disruption?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/can-monetary-policy-address-inflation-arising-from-supply-side-disruption-10928354/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-19",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Special Summary Revision, Protests in France and Phobos",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-special-summary-revision-protests-in-france-and-phobos-10928358/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-19",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | Pulses Mission faces research delays: What is it all about?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-mission-for-aatmanirbharta-in-pulses-upsc-10927687/",
-   "topic": "Schemes and society",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-19",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Top 20 UPSC Current Affairs Pointers of the past week | October 12 to 18, 2026",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/top-20-upsc-current-affairs-pointers-of-the-past-week-october-12-to-18-2026-10919706/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-18",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials daily subject quiz : International Relations MCQs (Week 184) — Check out answers with explanations",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-quiz-international-relations-week-184-10927102/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-18",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC KEY: Kolkata Stampede, Right to access internet, and Calling Name Presentation",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-stampede-right-to-access-internet-calling-name-presentation-10926742/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-18",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Ethics Simplified | Kerala Mini Cooper crash: What would Mill, Berlin and Sartre say?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-ethics-kerala-mini-cooper-crash-sartre-berlin-mill-10926668/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-18",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | Nagoya Protocol: How does it protect biodiversity and local communities?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-nagoya-protocol-biodiversity-india-upsc-10926557/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-17",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Weekly Current Affairs Quiz (October 11 – October 17): 10 key questions with detailed answers for Prelims 2027",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-weekly-current-affairs-quiz-october-11-october-17-10926111/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-17",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: India-China Trade deficit, Dark Patterns and Public Execution",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-india-china-trade-deficit-dark-patterns-and-public-execution-10926093/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-17",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | What is the difference between arrest, detention, and preventive detention?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-difference-in-arrest-detention-preventive-detention-upsc-10925716/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-17",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "From UP to Assam, how a home away from home shaped an IAS officer",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/from-up-to-assam-home-away-from-home-ias-srishti-singh-10925557/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-16",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials daily subject quiz : Environment and Geography MCQs on northeast monsoon, Gomarda Wildlife Sanctuary, and more (Week 184)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-quiz-environment-and-geography-week-184-10925025/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-16",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "From algorithms to experiments: AI’s evolving role in biological research",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/from-algorithms-to-experiments-ais-evolving-role-in-biological-research-10924840/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-16",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Overseas Citizen of India, Affirmative Action and Cert-In",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-overseas-citizen-of-india-affirmative-action-and-cert-in-10924850/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-16",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Beyond Trending: What is deep state?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/beyond-trending-what-is-deep-state-10924752/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-16",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essays 2027: How to decode philosophical topics and build strong arguments",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-essay-2027-philosophical-topics-exam-tips-10924376/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-15",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials | Daily subject-wise quiz : Economy MCQs on Foreign Exchange Risk Reserve, demand liabilities and more (Week 184)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-essentials-daily-subject-wise-quiz-economy-week-184-10923530/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-15",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Why challenge for governing technology is to regulate without stifling innovation",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/challenge-for-governing-tec-is-to-regulate-without-stifling-innovation-10923370/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-15",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: India-US Trade Deal, Facial Recognition Technology and Kigali Amendment",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-india-us-trade-deal-facial-recognition-technology-and-kigali-amendment-10923381/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-15",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 1: impact of moraines on glacial floods and Indian revolutionaries in Europe (Week 176)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-1-week-176-10922993/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-15",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Expert talk: What does it mean to wear a police uniform? Former IPS officer Meeran Chadha Borwankar tells us",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-expert-talk-former-police-officer-meeran-chadha-borwankar-ips-10922530/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-14",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials | Daily subject-wise quiz : Science and Technology MCQs on INS Mangrol, lithium-ion batteries and more (Week 184)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-wise-quiz-science-and-technology-week-184-10921947/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-14",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Can plastic-to-fuel technology help address India’s plastic waste challenge?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/can-plastic-to-fuel-technology-help-address-indias-plastic-waste-challenge-10921757/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-14",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Corporate Social Responsibility, Generalisation of Inflation and Public Order",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-corporate-social-responsibility-generalisation-of-inflation-and-public-order-10921775/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-14",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | 57th GST Council meeting: What are the key decisions?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-57th-gst-council-meeting-what-are-key-decisions-10921114/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-14",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 2: India’s approach to Russia-Ukraine war and right to peaceful assembly (Week 176)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-2-week-176-10921140/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-13",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Prelims 2027 Polity Quiz (Week 184): MCQs on Article 239AA of the Constitution, Governor of a State, and more",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-prelims-2027-polity-quiz-week-184-10920373/",
-   "topic": "Polity",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-13",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "How India seeks to eliminate hepatitis B and C as public health threats by 2030",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/how-india-seeks-to-eliminate-hepatitis-b-and-c-as-public-health-threats-10920063/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-13",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Jantar Mantar, Governor and Macroeconomic Stabilisation",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-jantar-mantar-governor-and-macroeconomic-stabilisation-10920081/",
-   "topic": "Polity",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-13",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | What a new study reveals about unapproved GM cotton hybrids",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-study-unapproved-gm-cotton-hybrids-upsc-10919512/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-13",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 3: Quantum computing in digital economy and air pollution’s impact on health (Week 176)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-3-week-176-10919114/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-12",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "How AI could open new avenues in biological research",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/how-ai-could-open-new-avenues-in-biological-research-10918359/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-12",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Right to Protest, Trump’s Russian diesel deal and Quantum Computing",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-right-to-protest-trumps-russian-diesel-deal-and-quantum-computing-10918344/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-12",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | State of the World’s Forests 2026: Key highlights for UPSC Exam",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-state-of-the-worlds-forests-2026-key-highlights-upsc-10917690/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-12",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Top 20 UPSC Current Affairs Pointers of the past week | October 5 to 11, 2026",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/top-20-upsc-current-affairs-pointers-of-the-past-week-october-5-to-11-2026-10907436/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-11",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials daily subject quiz : International Relations MCQs (Week 183) — Check out answers with explanations",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-quiz-international-relations-week-183-10916991/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-11",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC KEY: Delhi protest, RBI measures to curb speculation, and CBAM",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-delhi-protest-rbi-curb-speculation-cbam-ustr-10916881/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-11",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Ethics Simplified: What makes a good journalist? Philosophers’ lessons that hold true for civil servants too",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-ethics-good-journalist-civil-servants-investigation-eci-10916520/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-11",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | Global Innovation Index 2026: Where India stands and which economies lead the world",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-global-innovation-index-2026-india-key-highlights-upsc-10916341/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-10",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Weekly Current Affairs Quiz (October 04 – October 10): 10 key questions with detailed answers for Prelims 2027",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-weekly-current-affairs-quiz-october-04-october-10-10915914/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-10",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Nobel Peace Prize 2026, Great Indian Bustard and New Investment Treaty",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-nobel-peace-prize-great-indian-bustard-10915801/",
-   "topic": "International relations",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-10",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | Can the promise of IMEC become a reality?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-can-the-promise-of-imec-become-a-reality-upsc-10915232/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-10",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Ethics Answer Practice: AI Ethics in Governance | Question and Case Study",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/ethics-answer-practice-artificial-intelligence-question-and-case-study-upsc-10914827/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-09",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials daily subject quiz : Environment and Geography MCQs on Sal tree, diamondback terrapin, and more (Week 183)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-quiz-environment-and-geography-week-183-10914518/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-09",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Art and Culture with Devdutt | Did women compose vedic hymns?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/art-and-culture-with-devdutt-did-women-compose-vedic-hymns-10914463/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-09",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: GST Council, Green Card Programme and Makkah Accord",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-gst-council-green-card-programme-and-makkah-accord-10914454/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-09",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Beyond Trending: What is patriarchal bargain?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/beyond-trending-what-is-patriarchal-bargain-10914411/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-09",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | What does the World Bank report say about India’s AI readiness?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-world-bank-report-on-indias-ai-readiness-upsc-10910935/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-08",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "El Niño: Can India prevent climate warning from becoming crisis?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/el-nino-can-india-prevent-climate-warning-from-becoming-crisis-10912921/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-08",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Repo Rate Hike, Nobel Prize in Chemistry and Living Planet Report 2026",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-repo-rate-hike-nobel-prize-in-chemistry-and-living-planet-report-2026-10912911/",
-   "topic": "Economy",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-08",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials | Daily subject-wise quiz : Economy MCQs on cotton cultivation in India, bilateral investment treaty and more (Week 183)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-essentials-daily-subject-wise-quiz-economy-week-183-10912890/",
-   "topic": "International relations",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-08",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 1: Gandhian Influence on Shastri and Linguistic Diversity (Week 175)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-1-week-175-10912253/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-08",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | ‘Nature is disappearing’: What the Living Planet Report 2026 reveals about state of natural world",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-living-planet-report-2026-lpi-highlights-cbd-upsc-10911839/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-07",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Essentials | Daily subject-wise quiz : Science and Technology MCQs on neutrino, pneumonic plague and more (Week 183)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-daily-subject-wise-quiz-science-and-technology-week-183-10911271/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-07",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "From ITIs to AI: Why India needs to rethink skill development",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/from-itis-to-ai-why-india-needs-to-rethink-skill-development-10911201/",
-   "topic": "Science and technology",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-07",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: High-Energy Neutrino Discovery, October Revolution and SME Growth Fund",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-high-energy-neutrino-discovery-october-revolution-and-sme-growth-fund-10911193/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-07",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | Why does a dedicated growth fund matter for SMEs?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-a-dedicated-growth-fund-for-smes-upsc-10910543/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-07",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 2: Community participation in water governance and Legislative privileges (Week 175)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-2-week-175-10910366/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-06",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Prelims 2027 Polity Quiz (Week 183): MCQs on removal of the Chief Election Commissioner, Mahanadi water dispute, and more",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-prelims-2027-polity-quiz-week-183-10909550/",
-   "topic": "Polity",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-06",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Why cutting short-lived climate pollutants is a key climate priority",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/why-cutting-short-lived-climate-pollutants-is-a-key-climate-priority-10909520/",
-   "topic": "Environment",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-06",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Key: Parliamentary Privileges, Optogenetics and Form 6",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-key-parliamentary-privileges-optogenetics-and-form-6-10909467/",
-   "topic": "Polity",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-06",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Knowledge Nugget | How should you read Maharashtra’s drought?",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/knowledge-nugget-how-should-you-read-maharashtras-drought-upsc-10908873/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-06",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "UPSC Mains Answer Practice — GS 3: significance of optogenetics and impact of higher crude oil prices (Week 175)",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/upsc-mains-answer-practice-gs-3-week-175-10908648/",
-   "topic": "General",
-   "ai_status": "pending"
-  },
-  {
-   "date": "2026-10-05",
-   "source": "Indian Express: UPSC Current Affairs",
-   "title": "Blue economy: How to make maritime expansion a lasting source of prosperity",
-   "link": "https://indianexpress.com/article/upsc-current-affairs/upsc-essentials/blue-economy-how-to-make-maritime-expansion-a-lasting-source-of-prosperity-10907921/",
-   "topic": "General",
    "ai_status": "pending"
   }
  ]
