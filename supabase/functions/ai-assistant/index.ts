@@ -303,6 +303,43 @@ Deno.serve(async (req: Request) => {
     }, 200, origin);
   }
 
+  if (body.action === "test_ai_provider") {
+    if (profile.role !== "admin") return json({ error: "AI connection testing is available to the site owner only." }, 403, origin);
+    if (!GEMINI_KEY && !GROQ_KEY) {
+      return json({ ok: false, configured: false, message: "No provider secret is configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase → Edge Functions → Secrets, then redeploy or restart the function if required." }, 503, origin);
+    }
+    const failures: string[] = [];
+    if (GEMINI_KEY) {
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY },
+          signal: AbortSignal.timeout(12000),
+          body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: "Reply with the single word OK." }] }], generationConfig: { maxOutputTokens: 8, temperature: 0 } }),
+        });
+        if (response.ok) return json({ ok: true, configured: true, provider: "Gemini", model: GEMINI_MODEL, message: "Gemini connection successful. Anbuu's provider is reachable." }, 200, origin);
+        failures.push("Gemini rejected the request (HTTP " + response.status + "). Check the API key, model access and billing/quota.");
+      } catch (error) {
+        failures.push("Gemini connection failed: " + (error instanceof Error && error.name === "TimeoutError" ? "request timed out." : "network request failed."));
+      }
+    }
+    if (GROQ_KEY) {
+      try {
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: "Bearer " + GROQ_KEY },
+          signal: AbortSignal.timeout(12000),
+          body: JSON.stringify({ model: GROQ_MODEL, messages: [{ role: "user", content: "Reply with the single word OK." }], max_tokens: 8, temperature: 0 }),
+        });
+        if (response.ok) return json({ ok: true, configured: true, provider: "Groq", model: GROQ_MODEL, message: "Groq connection successful. Anbuu's provider is reachable." }, 200, origin);
+        failures.push("Groq rejected the request (HTTP " + response.status + "). Check the API key, model access and quota.");
+      } catch (error) {
+        failures.push("Groq connection failed: " + (error instanceof Error && error.name === "TimeoutError" ? "request timed out." : "network request failed."));
+      }
+    }
+    return json({ ok: false, configured: true, message: failures.join(" ") }, 502, origin);
+  }
+
   if (body.action === "evaluate_mains_answer") {
     if (profile.role !== "learner") return json({ error: "Mains answer evaluation is available to learner accounts only." }, 403, origin);
     const question = typeof body.question === "string" ? body.question.trim() : "";
