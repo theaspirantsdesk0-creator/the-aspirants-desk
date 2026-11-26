@@ -49,6 +49,21 @@ lessonStudio.querySelector("#tadStartLesson").addEventListener("click",async()=>
 });
 
 const $=s=>panel.querySelector(s),messages=$("#tadAiMessages"),status=$("#tadAiStatus"),input=$("#tadAiInput"),send=$("#tadAiSend");
+const aiCheck=document.createElement("button");
+aiCheck.type="button";aiCheck.id="tadAiConnectionCheck";aiCheck.className="tad-ai-connection-check";
+aiCheck.textContent="Test AI connection";aiCheck.hidden=true;
+status.insertAdjacentElement("afterend",aiCheck);
+aiCheck.addEventListener("click",async()=>{
+ aiCheck.disabled=true;aiCheck.textContent="Testing provider…";status.textContent="Checking the configured AI provider securely…";
+ try{
+  const result=await invokeAI({action:"test_ai_provider"});
+  if(result.error)throw new Error(await aiFunctionErrorMessage(result.error));
+  const data=result.data||{};
+  if(data.ok){status.textContent=data.message+" ("+data.provider+" · "+data.model+")";aiCheck.textContent="Connection successful";}
+  else{status.textContent=data.message||"AI provider test failed. Check Supabase Edge Function Secrets.";aiCheck.textContent="Test AI connection again";}
+ }catch(error){status.textContent=error instanceof Error?error.message:"Could not test AI connection.";aiCheck.textContent="Test AI connection again";}
+ finally{aiCheck.disabled=false;}
+});
 function say(text,who){const el=document.createElement("div");el.className="tad-ai-msg "+(who==="user"?"tad-ai-user":"tad-ai-assistant");el.textContent=text;messages.append(el);messages.scrollTop=messages.scrollHeight;}
 function renderRevisionTasks(tasks){
  const host=$("#tadAiLessonRevisionTasks");if(!host)return;host.replaceChildren();
@@ -405,6 +420,7 @@ if(role==="admin"){
   }
  }catch(_){status.textContent="Could not verify AI provider configuration. Check Supabase function logs.";}
 }
+aiCheck.hidden=role!=="admin";
 $("#tadAiRole").textContent=role==="learner"?"Your personal study mentor":role==="guest"?"Role unavailable":role+" assistant";
 $("#tadAiSidebar").hidden=role!=="learner";
 if(role==="guest"){status.textContent="Your account role could not be verified.";return;}
