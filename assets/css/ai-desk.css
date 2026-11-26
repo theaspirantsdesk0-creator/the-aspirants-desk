@@ -191,3 +191,6 @@
 @media(max-width:480px){.tad-lesson-checkpoints{display:grid;grid-template-columns:1fr}.tad-lesson-checkpoint{text-align:left}}
 
 .tad-ai-plan-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:.9rem 0}.tad-ai-plan-controls label{display:flex;flex-direction:column;gap:.35rem;font-size:.8rem;font-weight:700;color:var(--muted)}.tad-ai-plan-controls select{width:100%;min-height:42px;border:1px solid var(--line);border-radius:10px;padding:.55rem .7rem;background:var(--surface);color:var(--text);font:inherit}.tad-ai-plan-note{font-size:.78rem;color:var(--muted);margin:.55rem 0 0;line-height:1.5}@media(max-width:480px){.tad-ai-plan-controls{grid-template-columns:1fr}}
+
+.tad-ai-connection-check{display:inline-flex;align-items:center;justify-content:center;margin:.35rem 0 .7rem;padding:.48rem .75rem;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt);color:var(--ink);font:700 .75rem inherit;cursor:pointer}
+.tad-ai-connection-check:disabled{opacity:.65;cursor:wait}
