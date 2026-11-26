@@ -1,5 +1,5 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v38-press-intelligence';
+var VERSION = 'desk-v39-ai-provider-diagnostics';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
