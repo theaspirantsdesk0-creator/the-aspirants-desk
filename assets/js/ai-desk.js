@@ -442,6 +442,7 @@ async function aiFunctionErrorMessage(error){
      :"Anbuu is temporarily unavailable because the site administrator has not completed the AI provider setup. Your saved study data is unaffected.";
    }
    if(payload&&typeof payload.error==="string"&&payload.error.trim())return payload.error;
+   if(payload&&typeof payload.message==="string"&&payload.message.trim())return payload.message;
   }
  }catch(_){}
  if(/non-2xx status code/i.test(message))return "Anbuu's server returned an error. Please retry in a moment; if it continues, share the time of the failed request with the site owner.";
