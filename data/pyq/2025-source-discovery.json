@@ -1,0 +1,91 @@
+{
+  "exam": "Civil Services Examination",
+  "year": 2025,
+  "discovery_source": "https://www.upsc.gov.in/examinations/previous-question-papers",
+  "note": "These are primary-source discovery records from the official UPSC previous-question-paper index. `source_found` means the paper link was present in the index; it does not mean the PDF contents have been individually inspected or that question text is verified. Do not import these entries into the published question table.",
+  "documents": [
+    {
+      "id": "cse-2025-prelims-gs1",
+      "stage": "Prelims",
+      "paper": "General Studies Paper I",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-I-26052025.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-prelims-csat",
+      "stage": "Prelims",
+      "paper": "General Studies Paper II (CSAT)",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-II-26052025.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-essay",
+      "stage": "Mains",
+      "paper": "Essay",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/ESSAY-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-gs1",
+      "stage": "Mains",
+      "paper": "General Studies Paper I",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER%20I-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-gs2",
+      "stage": "Mains",
+      "paper": "General Studies Paper II",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-II-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-gs3",
+      "stage": "Mains",
+      "paper": "General Studies Paper III",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-III-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-gs4",
+      "stage": "Mains",
+      "paper": "General Studies Paper IV",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-IV-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-anthro1",
+      "stage": "Mains",
+      "paper": "Optional Paper I",
+      "optional_subject": "Anthropology",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/ANTHROPOLOGY-PAPER%20I-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    },
+    {
+      "id": "cse-2025-mains-anthro2",
+      "stage": "Mains",
+      "paper": "Optional Paper II",
+      "optional_subject": "Anthropology",
+      "source_url": "https://www.upsc.gov.in/sites/default/files/ANTHROPOLOGY-PAPER-II-QP-CSM-25-010925.pdf",
+      "status": "source_found",
+      "verification_method": "official_upsc_index_listing",
+      "content_checked": false
+    }
+  ]
+}
