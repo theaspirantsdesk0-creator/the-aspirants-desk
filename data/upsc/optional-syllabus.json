@@ -3466,6 +3466,138 @@
         "Modernity and social changes in Europe; emergence of Sociology",
         "Scope of Sociology and comparison with other social sciences",
         "Sociology and common sense"
+      ],
+      "lesson": {
+        "objective": "Explain why sociology emerged as a distinct discipline and distinguish sociological analysis from common-sense explanations.",
+        "sections": [
+          {
+            "heading": "The emergence of sociology in modern Europe",
+            "explanation": [
+              "Sociology developed as European societies experienced major transformations associated with the Enlightenment, the French Revolution, industrialisation, urbanisation and the growth of modern states. These changes raised questions about social order, inequality, authority, work and rapid social change.",
+              "Early sociologists sought systematic explanations of society rather than relying only on tradition, speculation or individual opinion."
+            ],
+            "example": "Industrial cities created new questions about working conditions, class relations, migration and urban poverty."
+          },
+          {
+            "heading": "Meaning and scope of sociology",
+            "explanation": [
+              "Sociology is the systematic study of social relationships, institutions, groups, processes and patterns of social change. It examines how individuals are shaped by society and how people reproduce or transform social arrangements.",
+              "Its scope includes family, education, religion, economy, politics, stratification, gender, caste, race, urban life, social movements and globalisation."
+            ],
+            "example": "A study of education can examine classroom interaction, inequality, social mobility, public policy and the relationship between schools and labour markets."
+          },
+          {
+            "heading": "Sociology and other social sciences",
+            "explanation": [
+              "Sociology overlaps with economics, political science, history, anthropology and psychology, but it has a distinctive emphasis on social relations and patterned interaction. Economics often foregrounds production and allocation; political science studies power and institutions; psychology examines mental processes and behaviour; history studies change over time.",
+              "The boundaries are porous. Interdisciplinary research is useful when a social problem cannot be understood through one perspective alone."
+            ],
+            "example": "Unemployment can be studied through labour markets, public policy, family expectations, social networks and individual experiences."
+          },
+          {
+            "heading": "Sociology and common sense",
+            "explanation": [
+              "Common sense is practical knowledge acquired through everyday experience. It can be useful, but it may rely on stereotypes, selective observation and assumptions that are not tested systematically.",
+              "Sociology questions taken-for-granted beliefs through concepts, comparison, evidence and reflexivity. It does not automatically reject everyday knowledge; it examines how such knowledge is produced and whose interests it may reflect."
+            ],
+            "example": "The claim that poverty results only from laziness is a common-sense generalisation; sociological analysis also investigates wages, education, discrimination, health, geography and institutions."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Sociology",
+            "meaning": "The systematic study of social relationships, institutions and processes."
+          },
+          {
+            "term": "Modernity",
+            "meaning": "A broad condition associated with industrialisation, urbanisation, rationalisation and changing social institutions."
+          },
+          {
+            "term": "Social institution",
+            "meaning": "A durable pattern of norms and practices organised around major social needs."
+          },
+          {
+            "term": "Common sense",
+            "meaning": "Everyday practical knowledge that is often taken for granted."
+          },
+          {
+            "term": "Sociological imagination",
+            "meaning": "The ability to connect personal experiences with wider social structures and historical change."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Auguste Comte",
+            "idea": "Promoted a scientific study of society and is associated with the early development of sociology."
+          },
+          {
+            "scholar": "Émile Durkheim",
+            "idea": "Emphasised social facts and the study of social phenomena as realities external to individuals."
+          },
+          {
+            "scholar": "C. Wright Mills",
+            "idea": "Developed the idea of sociological imagination, linking biography, history and social structure."
+          }
+        ],
+        "answerPractice": "Explain the emergence of sociology in modern Europe and distinguish its approach from common sense. Use relevant examples.",
+        "revisionPrompt": "Connect one personal issue to a wider social structure using the idea of sociological imagination."
+      },
+      "test": [
+        {
+          "q": "Which transformation contributed significantly to the emergence of sociology?",
+          "o": [
+            "Industrialisation and urbanisation",
+            "The invention of agriculture alone",
+            "The end of all social institutions",
+            "The disappearance of cities"
+          ],
+          "a": 0,
+          "w": "Industrialisation and urbanisation transformed social relations and created new questions for systematic study."
+        },
+        {
+          "q": "Sociology primarily studies:",
+          "o": [
+            "Only individual biological traits",
+            "Social relationships, institutions and processes",
+            "Only chemical reactions",
+            "Only constitutional law"
+          ],
+          "a": 1,
+          "w": "Sociology examines patterned social life and the institutions and processes that shape it."
+        },
+        {
+          "q": "The sociological imagination is associated with:",
+          "o": [
+            "C. Wright Mills",
+            "Isaac Newton",
+            "Adam Smith alone",
+            "Charles Darwin"
+          ],
+          "a": 0,
+          "w": "C. Wright Mills used the concept to connect biography with history and social structure."
+        },
+        {
+          "q": "Which statement best distinguishes sociological analysis from common sense?",
+          "o": [
+            "Sociology accepts every popular belief",
+            "Sociology examines assumptions systematically using concepts and evidence",
+            "Sociology avoids studying everyday life",
+            "Sociology relies only on personal opinion"
+          ],
+          "a": 1,
+          "w": "Sociological analysis critically examines everyday assumptions using systematic methods."
+        },
+        {
+          "q": "Which subject most directly focuses on social relationships and institutions as its central concern?",
+          "o": [
+            "Sociology",
+            "Astrophysics",
+            "Organic chemistry",
+            "Geometry"
+          ],
+          "a": 0,
+          "w": "Sociology's central focus is social relationships, institutions and processes."
+        }
       ]
     },
     {
@@ -3477,6 +3609,142 @@
         "Positivism and its critique",
         "Fact, value and objectivity",
         "Non-positivist methodologies"
+      ],
+      "lesson": {
+        "objective": "Understand the meaning of science and scientific method, and compare positivist and non-positivist approaches in sociology.",
+        "sections": [
+          {
+            "heading": "What makes an inquiry scientific?",
+            "explanation": [
+              "Scientific inquiry uses systematic observation, clear concepts, logical reasoning, transparent methods and evidence that can be examined by others. Scientific knowledge is open to criticism and revision rather than being treated as unquestionable.",
+              "In social research, ethical limits and the complexity of human meaning require careful methods; scientific rigour does not mean that every social question can be answered through laboratory experiments."
+            ],
+            "example": "A researcher studying school attendance defines the concept, selects a sample, explains data collection and makes the limitations clear."
+          },
+          {
+            "heading": "Positivism and its assumptions",
+            "explanation": [
+              "Positivism argues that society can be studied through systematic empirical methods and that patterns can be identified through observation, comparison and explanation. It values operational definitions, evidence and the search for regularities.",
+              "Critics argue that human action involves meaning, interpretation and historical context that cannot always be reduced to observable regularities."
+            ],
+            "example": "A positivist study may examine whether household income is statistically associated with school attendance."
+          },
+          {
+            "heading": "Non-positivist approaches",
+            "explanation": [
+              "Interpretive approaches seek to understand the meanings people attach to actions and institutions. Phenomenology examines lived experience; ethnomethodology studies how people produce a sense of social order in everyday interaction; verstehen refers to interpretive understanding of social action.",
+              "These approaches do not reject evidence. They often use interviews, observation, documents and detailed contextual analysis."
+            ],
+            "example": "Interviews with students may reveal how family expectations and ideas of success shape their decisions beyond what attendance statistics show."
+          },
+          {
+            "heading": "Fact, value, objectivity and methodology",
+            "explanation": [
+              "A fact is an evidence-supported statement about the social world; a value is a judgement about what is desirable or important. Researchers should distinguish empirical claims from moral preferences while acknowledging that research questions and categories may reflect social values.",
+              "Objectivity is a disciplined effort to reduce bias through transparent procedures, reflexivity, evidence and openness to criticism. Reliability concerns consistency; validity concerns whether a method measures or explains what it claims to."
+            ],
+            "example": "A researcher can report an observed inequality as an empirical finding and separately explain the normative argument for reducing it."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Positivism",
+            "meaning": "An approach that emphasises systematic empirical observation and explanation of social patterns."
+          },
+          {
+            "term": "Verstehen",
+            "meaning": "Interpretive understanding of the meanings actors attach to their actions."
+          },
+          {
+            "term": "Objectivity",
+            "meaning": "A disciplined effort to minimise bias through transparent and critical methods."
+          },
+          {
+            "term": "Reliability",
+            "meaning": "The consistency of a measurement or research procedure."
+          },
+          {
+            "term": "Validity",
+            "meaning": "The extent to which a method measures or explains what it is intended to."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Auguste Comte",
+            "idea": "Associated with positivism and the idea that society can be studied systematically."
+          },
+          {
+            "scholar": "Émile Durkheim",
+            "idea": "Used social facts and comparative analysis to develop explanatory sociology."
+          },
+          {
+            "scholar": "Max Weber",
+            "idea": "Emphasised interpretive understanding of social action through verstehen."
+          },
+          {
+            "scholar": "Alfred Schutz",
+            "idea": "Developed phenomenological sociology focused on the meanings of everyday life."
+          }
+        ],
+        "answerPractice": "Compare positivist and interpretive approaches in sociology. Explain how each understands evidence, meaning and objectivity.",
+        "revisionPrompt": "For one social issue, write one question suitable for quantitative research and one for interpretive research."
+      },
+      "test": [
+        {
+          "q": "Positivism places particular emphasis on:",
+          "o": [
+            "Systematic empirical observation",
+            "Personal intuition alone",
+            "Rejecting all evidence",
+            "Explaining society only through theology"
+          ],
+          "a": 0,
+          "w": "Positivism stresses systematic observation and evidence-based explanation."
+        },
+        {
+          "q": "The concept of verstehen is associated with:",
+          "o": [
+            "Max Weber",
+            "Auguste Comte",
+            "Talcott Parsons",
+            "Herbert Spencer"
+          ],
+          "a": 0,
+          "w": "Weber used verstehen to describe interpretive understanding of social action."
+        },
+        {
+          "q": "Reliability refers to:",
+          "o": [
+            "Whether a measure is consistent",
+            "Whether a finding is morally desirable",
+            "Whether a sample is always large",
+            "Whether a theory is popular"
+          ],
+          "a": 0,
+          "w": "Reliability concerns the consistency of a measurement or procedure."
+        },
+        {
+          "q": "Validity asks whether:",
+          "o": [
+            "A method measures what it intends to measure",
+            "A researcher agrees with the result",
+            "The research has no limitations",
+            "The sample contains only one person"
+          ],
+          "a": 0,
+          "w": "Validity concerns the accuracy and appropriateness of measurement or inference."
+        },
+        {
+          "q": "Which approach focuses strongly on lived experience and everyday meaning?",
+          "o": [
+            "Phenomenology",
+            "Strict biological reductionism",
+            "Only macroeconomic modelling",
+            "Geological dating"
+          ],
+          "a": 0,
+          "w": "Phenomenology explores how people experience and interpret the social world."
+        }
       ]
     },
     {
@@ -3487,6 +3755,138 @@
         "Techniques of data collection",
         "Variables, sampling and hypothesis",
         "Reliability and validity"
+      ],
+      "lesson": {
+        "objective": "Select and evaluate qualitative and quantitative research methods, sampling strategies and basic tools of data analysis.",
+        "sections": [
+          {
+            "heading": "Qualitative and quantitative approaches",
+            "explanation": [
+              "Quantitative research uses numerical data to describe distributions, test relationships and compare groups. Qualitative research explores meanings, experiences, processes and context through detailed non-numerical evidence.",
+              "The choice depends on the research question. Mixed-method designs combine approaches when numerical patterns and lived experiences both matter."
+            ],
+            "example": "A survey may show differences in access to digital learning, while interviews explain how household conditions shape those differences."
+          },
+          {
+            "heading": "Data collection techniques",
+            "explanation": [
+              "Surveys and structured questionnaires collect comparable responses from many participants. Interviews can be structured, semi-structured or open-ended. Participant observation records practices in context; focus groups explore shared views; documents and secondary datasets provide additional evidence.",
+              "Each method has limitations: surveys may miss nuance, interviews may be affected by recall or interviewer effects, and observation requires careful ethical practice."
+            ],
+            "example": "A semi-structured interview allows the researcher to ask common questions while exploring participants' different experiences."
+          },
+          {
+            "heading": "Variables, hypotheses and sampling",
+            "explanation": [
+              "A variable is a characteristic that can take different values. An independent variable is used to explain variation in a dependent variable, though association alone does not prove causation. A hypothesis is a testable proposition about an expected relationship.",
+              "Sampling selects units from a population. Probability sampling gives units a known chance of selection; non-probability sampling may be appropriate for exploratory or hard-to-reach groups but limits statistical generalisation."
+            ],
+            "example": "A study may hypothesise that travel distance is associated with school attendance, while controlling for household income and age."
+          },
+          {
+            "heading": "Research quality and ethics",
+            "explanation": [
+              "Reliability concerns consistency; validity concerns whether the method captures the intended concept. Triangulation compares evidence from different methods or sources. Researchers should obtain informed consent, protect confidentiality, minimise harm and explain limitations.",
+              "Sampling bias, non-response, leading questions and researcher influence can distort findings. A good report makes methods and limitations transparent."
+            ],
+            "example": "Combining attendance records, student interviews and classroom observation can reveal where different sources support or challenge one another."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Variable",
+            "meaning": "A characteristic that can take different values across cases or time."
+          },
+          {
+            "term": "Hypothesis",
+            "meaning": "A testable proposition about a possible relationship or explanation."
+          },
+          {
+            "term": "Population",
+            "meaning": "The complete group about which a study seeks to draw conclusions."
+          },
+          {
+            "term": "Sample",
+            "meaning": "The selected subset of a population from which data are collected."
+          },
+          {
+            "term": "Triangulation",
+            "meaning": "Using multiple methods or sources to examine a research question."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Paul Lazarsfeld",
+            "idea": "Contributed to quantitative methods, measurement and empirical social research."
+          },
+          {
+            "scholar": "W. I. Thomas",
+            "idea": "Highlighted the importance of people's definitions of situations in shaping social action."
+          },
+          {
+            "scholar": "Anselm Strauss",
+            "idea": "Co-developed grounded theory, an approach to building theory from systematically analysed data."
+          }
+        ],
+        "answerPractice": "Differentiate qualitative and quantitative methods. Explain how sampling and triangulation affect the quality of sociological research.",
+        "revisionPrompt": "Identify the population, sample, independent variable and dependent variable in a simple study of school attendance."
+      },
+      "test": [
+        {
+          "q": "Which method is most directly associated with collecting standardised numerical responses from a large sample?",
+          "o": [
+            "Structured survey",
+            "Unstructured life history alone",
+            "Participant observation alone",
+            "Archival interpretation only"
+          ],
+          "a": 0,
+          "w": "Structured surveys can collect comparable numerical responses across many respondents."
+        },
+        {
+          "q": "A hypothesis is:",
+          "o": [
+            "A testable proposition",
+            "A final moral judgement",
+            "A list of interviewees",
+            "A researcher's personal preference"
+          ],
+          "a": 0,
+          "w": "A hypothesis states a proposition that can be examined with evidence."
+        },
+        {
+          "q": "In a study of the effect of study hours on test scores, study hours may be treated as the:",
+          "o": [
+            "Independent variable",
+            "Dependent variable",
+            "Population",
+            "Sampling frame"
+          ],
+          "a": 0,
+          "w": "Study hours are the proposed explanatory variable; test scores are the outcome variable."
+        },
+        {
+          "q": "Probability sampling is characterised by:",
+          "o": [
+            "A known chance of selection for population units",
+            "Selection only by convenience",
+            "Choosing only friends of the researcher",
+            "No defined population"
+          ],
+          "a": 0,
+          "w": "Probability sampling uses a selection procedure in which units have a known chance of inclusion."
+        },
+        {
+          "q": "Triangulation means:",
+          "o": [
+            "Using multiple methods or sources to examine a question",
+            "Repeating one opinion until it is accepted",
+            "Avoiding comparison",
+            "Removing all qualitative data"
+          ],
+          "a": 0,
+          "w": "Triangulation compares evidence across methods or sources to strengthen interpretation."
+        }
       ]
     },
     {
@@ -3499,6 +3899,150 @@
         "Talcott Parsons: social system and pattern variables",
         "Robert K. Merton: manifest and latent functions, conformity, deviance and reference groups",
         "George Herbert Mead: self and identity"
+      ],
+      "lesson": {
+        "objective": "Explain the major contributions of Marx, Durkheim, Weber, Parsons, Merton and Mead to sociological theory.",
+        "sections": [
+          {
+            "heading": "Karl Marx: class and historical materialism",
+            "explanation": [
+              "Marx explained social change through material production and historically specific relations of production. In capitalism, owners of the means of production and wage workers occupy different class positions. Alienation describes workers' estrangement from the product, process, other people and their human creative potential.",
+              "Class struggle is central to Marx's account of historical change, but class relations operate within wider political and ideological structures."
+            ],
+            "example": "A worker may have little control over the product or pace of work in a highly fragmented production process."
+          },
+          {
+            "heading": "Émile Durkheim: social facts and solidarity",
+            "explanation": [
+              "Durkheim treated social facts as ways of acting, thinking and feeling that are external to individuals and exert social constraint. The division of labour can create organic solidarity through interdependence, while anomie describes a condition of weakened or unclear norms.",
+              "His study of suicide demonstrated how apparently individual acts can be analysed in relation to social integration and regulation."
+            ],
+            "example": "Rapid social change may weaken shared expectations and produce uncertainty about social norms."
+          },
+          {
+            "heading": "Max Weber: social action and authority",
+            "explanation": [
+              "Weber defined sociology as an interpretive study of social action. Ideal types are analytical constructs used to compare complex reality. He distinguished traditional, charismatic and legal-rational authority and analysed bureaucracy as a characteristic form of modern organisation.",
+              "His work connects meaning, power, religion, economy and institutional change."
+            ],
+            "example": "A civil-service bureaucracy is typically organised through offices, rules, hierarchy and specialised responsibilities."
+          },
+          {
+            "heading": "Parsons, Merton and Mead",
+            "explanation": [
+              "Parsons analysed society as a system of interrelated institutions and developed pattern variables to describe orientations in social relationships. Merton distinguished manifest functions from latent functions and examined dysfunctions, reference groups and deviance.",
+              "Mead's symbolic interactionism explains the self as developing through social interaction, role-taking and the use of symbols. These thinkers work at different levels and should not be collapsed into one theory."
+            ],
+            "example": "A school may have the manifest function of education and latent functions such as peer-network formation."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Historical materialism",
+            "meaning": "Marx's approach that analyses historical change through material production and social relations."
+          },
+          {
+            "term": "Alienation",
+            "meaning": "A condition in which workers are separated from control over their work and its products."
+          },
+          {
+            "term": "Social fact",
+            "meaning": "For Durkheim, a social way of acting or thinking that exists beyond an individual and exerts constraint."
+          },
+          {
+            "term": "Ideal type",
+            "meaning": "Weber's analytical construct used to compare and interpret social reality."
+          },
+          {
+            "term": "Latent function",
+            "meaning": "An unintended or unrecognised consequence of a social practice or institution."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Karl Marx",
+            "idea": "Class relations, historical materialism, alienation and conflict."
+          },
+          {
+            "scholar": "Émile Durkheim",
+            "idea": "Social facts, solidarity, division of labour, anomie and suicide."
+          },
+          {
+            "scholar": "Max Weber",
+            "idea": "Social action, verstehen, ideal types, authority and bureaucracy."
+          },
+          {
+            "scholar": "Talcott Parsons",
+            "idea": "Social system and pattern variables."
+          },
+          {
+            "scholar": "Robert K. Merton",
+            "idea": "Manifest and latent functions, dysfunctions and reference groups."
+          },
+          {
+            "scholar": "George Herbert Mead",
+            "idea": "Self, role-taking and symbolic interaction."
+          }
+        ],
+        "answerPractice": "Compare Marx, Durkheim and Weber on the relationship between individuals and society. Briefly add the contributions of Parsons, Merton and Mead.",
+        "revisionPrompt": "Match each thinker with one key concept and one example; then explain why classical theories offer different levels of analysis."
+      },
+      "test": [
+        {
+          "q": "Alienation is a central concept in the work of:",
+          "o": [
+            "Karl Marx",
+            "Émile Durkheim",
+            "Max Weber",
+            "George Herbert Mead"
+          ],
+          "a": 0,
+          "w": "Marx used alienation to analyse workers' separation from the product and process of labour."
+        },
+        {
+          "q": "Durkheim's concept of social facts refers to:",
+          "o": [
+            "Private preferences only",
+            "Social ways of acting and thinking that are external to individuals and exert constraint",
+            "Only biological instincts",
+            "Individual dreams"
+          ],
+          "a": 1,
+          "w": "Social facts have an existence beyond any one individual and shape behaviour."
+        },
+        {
+          "q": "The three ideal types of legitimate authority identified by Weber are:",
+          "o": [
+            "Traditional, charismatic and legal-rational",
+            "Economic, cultural and biological",
+            "Rural, urban and industrial",
+            "Primary, secondary and tertiary"
+          ],
+          "a": 0,
+          "w": "Weber distinguished traditional, charismatic and legal-rational authority."
+        },
+        {
+          "q": "A latent function is:",
+          "o": [
+            "An intended and publicly recognised consequence",
+            "An unintended or unrecognised consequence",
+            "A research error",
+            "A constitutional amendment"
+          ],
+          "a": 1,
+          "w": "Merton used latent function for consequences that are not intended or recognised by participants."
+        },
+        {
+          "q": "George Herbert Mead is especially associated with the study of:",
+          "o": [
+            "The development of the self through social interaction",
+            "Historical materialism",
+            "The Protestant ethic",
+            "The division of labour alone"
+          ],
+          "a": 0,
+          "w": "Mead explained the self through interaction, symbols and role-taking."
+        }
       ]
     },
     {
@@ -8594,6 +9138,138 @@
         "EU, ASEAN, APEC, SAARC and NAFTA as regional groupings",
         "Democracy, human rights, environment and gender justice",
         "Terrorism and nuclear proliferation"
+      ],
+      "lesson": {
+        "objective": "Explain regional organisations and major global concerns through the changing balance between regional cooperation and global governance.",
+        "sections": [
+          {
+            "heading": "Why states form regional groupings",
+            "explanation": [
+              "Regional organisations bring neighbouring or economically connected states together to coordinate trade, security, infrastructure and diplomacy. They may reduce transaction costs and create regular forums for negotiation, but their effectiveness depends on political trust, institutional capacity and the willingness of members to implement agreements.",
+              "Regionalism can complement global institutions, while competing rules or rival blocs can also fragment international cooperation."
+            ],
+            "example": "ASEAN provides a regular forum for Southeast Asian cooperation even when member states differ in political systems and strategic interests."
+          },
+          {
+            "heading": "Comparing major regional organisations",
+            "explanation": [
+              "The European Union has the deepest integration, including common institutions and a single market; some members also share a currency. ASEAN emphasises consensus and gradual cooperation. APEC is a forum for economic cooperation across the Asia-Pacific. SAARC has faced limited progress because of regional political tensions. NAFTA was replaced by the USMCA in 2020, illustrating that regional agreements can be renegotiated.",
+              "Do not treat all groupings as equivalent: their legal authority, membership, goals and depth of integration differ."
+            ],
+            "example": "The EU has supranational institutions, whereas ASEAN decision-making is strongly intergovernmental and consensus-oriented."
+          },
+          {
+            "heading": "Democracy, rights, environment and gender justice",
+            "explanation": [
+              "Democracy and human rights are debated across international institutions, states and civil society. Universal norms coexist with disputes about sovereignty, cultural context and selective enforcement.",
+              "Climate change, biodiversity loss and pollution cross borders. Gender justice is linked to equal participation, protection from discrimination and access to resources. Implementation requires finance, technology, accountability and participation."
+            ],
+            "example": "Climate negotiations require both global commitments and national implementation plans, with attention to equity and capacity."
+          },
+          {
+            "heading": "Terrorism, nuclear proliferation and collective responses",
+            "explanation": [
+              "Transnational terrorism and the spread of nuclear weapons challenge state security and international norms. Responses include intelligence cooperation, diplomacy, arms-control arrangements, non-proliferation institutions and addressing political conditions that enable violence.",
+              "Effective policy must respect international law and human rights; purely military responses cannot resolve every underlying political or social cause."
+            ],
+            "example": "The Nuclear Non-Proliferation Treaty combines non-proliferation, peaceful nuclear cooperation and a commitment to pursue disarmament."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Regionalism",
+            "meaning": "Cooperation and institution-building among states in a particular geographical or functional region."
+          },
+          {
+            "term": "Supranationalism",
+            "meaning": "Decision-making authority exercised by institutions above the level of individual states in agreed policy areas."
+          },
+          {
+            "term": "Consensus",
+            "meaning": "A decision-making method that seeks broad agreement among members rather than simple majority voting."
+          },
+          {
+            "term": "Human security",
+            "meaning": "A people-centred understanding of security that includes freedom from fear and want."
+          },
+          {
+            "term": "Non-proliferation",
+            "meaning": "Measures intended to prevent the spread of nuclear weapons and related capabilities."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Ernst B. Haas",
+            "idea": "Neofunctionalism explains how cooperation in one policy area can create pressure for integration in related areas."
+          },
+          {
+            "scholar": "Karl W. Deutsch",
+            "idea": "Communication, transactions and shared expectations can help develop security communities."
+          },
+          {
+            "scholar": "Amartya Sen",
+            "idea": "A human-development perspective links freedom, capabilities and substantive equality to public policy."
+          }
+        ],
+        "answerPractice": "Compare the EU and ASEAN as regional organisations. In 180–200 words, distinguish their institutional depth, decision-making style and major constraints.",
+        "revisionPrompt": "Name three differences between the EU and ASEAN, then explain why regional cooperation can both support and complicate global governance."
+      },
+      "test": [
+        {
+          "q": "Which regional organisation has the most developed supranational institutions among the following?",
+          "o": [
+            "APEC",
+            "European Union",
+            "SAARC",
+            "ASEAN"
+          ],
+          "a": 1,
+          "w": "The EU has institutions with authority in agreed policy areas and a comparatively deep integration framework."
+        },
+        {
+          "q": "The ASEAN Way is commonly associated with:",
+          "o": [
+            "Majority voting and sanctions",
+            "Consensus, consultation and non-interference",
+            "A common regional currency",
+            "A single regional parliament with supreme authority"
+          ],
+          "a": 1,
+          "w": "ASEAN decision-making traditionally emphasises consultation, consensus and sensitivity to sovereignty."
+        },
+        {
+          "q": "Which statement about NAFTA is accurate?",
+          "o": [
+            "It was replaced by the USMCA in 2020",
+            "It became the European Union",
+            "It created a common currency",
+            "It was a UN specialised agency"
+          ],
+          "a": 0,
+          "w": "The United States–Mexico–Canada Agreement replaced NAFTA in 2020."
+        },
+        {
+          "q": "Human security primarily shifts attention towards:",
+          "o": [
+            "Only territorial borders",
+            "The security and well-being of individuals and communities",
+            "Only military expenditure",
+            "Only the balance of trade"
+          ],
+          "a": 1,
+          "w": "Human security is people-centred and includes multiple dimensions of safety and well-being."
+        },
+        {
+          "q": "The Nuclear Non-Proliferation Treaty addresses:",
+          "o": [
+            "Only conventional arms transfers",
+            "Non-proliferation, peaceful nuclear use and disarmament commitments",
+            "International trade tariffs",
+            "Refugee resettlement"
+          ],
+          "a": 1,
+          "w": "The NPT rests on three connected pillars: non-proliferation, peaceful uses and disarmament."
+        }
       ]
     },
     {
@@ -8603,6 +9279,138 @@
         "Determinants and institutions of foreign-policy making",
         "Continuity and change in Indian foreign policy",
         "India’s contribution to NAM and its contemporary role"
+      ],
+      "lesson": {
+        "objective": "Analyse the domestic and external determinants of Indian foreign policy and explain the balance between continuity and change.",
+        "sections": [
+          {
+            "heading": "Meaning and objectives of foreign policy",
+            "explanation": [
+              "Foreign policy is the set of principles, decisions and actions through which a state manages relations with other states and international actors. It seeks to protect sovereignty, security and territorial integrity while advancing economic development, international standing and cooperation.",
+              "Foreign policy is not made in a vacuum: leaders interpret national interests within domestic constraints and a changing international environment."
+            ],
+            "example": "India's pursuit of strategic autonomy reflects the effort to retain independent judgement while engaging multiple partners."
+          },
+          {
+            "heading": "Domestic and external determinants",
+            "explanation": [
+              "Domestic determinants include geography, history, economic capacity, public opinion, political institutions, leadership, defence capability and national priorities. External determinants include the distribution of global power, neighbourhood conditions, alliances, conflicts, technology, trade and international law.",
+              "These factors interact. A change in the global balance of power may create opportunities, but domestic capacity shapes how a state responds."
+            ],
+            "example": "India's energy needs, maritime geography and relations with neighbouring states all influence foreign-policy choices."
+          },
+          {
+            "heading": "Institutions and decision-making",
+            "explanation": [
+              "The executive plays the central role, with the Prime Minister and Cabinet providing political direction. The Ministry of External Affairs conducts diplomacy; the Ministry of Defence and security institutions contribute to strategic decisions. Parliament debates policy and approves relevant legislation and expenditure, while states and businesses can influence issues such as trade, migration and investment.",
+              "Foreign policy is therefore executive-led but shaped by a wider institutional and societal environment."
+            ],
+            "example": "Trade negotiations may involve diplomatic officials, sectoral ministries, industry groups and state governments."
+          },
+          {
+            "heading": "Continuity, change and strategic autonomy",
+            "explanation": [
+              "Continuity can be seen in sovereignty, anti-colonial solidarity, peaceful coexistence, development priorities and a preference for independent decision-making. Change is visible in economic diplomacy, deeper strategic partnerships, maritime engagement, technology cooperation and participation in issue-based groupings.",
+              "Strategic autonomy does not mean isolation or equal distance from every power. It means preserving the ability to make decisions case by case while cooperating where interests converge."
+            ],
+            "example": "India can cooperate with different partners on technology, maritime security, energy and multilateral forums without entering a single exclusive alliance."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "National interest",
+            "meaning": "A state's perceived core objectives, such as security, prosperity, autonomy and international influence."
+          },
+          {
+            "term": "Strategic autonomy",
+            "meaning": "The capacity to make independent foreign-policy choices while engaging in partnerships."
+          },
+          {
+            "term": "Bilateralism",
+            "meaning": "Diplomatic engagement between two states."
+          },
+          {
+            "term": "Multilateralism",
+            "meaning": "Cooperation among three or more states through common forums or rules."
+          },
+          {
+            "term": "Foreign-policy determinants",
+            "meaning": "Domestic and external conditions that shape a state's international choices."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "K. P. S. Menon",
+            "idea": "Early Indian diplomatic thinking stressed independence of judgement and the practical importance of national interests."
+          },
+          {
+            "scholar": "Jaswant Singh",
+            "idea": "His writings and policy experience are associated with debates on India's strategic choices and relations with major powers."
+          },
+          {
+            "scholar": "C. Raja Mohan",
+            "idea": "Analyses India's evolving engagement with major powers, the Indo-Pacific and changing global order."
+          }
+        ],
+        "answerPractice": "Discuss the major determinants of Indian foreign policy. Structure your answer under domestic factors, external factors and the role of institutions.",
+        "revisionPrompt": "Explain why strategic autonomy is not the same as isolation or non-engagement."
+      },
+      "test": [
+        {
+          "q": "Which of the following is primarily an external determinant of foreign policy?",
+          "o": [
+            "Public opinion",
+            "Geographical location and neighbourhood security environment",
+            "Party competition",
+            "Leadership style"
+          ],
+          "a": 1,
+          "w": "The neighbourhood security environment is part of the external strategic context."
+        },
+        {
+          "q": "Strategic autonomy most closely means:",
+          "o": [
+            "Avoiding all international partnerships",
+            "Retaining independent judgement while cooperating where interests converge",
+            "Joining every military alliance",
+            "Withdrawing from multilateral institutions"
+          ],
+          "a": 1,
+          "w": "Strategic autonomy protects independent decision-making; it does not require isolation."
+        },
+        {
+          "q": "Which institution is principally responsible for conducting India's diplomatic relations?",
+          "o": [
+            "Election Commission of India",
+            "Ministry of External Affairs",
+            "Finance Commission",
+            "NITI Aayog"
+          ],
+          "a": 1,
+          "w": "The Ministry of External Affairs is the principal ministry for diplomacy and external relations."
+        },
+        {
+          "q": "Which statement best captures continuity and change in Indian foreign policy?",
+          "o": [
+            "Both principles and interests have remained completely fixed",
+            "Core concerns persist while instruments and partnerships adapt to changing conditions",
+            "Foreign policy is determined only by one leader",
+            "Domestic factors have no influence"
+          ],
+          "a": 1,
+          "w": "Foreign policy combines enduring priorities with adaptation to new opportunities and constraints."
+        },
+        {
+          "q": "Multilateralism refers to:",
+          "o": [
+            "Relations limited to two states",
+            "Cooperation among multiple states through shared forums or rules",
+            "A policy of economic autarky",
+            "The absence of diplomacy"
+          ],
+          "a": 1,
+          "w": "Multilateralism involves several states working through common institutions, agreements or processes."
+        }
       ]
     },
     {
@@ -8613,6 +9421,138 @@
         "South Asian free-trade area",
         "India’s Look East policy",
         "Regional cooperation challenges: water, migration, ethnic conflict, insurgency and border disputes"
+      ],
+      "lesson": {
+        "objective": "Evaluate India's relations with South Asia through regional institutions, connectivity, trade and persistent political challenges.",
+        "sections": [
+          {
+            "heading": "South Asia as a regional neighbourhood",
+            "explanation": [
+              "South Asia is connected by geography, history, culture, rivers, migration, trade routes and shared development challenges. India's size and location give it an important role, but sustainable regional leadership requires sensitivity to the sovereignty and interests of neighbouring countries.",
+              "The region's potential is constrained by political mistrust, security concerns, uneven connectivity and limited economic integration."
+            ],
+            "example": "Cross-border river systems make water cooperation a practical regional issue as well as a diplomatic one."
+          },
+          {
+            "heading": "SAARC and regional cooperation",
+            "explanation": [
+              "SAARC was established in 1985 to promote welfare, economic growth and collective self-reliance in South Asia. Its progress has been limited by bilateral tensions and the requirement for consensus. Technical cooperation can continue in areas such as health, education and disaster management, but high-level political engagement has often stalled.",
+              "Regional cooperation can also occur through smaller groupings and issue-specific arrangements when wider institutions face obstacles."
+            ],
+            "example": "Public-health cooperation and disaster preparedness can create shared benefits even when political relations are difficult."
+          },
+          {
+            "heading": "Trade, connectivity and India's Look East policy",
+            "explanation": [
+              "The South Asian Free Trade Area seeks to reduce trade barriers among participating states, but non-tariff barriers, weak transport links and political disputes constrain outcomes. Better roads, railways, ports, energy links and digital connectivity can reduce costs and expand opportunities.",
+              "India's Look East policy, later broadened as Act East, deepened engagement with Southeast Asia. It links India's North-East, Bay of Bengal and wider Indo-Pacific interests."
+            ],
+            "example": "Cross-border electricity trade and transport links can create practical interdependence when supported by stable agreements."
+          },
+          {
+            "heading": "Persistent regional challenges",
+            "explanation": [
+              "Water sharing, migration, ethnic conflict, insurgency, border management and domestic political change can complicate relations. These issues require sustained diplomacy, transparent institutions, local consultation and respect for international commitments.",
+              "A cooperative approach combines security dialogue with development, trade, cultural exchange and people-to-people contact."
+            ],
+            "example": "Joint river-basin data sharing can improve trust and help states prepare for floods and droughts."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "SAARC",
+            "meaning": "The South Asian Association for Regional Cooperation, established in 1985."
+          },
+          {
+            "term": "SAFTA",
+            "meaning": "The South Asian Free Trade Area agreement intended to promote regional trade."
+          },
+          {
+            "term": "Act East Policy",
+            "meaning": "India's policy to strengthen economic, strategic and cultural engagement with Southeast Asia and the wider Indo-Pacific."
+          },
+          {
+            "term": "Connectivity",
+            "meaning": "Transport, energy, digital and people-to-people links that facilitate regional interaction."
+          },
+          {
+            "term": "Regional interdependence",
+            "meaning": "A condition in which states are linked through economic, environmental, social or security relationships."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "B. M. Jain",
+            "idea": "His work examines India's foreign policy and its neighbourhood relationships."
+          },
+          {
+            "scholar": "S. D. Muni",
+            "idea": "His scholarship analyses South Asian regional cooperation and India's relations with neighbouring states."
+          },
+          {
+            "scholar": "Amitav Acharya",
+            "idea": "His work on regionalism highlights the role of local norms, institutions and regional agency."
+          }
+        ],
+        "answerPractice": "Why has regional cooperation in South Asia remained limited despite strong geographical and cultural connections? Discuss with reference to SAARC and connectivity.",
+        "revisionPrompt": "List four regional challenges and pair each with one cooperative policy response."
+      },
+      "test": [
+        {
+          "q": "SAARC was established in:",
+          "o": [
+            "1975",
+            "1985",
+            "1995",
+            "2005"
+          ],
+          "a": 1,
+          "w": "SAARC was established in 1985."
+        },
+        {
+          "q": "A major institutional constraint on SAARC decision-making is:",
+          "o": [
+            "A single regional currency",
+            "The consensus principle amid political disagreements",
+            "A common defence command",
+            "A directly elected regional legislature"
+          ],
+          "a": 1,
+          "w": "Consensus and bilateral tensions have constrained progress on regional initiatives."
+        },
+        {
+          "q": "SAFTA is primarily concerned with:",
+          "o": [
+            "Regional free trade",
+            "A common South Asian army",
+            "A regional supreme court",
+            "A shared currency"
+          ],
+          "a": 0,
+          "w": "SAFTA seeks to promote trade by reducing barriers among participating South Asian countries."
+        },
+        {
+          "q": "India's Act East Policy primarily seeks to deepen engagement with:",
+          "o": [
+            "Only Europe",
+            "Southeast Asia and the wider Indo-Pacific",
+            "Only Central Asia",
+            "Only Latin America"
+          ],
+          "a": 1,
+          "w": "Act East builds on Look East and expands India's economic, strategic and cultural engagement eastwards."
+        },
+        {
+          "q": "Which is an example of a transboundary regional issue?",
+          "o": [
+            "A municipal parking rule",
+            "A river basin shared by more than one country",
+            "A school timetable",
+            "A domestic festival calendar"
+          ],
+          "a": 1,
+          "w": "Shared river systems cross political borders and require cooperation over data, use and risk."
+        }
       ]
     },
     {
@@ -8621,6 +9561,138 @@
       "topics": [
         "Relations with Africa and Latin America",
         "India’s role in the New International Economic Order debate and WTO negotiations"
+      ],
+      "lesson": {
+        "objective": "Explain India's engagement with Africa and Latin America and assess its role in debates on global economic governance.",
+        "sections": [
+          {
+            "heading": "Why the Global South matters",
+            "explanation": [
+              "The term Global South broadly refers to developing countries whose historical experiences and contemporary interests often include colonial legacies, development gaps and unequal influence in global institutions. It is not a single unified bloc; countries differ in income, priorities and foreign-policy choices.",
+              "India's engagement with Africa and Latin America includes development cooperation, trade, investment, technology, health, education and political dialogue."
+            ],
+            "example": "A country may cooperate with India on development finance while holding a different position on trade or climate negotiations."
+          },
+          {
+            "heading": "India and Africa",
+            "explanation": [
+              "India's relations with African states draw on anti-colonial solidarity, South-South cooperation and contemporary economic interests. Areas of engagement include capacity-building, training, digital public infrastructure, pharmaceuticals, agriculture, energy and trade.",
+              "Partnerships are most sustainable when they respond to priorities identified by African countries and support local capacity rather than one-sided dependence."
+            ],
+            "example": "Scholarships and professional training programmes can strengthen institutional capacity and people-to-people links."
+          },
+          {
+            "heading": "India and Latin America",
+            "explanation": [
+              "India's engagement with Latin America includes trade in energy, minerals, agriculture, pharmaceuticals, information technology and other services. Distance, transport costs and limited awareness have historically constrained ties, while diplomatic outreach and commercial links offer scope for expansion.",
+              "Relations are diverse: Brazil, Mexico, Argentina, Chile and other states have distinct economic structures and foreign-policy priorities."
+            ],
+            "example": "Cooperation in biofuels, food security and pharmaceuticals can connect economic interests with development goals."
+          },
+          {
+            "heading": "NIEO, WTO and global economic negotiations",
+            "explanation": [
+              "The New International Economic Order was a 1970s demand by developing countries for fairer rules in trade, finance, technology and control over natural resources. Its agenda highlighted structural inequalities in the international economy.",
+              "At the WTO, India and other developing countries debate agricultural support, food security, public stockholding, market access, intellectual property and special and differential treatment. Negotiations involve balancing domestic development needs with predictable multilateral rules."
+            ],
+            "example": "India's food-security position at the WTO reflects the challenge of reconciling public procurement and support for vulnerable populations with international trade commitments."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Global South",
+            "meaning": "A broad, diverse grouping of developing countries with varied historical and contemporary development concerns."
+          },
+          {
+            "term": "South-South cooperation",
+            "meaning": "Collaboration among developing countries in areas such as trade, technology, training and development."
+          },
+          {
+            "term": "NIEO",
+            "meaning": "The New International Economic Order, a 1970s agenda seeking fairer global economic relations."
+          },
+          {
+            "term": "Special and differential treatment",
+            "meaning": "WTO provisions that recognise development-related differences among members."
+          },
+          {
+            "term": "Public stockholding",
+            "meaning": "Government procurement and storage of food grains, often linked to food security and farmer support."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Raúl Prebisch",
+            "idea": "Dependency and structuralist analysis highlighted unequal terms of trade between industrial and primary-exporting economies."
+          },
+          {
+            "scholar": "Samir Amin",
+            "idea": "Analysed global capitalism and structural inequalities between core and peripheral economies."
+          },
+          {
+            "scholar": "Amartya Sen",
+            "idea": "A capabilities approach places human development and substantive freedoms at the centre of development policy."
+          }
+        ],
+        "answerPractice": "Assess India's role in the demand for a more equitable international economic order. Refer to South-South cooperation and WTO negotiations.",
+        "revisionPrompt": "Explain the difference between South-South cooperation and the NIEO demand."
+      },
+      "test": [
+        {
+          "q": "The NIEO demand emerged prominently during the:",
+          "o": [
+            "1920s",
+            "1940s",
+            "1970s",
+            "2000s"
+          ],
+          "a": 2,
+          "w": "The NIEO agenda was advanced by developing countries in the 1970s."
+        },
+        {
+          "q": "South-South cooperation refers to:",
+          "o": [
+            "Cooperation exclusively among developed economies",
+            "Development collaboration among developing countries",
+            "A military alliance in the Southern Hemisphere",
+            "Trade only within one country"
+          ],
+          "a": 1,
+          "w": "South-South cooperation includes exchange of expertise, technology, finance and capacity among developing countries."
+        },
+        {
+          "q": "Which issue is closely associated with India's WTO food-security position?",
+          "o": [
+            "Public stockholding of food grains",
+            "A common global currency",
+            "Abolition of all customs administrations",
+            "Regional military integration"
+          ],
+          "a": 0,
+          "w": "Public stockholding and food-security programmes have been important issues in WTO negotiations."
+        },
+        {
+          "q": "The term 'terms of trade' generally compares:",
+          "o": [
+            "The prices of exports with the prices of imports",
+            "The number of ministries in two states",
+            "Military personnel with population",
+            "Tax rates across districts"
+          ],
+          "a": 0,
+          "w": "Terms of trade compare export prices with import prices."
+        },
+        {
+          "q": "Which is a sound principle for development cooperation with African countries?",
+          "o": [
+            "Impose identical priorities on every country",
+            "Respond to partner-country priorities and strengthen local capacity",
+            "Avoid skills and institutional development",
+            "Replace all local institutions"
+          ],
+          "a": 1,
+          "w": "Country ownership and capacity-building support more sustainable partnerships."
+        }
       ]
     },
     {
@@ -8632,6 +9704,138 @@
         "India and Japan",
         "India and China",
         "India and Russia"
+      ],
+      "lesson": {
+        "objective": "Analyse India's relations with major centres of global power by considering interests, cooperation, competition and strategic autonomy.",
+        "sections": [
+          {
+            "heading": "Understanding centres of power",
+            "explanation": [
+              "A centre of power is a state or grouping with significant economic, military, technological, diplomatic or institutional influence. The international system is shaped by both material capabilities and the ability to build partnerships and influence rules.",
+              "India's engagement with major powers is issue-based: cooperation in one area can coexist with disagreement in another."
+            ],
+            "example": "India may cooperate on maritime security with a partner while maintaining independent positions on trade or sanctions."
+          },
+          {
+            "heading": "India and the United States; India and the European Union",
+            "explanation": [
+              "India–US relations have expanded in defence cooperation, technology, education, trade and Indo-Pacific discussions, while differences remain on market access, data, visas and some foreign-policy questions.",
+              "India–EU relations include trade, investment, climate action, technology, connectivity and people-to-people ties. Negotiations seek to manage differences in regulatory standards, market access and strategic priorities."
+            ],
+            "example": "Technology and clean-energy partnerships can advance shared goals while requiring careful negotiation on standards and intellectual property."
+          },
+          {
+            "heading": "India and Japan; India and China",
+            "explanation": [
+              "India and Japan cooperate on infrastructure, investment, technology, maritime security and regional connectivity. Their shared interest in a stable Indo-Pacific supports cooperation, although each retains distinct priorities.",
+              "India and China have deep economic links alongside strategic competition and unresolved border concerns. Relations require careful management through diplomacy, confidence-building and respect for agreements."
+            ],
+            "example": "Infrastructure cooperation with Japan and border-related dialogue with China illustrate different but simultaneous strands of India's diplomacy."
+          },
+          {
+            "heading": "India and Russia: continuity and adaptation",
+            "explanation": [
+              "India–Russia relations have historical foundations in defence, energy, nuclear cooperation and diplomatic support. The relationship has adapted to changes in the post-Cold War order and India's wider partnerships.",
+              "India seeks to preserve important ties while diversifying defence supplies, expanding technology partnerships and responding to changing sanctions and geopolitical conditions. Strategic autonomy requires assessing each issue on its own merits."
+            ],
+            "example": "Energy and defence relationships can continue while India also deepens cooperation with the US, Europe and Japan."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Multipolarity",
+            "meaning": "An international distribution of power in which several centres have significant influence."
+          },
+          {
+            "term": "Strategic partnership",
+            "meaning": "A sustained framework for cooperation across selected areas of shared interest."
+          },
+          {
+            "term": "Indo-Pacific",
+            "meaning": "A strategic and geographical concept linking the Indian and Pacific Ocean regions."
+          },
+          {
+            "term": "Issue-based alignment",
+            "meaning": "Cooperation with different partners depending on the issue rather than fixed alignment across all issues."
+          },
+          {
+            "term": "Confidence-building measures",
+            "meaning": "Steps intended to reduce mistrust, miscalculation and the risk of conflict."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "C. Raja Mohan",
+            "idea": "Analyses India's strategic engagement with major powers and the changing Indo-Pacific order."
+          },
+          {
+            "scholar": "Shivshankar Menon",
+            "idea": "His work examines India's strategic choices, neighbourhood and the practice of foreign policy."
+          },
+          {
+            "scholar": "Ashley J. Tellis",
+            "idea": "Research on India's strategic trajectory and its relations with major powers informs debates on alignment and autonomy."
+          }
+        ],
+        "answerPractice": "Discuss how India balances cooperation and competition in its relations with major centres of power. Use at least three bilateral relationships.",
+        "revisionPrompt": "Create a two-column revision note: areas of cooperation and areas of difference for India–US, India–China and India–Russia relations."
+      },
+      "test": [
+        {
+          "q": "Multipolarity refers to:",
+          "o": [
+            "A system dominated by one state alone",
+            "An international system with several significant centres of power",
+            "A world without states",
+            "A system with only two alliances"
+          ],
+          "a": 1,
+          "w": "Multipolarity describes the distribution of influence among several major centres."
+        },
+        {
+          "q": "Which area is a major pillar of India–Japan cooperation?",
+          "o": [
+            "Infrastructure and connectivity",
+            "A shared national parliament",
+            "A common currency",
+            "A unified military command"
+          ],
+          "a": 0,
+          "w": "Infrastructure, investment and connectivity are important areas of India–Japan cooperation."
+        },
+        {
+          "q": "India–China relations are best described as:",
+          "o": [
+            "Entirely conflict-free",
+            "A mix of economic links, strategic competition and unresolved border concerns",
+            "A formal military alliance",
+            "A relationship without diplomatic channels"
+          ],
+          "a": 1,
+          "w": "The relationship combines trade and engagement with strategic and border-related tensions."
+        },
+        {
+          "q": "Issue-based alignment is consistent with:",
+          "o": [
+            "Strategic autonomy",
+            "Permanent isolation",
+            "Abandoning diplomacy",
+            "A single compulsory alliance"
+          ],
+          "a": 0,
+          "w": "Issue-based cooperation allows a state to work with different partners while retaining independent judgement."
+        },
+        {
+          "q": "Which is an example of a confidence-building measure?",
+          "o": [
+            "Regular military communication channels to reduce miscalculation",
+            "Ending all diplomatic contact",
+            "Suppressing official information unilaterally",
+            "Ignoring border agreements"
+          ],
+          "a": 0,
+          "w": "Communication channels and agreed procedures can reduce the risk of misunderstanding."
+        }
       ]
     },
     {
@@ -8640,6 +9844,138 @@
       "topics": [
         "India’s role in UN peacekeeping",
         "India’s demand for a permanent seat in the UN Security Council"
+      ],
+      "lesson": {
+        "objective": "Evaluate India's role in UN peacekeeping and its campaign for reform of the United Nations Security Council.",
+        "sections": [
+          {
+            "heading": "India and the United Nations",
+            "explanation": [
+              "India has been an active participant in the UN since its founding. Its engagement includes peacekeeping, decolonisation, development, human rights debates, climate negotiations and calls for more representative global governance.",
+              "India's approach combines support for multilateral cooperation with criticism of institutional structures that do not adequately reflect contemporary global realities."
+            ],
+            "example": "India's participation in UN forums allows it to raise development priorities and contribute to international norm-making."
+          },
+          {
+            "heading": "UN peacekeeping: role and principles",
+            "explanation": [
+              "UN peacekeeping operations are generally guided by consent of the main parties, impartiality and non-use of force except in self-defence and defence of the mandate. Modern missions may protect civilians, support political processes, assist elections and strengthen rule-of-law institutions.",
+              "Peacekeeping is not the same as peace enforcement. Missions depend on clear mandates, resources, cooperation from parties and the safety of personnel and civilians."
+            ],
+            "example": "A mission may support a peace agreement by monitoring arrangements and helping create conditions for political dialogue."
+          },
+          {
+            "heading": "India's contribution and challenges",
+            "explanation": [
+              "India is among the long-standing major contributors to UN peacekeeping personnel and has deployed military, police and civilian personnel in multiple missions. Its contribution reflects experience, commitment to multilateralism and support for international peace and security.",
+              "Challenges include dangerous operating environments, unclear or ambitious mandates, resource gaps, risks to peacekeepers and questions about accountability and local legitimacy."
+            ],
+            "example": "Peacekeeping effectiveness depends not only on troop numbers but also on political strategy, training, equipment and a credible mandate."
+          },
+          {
+            "heading": "Security Council reform and India's claim",
+            "explanation": [
+              "The Security Council has five permanent members with veto power and ten elected members serving two-year terms. Critics argue that its composition reflects the power structure of 1945 rather than today's demographic, economic and political realities.",
+              "India supports expansion in both permanent and non-permanent categories and argues for more equitable representation, especially for developing countries. Reform requires broad agreement and ratification under the UN Charter, making consensus difficult."
+            ],
+            "example": "The G4—India, Brazil, Germany and Japan—has advocated expansion of permanent membership as part of wider Council reform."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Peacekeeping",
+            "meaning": "UN-authorised operations that help maintain or support peace in conflict-affected settings."
+          },
+          {
+            "term": "Impartiality",
+            "meaning": "Applying a mission's mandate fairly without favouring a party, while not being indifferent to violations."
+          },
+          {
+            "term": "Veto",
+            "meaning": "The power of each permanent Security Council member to block substantive resolutions."
+          },
+          {
+            "term": "Permanent Five (P5)",
+            "meaning": "The five permanent members: China, France, Russia, the United Kingdom and the United States."
+          },
+          {
+            "term": "Security Council reform",
+            "meaning": "Proposals to change the Council's membership, working methods and representativeness."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Kofi Annan",
+            "idea": "UN reform initiatives during his tenure highlighted the need for more effective and representative multilateral institutions."
+          },
+          {
+            "scholar": "Ramesh Thakur",
+            "idea": "His scholarship addresses UN peacekeeping, global governance and institutional reform."
+          },
+          {
+            "scholar": "Amitav Acharya",
+            "idea": "His work on global order and regional institutions highlights the need to recognise a wider range of actors and perspectives."
+          }
+        ],
+        "answerPractice": "Why does India seek permanent membership of the UN Security Council? Explain the arguments for reform and the obstacles to achieving it.",
+        "revisionPrompt": "Recall the P5, the two categories of elected membership, the G4 and the main principles of UN peacekeeping."
+      },
+      "test": [
+        {
+          "q": "How many permanent members are there in the UN Security Council?",
+          "o": [
+            "3",
+            "5",
+            "10",
+            "15"
+          ],
+          "a": 1,
+          "w": "The Security Council has five permanent members."
+        },
+        {
+          "q": "Which of the following is not a traditional core principle of UN peacekeeping?",
+          "o": [
+            "Consent of the main parties",
+            "Impartiality",
+            "Use of force as a first resort to impose political outcomes",
+            "Non-use of force except in self-defence and defence of the mandate"
+          ],
+          "a": 2,
+          "w": "Peacekeeping is distinct from enforcement and does not treat force as the first resort."
+        },
+        {
+          "q": "The G4 group advocating Security Council reform includes:",
+          "o": [
+            "India, Brazil, Germany and Japan",
+            "India, China, Russia and France",
+            "India, South Africa, Egypt and Nigeria",
+            "India, US, UK and Japan"
+          ],
+          "a": 0,
+          "w": "The G4 consists of India, Brazil, Germany and Japan."
+        },
+        {
+          "q": "Which members hold veto power in the Security Council?",
+          "o": [
+            "All 15 members",
+            "Only the five permanent members",
+            "Only elected members",
+            "The UN Secretary-General"
+          ],
+          "a": 1,
+          "w": "Veto power belongs to the five permanent members."
+        },
+        {
+          "q": "A major obstacle to Security Council reform is:",
+          "o": [
+            "The absence of any UN Charter",
+            "The need for broad agreement and Charter amendment/ratification",
+            "The lack of elected members",
+            "The prohibition on debate"
+          ],
+          "a": 1,
+          "w": "Charter reform requires a demanding process involving broad support and ratification."
+        }
       ]
     }
   ]
