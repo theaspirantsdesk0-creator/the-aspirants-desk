@@ -1,0 +1,342 @@
+{
+  "version": 1,
+  "title": "UPSC Foundation Notes · Polity",
+  "description": "Beginner-first bilingual notes with clear explanations, Prelims facts, Mains angles and active recall. Cross-check legal details against the latest official text.",
+  "chapters": [
+    {
+      "id": "constitutionalism",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "Constitutionalism: Limited Government",
+      "level": "Foundation",
+      "minutes": 18,
+      "summary": "Constitutionalism ensures that public power remains limited by law, rights and accountability.",
+      "sections": [
+        {
+          "heading": "Meaning",
+          "body": [
+            "A constitution establishes institutions and distributes powers. Constitutionalism adds the principle that government is not above the law.",
+            "A written constitution alone does not guarantee constitutionalism. Public power must be meaningfully constrained and accountable."
+          ]
+        },
+        {
+          "heading": "Core principles",
+          "bullets": [
+            "Limited government: authorities have defined powers.",
+            "Rule of law: public decisions need legal authority and must follow fair procedures.",
+            "Fundamental rights: individuals have enforceable protections.",
+            "Checks and balances: institutions scrutinise and restrain misuse of power.",
+            "Independent judiciary: courts can review unconstitutional action.",
+            "Accountability: elections, legislatures, audits and transparency scrutinise government."
+          ]
+        },
+        {
+          "heading": "Indian context",
+          "body": [
+            "India combines parliamentary government, judicial review, federalism, Fundamental Rights and an independent judiciary.",
+            "The basic structure doctrine limits Parliament's amending power: an amendment cannot destroy the Constitution's basic structure."
+          ]
+        }
+      ],
+      "prelims": [
+        "Constitutionalism is broader than merely possessing a written constitution.",
+        "Judicial review is one important check, not the only check.",
+        "The basic structure doctrine was articulated in Kesavananda Bharati v. State of Kerala (1973)."
+      ],
+      "mains": [
+        "Explain how constitutionalism prevents arbitrary exercise of executive power.",
+        "Use judicial review, parliamentary accountability, federalism and rights protection as examples.",
+        "Balance institutional checks with effective governance."
+      ],
+      "recall": [
+        {
+          "q": "Does a written constitution automatically ensure constitutionalism?",
+          "a": "No. Effective limits on power, rule of law, rights and accountability are also necessary."
+        },
+        {
+          "q": "Name two checks on government power in India.",
+          "a": "Judicial review and parliamentary accountability are two examples."
+        }
+      ],
+      "tamil": "அரசாங்கத்துக்கு அதிகாரம் இருப்பது மட்டும் போதாது. அந்த அதிகாரம் சட்டம், உரிமைகள் மற்றும் பொறுப்புணர்வு மூலம் கட்டுப்படுத்தப்பட வேண்டும் என்பதே Constitutionalism."
+    },
+    {
+      "id": "preamble",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "The Preamble: Constitutional Vision",
+      "level": "Foundation",
+      "minutes": 16,
+      "summary": "The Preamble introduces the source of constitutional authority, nature of the Indian state and goals for citizens.",
+      "sections": [
+        {
+          "heading": "What it expresses",
+          "bullets": [
+            "Authority: the Constitution derives its authority from the people of India.",
+            "Nature of the state: Sovereign, Socialist, Secular, Democratic, Republic.",
+            "Objectives: Justice, Liberty, Equality and Fraternity.",
+            "It highlights individual dignity and the unity and integrity of the Nation."
+          ]
+        },
+        {
+          "heading": "Legal position",
+          "body": [
+            "The Preamble is part of the Constitution, as held in Kesavananda Bharati (1973).",
+            "It is not an independent source of legislative power and is not directly enforceable by itself.",
+            "It helps courts interpret constitutional provisions where meaning is uncertain."
+          ]
+        },
+        {
+          "heading": "Amendment",
+          "body": [
+            "The 42nd Constitutional Amendment Act, 1976 added the words Socialist, Secular and Integrity."
+          ]
+        }
+      ],
+      "prelims": [
+        "The Preamble has been amended once, by the 42nd Amendment Act, 1976.",
+        "It is part of the Constitution but is not independently enforceable.",
+        "Republic means the head of state is not a hereditary monarch."
+      ],
+      "mains": [
+        "Connect Preamble ideals with rights, welfare policy, secular governance and social justice.",
+        "Discuss the gap between constitutional ideals and lived outcomes, with institutional remedies."
+      ],
+      "recall": [
+        {
+          "q": "Which amendment added Socialist, Secular and Integrity?",
+          "a": "The 42nd Constitutional Amendment Act, 1976."
+        },
+        {
+          "q": "Does the Preamble independently confer legislative power?",
+          "a": "No. It guides interpretation but is not an independent source of power."
+        }
+      ],
+      "tamil": "முன்னுரை அரசியலமைப்பின் நோக்கத்தையும் இந்தியா எந்த வகையான நாடாக இருக்க வேண்டும் என்பதையும் சுருக்கமாகக் கூறுகிறது."
+    },
+    {
+      "id": "fundamental-rights",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "Fundamental Rights: Protection and Limits",
+      "level": "Foundation",
+      "minutes": 22,
+      "summary": "Fundamental Rights protect liberty and equality while allowing constitutionally defined restrictions and remedies.",
+      "sections": [
+        {
+          "heading": "Constitutional location",
+          "body": [
+            "Part III (Articles 12–35) contains Fundamental Rights.",
+            "Article 32 allows a person to approach the Supreme Court for enforcement of Fundamental Rights. High Courts issue writs under Article 226, whose scope is wider."
+          ]
+        },
+        {
+          "heading": "Six broad categories",
+          "bullets": [
+            "Right to Equality (Articles 14–18).",
+            "Right to Freedom (Articles 19–22).",
+            "Right against Exploitation (Articles 23–24).",
+            "Right to Freedom of Religion (Articles 25–28).",
+            "Cultural and Educational Rights (Articles 29–30).",
+            "Right to Constitutional Remedies (Article 32)."
+          ]
+        },
+        {
+          "heading": "Important distinctions",
+          "body": [
+            "Article 14 guarantees equality before law and equal protection of laws; it does not require identical treatment in every situation.",
+            "Article 19 freedoms are available to citizens and are subject to constitutionally specified reasonable restrictions.",
+            "Article 21 protects life and personal liberty and has received broad judicial interpretation.",
+            "The Right to Property is a constitutional legal right under Article 300A, not a Fundamental Right."
+          ]
+        }
+      ],
+      "prelims": [
+        "Part III: Articles 12–35.",
+        "Article 32: Supreme Court remedy; Article 226: High Court writ jurisdiction.",
+        "Right to Property: Article 300A."
+      ],
+      "mains": [
+        "Discuss how rights protect dignity while permitting reasonable regulation for public purposes.",
+        "Use proportionality, access to justice and vulnerable-group perspectives where relevant."
+      ],
+      "recall": [
+        {
+          "q": "Is the Right to Property a Fundamental Right today?",
+          "a": "No. It is a constitutional legal right under Article 300A."
+        },
+        {
+          "q": "Which Article provides the right to approach the Supreme Court to enforce Fundamental Rights?",
+          "a": "Article 32."
+        }
+      ],
+      "tamil": "அடிப்படை உரிமைகள் சுதந்திரம், சமத்துவம் மற்றும் மனித கண்ணியத்தைப் பாதுகாக்கின்றன. சில உரிமைகளுக்கு அரசியலமைப்பு அனுமதிக்கும் நியாயமான கட்டுப்பாடுகள் இருக்கலாம்."
+    },
+    {
+      "id": "dpsp",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "Directive Principles of State Policy",
+      "level": "Foundation",
+      "minutes": 17,
+      "summary": "DPSPs guide the State towards a just social and economic order; they are not directly enforceable by courts.",
+      "sections": [
+        {
+          "heading": "Constitutional position",
+          "body": [
+            "Directive Principles are in Part IV, Articles 36–51.",
+            "Article 37 says they are not enforceable by any court, but are fundamental in governance and it is the duty of the State to apply them in making laws."
+          ]
+        },
+        {
+          "heading": "Broad themes",
+          "bullets": [
+            "Social and economic justice: reduce inequalities and promote welfare.",
+            "Gandhian orientation: village panchayats and weaker sections.",
+            "Liberal-intellectual principles: environment, judiciary-executive separation and international peace.",
+            "These are study classifications; the Constitution does not formally label every article this way."
+          ]
+        },
+        {
+          "heading": "Relationship with Fundamental Rights",
+          "body": [
+            "Fundamental Rights and DPSPs are intended to complement each other.",
+            "The Supreme Court has emphasised harmony and balance between Parts III and IV."
+          ]
+        }
+      ],
+      "prelims": [
+        "Part IV, Articles 36–51.",
+        "Article 37: non-justiciable but fundamental in governance.",
+        "Article 40 concerns village panchayats; Article 48A concerns environment and forests."
+      ],
+      "mains": [
+        "Explain how DPSPs shape welfare legislation and public policy.",
+        "Discuss implementation, fiscal capacity and measurable outcomes."
+      ],
+      "recall": [
+        {
+          "q": "Are DPSPs directly enforceable by courts?",
+          "a": "No. Article 37 makes them non-justiciable but fundamental in governance."
+        },
+        {
+          "q": "Where are DPSPs located?",
+          "a": "Part IV, Articles 36–51."
+        }
+      ],
+      "tamil": "அரசு மக்கள் நலன், சமூக நீதி மற்றும் சமத்துவத்தை மேம்படுத்த வழிகாட்டும் கொள்கைகளே DPSP. நீதிமன்றத்தில் நேரடியாக அமல்படுத்த முடியாது; ஆனால் ஆட்சியில் அவை முக்கியமானவை."
+    },
+    {
+      "id": "parliament",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "Parliament: Law-making and Accountability",
+      "level": "Foundation",
+      "minutes": 21,
+      "summary": "Parliament makes laws, controls public finance, represents citizens and holds the executive accountable.",
+      "sections": [
+        {
+          "heading": "Constitutional structure",
+          "body": [
+            "Under Article 79, Parliament consists of the President and two Houses: Rajya Sabha and Lok Sabha.",
+            "The President is part of Parliament but is not a member of either House."
+          ]
+        },
+        {
+          "heading": "Core functions",
+          "bullets": [
+            "Legislative: debates and passes laws within Parliament's competence.",
+            "Financial: scrutinises taxation, expenditure and the Union Budget.",
+            "Executive accountability: questions, debates, motions and committees examine government action.",
+            "Representative and deliberative: brings public and regional concerns into national decision-making.",
+            "Constitutional: exercises amendment power under Article 368, subject to basic structure limits."
+          ]
+        },
+        {
+          "heading": "Why committees matter",
+          "body": [
+            "Parliamentary committees examine bills, budgets and policy details in smaller forums.",
+            "Committee scrutiny can improve technical review, deliberation and executive oversight."
+          ]
+        }
+      ],
+      "prelims": [
+        "Article 79 defines Parliament's composition.",
+        "Money Bills are governed by Article 110; the Speaker certifies whether a Bill is a Money Bill.",
+        "Rajya Sabha is a permanent House; one-third of members retire every second year."
+      ],
+      "mains": [
+        "Assess Parliament's role in executive accountability and quality law-making.",
+        "Discuss disruptions, limited scrutiny and committee referrals with balanced reforms."
+      ],
+      "recall": [
+        {
+          "q": "Who forms part of Parliament under Article 79?",
+          "a": "The President, Rajya Sabha and Lok Sabha."
+        },
+        {
+          "q": "Is Rajya Sabha dissolved?",
+          "a": "No. It is a permanent House; one-third of members retire every second year."
+        }
+      ],
+      "tamil": "நாடாளுமன்றம் சட்டம் இயற்றுவது மட்டுமல்ல; அரசின் செலவுகள், கொள்கைகள் மற்றும் நிர்வாகத்தையும் கண்காணிக்கிறது."
+    },
+    {
+      "id": "federalism",
+      "subject": "Indian Polity",
+      "paper": "GS II",
+      "title": "Indian Federalism: Union and States",
+      "level": "Foundation",
+      "minutes": 20,
+      "summary": "India combines constitutional division of powers with institutions and practices that require Union–State cooperation.",
+      "sections": [
+        {
+          "heading": "Distribution of powers",
+          "body": [
+            "Part XI and the Seventh Schedule distribute legislative subjects across Union, State and Concurrent Lists.",
+            "Parliament has residuary legislative power under Article 248.",
+            "In the Concurrent List, both Parliament and State Legislatures can legislate; Article 254 addresses repugnancy subject to constitutional conditions."
+          ]
+        },
+        {
+          "heading": "Indian features",
+          "bullets": [
+            "Written and supreme Constitution.",
+            "Constitutional division of legislative and executive powers.",
+            "Independent judiciary to interpret the division of powers.",
+            "A comparatively strong Union in specified circumstances.",
+            "Single citizenship and an integrated judicial system."
+          ]
+        },
+        {
+          "heading": "Cooperative and competitive federalism",
+          "body": [
+            "Cooperative federalism involves joint problem-solving through consultation.",
+            "Competitive federalism encourages States to improve performance and public-service delivery.",
+            "Inter-State Council (Article 263), Finance Commission (Article 280) and GST Council (Article 279A) are important institutions."
+          ]
+        }
+      ],
+      "prelims": [
+        "Seventh Schedule: Union, State and Concurrent Lists.",
+        "Article 263: Inter-State Council; Article 280: Finance Commission; Article 279A: GST Council.",
+        "Residuary legislative powers are vested in Parliament."
+      ],
+      "mains": [
+        "Examine how fiscal arrangements and centrally sponsored schemes shape Union–State relations.",
+        "Suggest predictable consultation, transparent transfers and stronger inter-governmental forums."
+      ],
+      "recall": [
+        {
+          "q": "Which Schedule contains the three legislative lists?",
+          "a": "The Seventh Schedule."
+        },
+        {
+          "q": "Which Article provides for the GST Council?",
+          "a": "Article 279A."
+        }
+      ],
+      "tamil": "மத்திய அரசு மற்றும் மாநில அரசுகளுக்கு இடையே அதிகாரங்கள் அரசியலமைப்பால் பகிரப்பட்டுள்ளன. நாட்டின் வளர்ச்சிக்கு இரு நிலை அரசுகளும் இணைந்து செயல்படுவது முக்கியம்."
+    }
+  ]
+}
