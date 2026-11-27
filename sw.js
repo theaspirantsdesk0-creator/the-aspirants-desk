@@ -3,7 +3,7 @@ var VERSION = 'desk-v41-interface-elevation';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
-  'assets/css/ai-desk.css', 'assets/css/next-level-design.css', 'assets/css/interface-elevation.css', 'assets/css/courses.css',
+  'assets/css/next-level-polish.css', 'assets/css/ai-desk.css', 'assets/css/next-level-design.css', 'assets/css/interface-elevation.css', 'assets/css/courses.css',
   'assets/css/course-studio.css', 'assets/css/design-system.css', 'assets/css/dashboard-editorial.css', 'assets/css/concept-map.css', 'assets/css/press-intelligence.css',
   'assets/css/pyq-inventory.css', 'assets/css/mains-evaluation.css',
   'assets/js/pyq-inventory.js', 'assets/js/concept-map.js', 'assets/js/press-intelligence.js', 'assets/js/dashboard.js',
