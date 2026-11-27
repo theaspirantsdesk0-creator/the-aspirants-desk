@@ -2439,7 +2439,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
   $("btnForgotPassword").addEventListener("click", async () => {
     const email = $("authEmail").value.trim();
-    if (!email || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    if (!email || !email.includes("@") || email.startsWith("@") || !email.split("@")[1]?.includes(".")) {
       $("authFeedback").textContent = "Enter your account email address first.";
       $("authEmail").focus();
       return;
