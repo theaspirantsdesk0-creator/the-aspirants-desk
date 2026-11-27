@@ -82,7 +82,7 @@ Provider generation, cross-device user flows, and push delivery must be verified
 - The `ai-assistant` Edge Function is deployed as version 48 with JWT verification enabled. Gemini 2.5 Flash is the primary provider and Groq is an optional fallback. The live provider secret must be configured in Supabase Edge Function secrets; deployment does not prove that Gemini generation works.
 - The AI Mains evaluator derives the final practice mark from its five rubric scores (each out of four), then scales that total to the requested question marks. Feedback remains formative and is not an official UPSC score.
 - The authentication listener in `index.html` schedules learner-data refresh outside the synchronous Supabase auth callback to avoid refresh-lock deadlocks.
-- Sign-in and sign-up preserve the exact password entered (including intentional leading/trailing spaces). Sign-out now keeps the signed-in state visible if the server cannot revoke the session, rather than falsely showing a successful logout.
+- Sign-in and sign-up preserve the exact password entered (including intentional leading/trailing spaces). Sign-out is scoped to the current browser/device so it does not unexpectedly log the learner out elsewhere. If local session removal fails, the signed-in state is retained; a remote revocation warning is logged when the local session has already been cleared.
 - The service-worker cache version is `desk-v51-auth-session-safety`.
 - The browser subscribes from the Dashboard's **Daily study reminder** card after a learner signs in and grants browser notification permission.
 - Each browser/device needs its own subscription. Reminders are sent at the selected local time and are skipped when the account has saved study activity that day.
