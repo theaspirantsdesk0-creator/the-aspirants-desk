@@ -944,7 +944,7 @@ def main() -> int:
               "Mains evaluation assets must use the existing authenticated Supabase client")
     check("assets/js/mains-evaluation.js" in sw_source_for_mains
           and "assets/css/mains-evaluation.css" in sw_source_for_mains
-          and "desk-v62-subject-mastery-centre" in sw_source_for_mains,
+          and "desk-v63-optional-subject-catalogue" in sw_source_for_mains,
           "Service worker must cache and version the Mains evaluation and Notes Studio features")
 
     # Notes Studio content, browser module, sync hook and offline cache.
