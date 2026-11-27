@@ -226,6 +226,26 @@ try {
   if (await ownerNav.count() !== 1 || !(await ownerNav.isHidden())) {
     throw new Error('Owner admin navigation must remain hidden for a guest visitor');
   }
+  // Verify the published guest sign-in modal exposes password recovery without
+  // sending a real email or requiring a test account.
+  await page.locator('#topLoginBtn').click();
+  await page.locator('#authModal').waitFor({ state: 'visible' });
+  if (await page.locator('#btnForgotPassword').count() !== 1 ||
+      !(await page.locator('#btnForgotPassword').isVisible())) {
+    throw new Error('Guest sign-in modal is missing its Forgot password action');
+  }
+  if (!(await page.locator('#authRecoveryPanel').isHidden())) {
+    throw new Error('Password reset form should remain hidden until a recovery link is opened');
+  }
+  await page.locator('#btnForgotPassword').click();
+  const recoveryPrompt = await page.locator('#authFeedback').innerText();
+  if (!recoveryPrompt.toLowerCase().includes('email')) {
+    throw new Error('Forgot password should request an account email before sending a reset link: ' + recoveryPrompt);
+  }
+  await page.locator('#closeAuthModal').click();
+  if (!(await page.locator('#authModal').isHidden())) {
+    throw new Error('Sign-in modal did not close after password recovery UI check');
+  }
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
   // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
