@@ -45,14 +45,15 @@ try {
       await page.waitForTimeout(1200);
       const hasMentorWorkspace = await page.locator('#mentor').count() === 1;
       const hasPracticeBank = await page.locator('#pyqSearch').count() === 1;
-      if (hasMentorWorkspace && hasPracticeBank) {
+      const hasAnbuuNavigation = await page.locator('a[data-nav="anbuu"]').count() === 1;
+      if (hasMentorWorkspace && hasPracticeBank && hasAnbuuNavigation) {
         publishedVersionReady = true;
         break;
       }
     }
     await page.waitForTimeout(15000);
   }
-  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank build did not appear on Pages within five minutes; last HTTP status=' + (response?.status() ?? 'no response'));
+  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank/Anbuu navigation build did not appear on Pages within five minutes; last HTTP status=' + (response?.status() ?? 'no response'));
   await page.waitForTimeout(4000);
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
