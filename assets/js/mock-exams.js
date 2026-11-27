@@ -448,17 +448,27 @@ function renderQuestion(){
  host.innerHTML='<div class="mock-meta">Question '+(index+1)+' of '+questions.length+' · '+esc(sectionName(q))+' · '+q.marks+' marks'+(q.question_type==="mcq"&&q.negative_marks?' · −'+q.negative_marks:'')+'</div><h3 class="mock-section-title">Q'+q.question_no+'. '+esc(q.prompt)+'</h3>'+input;
  host.querySelectorAll('input[name="mockAnswer"]').forEach(el=>el.addEventListener("change",()=>setAnswer(q.id,el.value)));
  const ta=$("mockWrittenAnswer");if(ta){const count=()=>{const n=ta.value.trim()?ta.value.trim().split(/\s+/).length:0;$("mockWordCount").textContent=n+" words";};ta.addEventListener("input",()=>{setAnswer(q.id,ta.value);count();});count();}
- $("mockQuestionPosition").textContent=(index+1)+" / "+questions.length;
- $("mockProgressFill").style.width=((Object.keys(answers).filter(k=>String(answers[k]||"").trim()).length/questions.length)*100)+"%";
+ const answered=questions.filter(item=>String(answers[item.id]||"").trim()).length;
+ const progress=$("mockProgressFill");
+ $("mockQuestionPosition").textContent="Question "+(index+1)+" of "+questions.length+" · "+answered+" answered";
+ if(progress){progress.style.width=((answered/questions.length)*100)+"%";const bar=progress.parentElement;if(bar){bar.setAttribute("role","progressbar");bar.setAttribute("aria-label","Exam questions answered");bar.setAttribute("aria-valuemin","0");bar.setAttribute("aria-valuemax",String(questions.length));bar.setAttribute("aria-valuenow",String(answered));}}
  $("mockMarkBtn").textContent=marked.has(q.id)?"Remove review mark":"Mark for review";
+ $("mockMarkBtn").setAttribute("aria-pressed",String(marked.has(q.id)));
  $("mockPrevBtn").disabled=index===0;$("mockNextBtn").textContent=index===questions.length-1?"Review answers":"Next";
 }
-function setAnswer(id,value){answers[id]=value;storeLocalDraft();status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft(),350);renderQuestionGrid();}
+function setAnswer(id,value){answers[id]=value;storeLocalDraft();status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft(),350);renderQuestionGrid();renderQuestion();}
 function renderQuestionGrid(){
- const grid=$("mockQuestionGrid");grid.innerHTML=questions.map((q,i)=>'<button class="mock-qnum '+(String(answers[q.id]||"").trim()?'answered ':'')+(marked.has(q.id)?'review ':'')+(i===index?'current':'')+'" data-q="'+i+'" aria-label="Question '+(i+1)+'">'+(i+1)+'</button>').join("");
+ const grid=$("mockQuestionGrid");if(!grid)return;
+ grid.setAttribute("role","group");grid.setAttribute("aria-label","Question navigation palette");
+ grid.innerHTML=questions.map((q,i)=>{
+  const answered=String(answers[q.id]||"").trim().length>0,review=marked.has(q.id),current=i===index;
+  const state=[answered?"answered":"unanswered",review?"marked for review":""].filter(Boolean).join(", ");
+  return '<button type="button" class="mock-qnum '+(answered?'answered ':'')+(review?'review ':'')+(current?'current':'')+'" data-q="'+i+'" aria-label="Question '+(i+1)+', '+state+'" '+(current?'aria-current="step"':'')+' title="Question '+(i+1)+': '+state+'">'+(i+1)+'</button>';
+ }).join("");
  grid.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{index=Number(b.dataset.q);renderQuestion();renderQuestionGrid();}));
  const answered=questions.filter(q=>String(answers[q.id]||"").trim()).length;
- $("mockAnsweredCount").textContent=answered+" answered · "+(questions.length-answered)+" unanswered";
+ const review=questions.filter(q=>marked.has(q.id)).length;
+ $("mockAnsweredCount").textContent=answered+" answered · "+(questions.length-answered)+" unanswered · "+review+" for review";
 }
 function storeLocalDraft(){
  if(!attempt)return;
