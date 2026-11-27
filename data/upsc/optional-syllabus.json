@@ -6227,6 +6227,138 @@
         "Green Revolution and social change",
         "Changing modes of production in Indian agriculture",
         "Rural labour, bondage and migration"
+      ],
+      "lesson": {
+        "objective": "Evaluate rural development, agrarian transformation and changing relations of production in India.",
+        "sections": [
+          {
+            "heading": "Rural development and community programmes",
+            "explanation": [
+              "Rural development includes livelihoods, infrastructure, health, education, housing, connectivity and local participation. The Community Development Programme launched in 1952 sought integrated development through administrative and community-level initiatives.",
+              "Cooperatives, poverty-alleviation programmes and decentralised institutions have sought to improve access to credit, markets and services, though outcomes depend on participation and local power relations."
+            ],
+            "example": "A dairy cooperative can improve market access when producers have fair participation and transparent payment systems."
+          },
+          {
+            "heading": "Green Revolution and social change",
+            "explanation": [
+              "The Green Revolution involved high-yielding varieties, irrigation, fertilisers, pesticides, mechanisation and institutional support. It increased foodgrain production in important regions but produced uneven benefits across crops, regions and classes.",
+              "It also altered labour demand, input dependence, land values, rural differentiation and environmental conditions."
+            ],
+            "example": "Irrigated farmers with access to credit and inputs could benefit more quickly than rain-fed small cultivators."
+          },
+          {
+            "heading": "Changing modes of agricultural production",
+            "explanation": [
+              "Agricultural production has changed through mechanisation, commercialisation, contract arrangements, diversification, market integration and new technologies. Relations between owners, tenants, workers, traders and firms have also changed.",
+              "These processes can increase productivity while creating new forms of dependence, uneven bargaining power and livelihood risk."
+            ],
+            "example": "Contract farming can link cultivators to markets but raises questions about price-setting, risk and dispute resolution."
+          },
+          {
+            "heading": "Rural labour, bondage and migration",
+            "explanation": [
+              "Rural labour includes permanent, casual, seasonal and migrant workers, with conditions shaped by landlessness, caste, gender and local labour markets. Bonded labour involves coercive debt-linked relations and is prohibited by law, but vulnerabilities can persist in changing forms.",
+              "Migration may diversify household income but can also involve insecure work, separation, poor housing and limited access to social protection."
+            ],
+            "example": "A household may combine local agricultural work with seasonal migration to construction or service employment."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Community Development Programme",
+            "meaning": "A post-independence programme launched in 1952 for integrated rural development."
+          },
+          {
+            "term": "Green Revolution",
+            "meaning": "Agricultural transformation associated with high-yielding varieties and modern inputs."
+          },
+          {
+            "term": "Commercialisation",
+            "meaning": "Increasing orientation of production toward markets and sale."
+          },
+          {
+            "term": "Bonded labour",
+            "meaning": "Coercive labour relation linked to debt or other forms of compulsion."
+          },
+          {
+            "term": "Seasonal migration",
+            "meaning": "Temporary movement for work during particular periods of the year."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "A. R. Desai",
+            "idea": "Analysed agrarian relations and rural social change."
+          },
+          {
+            "scholar": "Daniel Thorner",
+            "idea": "Studied agrarian structure, land relations and rural classes in India."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Examined caste, class and power in rural settings."
+          }
+        ],
+        "answerPractice": "Assess the social consequences of the Green Revolution and changing modes of agricultural production in India.",
+        "revisionPrompt": "Link each rural development intervention to its intended benefit, distributional effect and implementation challenge."
+      },
+      "test": [
+        {
+          "q": "The Community Development Programme in India began in:",
+          "o": [
+            "1947",
+            "1952",
+            "1965",
+            "1975"
+          ],
+          "a": 1,
+          "w": "The Community Development Programme was launched in 1952."
+        },
+        {
+          "q": "The Green Revolution relied significantly on:",
+          "o": [
+            "High-yielding varieties and modern agricultural inputs",
+            "Only shifting cultivation",
+            "Abolition of irrigation",
+            "Ending agricultural research"
+          ],
+          "a": 0,
+          "w": "High-yielding seeds, irrigation, fertilisers and related inputs were central."
+        },
+        {
+          "q": "A key sociological concern about contract farming is:",
+          "o": [
+            "The disappearance of all markets",
+            "Unequal bargaining power and allocation of production risks",
+            "The end of agriculture",
+            "The absence of any contracts"
+          ],
+          "a": 1,
+          "w": "Contract farming can raise questions about price-setting, risks and bargaining power."
+        },
+        {
+          "q": "Bonded labour is characterised by:",
+          "o": [
+            "Voluntary short-term employment only",
+            "Coercive labour linked to debt or compulsion",
+            "A form of cooperative ownership",
+            "A type of land reform"
+          ],
+          "a": 1,
+          "w": "Bonded labour involves coercion or compulsion, often linked to debt."
+        },
+        {
+          "q": "Seasonal migration can:",
+          "o": [
+            "Only produce positive outcomes",
+            "Diversify income while exposing workers to insecure conditions",
+            "Eliminate all rural inequality",
+            "End the need for social protection"
+          ],
+          "a": 1,
+          "w": "Migration may improve income options but can also create insecurity and service-access problems."
+        }
       ]
     },
     {
@@ -6238,6 +6370,138 @@
         "Working class: structure, growth and class mobilisation",
         "Informal sector and child labour",
         "Slums and deprivation in urban areas"
+      ],
+      "lesson": {
+        "objective": "Analyse industrialisation and urbanisation in India, including labour, informality, slums and urban deprivation.",
+        "sections": [
+          {
+            "heading": "Evolution of modern industry",
+            "explanation": [
+              "Modern industry in India developed through colonial-era industries, post-independence public-sector expansion, planned industrialisation and later liberalisation and global integration. Industrial growth has varied across regions and sectors.",
+              "Industrialisation changes occupational structures, migration, class relations, family life and the geography of settlements."
+            ],
+            "example": "Industrial clusters can attract migrant workers and create new urban settlements."
+          },
+          {
+            "heading": "Urbanisation and urban settlements",
+            "explanation": [
+              "Urbanisation involves growth in the proportion and number of people living in urban areas, alongside changes in occupations, infrastructure and social relations. Indian urbanisation includes metropolitan expansion, small towns, peri-urban growth and census towns.",
+              "Cities are connected to rural regions through labour, food, finance, migration and remittances; urban and rural should not be treated as isolated worlds."
+            ],
+            "example": "A peri-urban settlement may combine agricultural activity with factory work and commuting."
+          },
+          {
+            "heading": "Working class and labour mobilisation",
+            "explanation": [
+              "The urban working class is internally differentiated by skill, sector, contract status, gender, migration and formal protection. Labour mobilisation can take place through trade unions, associations, collective bargaining and new forms of worker organisation.",
+              "Industrial restructuring and subcontracting can fragment workplaces and make collective organisation more difficult."
+            ],
+            "example": "Contract workers in the same factory may have different wages and protections from permanent employees."
+          },
+          {
+            "heading": "Informal sector, child labour and urban deprivation",
+            "explanation": [
+              "Informal employment includes casual work, street vending, domestic work, home-based production and many small enterprises. Informality can provide livelihoods but often involves low security and weak access to benefits.",
+              "Slums and informal settlements reflect housing shortages, land markets, unequal urban planning and limited services. Child labour must be analysed through poverty, schooling, labour demand and enforcement of protective laws."
+            ],
+            "example": "An informal settlement may be close to employment but lack secure tenure, drainage or reliable water."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Urbanisation",
+            "meaning": "Growth of urban population and transformation of urban social and economic life."
+          },
+          {
+            "term": "Peri-urban",
+            "meaning": "An area at the edge of a city where rural and urban activities overlap."
+          },
+          {
+            "term": "Informal sector",
+            "meaning": "Economic activities that are unregistered or weakly regulated."
+          },
+          {
+            "term": "Labour mobilisation",
+            "meaning": "Collective organisation by workers to advance shared interests."
+          },
+          {
+            "term": "Urban deprivation",
+            "meaning": "Disadvantages in housing, services, work, health and access to urban opportunities."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Manuel Castells",
+            "idea": "Analysed urban social movements and the relationship between urban space and collective consumption."
+          },
+          {
+            "scholar": "Jan Breman",
+            "idea": "Studied informal labour, migration and precarious work in India."
+          },
+          {
+            "scholar": "M. S. A. Rao",
+            "idea": "Contributed to sociology of urbanisation and social change in India."
+          }
+        ],
+        "answerPractice": "Discuss the relationship between industrialisation, urbanisation and the growth of informal labour in India.",
+        "revisionPrompt": "Explain why slums should be analysed through structural factors rather than as individual failures."
+      },
+      "test": [
+        {
+          "q": "Urbanisation refers to:",
+          "o": [
+            "Only an increase in city buildings",
+            "Growth of urban population and transformation of urban life",
+            "Only migration abroad",
+            "The disappearance of rural economies"
+          ],
+          "a": 1,
+          "w": "Urbanisation includes demographic and structural changes in settlements and livelihoods."
+        },
+        {
+          "q": "Peri-urban areas are:",
+          "o": [
+            "Only remote forests",
+            "Zones where rural and urban activities overlap",
+            "Areas with no population",
+            "Only central business districts"
+          ],
+          "a": 1,
+          "w": "Peri-urban areas lie at the urban edge and combine rural and urban features."
+        },
+        {
+          "q": "Jan Breman is known for work on:",
+          "o": [
+            "Informal labour and migration in India",
+            "The Protestant ethic",
+            "Social facts",
+            "Kinship terminology only"
+          ],
+          "a": 0,
+          "w": "Breman's work examines informal labour, migration and precarious livelihoods."
+        },
+        {
+          "q": "Urban slums are best explained sociologically through:",
+          "o": [
+            "Individual moral failure",
+            "Housing markets, planning, inequality and service access",
+            "Only population density",
+            "Only climate"
+          ],
+          "a": 1,
+          "w": "Urban deprivation is shaped by structural conditions and unequal access to land and services."
+        },
+        {
+          "q": "Labour mobilisation may involve:",
+          "o": [
+            "Trade unions and collective bargaining",
+            "Only individual consumption",
+            "Abolition of all employment rights",
+            "Only residential relocation"
+          ],
+          "a": 0,
+          "w": "Workers organise through unions, associations and collective bargaining."
+        }
       ]
     },
     {
@@ -6248,6 +6512,142 @@
         "Political parties, pressure groups and social and political elite",
         "Regionalism and decentralisation of power",
         "Secularisation"
+      ],
+      "lesson": {
+        "objective": "Explain the relationship among nation, democracy, citizenship, political parties, regionalism, decentralisation and secularisation in India.",
+        "sections": [
+          {
+            "heading": "Nation, democracy and citizenship",
+            "explanation": [
+              "Nation refers to a community imagined through shared political identity, history or belonging; the state refers to institutions exercising authority over territory. Democracy involves participation, accountability, rights and contestation.",
+              "Citizenship defines membership and associated rights and duties. In a diverse society, equal citizenship must be reconciled with recognition of cultural and social differences."
+            ],
+            "example": "Constitutional citizenship provides a common political framework while allowing linguistic and cultural diversity."
+          },
+          {
+            "heading": "Political parties, pressure groups and elites",
+            "explanation": [
+              "Political parties seek political power through elections and programme-building. Pressure groups seek to influence policy without necessarily seeking to form government. Political and social elites may influence agenda-setting through resources, networks and institutional position.",
+              "Sociological analysis asks whose interests are represented and how participation differs across class, caste, gender and region."
+            ],
+            "example": "A farmers' organisation may lobby for policy changes while a political party contests elections."
+          },
+          {
+            "heading": "Regionalism and decentralisation",
+            "explanation": [
+              "Regionalism can express demands for recognition, autonomy, resources or political representation. It may strengthen federal democracy when pursued through constitutional processes, but can also generate exclusionary claims.",
+              "Decentralisation transfers authority and resources to local institutions. Its effectiveness depends on fiscal capacity, accountability, representation and meaningful participation."
+            ],
+            "example": "Local self-government can improve responsiveness when elected representatives have real powers and resources."
+          },
+          {
+            "heading": "Secularisation and Indian public life",
+            "explanation": [
+              "Secularisation may refer to differentiation between religious and state institutions, changes in religious authority or declining religious practice; these dimensions do not always move together. Indian debates also concern equal treatment, religious freedom and state engagement.",
+              "Sociological analysis distinguishes secular constitutional principles from the lived diversity of religious practice and political mobilisation."
+            ],
+            "example": "A state may regulate a public institution to protect equality while respecting freedom of belief."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Nation",
+            "meaning": "A community connected through shared political identity and belonging."
+          },
+          {
+            "term": "Citizenship",
+            "meaning": "Membership of a political community with rights and duties."
+          },
+          {
+            "term": "Pressure group",
+            "meaning": "An organised group seeking to influence public policy."
+          },
+          {
+            "term": "Regionalism",
+            "meaning": "Political or cultural mobilisation around regional identity and interests."
+          },
+          {
+            "term": "Decentralisation",
+            "meaning": "Transfer of authority and responsibilities to lower levels of government."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Benedict Anderson",
+            "idea": "Explained nations as imagined political communities."
+          },
+          {
+            "scholar": "Rajni Kothari",
+            "idea": "Analysed political parties, caste and democratic politics in India."
+          },
+          {
+            "scholar": "Yogendra Yadav",
+            "idea": "Studies Indian democracy, political participation and electoral change."
+          },
+          {
+            "scholar": "Rajeev Bhargava",
+            "idea": "Analysed secularism and principled distance in the Indian context."
+          }
+        ],
+        "answerPractice": "Examine the sociological relationship between democracy, citizenship and regionalism in India. Assess the role of decentralisation.",
+        "revisionPrompt": "Distinguish nation, state, political party, pressure group and regional movement."
+      },
+      "test": [
+        {
+          "q": "A pressure group primarily seeks to:",
+          "o": [
+            "Influence public policy",
+            "Always form the government",
+            "Replace the Constitution",
+            "Abolish elections"
+          ],
+          "a": 0,
+          "w": "Pressure groups seek to influence policy and public decisions."
+        },
+        {
+          "q": "Benedict Anderson is associated with the concept of:",
+          "o": [
+            "Imagined communities",
+            "Dominant caste",
+            "Anomie",
+            "Alienation"
+          ],
+          "a": 0,
+          "w": "Anderson analysed nations as imagined political communities."
+        },
+        {
+          "q": "Decentralisation involves:",
+          "o": [
+            "Concentrating all authority at the centre",
+            "Transferring powers and responsibilities to lower levels",
+            "Ending local representation",
+            "Abolishing public institutions"
+          ],
+          "a": 1,
+          "w": "Decentralisation moves authority and responsibilities closer to local institutions."
+        },
+        {
+          "q": "Regionalism may express demands for:",
+          "o": [
+            "Recognition, autonomy and resources",
+            "Only private consumption",
+            "The end of all federal institutions",
+            "A single global government"
+          ],
+          "a": 0,
+          "w": "Regional movements often articulate claims for recognition, autonomy or equitable resource distribution."
+        },
+        {
+          "q": "Secularisation should be studied as:",
+          "o": [
+            "One process with identical effects everywhere",
+            "Multiple possible changes in religious authority, institutions and practice",
+            "A synonym for the end of all religion",
+            "Only a demographic count"
+          ],
+          "a": 1,
+          "w": "Secularisation has multiple dimensions and varies across contexts."
+        }
       ]
     },
     {
@@ -6259,6 +6659,142 @@
         "Backward classes and Dalit movements",
         "Environmental movements",
         "Ethnicity and identity movements"
+      ],
+      "lesson": {
+        "objective": "Compare major social movements in modern India and explain their demands, organisation and effects.",
+        "sections": [
+          {
+            "heading": "Peasant and farmers' movements",
+            "explanation": [
+              "Peasant movements have emerged around land, rent, debt, wages, prices, water, forest rights and state policy. Their composition varies across regions and periods, including tenants, small cultivators, agricultural labourers and better-off farmers.",
+              "Movements may use petitions, unions, marches, collective bargaining and electoral engagement; their demands can differ within the agrarian population."
+            ],
+            "example": "A movement demanding remunerative crop prices may unite cultivators while landless workers may prioritise wages and employment."
+          },
+          {
+            "heading": "Women's movements",
+            "explanation": [
+              "Women's movements have addressed education, legal rights, violence, work, political representation, bodily autonomy and unpaid care. They include diverse organisations and approaches, and have changed across historical phases.",
+              "Feminist analysis highlights that gender intersects with caste, class, religion, tribe, sexuality and region."
+            ],
+            "example": "A campaign for workplace safety may connect legal reform with public awareness and institutional accountability."
+          },
+          {
+            "heading": "Dalit, backward-class and identity movements",
+            "explanation": [
+              "Dalit and backward-class movements challenge caste oppression, exclusion and unequal representation. They have used constitutional rights, education, political organisation, cultural assertion and public protest.",
+              "Identity movements may seek dignity, recognition, autonomy, representation or redistribution. Internal diversity and differences in strategy should be acknowledged."
+            ],
+            "example": "A movement may combine demands for anti-discrimination enforcement with access to education and public employment."
+          },
+          {
+            "heading": "Environmental, ethnic and regional movements",
+            "explanation": [
+              "Environmental movements address land, forests, water, pollution, displacement and sustainable livelihoods. Ethnic and identity movements may seek recognition, autonomy, protection of language or control over local resources.",
+              "Movements can reshape public debate and policy, but may face repression, internal conflict, co-option or difficulties sustaining organisation."
+            ],
+            "example": "A community campaign against displacement may combine ecological concerns with livelihood rights and local self-government."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Social movement",
+            "meaning": "Sustained collective action seeking social or political change."
+          },
+          {
+            "term": "Resource mobilisation",
+            "meaning": "The process of organising people, money, networks and institutions for collective action."
+          },
+          {
+            "term": "Framing",
+            "meaning": "How movements define a problem, assign responsibility and present a proposed solution."
+          },
+          {
+            "term": "Identity politics",
+            "meaning": "Political mobilisation around shared identities and experiences."
+          },
+          {
+            "term": "Environmental justice",
+            "meaning": "Fair distribution of environmental benefits and burdens, with meaningful participation."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Ghanshyam Shah",
+            "idea": "Studied social movements in India."
+          },
+          {
+            "scholar": " Gail Omvedt",
+            "idea": "Analysed anti-caste, peasant and women's movements."
+          },
+          {
+            "scholar": "Rajni Kothari",
+            "idea": "Examined democratic politics and movements in India."
+          },
+          {
+            "scholar": "Charles Tilly",
+            "idea": "Developed influential analysis of contentious politics and collective action."
+          }
+        ],
+        "answerPractice": "Discuss the diversity of social movements in modern India. Compare peasant, women's, Dalit and environmental movements.",
+        "revisionPrompt": "For each movement, identify its constituency, core demand, organisational form and social impact."
+      },
+      "test": [
+        {
+          "q": "Resource mobilisation theory focuses on:",
+          "o": [
+            "Organisation and resources needed for collective action",
+            "Only individual personality",
+            "Only religious doctrine",
+            "The absence of networks"
+          ],
+          "a": 0,
+          "w": "Resource mobilisation examines how movements organise people, resources and networks."
+        },
+        {
+          "q": "Dalit movements have centrally challenged:",
+          "o": [
+            "Caste oppression and exclusion",
+            "Only international trade rules",
+            "Only urban transport",
+            "Only climate variability"
+          ],
+          "a": 0,
+          "w": "Dalit movements seek dignity, equality and an end to caste-based exclusion."
+        },
+        {
+          "q": "Environmental movements may address:",
+          "o": [
+            "Displacement, forests, water and pollution",
+            "Only electoral boundaries",
+            "Only household marriage rules",
+            "Only language spelling"
+          ],
+          "a": 0,
+          "w": "Environmental movements often connect ecology with livelihoods, rights and development."
+        },
+        {
+          "q": "Intersectional analysis of women's movements examines:",
+          "o": [
+            "Gender in isolation only",
+            "How gender interacts with caste, class, religion and other positions",
+            "Only biological sex",
+            "Only urban employment"
+          ],
+          "a": 1,
+          "w": "Intersectionality examines how multiple structures of inequality interact."
+        },
+        {
+          "q": "A social movement is generally characterised by:",
+          "o": [
+            "Sustained collective action around shared claims",
+            "A single private opinion",
+            "Only a government department",
+            "A temporary market transaction"
+          ],
+          "a": 0,
+          "w": "Social movements involve sustained collective mobilisation for change."
+        }
       ]
     },
     {
@@ -6269,6 +6805,142 @@
         "Birth, death and migration",
         "Population policy and family planning",
         "Ageing, sex ratios, child and infant mortality, reproductive health"
+      ],
+      "lesson": {
+        "objective": "Interpret population size, growth, composition and distribution, and evaluate demographic processes and policy.",
+        "sections": [
+          {
+            "heading": "Population size, growth and distribution",
+            "explanation": [
+              "Population size is the number of people in a defined area; growth reflects births, deaths and migration. Distribution describes where people live, while density relates population to land area.",
+              "Population patterns are shaped by economic opportunities, environment, infrastructure, conflict, public policy and historical settlement."
+            ],
+            "example": "A city may grow rapidly through both natural increase and migration."
+          },
+          {
+            "heading": "Composition and demographic transition",
+            "explanation": [
+              "Population composition includes age, sex, education, occupation and other characteristics. Demographic transition theory describes broad changes in birth and death rates associated with social and economic transformation, but timing and pathways vary.",
+              "Age structure influences education demand, employment, health services and social protection."
+            ],
+            "example": "A youthful population may offer a demographic dividend only when education, health and employment opportunities are available."
+          },
+          {
+            "heading": "Birth, death and migration",
+            "explanation": [
+              "Fertility and mortality are influenced by health, education, income, gender relations, public services and cultural practices. Migration may be internal or international, temporary or permanent, voluntary or forced.",
+              "Migration reshapes labour markets, household structures, urban growth, remittances and regional inequalities."
+            ],
+            "example": "Migration for education or work can change the age and skill composition of both sending and receiving regions."
+          },
+          {
+            "heading": "Population policy and social indicators",
+            "explanation": [
+              "Population policy includes reproductive health, family planning, maternal and child health, education and rights-based access to services. Coercive approaches can violate rights and undermine trust.",
+              "Ageing, sex ratios, child and infant mortality and reproductive health reveal inequalities in access to care, nutrition, education and social protection."
+            ],
+            "example": "A declining child mortality rate can reflect improvements in public health, nutrition and maternal care."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Fertility rate",
+            "meaning": "A measure of childbearing in a population, commonly expressed through age-specific or total fertility measures."
+          },
+          {
+            "term": "Mortality",
+            "meaning": "Occurrence of death in a population."
+          },
+          {
+            "term": "Demographic transition",
+            "meaning": "A model describing broad shifts in birth and death rates during social and economic change."
+          },
+          {
+            "term": "Dependency ratio",
+            "meaning": "A ratio comparing dependent age groups with the working-age population."
+          },
+          {
+            "term": "Demographic dividend",
+            "meaning": "Potential economic benefit from a favourable age structure, conditional on jobs and human development."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Frank Notestein",
+            "idea": "Associated with demographic transition theory."
+          },
+          {
+            "scholar": "Kingsley Davis",
+            "idea": "Contributed to demographic analysis and population studies."
+          },
+          {
+            "scholar": "Amartya Sen",
+            "idea": "Highlighted the relationship among gender, public action and demographic outcomes."
+          },
+          {
+            "scholar": "Ashish Bose",
+            "idea": "Contributed to population studies and demographic analysis in India."
+          }
+        ],
+        "answerPractice": "Discuss the major demographic changes in India and their implications for development planning and social policy.",
+        "revisionPrompt": "Differentiate fertility, mortality, migration, population density and age composition."
+      },
+      "test": [
+        {
+          "q": "Population growth is determined most directly by:",
+          "o": [
+            "Births, deaths and migration",
+            "Only land area",
+            "Only literacy rate",
+            "Only urban boundaries"
+          ],
+          "a": 0,
+          "w": "Population change reflects natural increase and net migration."
+        },
+        {
+          "q": "The demographic dividend depends on:",
+          "o": [
+            "A favourable age structure alone, regardless of jobs",
+            "Education, health and productive employment opportunities",
+            "Only population size",
+            "Only migration restrictions"
+          ],
+          "a": 1,
+          "w": "A favourable age structure creates potential, not an automatic economic dividend."
+        },
+        {
+          "q": "The dependency ratio compares:",
+          "o": [
+            "Dependent age groups with the working-age population",
+            "Exports with imports",
+            "Urban with rural land",
+            "Births with marriages"
+          ],
+          "a": 0,
+          "w": "The dependency ratio relates dependent age groups to the working-age population."
+        },
+        {
+          "q": "A rights-based population policy should prioritise:",
+          "o": [
+            "Coercive targets",
+            "Voluntary access to reproductive health and informed choice",
+            "Punishment for family size",
+            "Exclusion from healthcare"
+          ],
+          "a": 1,
+          "w": "Rights-based policy protects autonomy and informed access to services."
+        },
+        {
+          "q": "Migration can affect:",
+          "o": [
+            "Only the destination population",
+            "Labour markets, household structure and both sending and receiving regions",
+            "Only birth rates",
+            "Only national borders"
+          ],
+          "a": 1,
+          "w": "Migration has social and economic effects in both origin and destination areas."
+        }
       ]
     },
     {
@@ -6280,6 +6952,142 @@
         "Violence against women and caste conflicts",
         "Ethnic conflicts, communalism and religious revivalism",
         "Illiteracy and disparities in education"
+      ],
+      "lesson": {
+        "objective": "Evaluate major challenges of social transformation in India, including displacement, inequality, gender violence, conflict and educational disparities.",
+        "sections": [
+          {
+            "heading": "Development crisis and displacement",
+            "explanation": [
+              "Development projects can create infrastructure and economic opportunities but may also displace communities, disrupt livelihoods and damage ecosystems. Social assessment should consider consent, rehabilitation, compensation, participation and long-term livelihood restoration.",
+              "Environmental sustainability requires balancing present needs with ecological limits and intergenerational justice."
+            ],
+            "example": "A dam or industrial project should be assessed for effects on housing, land, forests, culture and local employment."
+          },
+          {
+            "heading": "Poverty, deprivation and inequality",
+            "explanation": [
+              "Poverty is multidimensional and includes inadequate income, nutrition, housing, health, education and security. Inequality concerns the distribution of resources, opportunities and power.",
+              "Caste, class, gender, disability and region can interact to shape deprivation. Social policy should examine both average improvement and who remains excluded."
+            ],
+            "example": "An improvement in average school enrolment may coexist with large gaps in attendance and learning outcomes."
+          },
+          {
+            "heading": "Gender violence, caste conflict and communalism",
+            "explanation": [
+              "Violence against women and caste-based violence are rooted in unequal power relations and institutional failures, not merely individual behaviour. Prevention requires legal accountability, accessible support, education and changes in social norms.",
+              "Ethnic conflict, communalism and religious revivalism must be analysed in their historical and political contexts, including identity, competition, mobilisation and state response."
+            ],
+            "example": "A local conflict may involve land, political representation and identity at the same time."
+          },
+          {
+            "heading": "Illiteracy and educational disparities",
+            "explanation": [
+              "Educational inequality involves differences in access, quality, language, digital resources, safety, disability support and learning outcomes. Enrolment alone does not measure meaningful educational opportunity.",
+              "Public investment, inclusive curricula, teacher support, accessible infrastructure and community participation can reduce disparities."
+            ],
+            "example": "A student may be enrolled but lack electricity, connectivity, learning materials or a safe study environment."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Displacement",
+            "meaning": "Movement from a home or livelihood area, often due to development, conflict or environmental change."
+          },
+          {
+            "term": "Multidimensional poverty",
+            "meaning": "Deprivation across several areas such as health, education and living standards."
+          },
+          {
+            "term": "Environmental sustainability",
+            "meaning": "Meeting present needs while protecting ecological systems and future generations."
+          },
+          {
+            "term": "Communalism",
+            "meaning": "Political mobilisation around religious identity that can intensify antagonism."
+          },
+          {
+            "term": "Educational disparity",
+            "meaning": "Unequal access, quality or outcomes across social groups."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Amartya Sen",
+            "idea": "Capabilities and multidimensional understanding of deprivation."
+          },
+          {
+            "scholar": "Nandini Sundar",
+            "idea": "Research on tribal communities, conflict and state-society relations."
+          },
+          {
+            "scholar": "Veena Das",
+            "idea": "Anthropological and sociological work on violence and everyday life."
+          },
+          {
+            "scholar": "Bina Agarwal",
+            "idea": "Research on gender, property rights and environmental governance."
+          }
+        ],
+        "answerPractice": "Discuss the major challenges of social transformation in India. Explain how inequality, displacement and identity-based conflict complicate development.",
+        "revisionPrompt": "Use a multidimensional framework to analyse one development challenge and identify institutional responses."
+      },
+      "test": [
+        {
+          "q": "Multidimensional poverty includes deprivation in:",
+          "o": [
+            "Only income",
+            "Health, education and living standards among other dimensions",
+            "Only political party membership",
+            "Only urban residence"
+          ],
+          "a": 1,
+          "w": "Multidimensional approaches consider several aspects of well-being beyond income."
+        },
+        {
+          "q": "A socially responsible assessment of displacement should include:",
+          "o": [
+            "Only project cost",
+            "Consent, rehabilitation, compensation and livelihood restoration",
+            "Only construction speed",
+            "Only land area"
+          ],
+          "a": 1,
+          "w": "Displacement assessment should account for rights, participation and long-term impacts."
+        },
+        {
+          "q": "Educational disparity concerns:",
+          "o": [
+            "Only school enrolment",
+            "Access, quality, resources and learning outcomes",
+            "Only school uniforms",
+            "Only examination dates"
+          ],
+          "a": 1,
+          "w": "Educational inequality includes both access and quality of learning."
+        },
+        {
+          "q": "Caste-based violence should be analysed through:",
+          "o": [
+            "Only individual temperament",
+            "Power relations, institutions and structural inequality",
+            "Only climate",
+            "Only population density"
+          ],
+          "a": 1,
+          "w": "Sociological analysis examines structural power and institutional context."
+        },
+        {
+          "q": "Environmental sustainability includes concern for:",
+          "o": [
+            "Only immediate economic output",
+            "Ecological limits and future generations",
+            "Only private consumption",
+            "Only urban transport"
+          ],
+          "a": 1,
+          "w": "Sustainability considers ecological systems and intergenerational responsibilities."
+        }
       ]
     }
   ],
