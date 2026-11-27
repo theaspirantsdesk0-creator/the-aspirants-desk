@@ -2571,13 +2571,24 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   async function handleSignOut() {
     if (supabase) {
       try {
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
+        // A sign-out on this browser must not unexpectedly revoke the learner's
+        // sessions on their other devices.
+        const { error } = await supabase.auth.signOut({ scope: "local" });
+        if (error) {
+          const { data } = await supabase.auth.getSession();
+          if (data?.session) {
+            toast(error.message || "Could not sign out. Check your connection and try again.");
+            return false;
+          }
+          // Local storage was cleared even though remote token revocation failed.
+          console.warn("Local sign-out completed; remote revocation could not be confirmed:", error.message);
+        }
       } catch (error) {
-        // Keep the signed-in UI and local account scope intact if the server
-        // could not revoke the session. Do not imply sign-out succeeded.
-        toast(error?.message || "Could not sign out. Check your connection and try again.");
-        return false;
+        const { data } = await supabase.auth.getSession().catch(() => ({ data: { session: null } }));
+        if (data?.session) {
+          toast(error?.message || "Could not sign out. Check your connection and try again.");
+          return false;
+        }
       }
     }
     currentUser = null;
