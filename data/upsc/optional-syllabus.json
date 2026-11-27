@@ -4749,6 +4749,123 @@
         "Position classification, discipline, appraisal and promotion",
         "Pay, service conditions and employer-employee relations",
         "Grievance redressal, code of conduct and administrative ethics"
+      ],
+      "notes": "Personnel administration manages the people who make public institutions work. It includes recruitment, training, performance, promotion, ethics, employee welfare and the balance between political direction and professional neutrality.",
+      "lesson": {
+        "objective": "Understand how a capable, ethical and representative civil service is recruited, developed and managed.",
+        "sections": [
+          {
+            "heading": "Scope and principles",
+            "explanation": [
+              "Personnel administration covers workforce planning, recruitment, placement, training, performance appraisal, promotion, discipline, welfare and retirement.",
+              "A professional civil service requires merit, impartiality, competence, integrity, continuity and responsiveness. Representation and equal opportunity are also important for democratic legitimacy."
+            ],
+            "example": "A department estimates future skill needs before recruiting specialists and general administrators."
+          },
+          {
+            "heading": "Recruitment and career development",
+            "explanation": [
+              "Recruitment may be generalist or specialist and should follow transparent, merit-based procedures. Constitutional and legal safeguards shape public recruitment in India.",
+              "Training is continuous: induction builds foundational knowledge, while mid-career learning supports new responsibilities, technology and changing public needs."
+            ],
+            "example": "Civil servants may receive foundation training followed by role-specific training and refresher courses."
+          },
+          {
+            "heading": "Performance, ethics and employee relations",
+            "explanation": [
+              "Performance systems should assess results, conduct, citizen experience and professional development rather than relying only on narrow numerical targets.",
+              "Discipline, grievance redressal, employee welfare and ethical standards help maintain trust. Political neutrality means serving the elected government lawfully while offering professional advice without partisan bias."
+            ],
+            "example": "A performance review can combine service-delivery indicators with feedback, integrity standards and learning goals."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Merit system",
+            "meaning": "Selection and advancement based on relevant competence and fair criteria."
+          },
+          {
+            "term": "Political neutrality",
+            "meaning": "Professional service to the elected government without partisan conduct."
+          },
+          {
+            "term": "Capacity building",
+            "meaning": "Developing the knowledge, skills and institutional abilities needed for public work."
+          },
+          {
+            "term": "Performance appraisal",
+            "meaning": "Structured assessment of work, conduct and development needs."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Max Weber",
+            "idea": "Professional bureaucracy depends on trained officials, rules and defined responsibilities."
+          },
+          {
+            "scholar": "Paul H. Appleby",
+            "idea": "Public administration requires professional competence and responsibility in democratic government."
+          }
+        ],
+        "answerPractice": "Discuss the changing requirements of personnel administration in India. How can civil-service neutrality, competence and accountability be strengthened?",
+        "revisionPrompt": "Organise the answer around entry, training, performance, ethics and citizen orientation."
+      },
+      "test": [
+        {
+          "q": "Personnel administration primarily deals with:",
+          "o": [
+            "Management and development of public employees",
+            "Only public procurement",
+            "Only judicial review",
+            "Only tax collection"
+          ],
+          "a": 0,
+          "w": "It covers recruitment, training, performance, promotion, welfare and related workforce functions."
+        },
+        {
+          "q": "Political neutrality requires civil servants to:",
+          "o": [
+            "Ignore elected governments",
+            "Serve lawfully and professionally without partisan conduct",
+            "Avoid giving professional advice",
+            "Make party decisions"
+          ],
+          "a": 1,
+          "w": "Neutrality supports impartial professional service under elected political leadership."
+        },
+        {
+          "q": "Induction training is mainly intended to:",
+          "o": [
+            "Replace all later learning",
+            "Build foundational knowledge and role readiness",
+            "Guarantee promotion",
+            "Remove service rules"
+          ],
+          "a": 1,
+          "w": "Induction introduces institutional values, rules and core responsibilities."
+        },
+        {
+          "q": "A sound performance appraisal should:",
+          "o": [
+            "Use only one numerical target",
+            "Consider results, conduct and development needs",
+            "Be unrelated to job responsibilities",
+            "Replace citizen feedback in every case"
+          ],
+          "a": 1,
+          "w": "Balanced appraisal considers performance quality and future capacity."
+        },
+        {
+          "q": "Merit-based recruitment seeks to:",
+          "o": [
+            "Select through transparent relevant criteria",
+            "Select only through personal connections",
+            "Avoid published standards",
+            "Remove equal opportunity"
+          ],
+          "a": 0,
+          "w": "Merit systems aim for fair selection based on relevant competence."
+        }
       ]
     },
     {
@@ -4759,6 +4876,123 @@
         "Policy conceptualisation, planning and implementation",
         "Monitoring, evaluation, review and limitations",
         "State theories and policy formulation"
+      ],
+      "notes": "Public policy connects political priorities with government action. Its study covers agenda setting, formulation, adoption, implementation, evaluation and feedback, with attention to institutions, evidence and affected communities.",
+      "lesson": {
+        "objective": "Explain the policy cycle and assess the role of evidence, institutions and citizens in policy decisions.",
+        "sections": [
+          {
+            "heading": "Meaning and policy cycle",
+            "explanation": [
+              "Public policy is a course of action or considered inaction adopted by public authorities to address collective issues.",
+              "A useful analytical cycle includes problem identification, agenda setting, formulation, adoption, implementation, monitoring, evaluation and feedback. In practice, these stages overlap and may recur."
+            ],
+            "example": "A city air-quality policy begins with evidence about pollution sources, followed by options, rules, implementation and outcome review."
+          },
+          {
+            "heading": "Policy formulation and decision",
+            "explanation": [
+              "Policy formulation compares options, costs, benefits, feasibility, distributional effects and legal constraints. Evidence can include administrative data, research, consultation and pilot projects.",
+              "Decisions are shaped not only by technical evidence but also by political priorities, institutions, values, resources and public debate."
+            ],
+            "example": "A nutrition intervention may compare food supplementation, cash support, behaviour communication and service-delivery improvements."
+          },
+          {
+            "heading": "Implementation and evaluation",
+            "explanation": [
+              "Implementation depends on clear responsibilities, resources, frontline capacity, coordination and communication. A well-designed policy can fail when delivery systems are weak.",
+              "Monitoring tracks implementation; evaluation assesses relevance, effectiveness, efficiency, equity and impact. Feedback should inform redesign rather than merely produce reports."
+            ],
+            "example": "A programme evaluation may compare intended beneficiaries with actual access and identify barriers by region or social group."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Agenda setting",
+            "meaning": "The process through which an issue receives serious governmental attention."
+          },
+          {
+            "term": "Implementation gap",
+            "meaning": "Difference between policy design and actual delivery."
+          },
+          {
+            "term": "Monitoring",
+            "meaning": "Ongoing tracking of activities, outputs and selected indicators."
+          },
+          {
+            "term": "Policy evaluation",
+            "meaning": "Systematic assessment of a policy's design, implementation or outcomes."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Harold Lasswell",
+            "idea": "Policy sciences connect knowledge of the policy process with knowledge relevant to policy problems."
+          },
+          {
+            "scholar": "Charles Lindblom",
+            "idea": "Incrementalism highlights how policy decisions often proceed through limited comparisons and adjustments."
+          }
+        ],
+        "answerPractice": "Describe the stages of the public policy process. Why do implementation and evaluation determine whether policy intentions become public outcomes?",
+        "revisionPrompt": "Use a policy-cycle diagram and distinguish inputs, activities, outputs and outcomes."
+      },
+      "test": [
+        {
+          "q": "Agenda setting refers to:",
+          "o": [
+            "A matter receiving governmental attention",
+            "Final audit of expenditure only",
+            "Recruitment of civil servants",
+            "Judicial sentencing"
+          ],
+          "a": 0,
+          "w": "Agenda setting is the process by which issues gain priority for public decision."
+        },
+        {
+          "q": "Policy implementation mainly concerns:",
+          "o": [
+            "Turning decisions into action",
+            "Only writing election manifestos",
+            "Only debating constitutional amendments",
+            "Only collecting survey data"
+          ],
+          "a": 0,
+          "w": "Implementation translates policy decisions into programmes, rules and services."
+        },
+        {
+          "q": "Evaluation differs from routine monitoring because evaluation:",
+          "o": [
+            "Never uses evidence",
+            "Systematically assesses merit, results or effects",
+            "Only counts meetings",
+            "Always occurs before implementation"
+          ],
+          "a": 1,
+          "w": "Evaluation assesses a policy's relevance, performance or outcomes."
+        },
+        {
+          "q": "An implementation gap is:",
+          "o": [
+            "A gap between policy design and actual delivery",
+            "A vacancy in a legislature",
+            "A difference between two court buildings",
+            "A budget surplus"
+          ],
+          "a": 0,
+          "w": "It describes the distance between intended policy and what happens in practice."
+        },
+        {
+          "q": "Incrementalism is associated with:",
+          "o": [
+            "Charles Lindblom",
+            "Max Weber",
+            "B. R. Ambedkar",
+            "David Easton"
+          ],
+          "a": 0,
+          "w": "Lindblom is associated with incremental approaches to policy decision-making."
+        }
       ]
     },
     {
@@ -4768,6 +5002,123 @@
         "Organisation and methods; work study and work management",
         "E-governance and information technology",
         "Management tools: network analysis, MIS, PERT and CPM"
+      ],
+      "notes": "Techniques of administrative improvement include management by objectives, work study, performance measurement, e-governance, process redesign, quality management and citizen-centred service reforms.",
+      "lesson": {
+        "objective": "Evaluate management tools that can improve administrative efficiency without weakening fairness and accountability.",
+        "sections": [
+          {
+            "heading": "Management and work improvement",
+            "explanation": [
+              "Work study examines tasks and processes to identify unnecessary steps, delays and duplication. Management by objectives connects organisational goals with measurable responsibilities.",
+              "Performance indicators can clarify priorities, but indicators must be meaningful and balanced to avoid gaming or neglect of difficult cases."
+            ],
+            "example": "A district office maps the steps in a certificate application and removes avoidable repeated document checks."
+          },
+          {
+            "heading": "Quality and process approaches",
+            "explanation": [
+              "Total quality management emphasises continuous improvement, staff participation and attention to service users. Process re-engineering questions whether a process should be redesigned rather than merely digitised.",
+              "Benchmarking compares processes or outcomes with credible standards or peer institutions, while adapting lessons to local conditions."
+            ],
+            "example": "A service centre measures waiting times and complaint resolution, then tests a simpler appointment process."
+          },
+          {
+            "heading": "Digital government and safeguards",
+            "explanation": [
+              "E-governance can improve access, tracking, transparency and coordination. Its benefits depend on reliable infrastructure, accessible design, data protection, cybersecurity and assisted channels for people facing digital barriers.",
+              "Administrative improvement should be assessed through service quality, equity, reliability and trust, not technology adoption alone."
+            ],
+            "example": "An online application should retain an accessible offline or assisted route for citizens who cannot use digital services."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Work study",
+            "meaning": "Systematic examination of tasks and processes to improve efficiency."
+          },
+          {
+            "term": "Benchmarking",
+            "meaning": "Comparing performance or processes against credible reference standards."
+          },
+          {
+            "term": "Total quality management",
+            "meaning": "Organisation-wide approach to continuous quality improvement."
+          },
+          {
+            "term": "E-governance",
+            "meaning": "Use of digital technologies in public administration and service delivery."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Peter F. Drucker",
+            "idea": "Management by objectives links organisational goals with defined performance responsibilities."
+          },
+          {
+            "scholar": "W. Edwards Deming",
+            "idea": "Continuous improvement and quality management emphasise learning from processes and variation."
+          }
+        ],
+        "answerPractice": "Examine the contribution of modern management techniques and e-governance to administrative improvement. Discuss their limitations.",
+        "revisionPrompt": "For each tool, explain its purpose, a public-service example and one safeguard."
+      },
+      "test": [
+        {
+          "q": "Work study is used to:",
+          "o": [
+            "Examine tasks and processes for improvement",
+            "Set constitutional boundaries",
+            "Conduct elections",
+            "Appoint judges"
+          ],
+          "a": 0,
+          "w": "Work study identifies inefficiency, duplication and avoidable delays."
+        },
+        {
+          "q": "Benchmarking involves:",
+          "o": [
+            "Comparing performance with credible standards",
+            "Copying any institution without analysis",
+            "Avoiding measurement",
+            "Replacing public accountability"
+          ],
+          "a": 0,
+          "w": "Benchmarking learns from relevant reference practices and outcomes."
+        },
+        {
+          "q": "Total quality management stresses:",
+          "o": [
+            "Continuous improvement and service quality",
+            "One-time inspection only",
+            "Maximum paperwork",
+            "No staff participation"
+          ],
+          "a": 0,
+          "w": "TQM treats quality as an ongoing organisation-wide responsibility."
+        },
+        {
+          "q": "A risk of poorly designed performance indicators is:",
+          "o": [
+            "They always improve equity",
+            "Staff may focus on measured targets while neglecting unmeasured needs",
+            "They eliminate all delays",
+            "They replace judgement completely"
+          ],
+          "a": 1,
+          "w": "Narrow targets can encourage gaming or neglect of complex cases."
+        },
+        {
+          "q": "E-governance should be accompanied by:",
+          "o": [
+            "Digital-only access in every circumstance",
+            "Accessibility, privacy and assisted alternatives",
+            "No grievance mechanism",
+            "Removal of human oversight"
+          ],
+          "a": 1,
+          "w": "Digital systems need inclusion, privacy and accountability safeguards."
+        }
       ]
     },
     {
@@ -4779,6 +5130,123 @@
         "Types and forms of budgets",
         "Budgetary process and financial accountability",
         "Accounts and audit"
+      ],
+      "notes": "Financial administration concerns the mobilisation, allocation, authorisation, expenditure, accounting and audit of public resources. It links fiscal discipline with legislative control and public accountability.",
+      "lesson": {
+        "objective": "Understand the budget cycle and the institutions that safeguard public money.",
+        "sections": [
+          {
+            "heading": "Meaning and scope",
+            "explanation": [
+              "Financial administration covers budgeting, revenue, expenditure control, accounting, reporting, internal control and audit.",
+              "Its objectives include lawful spending, fiscal discipline, efficient allocation and accountability for public resources."
+            ],
+            "example": "A department must align programme expenditure with approved grants and financial rules."
+          },
+          {
+            "heading": "Budget preparation and legislative approval",
+            "explanation": [
+              "The budget translates policy priorities into estimates of receipts and expenditure. Departments prepare demands, finance authorities examine proposals and the legislature authorises expenditure.",
+              "Legislative approval is central: public money cannot be spent merely because an administrative department wants to spend it."
+            ],
+            "example": "Demands for grants are examined and voted in the Lok Sabha, subject to constitutional procedures."
+          },
+          {
+            "heading": "Execution, accounting and audit",
+            "explanation": [
+              "Budget execution involves release of funds, procurement, payment controls, accounting and monitoring. Internal controls help prevent error, misuse and unauthorised expenditure.",
+              "Audit provides independent scrutiny of financial reporting and compliance. Legislative committees use audit findings to hold departments accountable."
+            ],
+            "example": "Audit observations may identify irregular expenditure or weaknesses in procurement and internal controls."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Budget",
+            "meaning": "A statement and plan of estimated government receipts and expenditure for a period."
+          },
+          {
+            "term": "Appropriation",
+            "meaning": "Legislative authorisation to withdraw and spend money from the Consolidated Fund."
+          },
+          {
+            "term": "Internal control",
+            "meaning": "Procedures that support lawful, accurate and responsible financial management."
+          },
+          {
+            "term": "Audit",
+            "meaning": "Independent examination of financial statements, transactions or performance."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Aaron Wildavsky",
+            "idea": "Budgeting is shaped by institutions, negotiation and political choices, not only technical calculation."
+          },
+          {
+            "scholar": "V. O. Key Jr.",
+            "idea": "Budget decisions raise the fundamental question of how public resources should be allocated among competing purposes."
+          }
+        ],
+        "answerPractice": "Explain the stages of financial administration in India. How do legislative authorisation, accounting and audit promote fiscal accountability?",
+        "revisionPrompt": "Trace the cycle: preparation, approval, execution, accounting, audit and legislative review."
+      },
+      "test": [
+        {
+          "q": "A government budget primarily presents:",
+          "o": [
+            "Estimated receipts and expenditure",
+            "Only civil-service transfers",
+            "Only court judgments",
+            "Only private investment"
+          ],
+          "a": 0,
+          "w": "The budget sets out planned public receipts and expenditure."
+        },
+        {
+          "q": "Legislative authorisation of expenditure is important because it:",
+          "o": [
+            "Places public spending under democratic control",
+            "Removes all audit requirements",
+            "Allows unlimited executive spending",
+            "Replaces financial rules"
+          ],
+          "a": 0,
+          "w": "Legislative approval is a core safeguard over public money."
+        },
+        {
+          "q": "The Comptroller and Auditor General is associated with:",
+          "o": [
+            "Audit of public accounts",
+            "Conducting cabinet meetings",
+            "Recruiting all state employees",
+            "Setting monetary policy"
+          ],
+          "a": 0,
+          "w": "The CAG audits public accounts and related entities as provided by law."
+        },
+        {
+          "q": "Budget execution includes:",
+          "o": [
+            "Only policy speeches",
+            "Release of funds, payments and expenditure control",
+            "Only election campaigning",
+            "Only judicial appointments"
+          ],
+          "a": 1,
+          "w": "Execution turns authorised estimates into controlled financial transactions."
+        },
+        {
+          "q": "Audit findings can support accountability by:",
+          "o": [
+            "Identifying irregularities and weaknesses",
+            "Automatically approving future budgets",
+            "Replacing legislative debate",
+            "Removing the need for records"
+          ],
+          "a": 0,
+          "w": "Audit evidence supports scrutiny and corrective action."
+        }
       ]
     },
     {
@@ -5977,6 +6445,123 @@
         "Election Commission, CAG, Finance Commission and UPSC",
         "National Commissions for SCs, STs, Women, Minorities and Backward Classes",
         "National Human Rights Commission"
+      ],
+      "notes": "Statutory and constitutional institutions provide oversight, regulation, accountability and protection of democratic processes. Their authority, independence and effectiveness depend on their legal mandate and institutional safeguards.",
+      "lesson": {
+        "objective": "Distinguish constitutional and statutory institutions and assess their role in democratic governance.",
+        "sections": [
+          {
+            "heading": "Constitutional and statutory status",
+            "explanation": [
+              "Constitutional bodies derive their existence and core mandate from the Constitution. Statutory bodies are created by legislation and operate within the powers given by the enabling Act.",
+              "The distinction matters for appointment, tenure, powers, reporting and the process through which the institution can be changed."
+            ],
+            "example": "The Election Commission of India is a constitutional body, while the Central Information Commission is established under statute."
+          },
+          {
+            "heading": "Oversight and regulatory roles",
+            "explanation": [
+              "Institutions may conduct elections, audit public expenditure, investigate specified matters, protect rights, regulate sectors or hear complaints.",
+              "Institutional design should provide clear jurisdiction, professional capacity, transparent procedures and safeguards against arbitrary interference."
+            ],
+            "example": "An information commission can hear appeals and complaints under the Right to Information framework."
+          },
+          {
+            "heading": "Independence and accountability",
+            "explanation": [
+              "Independence helps institutions act impartially, but it must be accompanied by transparency, reasoned decisions, lawful procedure and appropriate review.",
+              "Challenges include vacancies, resource constraints, overlapping mandates, delays and concerns about appointment processes. Reform should strengthen both autonomy and answerability."
+            ],
+            "example": "Timely appointments and adequate staffing can improve the ability of an oversight body to process cases."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Constitutional body",
+            "meaning": "An institution established and governed by constitutional provisions."
+          },
+          {
+            "term": "Statutory body",
+            "meaning": "An institution created by an Act of the legislature."
+          },
+          {
+            "term": "Institutional independence",
+            "meaning": "Protection from improper influence in carrying out a lawful mandate."
+          },
+          {
+            "term": "Jurisdiction",
+            "meaning": "The legal scope of an institution's authority."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Constitutional safeguards and institutions are important to the operation of democratic government."
+          },
+          {
+            "scholar": "Robert Dahl",
+            "idea": "Democratic institutions support contestation, participation and accountability."
+          }
+        ],
+        "answerPractice": "Differentiate constitutional and statutory institutions in India. Assess how institutional independence and accountability can be balanced.",
+        "revisionPrompt": "Use examples carefully and compare source of authority, mandate, appointment and accountability."
+      },
+      "test": [
+        {
+          "q": "A constitutional body derives its core authority from:",
+          "o": [
+            "The Constitution",
+            "A private contract",
+            "A departmental circular only",
+            "A company charter"
+          ],
+          "a": 0,
+          "w": "Its existence and core mandate are provided by the Constitution."
+        },
+        {
+          "q": "The Central Information Commission is established under:",
+          "o": [
+            "The Right to Information Act",
+            "The Constitution as a named constitutional body",
+            "The Representation of the People Act only",
+            "The Companies Act"
+          ],
+          "a": 0,
+          "w": "The CIC is a statutory institution under the RTI framework."
+        },
+        {
+          "q": "Institutional independence should be balanced with:",
+          "o": [
+            "Absence of all review",
+            "Transparency and lawful accountability",
+            "Unlimited secrecy",
+            "Political control over every decision"
+          ],
+          "a": 1,
+          "w": "Independence does not remove the need for reasoned decisions and accountability."
+        },
+        {
+          "q": "The Election Commission of India is:",
+          "o": [
+            "A constitutional body",
+            "A private association",
+            "A municipal corporation",
+            "A statutory tribunal"
+          ],
+          "a": 0,
+          "w": "The Election Commission is established under Article 324."
+        },
+        {
+          "q": "A common institutional challenge is:",
+          "o": [
+            "Excessive availability of trained staff everywhere",
+            "Vacancies and resource constraints",
+            "Absence of any legal mandates",
+            "Automatic resolution of all cases"
+          ],
+          "a": 1,
+          "w": "Vacancies and inadequate resources can weaken institutional performance."
+        }
       ]
     },
     {
@@ -5986,6 +6571,123 @@
         "Constitutional provisions and changing Centre-State relations",
         "Integrationist tendencies and regional aspirations",
         "Inter-State disputes"
+      ],
+      "notes": "Indian federalism distributes constitutional authority between the Union and states while also accommodating local government, cooperative institutions and political contestation.",
+      "lesson": {
+        "objective": "Explain the constitutional design and changing practice of Indian federalism.",
+        "sections": [
+          {
+            "heading": "Constitutional distribution",
+            "explanation": [
+              "The Constitution distributes legislative subjects through the Union, State and Concurrent Lists, while providing mechanisms for administrative and fiscal relations.",
+              "India's federal design gives the Union significant powers, but states retain constitutionally protected responsibilities and democratic mandates."
+            ],
+            "example": "Police and public order are generally State List subjects, while defence is a Union subject."
+          },
+          {
+            "heading": "Cooperative and competitive federalism",
+            "explanation": [
+              "Cooperative federalism involves consultation and joint action across levels of government. Intergovernmental forums and shared programmes can coordinate policy.",
+              "Competitive federalism refers to comparison and competition among states for investment, performance and innovation. It can encourage improvement but may widen inequalities where capacities differ."
+            ],
+            "example": "States may adapt national health or education programmes to local conditions while coordinating on shared goals."
+          },
+          {
+            "heading": "Tensions and reform",
+            "explanation": [
+              "Disputes can arise over fiscal transfers, centrally sponsored schemes, the role of Governors, legislative fields and the use of emergency provisions.",
+              "A healthy federation requires predictable fiscal relations, consultation, respect for constitutional boundaries, dispute resolution and strong local institutions."
+            ],
+            "example": "Inter-state river-water disputes require legal processes and cooperative negotiation."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Federalism",
+            "meaning": "Constitutional division of authority among levels of government."
+          },
+          {
+            "term": "Cooperative federalism",
+            "meaning": "Coordination and shared decision-making among governments."
+          },
+          {
+            "term": "Competitive federalism",
+            "meaning": "Comparison and competition among subnational governments."
+          },
+          {
+            "term": "Fiscal federalism",
+            "meaning": "Distribution of revenue powers, transfers and expenditure responsibilities."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "K. C. Wheare",
+            "idea": "Federalism involves coordinate and independent levels of government within their respective spheres."
+          },
+          {
+            "scholar": "Granville Austin",
+            "idea": "Indian federalism has been understood as a cooperative arrangement shaped by the Constitution and national conditions."
+          }
+        ],
+        "answerPractice": "Assess the nature of Indian federalism. How can cooperative mechanisms address contemporary Union–State tensions?",
+        "revisionPrompt": "Structure the answer around constitutional division, fiscal relations, institutions and current challenges."
+      },
+      "test": [
+        {
+          "q": "The Seventh Schedule contains:",
+          "o": [
+            "Union, State and Concurrent Lists",
+            "Only Fundamental Duties",
+            "Only emergency provisions",
+            "Only local-body reservations"
+          ],
+          "a": 0,
+          "w": "The Seventh Schedule distributes legislative subjects across three lists."
+        },
+        {
+          "q": "Police and public order are generally placed in the:",
+          "o": [
+            "State List",
+            "Union List",
+            "Concurrent List",
+            "Residuary list"
+          ],
+          "a": 0,
+          "w": "These subjects are generally within the State List."
+        },
+        {
+          "q": "Cooperative federalism emphasises:",
+          "o": [
+            "Joint action and consultation",
+            "Abolition of state governments",
+            "Only competition between districts",
+            "Complete centralisation"
+          ],
+          "a": 0,
+          "w": "Cooperation involves coordination and shared policy work."
+        },
+        {
+          "q": "Fiscal federalism concerns:",
+          "o": [
+            "Only election symbols",
+            "Revenue powers, transfers and expenditure responsibilities",
+            "Only judicial appointments",
+            "Only foreign policy"
+          ],
+          "a": 1,
+          "w": "It examines the financial relationship among levels of government."
+        },
+        {
+          "q": "A healthy federation requires:",
+          "o": [
+            "No intergovernmental consultation",
+            "Predictable fiscal relations and respect for constitutional boundaries",
+            "Permanent suspension of state legislatures",
+            "No dispute-resolution mechanisms"
+          ],
+          "a": 1,
+          "w": "Federal stability depends on constitutional respect, consultation and workable dispute resolution."
+        }
       ]
     },
     {
@@ -5999,6 +6701,123 @@
         "Caste, religion and ethnicity in Indian politics",
         "Party systems, coalition politics, pressure groups and electoral behaviour",
         "Social movements: civil liberties, human rights, women and environment"
+      ],
+      "notes": "Planning, development and political society examine how state-led planning, market reforms, social movements and changing political coalitions shape development priorities and distribution.",
+      "lesson": {
+        "objective": "Connect development strategies with political power, social change and debates about the role of the state and market.",
+        "sections": [
+          {
+            "heading": "Planning and the developmental state",
+            "explanation": [
+              "Planning seeks to coordinate resources and priorities over time. In post-independence India, planning was linked to nation-building, industrialisation, poverty reduction and public investment.",
+              "The role of planning institutions has changed with economic liberalisation, decentralisation, globalisation and the growth of private and civil-society actors."
+            ],
+            "example": "Public investment in infrastructure can shape regional development and private economic activity."
+          },
+          {
+            "heading": "Development and political society",
+            "explanation": [
+              "Development choices distribute costs and benefits. Land, employment, welfare, infrastructure and environmental policies can generate political mobilisation and conflict.",
+              "Political society includes organised groups, movements and communities that negotiate with the state for recognition, services, rights and resources."
+            ],
+            "example": "A displacement debate may bring together local residents, government agencies, firms and environmental groups."
+          },
+          {
+            "heading": "Inclusion and changing policy approaches",
+            "explanation": [
+              "Development must be assessed through growth, capabilities, distribution, social justice and environmental sustainability.",
+              "A mixed institutional approach can combine public regulation and investment, markets, local participation and social protection. The appropriate balance depends on evidence and public goals."
+            ],
+            "example": "A skills programme should be assessed by access, learning quality and sustained employment, not enrolment alone."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Developmental state",
+            "meaning": "A state that actively guides structural transformation and economic development."
+          },
+          {
+            "term": "Political society",
+            "meaning": "Collective political negotiation by groups seeking recognition, rights or public resources."
+          },
+          {
+            "term": "Liberalisation",
+            "meaning": "Reduction or redesign of restrictions on economic activity."
+          },
+          {
+            "term": "Inclusive development",
+            "meaning": "Development that expands opportunities and distributes benefits more equitably."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Amartya Sen",
+            "idea": "Development should be assessed through the expansion of human capabilities and freedoms."
+          },
+          {
+            "scholar": "Partha Chatterjee",
+            "idea": "Political society helps analyse how many groups negotiate with state institutions outside idealised models of formal civil society."
+          }
+        ],
+        "answerPractice": "Discuss the relationship between planning, development and political society in India. How have changing economic policies altered the role of the state?",
+        "revisionPrompt": "Link policy models to their social distributional effects and political responses."
+      },
+      "test": [
+        {
+          "q": "Economic planning is intended to:",
+          "o": [
+            "Coordinate priorities and resources over time",
+            "Eliminate all political choices",
+            "Replace constitutional government",
+            "Prevent public investment"
+          ],
+          "a": 0,
+          "w": "Planning coordinates goals, resources and policy across time."
+        },
+        {
+          "q": "A developmental state is generally associated with:",
+          "o": [
+            "A state that actively guides economic transformation",
+            "A state with no public institutions",
+            "Only private charity",
+            "A state that avoids infrastructure"
+          ],
+          "a": 0,
+          "w": "The developmental state plays an active role in guiding structural change."
+        },
+        {
+          "q": "Development choices become political because they:",
+          "o": [
+            "Have no distributional effects",
+            "Distribute costs, benefits and opportunities",
+            "Are always purely technical",
+            "Never affect local communities"
+          ],
+          "a": 1,
+          "w": "Development decisions affect groups differently and can produce mobilisation."
+        },
+        {
+          "q": "Amartya Sen's capability approach evaluates development through:",
+          "o": [
+            "Only national income",
+            "Expansion of substantive freedoms and capabilities",
+            "Only industrial output",
+            "Only export growth"
+          ],
+          "a": 1,
+          "w": "The capability approach focuses on what people are able to be and do."
+        },
+        {
+          "q": "Inclusive development places emphasis on:",
+          "o": [
+            "Growth without distribution",
+            "Access, opportunity and fairer distribution of benefits",
+            "Only aggregate output",
+            "Only urban investment"
+          ],
+          "a": 1,
+          "w": "Inclusion considers who can access and benefit from development."
+        }
       ]
     },
     {
@@ -6008,6 +6827,123 @@
         "Nature and major approaches",
         "Political economy and political sociology perspectives",
         "Limitations of comparative method"
+      ],
+      "notes": "Comparative Politics studies political systems, institutions, processes and behaviour across countries. It uses concepts and evidence to explain both similarities and differences.",
+      "lesson": {
+        "objective": "Understand the comparative method and the major ways political systems can be analysed.",
+        "sections": [
+          {
+            "heading": "Meaning and scope",
+            "explanation": [
+              "Comparative Politics examines political institutions, regimes, parties, elections, participation, state-society relations and public policy across countries.",
+              "It is not simply a description of foreign governments. It seeks explanations by comparing cases and identifying relevant similarities and differences."
+            ],
+            "example": "Comparing electoral systems can help explain differences in party systems and representation."
+          },
+          {
+            "heading": "Methods and concepts",
+            "explanation": [
+              "Researchers may compare a small number of cases in depth or use larger datasets to examine broad patterns. Case selection and clear concepts are essential to avoid misleading conclusions.",
+              "Concepts such as state, regime, democracy, authoritarianism, legitimacy and political culture help organise analysis, but must be defined carefully."
+            ],
+            "example": "A comparison of two federal systems should account for differences in constitutional powers and political history."
+          },
+          {
+            "heading": "Institutions and political processes",
+            "explanation": [
+              "Comparative analysis considers how constitutions, legislatures, executives, courts, parties and social movements interact.",
+              "Institutional outcomes depend on social structure, economic conditions, historical legacies and political agency; institutions should not be studied in isolation."
+            ],
+            "example": "The same electoral rule can produce different party behaviour in countries with different social cleavages."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Comparative Politics",
+            "meaning": "Systematic study of political systems and processes across cases."
+          },
+          {
+            "term": "Case study",
+            "meaning": "In-depth examination of a particular political case or process."
+          },
+          {
+            "term": "Regime",
+            "meaning": "The rules and practices governing access to and exercise of political power."
+          },
+          {
+            "term": "Political legitimacy",
+            "meaning": "Belief that political authority is rightful or acceptable."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Arend Lijphart",
+            "idea": "Comparative method and institutional comparison help explain democratic arrangements."
+          },
+          {
+            "scholar": "Gabriel Almond",
+            "idea": "Structural-functional analysis compares political systems through structures and functions."
+          }
+        ],
+        "answerPractice": "Explain the scope and methods of Comparative Politics. What are the strengths and limitations of cross-national comparison?",
+        "revisionPrompt": "Define the cases, concepts and comparison criteria before presenting similarities and differences."
+      },
+      "test": [
+        {
+          "q": "Comparative Politics primarily seeks to:",
+          "o": [
+            "Explain political similarities and differences across cases",
+            "Describe only one constitution",
+            "Replace political theory",
+            "Study only international trade"
+          ],
+          "a": 0,
+          "w": "It compares political systems and processes to develop explanations."
+        },
+        {
+          "q": "A case study involves:",
+          "o": [
+            "In-depth examination of a case",
+            "Randomly combining unrelated facts",
+            "Only counting election results",
+            "Avoiding context"
+          ],
+          "a": 0,
+          "w": "Case studies examine a political process or institution in depth."
+        },
+        {
+          "q": "A regime refers to:",
+          "o": [
+            "Rules and practices governing political power",
+            "Only the national budget",
+            "Only the civil service",
+            "A country's geography"
+          ],
+          "a": 0,
+          "w": "A regime structures access to and exercise of political authority."
+        },
+        {
+          "q": "A major risk in comparison is:",
+          "o": [
+            "Careful definition of concepts",
+            "Comparing cases without accounting for context",
+            "Using multiple sources",
+            "Explaining case selection"
+          ],
+          "a": 1,
+          "w": "Context-free comparisons can produce misleading conclusions."
+        },
+        {
+          "q": "Lijphart is associated with:",
+          "o": [
+            "Comparative political analysis",
+            "Classical economics only",
+            "Anthropological evolutionism",
+            "Administrative law"
+          ],
+          "a": 0,
+          "w": "Arend Lijphart made important contributions to comparative politics and democratic institutions."
+        }
       ]
     },
     {
