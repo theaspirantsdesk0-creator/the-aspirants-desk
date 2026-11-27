@@ -9912,6 +9912,138 @@
         "Important committees and commissions",
         "Financial management and human-resource reforms",
         "Implementation challenges"
+      ],
+      "lesson": {
+        "objective": "Trace major administrative reforms in India and assess the role of commissions, financial reforms and human-resource management.",
+        "sections": [
+          {
+            "heading": "Why administrative reforms are needed",
+            "explanation": [
+              "Administrative reforms seek to improve effectiveness, efficiency, accountability, responsiveness and integrity. Reform pressures arise from changing citizen expectations, technology, fiscal constraints, corruption risks and complex public problems.",
+              "Reform is not merely structural redesign; it also requires changes in organisational culture, incentives, skills and accountability."
+            ],
+            "example": "A single-window service may reduce procedural delay but still fail if departments do not share information."
+          },
+          {
+            "heading": "Major commissions and reform initiatives",
+            "explanation": [
+              "The First Administrative Reforms Commission (1966) examined broad improvements in public administration. The Second ARC (2005) addressed ethics, personnel, local governance, e-governance, financial management and citizen-centric administration.",
+              "Commission recommendations need political support, legal changes, resources and administrative ownership to translate into practice."
+            ],
+            "example": "Recommendations on citizen charters become meaningful only when service standards and grievance redress are monitored."
+          },
+          {
+            "heading": "Financial and human-resource reforms",
+            "explanation": [
+              "Financial reforms include outcome budgeting, performance monitoring, procurement transparency, internal controls and stronger audit follow-up. Human-resource reforms include competency-based recruitment and training, performance management, lateral expertise where appropriate and fair career systems.",
+              "Reforms should avoid simplistic targets that encourage data manipulation or neglect hard-to-measure public values."
+            ],
+            "example": "A department can track service delivery time while also reviewing quality and citizen experience."
+          },
+          {
+            "heading": "Implementation and change management",
+            "explanation": [
+              "Implementation challenges include fragmented authority, resistance, limited capacity, weak coordination, political turnover and inadequate data. Pilots, consultation, clear accountability, training and independent evaluation can improve reform outcomes.",
+              "A reform should be assessed for its effects on equity, access, rights and administrative burden, not only cost reduction."
+            ],
+            "example": "A digital service reform needs assisted access for citizens who lack devices, connectivity or digital literacy."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Administrative reform",
+            "meaning": "Planned change to improve public institutions, processes and performance."
+          },
+          {
+            "term": "Outcome budgeting",
+            "meaning": "Budgeting that links expenditure to intended outputs and outcomes."
+          },
+          {
+            "term": "Change management",
+            "meaning": "Organising people, processes and resources to implement institutional change."
+          },
+          {
+            "term": "Citizen-centric administration",
+            "meaning": "Public service designed around citizen needs, rights and accessibility."
+          },
+          {
+            "term": "Performance management",
+            "meaning": "Systems for setting, monitoring and reviewing organisational and individual performance."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "First Administrative Reforms Commission",
+            "idea": "1966 commission that examined improvements in Indian administration."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "2005 commission that made recommendations across governance and administration."
+          },
+          {
+            "scholar": "Paul H. Appleby",
+            "idea": "Emphasised administrative capacity, organisation and public accountability."
+          }
+        ],
+        "answerPractice": "Evaluate the major administrative reform initiatives in India. Why do well-designed recommendations often face implementation gaps?",
+        "revisionPrompt": "For one reform, identify the problem, institutional change, implementation barrier and outcome indicator."
+      },
+      "test": [
+        {
+          "q": "The First Administrative Reforms Commission was established in:",
+          "o": [
+            "1950",
+            "1966",
+            "1977",
+            "2005"
+          ],
+          "a": 1,
+          "w": "The First ARC was established in 1966."
+        },
+        {
+          "q": "The Second Administrative Reforms Commission was constituted in:",
+          "o": [
+            "1991",
+            "2000",
+            "2005",
+            "2014"
+          ],
+          "a": 2,
+          "w": "The Second ARC was constituted in 2005."
+        },
+        {
+          "q": "Outcome budgeting attempts to link:",
+          "o": [
+            "Expenditure with outputs and outcomes",
+            "Only staff attendance with salary",
+            "Only tax rates with inflation",
+            "Only borrowing with exports"
+          ],
+          "a": 0,
+          "w": "Outcome budgeting connects financial allocations with intended results."
+        },
+        {
+          "q": "A common barrier to administrative reform is:",
+          "o": [
+            "Strong coordination",
+            "Institutional resistance and weak capacity",
+            "Clear accountability",
+            "Adequate training"
+          ],
+          "a": 1,
+          "w": "Resistance, capacity gaps and fragmented authority often obstruct implementation."
+        },
+        {
+          "q": "Citizen-centric reform should consider:",
+          "o": [
+            "Only cost reduction",
+            "Accessibility, service quality, rights and grievance redress",
+            "Only internal paperwork",
+            "Only technology procurement"
+          ],
+          "a": 1,
+          "w": "Public service reform must improve the citizen experience and protect access and rights."
+        }
       ]
     },
     {
@@ -9922,6 +10054,138 @@
         "Programmes, focus and strategies",
         "Decentralisation and Panchayati Raj",
         "73rd Constitutional Amendment"
+      ],
+      "lesson": {
+        "objective": "Explain rural development institutions and programmes, Panchayati Raj and the constitutional framework of the 73rd Amendment.",
+        "sections": [
+          {
+            "heading": "Institutions and strategies for rural development",
+            "explanation": [
+              "Rural development involves institutions at Union, state, district and village levels, along with cooperatives, self-help groups, civil society and community organisations. Strategies address livelihoods, infrastructure, health, education, poverty and social inclusion.",
+              "Programme design must reflect local needs and the different circumstances of farmers, landless workers, women, Scheduled Castes and Scheduled Tribes."
+            ],
+            "example": "A livelihood programme may combine skills, credit access, market links and local infrastructure."
+          },
+          {
+            "heading": "Panchayati Raj and democratic decentralisation",
+            "explanation": [
+              "Panchayati Raj provides elected institutions at village, intermediate and district levels, subject to constitutional and state-law arrangements. The Gram Sabha provides a forum for direct participation by registered voters in the village area.",
+              "Local self-government can improve accountability and local knowledge, but effectiveness depends on actual transfer of functions, funds and functionaries."
+            ],
+            "example": "A Gram Sabha can discuss local works, beneficiary priorities and social audit findings."
+          },
+          {
+            "heading": "73rd Constitutional Amendment",
+            "explanation": [
+              "The 73rd Amendment gave constitutional recognition to Panchayats, provided for regular elections, reservation for Scheduled Castes and Scheduled Tribes and at least one-third reservation for women, and established State Finance Commissions and State Election Commissions for local bodies.",
+              "The Eleventh Schedule lists 29 subjects that may be devolved to Panchayats; devolution depends on state legislation and implementation."
+            ],
+            "example": "A state law may assign local responsibilities for drinking water or rural roads, but local capacity and funding affect delivery."
+          },
+          {
+            "heading": "Rural governance challenges",
+            "explanation": [
+              "Challenges include elite capture, inadequate finances, overlapping departmental control, uneven administrative capacity and limited participation by marginalised groups. Social audits, transparency, training and inclusive representation can improve accountability.",
+              "Decentralisation should be judged by whether local bodies can make meaningful decisions and deliver services fairly."
+            ],
+            "example": "Women elected representatives may need institutional support and independent access to information to exercise authority effectively."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Gram Sabha",
+            "meaning": "Assembly of registered voters in a village or group of villages under the applicable law."
+          },
+          {
+            "term": "Panchayati Raj",
+            "meaning": "System of rural local self-government through elected Panchayat institutions."
+          },
+          {
+            "term": "Eleventh Schedule",
+            "meaning": "Constitutional list of 29 subjects that may be devolved to Panchayats."
+          },
+          {
+            "term": "State Finance Commission",
+            "meaning": "Body constituted by a state to review the financial position of local bodies and recommend fiscal arrangements."
+          },
+          {
+            "term": "Elite capture",
+            "meaning": "Control of public decisions or resources by a small, locally powerful group."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "G. Ramachandran",
+            "idea": "Contributed to debates on rural development and local governance."
+          },
+          {
+            "scholar": "George Mathew",
+            "idea": "Wrote on Panchayati Raj and democratic decentralisation."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Recommended strengthening local governance and citizen participation."
+          }
+        ],
+        "answerPractice": "Discuss the significance and limitations of the 73rd Constitutional Amendment in strengthening rural local governance.",
+        "revisionPrompt": "Recall the main constitutional features of Panchayats and explain the importance of the three Fs."
+      },
+      "test": [
+        {
+          "q": "The 73rd Constitutional Amendment concerns:",
+          "o": [
+            "Panchayati Raj institutions",
+            "Urban municipalities",
+            "The Supreme Court",
+            "The Finance Commission of India"
+          ],
+          "a": 0,
+          "w": "The 73rd Amendment relates to rural local self-government."
+        },
+        {
+          "q": "The Eleventh Schedule contains:",
+          "o": [
+            "18 subjects",
+            "29 subjects",
+            "30 subjects",
+            "12 subjects"
+          ],
+          "a": 1,
+          "w": "The Eleventh Schedule lists 29 subjects for possible devolution to Panchayats."
+        },
+        {
+          "q": "The Gram Sabha consists of:",
+          "o": [
+            "Only elected Panchayat members",
+            "Registered voters in the relevant village area",
+            "Only government officials",
+            "Only landowners"
+          ],
+          "a": 1,
+          "w": "The Gram Sabha is the body of registered voters in the village area."
+        },
+        {
+          "q": "The three Fs of effective decentralisation are commonly:",
+          "o": [
+            "Functions, funds and functionaries",
+            "Food, finance and factories",
+            "Files, forms and fees",
+            "Federalism, force and finance"
+          ],
+          "a": 0,
+          "w": "Effective devolution requires functions, funds and functionaries."
+        },
+        {
+          "q": "A major risk in local governance is:",
+          "o": [
+            "Inclusive participation",
+            "Elite capture",
+            "Transparent accounts",
+            "Regular elections"
+          ],
+          "a": 1,
+          "w": "Elite capture can divert local decisions and resources toward powerful groups."
+        }
       ]
     },
     {
@@ -9932,6 +10196,138 @@
         "74th Constitutional Amendment",
         "Global-local debate and new localism",
         "Urban development, politics and city management"
+      ],
+      "lesson": {
+        "objective": "Analyse municipal governance, urban finance, the 74th Amendment and contemporary challenges of city management.",
+        "sections": [
+          {
+            "heading": "Municipal institutions and structures",
+            "explanation": [
+              "Urban local bodies include municipal corporations, municipalities and Nagar Panchayats, with structures and responsibilities defined by constitutional provisions and state laws. They provide or coordinate urban services such as sanitation, roads, public health and local planning.",
+              "Urban governance involves elected councils, mayors or chairpersons, municipal commissioners and specialised agencies; responsibilities may be fragmented across institutions."
+            ],
+            "example": "A city transport service may involve a municipal body, state transport agencies and a metropolitan planning authority."
+          },
+          {
+            "heading": "74th Constitutional Amendment",
+            "explanation": [
+              "The 74th Amendment gave constitutional recognition to urban local bodies, provided for regular elections and reservations, and created a framework for State Finance Commissions and District and Metropolitan Planning Committees.",
+              "The Twelfth Schedule lists 18 subjects that may be devolved to municipalities. Actual functions and resources depend on state laws and institutional practice."
+            ],
+            "example": "Urban planning responsibilities may be shared among municipalities and development authorities."
+          },
+          {
+            "heading": "Municipal finance and accountability",
+            "explanation": [
+              "Municipal revenues include property tax, user charges, fees, grants and assigned revenues; borrowing and municipal bonds may also support infrastructure under appropriate conditions. Weak revenue bases and dependence on transfers constrain many urban bodies.",
+              "Transparent budgets, audited accounts, citizen participation and clear service standards improve accountability."
+            ],
+            "example": "Property-tax mapping and fair valuation can improve municipal revenue when accompanied by accessible grievance procedures."
+          },
+          {
+            "heading": "Global-local debate and city management",
+            "explanation": [
+              "Globalisation links cities to investment, trade, migration and international networks, but competition for investment can intensify land and housing inequality. New localism emphasises local capacity, partnerships and community participation.",
+              "Urban management must balance economic growth with housing, transport, climate resilience, inclusion and environmental sustainability."
+            ],
+            "example": "A smart-city project should be assessed not only for technology but also for accessibility, maintenance and distribution of benefits."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Municipality",
+            "meaning": "Urban local self-government institution established under state law and the constitutional framework."
+          },
+          {
+            "term": "Twelfth Schedule",
+            "meaning": "Constitutional list of 18 subjects that may be devolved to municipalities."
+          },
+          {
+            "term": "Municipal bond",
+            "meaning": "Debt instrument through which an eligible urban local body may raise funds."
+          },
+          {
+            "term": "Metropolitan Planning Committee",
+            "meaning": "Constitutional planning body for a metropolitan area."
+          },
+          {
+            "term": "Urban localism",
+            "meaning": "Approach emphasising local institutions, capacity and community involvement in urban governance."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Patrick Geddes",
+            "idea": "Pioneer of regional and urban planning, emphasising survey and civic improvement."
+          },
+          {
+            "scholar": "M. S. A. Rao",
+            "idea": "Contributed to sociology of urbanisation in India."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Addressed urban governance and local administration reforms."
+          }
+        ],
+        "answerPractice": "Evaluate the impact of the 74th Constitutional Amendment on urban governance. Discuss the financial and institutional constraints of municipalities.",
+        "revisionPrompt": "Compare the 73rd and 74th Amendments and explain why municipal finance matters."
+      },
+      "test": [
+        {
+          "q": "The 74th Constitutional Amendment concerns:",
+          "o": [
+            "Urban local bodies",
+            "Panchayats only",
+            "The Election Commission",
+            "The Supreme Court"
+          ],
+          "a": 0,
+          "w": "The 74th Amendment provides the constitutional framework for urban local bodies."
+        },
+        {
+          "q": "The Twelfth Schedule contains:",
+          "o": [
+            "18 subjects",
+            "29 subjects",
+            "12 subjects",
+            "22 subjects"
+          ],
+          "a": 0,
+          "w": "The Twelfth Schedule lists 18 subjects for possible devolution to municipalities."
+        },
+        {
+          "q": "A major source of own revenue for municipalities is:",
+          "o": [
+            "Property tax",
+            "Customs duty",
+            "Corporate income tax",
+            "Union excise on imports"
+          ],
+          "a": 0,
+          "w": "Property tax is a major potential own-source municipal revenue."
+        },
+        {
+          "q": "A Metropolitan Planning Committee is intended to:",
+          "o": [
+            "Prepare a draft development plan for the metropolitan area",
+            "Conduct national elections",
+            "Audit all private companies",
+            "Appoint state governors"
+          ],
+          "a": 0,
+          "w": "The Constitution provides for Metropolitan Planning Committees to prepare metropolitan development plans."
+        },
+        {
+          "q": "Urban local bodies often face constraints due to:",
+          "o": [
+            "Strong own-source revenue in every city",
+            "Fragmented responsibilities and weak fiscal capacity",
+            "No demand for services",
+            "Absence of urban population"
+          ],
+          "a": 1,
+          "w": "Fragmentation and weak finances limit municipal capacity."
+        }
       ]
     },
     {
@@ -9943,6 +10339,142 @@
         "Police role in law and order",
         "Criminalisation of politics and administration",
         "Police-public relations and police reforms"
+      ],
+      "lesson": {
+        "objective": "Explain law-and-order administration, police organisation, investigative agencies and contemporary police reform challenges.",
+        "sections": [
+          {
+            "heading": "Colonial legacy and police organisation",
+            "explanation": [
+              "Modern Indian policing developed from colonial institutions that emphasised order and control. The Police Act of 1861 shaped much of the historical framework, while constitutional arrangements place police and public order primarily within the State List, subject to specific Union roles.",
+              "Contemporary policing must balance public safety with legality, accountability, rights and community trust."
+            ],
+            "example": "A police station is a local institution within a wider state police hierarchy."
+          },
+          {
+            "heading": "Police role and law-and-order administration",
+            "explanation": [
+              "Police responsibilities include prevention and detection of crime, maintenance of public order, protection of life and property, traffic management and assistance during emergencies. District magistracy and police leadership have distinct statutory roles and coordinate on public order.",
+              "Effective law-and-order administration requires professional investigation, adequate staffing, training, forensic capacity and public accountability."
+            ],
+            "example": "A large public event requires planning among police, local administration, transport and emergency services."
+          },
+          {
+            "heading": "Investigative agencies and Centre-State coordination",
+            "explanation": [
+              "India has central investigative and enforcement agencies with specific statutory mandates, while state police investigate most ordinary offences within their jurisdiction. Coordination can be necessary for inter-state, organised or specialised cases.",
+              "Federal balance, legal authority, jurisdiction and due process matter when agencies operate across state boundaries."
+            ],
+            "example": "An inter-state investigation may require coordination and lawful information-sharing among state police forces."
+          },
+          {
+            "heading": "Police-public relations and reforms",
+            "explanation": [
+              "Police-public trust is shaped by accessibility, fairness, responsiveness, professionalism and accountability. Reform debates include separation of investigation from law-and-order functions, fixed tenure, independent complaints mechanisms, training, technology and protection against improper influence.",
+              "Reform should improve both operational capacity and safeguards against arbitrary action."
+            ],
+            "example": "Community policing can build local trust when it is inclusive, transparent and respectful of rights."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Police and public order",
+            "meaning": "Subjects primarily assigned to states under the Seventh Schedule, subject to constitutional arrangements."
+          },
+          {
+            "term": "Community policing",
+            "meaning": "Approach that builds cooperation and trust between police and local communities."
+          },
+          {
+            "term": "Police accountability",
+            "meaning": "Mechanisms that ensure police actions comply with law, rights and professional standards."
+          },
+          {
+            "term": "Investigation",
+            "meaning": "Systematic collection and examination of evidence concerning an alleged offence."
+          },
+          {
+            "term": "Due process",
+            "meaning": "Fair procedures and legal safeguards governing state action."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "National Police Commission",
+            "idea": "Commission that made recommendations on police organisation, accountability and reform."
+          },
+          {
+            "scholar": "Ribeiro Committee",
+            "idea": "Police reform committee that reviewed implementation of earlier recommendations."
+          },
+          {
+            "scholar": "Prakash Singh judgment",
+            "idea": "Supreme Court directions in 2006 concerning police reforms."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Addressed public order, policing and governance issues."
+          }
+        ],
+        "answerPractice": "Discuss the major challenges in police-public relations in India. Evaluate key recommendations for police reforms.",
+        "revisionPrompt": "Differentiate public order, police investigation, law enforcement and police accountability."
+      },
+      "test": [
+        {
+          "q": "Police and public order are primarily in the:",
+          "o": [
+            "State List",
+            "Union List only",
+            "Concurrent List only",
+            "Residuary List"
+          ],
+          "a": 0,
+          "w": "Police and public order are primarily state subjects under the Seventh Schedule."
+        },
+        {
+          "q": "The Police Act historically associated with colonial policing was enacted in:",
+          "o": [
+            "1857",
+            "1861",
+            "1909",
+            "1947"
+          ],
+          "a": 1,
+          "w": "The Police Act of 1861 shaped the colonial police framework."
+        },
+        {
+          "q": "The Prakash Singh judgment on police reforms was delivered in:",
+          "o": [
+            "1991",
+            "2001",
+            "2006",
+            "2014"
+          ],
+          "a": 2,
+          "w": "The Supreme Court issued key police reform directions in 2006."
+        },
+        {
+          "q": "Community policing aims to:",
+          "o": [
+            "Reduce public trust",
+            "Build cooperation between police and communities",
+            "Replace all criminal procedure",
+            "Remove accountability"
+          ],
+          "a": 1,
+          "w": "Community policing seeks trust, communication and joint problem-solving."
+        },
+        {
+          "q": "A key safeguard in police administration is:",
+          "o": [
+            "Unreviewable discretion",
+            "Accountability and due process",
+            "Secret detention without legal basis",
+            "Political interference in every investigation"
+          ],
+          "a": 1,
+          "w": "Accountability and due process protect rights and improve institutional legitimacy."
+        }
       ]
     },
     {
@@ -9955,6 +10487,142 @@
         "Citizen-administration interface",
         "Corruption and administration",
         "Disaster management"
+      ],
+      "lesson": {
+        "objective": "Evaluate significant issues in Indian administration, including public-service values, regulatory bodies, human rights, corruption and disaster management.",
+        "sections": [
+          {
+            "heading": "Public-service values and regulatory commissions",
+            "explanation": [
+              "Public-service values include integrity, impartiality, objectivity, empathy, accountability and commitment to constitutional principles. Regulatory commissions oversee sectors where expertise, fairness and predictable rules are important.",
+              "Regulatory independence must be balanced with transparency, legislative oversight, judicial review and public participation."
+            ],
+            "example": "A regulator should apply published criteria consistently while explaining decisions and providing review mechanisms."
+          },
+          {
+            "heading": "Human rights and citizen-administration interface",
+            "explanation": [
+              "The National Human Rights Commission was established under the Protection of Human Rights Act, 1993. It promotes human-rights awareness and examines complaints within its statutory framework; its recommendations and powers should be understood accurately.",
+              "Citizen-administration relations improve through accessible services, grievance redress, transparency, language access and protection against discrimination."
+            ],
+            "example": "A citizen charter can state service standards, while a grievance mechanism addresses failures to meet them."
+          },
+          {
+            "heading": "Coalition regimes and administrative continuity",
+            "explanation": [
+              "Coalition governments require negotiation among political partners and can create complex coordination demands. Administration must remain politically neutral while implementing lawful decisions and maintaining continuity of public services.",
+              "Policy stability depends on institutions, cabinet processes, intergovernmental coordination and clear accountability."
+            ],
+            "example": "A coalition agreement may shape programme priorities, while departments translate approved policies into operational plans."
+          },
+          {
+            "heading": "Corruption and disaster management",
+            "explanation": [
+              "Corruption may involve bribery, favouritism, rent-seeking, collusion and misuse of public office. Prevention requires transparent procedures, audit, procurement safeguards, conflict-of-interest rules, whistle-blower protection and effective enforcement.",
+              "Disaster management includes prevention, mitigation, preparedness, response, recovery and reconstruction. Administrative capacity depends on coordination, risk information, local participation and resilient infrastructure."
+            ],
+            "example": "A transparent procurement process and public disclosure can reduce opportunities for corruption in emergency relief."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Public-service values",
+            "meaning": "Ethical principles guiding public officials, including integrity and impartiality."
+          },
+          {
+            "term": "Regulatory commission",
+            "meaning": "Institution established to oversee a sector or activity under a legal mandate."
+          },
+          {
+            "term": "NHRC",
+            "meaning": "National Human Rights Commission, established under the Protection of Human Rights Act, 1993."
+          },
+          {
+            "term": "Rent-seeking",
+            "meaning": "Use of influence or institutional position to obtain benefits without creating equivalent public value."
+          },
+          {
+            "term": "Disaster risk reduction",
+            "meaning": "Policies and actions to prevent new risk, reduce existing risk and manage residual risk."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Addressed ethics, corruption, citizen-centric administration and crisis management."
+          },
+          {
+            "scholar": "Nolan Committee",
+            "idea": "Popularised principles of public life such as integrity, objectivity and accountability."
+          },
+          {
+            "scholar": "K. Santhanam Committee",
+            "idea": "Examined corruption and vigilance arrangements in public administration."
+          },
+          {
+            "scholar": "National Human Rights Commission",
+            "idea": "Statutory institution established in 1993 to promote and protect human rights."
+          }
+        ],
+        "answerPractice": "Discuss the ethical and institutional challenges facing Indian administration. Explain how transparency, accountability and disaster preparedness strengthen public trust.",
+        "revisionPrompt": "Use a governance framework to connect public-service values, corruption prevention, human rights and disaster management."
+      },
+      "test": [
+        {
+          "q": "The National Human Rights Commission was established under the:",
+          "o": [
+            "Protection of Human Rights Act, 1993",
+            "Right to Information Act, 2005",
+            "Representation of the People Act, 1951",
+            "Disaster Management Act, 2005"
+          ],
+          "a": 0,
+          "w": "The NHRC was established under the Protection of Human Rights Act, 1993."
+        },
+        {
+          "q": "Which is a recognised public-service value?",
+          "o": [
+            "Integrity",
+            "Partisan favouritism",
+            "Secrecy without accountability",
+            "Personal enrichment"
+          ],
+          "a": 0,
+          "w": "Integrity is a core public-service value."
+        },
+        {
+          "q": "Rent-seeking refers to:",
+          "o": [
+            "Creating public value through innovation",
+            "Using influence to secure benefits without equivalent productive contribution",
+            "Transparent public procurement",
+            "Community participation"
+          ],
+          "a": 1,
+          "w": "Rent-seeking uses institutional influence to obtain private benefits."
+        },
+        {
+          "q": "Disaster management includes:",
+          "o": [
+            "Only post-disaster relief",
+            "Prevention, mitigation, preparedness, response and recovery",
+            "Only infrastructure construction",
+            "Only weather forecasting"
+          ],
+          "a": 1,
+          "w": "Disaster management is a continuous cycle, not just relief after an event."
+        },
+        {
+          "q": "Regulatory independence should be balanced with:",
+          "o": [
+            "No oversight",
+            "Transparency and accountability",
+            "Unlimited secrecy",
+            "Political favouritism"
+          ],
+          "a": 1,
+          "w": "Independent regulators still require transparency, accountability and lawful oversight."
+        }
       ]
     }
   ],
