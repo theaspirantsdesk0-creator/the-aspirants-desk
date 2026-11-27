@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "title": "UPSC Foundation Notes · Polity",
-  "description": "Beginner-first bilingual notes with clear explanations, Prelims facts, Mains angles and active recall. Cross-check legal details against the latest official text.",
+  "title": "UPSC Foundation Notes · GS Starter Library",
+  "description": "Beginner-first notes for Polity, History, Geography and Economy with simple explanations, Tamil summaries, Prelims facts, Mains angles, active recall and spaced revision. Check current official sources for changing facts.",
   "chapters": [
     {
       "id": "constitutionalism",
@@ -337,6 +337,327 @@
         }
       ],
       "tamil": "மத்திய அரசு மற்றும் மாநில அரசுகளுக்கு இடையே அதிகாரங்கள் அரசியலமைப்பால் பகிரப்பட்டுள்ளன. நாட்டின் வளர்ச்சிக்கு இரு நிலை அரசுகளும் இணைந்து செயல்படுவது முக்கியம்."
+    },
+    {
+      "id": "indus-civilisation",
+      "subject": "History",
+      "paper": "GS I",
+      "title": "Indus Valley Civilisation: Urban Life",
+      "level": "Foundation",
+      "minutes": 20,
+      "summary": "The Harappan civilisation is known for planned settlements, craft production, trade and distinctive material culture.",
+      "sections": [
+        {
+          "heading": "Time and geography",
+          "body": [
+            "The Mature Harappan phase is commonly dated to about 2600–1900 BCE. The civilisation extended across parts of present-day Pakistan and north-western and western India.",
+            "Important sites include Harappa, Mohenjo-daro, Dholavira, Rakhigarhi, Kalibangan and Lothal. Sites differed in layout, local ecology and material remains."
+          ]
+        },
+        {
+          "heading": "Urban features",
+          "bullets": [
+            "Planned streets and organised settlement layouts at several major sites.",
+            "Drainage and water-management features, especially notable at Mohenjo-daro and Dholavira.",
+            "Standardised weights, seals, craft production and long-distance exchange.",
+            "Evidence of agriculture and animal use, alongside specialised craft activities."
+          ]
+        },
+        {
+          "heading": "What remains uncertain",
+          "body": [
+            "The Harappan script remains undeciphered. Interpretations of political organisation, religious practices and the reasons for urban decline remain debated.",
+            "Avoid treating every site as identical or assuming one single cause for the transformation after the Mature phase."
+          ]
+        }
+      ],
+      "prelims": [
+        "Mature Harappan phase: approximately 2600–1900 BCE.",
+        "Dholavira is in present-day Gujarat; Rakhigarhi is in Haryana.",
+        "The Harappan script has not been conclusively deciphered."
+      ],
+      "mains": [
+        "Assess how urban planning and water management shaped Harappan settlements.",
+        "Discuss the diversity of Harappan sites and the limits of archaeological interpretation."
+      ],
+      "recall": [
+        {
+          "q": "Why is the Harappan civilisation called an urban civilisation?",
+          "a": "Because several settlements show planned layouts, specialised crafts, trade and organised civic features."
+        },
+        {
+          "q": "Has the Harappan script been deciphered?",
+          "a": "No, it remains undeciphered."
+        }
+      ],
+      "tamil": "ஹரப்பா நாகரிகம் நகரத் திட்டமிடல், வடிகால் அமைப்பு, கைவினை உற்பத்தி மற்றும் வாணிபத்திற்குப் பெயர் பெற்றது. அதன் எழுத்துமுறை இன்னும் முழுமையாகப் புரிந்துகொள்ளப்படவில்லை."
+    },
+    {
+      "id": "buddhism-jainism",
+      "subject": "History",
+      "paper": "GS I",
+      "title": "Buddhism and Jainism: Ideas and Context",
+      "level": "Foundation",
+      "minutes": 18,
+      "summary": "Buddhism and Jainism emerged in the wider shramana traditions of ancient India and questioned aspects of established ritual authority.",
+      "sections": [
+        {
+          "heading": "Historical setting",
+          "body": [
+            "Both traditions developed around the middle of the first millennium BCE, in a period of expanding towns, trade networks and new political formations in the Gangetic region.",
+            "They shared the broader shramana setting but developed distinct teachings, institutions and practices."
+          ]
+        },
+        {
+          "heading": "Core ideas",
+          "bullets": [
+            "Buddhism: the Four Noble Truths and the Noble Eightfold Path explain suffering and the path towards its cessation.",
+            "Jainism: the Three Jewels are right faith, right knowledge and right conduct; ahimsa is a central ethical principle.",
+            "Both traditions emphasised ethical conduct and paths of liberation, while differing in doctrines such as the nature of the self."
+          ]
+        },
+        {
+          "heading": "Historical significance",
+          "body": [
+            "Monastic communities, patronage, teaching networks and trade routes helped both traditions spread beyond their initial regions.",
+            "Use inscriptions, texts, stupas, caves and other archaeological remains together when studying their history."
+          ]
+        }
+      ],
+      "prelims": [
+        "The Four Noble Truths and Eightfold Path are central to Buddhism.",
+        "Jainism's Three Jewels are right faith, right knowledge and right conduct.",
+        "Ahimsa is especially central to Jain ethical teaching."
+      ],
+      "mains": [
+        "Explain the social and intellectual context in which shramana traditions developed.",
+        "Compare the ethical and philosophical contributions of Buddhism and Jainism."
+      ],
+      "recall": [
+        {
+          "q": "What are the Four Noble Truths associated with?",
+          "a": "Buddhism."
+        },
+        {
+          "q": "Name the Three Jewels of Jainism.",
+          "a": "Right faith, right knowledge and right conduct."
+        }
+      ],
+      "tamil": "புத்தமும் சமணமும் பழைய இந்தியாவின் ஷ்ரமண மரபுகளில் வளர்ந்தன. இரண்டும் ஒழுக்கம் மற்றும் விடுதலைப் பாதையை வலியுறுத்தினாலும் அவற்றின் தத்துவக் கருத்துகள் வேறுபட்டவை."
+    },
+    {
+      "id": "indian-monsoon",
+      "subject": "Geography",
+      "paper": "GS I",
+      "title": "Indian Monsoon: Basic Mechanism",
+      "level": "Foundation",
+      "minutes": 20,
+      "summary": "The Indian monsoon is a seasonal reversal of winds shaped by land-sea heating contrasts and several atmospheric and oceanic factors.",
+      "sections": [
+        {
+          "heading": "Seasonal pattern",
+          "body": [
+            "The southwest monsoon normally advances over Kerala around the beginning of June, but onset and progress vary from year to year.",
+            "The retreating or northeast monsoon is especially important for rainfall over parts of southeastern India, including Tamil Nadu, during October–December."
+          ]
+        },
+        {
+          "heading": "Why it occurs",
+          "bullets": [
+            "Land heats and cools faster than the ocean, creating seasonal pressure differences.",
+            "The northward shift of the Inter-Tropical Convergence Zone influences the monsoon circulation.",
+            "The Himalayas, Tibetan Plateau, cross-equatorial flow and low-pressure systems affect its distribution.",
+            "ENSO and the Indian Ocean Dipole can influence monsoon variability, but neither alone determines every year's rainfall."
+          ]
+        },
+        {
+          "heading": "Spatial variation",
+          "body": [
+            "The Western Ghats receive heavy orographic rainfall on their windward side, while some interior areas lie in a rain-shadow region.",
+            "The northeast monsoon contributes significantly to rainfall in Tamil Nadu and adjoining southeast coastal areas."
+          ]
+        }
+      ],
+      "prelims": [
+        "Southwest monsoon is the main rainy season for much of India.",
+        "Tamil Nadu receives a substantial share of its rainfall during the northeast/retreating monsoon season.",
+        "Orographic rainfall occurs when moist air is forced to rise over relief."
+      ],
+      "mains": [
+        "Explain the factors controlling the onset, distribution and variability of the Indian monsoon.",
+        "Discuss the importance of the northeast monsoon for Tamil Nadu and water security."
+      ],
+      "recall": [
+        {
+          "q": "Which monsoon season is especially important for Tamil Nadu?",
+          "a": "The northeast or retreating monsoon, broadly during October–December."
+        },
+        {
+          "q": "What is orographic rainfall?",
+          "a": "Rainfall caused when moist air rises over a mountain barrier, cools and condenses."
+        }
+      ],
+      "tamil": "இந்திய மழைக்காலம் நிலம்–கடல் வெப்ப வேறுபாடு, காற்றழுத்த அமைப்பு மற்றும் கடல்–வளிமண்டல காரணிகளால் பாதிக்கப்படுகிறது. தமிழ்நாட்டிற்கு வடகிழக்கு பருவமழை மிகவும் முக்கியமானது."
+    },
+    {
+      "id": "indian-river-systems",
+      "subject": "Geography",
+      "paper": "GS I",
+      "title": "Indian River Systems: Himalayan and Peninsular",
+      "level": "Foundation",
+      "minutes": 19,
+      "summary": "India's rivers are commonly studied under Himalayan and Peninsular systems, which differ in origin, flow regime and basin characteristics.",
+      "sections": [
+        {
+          "heading": "Himalayan rivers",
+          "body": [
+            "Major systems include the Indus, Ganga and Brahmaputra. Many tributaries are fed by glaciers, snowmelt and rainfall.",
+            "They generally have large drainage basins and, in many stretches, flow throughout the year, though discharge varies seasonally."
+          ]
+        },
+        {
+          "heading": "Peninsular rivers",
+          "body": [
+            "Major east-flowing rivers include the Mahanadi, Godavari, Krishna and Kaveri; many drain into the Bay of Bengal.",
+            "The Narmada and Tapi are major west-flowing rivers that drain into the Arabian Sea. Many Peninsular rivers depend strongly on monsoon rainfall."
+          ]
+        },
+        {
+          "heading": "Why river basins matter",
+          "bullets": [
+            "River basins support irrigation, drinking water, hydropower, ecosystems and transport.",
+            "Inter-state sharing, pollution, floods, droughts and sediment management create governance challenges.",
+            "A river basin approach considers upstream and downstream connections rather than administrative boundaries alone."
+          ]
+        }
+      ],
+      "prelims": [
+        "Godavari is the largest Peninsular river basin by area.",
+        "Narmada and Tapi flow westwards through rift valleys.",
+        "Kaveri is an important east-flowing Peninsular river."
+      ],
+      "mains": [
+        "Compare Himalayan and Peninsular river systems in terms of origin and flow regime.",
+        "Discuss integrated river-basin management and inter-state water cooperation."
+      ],
+      "recall": [
+        {
+          "q": "Name two major west-flowing Peninsular rivers.",
+          "a": "Narmada and Tapi."
+        },
+        {
+          "q": "Which is the largest Peninsular river basin by area?",
+          "a": "Godavari."
+        }
+      ],
+      "tamil": "இமயமலை ஆறுகள் பனி உருகுதல் மற்றும் மழையால் ஊட்டம் பெறுகின்றன. தீபகற்ப ஆறுகள் பெரும்பாலும் பருவமழையைச் சார்ந்தவை; கோதாவரி மிகப்பெரிய தீபகற்ப ஆற்றுப் பள்ளத்தாக்காகும்."
+    },
+    {
+      "id": "gdp-national-income",
+      "subject": "Economy",
+      "paper": "GS III",
+      "title": "GDP and National Income: First Concepts",
+      "level": "Foundation",
+      "minutes": 18,
+      "summary": "GDP measures the value of final goods and services produced within a country's domestic territory during a given period.",
+      "sections": [
+        {
+          "heading": "What GDP measures",
+          "body": [
+            "Gross Domestic Product (GDP) is a measure of production within domestic territory over a specified period, usually a quarter or a year.",
+            "Only final goods and services are counted to avoid double counting intermediate inputs. GDP can be estimated through production, income and expenditure approaches."
+          ]
+        },
+        {
+          "heading": "Nominal and real GDP",
+          "bullets": [
+            "Nominal GDP uses current prices and can rise because of higher output, higher prices or both.",
+            "Real GDP adjusts for price changes to better track changes in the volume of production.",
+            "Per capita GDP is GDP divided by population; it is an average and does not show how income is distributed."
+          ]
+        },
+        {
+          "heading": "Limits of GDP",
+          "body": [
+            "GDP does not directly measure inequality, unpaid household work, environmental quality, leisure or every dimension of well-being.",
+            "Use GDP alongside employment, health, education, poverty and environmental indicators for a broader assessment."
+          ]
+        }
+      ],
+      "prelims": [
+        "GDP refers to production within domestic territory.",
+        "Real GDP adjusts for price changes; nominal GDP uses current prices.",
+        "GDP per capita is an average and does not reveal income distribution."
+      ],
+      "mains": [
+        "Explain why GDP growth is important but insufficient as a measure of inclusive development.",
+        "Discuss complementary indicators needed to assess human well-being."
+      ],
+      "recall": [
+        {
+          "q": "What is the key difference between nominal and real GDP?",
+          "a": "Nominal GDP uses current prices; real GDP adjusts for price changes."
+        },
+        {
+          "q": "Does per capita GDP show how income is distributed?",
+          "a": "No. It is an average and can conceal inequality."
+        }
+      ],
+      "tamil": "GDP என்பது ஒரு நாட்டின் உள்நாட்டு எல்லைக்குள் ஒரு குறிப்பிட்ட காலத்தில் உற்பத்தி செய்யப்பட்ட இறுதி பொருட்கள் மற்றும் சேவைகளின் மதிப்பு. GDP மட்டும் மக்களின் நலனை முழுமையாகக் காட்டாது."
+    },
+    {
+      "id": "inflation-basics",
+      "subject": "Economy",
+      "paper": "GS III",
+      "title": "Inflation: Meaning, Causes and Effects",
+      "level": "Foundation",
+      "minutes": 20,
+      "summary": "Inflation is a sustained rise in the general price level, reducing the purchasing power of money.",
+      "sections": [
+        {
+          "heading": "Meaning and measurement",
+          "body": [
+            "Inflation is a rise in the general price level over time; a rise in one product's price alone is not necessarily inflation.",
+            "In India, Consumer Price Index (CPI) is a key measure used for retail inflation. Wholesale Price Index (WPI) tracks price changes at the wholesale level for its basket."
+          ]
+        },
+        {
+          "heading": "Common causes",
+          "bullets": [
+            "Demand-pull: aggregate demand grows faster than the economy's capacity to supply.",
+            "Cost-push: input costs such as fuel, transport or raw materials rise.",
+            "Supply shocks: weather events or disruptions reduce availability of essential goods.",
+            "Expectations and currency movements can also influence prices."
+          ]
+        },
+        {
+          "heading": "Effects and policy response",
+          "body": [
+            "High and volatile inflation can reduce purchasing power, create uncertainty and affect households differently.",
+            "Monetary policy, supply-side steps, logistics improvements and targeted support can all matter; the suitable response depends on the source of inflation."
+          ]
+        }
+      ],
+      "prelims": [
+        "Inflation is a sustained increase in the general price level.",
+        "CPI is a key measure of retail inflation in India.",
+        "Demand-pull and cost-push are common analytical categories."
+      ],
+      "mains": [
+        "Analyse how inflation affects households with different income levels.",
+        "Evaluate the roles of monetary policy and supply-side measures in managing inflation."
+      ],
+      "recall": [
+        {
+          "q": "Does a rise in the price of only one commodity always mean inflation?",
+          "a": "No. Inflation refers to a sustained rise in the general price level."
+        },
+        {
+          "q": "What does CPI broadly track?",
+          "a": "Changes in the prices paid by consumers for a representative basket of goods and services."
+        }
+      ],
+      "tamil": "பணவீக்கம் என்பது பொதுவான விலை நிலை தொடர்ந்து உயர்வதாகும். இதனால் பணத்தின் வாங்கும் திறன் குறைகிறது; CPI சில்லறை விலை மாற்றத்தை அளவிடும் முக்கியக் குறியீடு."
     }
   ]
 }
