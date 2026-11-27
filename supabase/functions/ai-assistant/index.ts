@@ -160,7 +160,14 @@ async function buildGroundedContext(message: string): Promise<string> {
       "public administration": "Public Administration",
       "political science and international relations": "Political Science and International Relations",
     };
+    const messageLower = message.toLowerCase();
+    const requestedSubject = Object.keys(subjectNames).find((key) => {
+      if (key === "political science and international relations") return messageLower.includes("psir") || messageLower.includes("political science") || messageLower.includes("international relations");
+      if (key === "public administration") return messageLower.includes("public administration") || messageLower.includes("pub ad");
+      return messageLower.includes(key);
+    });
     for (const [subjectKey, subjectLabel] of Object.entries(subjectNames)) {
+      if (requestedSubject && subjectKey !== requestedSubject) continue;
       const units = catalog[subjectKey];
       if (!Array.isArray(units)) continue;
       for (const item of units) {
@@ -177,7 +184,8 @@ async function buildGroundedContext(message: string): Promise<string> {
           }) : []),
           ...(Array.isArray(lesson?.keyTerms) ? lesson.keyTerms.flatMap((term) => term && typeof term === "object" ? [((term as Record<string, unknown>).term), ((term as Record<string, unknown>).meaning)] : []) : []),
         ].filter((value) => typeof value === "string").join(" ").toLowerCase();
-        const score = terms.reduce((n, term) => n + (searchable.includes(term) ? 1 : 0), 0);
+        const score = terms.reduce((n, term) => n + (searchable.includes(term) ? 1 : 0), 0) +
+          (requestedSubject === subjectKey ? 12 : 0);
         if (score > 0 && lesson) optionalRows.push({
           score, subject: subjectLabel, unit: String(row.unit ?? "Guided unit"),
           topics: row.topics ?? [], lesson, notes: typeof row.notes === "string" ? row.notes : "",
