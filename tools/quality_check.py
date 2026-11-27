@@ -929,7 +929,7 @@ def main() -> int:
               "Mains evaluation assets must use the existing authenticated Supabase client")
     check("assets/js/mains-evaluation.js" in sw_source_for_mains
           and "assets/css/mains-evaluation.css" in sw_source_for_mains
-          and "desk-v47-core-reliability" in sw_source_for_mains,
+          and "desk-v48-auth-refresh-fix" in sw_source_for_mains,
           "Service worker must cache and version the Mains evaluation feature")
 
     print(f"Quality checks executed: {CHECKS}")
