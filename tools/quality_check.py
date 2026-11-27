@@ -925,6 +925,13 @@ def main() -> int:
               "Mains evaluation backend must not present AI estimates as official marks")
     if index_path.is_file():
         index_html = index_path.read_text(encoding="utf-8")
+        check('const password = $("authPassword").value;' in index_html
+              and 'const password = $("authPassword").value.trim();' not in index_html,
+              "Sign-in and sign-up must preserve the exact password entered by the learner")
+        check('if (error) throw error;' in index_html
+              and 'Could not sign out. Check your connection and try again.' in index_html
+              and 'return false;' in index_html[index_html.find("async function handleSignOut"):index_html.find("// Phase 4: Multi-Exam Shell Selector")],
+              "Sign-out must retain the active account UI when remote session revocation fails")
         check('id="mainsEvaluateBtn"' in index_html
               and 'id="mainsEvaluationResult"' in index_html
               and 'window.TAD_SAVE_MAINS_EVALUATION' in index_html
