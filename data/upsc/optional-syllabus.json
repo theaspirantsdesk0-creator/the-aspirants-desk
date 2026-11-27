@@ -5649,6 +5649,138 @@
         "Agrarian class structure",
         "Industrial class structure",
         "Middle classes in India"
+      ],
+      "lesson": {
+        "objective": "Analyse class relations in Indian agriculture, industry and the growth of the middle classes.",
+        "sections": [
+          {
+            "heading": "Agrarian class structure",
+            "explanation": [
+              "Agrarian classes are shaped by ownership and control of land, tenancy, agricultural labour, credit and access to markets. Landlords, capitalist farmers, small cultivators, tenants and landless labourers may occupy different positions, but categories vary regionally.",
+              "Caste and class often intersect in rural India, while gender shapes access to land, unpaid work and control over income."
+            ],
+            "example": "A landless household may rely on seasonal agricultural work and migration for income."
+          },
+          {
+            "heading": "Industrial class structure",
+            "explanation": [
+              "Industrialisation creates relations among owners, managers, skilled and unskilled workers, contractors and informal labour. Class position is influenced by ownership, workplace authority, job security, skills and bargaining power.",
+              "Labour markets are segmented: workers in secure formal jobs may experience very different conditions from casual or subcontracted workers."
+            ],
+            "example": "Workers performing similar tasks may have different protections because one is directly employed and another is hired through a contractor."
+          },
+          {
+            "heading": "Growth and diversity of the middle classes",
+            "explanation": [
+              "The middle classes include diverse occupational and income groups such as professionals, salaried employees, small entrepreneurs and sections of public and private employment. Education, urbanisation, service-sector growth and state employment have contributed to their expansion.",
+              "The middle class is not a single unified group; its consumption, political preferences and economic security vary."
+            ],
+            "example": "A salaried professional and a small shop owner may both be described as middle class but have different work security and social resources."
+          },
+          {
+            "heading": "Class, consumption and social mobility",
+            "explanation": [
+              "Class is reproduced through wealth, education, networks, cultural resources and intergenerational transfers. Consumption can express status, but visible consumption does not necessarily indicate secure assets or stable income.",
+              "Sociological analysis should distinguish occupational position, income, wealth, status and subjective class identity."
+            ],
+            "example": "A household may display high consumption through debt while lacking long-term financial security."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Agrarian class",
+            "meaning": "A social position defined by relations to land, labour and agricultural production."
+          },
+          {
+            "term": "Industrial working class",
+            "meaning": "Workers whose livelihoods depend substantially on wage labour in industrial and related sectors."
+          },
+          {
+            "term": "Middle class",
+            "meaning": "A diverse grouping commonly associated with intermediate occupational, educational or economic positions."
+          },
+          {
+            "term": "Labour market segmentation",
+            "meaning": "Division of employment into jobs with different wages, security and conditions."
+          },
+          {
+            "term": "Class reproduction",
+            "meaning": "Processes through which class advantages or disadvantages persist across generations."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "A. R. Desai",
+            "idea": "Marxist analysis of agrarian and industrial class relations."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Empirical analysis of caste, class and power in India."
+          },
+          {
+            "scholar": "Bourdieu",
+            "idea": "Cultural and social capital help explain the reproduction of class advantage."
+          }
+        ],
+        "answerPractice": "Discuss the changing class structure in India with reference to agriculture, industry and the middle classes.",
+        "revisionPrompt": "Differentiate landownership, occupational class, income and status using Indian examples."
+      },
+      "test": [
+        {
+          "q": "Agrarian class position is strongly shaped by:",
+          "o": [
+            "Relations to land, labour and agricultural production",
+            "Only religious belief",
+            "Only language",
+            "Only urban residence"
+          ],
+          "a": 0,
+          "w": "Agrarian class analysis focuses on ownership, tenancy, labour and production relations."
+        },
+        {
+          "q": "Labour market segmentation refers to:",
+          "o": [
+            "All jobs having identical conditions",
+            "Division of jobs into segments with different wages and security",
+            "The abolition of wage labour",
+            "Only migration between villages"
+          ],
+          "a": 1,
+          "w": "Segmentation creates unequal employment conditions and protections."
+        },
+        {
+          "q": "Which statement about the Indian middle classes is most accurate?",
+          "o": [
+            "They form a completely uniform group",
+            "They include diverse occupations and levels of economic security",
+            "They consist only of government employees",
+            "They have no relationship with education"
+          ],
+          "a": 1,
+          "w": "Middle-class groups are internally diverse in occupation, income, assets and security."
+        },
+        {
+          "q": "Class reproduction refers to:",
+          "o": [
+            "The disappearance of inequality",
+            "Persistence of advantages or disadvantages across generations",
+            "Only biological reproduction",
+            "A change in political boundaries"
+          ],
+          "a": 1,
+          "w": "Class reproduction describes how resources and opportunities are transmitted across generations."
+        },
+        {
+          "q": "A sociological analysis of industrial workers should examine:",
+          "o": [
+            "Only the final product",
+            "Ownership, control, job security, skills and bargaining power",
+            "Only consumer preferences",
+            "Only factory architecture"
+          ],
+          "a": 1,
+          "w": "Industrial class relations depend on ownership, authority and labour-market conditions."
+        }
       ]
     },
     {
@@ -5660,6 +5792,142 @@
         "Family and marriage in India",
         "Household dimensions of family",
         "Patriarchy, entitlements and sexual division of labour"
+      ],
+      "lesson": {
+        "objective": "Explain kinship, family, marriage, descent and patriarchy in India with attention to regional and household diversity.",
+        "sections": [
+          {
+            "heading": "Lineage and descent in India",
+            "explanation": [
+              "Kinship in India is organised through diverse systems of descent, marriage, residence and inheritance. Patrilineal and patrilocal patterns are widespread, but matrilineal and other arrangements also exist in particular communities and regions.",
+              "Kinship rules influence property, family obligations, social identity and marriage networks."
+            ],
+            "example": "Matrilineal traditions in parts of the south-west show that kinship arrangements cannot be reduced to one national pattern."
+          },
+          {
+            "heading": "Types of kinship systems",
+            "explanation": [
+              "Kinship may be classified through consanguineal ties, affinal ties, descent groups, lineage and clan. Marriage rules may encourage or prohibit particular unions, and terminology reflects culturally specific ways of organising relationships.",
+              "Regional systems differ, including patterns of cross-cousin marriage in some southern communities and different marriage preferences in many northern communities."
+            ],
+            "example": "A marriage rule that is accepted in one regional kinship system may be prohibited in another."
+          },
+          {
+            "heading": "Family, marriage and household dimensions",
+            "explanation": [
+              "Family and household are not identical: family networks may extend across multiple residences. Marriage practices connect families and can shape property, status, alliance and social reproduction.",
+              "Urbanisation, education, employment and migration influence household size, residence and intergenerational care, while kinship obligations may continue across distance."
+            ],
+            "example": "A migrant worker may live in a city while remaining embedded in a rural family household economy."
+          },
+          {
+            "heading": "Patriarchy, entitlements and division of labour",
+            "explanation": [
+              "Patriarchy influences authority, inheritance, mobility, decision-making and access to resources. Legal rights may change faster than everyday practices, so formal entitlements and actual control should be examined separately.",
+              "The sexual division of labour often assigns women disproportionate unpaid care responsibilities, affecting paid employment, time use and economic independence."
+            ],
+            "example": "A woman may have a legal inheritance right but face social pressure that limits her practical ability to exercise it."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Affinal kinship",
+            "meaning": "Relationships created through marriage."
+          },
+          {
+            "term": "Consanguineal kinship",
+            "meaning": "Relationships understood through shared descent or blood ties."
+          },
+          {
+            "term": "Patrilocal residence",
+            "meaning": "A post-marital residence pattern near or with the husband's family."
+          },
+          {
+            "term": "Matrilineal descent",
+            "meaning": "Tracing descent through the mother's line."
+          },
+          {
+            "term": "Entitlement",
+            "meaning": "A recognised claim or right to access resources or benefits."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Irawati Karve",
+            "idea": "Comparative analysis of kinship organisation in India."
+          },
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Studies of family, caste and social change in Indian communities."
+          },
+          {
+            "scholar": "A. M. Shah",
+            "idea": "Sociological analysis of household and family organisation in India."
+          },
+          {
+            "scholar": "Leela Dube",
+            "idea": "Feminist anthropology of kinship, gender and patriarchy in India."
+          }
+        ],
+        "answerPractice": "Discuss the diversity of kinship systems in India. Examine how patriarchy shapes entitlements and the sexual division of labour.",
+        "revisionPrompt": "Distinguish descent, residence, marriage alliance and household; use regional variation carefully."
+      },
+      "test": [
+        {
+          "q": "Affinal kinship refers to relationships formed through:",
+          "o": [
+            "Marriage",
+            "Only common descent",
+            "Employment",
+            "Political representation"
+          ],
+          "a": 0,
+          "w": "Affinal relationships are created through marriage."
+        },
+        {
+          "q": "Patrilocal residence generally means living:",
+          "o": [
+            "Near or with the husband's family after marriage",
+            "Only with the mother's brother",
+            "In a separate country",
+            "Only in an urban household"
+          ],
+          "a": 0,
+          "w": "Patrilocality refers to residence near or with the husband's family."
+        },
+        {
+          "q": "Irawati Karve is associated with:",
+          "o": [
+            "Study of kinship organisation in India",
+            "Theory of anomie",
+            "Dependency theory",
+            "Power elite theory"
+          ],
+          "a": 0,
+          "w": "Karve's work made important comparative contributions to Indian kinship studies."
+        },
+        {
+          "q": "Which statement about family and household is correct?",
+          "o": [
+            "They are always identical",
+            "Family networks may extend across multiple households",
+            "Household means only common ancestry",
+            "Family cannot include adopted ties"
+          ],
+          "a": 1,
+          "w": "Family relations may extend beyond a single residential unit."
+        },
+        {
+          "q": "A sociological study of patriarchy should examine:",
+          "o": [
+            "Only formal law",
+            "Authority, property, care work and actual control over resources",
+            "Only household size",
+            "Only biological differences"
+          ],
+          "a": 1,
+          "w": "Patriarchy operates through institutions, resources, labour and everyday power relations."
+        }
       ]
     },
     {
@@ -5668,6 +5936,142 @@
       "topics": [
         "Religious communities in India",
         "Problems of religious minorities"
+      ],
+      "lesson": {
+        "objective": "Analyse religious communities in India and the sociological challenges faced by religious minorities.",
+        "sections": [
+          {
+            "heading": "Religious diversity and social institutions",
+            "explanation": [
+              "India contains diverse religious communities with varied internal traditions, institutions, languages and regional histories. Religious identity may shape community networks, rituals, education, charity and political participation.",
+              "No religious community is internally uniform; class, caste, gender, region and generation create differences within communities."
+            ],
+            "example": "A religious community may include different class positions, linguistic groups and local traditions."
+          },
+          {
+            "heading": "Minority status and citizenship",
+            "explanation": [
+              "Minority status is shaped by constitutional provisions, public policy, demographic context and social experience. Sociological analysis distinguishes formal citizenship rights from actual access to education, employment, housing, representation and public services.",
+              "Minority experiences differ by region and by intersecting social positions; avoid treating minority communities as one homogeneous category."
+            ],
+            "example": "A student may hold equal formal rights while facing barriers in access to quality schooling or housing."
+          },
+          {
+            "heading": "Prejudice, discrimination and communalism",
+            "explanation": [
+              "Prejudice involves negative generalisations, while discrimination involves unequal treatment. Communalism politicises religious identity in ways that may intensify group antagonism and undermine equal citizenship.",
+              "Sociologists examine the role of political mobilisation, media narratives, economic competition, local histories and institutional responses."
+            ],
+            "example": "A housing practice that excludes applicants on religious identity is a form of discriminatory treatment."
+          },
+          {
+            "heading": "Pluralism, secularism and social cohesion",
+            "explanation": [
+              "Pluralism recognises the coexistence of different communities and supports equal participation. Indian secularism is debated in relation to principled state engagement, religious freedom, equality and protection of minority rights.",
+              "Social cohesion depends on constitutional safeguards, impartial institutions, inter-community dialogue and equal access to public goods."
+            ],
+            "example": "A public institution can build trust by applying rules fairly and ensuring equal access."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Religious minority",
+            "meaning": "A religious community that is numerically smaller in a relevant social or constitutional context."
+          },
+          {
+            "term": "Prejudice",
+            "meaning": "Preconceived negative judgement about a group."
+          },
+          {
+            "term": "Discrimination",
+            "meaning": "Unequal treatment based on group identity or status."
+          },
+          {
+            "term": "Communalism",
+            "meaning": "Political mobilisation around religious identity in ways that can generate antagonism."
+          },
+          {
+            "term": "Pluralism",
+            "meaning": "Recognition and coexistence of diverse communities with equal participation."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "T. N. Madan",
+            "idea": "Analysed secularism, religion and the Indian social context."
+          },
+          {
+            "scholar": "Ashis Nandy",
+            "idea": "Critically examined secularism, identity and communal politics."
+          },
+          {
+            "scholar": "Rajeev Bhargava",
+            "idea": "Developed arguments on principled distance in Indian secularism."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Wrote on equality, citizenship and social institutions."
+          }
+        ],
+        "answerPractice": "Discuss the sociological challenges faced by religious minorities in India. Include citizenship, discrimination and secularism.",
+        "revisionPrompt": "Differentiate religious diversity, pluralism, prejudice, discrimination and communalism."
+      },
+      "test": [
+        {
+          "q": "Religious pluralism refers to:",
+          "o": [
+            "Coexistence of different religious communities with scope for equal participation",
+            "A single compulsory faith",
+            "The absence of all religious institutions",
+            "Only majority rule"
+          ],
+          "a": 0,
+          "w": "Pluralism recognises diversity and equal participation."
+        },
+        {
+          "q": "Discrimination differs from prejudice because discrimination involves:",
+          "o": [
+            "Unequal treatment in practice",
+            "Only an unspoken opinion",
+            "A neutral demographic count",
+            "A ritual practice only"
+          ],
+          "a": 0,
+          "w": "Discrimination is unequal treatment, while prejudice is a preconceived judgement."
+        },
+        {
+          "q": "Communalism is most accurately understood as:",
+          "o": [
+            "Any private religious belief",
+            "Political mobilisation around religious identity that can create group antagonism",
+            "A form of household residence",
+            "A census method"
+          ],
+          "a": 1,
+          "w": "Communalism politicises religious identity in ways that can undermine social cohesion."
+        },
+        {
+          "q": "The principle of equal citizenship requires:",
+          "o": [
+            "Rights to depend on religious identity",
+            "Equal legal status and access to rights",
+            "A ban on minority institutions",
+            "Only cultural uniformity"
+          ],
+          "a": 1,
+          "w": "Equal citizenship requires non-discriminatory rights and public institutions."
+        },
+        {
+          "q": "Principled distance in Indian secularism is associated with:",
+          "o": [
+            "Rajeev Bhargava",
+            "Karl Marx",
+            "Herbert Spencer",
+            "Robert Dahl"
+          ],
+          "a": 0,
+          "w": "Bhargava's account examines context-sensitive state engagement while protecting freedom and equality."
+        }
       ]
     },
     {
@@ -5677,6 +6081,142 @@
         "Development planning and mixed economy",
         "Constitution, law and social change",
         "Education and social change"
+      ],
+      "lesson": {
+        "objective": "Explain major visions and institutional pathways of social change in India through planning, constitutional law and education.",
+        "sections": [
+          {
+            "heading": "Development planning and mixed economy",
+            "explanation": [
+              "After independence, India adopted planned development with a mixed economy in which public and private sectors both had roles. Planning aimed to expand productive capacity, reduce poverty, build infrastructure and promote social justice.",
+              "The strategy changed over time, with shifts in public investment, regulation, liberalisation and welfare policy. Outcomes varied across regions and social groups."
+            ],
+            "example": "Public investment in infrastructure can expand opportunities, but distribution depends on access and institutional design."
+          },
+          {
+            "heading": "Constitution, law and social change",
+            "explanation": [
+              "The Constitution provides a framework for equality, liberty, justice, representation and protection from discrimination. Fundamental rights, Directive Principles, democratic institutions and legislation can reshape social relations.",
+              "Law can prohibit discriminatory practices and create rights, but implementation depends on institutions, public awareness, resources and social mobilisation."
+            ],
+            "example": "Legal prohibition of untouchability establishes a constitutional norm, while enforcement and social change remain ongoing tasks."
+          },
+          {
+            "heading": "Education as an agent of change",
+            "explanation": [
+              "Education can expand capabilities, occupational opportunities, political awareness and social mobility. It may challenge inherited hierarchies, but unequal school quality, digital access, language barriers and discrimination can reproduce disadvantage.",
+              "Sociological analysis studies both educational access and the distribution of learning outcomes and institutional resources."
+            ],
+            "example": "First-generation learners may face barriers beyond enrolment, including language, household responsibilities and unequal access to learning support."
+          },
+          {
+            "heading": "State, civil society and social transformation",
+            "explanation": [
+              "Social change is produced through interaction among state institutions, courts, schools, markets, social movements, communities and households. Policies may generate intended and unintended consequences.",
+              "A balanced account connects constitutional ideals with social structure, implementation and collective agency."
+            ],
+            "example": "A right-based programme may become more effective when communities monitor delivery and raise grievances through local institutions."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Mixed economy",
+            "meaning": "An economic system combining public and private ownership or activity."
+          },
+          {
+            "term": "Directive Principles",
+            "meaning": "Constitutional principles guiding the state in governance and social policy."
+          },
+          {
+            "term": "Social justice",
+            "meaning": "Fair distribution of rights, opportunities, resources and social respect."
+          },
+          {
+            "term": "Capability",
+            "meaning": "A person's substantive opportunity to achieve valued ways of being and doing."
+          },
+          {
+            "term": "Implementation gap",
+            "meaning": "Difference between a policy's formal design and its actual delivery or effect."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Yogendra Singh",
+            "idea": "Analysed modernisation and social change in India."
+          },
+          {
+            "scholar": "Amartya Sen",
+            "idea": "Capabilities approach links development to substantive freedoms."
+          },
+          {
+            "scholar": "T. H. Marshall",
+            "idea": "Analysed the development of civil, political and social citizenship."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Examined equality, hierarchy and democratic institutions."
+          }
+        ],
+        "answerPractice": "Evaluate the role of the Constitution, planning and education as instruments of social change in India.",
+        "revisionPrompt": "For one constitutional right, trace the path from legal provision to implementation and lived experience."
+      },
+      "test": [
+        {
+          "q": "A mixed economy combines:",
+          "o": [
+            "Public and private economic activity",
+            "Only state ownership",
+            "Only private ownership",
+            "No market activity"
+          ],
+          "a": 0,
+          "w": "A mixed economy includes both public and private sectors."
+        },
+        {
+          "q": "Directive Principles primarily:",
+          "o": [
+            "Guide the state in governance and social policy",
+            "Replace all Fundamental Rights",
+            "Apply only to private contracts",
+            "Abolish elections"
+          ],
+          "a": 0,
+          "w": "Directive Principles guide state policy toward social and economic goals."
+        },
+        {
+          "q": "Education can reproduce inequality when:",
+          "o": [
+            "Access and quality are unequally distributed",
+            "All learners have equal support",
+            "Discrimination is absent",
+            "Resources are fairly distributed"
+          ],
+          "a": 0,
+          "w": "Unequal access and quality can reproduce existing social disadvantages."
+        },
+        {
+          "q": "An implementation gap is:",
+          "o": [
+            "A difference between policy design and actual delivery",
+            "A constitutional amendment",
+            "A form of kinship",
+            "A type of sampling"
+          ],
+          "a": 0,
+          "w": "The term describes the gap between formal policy and practical outcomes."
+        },
+        {
+          "q": "The capabilities approach is associated with:",
+          "o": [
+            "Amartya Sen",
+            "Auguste Comte",
+            "Vilfredo Pareto",
+            "C. Wright Mills"
+          ],
+          "a": 0,
+          "w": "Sen's capabilities approach focuses on substantive freedoms and opportunities."
+        }
       ]
     },
     {
