@@ -36,6 +36,10 @@ The current public UPSC index lists recent Civil Services Mains papers, while th
 The static quality check validates inventory size, unique IDs, status values, and the rule that direct document links require verification metadata.
 
 
+## 2025 official-source discovery
+
+`2025-source-discovery.json` records the official UPSC index links located for 2025 Prelims GS I and CSAT, Mains Essay and GS I–IV, and Anthropology Papers I–II. These entries are `source_found` only: the index listing identifies the documents, but each PDF still needs content-level inspection before question transcription or publication. A listed PDF is not a verified question record, and this manifest is not loaded into the public question bank. The 2025 Prelims PDFs are large; where automated inspection cannot retrieve them, use a controlled PDF review step rather than substituting third-party reproductions.
+
 ## Supabase publication path
 
 The site reads the static, source-verified `questions.json` archive and also queries `public.pyq_questions` for live records. A database row is displayed only when both `is_published` and `source_verified` are true and `source_reference` is a direct HTTPS URL on `upsc.gov.in` or `www.upsc.gov.in`. Database answer keys remain separately permissioned; the public question view does not expose the admin-only answer-key table.
