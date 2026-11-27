@@ -2,7 +2,7 @@
 "use strict";
 const host=document.getElementById("tadLearningSnapshot");if(!host)return;
 const $=id=>host.querySelector(id.startsWith("#")?id:"#"+id);
-let chapters=[];
+let chapters=[],optionalSubjects=[];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function read(){try{const s=JSON.parse(localStorage.getItem("tad_state_v5")||"{}");return s&&typeof s==="object"?s.notesStudioProgress||{}:{}}catch(_){return {}}}
 function render(){
@@ -32,7 +32,15 @@ function render(){
  $("#snapshotWeak").innerHTML=weak.length?weak.map(x=>'<li><span>'+esc(x.c.title)+'</span><small>'+Math.round(x.rate*100)+'% confident · '+x.attempts+' attempts</small></li>').join(""):'<li class="muted">Your active-recall weak topics will appear here after practice.</li>';
  $("#snapshotDue").innerHTML=due.length?due.sort((a,b)=>Date.parse(p[a.id].nextReviewAt)-Date.parse(p[b.id].nextReviewAt)).slice(0,4).map(c=>'<li><span>'+esc(c.title)+'</span><small>Review due</small></li>').join(""):'<li class="muted">No chapter revisions are due right now.</li>';
 }
-async function init(){try{const r=await fetch("data/notes/gs-foundations.json",{cache:"no-store"});if(!r.ok)throw Error();const d=await r.json();chapters=Array.isArray(d.chapters)?d.chapters:[];render()}catch(_){host.querySelector(".tad-snapshot-body").textContent="Study snapshot is temporarily unavailable. Open Notes Studio to view your progress."}}
+async function init(){try{
+ const [notesResponse,optionalResponse]=await Promise.all([fetch("data/notes/gs-foundations.json",{cache:"no-store"}),fetch("data/upsc/optional-syllabus.json",{cache:"no-store"})]);
+ if(!notesResponse.ok)throw Error("Foundation notes unavailable");
+ const notes=await notesResponse.json();chapters=Array.isArray(notes.chapters)?notes.chapters:[];
+ if(optionalResponse.ok){const data=await optionalResponse.json();optionalSubjects=Array.isArray(data.subjects)?data.subjects:[];}
+ const catalogue=$("#tadOptionalCatalogue");
+ if(catalogue)catalogue.innerHTML=optionalSubjects.length?optionalSubjects.map(name=>'<span class="tad-optional-tag">'+esc(name)+'</span>').join(""):'<span class="muted">Optional subject catalogue unavailable.</span>';
+ render();
+ }catch(_){host.querySelector(".tad-snapshot-body").textContent="Study snapshot is temporarily unavailable. Open Notes Studio to view your progress.";}}
 window.addEventListener("tad:notesStudioProgressChange",render);
 window.addEventListener("tad:learningHubLoaded",()=>window.setTimeout(render,0));
 window.addEventListener("storage",e=>{if(e.key==="tad_state_v5")render()});
