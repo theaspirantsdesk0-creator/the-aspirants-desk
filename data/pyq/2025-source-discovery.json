@@ -2,7 +2,7 @@
   "exam": "Civil Services Examination",
   "year": 2025,
   "discovery_source": "https://www.upsc.gov.in/examinations/previous-question-papers",
-  "note": "These are primary-source discovery records from the official UPSC previous-question-paper index. `source_found` means the paper link was present in the index; it does not mean the PDF contents have been individually inspected or that question text is verified. Do not import these entries into the published question table.",
+  "note": "Primary-source discovery metadata only. The official UPSC index link is confirmed for each document. PDF metadata retrieval is recorded separately; a timeout or size limit is not evidence that a document is invalid. No question text has been transcribed or verified by this manifest. These records must never be imported into the public question table.",
   "documents": [
     {
       "id": "cse-2025-prelims-gs1",
@@ -11,7 +11,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-I-26052025.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 294,
+      "file_size_mb": 27.8,
+      "pdf_pages": null,
+      "fetch_status": "size_limit_in_web_inspector",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-prelims-csat",
@@ -20,7 +27,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/QP-CSP-25-GENERAL-STUDIES-PAPER-II-26052025.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 295,
+      "file_size_mb": 30.58,
+      "pdf_pages": null,
+      "fetch_status": "size_limit_in_web_inspector",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-essay",
@@ -29,7 +43,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/ESSAY-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 237,
+      "file_size_mb": 0.97744,
+      "pdf_pages": 2,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-gs1",
@@ -38,7 +59,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER%20I-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 233,
+      "file_size_mb": 1.75,
+      "pdf_pages": 4,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-gs2",
@@ -47,7 +75,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-II-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 234,
+      "file_size_mb": 2.36,
+      "pdf_pages": 4,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-gs3",
@@ -56,7 +91,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-III-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 235,
+      "file_size_mb": 2.72,
+      "pdf_pages": 6,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-gs4",
@@ -65,7 +107,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/GENERAL-STUDIES-PAPER-IV-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 236,
+      "file_size_mb": 6.84,
+      "pdf_pages": 16,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-anthro1",
@@ -75,7 +124,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/ANTHROPOLOGY-PAPER%20I-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 187,
+      "file_size_mb": 1.77,
+      "pdf_pages": null,
+      "fetch_status": "fetch_timeout_in_web_inspector",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     },
     {
       "id": "cse-2025-mains-anthro2",
@@ -85,7 +141,14 @@
       "source_url": "https://www.upsc.gov.in/sites/default/files/ANTHROPOLOGY-PAPER-II-QP-CSM-25-010925.pdf",
       "status": "source_found",
       "verification_method": "official_upsc_index_listing",
-      "content_checked": false
+      "content_checked": false,
+      "index_link_id": 188,
+      "file_size_mb": 1.9,
+      "pdf_pages": 4,
+      "fetch_status": "pdf_metadata_retrieved",
+      "source_index_url": "https://www.upsc.gov.in/examinations/previous-question-papers",
+      "source_index_link_confirmed": true,
+      "publication_eligible": false
     }
   ]
 }
