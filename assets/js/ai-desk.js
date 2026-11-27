@@ -414,9 +414,11 @@ if(role==="admin"){
  try{
   const health=await invokeAI({action:"get_ai_status"});
   if(!health.error&&health.data){
-   status.textContent=health.data.configured
-    ?"AI provider ready · "+(health.data.providers.gemini?"Gemini":"")+(health.data.providers.gemini&&health.data.providers.groq?" + ":"")+(health.data.providers.groq?"Groq":"")
-    :"AI is not configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase → Edge Functions → Secrets.";
+   status.textContent=health.data.providers?.gemini
+    ?"Anbuu AI ready · Gemini primary"+(health.data.providers.groq?" · Groq fallback available":"")
+    :health.data.providers?.groq
+     ?"Gemini is not configured · Groq fallback available. Add GEMINI_API_KEY to use Gemini as primary."
+     :"Gemini is not configured. Add GEMINI_API_KEY in Supabase → Edge Functions → Secrets.";
   }
  }catch(_){status.textContent="Could not verify AI provider configuration. Check Supabase function logs.";}
 }
