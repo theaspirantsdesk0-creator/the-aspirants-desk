@@ -743,24 +743,44 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     <p style="color:var(--muted);font-size:.86rem;margin:0 0 1rem">
       Sign in with your Supabase learner account to sync study hours, test scores, flashcards, and Mains drafts across devices.
     </p>
-    <div class="form-grid">
-      <div class="form-full">
-        <label for="authName">Full Name (required for new registration)</label>
-        <input id="authName" type="text" placeholder="e.g., Anbuchelvan M S">
+    <div id="authStandardPanel">
+      <div class="form-grid">
+        <div class="form-full">
+          <label for="authName">Full Name (required for new registration)</label>
+          <input id="authName" type="text" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="form-full">
+          <label for="authEmail">Email Address</label>
+          <input id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-full">
+          <label for="authPassword">Password (minimum 8 characters)</label>
+          <input id="authPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+        </div>
       </div>
-      <div class="form-full">
-        <label for="authEmail">Email Address</label>
-        <input id="authEmail" type="email" placeholder="you@example.com" required>
+      <p id="authFeedback" role="status" aria-live="polite" style="font-size:.83rem;font-weight:600;color:var(--warn);margin:.75rem 0"></p>
+      <div class="btn-row" style="margin-top:.9rem">
+        <button type="button" class="btn primary" id="btnSignIn" style="flex:1">Sign In</button>
+        <button type="button" class="btn navy" id="btnSignUp" style="flex:1">Create Account</button>
       </div>
-      <div class="form-full">
-        <label for="authPassword">Password (minimum 8 characters)</label>
-        <input id="authPassword" type="password" placeholder="••••••••" required>
-      </div>
+      <p style="text-align:center;margin:.8rem 0 0"><button type="button" class="btn" id="btnForgotPassword" style="background:transparent;border:0;color:var(--accent);text-decoration:underline;padding:.25rem">Forgot password?</button></p>
     </div>
-    <p id="authFeedback" style="font-size:.83rem;font-weight:600;color:var(--warn);margin:.75rem 0"></p>
-    <div class="btn-row" style="margin-top:.9rem">
-      <button type="button" class="btn primary" id="btnSignIn" style="flex:1">Sign In</button>
-      <button type="button" class="btn navy" id="btnSignUp" style="flex:1">Create Account</button>
+    <div id="authRecoveryPanel" hidden>
+      <p class="muted">Choose a new password for your account.</p>
+      <div class="form-grid">
+        <div class="form-full">
+          <label for="authNewPassword">New password (minimum 8 characters)</label>
+          <input id="authNewPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Create a new password">
+        </div>
+        <div class="form-full">
+          <label for="authConfirmPassword">Confirm new password</label>
+          <input id="authConfirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Enter it again">
+        </div>
+      </div>
+      <p id="authRecoveryFeedback" role="status" aria-live="polite" style="font-size:.83rem;font-weight:600;color:var(--warn);margin:.75rem 0"></p>
+      <div class="btn-row">
+        <button type="button" class="btn primary" id="btnSaveNewPassword" style="flex:1">Save New Password</button>
+      </div>
     </div>
   </div>
 </div>
@@ -2397,6 +2417,94 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     } finally {
       button.disabled = false;
       await refreshPushReminderUI();
+    }
+  });
+
+  // Supabase password recovery and Auth handlers
+  function showPasswordRecovery() {
+    $("authModal").hidden = false;
+    $("authStandardPanel").hidden = true;
+    $("authRecoveryPanel").hidden = false;
+    $("authModalTitle").textContent = "Set a New Password";
+    $("authRecoveryFeedback").textContent = "";
+    $("authNewPassword").value = "";
+    $("authConfirmPassword").value = "";
+  }
+
+  function showStandardAuth() {
+    $("authStandardPanel").hidden = false;
+    $("authRecoveryPanel").hidden = true;
+    $("authModalTitle").textContent = "Aspirant Cloud Sign-In";
+  }
+
+  $("btnForgotPassword").addEventListener("click", async () => {
+    const email = $("authEmail").value.trim();
+    if (!email || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+      $("authFeedback").textContent = "Enter your account email address first.";
+      $("authEmail").focus();
+      return;
+    }
+    if (!supabase) {
+      $("authFeedback").textContent = "Password recovery is unavailable because the secure account service is not configured.";
+      return;
+    }
+    const button = $("btnForgotPassword");
+    button.disabled = true;
+    $("authFeedback").style.color = "var(--muted)";
+    $("authFeedback").textContent = "Sending password reset email...";
+    try {
+      const redirectTo = window.location.origin + window.location.pathname;
+      const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+      if (error) throw error;
+      $("authFeedback").style.color = "var(--ok)";
+      $("authFeedback").textContent = "If an account exists for this email, a password reset link has been sent. Check your inbox and spam folder.";
+    } catch (error) {
+      $("authFeedback").style.color = "var(--bad)";
+      $("authFeedback").textContent = error.message || "Could not send the reset email. Please try again.";
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  $("btnSaveNewPassword").addEventListener("click", async () => {
+    const password = $("authNewPassword").value;
+    const confirm = $("authConfirmPassword").value;
+    const feedback = $("authRecoveryFeedback");
+    if (password.length < 8) {
+      feedback.textContent = "Use at least 8 characters for your new password.";
+      $("authNewPassword").focus();
+      return;
+    }
+    if (password !== confirm) {
+      feedback.textContent = "The passwords do not match. Please check both fields.";
+      $("authConfirmPassword").focus();
+      return;
+    }
+    if (!supabase) {
+      feedback.textContent = "The secure account service is unavailable. Please refresh and try again.";
+      return;
+    }
+    const button = $("btnSaveNewPassword");
+    button.disabled = true;
+    feedback.textContent = "Updating your password...";
+    try {
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) throw error;
+      feedback.style.color = "var(--ok)";
+      feedback.textContent = "Your password has been updated successfully.";
+      $("authNewPassword").value = "";
+      $("authConfirmPassword").value = "";
+      setTimeout(() => {
+        $("authModal").hidden = true;
+        showStandardAuth();
+        feedback.style.color = "var(--warn)";
+        toast("Password updated. You can continue using your account.");
+      }, 1200);
+    } catch (error) {
+      feedback.style.color = "var(--bad)";
+      feedback.textContent = error.message || "Could not update the password. Request a fresh reset link and try again.";
+    } finally {
+      button.disabled = false;
     }
   });
 
@@ -4293,7 +4401,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   $("topLoginBtn").addEventListener("click", () => openAuthModal());
   $("sideAuthBtn").addEventListener("click", () => currentUser ? handleSignOut() : openAuthModal());
   $("topLogoutBtn").addEventListener("click", handleSignOut);
-  $("closeAuthModal").addEventListener("click", () => { $("authModal").hidden = true; });
+  $("closeAuthModal").addEventListener("click", () => {
+    $("authModal").hidden = true;
+    if (!$("authRecoveryPanel").hidden) showStandardAuth();
+  });
   const setMobileNav = (open) => {
     $("sidebar").classList.toggle("open", open);
     $("menuToggle").setAttribute("aria-expanded", String(open));
@@ -4585,6 +4696,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       // lock while notifying listeners; awaiting other Supabase work here can
       // deadlock session refresh / startup on some clients.
       supabase.auth.onAuthStateChange((event, session) => {
+        if (event === "PASSWORD_RECOVERY") {
+          showPasswordRecovery();
+          return;
+        }
         if (event === "TOKEN_REFRESHED") {
           if (session?.user) currentUser = session.user;
           return;
