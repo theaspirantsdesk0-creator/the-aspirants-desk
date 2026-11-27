@@ -1,9 +1,21 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+
+function defaultKeyFromMap(envName: string): string {
+  try {
+    const raw = Deno.env.get(envName);
+    if (!raw) return "";
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const value = parsed.default;
+    return typeof value === "string" ? value : "";
+  } catch {
+    return "";
+  }
+}
 import webpush from "npm:web-push@3.6.7";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
-const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
-const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? Deno.env.get("SUPABASE_SECRET_KEY") ?? "";
+const ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") || defaultKeyFromMap("SUPABASE_PUBLISHABLE_KEYS");
+const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const VAPID_PUBLIC_KEY = Deno.env.get("VAPID_PUBLIC_KEY") ?? "";
 const VAPID_PRIVATE_KEY = Deno.env.get("VAPID_PRIVATE_KEY") ?? "";
 const VAPID_SUBJECT = Deno.env.get("VAPID_SUBJECT") ?? "mailto:theaspirantsdesk0@gmail.com";

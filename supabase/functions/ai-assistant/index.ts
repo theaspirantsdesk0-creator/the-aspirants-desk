@@ -1,8 +1,20 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
+function defaultKeyFromMap(envName: string): string {
+  try {
+    const raw = Deno.env.get(envName);
+    if (!raw) return "";
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const value = parsed.default;
+    return typeof value === "string" ? value : "";
+  } catch {
+    return "";
+  }
+}
+
 const URL = Deno.env.get("SUPABASE_URL") ?? "";
-const ANON = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
-const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? Deno.env.get("SUPABASE_SECRET_KEY") ?? "";
+const ANON = Deno.env.get("SUPABASE_ANON_KEY") || defaultKeyFromMap("SUPABASE_PUBLISHABLE_KEYS");
+const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const GEMINI_KEY = Deno.env.get("GEMINI_API_KEY") ?? "";
 const GROQ_KEY = Deno.env.get("GROQ_API_KEY") ?? "";
 const GEMINI_MODEL = Deno.env.get("GEMINI_MODEL") ?? "gemini-2.5-flash";

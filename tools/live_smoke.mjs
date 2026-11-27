@@ -221,9 +221,33 @@ try {
   }
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
+  // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
+  await page.waitForTimeout(350);
   const anbuuNav = page.locator('a[data-nav="anbuu"]');
-  if (await anbuuNav.count() !== 1 || !(await anbuuNav.isVisible()) || !(await anbuuNav.evaluate(el => el.classList.contains('requires-auth'))) || await anbuuNav.locator('.lock-tag').count() !== 1) {
-    throw new Error('Anbuu main-navigation tab must be visible with a login gate for guest visitors');
+  if (await anbuuNav.count() !== 1) {
+    throw new Error('Anbuu main-navigation tab is missing from the sidebar');
+  }
+  await anbuuNav.scrollIntoViewIfNeeded();
+  const anbuuNavState = await anbuuNav.evaluate(el => {
+    const sidebar = document.querySelector('#sidebar');
+    const rect = el.getBoundingClientRect();
+    const style = getComputedStyle(el);
+    const sidebarStyle = sidebar ? getComputedStyle(sidebar) : null;
+    return {
+      viewportWidth: document.documentElement.clientWidth,
+      display: style.display,
+      visibility: style.visibility,
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+      sidebarDisplay: sidebarStyle?.display ?? 'missing',
+      sidebarVisibility: sidebarStyle?.visibility ?? 'missing',
+      sidebarTransform: sidebarStyle?.transform ?? 'missing',
+      loginGate: Boolean(el.querySelector('.lock-tag')),
+      requiresAuth: el.classList.contains('requires-auth'),
+    };
+  });
+  if (!(await anbuuNav.isVisible()) || !anbuuNavState.requiresAuth || !anbuuNavState.loginGate) {
+    throw new Error('Anbuu main-navigation tab must be visible with a login gate for guest visitors: ' + JSON.stringify(anbuuNavState));
   }
   const anbuuPage = page.locator('#tadAiPanel');
   if (await anbuuPage.count() !== 1 || !(await anbuuPage.isHidden())) {

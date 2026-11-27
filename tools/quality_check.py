@@ -372,7 +372,7 @@ def main() -> int:
               "Anbuu resume must load only the authenticated learner's saved lesson metadata and disclose transcript limits")
         if ai_js.is_file():
             resume_ui = ai_js.read_text(encoding="utf-8")
-            check('sendMessage(message,lessonId=null)' in resume_ui
+            check(re.search(r"async function sendMessage\\(message,lessonId=null(?:,evaluation=null)?\\)", resume_ui) is not None
                   and 'lesson.id));' in resume_ui
                   and 'history:lessonId?[]:history' in resume_ui,
                   "Resuming a lesson must send its saved ID and start a clean lesson-specific chat context")
@@ -929,7 +929,7 @@ def main() -> int:
               "Mains evaluation assets must use the existing authenticated Supabase client")
     check("assets/js/mains-evaluation.js" in sw_source_for_mains
           and "assets/css/mains-evaluation.css" in sw_source_for_mains
-          and "desk-v11-anbuu-mains-evaluation" in sw_source_for_mains,
+          and "desk-v47-core-reliability" in sw_source_for_mains,
           "Service worker must cache and version the Mains evaluation feature")
 
     print(f"Quality checks executed: {CHECKS}")

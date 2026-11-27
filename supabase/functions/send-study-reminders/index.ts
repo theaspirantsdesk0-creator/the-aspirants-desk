@@ -1,4 +1,16 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+
+function defaultKeyFromMap(envName: string): string {
+  try {
+    const raw = Deno.env.get(envName);
+    if (!raw) return "";
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const value = parsed.default;
+    return typeof value === "string" ? value : "";
+  } catch {
+    return "";
+  }
+}
 import webpush from "npm:web-push@3.6.7";
 
 type PushRow = {
@@ -25,7 +37,7 @@ type MentorStateRow = {
 };
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? Deno.env.get("SUPABASE_SECRET_KEY") ?? "";
+const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const cronSecret = Deno.env.get("DESK_CRON_SECRET") ?? "";
 const vapidPublicKey = Deno.env.get("VAPID_PUBLIC_KEY") ?? "";
 const vapidPrivateKey = Deno.env.get("VAPID_PRIVATE_KEY") ?? "";
@@ -122,7 +134,7 @@ function dueRevisionCounts(mentor: MentorStateRow | null, activity: UserDataRow 
   let overdue = 0;
   const topics: string[] = [];
   const addDueDate = (dueDate: unknown, pending: boolean, label = "Revision task") => {
-    if (!pending || typeof dueDate !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate)) return;
+    if (!pending || typeof dueDate !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) return;
     const parsed = new Date(dueDate + "T00:00:00.000Z");
     if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== dueDate) return;
     if (dueDate <= date) { due++; if (dueDate < date) overdue++; if (topics.length < 3 && label.trim()) topics.push(label.trim().slice(0, 90)); }
