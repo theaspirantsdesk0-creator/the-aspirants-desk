@@ -94,3 +94,12 @@ Provider generation, cross-device user flows, and push delivery must be verified
 
 ## Important testing note
 The site package is prepared, but cloud functionality cannot be fully live-tested until you create your own Supabase project and enter its URL and public key in `config.js`. The browser-only trackers can be tested immediately by opening `index.html` in a browser. For Supabase sign-in and realtime, use the published HTTPS site rather than opening the file directly.
+
+
+## Official PYQ publication status
+
+The official PYQ view now merges the static verified archive with live Supabase rows from `public.pyq_questions`. Only records explicitly marked published and source-verified, with a direct HTTPS UPSC-hosted PDF URL and complete question-level verification evidence, are eligible for display. The database publication constraint requires a question number, verification timestamp, verification method, and official UPSC source URL. The admin-only answer-key table is not exposed to ordinary learners.
+
+Current database audit: **0 published PYQ records**. The existing draft test record remains unpublished and unverified. No generated or coaching questions have been promoted as official UPSC PYQs. Coverage targets remain a planning inventory, not a claim of completed transcription.
+
+The PYQ UI and publication rules are checked by the project quality workflow. Latest service-worker shell version: `desk-v49-live-pyq-publication`.
