@@ -1,7 +1,7 @@
 (function(){
 "use strict";
 const host=document.getElementById("tadLearningSnapshot");if(!host)return;
-const $=id=>host.querySelector("#"+id);
+const $=id=>host.querySelector(id.startsWith("#")?id:"#"+id);
 let chapters=[];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function read(){try{const s=JSON.parse(localStorage.getItem("tad_state_v5")||"{}");return s&&typeof s==="object"?s.notesStudioProgress||{}:{}}catch(_){return {}}}
