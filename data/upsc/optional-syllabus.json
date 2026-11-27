@@ -4053,6 +4053,142 @@
         "Structural-functionalist, Marxist and Weberian theories",
         "Class, status groups, gender, ethnicity and race",
         "Open and closed systems; types and sources of social mobility"
+      ],
+      "lesson": {
+        "objective": "Explain inequality, hierarchy, exclusion and mobility using major sociological theories of stratification.",
+        "sections": [
+          {
+            "heading": "Meaning of stratification and inequality",
+            "explanation": [
+              "Social stratification is the structured ranking of people and groups in a society. It shapes access to wealth, income, power, prestige, education and life chances. Inequality refers to unequal access to valued resources; hierarchy arranges groups in ranked positions.",
+              "Poverty and deprivation are related but distinct: poverty concerns inadequate resources, while deprivation can include disadvantages in health, education, housing, dignity and participation."
+            ],
+            "example": "Differences in access to quality schooling can reproduce unequal opportunities across generations."
+          },
+          {
+            "heading": "Functionalist, Marxist and Weberian explanations",
+            "explanation": [
+              "Functionalist accounts argue that some unequal rewards may encourage people to train for socially important roles, though critics question how societies decide which roles deserve greater rewards.",
+              "Marxist analysis focuses on ownership, exploitation and class relations in production. Weber adds that stratification has multiple dimensions: class (market situation), status (social honour) and party (organised power)."
+            ],
+            "example": "A wealthy person may have economic class advantage, while a respected religious leader may possess high status without equivalent wealth."
+          },
+          {
+            "heading": "Exclusion, gender, ethnicity and intersectionality",
+            "explanation": [
+              "Social exclusion describes processes that restrict groups from full participation in economic, political and social life. Caste, class, gender, ethnicity, race, disability and region can shape exclusion through institutions and everyday practices.",
+              "Intersectional analysis examines how multiple social positions interact rather than treating each inequality as isolated. Formal equality may not remove structural barriers."
+            ],
+            "example": "A rural woman from a historically disadvantaged community may face overlapping barriers in education, employment and public representation."
+          },
+          {
+            "heading": "Open and closed systems; social mobility",
+            "explanation": [
+              "A closed system restricts movement between social positions, while an open system permits greater movement, though no society is perfectly open. Mobility may be vertical or horizontal, intergenerational or intragenerational, and structural or exchange-based.",
+              "Education, occupational change, migration, policy and economic transformation can influence mobility. Mobility should be studied alongside the persistence of inherited advantage."
+            ],
+            "example": "A first-generation graduate entering a professional occupation is an example of upward intergenerational mobility."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Social stratification",
+            "meaning": "Structured and durable ranking of social groups."
+          },
+          {
+            "term": "Life chances",
+            "meaning": "Opportunities individuals have to access valued resources and outcomes."
+          },
+          {
+            "term": "Social exclusion",
+            "meaning": "Processes that restrict full participation in social life."
+          },
+          {
+            "term": "Intersectionality",
+            "meaning": "Analysis of how multiple social positions and inequalities interact."
+          },
+          {
+            "term": "Social mobility",
+            "meaning": "Movement of individuals or groups between social positions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Karl Marx",
+            "idea": "Class inequality is rooted in relations of production and ownership."
+          },
+          {
+            "scholar": "Max Weber",
+            "idea": "Stratification includes class, status and party."
+          },
+          {
+            "scholar": "Kingsley Davis and Wilbert Moore",
+            "idea": "Functionalist account linking differential rewards to role allocation; widely debated."
+          },
+          {
+            "scholar": "Pierre Bourdieu",
+            "idea": "Economic, cultural and social capital help explain the reproduction of advantage."
+          }
+        ],
+        "answerPractice": "Compare Marxist and Weberian explanations of social stratification. Add a short note on social mobility.",
+        "revisionPrompt": "Distinguish class, status and party; then classify examples of vertical, horizontal and intergenerational mobility."
+      },
+      "test": [
+        {
+          "q": "Weber's analysis of stratification distinguishes:",
+          "o": [
+            "Class, status and party",
+            "Caste, tribe and family only",
+            "Production, consumption and exchange",
+            "Rural, urban and industrial"
+          ],
+          "a": 0,
+          "w": "Weber analyses economic class, social status and organised power or party as distinct dimensions."
+        },
+        {
+          "q": "Intergenerational mobility refers to:",
+          "o": [
+            "Movement during one person's career",
+            "Change in social position between generations",
+            "Movement between two cities",
+            "Change in political boundaries"
+          ],
+          "a": 1,
+          "w": "It compares the social position of parents and children."
+        },
+        {
+          "q": "Social exclusion is best understood as:",
+          "o": [
+            "A temporary personal preference",
+            "Processes restricting full participation in society",
+            "Only a difference in income",
+            "A synonym for migration"
+          ],
+          "a": 1,
+          "w": "Exclusion concerns barriers to participation across social, economic and political life."
+        },
+        {
+          "q": "Which perspective places ownership and relations of production at the centre of class inequality?",
+          "o": [
+            "Marxist",
+            "Phenomenological",
+            "Exchange theory only",
+            "Ethnomethodological"
+          ],
+          "a": 0,
+          "w": "Marxist analysis links class inequality to ownership and control of productive resources."
+        },
+        {
+          "q": "A closed stratification system is characterised by:",
+          "o": [
+            "High unrestricted mobility",
+            "Strong restrictions on movement between social positions",
+            "No social hierarchy",
+            "Only occupational choice"
+          ],
+          "a": 1,
+          "w": "Closed systems restrict movement between ranked social positions."
+        }
       ]
     },
     {
@@ -4062,6 +4198,142 @@
         "Social organisation of work in slave, feudal and industrial-capitalist societies",
         "Formal and informal organisation of work",
         "Labour and society"
+      ],
+      "lesson": {
+        "objective": "Analyse the organisation of work and the relationship between economic institutions and social life across historical and contemporary societies.",
+        "sections": [
+          {
+            "heading": "Work in historical social systems",
+            "explanation": [
+              "Work is organised differently across societies. Slave systems involve coerced labour and ownership of persons; feudal systems historically linked land, obligations and hierarchical relations; industrial capitalism relies heavily on wage labour and private ownership of productive assets.",
+              "These are broad analytical categories. Actual historical societies vary, overlap and change over time."
+            ],
+            "example": "The shift from agrarian production to factory employment altered time discipline, household organisation and class relations."
+          },
+          {
+            "heading": "Formal and informal organisation of work",
+            "explanation": [
+              "Formal work is typically regulated through contracts, recorded wages, organisational rules and legal protections. Informal work may be unregistered or weakly regulated and can include casual labour, home-based production and many forms of self-employment.",
+              "Informality is not necessarily outside the economy; formal and informal sectors are often linked through supply chains, subcontracting and household labour."
+            ],
+            "example": "A registered company may outsource work to small contractors whose workers have less secure conditions."
+          },
+          {
+            "heading": "Labour, technology and social relations",
+            "explanation": [
+              "Division of labour can increase specialisation and productivity, but may also create repetitive tasks, alienation and unequal control. Technology can displace some tasks while creating others; its effects depend on ownership, skills, regulation and bargaining power.",
+              "Work is also a social institution: it shapes identity, status, family schedules, migration, gender relations and collective organisation."
+            ],
+            "example": "Platform-based work can offer flexible entry while raising questions about income security, algorithmic control and social protection."
+          },
+          {
+            "heading": "Changing labour markets and worker protection",
+            "explanation": [
+              "Globalisation, automation, service-sector growth, migration and changing employment arrangements have transformed labour markets. Precarious work may involve uncertain hours, unstable income and limited benefits.",
+              "Sociological analysis considers not only employment numbers but also dignity, safety, voice, unpaid care work and access to social security."
+            ],
+            "example": "Recognition of unpaid care work broadens analysis beyond paid employment and highlights gendered divisions of labour."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Division of labour",
+            "meaning": "Distribution of tasks among people, occupations or organisations."
+          },
+          {
+            "term": "Alienation",
+            "meaning": "Loss of control or meaningful connection to work and its outcomes."
+          },
+          {
+            "term": "Informal economy",
+            "meaning": "Economic activity that is unregistered or weakly regulated in law and practice."
+          },
+          {
+            "term": "Precarious work",
+            "meaning": "Employment marked by insecurity, uncertainty and limited protections."
+          },
+          {
+            "term": "Platform work",
+            "meaning": "Work allocated or managed through digital platforms and algorithmic systems."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Émile Durkheim",
+            "idea": "Division of labour can create interdependence and organic solidarity."
+          },
+          {
+            "scholar": "Karl Marx",
+            "idea": "Capitalist labour relations can produce exploitation and alienation."
+          },
+          {
+            "scholar": "Harry Braverman",
+            "idea": "Analysed managerial control and the transformation of labour processes."
+          },
+          {
+            "scholar": "Arlie Russell Hochschild",
+            "idea": "Studied emotional labour and the management of feelings in service work."
+          }
+        ],
+        "answerPractice": "Discuss how changes in the organisation of work have transformed social relations. Refer to formal and informal work and technology.",
+        "revisionPrompt": "Compare slave, feudal and industrial-capitalist labour arrangements, noting that these are broad historical types."
+      },
+      "test": [
+        {
+          "q": "Which is most characteristic of formal employment?",
+          "o": [
+            "Recorded contractual arrangements and regulated conditions",
+            "Absence of any organisational rules",
+            "Work that is always unpaid",
+            "Work that is always home-based"
+          ],
+          "a": 0,
+          "w": "Formal employment is generally documented and regulated through recognised arrangements."
+        },
+        {
+          "q": "The concept of alienation is strongly associated with:",
+          "o": [
+            "Karl Marx",
+            "Auguste Comte",
+            "Robert Merton",
+            "George Herbert Mead"
+          ],
+          "a": 0,
+          "w": "Marx used alienation to analyse workers' separation from control over labour and its products."
+        },
+        {
+          "q": "Informal work is often characterised by:",
+          "o": [
+            "Universal written contracts and full benefits",
+            "Limited registration or regulatory protection",
+            "A complete absence of economic value",
+            "Employment only in government offices"
+          ],
+          "a": 1,
+          "w": "Informal work may be economically important while lacking formal registration and protections."
+        },
+        {
+          "q": "Emotional labour refers to:",
+          "o": [
+            "Only physical effort",
+            "Managing feelings and their expression as part of paid work",
+            "The use of machinery in factories",
+            "Unpaid agricultural work only"
+          ],
+          "a": 1,
+          "w": "Hochschild used emotional labour to describe managing feelings and expressions in occupational roles."
+        },
+        {
+          "q": "A sociological analysis of platform work should examine:",
+          "o": [
+            "Only the mobile phone brand",
+            "Flexibility, algorithmic control, income security and worker protections",
+            "Only internet speed",
+            "Only consumer preferences"
+          ],
+          "a": 1,
+          "w": "Platform work changes work allocation, control and employment security."
+        }
       ]
     },
     {
@@ -4072,6 +4344,146 @@
         "Power elite, bureaucracy, pressure groups and political parties",
         "Nation, state, citizenship, democracy, civil society and ideology",
         "Protest, agitation, social movements, collective action and revolution"
+      ],
+      "lesson": {
+        "objective": "Understand the sociological analysis of power, state, democracy, civil society, political participation and collective action.",
+        "sections": [
+          {
+            "heading": "Power and authority",
+            "explanation": [
+              "Power is the capacity to influence or shape the actions of others, including when they resist. Authority is power regarded as legitimate. Sociologists examine how power operates through institutions, resources, knowledge, ideology and everyday relationships.",
+              "Power is not limited to government; it is also present in workplaces, families, communities and social movements."
+            ],
+            "example": "A workplace manager exercises organisational authority, while a campaign group may influence policy through public mobilisation."
+          },
+          {
+            "heading": "Theories of power and political elites",
+            "explanation": [
+              "Pluralist approaches see power as dispersed among competing groups and institutions. Elite theories emphasise the concentration of decision-making influence among relatively small groups. Marxist approaches link state power to class relations, while Weberian analysis highlights domination and legitimate authority.",
+              "Theories differ over how open political systems are, whose interests are represented and how power can be challenged."
+            ],
+            "example": "A policy process can be studied by tracing the influence of ministries, businesses, unions, media and community organisations."
+          },
+          {
+            "heading": "State, citizenship and civil society",
+            "explanation": [
+              "The state is a set of institutions claiming authority over a territory and population. Citizenship defines membership and rights, while democracy concerns political participation, accountability and popular control.",
+              "Civil society includes associations and organisations operating between the state, market and household, such as unions, voluntary groups, professional associations and advocacy organisations."
+            ],
+            "example": "A local residents' association can raise public-service concerns and participate in consultation without being part of the state."
+          },
+          {
+            "heading": "Protest, social movements and collective action",
+            "explanation": [
+              "Collective action occurs when people coordinate to pursue shared goals. Social movements are sustained forms of collective mobilisation around social or political change. They use resources, networks, framing, leadership and opportunities in the political environment.",
+              "Protest can widen participation but may face repression, internal divisions, resource constraints or difficulties translating demands into institutional change."
+            ],
+            "example": "A campaign for environmental protection may combine public meetings, petitions, litigation, media engagement and policy advocacy."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Power",
+            "meaning": "Capacity to influence decisions, behaviour or outcomes."
+          },
+          {
+            "term": "Authority",
+            "meaning": "Power regarded as legitimate by those subject to it."
+          },
+          {
+            "term": "Civil society",
+            "meaning": "Associations and organisations between the state, market and household."
+          },
+          {
+            "term": "Citizenship",
+            "meaning": "Membership of a political community with associated rights and duties."
+          },
+          {
+            "term": "Collective action",
+            "meaning": "Coordinated activity by people pursuing shared objectives."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Max Weber",
+            "idea": "Analysed legitimate authority and forms of domination."
+          },
+          {
+            "scholar": "C. Wright Mills",
+            "idea": "Power elite analysis examined concentrated influence in major institutions."
+          },
+          {
+            "scholar": "Robert Dahl",
+            "idea": "Pluralist analysis examined competing groups and decision-making."
+          },
+          {
+            "scholar": "Charles Tilly",
+            "idea": "Studied contentious politics and repertoires of collective action."
+          },
+          {
+            "scholar": "Mancur Olson",
+            "idea": "Analysed incentives and collective-action problems."
+          }
+        ],
+        "answerPractice": "Compare pluralist and elite theories of power. Explain the role of civil society in a democracy.",
+        "revisionPrompt": "Distinguish state, government, citizenship and civil society; give examples of collective action."
+      },
+      "test": [
+        {
+          "q": "Authority differs from power because authority:",
+          "o": [
+            "Is always illegal",
+            "Is regarded as legitimate",
+            "Exists only in families",
+            "Never influences behaviour"
+          ],
+          "a": 1,
+          "w": "Authority is power accepted as legitimate."
+        },
+        {
+          "q": "Pluralist theories generally emphasise:",
+          "o": [
+            "Competition among multiple groups and centres of influence",
+            "The complete absence of political participation",
+            "One unchanging ruling group",
+            "Only economic ownership"
+          ],
+          "a": 0,
+          "w": "Pluralism sees political influence as distributed among competing groups."
+        },
+        {
+          "q": "Civil society is best described as:",
+          "o": [
+            "Only the institutions of the state",
+            "Associations and organisations between state, market and household",
+            "Only private corporations",
+            "The armed forces alone"
+          ],
+          "a": 1,
+          "w": "Civil society includes voluntary and collective organisations outside direct state control."
+        },
+        {
+          "q": "The concept of the power elite is associated with:",
+          "o": [
+            "C. Wright Mills",
+            "Émile Durkheim",
+            "Auguste Comte",
+            "George Herbert Mead"
+          ],
+          "a": 0,
+          "w": "Mills examined the concentration of influence among elites in major institutions."
+        },
+        {
+          "q": "Collective action refers to:",
+          "o": [
+            "Isolated private behaviour only",
+            "Coordinated activity for shared objectives",
+            "A legal system without citizens",
+            "Only election campaigning"
+          ],
+          "a": 1,
+          "w": "Collective action involves coordination among people pursuing common goals."
+        }
       ]
     },
     {
@@ -4081,6 +4493,142 @@
         "Sociological theories of religion",
         "Animism, monism, pluralism, sects and cults",
         "Religion in modern society: science, secularisation, revivalism and fundamentalism"
+      ],
+      "lesson": {
+        "objective": "Explain religion as a social institution and evaluate sociological debates on secularisation, revivalism and religious diversity.",
+        "sections": [
+          {
+            "heading": "Sociological meaning of religion",
+            "explanation": [
+              "Sociology studies religion as a social institution involving beliefs, rituals, symbols, communities and moral practices. It examines religion's relationships with solidarity, authority, identity, inequality and social change without deciding whether religious beliefs are true or false.",
+              "Religious life varies widely: traditions may be monotheistic, polytheistic, animistic, monistic or pluralistic, and internal diversity is common."
+            ],
+            "example": "A community festival can express belief while also creating networks, collective identity and social support."
+          },
+          {
+            "heading": "Classical theories of religion",
+            "explanation": [
+              "Durkheim argued that religious rituals reinforce collective representations and social solidarity. Marx viewed religion in relation to alienation, ideology and material inequality. Weber examined how religious ideas can shape economic conduct, authority and social change.",
+              "These perspectives ask different questions: social integration, domination and the influence of meaning on historical action."
+            ],
+            "example": "A ritual can be studied as a source of belonging, as a way institutions reproduce authority, or as a source of ethical motivation."
+          },
+          {
+            "heading": "Religious organisation and diversity",
+            "explanation": [
+              "Religious organisations include churches, denominations, sects and newer movements; the terms are analytical categories and should be used carefully across different traditions. Religious pluralism describes the coexistence of multiple traditions and beliefs.",
+              "Religion can support community service and solidarity, but religious boundaries may also intersect with political competition, gender hierarchy and exclusion."
+            ],
+            "example": "A multi-faith neighbourhood may develop shared civic practices while retaining distinct religious institutions."
+          },
+          {
+            "heading": "Religion in modern society",
+            "explanation": [
+              "Secularisation theories examine changes in religious authority, practice and institutional influence. Modernisation does not produce one uniform outcome: some settings experience declining institutional participation, while others see public revival or new forms of religious expression.",
+              "Fundamentalism and revivalism should be analysed in historical and political context rather than treated as identical phenomena. Science and religion may conflict in some debates and coexist in other areas of life."
+            ],
+            "example": "Public debates over education or family law can reveal how religious institutions interact with the modern state."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Ritual",
+            "meaning": "A patterned symbolic practice that can express and reproduce shared meanings."
+          },
+          {
+            "term": "Religious pluralism",
+            "meaning": "Coexistence of different religious traditions and beliefs in a society."
+          },
+          {
+            "term": "Secularisation",
+            "meaning": "A set of possible changes in religious authority, practice and institutional influence."
+          },
+          {
+            "term": "Revivalism",
+            "meaning": "Efforts to renew or strengthen religious beliefs and practices."
+          },
+          {
+            "term": "Fundamentalism",
+            "meaning": "Movements seeking to restore or defend what they regard as foundational religious principles."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Émile Durkheim",
+            "idea": "Religion reinforces collective representations and social solidarity."
+          },
+          {
+            "scholar": "Karl Marx",
+            "idea": "Religion can be analysed in relation to ideology, alienation and inequality."
+          },
+          {
+            "scholar": "Max Weber",
+            "idea": "Religious ideas can influence social action and economic change."
+          },
+          {
+            "scholar": "Peter L. Berger",
+            "idea": "His work explored religion, modernity and the changing plausibility of religious worldviews."
+          }
+        ],
+        "answerPractice": "Compare Durkheim, Marx and Weber on religion. Assess whether modernisation necessarily leads to secularisation.",
+        "revisionPrompt": "Explain why secularisation and religious revival can occur simultaneously in different social settings."
+      },
+      "test": [
+        {
+          "q": "Durkheim primarily analysed religion as a source of:",
+          "o": [
+            "Collective representations and social solidarity",
+            "Only individual economic profit",
+            "Biological inheritance",
+            "Technological innovation"
+          ],
+          "a": 0,
+          "w": "Durkheim linked religious symbols and rituals to collective life and solidarity."
+        },
+        {
+          "q": "Which thinker analysed religion in relation to class, ideology and alienation?",
+          "o": [
+            "Karl Marx",
+            "Max Weber",
+            "Robert Merton",
+            "Talcott Parsons"
+          ],
+          "a": 0,
+          "w": "Marx's analysis connected religion with material conditions and social relations."
+        },
+        {
+          "q": "Religious pluralism refers to:",
+          "o": [
+            "The coexistence of different religious traditions",
+            "The disappearance of all belief",
+            "A single compulsory religion",
+            "Only private worship"
+          ],
+          "a": 0,
+          "w": "Pluralism describes the presence of multiple traditions and beliefs."
+        },
+        {
+          "q": "Secularisation is best treated sociologically as:",
+          "o": [
+            "One inevitable identical process everywhere",
+            "A set of changes in religious authority, practice and institutional influence",
+            "A synonym for atheism",
+            "The end of all cultural traditions"
+          ],
+          "a": 1,
+          "w": "Secularisation is debated and varies across institutions and societies."
+        },
+        {
+          "q": "Which statement about modernity and religion is most sociologically defensible?",
+          "o": [
+            "Modernisation always eliminates religion",
+            "Religious decline and revival can occur in different contexts",
+            "Religion has no relationship with politics",
+            "All religious movements are identical"
+          ],
+          "a": 1,
+          "w": "The relationship between modernity and religion is varied and historically contingent."
+        }
       ]
     },
     {
@@ -4092,6 +4640,142 @@
         "Lineage and descent",
         "Patriarchy and sexual division of labour",
         "Contemporary trends"
+      ],
+      "lesson": {
+        "objective": "Analyse family, household, marriage, descent, kinship, patriarchy and contemporary transformations in family relations.",
+        "sections": [
+          {
+            "heading": "Family, household and marriage",
+            "explanation": [
+              "Family refers to socially recognised relationships of kinship, care and responsibility; a household is a residential and often economic unit. The two may overlap but are not identical. Marriage is a socially regulated relationship whose forms and meanings vary across societies.",
+              "Sociologists examine how family arrangements connect with property, inheritance, socialisation, care, gender and the wider economy."
+            ],
+            "example": "A person may belong to a family network spread across several households."
+          },
+          {
+            "heading": "Types and forms of family",
+            "explanation": [
+              "Family forms include nuclear, joint, extended, single-parent, reconstituted and other arrangements. Residence patterns, authority, descent and inheritance shape family organisation. No single form should be treated as universal or inherently superior.",
+              "Family structures change with migration, urbanisation, education, employment, law and demographic transitions."
+            ],
+            "example": "A joint family network may maintain shared obligations even when members live in separate urban households."
+          },
+          {
+            "heading": "Lineage, descent and kinship",
+            "explanation": [
+              "Kinship systems organise relationships through blood, marriage, adoption and socially recognised ties. Descent may be patrilineal, matrilineal or bilateral; lineage refers to a group tracing descent from a common ancestor.",
+              "Kinship terminology and rules influence inheritance, residence, alliance, care and social identity. Sociologists and anthropologists compare these systems without assuming one is the natural norm."
+            ],
+            "example": "In a matrilineal system, descent and certain inheritance rights may be traced through the mother's line."
+          },
+          {
+            "heading": "Patriarchy and contemporary trends",
+            "explanation": [
+              "Patriarchy refers to social arrangements in which men as a group hold disproportionate authority and control over resources. The sexual division of labour assigns different work and responsibilities by gender, often undervaluing unpaid care work.",
+              "Contemporary trends include later marriage, smaller households, migration, changing gender roles, increased recognition of diverse family forms and tensions between individual choice and collective expectations."
+            ],
+            "example": "Women's paid employment may change household bargaining, but unequal care responsibilities can persist."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Household",
+            "meaning": "A residential and often economic unit."
+          },
+          {
+            "term": "Descent",
+            "meaning": "Socially recognised tracing of kinship through ancestry."
+          },
+          {
+            "term": "Lineage",
+            "meaning": "A group whose members trace descent from a common ancestor."
+          },
+          {
+            "term": "Patrilineal descent",
+            "meaning": "Tracing descent through the father's line."
+          },
+          {
+            "term": "Patriarchy",
+            "meaning": "A system of social relations in which men hold disproportionate power and authority."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "A. R. Radcliffe-Brown",
+            "idea": "Analysed kinship and social structure in relation to social relations and institutions."
+          },
+          {
+            "scholar": "Claude Lévi-Strauss",
+            "idea": "Studied kinship systems and marriage alliances through structural analysis."
+          },
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Analysed Indian social institutions and change, including family and kinship in field studies."
+          },
+          {
+            "scholar": "Sylvia Walby",
+            "idea": "Developed a sociological account of patriarchy as a system of structures and practices."
+          }
+        ],
+        "answerPractice": "Differentiate family, household and kinship. Discuss patriarchy and changes in contemporary family relations.",
+        "revisionPrompt": "Compare patrilineal, matrilineal and bilateral descent; explain why household and family are not interchangeable terms."
+      },
+      "test": [
+        {
+          "q": "A household is primarily defined by:",
+          "o": [
+            "A shared residential unit, often with economic functions",
+            "Only common ancestry",
+            "A single religious identity",
+            "A political party"
+          ],
+          "a": 0,
+          "w": "Household refers primarily to a residential and often economic unit."
+        },
+        {
+          "q": "Patrilineal descent traces ancestry through:",
+          "o": [
+            "The mother's line",
+            "The father's line",
+            "Both lines equally in every case",
+            "No kin relationship"
+          ],
+          "a": 1,
+          "w": "Patrilineal systems trace descent through the father's line."
+        },
+        {
+          "q": "A matrilineal system traces descent through:",
+          "o": [
+            "The mother's line",
+            "The father's line",
+            "The eldest son only",
+            "A political office"
+          ],
+          "a": 0,
+          "w": "Matrilineal descent traces ancestry through the mother's line."
+        },
+        {
+          "q": "Patriarchy refers to:",
+          "o": [
+            "A system of gender equality in every institution",
+            "Social arrangements that give men disproportionate power",
+            "A type of household residence only",
+            "A system of bilateral descent"
+          ],
+          "a": 1,
+          "w": "Patriarchy concerns structured gendered power and authority."
+        },
+        {
+          "q": "Which statement is correct?",
+          "o": [
+            "Family and household always mean exactly the same thing",
+            "A family network can extend across several households",
+            "Kinship is only a legal contract",
+            "Marriage has an identical form in all societies"
+          ],
+          "a": 1,
+          "w": "Family relations can connect people who do not live in the same household."
+        }
       ]
     },
     {
@@ -4102,6 +4786,146 @@
         "Development and dependency",
         "Agents of social change",
         "Education, science, technology and social change"
+      ],
+      "lesson": {
+        "objective": "Evaluate theories and agents of social change, including development, dependency, education, science and technology.",
+        "sections": [
+          {
+            "heading": "Meaning and theories of social change",
+            "explanation": [
+              "Social change refers to significant transformation in social structure, institutions, norms, relationships and patterns of behaviour over time. It may be gradual or rapid, planned or unplanned, conflictual or consensual.",
+              "Evolutionary, cyclical, functionalist, conflict and modernisation theories offer different explanations. No single theory explains every society or historical transition."
+            ],
+            "example": "Industrialisation changed occupations, urban settlement, family patterns and political organisation, but these changes did not occur identically everywhere."
+          },
+          {
+            "heading": "Development and dependency",
+            "explanation": [
+              "Development is multidimensional and includes income, health, education, capabilities, equality and sustainability. Modernisation approaches often emphasise industrialisation, urbanisation and institutional change.",
+              "Dependency approaches argue that underdevelopment is shaped partly by unequal relationships between dominant and dependent economies. Contemporary analysis also considers domestic institutions, state capacity, global markets and historical differences."
+            ],
+            "example": "A country may increase exports while remaining dependent on imported technology and external finance."
+          },
+          {
+            "heading": "Agents and mechanisms of change",
+            "explanation": [
+              "Agents of social change include social movements, the state, markets, education, science, technology, media, migration and collective action. Their influence depends on resources, institutions, social networks and political opportunities.",
+              "Change can generate new opportunities but also new inequalities, resistance and unintended consequences."
+            ],
+            "example": "Digital access can expand educational opportunities while widening gaps where connectivity and devices are unequal."
+          },
+          {
+            "heading": "Education, science and technology",
+            "explanation": [
+              "Education transmits knowledge and skills, supports social mobility and can challenge inherited inequalities, but unequal access and institutional discrimination can reproduce stratification. Science expands systematic knowledge; technology changes production, communication, surveillance and everyday life.",
+              "A balanced sociological analysis asks who controls new technologies, who benefits, who bears risks and how institutions regulate change."
+            ],
+            "example": "Artificial intelligence can alter occupational tasks and public services, raising questions about skills, accountability, privacy and unequal access."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Social change",
+            "meaning": "Significant transformation in social structures, institutions and relationships over time."
+          },
+          {
+            "term": "Modernisation",
+            "meaning": "Transformation associated with industrialisation, urbanisation and institutional change."
+          },
+          {
+            "term": "Dependency",
+            "meaning": "An approach explaining underdevelopment partly through unequal global economic relations."
+          },
+          {
+            "term": "Social development",
+            "meaning": "Improvement in human well-being, capabilities, equality and sustainability."
+          },
+          {
+            "term": "Diffusion",
+            "meaning": "Spread of ideas, practices or technologies between groups and societies."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Auguste Comte",
+            "idea": "Proposed a broad evolutionary account of intellectual and social development."
+          },
+          {
+            "scholar": "Herbert Spencer",
+            "idea": "Compared social evolution with increasing differentiation and complexity."
+          },
+          {
+            "scholar": "Karl Marx",
+            "idea": "Explained historical change through contradictions and class conflict."
+          },
+          {
+            "scholar": "Andre Gunder Frank",
+            "idea": "Associated with dependency analysis of global economic relations."
+          },
+          {
+            "scholar": "W. W. Rostow",
+            "idea": "Presented a stage-based modernisation model of economic growth."
+          }
+        ],
+        "answerPractice": "Compare modernisation and dependency approaches to development. Explain the role of education and technology as agents of social change.",
+        "revisionPrompt": "For one technology, identify its potential benefits, unequal effects and institutional safeguards."
+      },
+      "test": [
+        {
+          "q": "Social change refers to:",
+          "o": [
+            "Any individual mood change",
+            "Significant transformation in social structures and relationships over time",
+            "Only changes in weather",
+            "Only changes in personal income"
+          ],
+          "a": 1,
+          "w": "Sociological social change concerns transformations in institutions, relationships and social patterns."
+        },
+        {
+          "q": "Dependency approaches emphasise:",
+          "o": [
+            "Only individual motivation",
+            "Unequal relationships in the global economy",
+            "The absence of historical factors",
+            "Only cultural diffusion"
+          ],
+          "a": 1,
+          "w": "Dependency approaches connect development outcomes to unequal global economic structures."
+        },
+        {
+          "q": "Which is an agent of social change?",
+          "o": [
+            "Education",
+            "A fixed natural law only",
+            "A chemical element",
+            "A geographical coordinate"
+          ],
+          "a": 0,
+          "w": "Education can transmit knowledge, change opportunities and challenge or reproduce inequalities."
+        },
+        {
+          "q": "A sociological study of artificial intelligence should examine:",
+          "o": [
+            "Only software speed",
+            "Control, access, labour effects, accountability and inequality",
+            "Only the colour of devices",
+            "Only brand preferences"
+          ],
+          "a": 1,
+          "w": "Technology has social consequences shaped by institutions, power and unequal access."
+        },
+        {
+          "q": "Marx explains major historical change primarily through:",
+          "o": [
+            "Class conflict and contradictions in material relations",
+            "The absence of economic relations",
+            "Only individual personality",
+            "A fixed cycle of weather"
+          ],
+          "a": 0,
+          "w": "Marx's historical materialism analyses social change through material production and class relations."
+        }
       ]
     },
     {
