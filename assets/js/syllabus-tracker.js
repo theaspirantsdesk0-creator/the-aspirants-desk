@@ -3,7 +3,7 @@
 const root=document.getElementById("tadSyllabusTracker");if(!root)return;
 const $=s=>root.querySelector(s),esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const states=[["not-started","Not started"],["learning","In progress"],["revision","Needs revision"],["completed","Completed"]];
-let papers=[],topics=[],optionals=[],notes=[],csatCount=0;
+let papers=[],topics=[],optionals=[],notes=[],csatCount=0,anthropology=[];
 function state(){try{const v=JSON.parse(localStorage.getItem("tad_state_v5")||"{}");return v&&typeof v==="object"?v:{}}catch(_){return {}}}
 function read(){return state().syllabusTrackerProgress||{}}
 function readTopics(){return state().syllabusTopicProgress||{}}
@@ -27,7 +27,15 @@ function render(){
   const done=rows.filter(t=>(topicProgress[t.id]?.status||"not-started")==="completed").length;
   return '<details class="tad-syllabus-topic-group"><summary><span>'+esc(paper.title)+'</span><small>'+done+'/'+rows.length+' topics complete</small></summary><div class="tad-syllabus-topic-list">'+rows.map(topicCard).join("")+(groupData.paper==="prelims-csat"?'<p class="tad-syllabus-practice">'+csatCount+' published CSAT practice questions currently in the question dataset. <a href="#mockPracticeSection">Open practice area ↗</a></p>':'')+'</div></details>';
  }).join("");
- $("#tadSyllabusGroups").innerHTML=group("Prelims",papers.filter(x=>x.stage==="Prelims"))+group("Mains",papers.filter(x=>x.stage==="Mains"))+'<section class="tad-syllabus-group"><h4>Topic-level checklist</h4><p class="muted">Mark each syllabus area, schedule a revision date and open linked Notes Studio material where available.</p>'+topicGroups+'</section>'+group("Optional subjects",all.filter(x=>x.id.startsWith("optional-")));
+ 
+ const anthroGroups=anthropology.map((unit,unitIndex)=>{
+  const paper=unit.paper||"Optional";
+  const rows=(unit.topics||[]).map((title,i)=>({id:"anthropology-"+paper.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"-"+unitIndex+"-"+i,title,hasNotes:false}));
+  const done=rows.filter(t=>(topicProgress[t.id]?.status||"not-started")==="completed").length;
+  return '<details class="tad-syllabus-topic-group"><summary><span>Anthropology · Paper '+esc(paper)+' · '+esc(unit.unit||"Syllabus unit")+'</span><small>'+done+'/'+rows.length+' complete</small></summary><div class="tad-syllabus-topic-list">'+rows.map(topicCard).join("")+'</div></details>';
+ }).join("");
+ $("#tadSyllabusGroups").innerHTML=group("Prelims",papers.filter(x=>x.stage==="Prelims"))+group("Mains",papers.filter(x=>x.stage==="Mains"))+'<section class="tad-syllabus-group"><h4>Topic-level checklist</h4><p class="muted">Mark each syllabus area, schedule a revision date and open linked Notes Studio material where available.</p>'+topicGroups+'</section>'+group("Optional subjects",all.filter(x=>x.id.startsWith("optional-")))+(anthropology.length?'<section class="tad-syllabus-group"><h4>Anthropology · detailed topic tracker</h4><p class="muted">Topic breakdown follows the existing Anthropology syllabus dataset. Checklists are study-planning aids, not additional official subheadings.</p>'+anthroGroups+'</section>':"");
+
 }
 root.addEventListener("change",e=>{
  const s=e.target.closest("select[data-id]");if(s){const valid=states.some(x=>x[0]===s.value)?s.value:"not-started";if(s.dataset.kind==="topic")saveTopic(s.dataset.id,{status:valid});else savePaper(s.dataset.id,valid);return}
@@ -39,7 +47,7 @@ async function init(){try{
  const [a,b,c,e]=await Promise.all([fetch("data/upsc/syllabus-tracker.json",{cache:"no-store"}),fetch("data/upsc/optional-syllabus.json",{cache:"no-store"}),fetch("data/notes/gs-foundations.json",{cache:"no-store"}),fetch("data/questions/csat.json",{cache:"no-store"})]);
  if(!a.ok||!b.ok||!c.ok||!e.ok)throw Error("Syllabus data unavailable");
  const d=await a.json(),o=await b.json(),n=await c.json(),q=await e.json();
- papers=d.papers||[];topics=d.topics||[];optionals=o.subjects||[];notes=n.chapters||[];csatCount=Array.isArray(q)?q.filter(x=>x.status==="published").length:0;
+ papers=d.papers||[];topics=d.topics||[];optionals=o.subjects||[];anthropology=Array.isArray(o.anthropology)?o.anthropology:[];notes=n.chapters||[];csatCount=Array.isArray(q)?q.filter(x=>x.status==="published").length:0;
  $("#tadSyllabusNotice").textContent=d.notice+" Optional subject names are from the 2026 notification catalogue; only subject-level tracking is available for optionals at present.";
  render();
  }catch(_){$("#tadSyllabusNotice").textContent="The syllabus tracker could not load its data. Please retry after reconnecting.";$("#tadSyllabusGroups").textContent="Tracker unavailable."}}
