@@ -2181,6 +2181,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     saveUserState();
   });
 
+  // Keep syllabus paper/topic progress in the same per-user cloud payload.
+  window.addEventListener("tad:syllabusTrackerChange", (event) => {
+    const detail = event && event.detail;
+    if (!detail || !["syllabusTrackerProgress", "syllabusTopicProgress"].includes(detail.key) || !detail.progress || typeof detail.progress !== "object" || Array.isArray(detail.progress)) return;
+    state[detail.key] = detail.progress;
+    saveUserState();
+  });
+
   window.addEventListener("tad:notesStudioChange", (event) => {
     const next = event && event.detail;
     if (!Array.isArray(next)) return;
