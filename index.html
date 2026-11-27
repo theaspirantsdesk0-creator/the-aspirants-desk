@@ -3320,7 +3320,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       if (supabase) {
         const { data: publishedRows, error: publishedError } = await supabase
           .from("pyq_questions")
-          .select("id,stage,exam_year,paper,subject,topic,optional_subject,question_type,question_text,options,marks,source_reference,source_verified,is_published")
+          .select("id,stage,exam_year,paper,subject,topic,optional_subject,question_type,question_number,question_text,options,marks,source_reference,source_verified,is_published")
           .eq("is_published", true)
           .eq("source_verified", true)
           .order("exam_year", { ascending: false })
