@@ -539,11 +539,17 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
           typeof parsed.overall_feedback !== "string") {
         throw new Error("AI evaluation did not match the required rubric");
       }
+      // Calculate the formative mark from the five validated rubric scores.
+      // Each criterion is scored out of 4 (20 total), then scaled to the paper's
+      // 10- or 15-mark target so the model cannot return an inconsistent total.
+      const rubricTotal = criteria.reduce((sum, item) =>
+        sum + Number((item as Record<string, unknown>).score), 0);
+      const calculatedMark = Math.round((rubricTotal / 20) * marks * 10) / 10;
       const cleanList = (value: unknown) => Array.isArray(value)
         ? value.filter((item): item is string => typeof item === "string").slice(0, 4) : [];
       return json({
         evaluation: {
-          estimated_mark: Math.round(Number(parsed.estimated_mark) * 10) / 10,
+          estimated_mark: calculatedMark,
           max_marks: marks,
           overall_feedback: parsed.overall_feedback.slice(0, 1200),
           criteria: criteria.map((item) => {
