@@ -39,7 +39,7 @@ try {
   }
   let response = null;
   let publishedVersionReady = false;
-  for (let attempt = 0; attempt < 20; attempt++) {
+  for (let attempt = 0; attempt < 40; attempt++) {
     response = await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
     if (response && response.ok()) {
       await page.waitForTimeout(1200);
@@ -53,7 +53,7 @@ try {
     }
     await page.waitForTimeout(15000);
   }
-  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank/Anbuu navigation build did not appear on Pages within five minutes; last HTTP status=' + (response?.status() ?? 'no response'));
+  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank/Anbuu navigation build did not appear on Pages within ten minutes; last HTTP status=' + (response?.status() ?? 'no response'));
   await page.waitForTimeout(4000);
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
