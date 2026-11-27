@@ -4935,6 +4935,138 @@
         "Indology: G. S. Ghurye",
         "Structural functionalism: M. N. Srinivas",
         "Marxist sociology: A. R. Desai"
+      ],
+      "lesson": {
+        "objective": "Compare major sociological approaches to Indian society, especially Indology, structural functionalism and Marxist sociology.",
+        "sections": [
+          {
+            "heading": "Indology and G. S. Ghurye",
+            "explanation": [
+              "Indological approaches study Indian society through texts, historical records, cultural traditions and civilisational categories. G. S. Ghurye used historical and textual materials alongside sociological analysis to study caste, tribes, culture and social change.",
+              "A strength is attention to historical depth and cultural context; a limitation arises if textual accounts are treated as a complete representation of lived social diversity."
+            ],
+            "example": "A study of caste may compare classical textual descriptions with contemporary field evidence."
+          },
+          {
+            "heading": "Structural functionalism and M. N. Srinivas",
+            "explanation": [
+              "Structural-functional approaches examine how institutions and relationships are connected within a social system. M. N. Srinivas used village studies and concepts such as Sanskritisation, Westernisation and dominant caste to explain social processes in India.",
+              "Fieldwork made everyday practices and local power visible, although a village-centred focus can understate wider political economy and historical forces."
+            ],
+            "example": "The concept of dominant caste links numerical strength, landownership and political influence in a locality."
+          },
+          {
+            "heading": "Marxist sociology and A. R. Desai",
+            "explanation": [
+              "Marxist sociology analyses Indian society through class relations, agrarian structure, capitalism, colonialism and the state. A. R. Desai examined nationalism and social change in relation to material and class processes.",
+              "This perspective highlights exploitation and economic power, but social life also involves caste, gender, religion and region, which require attention in their own right."
+            ],
+            "example": "Land relations can be studied through ownership, tenancy, labour and the political influence of agrarian groups."
+          },
+          {
+            "heading": "Comparing perspectives",
+            "explanation": [
+              "The three approaches ask different questions and use different evidence. Indology foregrounds texts and historical traditions; structural functionalism studies institutions and field-level relationships; Marxist analysis foregrounds material relations and conflict.",
+              "A balanced answer identifies each perspective's contribution and limits rather than treating one as a complete explanation of Indian society."
+            ],
+            "example": "A study of village change can combine textual history, ethnographic observation and analysis of land and labour relations."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Indology",
+            "meaning": "Study of Indian society through texts, historical traditions and cultural materials."
+          },
+          {
+            "term": "Structural functionalism",
+            "meaning": "Approach examining how institutions and relationships contribute to or disrupt social systems."
+          },
+          {
+            "term": "Village study",
+            "meaning": "Field-based research into social relationships and institutions in a village setting."
+          },
+          {
+            "term": "Class analysis",
+            "meaning": "Study of social inequality through economic position and relations of production."
+          },
+          {
+            "term": "Dominant caste",
+            "meaning": "Srinivas's concept for a caste with substantial local numerical, economic and political power."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "G. S. Ghurye",
+            "idea": "Indological and historical sociology of caste, tribes and Indian culture."
+          },
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Village studies, Sanskritisation, Westernisation and dominant caste."
+          },
+          {
+            "scholar": "A. R. Desai",
+            "idea": "Marxist analysis of Indian nationalism and social structure."
+          }
+        ],
+        "answerPractice": "Compare Indological, structural-functional and Marxist approaches to Indian society with reference to their methods and contributions.",
+        "revisionPrompt": "Match each scholar with the method and key concept associated with their work."
+      },
+      "test": [
+        {
+          "q": "G. S. Ghurye is closely associated with:",
+          "o": [
+            "Indological study of Indian society",
+            "Symbolic interactionism alone",
+            "Rational choice theory",
+            "Psychoanalysis"
+          ],
+          "a": 0,
+          "w": "Ghurye used historical and textual materials in his sociology of Indian society."
+        },
+        {
+          "q": "M. N. Srinivas is associated with which concept?",
+          "o": [
+            "Dominant caste",
+            "Surplus value",
+            "Verstehen",
+            "Looking-glass self"
+          ],
+          "a": 0,
+          "w": "Dominant caste is a major concept in Srinivas's analysis of local power and social structure."
+        },
+        {
+          "q": "A. R. Desai is best associated with:",
+          "o": [
+            "Marxist sociology",
+            "Phenomenology",
+            "Ethnomethodology",
+            "Exchange theory"
+          ],
+          "a": 0,
+          "w": "Desai applied a Marxist perspective to Indian nationalism and social change."
+        },
+        {
+          "q": "A key strength of village studies is that they:",
+          "o": [
+            "Provide detailed field-based accounts of local social relations",
+            "Replace all historical research",
+            "Prove that all villages are identical",
+            "Exclude everyday practices"
+          ],
+          "a": 0,
+          "w": "Village studies provide detailed empirical insight into local institutions and relationships."
+        },
+        {
+          "q": "Which approach foregrounds ownership, class relations and material conditions?",
+          "o": [
+            "Marxist",
+            "Indological only",
+            "Phenomenological only",
+            "Structural linguistics"
+          ],
+          "a": 0,
+          "w": "Marxist sociology examines material relations and class structure."
+        }
       ]
     },
     {
@@ -4945,6 +5077,138 @@
         "Modernisation of Indian tradition",
         "Protests and movements during the colonial period",
         "Social reforms"
+      ],
+      "lesson": {
+        "objective": "Explain how colonial rule transformed Indian society and contributed to nationalism, social reform and the modernisation of tradition.",
+        "sections": [
+          {
+            "heading": "Colonial economy and social restructuring",
+            "explanation": [
+              "Colonial rule reshaped land revenue, agriculture, trade, industry and administration. Commercialisation and new property arrangements altered rural relations, while colonial infrastructure connected regions but primarily served imperial priorities.",
+              "These changes were uneven and interacted with existing caste, class, gender and regional structures."
+            ],
+            "example": "Changes in land revenue and tenancy affected cultivators, landlords and rural labour in different ways."
+          },
+          {
+            "heading": "Social background of Indian nationalism",
+            "explanation": [
+              "Modern education, print culture, transport, administrative integration and new professional groups helped create spaces for political debate. Economic critiques of colonialism, racial discrimination and political exclusion also contributed to nationalist consciousness.",
+              "Nationalism was not socially uniform: peasants, workers, women, tribal communities and regional movements expressed distinct concerns and forms of participation."
+            ],
+            "example": "Public associations and newspapers helped circulate political ideas beyond small administrative centres."
+          },
+          {
+            "heading": "Social reform and protest",
+            "explanation": [
+              "Reform movements addressed issues such as caste discrimination, women's education, widow remarriage, religious practices and social inequality. Reformers used education, public debate, associations and legislation, while anti-colonial movements challenged imperial authority.",
+              "Reform was contested within society; different groups debated the meaning of tradition, equality and social progress."
+            ],
+            "example": "Campaigns for women's education combined new institutions with arguments about social rights and public participation."
+          },
+          {
+            "heading": "Modernisation of Indian tradition",
+            "explanation": [
+              "Modernisation did not simply erase tradition. Institutions and practices were selectively adapted, reinterpreted and combined with new political, legal, educational and economic arrangements.",
+              "Sociologists study this as interaction between continuity and change rather than a one-way replacement of old by new."
+            ],
+            "example": "A traditional community association may adopt modern electoral procedures while retaining older forms of identity and solidarity."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Colonialism",
+            "meaning": "Political and economic domination by an external power."
+          },
+          {
+            "term": "Nationalism",
+            "meaning": "A political consciousness and movement organised around a nation and collective self-determination."
+          },
+          {
+            "term": "Social reform",
+            "meaning": "Organised efforts to change social practices and institutions considered unjust or harmful."
+          },
+          {
+            "term": "Print public sphere",
+            "meaning": "Spaces of debate and circulation of ideas created through newspapers, pamphlets and publications."
+          },
+          {
+            "term": "Modernisation of tradition",
+            "meaning": "Selective adaptation and reinterpretation of traditional institutions under changing conditions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Bipan Chandra",
+            "idea": "Analysed Indian nationalism and the economic critique of colonialism."
+          },
+          {
+            "scholar": "A. R. Desai",
+            "idea": "Linked nationalist development to social and material transformations."
+          },
+          {
+            "scholar": "Yogendra Singh",
+            "idea": "Analysed modernisation of Indian tradition and processes of social change."
+          }
+        ],
+        "answerPractice": "Assess the impact of colonial rule on Indian society. Include economic restructuring, nationalism, social reform and modernisation of tradition.",
+        "revisionPrompt": "Explain why modernisation in India involved both continuity and change."
+      },
+      "test": [
+        {
+          "q": "Which development helped expand political debate during colonial rule?",
+          "o": [
+            "Print culture and modern education",
+            "The abolition of all transport",
+            "The end of public associations",
+            "The disappearance of regional languages"
+          ],
+          "a": 0,
+          "w": "Print culture and modern education widened circulation of political ideas."
+        },
+        {
+          "q": "The economic critique of colonialism focused on:",
+          "o": [
+            "The effects of imperial economic policies on Indian resources and production",
+            "Only religious rituals",
+            "Only family structure",
+            "The absence of trade"
+          ],
+          "a": 0,
+          "w": "Nationalist economic critique examined extraction, deindustrialisation and the structure of colonial economic relations."
+        },
+        {
+          "q": "Modernisation of tradition means:",
+          "o": [
+            "All traditions disappear immediately",
+            "Traditions are selectively adapted and reinterpreted",
+            "Tradition never changes",
+            "Only foreign institutions matter"
+          ],
+          "a": 1,
+          "w": "Modernisation can transform traditions without simply eliminating them."
+        },
+        {
+          "q": "Social reform movements in colonial India addressed:",
+          "o": [
+            "Only military technology",
+            "Practices and institutions such as caste discrimination and women's education",
+            "Only international trade tariffs",
+            "Only urban transport"
+          ],
+          "a": 1,
+          "w": "Reform movements engaged with social inequality, education and gender-related practices."
+        },
+        {
+          "q": "Which statement about Indian nationalism is most accurate?",
+          "o": [
+            "It involved only one social group",
+            "Different social groups participated with varied demands and experiences",
+            "It had no relationship with colonial economic change",
+            "It emerged only after independence"
+          ],
+          "a": 1,
+          "w": "Indian nationalism was a broad and internally diverse process."
+        }
       ]
     },
     {
@@ -4954,6 +5218,138 @@
         "The idea of the Indian village and village studies",
         "Agrarian social structure",
         "Evolution of land-tenure systems and land reforms"
+      ],
+      "lesson": {
+        "objective": "Analyse rural and agrarian social structure in India, village studies, land tenure and land reforms.",
+        "sections": [
+          {
+            "heading": "The idea of the Indian village",
+            "explanation": [
+              "The village has often been represented as a self-contained community, but sociological studies show that villages are connected to markets, states, migration networks and wider political processes. Caste, class, kinship and local institutions shape village life.",
+              "Village studies reveal local diversity and challenge romanticised or uniform images of rural society."
+            ],
+            "example": "Seasonal migration links village households to urban labour markets and remittance economies."
+          },
+          {
+            "heading": "Agrarian social structure",
+            "explanation": [
+              "Agrarian relations include landownership, tenancy, agricultural labour, credit, production and control over resources. Land is not only an economic asset; it can also provide status, political influence and security.",
+              "Caste and class may overlap in rural India but are not identical. Gender also shapes land rights, unpaid labour and access to agricultural decisions."
+            ],
+            "example": "A landless labour household may depend on seasonal employment and informal credit from local landholders."
+          },
+          {
+            "heading": "Land tenure under colonial rule",
+            "explanation": [
+              "Colonial land revenue arrangements included zamindari, ryotwari and mahalwari systems, with variations in implementation. They altered relations among the state, intermediaries, cultivators and village communities.",
+              "The effects differed across regions and cannot be reduced to a single uniform pattern."
+            ],
+            "example": "Under zamindari arrangements, intermediaries were recognised in revenue collection and land rights, affecting cultivators' security in many areas."
+          },
+          {
+            "heading": "Land reforms and contemporary change",
+            "explanation": [
+              "Post-independence land reforms included abolition of intermediaries, tenancy regulation, ceilings on holdings and consolidation of fragmented land. Implementation varied by state and was affected by administrative capacity and local power relations.",
+              "Green Revolution technologies, mechanisation, diversification, migration and rural development programmes further transformed agrarian relations, while unequal land access and rural distress remain important concerns."
+            ],
+            "example": "A land-ceiling law may have limited impact where land is concealed through informal transfers or weak enforcement."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Agrarian structure",
+            "meaning": "The pattern of landownership, tenancy, labour and production relations in agriculture."
+          },
+          {
+            "term": "Tenancy",
+            "meaning": "Cultivation of land by someone who does not own it, under an agreed arrangement."
+          },
+          {
+            "term": "Zamindari",
+            "meaning": "A colonial land revenue arrangement involving recognised intermediaries."
+          },
+          {
+            "term": "Land ceiling",
+            "meaning": "A legal limit on the amount of land an individual or household may hold."
+          },
+          {
+            "term": "Agricultural labour",
+            "meaning": "Work performed in agriculture for wages or other forms of remuneration."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "A. R. Desai",
+            "idea": "Marxist analysis of agrarian relations and rural transformation."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Studies of caste, class and power in rural India."
+          },
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Village studies and analysis of local social structure and change."
+          }
+        ],
+        "answerPractice": "Discuss the changing agrarian social structure in India. Explain the role and limitations of land reforms.",
+        "revisionPrompt": "Differentiate zamindari, ryotwari and mahalwari in terms of the revenue relationship."
+      },
+      "test": [
+        {
+          "q": "Agrarian structure primarily concerns:",
+          "o": [
+            "Landownership, tenancy, labour and agricultural production relations",
+            "Only village festivals",
+            "Only urban housing",
+            "Only religious conversion"
+          ],
+          "a": 0,
+          "w": "Agrarian structure describes social and economic relations organised around land and agriculture."
+        },
+        {
+          "q": "The zamindari system involved:",
+          "o": [
+            "Recognised intermediaries in revenue collection",
+            "Direct rule by elected village councils only",
+            "A universal system of land ownership by cultivators",
+            "The abolition of land revenue"
+          ],
+          "a": 0,
+          "w": "Zamindars were recognised intermediaries in colonial land revenue arrangements."
+        },
+        {
+          "q": "A land ceiling law aims to:",
+          "o": [
+            "Set a maximum limit on landholdings",
+            "Increase unlimited concentration of land",
+            "Abolish all agricultural activity",
+            "Replace all village institutions"
+          ],
+          "a": 0,
+          "w": "Land ceilings seek to limit concentration by setting legal holding limits."
+        },
+        {
+          "q": "Which factor can limit the effectiveness of land reforms?",
+          "o": [
+            "Uneven implementation and local power relations",
+            "Clear land records everywhere",
+            "Universal access to legal support",
+            "Complete administrative uniformity"
+          ],
+          "a": 0,
+          "w": "Implementation gaps and entrenched local interests have constrained land reform outcomes."
+        },
+        {
+          "q": "A village should sociologically be understood as:",
+          "o": [
+            "Always isolated and self-sufficient",
+            "Connected to wider markets, migration and state institutions",
+            "Identical across all regions",
+            "Free from caste and class relations"
+          ],
+          "a": 1,
+          "w": "Village life is linked to wider economic and political processes."
+        }
       ]
     },
     {
@@ -4963,6 +5359,142 @@
         "G. S. Ghurye, M. N. Srinivas, Louis Dumont and André Béteille perspectives",
         "Features of the caste system",
         "Forms and perspectives on untouchability"
+      ],
+      "lesson": {
+        "objective": "Explain the caste system in India through classical features, major sociological interpretations and changing forms of untouchability.",
+        "sections": [
+          {
+            "heading": "Features and dimensions of caste",
+            "explanation": [
+              "Caste has historically involved hereditary membership, endogamy, hierarchy, occupational associations, restrictions on social interaction and ideas of purity and pollution. The strength and form of these features vary across region and historical period.",
+              "Caste is not simply a fixed religious category; it is also shaped by land, education, politics, law, markets and collective mobilisation."
+            ],
+            "example": "Endogamy refers to marriage within a socially defined group and has been an important mechanism of caste boundary maintenance."
+          },
+          {
+            "heading": "Ghurye, Srinivas and Dumont",
+            "explanation": [
+              "Ghurye identified major features of caste and studied its historical and cultural dimensions. Srinivas examined caste through fieldwork and concepts such as Sanskritisation and dominant caste. Louis Dumont analysed hierarchy and purity-pollution as central to the ideological structure of caste.",
+              "These approaches illuminate different dimensions but have been criticised when they understate material inequality, political contestation or regional diversity."
+            ],
+            "example": "A local study may show that landownership and electoral power influence caste relations alongside ritual ranking."
+          },
+          {
+            "heading": "André Béteille and multidimensional stratification",
+            "explanation": [
+              "Béteille's work highlights the relationship and distinction between caste, class and power. These dimensions can overlap, but economic position and political influence do not always follow ritual hierarchy in a simple way.",
+              "Contemporary analysis studies how education, migration, urban employment, law and electoral politics reshape caste without assuming caste has disappeared."
+            ],
+            "example": "A group may gain political influence through mobilisation even while facing economic disadvantage."
+          },
+          {
+            "heading": "Untouchability, exclusion and social justice",
+            "explanation": [
+              "Untouchability has involved practices of exclusion, segregation and denial of dignity and access. The Constitution prohibits untouchability, and legal safeguards and affirmative action seek to address historical disadvantage.",
+              "Sociological analysis examines both overt discrimination and less visible forms in housing, work, education, social interaction and access to public resources. Policy, enforcement and social movements all matter."
+            ],
+            "example": "A formally open public institution may still reproduce exclusion through discriminatory everyday practices."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Endogamy",
+            "meaning": "Marriage within a socially defined group."
+          },
+          {
+            "term": "Sanskritisation",
+            "meaning": "Srinivas's concept describing status mobility through adoption of practices associated with higher-status groups."
+          },
+          {
+            "term": "Purity-pollution",
+            "meaning": "A ritual hierarchy concept used in some analyses of caste."
+          },
+          {
+            "term": "Untouchability",
+            "meaning": "Practices of exclusion and discrimination historically directed at communities treated as 'untouchable'."
+          },
+          {
+            "term": "Affirmative action",
+            "meaning": "Policy measures intended to improve access and representation for historically disadvantaged groups."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "G. S. Ghurye",
+            "idea": "Identified historical and cultural features of caste."
+          },
+          {
+            "scholar": "M. N. Srinivas",
+            "idea": "Sanskritisation, dominant caste and field-based study of caste change."
+          },
+          {
+            "scholar": "Louis Dumont",
+            "idea": "Analysed caste hierarchy through the ideology of purity and pollution."
+          },
+          {
+            "scholar": "André Béteille",
+            "idea": "Examined the relationship among caste, class and power."
+          }
+        ],
+        "answerPractice": "Compare the perspectives of Ghurye, Srinivas, Dumont and Béteille on caste. Discuss the changing forms of untouchability.",
+        "revisionPrompt": "Explain why caste, class and power overlap but should not be treated as identical."
+      },
+      "test": [
+        {
+          "q": "Endogamy refers to:",
+          "o": [
+            "Marriage within a defined social group",
+            "Marriage only outside one's community",
+            "A system of land revenue",
+            "A form of urban migration"
+          ],
+          "a": 0,
+          "w": "Endogamy is marriage within a socially defined group."
+        },
+        {
+          "q": "Sanskritisation is associated with:",
+          "o": [
+            "M. N. Srinivas",
+            "Karl Marx",
+            "Max Weber",
+            "Robert K. Merton"
+          ],
+          "a": 0,
+          "w": "Srinivas used Sanskritisation to describe a process of status mobility through cultural practices."
+        },
+        {
+          "q": "Louis Dumont's analysis of caste gives central importance to:",
+          "o": [
+            "Purity and pollution",
+            "Industrial bureaucracy",
+            "Class struggle alone",
+            "Urban ecology"
+          ],
+          "a": 0,
+          "w": "Dumont analysed caste hierarchy through the ideology of purity and pollution."
+        },
+        {
+          "q": "André Béteille is especially associated with the study of:",
+          "o": [
+            "Caste, class and power",
+            "Only religious rituals",
+            "Only population genetics",
+            "Only international relations"
+          ],
+          "a": 0,
+          "w": "Béteille's work examines the relationships and distinctions among caste, class and power."
+        },
+        {
+          "q": "Which statement about untouchability is correct?",
+          "o": [
+            "It is constitutionally permitted",
+            "It is prohibited by the Constitution, while social practices still require attention",
+            "It exists only in historical texts",
+            "It is identical to occupational specialisation"
+          ],
+          "a": 1,
+          "w": "The Constitution prohibits untouchability, but sociological analysis examines continuing discrimination."
+        }
       ]
     },
     {
@@ -4972,6 +5504,142 @@
         "Definitional problems and geographical spread",
         "Colonial policies and tribes",
         "Issues of integration and autonomy"
+      ],
+      "lesson": {
+        "objective": "Examine tribal communities in India, their diversity, colonial experiences and debates on integration, autonomy and development.",
+        "sections": [
+          {
+            "heading": "Defining tribal communities",
+            "explanation": [
+              "The term 'tribe' covers diverse communities with varied languages, livelihoods, political institutions and relationships with land and forests. There is no single feature that defines every community. Constitutional categories such as Scheduled Tribes are administrative and legal classifications.",
+              "Sociological analysis should avoid treating tribal communities as isolated, timeless or internally uniform."
+            ],
+            "example": "A forest-dependent community and a pastoral community may have very different livelihoods and institutional arrangements."
+          },
+          {
+            "heading": "Geographical spread and social diversity",
+            "explanation": [
+              "Tribal communities are present across central, eastern, north-eastern, western and southern India, with different histories and ecological settings. Community identity may be connected to language, territory, kinship, customary institutions and shared historical experience.",
+              "Regional variation matters for understanding education, health, land rights, political representation and development needs."
+            ],
+            "example": "Customary institutions in one region cannot automatically be assumed to operate in another."
+          },
+          {
+            "heading": "Colonial policies and tribal experiences",
+            "explanation": [
+              "Colonial forest laws, land policies, revenue systems, moneylending and commercial extraction often disrupted customary access to land and resources. Missionary activity, administration and market expansion also produced varied changes.",
+              "Tribal resistance took different forms, reflecting local grievances, leadership, land alienation and demands for autonomy."
+            ],
+            "example": "Restrictions on forest access could undermine livelihoods and trigger collective protest."
+          },
+          {
+            "heading": "Integration, autonomy and development",
+            "explanation": [
+              "Debates on tribal policy include assimilation, integration, protection of distinct cultures and self-governance. The challenge is to expand rights and public services while respecting community institutions, consent and cultural diversity.",
+              "Development projects can create displacement and loss of livelihoods if participation, rehabilitation and legal protections are inadequate. Autonomy and democratic representation are therefore central."
+            ],
+            "example": "Community participation in decisions over land and forest resources can make development more accountable."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Scheduled Tribes",
+            "meaning": "Constitutionally recognised communities listed under the relevant constitutional process."
+          },
+          {
+            "term": "Customary institutions",
+            "meaning": "Community-based rules and organisations rooted in established practices."
+          },
+          {
+            "term": "Assimilation",
+            "meaning": "Absorption of a group into a dominant cultural pattern."
+          },
+          {
+            "term": "Autonomy",
+            "meaning": "Capacity of a community or region to manage specified affairs through self-governing arrangements."
+          },
+          {
+            "term": "Displacement",
+            "meaning": "Forced or pressured movement from a place of residence or livelihood."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "G. S. Ghurye",
+            "idea": "Debated tribal integration and the relationship between tribes and wider Hindu society."
+          },
+          {
+            "scholar": "Verrier Elwin",
+            "idea": "Wrote on tribal life and argued for protection of cultural autonomy in policy debates."
+          },
+          {
+            "scholar": "N. K. Bose",
+            "idea": "Studied tribal communities and processes of cultural contact and integration."
+          },
+          {
+            "scholar": "Virginius Xaxa",
+            "idea": "Analysed tribal identity, development, rights and the limitations of dominant policy approaches."
+          }
+        ],
+        "answerPractice": "Discuss the major issues in tribal development in India. Evaluate the tension between integration, autonomy and protection of cultural rights.",
+        "revisionPrompt": "Compare assimilation, integration and autonomy; identify why one uniform tribal policy is inadequate."
+      },
+      "test": [
+        {
+          "q": "Scheduled Tribe is primarily a:",
+          "o": [
+            "Constitutional and administrative category",
+            "Single language group",
+            "Uniform occupational category",
+            "Religious denomination"
+          ],
+          "a": 0,
+          "w": "Scheduled Tribe status is a constitutional and administrative classification, not a single cultural identity."
+        },
+        {
+          "q": "A major impact of some colonial forest policies was:",
+          "o": [
+            "Unrestricted customary access for all communities",
+            "Restrictions on customary access to forest resources",
+            "The end of all commercial extraction",
+            "Complete tribal self-government"
+          ],
+          "a": 1,
+          "w": "Colonial forest regulation often restricted customary use and altered local livelihoods."
+        },
+        {
+          "q": "Which is a key concern in tribal development policy?",
+          "o": [
+            "Balancing access to services with cultural rights and community participation",
+            "Treating all communities as identical",
+            "Ignoring land and forest rights",
+            "Avoiding local consultation"
+          ],
+          "a": 0,
+          "w": "Development should respect rights, diversity, consent and community participation."
+        },
+        {
+          "q": "The idea of autonomy primarily concerns:",
+          "o": [
+            "Self-governing capacity in specified affairs",
+            "Complete absence of law",
+            "Only private property",
+            "A ban on education"
+          ],
+          "a": 0,
+          "w": "Autonomy gives communities or regions authority to manage specified matters."
+        },
+        {
+          "q": "Which approach is most suitable for studying tribal diversity?",
+          "o": [
+            "Assume all communities share one lifestyle",
+            "Examine regional, linguistic, historical and livelihood differences",
+            "Treat tribes as outside modern society",
+            "Use only one colonial account"
+          ],
+          "a": 1,
+          "w": "Tribal communities are diverse and connected to wider economic, political and social processes."
+        }
       ]
     },
     {
