@@ -980,6 +980,8 @@ def main() -> int:
               "Notes Studio must display the due revision queue and count")
         check('id="nsProgressPercent"' in index_html and 'id="nsProgressBar"' in index_html and "data-progress" in notes_js and "notesStudioProgressChange" in index_html,
               "Notes Studio must track per-topic completion and persist it through the learner account")
+        check("function recordRecall" in notes_js and 'data-recall="confident"' in notes_js and 'data-recall="review"' in notes_js and "nextReviewAt" in notes_js,
+              "Active recall outcomes must update topic mastery and spaced revision dates")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
