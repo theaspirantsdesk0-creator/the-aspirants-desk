@@ -460,7 +460,7 @@ if(evaluation&&role==="learner"){
 }
 if(role==="learner"&&r.data.mentorState){state=r.data.mentorState;render();}
 status.textContent=(r.data.provider||"AI")+" · "+(r.data.remaining??"—")+" messages remaining today.";
-}catch(e){const detail=await aiFunctionErrorMessage(e);say(detail,"assistant");status.textContent="Request failed. Check your connection and try again.";console.error("Anbuu request failed:",e);}
+}catch(e){const detail=await aiFunctionErrorMessage(e);say(detail,"assistant");status.textContent="AI request failed · "+detail;console.error("Anbuu request failed:",e);}
 finally{busy=false;send.disabled=false;input.focus();}
 }
 const prompts={plan:"Help me create a realistic study plan. Ask for my exam goal, syllabus, timeline and daily available study time only if missing. Save the agreed plan.",doubts:"Summarise my recurring doubts from this conversation and saved learning context in 2–3 bullets. Update my doubt log if useful.",tasks:"Give me 1–3 concrete tasks for today based on my active study plan, pending tasks and today's lesson. Save the updated task list."};
