@@ -300,6 +300,13 @@ def main() -> int:
               "Course discovery toolbar styles are missing")
         check('id="pyqInventorySnapshot"' in course_html,
               "Official PYQ verification snapshot is missing")
+        check('.from("pyq_questions")' in course_html
+              and '.eq("is_published", true)' in course_html
+              and '.eq("source_verified", true)' in course_html
+              and "isOfficialUpscUrl(row.source_reference)" in course_html,
+              "Live PYQ archive must expose only published, source-verified UPSC records")
+        check('question_number' in course_html and "source_reference" in course_html,
+              "Live PYQ records must retain paper question numbering and official source provenance")
         design_system_css = ROOT / "assets" / "css" / "design-system.css"
         design_system = design_system_css.read_text(encoding="utf-8") if design_system_css.is_file() else ""
         check("data/pyq/documents.json" in course_html and "pyq-inventory-snapshot" in design_system,
@@ -929,7 +936,7 @@ def main() -> int:
               "Mains evaluation assets must use the existing authenticated Supabase client")
     check("assets/js/mains-evaluation.js" in sw_source_for_mains
           and "assets/css/mains-evaluation.css" in sw_source_for_mains
-          and "desk-v48-auth-refresh-fix" in sw_source_for_mains,
+          and "desk-v49-live-pyq-publication" in sw_source_for_mains,
           "Service worker must cache and version the Mains evaluation feature")
 
     print(f"Quality checks executed: {CHECKS}")
