@@ -1269,6 +1269,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       <h2>General Studies Chapter Notes</h2>
       <p class="muted">Search the existing General Studies chapter library and track chapter reading progress.</p>
       <input id="nSearch" class="nsearch" type="search" placeholder="Search General Studies chapters (e.g. Article 21, monsoon)…" aria-label="Search chapters"><div id="nSearchOut"></div><p class="pill warn" id="examNotesNote" hidden style="margin:.6rem 0"></p><div class="grid-3" id="ngrid"></div>
+<section id="notesStudio" aria-label="Notes Studio">
+<div class="ns-intro"><div><h2>Notes Studio · Foundation Series</h2><p id="nsPackDesc">Beginner-first notes with English explanations, Tamil takeaways, Prelims facts, Mains angles and active recall.</p><small id="nsSeriesMeta">Loading notes…</small></div><span class="pill" style="background:rgba(234,179,8,.2);color:#facc15;border-color:#eab308">New learning series</span></div>
+<h3 id="nsPackTitle" style="margin:1rem 0 .2rem">UPSC Foundation Notes</h3>
+<div class="ns-controls"><input id="nsSearch" type="search" placeholder="Search concepts, Articles or keywords…" aria-label="Search foundation notes"><button type="button" class="btn" id="nsCapture">Capture current GS chapter</button></div>
+<div class="ns-filters" id="nsFilters"></div><div class="ns-chapter-grid" id="nsChapterGrid" aria-live="polite"></div>
+<section class="ns-editor" id="nsEditor"><div class="ns-vault-head"><div><h3 style="margin:0">My private revision notebook</h3><p class="muted" style="margin:.2rem 0">Save summaries, definitions, examples and answer points. Signed-in notes sync through your study account.</p></div><button type="button" class="btn" id="nsNew">New note</button></div>
+<div class="ns-editor-grid"><label>Note title<input id="nsTitle" maxlength="120" placeholder="e.g. Article 21 — key points"></label><label>Subject<select id="nsSubject"><option>Indian Polity</option><option>History</option><option>Geography</option><option>Economy</option><option>Environment</option><option>Ethics</option><option>Anthropology</option><option>Other</option></select></label><label>Note type<select id="nsType"><option>Revision summary</option><option>Chapter brief</option><option>Definition</option><option>Case study / example</option><option>Mains answer points</option><option>Chapter capture</option><option>Personal note</option></select></label><label>Tags<input id="nsTags" maxlength="180" placeholder="Article 21, rights, case law"></label><label class="ns-wide">Your note<textarea id="nsBody" maxlength="12000" placeholder="Write concise points, examples, keywords and doubts…"></textarea></label></div>
+<div class="btn-row"><button type="button" class="btn primary" id="nsSave">Save note</button><span id="nsStatus" class="muted" role="status"></span></div></section>
+<section class="ns-vault"><div class="ns-vault-head"><h3 style="margin:0">Saved notes</h3><div class="btn-row"><span class="pill" id="nsVaultCount">0 saved notes</span><button type="button" class="btn" id="nsExport">Export Markdown</button></div></div><input id="nsVaultSearch" type="search" placeholder="Search your notebook…" aria-label="Search saved notes" style="margin-top:.8rem"><div class="ns-vault-list" id="nsVaultList"></div></section>
+</section>
     </div>
   </section>
 
@@ -2150,6 +2160,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     const next = event && event.detail;
     if (!next || typeof next !== "object" || Array.isArray(next)) return;
     state.learningHub = next;
+    saveUserState();
+  });
+
+  window.addEventListener("tad:notesStudioChange", (event) => {
+    const next = event && event.detail;
+    if (!Array.isArray(next)) return;
+    state.notesStudio = next.slice(-300);
     saveUserState();
   });
 
@@ -4903,5 +4920,6 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
   <script src="assets/js/mock-exams.js" defer></script>
+  <script src="assets/js/notes-studio.js" defer></script>
 </body>
 </html>
