@@ -3308,11 +3308,56 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       const response = await fetch("data/pyq/questions.json", { cache: "no-store" });
       if (!response.ok) throw new Error("Official PYQ data unavailable (" + response.status + ")");
       const data = await response.json();
-      OFFICIAL_PYQ_ROWS = Array.isArray(data) ? data.filter(row =>
+      const staticRows = Array.isArray(data) ? data.filter(row =>
         row && row.status === "published" && row.verification && row.verification.status === "verified" &&
         row.source && typeof row.source.document_url === "string" &&
         isOfficialUpscUrl(row.source.document_url) && row.question
       ) : [];
+
+      // Supabase is the live publication source; the static archive remains a resilient fallback.
+      // Only explicitly published, source-verified rows with a direct UPSC document URL are shown.
+      let databaseRows = [];
+      if (supabase) {
+        const { data: publishedRows, error: publishedError } = await supabase
+          .from("pyq_questions")
+          .select("id,stage,exam_year,paper,subject,topic,optional_subject,question_type,question_text,options,marks,source_reference,source_verified,is_published")
+          .eq("is_published", true)
+          .eq("source_verified", true)
+          .order("exam_year", { ascending: false })
+          .limit(500);
+        if (publishedError) {
+          console.warn("Live published PYQs unavailable; using the static verified archive.", publishedError);
+        } else {
+          databaseRows = (publishedRows || []).filter(row =>
+            row && row.question_text && typeof row.source_reference === "string" &&
+            isOfficialUpscUrl(row.source_reference)
+          ).map(row => ({
+            id: row.id,
+            year: row.exam_year,
+            stage: String(row.stage || "").toLowerCase().includes("pre") ? "Prelims" : "Mains",
+            paper: row.paper,
+            subject: row.subject,
+            topic: row.topic,
+            optional_subject: row.optional_subject,
+            question_type: row.question_type,
+            question_number: row.question_number || row.question_no || "",
+            question: row.question_text,
+            options: Array.isArray(row.options) ? row.options.map(option =>
+              typeof option === "string" ? option : String(option && (option.text || option.label) || "")
+            ).filter(Boolean) : null,
+            marks: row.marks,
+            source: { document_url: row.source_reference },
+            verification: { status: "verified" },
+            status: "published"
+          }));
+        }
+      }
+      const uniqueRows = new Map();
+      [...staticRows, ...databaseRows].forEach(row => {
+        const key = [row.year, row.stage, row.paper, row.question_number || "", String(row.question || "").trim().toLowerCase()].join("|");
+        if (!uniqueRows.has(key)) uniqueRows.set(key, row);
+      });
+      OFFICIAL_PYQ_ROWS = [...uniqueRows.values()];
     } catch (error) {
       OFFICIAL_PYQ_ROWS = [];
       host.innerHTML = '<p class="muted">The verified PYQ archive could not be loaded. Please try again later.</p>';
@@ -3347,7 +3392,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
           const options = Array.isArray(row.options) ? '<ol type="A">' + row.options.map(option => '<li>' + esc(option) + '</li>').join("") + '</ol>' : "";
           const answer = row.answer ? '<p><b>Answer:</b> ' + esc(row.answer) + '</p>' : "";
           const explanation = row.explanation ? '<p>' + esc(row.explanation) + '</p>' : "";
-          return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row.year) + '</span><span class="pill">' + esc(row.stage) + '</span><span class="pill">' + esc(row.paper) + '</span><span class="pill">Q. ' + esc(row.question_number) + '</span></div><p><b>' + esc(row.question) + '</b></p>' + options + (answer || explanation ? '<details><summary>Show answer / explanation</summary>' + answer + explanation + '</details>' : '<p class="muted">No verified answer or explanation is attached to this record.</p>') + '<p><a href="' + esc(row.source.document_url) + '" target="_blank" rel="noopener noreferrer">View official source document</a></p></article>';
+          return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row.year) + '</span><span class="pill">' + esc(row.stage) + '</span><span class="pill">' + esc(row.paper) + '</span><span class="pill">Q. ' + esc(row.question_number || "—") + '</span></div><p><b>' + esc(row.question) + '</b></p>' + options + (answer || explanation ? '<details><summary>Show answer / explanation</summary>' + answer + explanation + '</details>' : '<p class="muted">No verified answer or explanation is attached to this record.</p>') + '<p><a href="' + esc(row.source.document_url) + '" target="_blank" rel="noopener noreferrer">View official source document</a></p></article>';
         }).join("") : '<p class="muted">No verified official PYQs match these filters yet. This is not a statement that UPSC did not conduct the examination: it means this site has not published a source-verified record. Use the official current and archived paper links above. The practice bank remains separate.</p>');
     };
     if (yearSelect.dataset.bound !== "1") {
