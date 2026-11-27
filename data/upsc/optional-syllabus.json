@@ -7469,6 +7469,135 @@
         "State in capitalist and socialist economies",
         "State in advanced industrial and developing societies",
         "Changing nature and characteristics of the state"
+      ],
+      "notes": "Compare the state across economic systems and levels of development without assuming that every country follows the same path. The state is a set of institutions that claims legitimate authority over a territory and population. It makes and enforces laws, raises revenue, provides security and organises collective decisions. The state should be distinguished from government: governments change, while the state’s institutions and legal identity generally continue. In capitalist systems, private ownership and markets play a major role, while states regulate, tax, provide public goods and may redistribute resources. The balance differs across countries and periods. Historically socialist systems placed a larger role on public ownership and central planning. Their institutional arrangements varied, and reforms have produced diverse mixed arrangements. States in advanced industrial societies often have extensive fiscal, regulatory and welfare capacities, though their political systems and policy choices differ. Developing societies may face challenges involving revenue capacity, infrastructure, social inequality, informal economies and institutional reach. These are not fixed traits; states differ greatly in capability and outcomes. Globalisation, digital technologies, migration, climate risks and transnational markets reshape state responsibilities without making the state irrelevant. Contemporary states combine regulation, service provision, partnerships and international cooperation. Their capacity to protect rights and deliver public goods remains important.",
+      "lesson": {
+        "objective": "Compare the state across economic systems and levels of development without assuming that every country follows the same path.",
+        "sections": [
+          {
+            "heading": "Meaning and core features",
+            "explanation": [
+              "The state is a set of institutions that claims legitimate authority over a territory and population. It makes and enforces laws, raises revenue, provides security and organises collective decisions.",
+              "The state should be distinguished from government: governments change, while the state’s institutions and legal identity generally continue."
+            ],
+            "example": "An elected government may change after an election while courts, civil services and constitutional institutions continue."
+          },
+          {
+            "heading": "Capitalist and socialist contexts",
+            "explanation": [
+              "In capitalist systems, private ownership and markets play a major role, while states regulate, tax, provide public goods and may redistribute resources. The balance differs across countries and periods.",
+              "Historically socialist systems placed a larger role on public ownership and central planning. Their institutional arrangements varied, and reforms have produced diverse mixed arrangements."
+            ],
+            "example": "Compare how two countries organise energy, healthcare or transport rather than relying only on ideological labels."
+          },
+          {
+            "heading": "Advanced industrial and developing societies",
+            "explanation": [
+              "States in advanced industrial societies often have extensive fiscal, regulatory and welfare capacities, though their political systems and policy choices differ.",
+              "Developing societies may face challenges involving revenue capacity, infrastructure, social inequality, informal economies and institutional reach. These are not fixed traits; states differ greatly in capability and outcomes."
+            ],
+            "example": "A comparison of tax collection should consider administrative capacity, economic structure and public trust."
+          },
+          {
+            "heading": "Changing state and global pressures",
+            "explanation": [
+              "Globalisation, digital technologies, migration, climate risks and transnational markets reshape state responsibilities without making the state irrelevant.",
+              "Contemporary states combine regulation, service provision, partnerships and international cooperation. Their capacity to protect rights and deliver public goods remains important."
+            ],
+            "example": "Public health and climate policy often require domestic institutions to cooperate with international organisations."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "State",
+            "meaning": "A political and legal institution exercising authority over a territory and population."
+          },
+          {
+            "term": "State capacity",
+            "meaning": "The ability of public institutions to formulate and implement decisions."
+          },
+          {
+            "term": "Welfare state",
+            "meaning": "A state that accepts responsibility for social protection and public welfare."
+          },
+          {
+            "term": "Mixed economy",
+            "meaning": "An economic system combining public and private ownership or coordination."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Max Weber",
+            "idea": "Defined the modern state through its claim to the legitimate use of physical force within a territory."
+          },
+          {
+            "scholar": "Theda Skocpol",
+            "idea": "Highlighted the state as an organisation with its own institutional capacities and interests."
+          },
+          {
+            "scholar": "Peter Evans",
+            "idea": "Analysed state capacity and state-society relations, including embedded autonomy."
+          }
+        ],
+        "answerPractice": "Compare the changing role of the state in capitalist and socialist economies. How have globalisation and development challenges reshaped state functions?",
+        "revisionPrompt": "Use a comparison matrix: ownership, planning, welfare, regulation, state capacity and accountability."
+      },
+      "test": [
+        {
+          "q": "A defining feature of the modern state in Weber's account is its claim to:",
+          "o": [
+            "Legitimate use of physical force within a territory",
+            "Control every private belief",
+            "Abolish all law",
+            "Replace society"
+          ],
+          "a": 0,
+          "w": "Weber's classic definition highlights the state's claim to the legitimate use of force within a territory."
+        },
+        {
+          "q": "A government differs from the state because:",
+          "o": [
+            "Governments may change while state institutions continue",
+            "The state exists only during elections",
+            "Government has no public authority",
+            "The state is a private company"
+          ],
+          "a": 0,
+          "w": "The government is the current governing leadership; the state is the continuing institutional and legal order."
+        },
+        {
+          "q": "A mixed economy combines:",
+          "o": [
+            "Only central planning",
+            "Only private ownership",
+            "Public and private economic activity",
+            "No regulation"
+          ],
+          "a": 2,
+          "w": "A mixed economy includes both public and private roles."
+        },
+        {
+          "q": "State capacity refers to:",
+          "o": [
+            "The number of political parties",
+            "Ability to implement public decisions",
+            "Only territorial size",
+            "Only military expenditure"
+          ],
+          "a": 1,
+          "w": "State capacity concerns the ability to formulate and implement decisions."
+        },
+        {
+          "q": "Globalisation has generally:",
+          "o": [
+            "Removed all state functions",
+            "Changed state roles and increased cross-border interdependence",
+            "Ended domestic law",
+            "Made public institutions unnecessary"
+          ],
+          "a": 1,
+          "w": "Globalisation reshapes rather than simply eliminates state responsibilities."
+        }
       ]
     },
     {
@@ -7477,6 +7606,135 @@
       "topics": [
         "Political parties and pressure groups",
         "Social movements in advanced industrial and developing societies"
+      ],
+      "notes": "Understand how parties, pressure groups and social movements connect citizens with political power. Representation involves acting or speaking on behalf of people within political institutions. Participation includes voting, campaigning, consultation, protest and other forms of public engagement. Formal electoral participation is important, but meaningful democracy also depends on access to information, association, deliberation and accountability. Political parties aggregate interests, develop policy programmes, recruit candidates, organise electoral competition and form governments or opposition. Party systems may be dominant-party, two-party or multiparty. Their operation is shaped by electoral rules, social cleavages, leadership and political history. Pressure groups seek to influence public decisions without necessarily seeking to form a government. They may represent business, labour, professional, environmental or community interests. Methods include research, consultation, public campaigns, petitions and lawful advocacy. Unequal resources can give some groups greater access than others. Social movements are sustained collective efforts to promote or resist social and political change. They may use public mobilisation, litigation, community organising and digital networks. Movements can widen participation and bring neglected issues into public debate. Their influence depends on organisation, alliances, political opportunities and state response.",
+      "lesson": {
+        "objective": "Understand how parties, pressure groups and social movements connect citizens with political power.",
+        "sections": [
+          {
+            "heading": "Representation and participation",
+            "explanation": [
+              "Representation involves acting or speaking on behalf of people within political institutions. Participation includes voting, campaigning, consultation, protest and other forms of public engagement.",
+              "Formal electoral participation is important, but meaningful democracy also depends on access to information, association, deliberation and accountability."
+            ],
+            "example": "A public hearing gives residents an opportunity to present views before a local policy decision."
+          },
+          {
+            "heading": "Political parties",
+            "explanation": [
+              "Political parties aggregate interests, develop policy programmes, recruit candidates, organise electoral competition and form governments or opposition.",
+              "Party systems may be dominant-party, two-party or multiparty. Their operation is shaped by electoral rules, social cleavages, leadership and political history."
+            ],
+            "example": "A coalition government requires parties to negotiate a common programme while retaining distinct identities."
+          },
+          {
+            "heading": "Pressure groups and interest representation",
+            "explanation": [
+              "Pressure groups seek to influence public decisions without necessarily seeking to form a government. They may represent business, labour, professional, environmental or community interests.",
+              "Methods include research, consultation, public campaigns, petitions and lawful advocacy. Unequal resources can give some groups greater access than others."
+            ],
+            "example": "A professional association may submit evidence to a parliamentary committee on a proposed regulation."
+          },
+          {
+            "heading": "Social movements",
+            "explanation": [
+              "Social movements are sustained collective efforts to promote or resist social and political change. They may use public mobilisation, litigation, community organising and digital networks.",
+              "Movements can widen participation and bring neglected issues into public debate. Their influence depends on organisation, alliances, political opportunities and state response."
+            ],
+            "example": "An environmental movement may combine local meetings, scientific evidence and public advocacy."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Political representation",
+            "meaning": "Acting or speaking on behalf of people in political decision-making."
+          },
+          {
+            "term": "Pressure group",
+            "meaning": "An organised group seeking to influence policy without necessarily seeking government office."
+          },
+          {
+            "term": "Social movement",
+            "meaning": "Sustained collective action aimed at social or political change."
+          },
+          {
+            "term": "Political participation",
+            "meaning": "Activities through which people influence public decisions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Hanna Pitkin",
+            "idea": "Analysed the meanings and dimensions of political representation."
+          },
+          {
+            "scholar": "Robert Dahl",
+            "idea": "Studied pluralism, participation and contestation in democratic politics."
+          },
+          {
+            "scholar": "Charles Tilly",
+            "idea": "Contributed influential work on contentious politics and social movements."
+          }
+        ],
+        "answerPractice": "Distinguish political parties, pressure groups and social movements. Assess their contribution to democratic participation.",
+        "revisionPrompt": "For each actor, note its main goal, methods, relationship with elections and accountability concerns."
+      },
+      "test": [
+        {
+          "q": "Political parties typically seek to:",
+          "o": [
+            "Aggregate interests and contest elections",
+            "Avoid public policy",
+            "Replace all civic associations",
+            "Operate only as courts"
+          ],
+          "a": 0,
+          "w": "Parties organise electoral competition, policy programmes and government formation."
+        },
+        {
+          "q": "A pressure group generally seeks to:",
+          "o": [
+            "Influence policy without necessarily forming government",
+            "Replace the Constitution",
+            "Conduct judicial trials",
+            "Administer every ministry"
+          ],
+          "a": 0,
+          "w": "Pressure groups seek to influence decisions and public policy."
+        },
+        {
+          "q": "Social movements are best described as:",
+          "o": [
+            "Sustained collective action for or against change",
+            "Temporary administrative departments",
+            "Only registered political parties",
+            "Private business contracts"
+          ],
+          "a": 0,
+          "w": "Social movements involve sustained collective efforts around social or political change."
+        },
+        {
+          "q": "Which is a non-electoral form of participation?",
+          "o": [
+            "Public consultation",
+            "Casting a ballot only",
+            "Counting votes only",
+            "Taking oath of office"
+          ],
+          "a": 0,
+          "w": "Public consultation allows citizens to influence policy outside elections."
+        },
+        {
+          "q": "A democratic concern regarding pressure groups is:",
+          "o": [
+            "Unequal access due to unequal resources",
+            "That they never communicate with officials",
+            "That all advocacy is prohibited",
+            "That they must form governments"
+          ],
+          "a": 0,
+          "w": "Unequal resources can give some interests disproportionate influence."
+        }
       ]
     },
     {
@@ -7485,6 +7743,135 @@
       "topics": [
         "Globalisation and responses from developed societies",
         "Globalisation and responses from developing societies"
+      ],
+      "notes": "Explain globalisation as a multidimensional process and assess varied responses in developed and developing societies. Globalisation refers to intensifying cross-border flows of goods, services, capital, people, information, technology and ideas. It is economic, political, cultural and technological. Its effects are uneven across sectors, regions and social groups. Trade agreements, transport, communication technology, multinational firms, finance and international institutions have supported global integration. Globalisation is not a single policy choice. Domestic institutions, infrastructure, education and regulation shape how societies experience it. Developed societies have responded through trade policy, social protection, skills programmes, industrial strategies, migration rules and debates over sovereignty. Public responses differ: some emphasise openness and innovation, while others seek stronger protections for workers, strategic sectors or local communities. Developing societies may seek investment, technology, export access and employment while managing vulnerability to external shocks, unequal bargaining power and environmental pressures. Policy choices include infrastructure investment, education, industrial policy, social protection, fair regulation and regional cooperation. Outcomes depend on domestic capacity and global conditions.",
+      "lesson": {
+        "objective": "Explain globalisation as a multidimensional process and assess varied responses in developed and developing societies.",
+        "sections": [
+          {
+            "heading": "Meaning and dimensions",
+            "explanation": [
+              "Globalisation refers to intensifying cross-border flows of goods, services, capital, people, information, technology and ideas.",
+              "It is economic, political, cultural and technological. Its effects are uneven across sectors, regions and social groups."
+            ],
+            "example": "A digital service may reach users across borders while its workers and data remain governed by national rules."
+          },
+          {
+            "heading": "Drivers and institutions",
+            "explanation": [
+              "Trade agreements, transport, communication technology, multinational firms, finance and international institutions have supported global integration.",
+              "Globalisation is not a single policy choice. Domestic institutions, infrastructure, education and regulation shape how societies experience it."
+            ],
+            "example": "The same trade opening may benefit export-oriented firms while creating adjustment pressures in some local industries."
+          },
+          {
+            "heading": "Responses in developed societies",
+            "explanation": [
+              "Developed societies have responded through trade policy, social protection, skills programmes, industrial strategies, migration rules and debates over sovereignty.",
+              "Public responses differ: some emphasise openness and innovation, while others seek stronger protections for workers, strategic sectors or local communities."
+            ],
+            "example": "A government may support international trade while funding retraining for workers affected by industrial change."
+          },
+          {
+            "heading": "Responses in developing societies",
+            "explanation": [
+              "Developing societies may seek investment, technology, export access and employment while managing vulnerability to external shocks, unequal bargaining power and environmental pressures.",
+              "Policy choices include infrastructure investment, education, industrial policy, social protection, fair regulation and regional cooperation. Outcomes depend on domestic capacity and global conditions."
+            ],
+            "example": "A country can attract investment while setting labour, environmental and tax rules to protect public interests."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Globalisation",
+            "meaning": "Intensification of cross-border flows and interdependence."
+          },
+          {
+            "term": "Multinational corporation",
+            "meaning": "A company operating in more than one country."
+          },
+          {
+            "term": "Global value chain",
+            "meaning": "The cross-border sequence of activities involved in producing and delivering a good or service."
+          },
+          {
+            "term": "Economic interdependence",
+            "meaning": "Mutual reliance among economies through trade, finance and production."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Anthony Giddens",
+            "idea": "Described globalisation through the intensification of worldwide social relations."
+          },
+          {
+            "scholar": "David Held",
+            "idea": "Contributed to analysis of globalisation and transformations in political authority."
+          },
+          {
+            "scholar": "Joseph Stiglitz",
+            "idea": "Critiqued aspects of globalisation and highlighted institutional and distributional concerns."
+          }
+        ],
+        "answerPractice": "Globalisation creates opportunities as well as vulnerabilities. Discuss the policy choices available to developing societies.",
+        "revisionPrompt": "Organise the answer under economic, political, cultural and technological dimensions, then discuss distributional effects."
+      },
+      "test": [
+        {
+          "q": "Globalisation is best understood as:",
+          "o": [
+            "Only international trade",
+            "Intensifying cross-border flows and interdependence",
+            "The end of all national institutions",
+            "Only cultural uniformity"
+          ],
+          "a": 1,
+          "w": "Globalisation includes economic, political, cultural and technological interconnections."
+        },
+        {
+          "q": "A global value chain refers to:",
+          "o": [
+            "Production activities distributed across countries",
+            "Only domestic retail sales",
+            "A national election system",
+            "A local government budget"
+          ],
+          "a": 0,
+          "w": "Global value chains distribute stages of production and delivery across borders."
+        },
+        {
+          "q": "A possible policy response to worker displacement is:",
+          "o": [
+            "Skills programmes and social protection",
+            "Ending all education",
+            "Removing labour protections automatically",
+            "Ignoring regional differences"
+          ],
+          "a": 0,
+          "w": "Skills and social protection can help workers adjust to economic change."
+        },
+        {
+          "q": "Globalisation's effects are often:",
+          "o": [
+            "Uniform across all groups",
+            "Uneven across sectors and communities",
+            "Always entirely positive",
+            "Entirely unrelated to domestic policy"
+          ],
+          "a": 1,
+          "w": "Benefits and costs are distributed unevenly and depend on domestic institutions."
+        },
+        {
+          "q": "Developing societies may seek to balance:",
+          "o": [
+            "Investment and technology with social and environmental safeguards",
+            "Trade with the abolition of public services",
+            "Growth with no institutions",
+            "Exports with no education"
+          ],
+          "a": 0,
+          "w": "Policy aims can combine openness with regulation, capacity-building and inclusion."
+        }
       ]
     },
     {
@@ -7493,6 +7880,139 @@
       "topics": [
         "Idealist, realist, Marxist and functionalist approaches",
         "Systems theory"
+      ],
+      "notes": "Compare major theoretical approaches to International Relations and use them to interpret global events carefully. Idealist traditions emphasise the possibility of cooperation through law, institutions, diplomacy and shared norms. They are associated with efforts to reduce war and build collective arrangements. Liberal approaches examine institutions, economic interdependence, domestic politics and cooperation. They do not assume conflict disappears. Realist approaches treat states, power, security and national interest as central. Classical realism often emphasises political ambition and prudence; structural realism highlights the constraints of an anarchic international system. Realists differ internally, but generally expect states to pay close attention to survival, capabilities and strategic uncertainty. Marxist approaches connect international relations with capitalism, class, production and unequal economic structures. They examine how global economic relations can reproduce dependency and unequal power. Critical approaches question assumptions presented as neutral and examine whose interests are served by international institutions, knowledge and practices. Functionalist approaches explore practical cooperation in specific technical and economic areas, with the possibility that cooperation may expand across related sectors. Systems approaches study patterns of interaction, structures and feedback among actors. The international system is not a single actor; it is a framework for analysing relationships.",
+      "lesson": {
+        "objective": "Compare major theoretical approaches to International Relations and use them to interpret global events carefully.",
+        "sections": [
+          {
+            "heading": "Idealism and liberal approaches",
+            "explanation": [
+              "Idealist traditions emphasise the possibility of cooperation through law, institutions, diplomacy and shared norms. They are associated with efforts to reduce war and build collective arrangements.",
+              "Liberal approaches examine institutions, economic interdependence, domestic politics and cooperation. They do not assume conflict disappears."
+            ],
+            "example": "A liberal analysis may examine how an international organisation helps states coordinate on public health."
+          },
+          {
+            "heading": "Realism",
+            "explanation": [
+              "Realist approaches treat states, power, security and national interest as central. Classical realism often emphasises political ambition and prudence; structural realism highlights the constraints of an anarchic international system.",
+              "Realists differ internally, but generally expect states to pay close attention to survival, capabilities and strategic uncertainty."
+            ],
+            "example": "A realist analysis of an alliance may focus on shared threats and the balance of capabilities."
+          },
+          {
+            "heading": "Marxist and critical approaches",
+            "explanation": [
+              "Marxist approaches connect international relations with capitalism, class, production and unequal economic structures. They examine how global economic relations can reproduce dependency and unequal power.",
+              "Critical approaches question assumptions presented as neutral and examine whose interests are served by international institutions, knowledge and practices."
+            ],
+            "example": "A political-economy analysis may ask how global finance affects policy autonomy in lower-income countries."
+          },
+          {
+            "heading": "Functionalism and systems thinking",
+            "explanation": [
+              "Functionalist approaches explore practical cooperation in specific technical and economic areas, with the possibility that cooperation may expand across related sectors.",
+              "Systems approaches study patterns of interaction, structures and feedback among actors. The international system is not a single actor; it is a framework for analysing relationships."
+            ],
+            "example": "Cooperation on river-basin data may create practical channels for wider regional dialogue."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Anarchy",
+            "meaning": "The absence of a world government with supreme authority over states."
+          },
+          {
+            "term": "National interest",
+            "meaning": "Goals a state considers important for its security, prosperity or values."
+          },
+          {
+            "term": "Interdependence",
+            "meaning": "Mutual dependence among actors across borders."
+          },
+          {
+            "term": "Collective security",
+            "meaning": "An arrangement in which states treat threats to peace as a shared concern."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Hans Morgenthau",
+            "idea": "A major classical realist who analysed international politics through power and national interest."
+          },
+          {
+            "scholar": "Kenneth Waltz",
+            "idea": "Developed structural realism, emphasising the effects of international-system structure."
+          },
+          {
+            "scholar": "Immanuel Kant",
+            "idea": "His writings on peace and republican institutions influenced idealist and liberal traditions."
+          },
+          {
+            "scholar": "Karl Marx",
+            "idea": "His analysis of capitalism and class influenced Marxist approaches to global political economy."
+          }
+        ],
+        "answerPractice": "Compare realist and liberal approaches to International Relations. How do their assumptions lead to different explanations of international cooperation?",
+        "revisionPrompt": "Choose one international issue and write two short explanations: one realist and one liberal. Identify what each approach overlooks."
+      },
+      "test": [
+        {
+          "q": "Realist approaches generally place central emphasis on:",
+          "o": [
+            "Power, security and national interest",
+            "Only cultural exchange",
+            "The abolition of states",
+            "Private charities"
+          ],
+          "a": 0,
+          "w": "Realism focuses on power, security and state interests in an anarchic international system."
+        },
+        {
+          "q": "Liberal approaches give significant attention to:",
+          "o": [
+            "Institutions and possibilities for cooperation",
+            "Only military competition",
+            "The impossibility of diplomacy",
+            "The disappearance of domestic politics"
+          ],
+          "a": 0,
+          "w": "Liberal approaches examine institutions, interdependence and cooperation."
+        },
+        {
+          "q": "Marxist approaches often analyse international relations through:",
+          "o": [
+            "Capitalism, class and unequal economic structures",
+            "Only individual personality",
+            "Only geography",
+            "Only constitutional courts"
+          ],
+          "a": 0,
+          "w": "Marxist approaches connect global politics with economic structures and class relations."
+        },
+        {
+          "q": "Anarchy in International Relations means:",
+          "o": [
+            "No world government with supreme authority over states",
+            "No rules in any society",
+            "The absence of international organisations",
+            "Permanent war"
+          ],
+          "a": 0,
+          "w": "Anarchy refers to the absence of a sovereign authority above states, not the absence of all rules."
+        },
+        {
+          "q": "Functionalist approaches often emphasise:",
+          "o": [
+            "Practical cooperation in specific areas",
+            "Ending all technical cooperation",
+            "Only balance of power",
+            "The abolition of diplomacy"
+          ],
+          "a": 0,
+          "w": "Functionalism examines cooperation in practical sectors and the potential for wider collaboration."
+        }
       ]
     },
     {
