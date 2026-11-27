@@ -1,8 +1,8 @@
 {
-  "version": "2026-paper-level-tracker-v1",
-  "source": "https://upsc.gov.in/",
-  "sourceLabel": "UPSC Civil Services Examination scheme and syllabus; paper-level headings only",
-  "notice": "This tracker records paper-level progress. Detailed topic lists should be added only after checking the current official notification.",
+  "version": "2026-topic-level-tracker-v2",
+  "source": "https://upsc.gov.in/uploads/2026/05/Civil-Services-Preliminary-Examination-2026-Notice-E.pdf",
+  "sourceLabel": "UPSC Examination Notice 05/2026-CSE, Section III, Part A and Part B",
+  "notice": "Syllabus headings follow the 2026 UPSC notification. The 2027 notification may update them. Topic-level checklists are study-planning breakdowns of the official syllabus, not additional official subheadings.",
   "papers": [
     {
       "id": "prelims-gs1",
@@ -45,6 +45,117 @@
       "stage": "Mains",
       "title": "General Studies IV",
       "detail": "Ethics, Integrity and Aptitude"
+    }
+  ],
+  "topics": [
+    {
+      "paper": "prelims-gs1",
+      "items": [
+        "Current events of national and international importance",
+        "History of India and Indian National Movement",
+        "Indian and World Geography: physical, social and economic",
+        "Indian Polity and Governance: Constitution, political system, Panchayati Raj, public policy and rights issues",
+        "Economic and Social Development: sustainable development, poverty, inclusion, demographics and social sector initiatives",
+        "Environment, biodiversity and climate change",
+        "General Science"
+      ]
+    },
+    {
+      "paper": "prelims-csat",
+      "items": [
+        "Comprehension",
+        "Interpersonal skills including communication skills",
+        "Logical reasoning and analytical ability",
+        "Decision making and problem solving",
+        "General mental ability",
+        "Basic numeracy: numbers, relations and orders of magnitude",
+        "Data interpretation: charts, graphs, tables and data sufficiency"
+      ]
+    },
+    {
+      "paper": "mains-essay",
+      "items": [
+        "Essay writing: interpret the topic and define the central demand",
+        "Organise ideas into a coherent structure",
+        "Use relevant examples, evidence and balanced arguments",
+        "Write concise introductions, transitions and conclusions"
+      ]
+    },
+    {
+      "paper": "mains-gs1",
+      "items": [
+        "Indian culture: art forms, literature and architecture",
+        "Modern Indian history from the mid-eighteenth century",
+        "Freedom struggle: stages and contributors",
+        "Post-independence consolidation and reorganisation",
+        "World history: industrial revolution, world wars, colonisation and decolonisation",
+        "Political philosophies and their effects on society",
+        "Indian society and diversity",
+        "Women, population, poverty, development and urbanisation",
+        "Globalisation and its effects on Indian society",
+        "Social empowerment, communalism, regionalism and secularism",
+        "World physical geography, natural resources and industries",
+        "Geophysical phenomena and changing geographical features"
+      ]
+    },
+    {
+      "paper": "mains-gs2",
+      "items": [
+        "Indian Constitution: evolution, features, amendments and basic structure",
+        "Union-State relations, federalism and devolution",
+        "Separation of powers and dispute-redressal institutions",
+        "Comparison with constitutional systems of other countries",
+        "Parliament and State legislatures",
+        "Executive, Judiciary, ministries and pressure groups",
+        "Representation of the People Act",
+        "Constitutional, statutory, regulatory and quasi-judicial bodies",
+        "Government policies and interventions",
+        "Development processes, NGOs, SHGs and stakeholders",
+        "Welfare schemes and protection of vulnerable sections",
+        "Health, education and human-resource issues",
+        "Poverty and hunger",
+        "Governance, transparency, accountability and e-governance",
+        "Role of civil services in a democracy",
+        "India and its neighbourhood; bilateral and global groupings",
+        "International institutions and their mandates"
+      ]
+    },
+    {
+      "paper": "mains-gs3",
+      "items": [
+        "Indian economy: planning, resources, growth, development and employment",
+        "Inclusive growth",
+        "Government budgeting",
+        "Agriculture: crops, irrigation, storage, transport and marketing",
+        "Farm subsidies, MSP, PDS, buffer stocks and food security",
+        "Food processing and supply chains",
+        "Land reforms",
+        "Liberalisation, industrial policy and industrial growth",
+        "Infrastructure and investment models",
+        "Science and technology developments and applications",
+        "Indian achievements, indigenisation and emerging technologies",
+        "IT, space, computers, robotics, nanotechnology, biotechnology and IPR",
+        "Environment, conservation, pollution and EIA",
+        "Disaster management",
+        "Development and spread of extremism",
+        "External and non-state actors and internal security",
+        "Cyber security, communication networks, money-laundering and border security",
+        "Organised crime, terrorism and security agencies"
+      ]
+    },
+    {
+      "paper": "mains-gs4",
+      "items": [
+        "Ethics and human interface: dimensions, determinants and consequences",
+        "Human values and lessons from leaders, reformers and administrators",
+        "Attitude: structure, function, influence and persuasion",
+        "Aptitude and foundational civil-service values",
+        "Emotional intelligence and its administrative applications",
+        "Moral thinkers and philosophers of India and the world",
+        "Public-service ethics, dilemmas, accountability and ethical governance",
+        "Probity in governance, transparency, RTI, codes, citizen charters and corruption",
+        "Case studies on ethics, integrity and aptitude"
+      ]
     }
   ]
 }
