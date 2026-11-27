@@ -149,6 +149,55 @@ async function buildGroundedContext(message: string): Promise<string> {
     }));
   }
 
+  // Retrieve published optional-subject guided lessons so Anbuu can teach from the site's own syllabus.
+  const optionalData = await loadPublicJson("data/upsc/optional-syllabus.json");
+  if (optionalData && typeof optionalData === "object") {
+    const catalog = optionalData as Record<string, unknown>;
+    const optionalRows: Array<{ score: number; subject: string; unit: string; topics: unknown; lesson: unknown; notes: string }> = [];
+    const subjectNames: Record<string, string> = {
+      anthropology: "Anthropology",
+      sociology: "Sociology",
+      "public administration": "Public Administration",
+      "political science and international relations": "Political Science and International Relations",
+    };
+    for (const [subjectKey, subjectLabel] of Object.entries(subjectNames)) {
+      const units = catalog[subjectKey];
+      if (!Array.isArray(units)) continue;
+      for (const item of units) {
+        if (!item || typeof item !== "object") continue;
+        const row = item as Record<string, unknown>;
+        const lesson = row.lesson && typeof row.lesson === "object" ? row.lesson as Record<string, unknown> : null;
+        const searchable = [
+          subjectLabel, row.unit, ...(Array.isArray(row.topics) ? row.topics : []),
+          row.notes, lesson?.objective,
+          ...(Array.isArray(lesson?.sections) ? lesson.sections.flatMap((section) => {
+            if (!section || typeof section !== "object") return [];
+            const part = section as Record<string, unknown>;
+            return [part.heading, ...(Array.isArray(part.explanation) ? part.explanation : []), part.example];
+          }) : []),
+          ...(Array.isArray(lesson?.keyTerms) ? lesson.keyTerms.flatMap((term) => term && typeof term === "object" ? [((term as Record<string, unknown>).term), ((term as Record<string, unknown>).meaning)] : []) : []),
+        ].filter((value) => typeof value === "string").join(" ").toLowerCase();
+        const score = terms.reduce((n, term) => n + (searchable.includes(term) ? 1 : 0), 0);
+        if (score > 0 && lesson) optionalRows.push({
+          score, subject: subjectLabel, unit: String(row.unit ?? "Guided unit"),
+          topics: row.topics ?? [], lesson, notes: typeof row.notes === "string" ? row.notes : "",
+        });
+      }
+    }
+    optionalRows.sort((a, b) => b.score - a.score);
+    for (const item of optionalRows.slice(0, 2)) {
+      blocks.push(JSON.stringify({
+        type: "published_optional_guided_lesson",
+        subject: item.subject,
+        unit: item.unit,
+        topics: item.topics,
+        lesson: item.lesson,
+        notes: item.notes.slice(0, 700),
+        source: "https://theaspirantsdesk0-creator.github.io/the-aspirants-desk/data/upsc/optional-syllabus.json",
+      }).slice(0, 2600));
+    }
+  }
+
   if (/current affairs|latest|recent|today|news|pib|press release|scheme|government initiative|ministry|current event/.test(message.toLowerCase())) {
     const [ca,pib]=await Promise.all([
       loadPublicJson("data/current-affairs.json"),
