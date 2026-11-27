@@ -4239,6 +4239,123 @@
         "Citizen-administration relationship",
         "Media, interest groups, voluntary organisations and civil society",
         "Citizen’s Charters, Right to Information and social audit"
+      ],
+      "notes": "Accountability requires public officials to explain and justify decisions, while control provides lawful mechanisms to correct misuse of authority. Legislative, executive, judicial, audit, social and citizen-based mechanisms complement one another.",
+      "lesson": {
+        "objective": "Understand how democratic institutions make public administration answerable, transparent and responsive.",
+        "sections": [
+          {
+            "heading": "Meaning and dimensions of accountability",
+            "explanation": [
+              "Accountability is the obligation to explain decisions, disclose relevant information and accept consequences where standards are breached.",
+              "Political accountability operates through elected representatives; administrative accountability through hierarchy and service rules; legal accountability through courts and tribunals; and social accountability through citizens, media and civil society."
+            ],
+            "example": "A department may publish service standards, disclose spending, answer legislative questions and respond to a social audit."
+          },
+          {
+            "heading": "Legislative and executive control",
+            "explanation": [
+              "Parliament and state legislatures use questions, debates, committees, budget scrutiny and reports of constitutional authorities to examine executive action.",
+              "Executive control includes supervision, inspections, performance review, vigilance systems and internal financial controls. These mechanisms should correct failures without creating arbitrary interference."
+            ],
+            "example": "A Public Accounts Committee examines audit findings and seeks explanations from departments."
+          },
+          {
+            "heading": "Judicial, audit and citizen oversight",
+            "explanation": [
+              "Judicial review checks legality, fairness and constitutional compliance. The Comptroller and Auditor General provides independent audit scrutiny of public expenditure and public bodies.",
+              "The Right to Information, citizen charters, grievance redressal, social audits and public hearings enable citizens to monitor services. Their effectiveness depends on accessible information and timely follow-up."
+            ],
+            "example": "A social audit of a rural employment programme can compare official records with work and payments reported by residents."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Accountability",
+            "meaning": "A duty to explain, justify and answer for public decisions."
+          },
+          {
+            "term": "Social audit",
+            "meaning": "A participatory public verification of records, expenditure and outcomes."
+          },
+          {
+            "term": "Legislative control",
+            "meaning": "Oversight exercised by elected legislatures through questions, committees and budget scrutiny."
+          },
+          {
+            "term": "Transparency",
+            "meaning": "Timely access to relevant public information."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Max Weber",
+            "idea": "Rule-bound authority and clear responsibility can make administrative action traceable."
+          },
+          {
+            "scholar": "New Public Management",
+            "idea": "Performance information and service standards can strengthen answerability, but must not reduce public value to narrow metrics."
+          }
+        ],
+        "answerPractice": "Discuss the major mechanisms of accountability and control over public administration in a parliamentary democracy. Explain how citizen-centred mechanisms can improve service delivery.",
+        "revisionPrompt": "Revise the difference between political, administrative, legal and social accountability; attach one Indian example to each."
+      },
+      "test": [
+        {
+          "q": "Which mechanism is primarily a form of social accountability?",
+          "o": [
+            "Departmental inspection",
+            "Social audit",
+            "Cabinet reshuffle",
+            "Judicial appointment"
+          ],
+          "a": 1,
+          "w": "A social audit enables community members to examine records and verify implementation."
+        },
+        {
+          "q": "The Public Accounts Committee primarily examines:",
+          "o": [
+            "Election manifestos",
+            "Government expenditure and audit findings",
+            "Judicial appointments",
+            "Private company recruitment"
+          ],
+          "a": 1,
+          "w": "The committee scrutinises public expenditure in light of audit reports."
+        },
+        {
+          "q": "Judicial review mainly checks whether administrative action:",
+          "o": [
+            "Is popular on social media",
+            "Is lawful and constitutionally valid",
+            "Has the highest publicity",
+            "Uses the largest budget"
+          ],
+          "a": 1,
+          "w": "Courts examine legality, fairness and constitutional compliance."
+        },
+        {
+          "q": "A citizen charter is intended chiefly to:",
+          "o": [
+            "Replace the Constitution",
+            "State service standards and citizen entitlements",
+            "Remove legislative oversight",
+            "Privatise every public service"
+          ],
+          "a": 1,
+          "w": "A citizen charter communicates expected service standards and commitments."
+        },
+        {
+          "q": "Which is the strongest description of accountability?",
+          "o": [
+            "Only punishment after failure",
+            "An obligation to explain, justify and answer for decisions",
+            "Only publication of annual reports",
+            "Only internal supervision"
+          ],
+          "a": 1,
+          "w": "Accountability includes explanation, justification, transparency and consequences."
+        }
       ]
     },
     {
@@ -4248,6 +4365,123 @@
         "Meaning, scope and significance",
         "Dicey’s contribution",
         "Delegated legislation and administrative tribunals"
+      ],
+      "notes": "Administrative law provides the legal framework for public authorities. It regulates delegated powers, administrative discretion, procedural fairness and remedies against unlawful action.",
+      "lesson": {
+        "objective": "Explain why public administration needs legal authority and how administrative law protects citizens.",
+        "sections": [
+          {
+            "heading": "Meaning and purpose",
+            "explanation": [
+              "Administrative law governs the powers, procedures and responsibilities of public authorities. It connects executive action with constitutional principles and statutory limits.",
+              "It protects individuals from arbitrary action while allowing government to implement complex laws and deliver services."
+            ],
+            "example": "A licensing authority must act within the statute that grants it licensing power."
+          },
+          {
+            "heading": "Delegated legislation and discretion",
+            "explanation": [
+              "Legislatures often authorise the executive to make rules, regulations and notifications within a defined parent law. Delegation supports technical detail and timely administration, but the legislature must retain oversight.",
+              "Administrative discretion is necessary where officials must apply general rules to varied facts. It must be exercised for proper purposes, on relevant grounds and without discrimination or bad faith."
+            ],
+            "example": "A regulator may issue detailed safety regulations under authority granted by an Act."
+          },
+          {
+            "heading": "Principles of natural justice and remedies",
+            "explanation": [
+              "The hearing rule generally requires a fair opportunity to respond before an adverse decision. The rule against bias requires an impartial decision-maker.",
+              "Judicial review, statutory appeals, tribunals and grievance mechanisms can provide remedies. The appropriate remedy depends on the governing law and the nature of the dispute."
+            ],
+            "example": "Before cancelling a licence for alleged non-compliance, an authority may need to disclose the grounds and hear the affected person."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Administrative law",
+            "meaning": "Law governing the powers, procedures and accountability of public authorities."
+          },
+          {
+            "term": "Delegated legislation",
+            "meaning": "Rules made by the executive under authority granted by a legislature."
+          },
+          {
+            "term": "Natural justice",
+            "meaning": "Basic procedural fairness, including fair hearing and impartiality."
+          },
+          {
+            "term": "Judicial review",
+            "meaning": "Court scrutiny of the legality of public action."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "A.V. Dicey",
+            "idea": "The rule of law requires public power to be constrained by law."
+          },
+          {
+            "scholar": "Ivor Jennings",
+            "idea": "Administrative law must be understood in relation to the practical functioning of government institutions."
+          }
+        ],
+        "answerPractice": "Explain the role of administrative law in controlling discretion and protecting citizens against arbitrary administrative action.",
+        "revisionPrompt": "Remember the parent Act, delegated rules, discretion, natural justice and remedies as one connected chain."
+      },
+      "test": [
+        {
+          "q": "Delegated legislation is made by:",
+          "o": [
+            "The executive under authority granted by law",
+            "Private citizens without authority",
+            "Courts as a routine substitute for statutes",
+            "Election candidates"
+          ],
+          "a": 0,
+          "w": "Delegated legislation derives its authority from a parent statute."
+        },
+        {
+          "q": "The rule against bias is a component of:",
+          "o": [
+            "Natural justice",
+            "Fiscal federalism",
+            "Collective responsibility",
+            "Separation of powers alone"
+          ],
+          "a": 0,
+          "w": "Impartial decision-making is a core element of procedural fairness."
+        },
+        {
+          "q": "Administrative discretion should be exercised:",
+          "o": [
+            "For any purpose preferred by the officer",
+            "Within legal limits and on relevant grounds",
+            "Without recording reasons in every case",
+            "Only on political instructions"
+          ],
+          "a": 1,
+          "w": "Discretion is lawful only when used within the statute and for proper purposes."
+        },
+        {
+          "q": "Judicial review primarily examines:",
+          "o": [
+            "Whether the judge would make the same policy choice",
+            "The legality of administrative action",
+            "The popularity of a government",
+            "The personal preferences of officials"
+          ],
+          "a": 1,
+          "w": "Judicial review focuses on legality and constitutional compliance."
+        },
+        {
+          "q": "A parent Act is important because it:",
+          "o": [
+            "Creates the legal authority for delegated rules",
+            "Removes all legislative oversight",
+            "Makes every executive decision immune from review",
+            "Automatically creates a tribunal"
+          ],
+          "a": 0,
+          "w": "Delegated rules must remain within the authority of the enabling statute."
+        }
       ]
     },
     {
@@ -4258,6 +4492,123 @@
         "Administration and politics across countries",
         "Ecology of administration",
         "Riggsian models and their critiques"
+      ],
+      "notes": "Comparative Public Administration studies administrative systems across countries and contexts. It helps identify how institutions, political systems, culture and development shape administrative practice.",
+      "lesson": {
+        "objective": "Understand the comparative approach, its major concerns and the limits of borrowing administrative models.",
+        "sections": [
+          {
+            "heading": "Meaning and purpose",
+            "explanation": [
+              "Comparative Public Administration compares administrative structures, processes and outcomes across political and social settings.",
+              "Comparison helps identify patterns and differences, test theories and understand why a reform succeeds in one setting but not another."
+            ],
+            "example": "Comparing local government systems can reveal how fiscal powers and citizen participation affect service delivery."
+          },
+          {
+            "heading": "Ecological and systems perspectives",
+            "explanation": [
+              "An ecological approach studies administration in relation to its environment, including social structure, economy, culture and political institutions.",
+              "A systems perspective views administration as connected inputs, processes, outputs and feedback. It highlights the importance of adaptation and institutional relationships."
+            ],
+            "example": "A digital service reform depends not only on software but also on electricity, staff skills, language access and grievance systems."
+          },
+          {
+            "heading": "Development administration and context",
+            "explanation": [
+              "Comparative research examines capacity, bureaucratic professionalism, political accountability and the relationship between administration and development.",
+              "Administrative models should not be transferred mechanically. Reforms need contextual adaptation, local evidence and safeguards for inclusion and rights."
+            ],
+            "example": "A decentralisation model must fit the country's constitutional structure, local revenue base and community institutions."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Comparative method",
+            "meaning": "Systematic comparison of administrative systems or processes."
+          },
+          {
+            "term": "Ecology of administration",
+            "meaning": "Study of how administration interacts with its social, economic and political environment."
+          },
+          {
+            "term": "Systems approach",
+            "meaning": "Analysis of connected inputs, processes, outputs and feedback."
+          },
+          {
+            "term": "Contextual adaptation",
+            "meaning": "Adjusting a reform to local institutions and conditions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Fred W. Riggs",
+            "idea": "Ecological analysis draws attention to the relationship between administrative systems and their environments."
+          },
+          {
+            "scholar": "Ferrel Heady",
+            "idea": "Comparative administration helps explain administrative structures and behaviour across different settings."
+          }
+        ],
+        "answerPractice": "Why is context important in Comparative Public Administration? Discuss the contribution and limitations of comparative approaches to administrative reform.",
+        "revisionPrompt": "Use one comparison example and explain why institutional context matters before borrowing a reform."
+      },
+      "test": [
+        {
+          "q": "Comparative Public Administration primarily studies:",
+          "o": [
+            "Only one country's budget",
+            "Administrative systems across different contexts",
+            "Only private firms",
+            "Only constitutional court judgments"
+          ],
+          "a": 1,
+          "w": "Its central method is systematic comparison across administrative settings."
+        },
+        {
+          "q": "The ecological approach emphasises:",
+          "o": [
+            "Administration in isolation",
+            "The relationship between administration and its environment",
+            "Only office technology",
+            "Only formal organisation charts"
+          ],
+          "a": 1,
+          "w": "Ecological analysis links administration with social, political and economic conditions."
+        },
+        {
+          "q": "A systems approach commonly examines:",
+          "o": [
+            "Inputs, processes, outputs and feedback",
+            "Only recruitment rules",
+            "Only court appeals",
+            "Only election results"
+          ],
+          "a": 0,
+          "w": "The systems lens studies connected stages and feedback."
+        },
+        {
+          "q": "Why can administrative reforms fail when copied without adaptation?",
+          "o": [
+            "All countries have identical institutions",
+            "Political, social and institutional contexts differ",
+            "Public services never change",
+            "Comparison is always invalid"
+          ],
+          "a": 1,
+          "w": "Reforms interact with local institutions, capacity and social conditions."
+        },
+        {
+          "q": "Comparative analysis is useful because it can:",
+          "o": [
+            "Prove one model fits every country",
+            "Identify patterns and explain differences",
+            "Eliminate the need for evidence",
+            "Replace constitutional rules"
+          ],
+          "a": 1,
+          "w": "Comparison can reveal patterns while accounting for contextual differences."
+        }
       ]
     },
     {
@@ -4270,6 +4621,123 @@
         "Strong state versus market debate",
         "Liberalisation and administration in developing countries",
         "Women and development; self-help group movement"
+      ],
+      "notes": "Development Dynamics examines the role of administration in social and economic transformation, including state capacity, participation, equity, sustainability and the relationship between development and governance.",
+      "lesson": {
+        "objective": "Connect development administration with state capacity, participation, equity and sustainable outcomes.",
+        "sections": [
+          {
+            "heading": "Development administration",
+            "explanation": [
+              "Development administration refers to administrative arrangements and processes directed towards planned social and economic change.",
+              "It involves both administration of development programmes and development of administrative capacity. This includes coordination, innovation, monitoring and responsiveness."
+            ],
+            "example": "A nutrition programme needs interdepartmental coordination, local workers, reliable supplies and outcome monitoring."
+          },
+          {
+            "heading": "State capacity and participation",
+            "explanation": [
+              "State capacity includes the ability to formulate policy, mobilise resources, implement decisions, regulate fairly and learn from feedback.",
+              "Participation improves local knowledge and legitimacy when people can influence decisions meaningfully. Participation should include marginalised groups and not become a substitute for public responsibility."
+            ],
+            "example": "Gram Sabha discussions can help identify local priorities, while the administration remains responsible for lawful implementation."
+          },
+          {
+            "heading": "Equity, sustainability and governance",
+            "explanation": [
+              "Development should be assessed through distribution of benefits, access to capabilities, environmental sustainability and protection of vulnerable groups.",
+              "Good governance requires transparency, accountability, rule of law, responsiveness and effective institutions. Indicators should measure real outcomes, not only money spent or activities completed."
+            ],
+            "example": "A rural water project should be assessed by reliable access, water quality, inclusion and long-term maintenance."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Development administration",
+            "meaning": "Administrative processes directed towards planned social and economic change."
+          },
+          {
+            "term": "State capacity",
+            "meaning": "Ability of public institutions to formulate and implement decisions effectively."
+          },
+          {
+            "term": "Participation",
+            "meaning": "Meaningful involvement of people in decisions affecting them."
+          },
+          {
+            "term": "Sustainable development",
+            "meaning": "Development that integrates social, economic and environmental concerns over time."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Edward Weidner",
+            "idea": "Development administration focuses on purposeful change and administrative capacity."
+          },
+          {
+            "scholar": "Amartya Sen",
+            "idea": "Development can be evaluated through expansion of substantive freedoms and capabilities."
+          }
+        ],
+        "answerPractice": "Discuss the changing role of public administration in development. How can participation and accountability improve development outcomes?",
+        "revisionPrompt": "Distinguish administration of development from development of administration; add equity and sustainability indicators."
+      },
+      "test": [
+        {
+          "q": "Development administration is mainly concerned with:",
+          "o": [
+            "Maintaining files alone",
+            "Planned social and economic change",
+            "Only diplomatic relations",
+            "Only private profit"
+          ],
+          "a": 1,
+          "w": "It focuses on administrative processes that support development and transformation."
+        },
+        {
+          "q": "State capacity refers to:",
+          "o": [
+            "The number of government buildings",
+            "The ability to formulate and implement public decisions",
+            "The size of a political party",
+            "The number of laws alone"
+          ],
+          "a": 1,
+          "w": "Capacity includes policy, resources, implementation and institutional learning."
+        },
+        {
+          "q": "Meaningful participation can improve programmes by:",
+          "o": [
+            "Removing all professional responsibility",
+            "Adding local knowledge and public voice",
+            "Guaranteeing identical preferences",
+            "Avoiding transparency"
+          ],
+          "a": 1,
+          "w": "Participation can improve relevance and legitimacy when inclusive."
+        },
+        {
+          "q": "A sustainable development assessment should include:",
+          "o": [
+            "Only expenditure",
+            "Only the number of meetings",
+            "Social, economic and environmental outcomes",
+            "Only short-term publicity"
+          ],
+          "a": 2,
+          "w": "Sustainability requires attention to multiple dimensions over time."
+        },
+        {
+          "q": "Which is an outcome indicator for a water programme?",
+          "o": [
+            "Number of files opened",
+            "Reliable access to safe water over time",
+            "Number of circulars printed",
+            "Number of officers transferred"
+          ],
+          "a": 1,
+          "w": "Outcome indicators measure the change experienced by people."
+        }
       ]
     },
     {
@@ -5005,6 +5473,123 @@
       "topics": [
         "Legacies of British rule",
         "Social and political perspectives in constitution-making"
+      ],
+      "notes": "The Indian Constitution emerged through debates in the Constituent Assembly, shaped by the freedom movement, colonial constitutional experience and the need to build a democratic republic.",
+      "lesson": {
+        "objective": "Trace the making of the Indian Constitution and understand the ideas and institutional choices behind it.",
+        "sections": [
+          {
+            "heading": "Historical and political context",
+            "explanation": [
+              "The Constitution was framed during the transition from colonial rule to independence. The freedom movement had developed commitments to representative government, civil liberties, social reform and national unity.",
+              "Colonial constitutional developments provided institutional experience but also exposed the limits of restricted representation and executive control."
+            ],
+            "example": "Debates on representation, rights and federalism reflected both the diversity of India and the experience of colonial governance."
+          },
+          {
+            "heading": "Constituent Assembly and deliberation",
+            "explanation": [
+              "The Constituent Assembly first met in December 1946. It worked through committees, draft provisions, debates and amendments before adopting the Constitution on 26 November 1949.",
+              "The Assembly included different political, regional, social and intellectual perspectives. Its debates show that constitutional provisions were products of argument and compromise."
+            ],
+            "example": "The Drafting Committee, chaired by B. R. Ambedkar, played a central role in preparing and revising the draft text."
+          },
+          {
+            "heading": "Constitutional choices",
+            "explanation": [
+              "The Constitution established parliamentary government, a federal structure with a strong Union, fundamental rights, directive principles, independent institutions and universal adult franchise.",
+              "These choices sought to combine democratic participation, national integration, individual liberty and social transformation. Constitutional design also included procedures for amendment and judicial interpretation."
+            ],
+            "example": "Universal adult franchise gave citizens equal voting status without property or educational qualifications."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Constituent Assembly",
+            "meaning": "The representative body that deliberated and framed the Constitution."
+          },
+          {
+            "term": "Drafting Committee",
+            "meaning": "The committee responsible for preparing and refining the draft Constitution."
+          },
+          {
+            "term": "Constitutionalism",
+            "meaning": "The principle that public power is limited and governed by constitutional rules."
+          },
+          {
+            "term": "Universal adult franchise",
+            "meaning": "Equal voting rights for adult citizens subject to constitutional and legal provisions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Emphasised constitutional morality, social democracy and institutional safeguards."
+          },
+          {
+            "scholar": "Jawaharlal Nehru",
+            "idea": "Advanced democratic, secular and socio-economic commitments in the constitutional project."
+          }
+        ],
+        "answerPractice": "Examine the historical context and deliberative process through which the Indian Constitution was framed. Highlight the major constitutional choices.",
+        "revisionPrompt": "Revise the timeline 1946–1949, key committees and the link between freedom movement ideals and constitutional design."
+      },
+      "test": [
+        {
+          "q": "The Constituent Assembly first met in:",
+          "o": [
+            "December 1946",
+            "August 1947",
+            "January 1950",
+            "November 1949"
+          ],
+          "a": 0,
+          "w": "The Assembly held its first meeting in December 1946."
+        },
+        {
+          "q": "The Drafting Committee was chaired by:",
+          "o": [
+            "Jawaharlal Nehru",
+            "B. R. Ambedkar",
+            "Rajendra Prasad",
+            "Sardar Patel"
+          ],
+          "a": 1,
+          "w": "B. R. Ambedkar chaired the Drafting Committee."
+        },
+        {
+          "q": "The Constitution was adopted on:",
+          "o": [
+            "15 August 1947",
+            "26 November 1949",
+            "26 January 1950",
+            "2 October 1950"
+          ],
+          "a": 1,
+          "w": "The Constitution was adopted on 26 November 1949."
+        },
+        {
+          "q": "Universal adult franchise expresses:",
+          "o": [
+            "Voting based on property",
+            "Equal adult citizenship in electoral participation",
+            "Voting only for graduates",
+            "Voting only through indirect election"
+          ],
+          "a": 1,
+          "w": "Universal adult franchise gives adult citizens equal voting rights."
+        },
+        {
+          "q": "Constitutionalism primarily means:",
+          "o": [
+            "Unlimited executive power",
+            "Public power constrained by constitutional rules",
+            "Government by permanent emergency",
+            "Absence of judicial review"
+          ],
+          "a": 1,
+          "w": "Constitutionalism limits and regulates public power."
+        }
       ]
     },
     {
@@ -5015,6 +5600,123 @@
         "Directive Principles of State Policy",
         "Parliamentary system and amendment procedures",
         "Judicial review and basic structure doctrine"
+      ],
+      "notes": "The Constitution combines a detailed institutional framework with principles of rights, justice, liberty, equality, fraternity and accountable government. Its features reflect both continuity and adaptation.",
+      "lesson": {
+        "objective": "Identify the major features of the Indian Constitution and explain how they work together.",
+        "sections": [
+          {
+            "heading": "Constitutional framework",
+            "explanation": [
+              "India has a written and detailed Constitution that establishes institutions, distributes powers and sets procedures for public authority.",
+              "The Constitution is both a legal framework and a political commitment. It provides continuity while allowing change through amendment and interpretation."
+            ],
+            "example": "The division of legislative subjects is set out in the Seventh Schedule."
+          },
+          {
+            "heading": "Rights, principles and citizenship",
+            "explanation": [
+              "Fundamental Rights protect important freedoms and equality, while Directive Principles guide the state towards social and economic justice. Fundamental Duties express civic responsibilities.",
+              "These parts should be read together: rights protect individuals and groups, while directive principles inform public policy and constitutional interpretation."
+            ],
+            "example": "The right to equality and policies aimed at reducing social disadvantage can be understood within the wider constitutional commitment to justice."
+          },
+          {
+            "heading": "Institutions, federalism and amendment",
+            "explanation": [
+              "The Constitution establishes parliamentary government, an independent judiciary, federal arrangements, constitutional bodies and procedures for emergency and amendment.",
+              "The basic structure doctrine limits Parliament's amending power by protecting the Constitution's essential identity. Constitutional practice evolves through legislation, institutions and judicial interpretation."
+            ],
+            "example": "The Supreme Court's basic structure doctrine protects core constitutional principles from being destroyed through amendment."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Written Constitution",
+            "meaning": "A codified constitutional text setting out institutions, powers and principles."
+          },
+          {
+            "term": "Directive Principles",
+            "meaning": "Constitutional guidelines for state policy and social transformation."
+          },
+          {
+            "term": "Federalism",
+            "meaning": "Constitutional distribution of authority between Union and state governments."
+          },
+          {
+            "term": "Basic structure",
+            "meaning": "Essential features of the Constitution that cannot be destroyed through amendment."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Explained the Constitution as an instrument for political democracy that must be supported by social democracy."
+          },
+          {
+            "scholar": "Granville Austin",
+            "idea": "Described the Constitution as a framework pursuing social revolution through democratic institutions."
+          }
+        ],
+        "answerPractice": "Discuss the salient features of the Indian Constitution. How do Fundamental Rights and Directive Principles complement one another?",
+        "revisionPrompt": "Prepare a feature-to-example table: parliamentary system, federalism, rights, directive principles, judiciary and amendment."
+      },
+      "test": [
+        {
+          "q": "The Directive Principles are primarily intended to:",
+          "o": [
+            "Guide the state in policy-making",
+            "Replace all Fundamental Rights",
+            "Create private courts",
+            "Abolish legislatures"
+          ],
+          "a": 0,
+          "w": "Directive Principles guide the state towards social and economic objectives."
+        },
+        {
+          "q": "The basic structure doctrine limits:",
+          "o": [
+            "Ordinary municipal rules",
+            "Parliament's power to amend the Constitution",
+            "The right to vote",
+            "All judicial interpretation"
+          ],
+          "a": 1,
+          "w": "The doctrine prevents amendments that destroy the Constitution's basic structure."
+        },
+        {
+          "q": "India's parliamentary system involves:",
+          "o": [
+            "Executive responsibility to the legislature",
+            "A completely separate executive term independent of legislature",
+            "Direct election of every minister",
+            "No collective responsibility"
+          ],
+          "a": 0,
+          "w": "The Council of Ministers is collectively responsible to the Lok Sabha."
+        },
+        {
+          "q": "Fundamental Rights primarily:",
+          "o": [
+            "Protect constitutionally guaranteed freedoms and equality",
+            "Set annual tax rates",
+            "Appoint all governors",
+            "Replace elections"
+          ],
+          "a": 0,
+          "w": "Fundamental Rights protect individuals and groups against specified forms of state action and other violations."
+        },
+        {
+          "q": "Federalism involves:",
+          "o": [
+            "Concentration of all power in one office",
+            "Constitutional distribution of authority across levels of government",
+            "Absence of state governments",
+            "Only local taxation"
+          ],
+          "a": 1,
+          "w": "Federalism distributes governmental authority under the Constitution."
+        }
       ]
     },
     {
@@ -5023,6 +5725,123 @@
       "topics": [
         "Union Executive, Legislature and Supreme Court: envisaged role and actual working",
         "State Executive, Legislature and High Courts: envisaged role and actual working"
+      ],
+      "notes": "India's parliamentary system contains the Union executive and legislature, state-level institutions and an independent judiciary. Their relationship is structured by constitutional powers, conventions and accountability.",
+      "lesson": {
+        "objective": "Map the principal organs of government and explain checks, balances and institutional accountability.",
+        "sections": [
+          {
+            "heading": "Legislature",
+            "explanation": [
+              "Parliament consists of the President and two Houses: Lok Sabha and Rajya Sabha. Legislatures make laws, approve taxation and expenditure, deliberate on public issues and scrutinise the executive.",
+              "Legislative committees deepen scrutiny by examining bills, budgets and departmental performance."
+            ],
+            "example": "A parliamentary question can require a minister to explain the implementation of a government programme."
+          },
+          {
+            "heading": "Executive",
+            "explanation": [
+              "The President is the constitutional head of the Union. The Council of Ministers, headed by the Prime Minister, exercises executive leadership and is collectively responsible to the Lok Sabha.",
+              "The civil service supports continuity, expertise and implementation, while ministers remain politically accountable for government policy."
+            ],
+            "example": "A ministry develops policy and administers it through departments and field institutions."
+          },
+          {
+            "heading": "Judiciary and checks",
+            "explanation": [
+              "The Supreme Court and High Courts interpret the Constitution, adjudicate disputes and exercise judicial review. Judicial independence supports the rule of law.",
+              "India does not follow a rigid separation of powers. The organs have distinct primary functions but also interact through checks, oversight and constitutional procedures."
+            ],
+            "example": "Courts can review whether legislation or executive action violates constitutional limits."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Collective responsibility",
+            "meaning": "The Council of Ministers is jointly accountable to the Lok Sabha."
+          },
+          {
+            "term": "Judicial review",
+            "meaning": "Judicial examination of the constitutional and legal validity of public action."
+          },
+          {
+            "term": "Bicameralism",
+            "meaning": "A legislature with two Houses."
+          },
+          {
+            "term": "Checks and balances",
+            "meaning": "Institutional arrangements that prevent concentration and misuse of power."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Montesquieu",
+            "idea": "The separation of powers idea seeks to prevent concentration of authority."
+          },
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Supported constitutional institutions and safeguards suited to India's parliamentary framework."
+          }
+        ],
+        "answerPractice": "Explain the relationship among the legislature, executive and judiciary in India. How do checks and balances protect constitutional government?",
+        "revisionPrompt": "Compare the primary function, accountability route and key constitutional role of each organ."
+      },
+      "test": [
+        {
+          "q": "The Council of Ministers at the Union level is collectively responsible to:",
+          "o": [
+            "Rajya Sabha",
+            "Lok Sabha",
+            "Supreme Court",
+            "Election Commission"
+          ],
+          "a": 1,
+          "w": "Article 75(3) provides collective responsibility to the Lok Sabha."
+        },
+        {
+          "q": "Parliament consists of:",
+          "o": [
+            "Lok Sabha only",
+            "President, Lok Sabha and Rajya Sabha",
+            "Prime Minister and Supreme Court",
+            "Two Houses only, excluding the President"
+          ],
+          "a": 1,
+          "w": "The Constitution defines Parliament as consisting of the President and two Houses."
+        },
+        {
+          "q": "Judicial review allows courts to examine:",
+          "o": [
+            "Only political popularity",
+            "Constitutional and legal validity of public action",
+            "Only election manifestos",
+            "Only annual budget size"
+          ],
+          "a": 1,
+          "w": "Judicial review checks whether public action complies with law and the Constitution."
+        },
+        {
+          "q": "Legislative committees are useful because they:",
+          "o": [
+            "Replace the courts",
+            "Enable detailed scrutiny of bills and administration",
+            "Appoint all civil servants",
+            "Conduct all elections"
+          ],
+          "a": 1,
+          "w": "Committees provide focused examination and oversight."
+        },
+        {
+          "q": "India's separation of powers is best described as:",
+          "o": [
+            "Rigid and absolute separation",
+            "Functional separation with institutional checks and interaction",
+            "No distinction among organs",
+            "Complete judicial control of executive"
+          ],
+          "a": 1,
+          "w": "The Constitution creates distinct functions while allowing checks and interaction."
+        }
       ]
     },
     {
@@ -5032,6 +5851,123 @@
         "Panchayati Raj and municipal government",
         "73rd and 74th Constitutional Amendments",
         "Grassroots movements"
+      ],
+      "notes": "Grassroots democracy places elected local institutions at the centre of participation and development. The 73rd and 74th Constitutional Amendments gave constitutional status to rural and urban local bodies.",
+      "lesson": {
+        "objective": "Understand decentralisation, local self-government and the opportunities and limits of grassroots democracy.",
+        "sections": [
+          {
+            "heading": "Democratic decentralisation",
+            "explanation": [
+              "Decentralisation transfers authority, responsibilities and resources to institutions closer to citizens. It can improve responsiveness because local bodies understand local needs and conditions.",
+              "Political, administrative and fiscal decentralisation are connected. Elections without functions and funds may leave local institutions with limited practical authority."
+            ],
+            "example": "A village panchayat can identify local infrastructure priorities, but it needs clear functions and adequate resources to act."
+          },
+          {
+            "heading": "Constitutional framework",
+            "explanation": [
+              "The 73rd Constitutional Amendment concerns Panchayati Raj Institutions and added Part IX and the Eleventh Schedule. The 74th Amendment concerns municipalities and added Part IXA and the Twelfth Schedule.",
+              "The framework includes regular elections, reservations, State Election Commissions and State Finance Commissions, subject to constitutional provisions and state laws."
+            ],
+            "example": "Reservation provisions support representation of Scheduled Castes, Scheduled Tribes and women in local bodies."
+          },
+          {
+            "heading": "Challenges and strengthening",
+            "explanation": [
+              "Local bodies may face inadequate funds, limited staff, overlapping responsibilities, capacity gaps and dependence on higher levels of government.",
+              "Strengthening grassroots democracy requires clear devolution, predictable finance, trained staff, transparent local planning, social accountability and meaningful participation."
+            ],
+            "example": "Participatory local planning can combine Gram Sabha priorities with technical assessment and budget availability."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Democratic decentralisation",
+            "meaning": "Transfer of public authority and responsibilities to elected lower-level institutions."
+          },
+          {
+            "term": "Panchayati Raj",
+            "meaning": "Rural local self-government institutions."
+          },
+          {
+            "term": "Municipality",
+            "meaning": "An urban local government institution."
+          },
+          {
+            "term": "Devolution",
+            "meaning": "Transfer of functions, funds and functionaries to local institutions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Mahatma Gandhi",
+            "idea": "Gram Swaraj expressed a vision of empowered village communities."
+          },
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Warned that village institutions must be assessed in light of social hierarchy and equality."
+          }
+        ],
+        "answerPractice": "Assess the role of constitutional amendments in strengthening grassroots democracy in India. Discuss the major challenges to effective devolution.",
+        "revisionPrompt": "Use the 3Fs—functions, funds and functionaries—and connect them with participation and accountability."
+      },
+      "test": [
+        {
+          "q": "The 73rd Constitutional Amendment relates to:",
+          "o": [
+            "Municipalities",
+            "Panchayati Raj Institutions",
+            "High Courts",
+            "Co-operative banks"
+          ],
+          "a": 1,
+          "w": "The 73rd Amendment constitutionalised the rural local-government framework."
+        },
+        {
+          "q": "The 74th Amendment concerns:",
+          "o": [
+            "Municipalities",
+            "Panchayats",
+            "Union Public Service Commission",
+            "Inter-State Council"
+          ],
+          "a": 0,
+          "w": "The 74th Amendment concerns urban local bodies."
+        },
+        {
+          "q": "The Eleventh Schedule is associated with:",
+          "o": [
+            "Panchayats",
+            "Municipalities",
+            "Fundamental Duties",
+            "Union List"
+          ],
+          "a": 0,
+          "w": "The Eleventh Schedule lists subjects associated with Panchayats."
+        },
+        {
+          "q": "The phrase '3Fs' in decentralisation refers to:",
+          "o": [
+            "Freedom, fairness and federalism",
+            "Functions, funds and functionaries",
+            "Files, finance and facilities",
+            "Functions, federal courts and finance"
+          ],
+          "a": 1,
+          "w": "Effective devolution requires functions, funds and functionaries."
+        },
+        {
+          "q": "A State Finance Commission is associated with:",
+          "o": [
+            "Reviewing local-body finances and recommending fiscal arrangements",
+            "Conducting parliamentary elections",
+            "Appointing Supreme Court judges",
+            "Auditing private banks only"
+          ],
+          "a": 0,
+          "w": "State Finance Commissions review local-body financial positions and recommend measures."
+        }
       ]
     },
     {
