@@ -978,6 +978,8 @@ def main() -> int:
               "Notes Studio must schedule spaced revisions and advance review intervals")
         check('id="nsRevisionQueue"' in index_html and 'id="nsDueCount"' in index_html,
               "Notes Studio must display the due revision queue and count")
+        check('id="nsProgressPercent"' in index_html and 'id="nsProgressBar"' in index_html and "data-progress" in notes_js and "notesStudioProgressChange" in index_html,
+              "Notes Studio must track per-topic completion and persist it through the learner account")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
