@@ -63,7 +63,7 @@ ANBUU PERSONAL MENTOR MODE: You are Anbuu, a dedicated, patient, disciplined all
 4) TASK ACCOUNTABILITY: At the start of a fresh session, refer to saved pending tasks and ask briefly how the learner progressed. At the end of a teaching session, assign 1–3 concrete micro-tasks. Be encouraging without exaggerated praise or pressure.
 5) DOUBT MEMORY: Keep a concise, cumulative list of recurring weak areas; remove duplicates and do not infer weaknesses from a single unclear question.
 6) ACCURACY: Clearly distinguish official PYQs from practice questions. Never invent official PYQs, sources, or evaluation claims. Flag uncertain facts and encourage verification.
-7) LESSON-AWARE GUIDANCE: Use the learner's saved guided-lesson history when it is provided. Prefer continuing an in-progress lesson, resuming a paused lesson, and practising or revising a recently completed lesson before suggesting an unrelated new topic. Never claim a lesson was completed unless its saved status says completed. Do not infer mastery from completion alone; use a short recall check to confirm understanding. When there is no lesson history, say so and ask what subject or track the learner wants to begin.
+7) LESSON-AWARE GUIDANCE: Use the learner's saved guided-lesson history when it is provided. Prefer continuing an in-progress lesson, resuming a paused lesson, and practising or revising a recently completed lesson before suggesting an unrelated new topic. Never claim a lesson was completed unless its saved status says completed. Do not infer mastery from completion alone; use a short recall check to confirm understanding. When retrieved published_optional_guided_lesson records are present, teach from their objectives, sections, examples, key terms and scholar perspectives; explain concepts in beginner-friendly stages, connect them to the exact syllabus unit, and create original practice rather than mislabelling it as an official PYQ. If the learner names an optional subject, prioritise that subject and do not mix in another optional unless comparison is requested. When there is no lesson history, say so and ask what subject or track the learner wants to begin.
 8) STATE SYNC: When a plan, doubt log, or task list changes, append exactly one hidden state block at the very end of your response using this exact format and valid JSON (no Markdown fence):
 <!--ANBUU_STATE:{"active_study_plan":null,"doubt_log":[],"pending_tasks":[]}-->
 The block must contain a complete current snapshot. active_study_plan is an object or null; doubt_log is an array of short strings; pending_tasks is an array of objects with id, title, description, due_date, and status ("pending" or "completed"). Preserve existing state unless intentionally changing it. Use short unique task IDs. Never mention this hidden block to the learner. If no saved state changes, omit it.
@@ -364,50 +364,67 @@ Deno.serve(async (req: Request) => {
     if (profile.role !== "admin") return json({ error: "AI configuration status is available to the site owner only." }, 403, origin);
     return json({
       configured: Boolean(GEMINI_KEY || GROQ_KEY),
+      primaryProvider: GEMINI_KEY ? "Gemini" : GROQ_KEY ? "Groq fallback (Gemini is not configured)" : "None",
       providers: { gemini: Boolean(GEMINI_KEY), groq: Boolean(GROQ_KEY) },
       models: { gemini: GEMINI_MODEL, groq: GROQ_MODEL },
-      message: GEMINI_KEY || GROQ_KEY
-        ? "At least one AI provider secret is configured."
-        : "No AI provider secret is configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase Edge Function Secrets."
+      message: GEMINI_KEY
+        ? "Gemini is configured as Anbuu's primary AI provider."
+        : GROQ_KEY
+          ? "Gemini is not configured. Groq is available only as a fallback."
+          : "No AI provider secret is configured. Add GEMINI_API_KEY in Supabase Edge Function Secrets."
     }, 200, origin);
   }
 
   if (body.action === "test_ai_provider") {
     if (profile.role !== "admin") return json({ error: "AI connection testing is available to the site owner only." }, 403, origin);
-    if (!GEMINI_KEY && !GROQ_KEY) {
-      return json({ ok: false, configured: false, message: "No provider secret is configured. Add GEMINI_API_KEY or GROQ_API_KEY in Supabase → Edge Functions → Secrets, then redeploy or restart the function if required." }, 503, origin);
+    if (!GEMINI_KEY) {
+      return json({
+        ok: false,
+        configured: false,
+        provider: "Gemini",
+        message: "Gemini is not configured. Add GEMINI_API_KEY in Supabase → Edge Functions → Secrets. Groq, if configured, remains only a fallback and is not used for this Gemini connection test."
+      }, 503, origin);
     }
-    const failures: string[] = [];
-    if (GEMINI_KEY) {
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY },
-          signal: AbortSignal.timeout(12000),
-          body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: "Reply with the single word OK." }] }], generationConfig: { maxOutputTokens: 8, temperature: 0 } }),
-        });
-        if (response.ok) return json({ ok: true, configured: true, provider: "Gemini", model: GEMINI_MODEL, message: "Gemini connection successful. Anbuu's provider is reachable." }, 200, origin);
-        failures.push(providerStatusHint("Gemini", response.status));
-      } catch (error) {
-        failures.push("Gemini connection failed: " + (error instanceof Error && error.name === "TimeoutError" ? "request timed out." : "network request failed."));
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY },
+        signal: AbortSignal.timeout(15000),
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: "Reply with exactly the word OK." }] }],
+          generationConfig: { maxOutputTokens: 8, temperature: 0 }
+        }),
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        return json({
+          ok: false, configured: true, provider: "Gemini", model: GEMINI_MODEL,
+          message: providerStatusHint("Gemini", response.status),
+          detail: detail.slice(0, 240)
+        }, 502, origin);
       }
-    }
-    if (GROQ_KEY) {
-      try {
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: "Bearer " + GROQ_KEY },
-          signal: AbortSignal.timeout(12000),
-          body: JSON.stringify({ model: GROQ_MODEL, messages: [{ role: "user", content: "Reply with the single word OK." }], max_tokens: 8, temperature: 0 }),
-        });
-        if (response.ok) return json({ ok: true, configured: true, provider: "Groq", model: GROQ_MODEL, message: "Groq connection successful. Anbuu's provider is reachable." }, 200, origin);
-        failures.push(providerStatusHint("Groq", response.status));
-      } catch (error) {
-        failures.push("Groq connection failed: " + (error instanceof Error && error.name === "TimeoutError" ? "request timed out." : "network request failed."));
+      const result = await response.json();
+      const generatedText = result?.candidates?.[0]?.content?.parts
+        ?.map((part: { text?: string }) => part.text ?? "").join("").trim();
+      if (!generatedText) {
+        const reason = result?.candidates?.[0]?.finishReason;
+        return json({
+          ok: false, configured: true, provider: "Gemini", model: GEMINI_MODEL,
+          message: "Gemini accepted the request but did not return usable text" + (reason ? " (finish reason: " + String(reason) + ")." : ".")
+        }, 502, origin);
       }
+      return json({
+        ok: true, configured: true, provider: "Gemini", model: GEMINI_MODEL,
+        message: "Gemini generated a test response successfully. Anbuu's primary AI provider is reachable."
+      }, 200, origin);
+    } catch (error) {
+      return json({
+        ok: false, configured: true, provider: "Gemini", model: GEMINI_MODEL,
+        message: "Gemini connection failed: " + (error instanceof Error && error.name === "TimeoutError" ? "request timed out." : "network request failed.")
+      }, 502, origin);
     }
-    return json({ ok: false, configured: true, message: failures.join(" ") }, 502, origin);
   }
+
 
   if (body.action === "evaluate_mains_answer") {
     if (profile.role !== "learner") return json({ error: "Mains answer evaluation is available to learner accounts only." }, 403, origin);
