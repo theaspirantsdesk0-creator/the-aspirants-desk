@@ -39,6 +39,16 @@ For a future fresh Supabase project, first take a schema backup and create a rev
 2. Put only those public values in `config.js`. The VAPID **public** key may also be in `config.js`.
 3. Never place a Supabase service-role/secret key, database password, cron secret, or VAPID **private** key in browser code or GitHub-tracked files.
 
+## Password recovery and redirect configuration
+
+The sign-in dialog includes a **Forgot password?** flow. A learner enters the account email, receives Supabase's recovery email, opens the link on the published site, and sets a new password with confirmation. The browser flow uses Supabase `resetPasswordForEmail`, listens for the `PASSWORD_RECOVERY` auth event, and saves the new password with `updateUser`. Passwords and recovery tokens must never be pasted into support chats or committed to the repository.
+
+**Required one-time Supabase Dashboard setting:** open Authentication > URL Configuration and add this exact URL under **Redirect URLs**:
+
+`https://theaspirantsdesk0-creator.github.io/the-aspirants-desk/`
+
+Keep the Site URL set to the canonical published site. If a custom domain is introduced later, add its exact recovery redirect URL too. The application code cannot override Supabase's redirect allow-list. Real email delivery and the full recovery round trip still require a real account and must be tested from the published HTTPS site.
+
 ## Accounts and administrator access
 - Create learner accounts through the website and confirm email if Supabase requests it.
 - Administrator roles are stored in `public.profiles`. Do not expose a public admin-registration form.
@@ -72,7 +82,7 @@ Provider generation, cross-device user flows, and push delivery must be verified
 - The `ai-assistant` Edge Function is deployed as version 48 with JWT verification enabled. Gemini 2.5 Flash is the primary provider and Groq is an optional fallback. The live provider secret must be configured in Supabase Edge Function secrets; deployment does not prove that Gemini generation works.
 - The AI Mains evaluator derives the final practice mark from its five rubric scores (each out of four), then scales that total to the requested question marks. Feedback remains formative and is not an official UPSC score.
 - The authentication listener in `index.html` schedules learner-data refresh outside the synchronous Supabase auth callback to avoid refresh-lock deadlocks.
-- The service-worker cache version is `desk-v48-auth-refresh-fix`.
+- The service-worker cache version is `desk-v50-password-recovery`.
 - The browser subscribes from the Dashboard's **Daily study reminder** card after a learner signs in and grants browser notification permission.
 - Each browser/device needs its own subscription. Reminders are sent at the selected local time and are skipped when the account has saved study activity that day.
 - The VAPID private key and cron secret must remain in Supabase Edge Function secrets. Never commit them.
@@ -90,7 +100,7 @@ Provider generation, cross-device user flows, and push delivery must be verified
 - Public visitors can read published notices, study notes, press and PIB posts. Only an administrator can publish or delete them.
 - Keep `config.js` restricted to the project URL and public anon/publishable key. Never put a service-role key, database password, or other secret in the website.
 - Before making the website public, review the About and Connect sections and remove any personal details you do not want publicly visible.
-- Email confirmation and password reset settings should be configured in Supabase Auth. Add your final GitHub Pages URL to the Supabase Auth allowed redirect URLs.
+- Email confirmation and password reset settings should be configured in Supabase Auth. The exact recovery redirect URL is documented in the Password recovery section above.
 
 ## Important testing note
 The site package is prepared, but cloud functionality cannot be fully live-tested until you create your own Supabase project and enter its URL and public key in `config.js`. The browser-only trackers can be tested immediately by opening `index.html` in a browser. For Supabase sign-in and realtime, use the published HTTPS site rather than opening the file directly.
@@ -102,4 +112,4 @@ The official PYQ view now merges the static verified archive with live Supabase 
 
 Current database audit: **0 published PYQ records**. The existing draft test record remains unpublished and unverified. No generated or coaching questions have been promoted as official UPSC PYQs. Coverage targets remain a planning inventory, not a claim of completed transcription.
 
-The PYQ UI and publication rules are checked by the project quality workflow. Latest service-worker shell version: `desk-v49-live-pyq-publication`.
+The PYQ UI and publication rules are checked by the project quality workflow. Latest service-worker shell version: `desk-v50-password-recovery`.
