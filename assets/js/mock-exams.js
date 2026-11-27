@@ -456,7 +456,7 @@ function renderQuestion(){
  $("mockMarkBtn").setAttribute("aria-pressed",String(marked.has(q.id)));
  $("mockPrevBtn").disabled=index===0;$("mockNextBtn").textContent=index===questions.length-1?"Review answers":"Next";
 }
-function setAnswer(id,value){answers[id]=value;storeLocalDraft();status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft(),350);renderQuestionGrid();renderQuestion();}
+function setAnswer(id,value){answers[id]=value;storeLocalDraft();status("Saving…");clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveDraft(),350);renderQuestionGrid();}
 function renderQuestionGrid(){
  const grid=$("mockQuestionGrid");if(!grid)return;
  grid.setAttribute("role","group");grid.setAttribute("aria-label","Question navigation palette");
@@ -468,6 +468,9 @@ function renderQuestionGrid(){
  grid.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{index=Number(b.dataset.q);renderQuestion();renderQuestionGrid();}));
  const answered=questions.filter(q=>String(answers[q.id]||"").trim()).length;
  const review=questions.filter(q=>marked.has(q.id)).length;
+ $("mockQuestionPosition").textContent="Question "+(index+1)+" of "+questions.length+" · "+answered+" answered";
+ const progress=$("mockProgressFill"),bar=progress?.parentElement;
+ if(progress){progress.style.width=((answered/questions.length)*100)+"%";if(bar){bar.setAttribute("role","progressbar");bar.setAttribute("aria-label","Exam questions answered");bar.setAttribute("aria-valuemin","0");bar.setAttribute("aria-valuemax",String(questions.length));bar.setAttribute("aria-valuenow",String(answered));}}
  $("mockAnsweredCount").textContent=answered+" answered · "+(questions.length-answered)+" unanswered · "+review+" for review";
 }
 function storeLocalDraft(){
