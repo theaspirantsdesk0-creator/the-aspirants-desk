@@ -39,21 +39,27 @@ try {
   }
   let response = null;
   let publishedVersionReady = false;
+  let lastDomAudit = null;
   for (let attempt = 0; attempt < 40; attempt++) {
     response = await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
     if (response && response.ok()) {
       await page.waitForTimeout(1200);
-      const hasMentorWorkspace = await page.locator('#mentor').count() === 1;
-      const hasPracticeBank = await page.locator('#pyqSearch').count() === 1;
-      const hasAnbuuNavigation = await page.locator('a[data-nav="anbuu"]').count() === 1;
-      if (hasMentorWorkspace && hasPracticeBank && hasAnbuuNavigation) {
+      lastDomAudit = await page.evaluate(() => ({
+        title: document.title,
+        url: location.href,
+        mentor: document.querySelectorAll('#mentor').length,
+        practiceBank: document.querySelectorAll('#pyqSearch').length,
+        anbuuAnchor: document.querySelectorAll('a[data-nav="anbuu"]').length,
+        bodyStart: document.body?.innerText?.slice(0, 220) || ''
+      }));
+      if (lastDomAudit.mentor === 1 && lastDomAudit.practiceBank === 1 && lastDomAudit.anbuuAnchor === 1) {
         publishedVersionReady = true;
         break;
       }
     }
     await page.waitForTimeout(15000);
   }
-  if (!publishedVersionReady) throw new Error('The latest mentor/practice-bank/Anbuu navigation build did not appear on Pages within ten minutes; last HTTP status=' + (response?.status() ?? 'no response'));
+  if (!publishedVersionReady) throw new Error('Latest build did not appear on Pages within ten minutes; HTTP=' + (response?.status() ?? 'no response') + '; DOM=' + JSON.stringify(lastDomAudit));
   await page.waitForTimeout(4000);
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
