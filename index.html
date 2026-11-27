@@ -2165,7 +2165,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     saveUserState();
   });
 
-  window.addEventListener("tad:notesStudioProgressChange", (event) => {\n    const next = event && event.detail;\n    if (!next || typeof next !== "object" || Array.isArray(next)) return;\n    state.notesStudioProgress = next;\n    saveUserState();\n  });\n\n  window.addEventListener("tad:notesStudioChange", (event) => {
+  window.addEventListener("tad:notesStudioProgressChange", (event) => {
+    const next = event && event.detail;
+    if (!next || typeof next !== "object" || Array.isArray(next)) return;
+    state.notesStudioProgress = next;
+    saveUserState();
+  });
+
+  window.addEventListener("tad:notesStudioChange", (event) => {
     const next = event && event.detail;
     if (!Array.isArray(next)) return;
     state.notesStudio = next.slice(-300);
