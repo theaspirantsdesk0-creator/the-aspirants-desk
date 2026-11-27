@@ -50,8 +50,29 @@ For a future fresh Supabase project, first take a schema backup and create a rev
 - **Leaked-password protection:** Supabase Security Advisor currently reports this as the one remaining security warning. It can be enabled in the project's Authentication password-security settings if the subscription plan supports it. Supabase documents this protection as available on the Pro plan and above. See [Supabase password security](https://supabase.com/docs/guides/auth/password-security).
 - **Future object default grants:** the current database tool was not authorised to change the default ACLs owned by the database roles. This does not change the current tables: all 14 public tables have RLS enabled and the existing grants/policies have been tightened. Optional SQL for the project owner to review and run is in `supabase/manual/secure-public-default-privileges.sql`. Do not try to bypass a permission error.
 
+## Current deployment notes (27 November 2026)
+
+The current production project has the following deployed Edge Functions:
+- `ai-assistant`: version 48 (JWT verification enabled).
+- `send-study-reminders`: version 8 (called by the active scheduled job).
+- `send-test-study-notification`: version 4 (JWT verification enabled).
+
+The mock examination database currently contains 10 published papers and 320 active questions. The live `pyq_questions` table currently contains one draft and zero published records. The verified official-PDF catalogue is a small, curated subset; the paper-level inventory is a discovery tracker, not proof that every historical paper has been located. Never fill the public PYQ bank with generated or third-party questions.
+
+Supabase security review:
+- The two public `SECURITY DEFINER` RPCs used for mock practice and submission require authentication, verify the current user's identity/attempt ownership, and are executable by `authenticated` but not `anon`. Their definer privileges are intentional for the protected database operations; review their function bodies before changing grants.
+- The private `ai_daily_usage` table has RLS enabled without policies and remains inaccessible through the public API; retain that private boundary.
+- Enable leaked-password protection in Supabase Auth when available for the project's plan.
+
+Provider generation, cross-device user flows, and push delivery must be verified with real signed-in sessions and a registered browser device. Do not describe deployment or an HTTP 2xx response as proof of end-user delivery.
+
 ## Daily push reminders
-- The `send-study-reminders` Edge Function is deployed as version 3 and is called by an active `pg_cron` job.
+- The `send-study-reminders` Edge Function is deployed as version 8 and is called by an active `pg_cron` job.
+- The `send-test-study-notification` Edge Function is deployed as version 4. A successful function invocation alone does not prove a device received a notification; verify with a registered browser subscription.
+- The `ai-assistant` Edge Function is deployed as version 48 with JWT verification enabled. Gemini 2.5 Flash is the primary provider and Groq is an optional fallback. The live provider secret must be configured in Supabase Edge Function secrets; deployment does not prove that Gemini generation works.
+- The AI Mains evaluator derives the final practice mark from its five rubric scores (each out of four), then scales that total to the requested question marks. Feedback remains formative and is not an official UPSC score.
+- The authentication listener in `index.html` schedules learner-data refresh outside the synchronous Supabase auth callback to avoid refresh-lock deadlocks.
+- The service-worker cache version is `desk-v48-auth-refresh-fix`.
 - The browser subscribes from the Dashboard's **Daily study reminder** card after a learner signs in and grants browser notification permission.
 - Each browser/device needs its own subscription. Reminders are sent at the selected local time and are skipped when the account has saved study activity that day.
 - The VAPID private key and cron secret must remain in Supabase Edge Function secrets. Never commit them.
