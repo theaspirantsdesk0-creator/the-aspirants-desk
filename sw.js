@@ -1,5 +1,5 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v57-founder-mascot';
+var VERSION = 'desk-v58-learning-snapshot';
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
@@ -8,7 +8,7 @@ var CORE_ASSETS = [
   'assets/css/pyq-inventory.css', 'assets/css/mains-evaluation.css',
   'assets/js/pyq-inventory.js', 'assets/js/concept-map.js', 'assets/js/press-intelligence.js', 'assets/js/dashboard.js',
   'assets/js/learning-hub.js', 'assets/js/courses.js',
-  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/optional-guided-content.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/js/mock-exams.js', 'assets/js/notes-studio.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'assets/js/mains-evaluation.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json', 'data/notes/gs-foundations.json', 'assets/css/notes-studio.css', 'assets/css/founder-mascot.css', 'assets/js/founder-mascot.js'
+  'assets/js/course-studio.js', 'assets/js/optional-prep.js', 'assets/js/optional-guided-content.js', 'assets/js/owner-learner-workspaces.js', 'assets/js/ai-desk.js', 'assets/js/mock-exams.js', 'assets/js/notes-studio.js', 'assets/css/optional-prep.css', 'assets/js/mains-bank.js', 'assets/js/mains-evaluation.js', 'data/upsc/optional-syllabus.json', 'data/upsc/anthropology-mains-bank.json', 'data/notes/gs-foundations.json', 'assets/css/notes-studio.css', 'assets/css/founder-mascot.css', 'assets/js/founder-mascot.js', 'assets/css/learning-snapshot.css', 'assets/js/learning-snapshot.js'
 ];
 
 /* Network-first files: scripts/styles, config (public keys), service worker and data feeds. */
