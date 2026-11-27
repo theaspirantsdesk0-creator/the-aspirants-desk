@@ -930,6 +930,7 @@ def main() -> int:
               "Sign-in and sign-up must preserve the exact password entered by the learner")
         check('if (error) throw error;' in index_html
               and 'Could not sign out. Check your connection and try again.' in index_html
+              and 'supabase.auth.signOut({ scope: "local" })' in index_html
               and 'return false;' in index_html[index_html.find("async function handleSignOut"):index_html.find("// Phase 4: Multi-Exam Shell Selector")],
               "Sign-out must retain the active account UI when remote session revocation fails")
         check('id="mainsEvaluateBtn"' in index_html
