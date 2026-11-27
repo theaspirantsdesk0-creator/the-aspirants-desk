@@ -5259,6 +5259,135 @@
         "Indianisation of public services",
         "Revenue and district administration",
         "Local self-government"
+      ],
+      "notes": "Trace the historical foundations of Indian administration and understand how colonial institutions were adapted after independence. Kautilya’s Arthashastra discusses the duties of the ruler, revenue, espionage, diplomacy, law and administrative organisation. It is a normative and strategic text; it should be read in its historical context rather than treated as a modern administrative manual. Ancient Indian administration varied across periods and regions. Inscriptions and other sources help historians understand taxation, local institutions and the relationship between rulers and communities. Mughal administration combined a centralised imperial structure with provincial, military and revenue arrangements. The mansabdari system linked rank, service and military obligations. The jagirdari arrangement assigned revenue rights for specified territories, while the zamindars performed varied local roles. Actual practice differed across regions and reigns. British rule introduced and expanded institutions such as the district collectorate, civil services, codified laws, police and centralised revenue systems. These institutions served colonial objectives and were not designed primarily for democratic accountability. Independent India inherited administrative structures but placed them within a constitutional democracy committed to rights, welfare, federalism and development. Post-independence administration combines inherited institutions with constitutional safeguards, elected governments, local self-government and welfare responsibilities. Historical analysis should distinguish institutional continuity from changes in legitimacy, purpose, accountability and citizen participation.",
+      "lesson": {
+        "objective": "Trace the historical foundations of Indian administration and understand how colonial institutions were adapted after independence.",
+        "sections": [
+          {
+            "heading": "Ancient and classical traditions",
+            "explanation": [
+              "Kautilya’s Arthashastra discusses the duties of the ruler, revenue, espionage, diplomacy, law and administrative organisation. It is a normative and strategic text; it should be read in its historical context rather than treated as a modern administrative manual.",
+              "Ancient Indian administration varied across periods and regions. Inscriptions and other sources help historians understand taxation, local institutions and the relationship between rulers and communities."
+            ],
+            "example": "A study of revenue administration can compare the Arthashastra’s prescriptions with evidence from inscriptions."
+          },
+          {
+            "heading": "Medieval administration",
+            "explanation": [
+              "Mughal administration combined a centralised imperial structure with provincial, military and revenue arrangements. The mansabdari system linked rank, service and military obligations.",
+              "The jagirdari arrangement assigned revenue rights for specified territories, while the zamindars performed varied local roles. Actual practice differed across regions and reigns."
+            ],
+            "example": "The mansab system illustrates how rank, service and military organisation could be connected."
+          },
+          {
+            "heading": "Colonial legacy",
+            "explanation": [
+              "British rule introduced and expanded institutions such as the district collectorate, civil services, codified laws, police and centralised revenue systems. These institutions served colonial objectives and were not designed primarily for democratic accountability.",
+              "Independent India inherited administrative structures but placed them within a constitutional democracy committed to rights, welfare, federalism and development."
+            ],
+            "example": "The district collector's office continued after independence, but its responsibilities expanded to include development coordination and citizen-facing services."
+          },
+          {
+            "heading": "Continuity and change",
+            "explanation": [
+              "Post-independence administration combines inherited institutions with constitutional safeguards, elected governments, local self-government and welfare responsibilities.",
+              "Historical analysis should distinguish institutional continuity from changes in legitimacy, purpose, accountability and citizen participation."
+            ],
+            "example": "An answer can assess both the efficiency advantages and democratic limitations of inherited administrative arrangements."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Arthashastra",
+            "meaning": "A classical Sanskrit treatise associated with Kautilya that discusses statecraft and administration."
+          },
+          {
+            "term": "Mansabdari",
+            "meaning": "A Mughal ranking and service system linking an official’s status with obligations."
+          },
+          {
+            "term": "District collectorate",
+            "meaning": "A district-level administrative institution with revenue and broader coordination responsibilities."
+          },
+          {
+            "term": "Colonial legacy",
+            "meaning": "Institutions and practices inherited from British rule, later adapted within independent India."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Kautilya",
+            "idea": "The Arthashastra offers a systematic account of statecraft, revenue and administrative responsibilities."
+          },
+          {
+            "scholar": "R. P. Kangle",
+            "idea": "His scholarship helped establish a critical textual understanding of the Arthashastra."
+          },
+          {
+            "scholar": "B. B. Misra",
+            "idea": "Studied the development of Indian administration and its historical institutional setting."
+          }
+        ],
+        "answerPractice": "Examine the major continuities and changes in Indian administration from the colonial period to the present. Use constitutional values as an evaluative framework.",
+        "revisionPrompt": "Prepare a timeline with ancient, Mughal, colonial and post-independence administrative features. Distinguish historical description from critical evaluation."
+      },
+      "test": [
+        {
+          "q": "The Arthashastra is primarily associated with:",
+          "o": [
+            "Kautilya",
+            "Akbar",
+            "Lord Curzon",
+            "B. R. Ambedkar"
+          ],
+          "a": 0,
+          "w": "Kautilya is traditionally associated with the Arthashastra, a text on statecraft and administration."
+        },
+        {
+          "q": "The Mughal mansabdari system linked rank with:",
+          "o": [
+            "Only land ownership",
+            "Service status and obligations",
+            "Universal adult franchise",
+            "Judicial review"
+          ],
+          "a": 1,
+          "w": "Mansab indicated an official's rank and was linked to service and military obligations."
+        },
+        {
+          "q": "The district collectorate developed substantially under:",
+          "o": [
+            "British colonial administration",
+            "The Constituent Assembly",
+            "The Election Commission",
+            "The Finance Commission"
+          ],
+          "a": 0,
+          "w": "The colonial state expanded the district collectorate, especially for revenue and territorial administration."
+        },
+        {
+          "q": "A critical study of colonial administrative inheritance should examine:",
+          "o": [
+            "Only institutional names",
+            "Purpose, accountability and constitutional transformation",
+            "Only architectural design",
+            "Only ceremonial practices"
+          ],
+          "a": 1,
+          "w": "Institutions may continue while their purposes and accountability change under democracy."
+        },
+        {
+          "q": "After independence, inherited administrative institutions were placed within:",
+          "o": [
+            "A colonial framework without change",
+            "A constitutional democratic framework",
+            "A monarchical system",
+            "A company administration"
+          ],
+          "a": 1,
+          "w": "Independent India adapted inherited institutions to constitutional democracy and welfare responsibilities."
+        }
       ]
     },
     {
@@ -5269,6 +5398,135 @@
         "Constitutionalism and political culture",
         "Bureaucracy and democracy",
         "Bureaucracy and development"
+      ],
+      "notes": "Understand the values, constitutional principles and political culture that shape public administration in India. The Constitution establishes a framework for public power through justice, liberty, equality and fraternity, alongside democratic, secular and republican commitments. Administrative decisions should respect fundamental rights, legality, fairness and the constitutional distribution of powers. Constitutionalism means that public authority is limited and exercised according to constitutional rules. Government institutions cannot treat power as unlimited discretion. Separation of functions, judicial review, legislative oversight and independent constitutional bodies help prevent arbitrary action. Political culture refers to orientations, values and expectations concerning political authority and participation. It influences trust, compliance, participation and administrative legitimacy. India’s plural society requires administration to work across linguistic, cultural, regional and social differences while applying constitutional standards. Constitutional morality involves commitment to constitutional methods, institutional restraint, equality and respect for rights, including when popular pressure points in another direction. Administrative neutrality does not mean indifference to constitutional values. Public servants must act impartially, lawfully and responsively.",
+      "lesson": {
+        "objective": "Understand the values, constitutional principles and political culture that shape public administration in India.",
+        "sections": [
+          {
+            "heading": "Constitutional value premises",
+            "explanation": [
+              "The Constitution establishes a framework for public power through justice, liberty, equality and fraternity, alongside democratic, secular and republican commitments.",
+              "Administrative decisions should respect fundamental rights, legality, fairness and the constitutional distribution of powers."
+            ],
+            "example": "A welfare scheme must be designed with equal access, non-discrimination and transparent eligibility rules."
+          },
+          {
+            "heading": "Constitutionalism and limited government",
+            "explanation": [
+              "Constitutionalism means that public authority is limited and exercised according to constitutional rules. Government institutions cannot treat power as unlimited discretion.",
+              "Separation of functions, judicial review, legislative oversight and independent constitutional bodies help prevent arbitrary action."
+            ],
+            "example": "A public authority must identify legal authority for its decision and remain open to review."
+          },
+          {
+            "heading": "Political culture and administration",
+            "explanation": [
+              "Political culture refers to orientations, values and expectations concerning political authority and participation. It influences trust, compliance, participation and administrative legitimacy.",
+              "India’s plural society requires administration to work across linguistic, cultural, regional and social differences while applying constitutional standards."
+            ],
+            "example": "Public consultation can help an agency understand the needs of diverse communities."
+          },
+          {
+            "heading": "Ethics and constitutional morality",
+            "explanation": [
+              "Constitutional morality involves commitment to constitutional methods, institutional restraint, equality and respect for rights, including when popular pressure points in another direction.",
+              "Administrative neutrality does not mean indifference to constitutional values. Public servants must act impartially, lawfully and responsively."
+            ],
+            "example": "An officer should apply a fair rule consistently while ensuring that vulnerable people can access the process."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Constitutionalism",
+            "meaning": "The principle that public power is limited, structured and controlled by constitutional rules."
+          },
+          {
+            "term": "Constitutional morality",
+            "meaning": "Respect for constitutional values, procedures, rights and institutional limits."
+          },
+          {
+            "term": "Political culture",
+            "meaning": "Shared and differing orientations towards political institutions, authority and participation."
+          },
+          {
+            "term": "Rule of law",
+            "meaning": "The principle that public power is exercised under publicly known laws and legal accountability."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Granville Austin",
+            "idea": "Analysed the Constitution as a document shaped by social revolution and national unity."
+          },
+          {
+            "scholar": "B. R. Ambedkar",
+            "idea": "Emphasised constitutional methods, institutional safeguards and social democracy."
+          },
+          {
+            "scholar": "A. V. Dicey",
+            "idea": "Popularised a classic account of the rule of law in the British constitutional tradition."
+          }
+        ],
+        "answerPractice": "How do constitutionalism and constitutional morality guide public administration in a diverse democracy?",
+        "revisionPrompt": "Connect each constitutional value to one practical administrative implication and one accountability mechanism."
+      },
+      "test": [
+        {
+          "q": "Constitutionalism primarily means:",
+          "o": [
+            "Unlimited executive discretion",
+            "Limited government under constitutional rules",
+            "Rule by administrative orders alone",
+            "Absence of judicial review"
+          ],
+          "a": 1,
+          "w": "Constitutionalism limits public power and requires it to operate within constitutional rules."
+        },
+        {
+          "q": "Which set is explicitly associated with the Preamble's core values?",
+          "o": [
+            "Justice, liberty, equality and fraternity",
+            "Profit, secrecy, hierarchy and privilege",
+            "Revenue, rank, territory and force",
+            "Competition, discretion, command and control"
+          ],
+          "a": 0,
+          "w": "The Preamble expresses justice, liberty, equality and fraternity."
+        },
+        {
+          "q": "Judicial review is relevant to constitutionalism because it:",
+          "o": [
+            "Removes all legislative authority",
+            "Can test public action against constitutional limits",
+            "Makes every policy decision judicial",
+            "Eliminates citizen rights"
+          ],
+          "a": 1,
+          "w": "Judicial review helps ensure that public action complies with constitutional requirements."
+        },
+        {
+          "q": "Constitutional morality encourages public institutions to:",
+          "o": [
+            "Ignore institutional procedures",
+            "Respect rights, constitutional methods and institutional limits",
+            "Follow public pressure regardless of law",
+            "Avoid accountability"
+          ],
+          "a": 1,
+          "w": "Constitutional morality places constitutional values and methods above arbitrary action."
+        },
+        {
+          "q": "Political culture can influence administration through:",
+          "o": [
+            "Trust, participation and expectations of public authority",
+            "Only geographical climate",
+            "Only accounting formats",
+            "The number of ministries alone"
+          ],
+          "a": 0,
+          "w": "Political culture shapes how citizens and officials understand and engage with institutions."
+        }
       ]
     },
     {
@@ -5278,6 +5536,135 @@
         "Public sector in modern India and forms of PSUs",
         "Autonomy, accountability and control",
         "Effects of liberalisation and privatisation"
+      ],
+      "notes": "Explain why public enterprises exist, how they are organised and how autonomy can be balanced with accountability. Public sector undertakings (PSUs) have been used to build strategic capacity, infrastructure and industrial capability, provide essential services and address gaps where private investment was limited. The role of public enterprises has changed through liberalisation, competition, disinvestment and a stronger focus on performance and public value. Public enterprises may take forms such as departmental undertakings, statutory corporations and government companies. Their legal basis, flexibility, financial arrangements and accountability differ. A departmental undertaking is closely integrated with government; a statutory corporation is created by legislation; a government company operates under company law with government ownership as defined by law. Operational autonomy can support timely decisions, professional management and commercial responsiveness. It must be balanced with public ownership responsibilities, transparency and lawful oversight. Accountability may involve boards, government departments, Parliament, audit, regulators, reporting requirements and public disclosure. Reform debates include restructuring, competition, strategic disinvestment, privatisation and improved corporate governance. Each option has distributional and public-interest implications. Evaluation should consider efficiency, service quality, financial sustainability, labour effects, strategic importance and access for citizens.",
+      "lesson": {
+        "objective": "Explain why public enterprises exist, how they are organised and how autonomy can be balanced with accountability.",
+        "sections": [
+          {
+            "heading": "Rationale and changing role",
+            "explanation": [
+              "Public sector undertakings (PSUs) have been used to build strategic capacity, infrastructure and industrial capability, provide essential services and address gaps where private investment was limited.",
+              "The role of public enterprises has changed through liberalisation, competition, disinvestment and a stronger focus on performance and public value."
+            ],
+            "example": "A public enterprise in a strategic infrastructure sector may be assessed for both financial performance and wider public outcomes."
+          },
+          {
+            "heading": "Forms and ownership",
+            "explanation": [
+              "Public enterprises may take forms such as departmental undertakings, statutory corporations and government companies. Their legal basis, flexibility, financial arrangements and accountability differ.",
+              "A departmental undertaking is closely integrated with government; a statutory corporation is created by legislation; a government company operates under company law with government ownership as defined by law."
+            ],
+            "example": "Choosing an organisational form requires considering the enterprise’s purpose, operational needs and oversight requirements."
+          },
+          {
+            "heading": "Autonomy and accountability",
+            "explanation": [
+              "Operational autonomy can support timely decisions, professional management and commercial responsiveness. It must be balanced with public ownership responsibilities, transparency and lawful oversight.",
+              "Accountability may involve boards, government departments, Parliament, audit, regulators, reporting requirements and public disclosure."
+            ],
+            "example": "A board may receive operational discretion while remaining accountable for performance, compliance and public funds."
+          },
+          {
+            "heading": "Reform and evaluation",
+            "explanation": [
+              "Reform debates include restructuring, competition, strategic disinvestment, privatisation and improved corporate governance. Each option has distributional and public-interest implications.",
+              "Evaluation should consider efficiency, service quality, financial sustainability, labour effects, strategic importance and access for citizens."
+            ],
+            "example": "A decision about restructuring a public enterprise should disclose the objectives, evidence, safeguards and expected public outcomes."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Departmental undertaking",
+            "meaning": "A public enterprise operated as part of a government department."
+          },
+          {
+            "term": "Statutory corporation",
+            "meaning": "A body established by a specific law that defines its powers and functions."
+          },
+          {
+            "term": "Government company",
+            "meaning": "A company in which government ownership meets the legal definition under company law."
+          },
+          {
+            "term": "Disinvestment",
+            "meaning": "Sale of a portion of government investment or ownership in an enterprise."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Peter Drucker",
+            "idea": "His management writings emphasised objectives, performance and organisational responsibility."
+          },
+          {
+            "scholar": "Oliver Williamson",
+            "idea": "His work on transaction-cost economics helps analyse organisational forms and governance."
+          },
+          {
+            "scholar": "R. K. Mishra",
+            "idea": "His public-enterprise scholarship examines the management and reform of public enterprises in India."
+          }
+        ],
+        "answerPractice": "Discuss the changing role of public sector undertakings in India. How can operational autonomy be reconciled with public accountability?",
+        "revisionPrompt": "Compare departmental undertakings, statutory corporations and government companies across legal basis, flexibility and accountability."
+      },
+      "test": [
+        {
+          "q": "A statutory corporation is generally created by:",
+          "o": [
+            "A specific legislation",
+            "A private family agreement",
+            "A municipal notice only",
+            "An election manifesto"
+          ],
+          "a": 0,
+          "w": "A statutory corporation derives its existence and powers from a specific law."
+        },
+        {
+          "q": "A key reason for granting operational autonomy to a PSU is to:",
+          "o": [
+            "Remove all accountability",
+            "Enable timely and professional management",
+            "Prevent public audit",
+            "Avoid legal obligations"
+          ],
+          "a": 1,
+          "w": "Autonomy can improve operational decisions but does not remove accountability."
+        },
+        {
+          "q": "Disinvestment refers to:",
+          "o": [
+            "Increasing every tax rate",
+            "Sale of part of government investment or ownership",
+            "Creating a new ministry",
+            "Ending all corporate reporting"
+          ],
+          "a": 1,
+          "w": "Disinvestment involves reducing or selling government investment in an enterprise."
+        },
+        {
+          "q": "Which is an important accountability mechanism for a public enterprise?",
+          "o": [
+            "No disclosure requirements",
+            "Audit and legislative oversight where applicable",
+            "Permanent exemption from law",
+            "Only informal verbal reporting"
+          ],
+          "a": 1,
+          "w": "Public enterprises remain subject to relevant audit, reporting and oversight mechanisms."
+        },
+        {
+          "q": "A balanced evaluation of a PSU should consider:",
+          "o": [
+            "Profit alone in every case",
+            "Public purpose, efficiency, access and financial sustainability",
+            "Only employee numbers",
+            "Only its age"
+          ],
+          "a": 1,
+          "w": "Public enterprises may have commercial and wider public objectives, so evaluation should be multidimensional."
+        }
       ]
     },
     {
@@ -5289,6 +5676,135 @@
         "Cabinet Secretariat and Prime Minister’s Office",
         "Central Secretariat, ministries and departments",
         "Boards, commissions, attached offices and field organisations"
+      ],
+      "notes": "Understand the Union executive, Parliament and judiciary as institutions that shape administration and intergovernmental relations. The President is the constitutional head of the Union. The Council of Ministers, headed by the Prime Minister, aids and advises the President under the constitutional scheme. The Cabinet provides political direction, while ministries and departments translate decisions into programmes, rules and administration. Civil servants support continuity and implementation. Parliament makes laws, approves taxation and expenditure, debates public issues and holds the executive accountable through questions, discussions and committees. Department-related standing committees and the Public Accounts Committee contribute to scrutiny, though committee recommendations and oversight operate within constitutional and procedural limits. The Supreme Court and High Courts interpret the Constitution and laws and exercise judicial powers, including review of administrative action within their jurisdiction. Judicial review helps protect legality and rights; courts do not ordinarily replace administrators in every policy or operational choice. Union administration operates through cabinet coordination, inter-ministerial processes, parliamentary accountability and relations with states and local institutions. Contemporary issues include digital governance, regulatory institutions, cooperative federalism, transparency and coordination across complex policy areas.",
+      "lesson": {
+        "objective": "Understand the Union executive, Parliament and judiciary as institutions that shape administration and intergovernmental relations.",
+        "sections": [
+          {
+            "heading": "Union executive",
+            "explanation": [
+              "The President is the constitutional head of the Union. The Council of Ministers, headed by the Prime Minister, aids and advises the President under the constitutional scheme.",
+              "The Cabinet provides political direction, while ministries and departments translate decisions into programmes, rules and administration. Civil servants support continuity and implementation."
+            ],
+            "example": "A ministry converts a Cabinet decision into operational guidelines, budget requirements and implementation responsibilities."
+          },
+          {
+            "heading": "Parliamentary control",
+            "explanation": [
+              "Parliament makes laws, approves taxation and expenditure, debates public issues and holds the executive accountable through questions, discussions and committees.",
+              "Department-related standing committees and the Public Accounts Committee contribute to scrutiny, though committee recommendations and oversight operate within constitutional and procedural limits."
+            ],
+            "example": "A parliamentary question can seek an explanation for delays in implementing a public programme."
+          },
+          {
+            "heading": "Judiciary and administrative legality",
+            "explanation": [
+              "The Supreme Court and High Courts interpret the Constitution and laws and exercise judicial powers, including review of administrative action within their jurisdiction.",
+              "Judicial review helps protect legality and rights; courts do not ordinarily replace administrators in every policy or operational choice."
+            ],
+            "example": "A court may examine whether an administrative decision followed the law and principles of fairness."
+          },
+          {
+            "heading": "Coordination and contemporary trends",
+            "explanation": [
+              "Union administration operates through cabinet coordination, inter-ministerial processes, parliamentary accountability and relations with states and local institutions.",
+              "Contemporary issues include digital governance, regulatory institutions, cooperative federalism, transparency and coordination across complex policy areas."
+            ],
+            "example": "A national programme may require Union policy support, state implementation and local delivery systems."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Council of Ministers",
+            "meaning": "The constitutional body of ministers headed by the Prime Minister that aids and advises the President."
+          },
+          {
+            "term": "Cabinet",
+            "meaning": "The core decision-making group of senior ministers within the Council of Ministers."
+          },
+          {
+            "term": "Parliamentary control",
+            "meaning": "Legislative scrutiny of executive action, finance and policy."
+          },
+          {
+            "term": "Judicial review",
+            "meaning": "Court examination of the legality or constitutionality of public action."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Ivor Jennings",
+            "idea": "His constitutional writings examined cabinet government and parliamentary institutions."
+          },
+          {
+            "scholar": "Granville Austin",
+            "idea": "Studied the constitutional structure and its democratic and social objectives."
+          },
+          {
+            "scholar": "Subhash C. Kashyap",
+            "idea": "Wrote extensively on Parliament, constitutional institutions and Indian governance."
+          }
+        ],
+        "answerPractice": "Examine the mechanisms through which Parliament and the judiciary ensure accountability of the Union administration.",
+        "revisionPrompt": "Map the chain from Cabinet decision to ministry implementation, then add parliamentary, audit and judicial accountability points."
+      },
+      "test": [
+        {
+          "q": "The Union Council of Ministers is headed by the:",
+          "o": [
+            "President",
+            "Prime Minister",
+            "Chief Justice of India",
+            "Speaker of the Lok Sabha"
+          ],
+          "a": 1,
+          "w": "The Prime Minister heads the Council of Ministers."
+        },
+        {
+          "q": "A principal parliamentary function is to:",
+          "o": [
+            "Implement every departmental order",
+            "Scrutinise executive action and public finance",
+            "Decide all individual service appeals",
+            "Direct the judiciary"
+          ],
+          "a": 1,
+          "w": "Parliament exercises legislative, financial and oversight functions."
+        },
+        {
+          "q": "The Public Accounts Committee is associated primarily with:",
+          "o": [
+            "Scrutiny of public expenditure and audit findings",
+            "Conducting elections",
+            "Appointing judges",
+            "Managing foreign relations"
+          ],
+          "a": 0,
+          "w": "The PAC examines public expenditure in light of audit reports and related records."
+        },
+        {
+          "q": "Judicial review allows courts to:",
+          "o": [
+            "Replace every policy choice",
+            "Examine legality and constitutionality of public action",
+            "Prepare the Union Budget",
+            "Run ministries"
+          ],
+          "a": 1,
+          "w": "Judicial review checks whether public action complies with law and the Constitution."
+        },
+        {
+          "q": "Union programmes often require coordination with:",
+          "o": [
+            "Only private clubs",
+            "State and local institutions",
+            "No other level of government",
+            "Foreign courts"
+          ],
+          "a": 1,
+          "w": "Many public programmes rely on shared responsibilities and local implementation."
+        }
       ]
     },
     {
