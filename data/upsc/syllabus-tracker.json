@@ -1,0 +1,50 @@
+{
+  "version": "2026-paper-level-tracker-v1",
+  "source": "https://upsc.gov.in/",
+  "sourceLabel": "UPSC Civil Services Examination scheme and syllabus; paper-level headings only",
+  "notice": "This tracker records paper-level progress. Detailed topic lists should be added only after checking the current official notification.",
+  "papers": [
+    {
+      "id": "prelims-gs1",
+      "stage": "Prelims",
+      "title": "General Studies Paper I",
+      "detail": "Objective paper · General Studies"
+    },
+    {
+      "id": "prelims-csat",
+      "stage": "Prelims",
+      "title": "General Studies Paper II (CSAT)",
+      "detail": "Objective paper · qualifying"
+    },
+    {
+      "id": "mains-essay",
+      "stage": "Mains",
+      "title": "Essay",
+      "detail": "Essay paper"
+    },
+    {
+      "id": "mains-gs1",
+      "stage": "Mains",
+      "title": "General Studies I",
+      "detail": "Indian Heritage and Culture, History and Geography of the World and Society"
+    },
+    {
+      "id": "mains-gs2",
+      "stage": "Mains",
+      "title": "General Studies II",
+      "detail": "Governance, Constitution, Polity, Social Justice and International Relations"
+    },
+    {
+      "id": "mains-gs3",
+      "stage": "Mains",
+      "title": "General Studies III",
+      "detail": "Technology, Economic Development, Biodiversity, Environment, Security and Disaster Management"
+    },
+    {
+      "id": "mains-gs4",
+      "stage": "Mains",
+      "title": "General Studies IV",
+      "detail": "Ethics, Integrity and Aptitude"
+    }
+  ]
+}
