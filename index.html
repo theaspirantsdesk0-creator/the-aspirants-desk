@@ -4535,7 +4535,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         await loadUserState();
       }
       let lastAuthUserId = currentUser?.id || null;
-      supabase.auth.onAuthStateChange(async (event, session) => {
+      // Keep the auth callback synchronous. Supabase Auth holds an internal
+      // lock while notifying listeners; awaiting other Supabase work here can
+      // deadlock session refresh / startup on some clients.
+      supabase.auth.onAuthStateChange((event, session) => {
         if (event === "TOKEN_REFRESHED") {
           if (session?.user) currentUser = session.user;
           return;
@@ -4551,7 +4554,13 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         currentUser = session.user;
         const changed = lastAuthUserId !== session.user.id;
         lastAuthUserId = session.user.id;
-        if (changed || event === "SIGNED_IN" || event === "USER_UPDATED") await loadUserState();
+        if (changed || event === "SIGNED_IN" || event === "USER_UPDATED") {
+          const userId = session.user.id;
+          queueMicrotask(() => {
+            if (currentUser?.id !== userId) return;
+            loadUserState().catch(error => console.warn("Auth-state data refresh failed:", error));
+          });
+        }
       });
     }
     updateAuthUI();
