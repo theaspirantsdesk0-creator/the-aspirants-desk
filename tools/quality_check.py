@@ -372,7 +372,7 @@ def main() -> int:
               "Anbuu resume must load only the authenticated learner's saved lesson metadata and disclose transcript limits")
         if ai_js.is_file():
             resume_ui = ai_js.read_text(encoding="utf-8")
-            check(re.search(r"async function sendMessage\\(message,lessonId=null(?:,evaluation=null)?\\)", resume_ui) is not None
+            check(re.search(r"async function sendMessage\(message,lessonId=null(?:,evaluation=null)?\)", resume_ui) is not None
                   and 'lesson.id));' in resume_ui
                   and 'history:lessonId?[]:history' in resume_ui,
                   "Resuming a lesson must send its saved ID and start a clean lesson-specific chat context")
@@ -682,7 +682,7 @@ def main() -> int:
     if reminder_file.is_file():
         reminder_source = reminder_file.read_text(encoding="utf-8")
         check("function dueRevisionCounts(" in reminder_source
-              and 'item.status !== "pending"' in reminder_source
+              and 'item.status === "pending"' in reminder_source
               and 'dueDate <= date' in reminder_source
               and 'dueDate < date' in reminder_source,
               "Push reminder logic must count only valid pending revision tasks due today or overdue")
