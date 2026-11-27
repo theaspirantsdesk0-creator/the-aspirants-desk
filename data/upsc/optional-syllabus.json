@@ -9199,6 +9199,138 @@
         "Planning Commission and National Development Council: roles and functions",
         "Indicative planning and plan formulation at Union and State levels",
         "1992 Constitutional Amendments and decentralised planning"
+      ],
+      "lesson": {
+        "objective": "Explain India's planning institutions, changing planning approaches and the constitutional basis of decentralised planning.",
+        "sections": [
+          {
+            "heading": "Planning machinery and institutions",
+            "explanation": [
+              "Development planning coordinates public priorities, resources and programmes across sectors and levels of government. Institutions provide data, consultation, appraisal, coordination and monitoring; planning is both technical and political because priorities distribute resources and opportunities.",
+              "India's planning framework has evolved from centralised Five-Year Plans toward broader policy coordination, cooperative federalism and outcome-oriented public programmes."
+            ],
+            "example": "A national infrastructure priority requires coordination among Union ministries, state departments and local bodies."
+          },
+          {
+            "heading": "Planning Commission and National Development Council",
+            "explanation": [
+              "The Planning Commission, established in 1950, played a central role in plan formulation and resource allocation. The National Development Council provided a forum for discussion involving the Union and states. The Planning Commission was replaced in 2015 by NITI Aayog, which emphasises policy think-tank functions and cooperative federalism.",
+              "Historical questions should distinguish the institutions and periods accurately rather than treating them as continuing bodies."
+            ],
+            "example": "A question on the Planning Commission concerns the historical planning system; a contemporary policy-coordination question may refer to NITI Aayog."
+          },
+          {
+            "heading": "Indicative planning and plan formulation",
+            "explanation": [
+              "Indicative planning uses forecasts, policy signals and consultation to guide public and private decisions rather than relying only on binding production targets. Plan formulation requires priorities, resource estimates, stakeholder consultation and monitoring.",
+              "Union and state priorities may differ because of local needs, fiscal capacity and regional conditions."
+            ],
+            "example": "A state may adapt a national health priority to local disease patterns and service capacity."
+          },
+          {
+            "heading": "Constitutional decentralisation and planning",
+            "explanation": [
+              "The 73rd and 74th Constitutional Amendments strengthened the constitutional framework for rural and urban local self-government. The Eleventh and Twelfth Schedules list subjects that may be devolved, while actual transfer of functions, funds and functionaries depends on state laws and implementation.",
+              "Decentralised planning works best when local bodies have clear responsibilities, adequate resources, technical support and citizen participation."
+            ],
+            "example": "A Gram Sabha can help identify local priorities for a village development plan."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Indicative planning",
+            "meaning": "Planning through forecasts, policy signals and coordination rather than binding targets alone."
+          },
+          {
+            "term": "Cooperative federalism",
+            "meaning": "Coordination and partnership between Union and state governments."
+          },
+          {
+            "term": "NITI Aayog",
+            "meaning": "Policy institution established in 2015 to promote strategic and cooperative policy thinking."
+          },
+          {
+            "term": "Decentralised planning",
+            "meaning": "Planning in which local institutions and communities help identify and implement priorities."
+          },
+          {
+            "term": "Devolution",
+            "meaning": "Transfer of functions, funds and functionaries to lower levels of government."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Planning Commission",
+            "idea": "Historical central planning institution established in 1950 and replaced in 2015."
+          },
+          {
+            "scholar": "NITI Aayog",
+            "idea": "Institution associated with cooperative federalism and policy coordination."
+          },
+          {
+            "scholar": "M. L. Dantwala",
+            "idea": "Contributed to debates on decentralised and rural development planning."
+          }
+        ],
+        "answerPractice": "Trace the evolution of development planning institutions in India. Assess the role of constitutional decentralisation in local planning.",
+        "revisionPrompt": "Explain the difference between centralised planning, indicative planning and decentralised planning."
+      },
+      "test": [
+        {
+          "q": "The Planning Commission was established in:",
+          "o": [
+            "1947",
+            "1950",
+            "1952",
+            "1962"
+          ],
+          "a": 1,
+          "w": "The Planning Commission was established in 1950."
+        },
+        {
+          "q": "NITI Aayog was established in:",
+          "o": [
+            "2005",
+            "2010",
+            "2015",
+            "2020"
+          ],
+          "a": 2,
+          "w": "NITI Aayog replaced the Planning Commission in 2015."
+        },
+        {
+          "q": "Indicative planning primarily relies on:",
+          "o": [
+            "Policy signals, forecasts and coordination",
+            "Only compulsory production quotas",
+            "No consultation",
+            "Only local taxation"
+          ],
+          "a": 0,
+          "w": "Indicative planning guides decisions through information, signals and coordination."
+        },
+        {
+          "q": "The 73rd Constitutional Amendment relates primarily to:",
+          "o": [
+            "Panchayati Raj institutions",
+            "High Courts",
+            "Union Public Service Commission",
+            "Inter-state trade"
+          ],
+          "a": 0,
+          "w": "The 73rd Amendment constitutionalised rural local self-government."
+        },
+        {
+          "q": "Effective decentralised planning requires:",
+          "o": [
+            "Functions without resources",
+            "Clear responsibilities, funds, staff and participation",
+            "Only central instructions",
+            "No local consultation"
+          ],
+          "a": 1,
+          "w": "Devolution requires meaningful functions, funds and functionaries."
+        }
       ]
     },
     {
@@ -9209,6 +9341,138 @@
         "Finance Commission",
         "Governor, Chief Minister and Council of Ministers",
         "Chief Secretary, State Secretariat and Directorates"
+      ],
+      "lesson": {
+        "objective": "Analyse the structure and functioning of state government and administration, including Centre-State relations and key state-level offices.",
+        "sections": [
+          {
+            "heading": "Constitutional framework and federal relations",
+            "explanation": [
+              "India's federal system distributes legislative, executive and financial responsibilities between the Union and states. Administrative relations include coordination, implementation of Union laws and constitutional mechanisms for resolving disputes.",
+              "The balance between national coordination and state autonomy is shaped by the Constitution, political practice, fiscal arrangements and intergovernmental institutions."
+            ],
+            "example": "A centrally sponsored scheme may require Union funding guidelines and state-level implementation."
+          },
+          {
+            "heading": "Governor, Chief Minister and Council of Ministers",
+            "explanation": [
+              "The Governor is the constitutional head of the state and normally acts on the aid and advice of the Council of Ministers, subject to limited constitutional discretion. The Chief Minister heads the elected government and leads the Council of Ministers.",
+              "The Council of Ministers is collectively responsible to the state Legislative Assembly. Political accountability and constitutional convention are important to state executive functioning."
+            ],
+            "example": "A state policy decision is generally taken by the elected Council of Ministers and implemented through the administrative machinery."
+          },
+          {
+            "heading": "State Secretariat and Chief Secretary",
+            "explanation": [
+              "The State Secretariat assists ministers in policy formulation, coordination, rule-making and oversight. The Chief Secretary is generally the senior-most civil servant in the state and coordinates departments and provides administrative leadership.",
+              "Secretariat departments focus on policy and coordination, while directorates and field offices often handle technical and operational implementation."
+            ],
+            "example": "A health department may formulate policy in the Secretariat while directorates and district health offices manage delivery."
+          },
+          {
+            "heading": "Finance Commission and state administration",
+            "explanation": [
+              "The Finance Commission recommends the distribution of certain tax revenues and grants between the Union and states, supporting fiscal federalism. State finance also depends on own revenues, transfers, borrowing and expenditure responsibilities.",
+              "Administrative performance is shaped by fiscal capacity, personnel management, interdepartmental coordination and local implementation."
+            ],
+            "example": "A state with high service-delivery responsibilities and limited revenue capacity depends on a combination of own revenue and intergovernmental transfers."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "State Secretariat",
+            "meaning": "Administrative organisation assisting the state government in policy and coordination."
+          },
+          {
+            "term": "Chief Secretary",
+            "meaning": "Senior-most civil servant who coordinates state administration."
+          },
+          {
+            "term": "Collective responsibility",
+            "meaning": "Principle that the Council of Ministers is collectively accountable to the elected legislature."
+          },
+          {
+            "term": "Fiscal federalism",
+            "meaning": "Distribution of revenue powers and resources among levels of government."
+          },
+          {
+            "term": "Directorate",
+            "meaning": "Departmental organisation often responsible for technical and operational functions."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Paul H. Appleby",
+            "idea": "Analysed public administration and administrative capacity in India."
+          },
+          {
+            "scholar": "M. P. Sharma",
+            "idea": "Contributed to Indian public administration scholarship."
+          },
+          {
+            "scholar": "S. R. Maheshwari",
+            "idea": "Wrote on Indian administration and its institutional development."
+          }
+        ],
+        "answerPractice": "Explain the roles of the Governor, Chief Minister, Chief Secretary and State Secretariat in state administration.",
+        "revisionPrompt": "Differentiate Secretariat functions from Directorate functions and explain why coordination matters."
+      },
+      "test": [
+        {
+          "q": "The Council of Ministers in a state is collectively responsible to:",
+          "o": [
+            "The Governor personally",
+            "The Legislative Assembly",
+            "The Finance Commission",
+            "The Election Commission"
+          ],
+          "a": 1,
+          "w": "The state Council of Ministers is collectively responsible to the Legislative Assembly."
+        },
+        {
+          "q": "The Chief Secretary is generally:",
+          "o": [
+            "The senior-most civil servant in the state",
+            "The elected head of the legislature",
+            "The state election commissioner",
+            "The head of the High Court"
+          ],
+          "a": 0,
+          "w": "The Chief Secretary provides senior administrative coordination and leadership."
+        },
+        {
+          "q": "The State Secretariat primarily performs:",
+          "o": [
+            "Policy formulation and coordination",
+            "Only field-level service delivery",
+            "Judicial adjudication",
+            "Election counting"
+          ],
+          "a": 0,
+          "w": "The Secretariat supports ministers through policy, coordination and oversight."
+        },
+        {
+          "q": "Fiscal federalism concerns:",
+          "o": [
+            "Distribution of financial powers and resources across levels of government",
+            "Only local road construction",
+            "Only monetary policy",
+            "Only private investment"
+          ],
+          "a": 0,
+          "w": "Fiscal federalism studies revenue powers, transfers and expenditure responsibilities."
+        },
+        {
+          "q": "The Governor normally acts on:",
+          "o": [
+            "Personal political preference",
+            "Aid and advice of the Council of Ministers, subject to constitutional provisions",
+            "Directions of district collectors",
+            "Advice of private companies"
+          ],
+          "a": 1,
+          "w": "The Governor generally acts on ministerial aid and advice, subject to limited constitutional discretion."
+        }
       ]
     },
     {
@@ -9219,6 +9483,138 @@
         "Union-State-local relations",
         "Development management and law-and-order administration",
         "District administration and democratic decentralisation"
+      ],
+      "lesson": {
+        "objective": "Evaluate the changing role of district administration and the District Collector in development, coordination and democratic decentralisation.",
+        "sections": [
+          {
+            "heading": "Historical role of the District Collector",
+            "explanation": [
+              "The District Collector developed as a key district-level authority in revenue administration and later acquired responsibilities in law and order, elections, disaster response and development coordination. The exact role varies by state and administrative arrangements.",
+              "District administration links state-level policy with local implementation and is often the first visible point of government for citizens."
+            ],
+            "example": "The Collector may coordinate multiple departments during a district-level emergency."
+          },
+          {
+            "heading": "Development management and coordination",
+            "explanation": [
+              "District administration coordinates schemes, monitors outcomes, resolves implementation bottlenecks and connects line departments with local bodies. Effective coordination requires data, clear responsibility, adequate staff and mechanisms for grievance redressal.",
+              "The district is not a single-command structure for every service: technical departments and elected local institutions have their own roles and legal responsibilities."
+            ],
+            "example": "A district health initiative may require coordination among health officials, local bodies, education departments and community organisations."
+          },
+          {
+            "heading": "Law and order, elections and disaster management",
+            "explanation": [
+              "District officials may support public order through statutory responsibilities and coordination with police and other agencies. They also play important roles in election administration and disaster preparedness and response.",
+              "Accountability, legality, proportionality and protection of rights are essential when administrative powers affect citizens."
+            ],
+            "example": "During a flood, district authorities coordinate evacuation, relief distribution, public information and restoration of services."
+          },
+          {
+            "heading": "Democratic decentralisation and citizen interface",
+            "explanation": [
+              "The growth of Panchayati Raj and urban local bodies has changed district administration from a purely hierarchical model toward coordination with elected institutions. The Collector's role should support, not displace, constitutionally recognised local self-government.",
+              "Citizen participation, social audits, transparent data and accessible grievance systems can strengthen local accountability."
+            ],
+            "example": "A district plan can align departmental resources with priorities identified by Gram Panchayats."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "District Collector",
+            "meaning": "District-level officer with important revenue, coordination and statutory responsibilities."
+          },
+          {
+            "term": "Line department",
+            "meaning": "Department responsible for a specific sector such as health, education or agriculture."
+          },
+          {
+            "term": "Democratic decentralisation",
+            "meaning": "Transfer of authority to elected local institutions with accountability to citizens."
+          },
+          {
+            "term": "Social audit",
+            "meaning": "Community-based examination of public programme records and implementation."
+          },
+          {
+            "term": "Grievance redressal",
+            "meaning": "Institutional process for receiving and resolving citizen complaints."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "S. S. Khera",
+            "idea": "Wrote on district administration and Indian administrative institutions."
+          },
+          {
+            "scholar": "S. R. Maheshwari",
+            "idea": "Analysed Indian administration and district-level governance."
+          },
+          {
+            "scholar": "Paul H. Appleby",
+            "idea": "Highlighted administrative capacity and public accountability."
+          }
+        ],
+        "answerPractice": "Discuss the changing role of the District Collector since Independence. How has democratic decentralisation altered district administration?",
+        "revisionPrompt": "Map the district-level roles in revenue, development coordination, elections and disaster response."
+      },
+      "test": [
+        {
+          "q": "The District Collector historically had a central role in:",
+          "o": [
+            "Revenue administration",
+            "Constitutional interpretation",
+            "Monetary policy",
+            "Foreign affairs"
+          ],
+          "a": 0,
+          "w": "Revenue administration was a foundational responsibility of the Collector."
+        },
+        {
+          "q": "District administration often functions as:",
+          "o": [
+            "A link between state policy and local implementation",
+            "A replacement for Parliament",
+            "A private corporation",
+            "A judicial appellate court"
+          ],
+          "a": 0,
+          "w": "District administration coordinates implementation and public services at district level."
+        },
+        {
+          "q": "Democratic decentralisation requires:",
+          "o": [
+            "Replacing elected local bodies with officials",
+            "Working with constitutionally recognised elected local institutions",
+            "Removing citizen participation",
+            "Centralising all decisions"
+          ],
+          "a": 1,
+          "w": "Decentralisation strengthens local elected institutions and citizen accountability."
+        },
+        {
+          "q": "During a disaster, district authorities commonly coordinate:",
+          "o": [
+            "Preparedness, evacuation, relief and restoration",
+            "Only foreign trade",
+            "Only university admissions",
+            "Only monetary policy"
+          ],
+          "a": 0,
+          "w": "District administration coordinates multiple agencies during disaster response."
+        },
+        {
+          "q": "A social audit is intended to:",
+          "o": [
+            "Prevent public access to records",
+            "Enable community scrutiny of programme implementation",
+            "Replace all courts",
+            "End local participation"
+          ],
+          "a": 1,
+          "w": "Social audits support transparency and community oversight."
+        }
       ]
     },
     {
@@ -9231,6 +9627,138 @@
         "Conduct, discipline and staff associations",
         "Political rights, grievance redressal and neutrality",
         "Civil service activism"
+      ],
+      "lesson": {
+        "objective": "Explain the constitutional position, recruitment, training, ethics and contemporary challenges of India's civil services.",
+        "sections": [
+          {
+            "heading": "Constitutional position and structure",
+            "explanation": [
+              "Civil services provide continuity, expertise and implementation capacity in government. Constitutional provisions, service rules and statutory frameworks regulate recruitment, conditions of service, conduct and disciplinary procedures.",
+              "All India Services connect Union and state administration, while Central and State Services serve different jurisdictional and functional needs."
+            ],
+            "example": "An officer may serve in a state cadre while undertaking responsibilities involving both state and Union coordination."
+          },
+          {
+            "heading": "Recruitment, training and capacity building",
+            "explanation": [
+              "Recruitment seeks merit, fairness and representation through constitutionally and legally governed processes. Training develops knowledge, administrative judgement, leadership, ethics and technical skills; continuous capacity building is necessary as policy challenges change.",
+              "Competency-based training should combine classroom learning, field exposure, digital skills and citizen-centred problem-solving."
+            ],
+            "example": "A district officer may need skills in data analysis, public communication and interdepartmental coordination."
+          },
+          {
+            "heading": "Good governance, neutrality and conduct",
+            "explanation": [
+              "Good governance involves transparency, accountability, responsiveness, participation, rule of law and effectiveness. Civil servants are expected to provide impartial advice and implement lawful decisions while remaining politically neutral in official duties.",
+              "Conduct rules, grievance redressal, vigilance systems and professional norms help protect integrity, though organisational culture and leadership also matter."
+            ],
+            "example": "An officer should implement a lawful elected-government decision while providing candid professional advice through proper channels."
+          },
+          {
+            "heading": "Civil service activism and accountability",
+            "explanation": [
+              "Civil service activism can refer to proactive administrative initiative in solving public problems, but it must remain within law, delegated authority and democratic accountability. Excessive discretion without transparency can undermine fairness.",
+              "Reforms should balance political responsiveness, professional independence, accountability, citizen orientation and protection for good-faith decisions."
+            ],
+            "example": "An officer can innovate in service delivery while publishing criteria, maintaining records and providing grievance review."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "All India Services",
+            "meaning": "Services common to the Union and states under the constitutional framework."
+          },
+          {
+            "term": "Political neutrality",
+            "meaning": "Professional impartiality in official duties irrespective of party politics."
+          },
+          {
+            "term": "Capacity building",
+            "meaning": "Developing skills, knowledge and organisational ability for public service."
+          },
+          {
+            "term": "Good governance",
+            "meaning": "Public administration characterised by accountability, transparency, participation and effectiveness."
+          },
+          {
+            "term": "Administrative discretion",
+            "meaning": "Choice available to officials within legal and policy limits."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Paul H. Appleby",
+            "idea": "Emphasised administrative capacity, professionalism and public accountability."
+          },
+          {
+            "scholar": "F. A. Nigro",
+            "idea": "Contributed to public administration theory and the study of administrative responsibility."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Recommended reforms in ethics, personnel, accountability and citizen-centric administration."
+          }
+        ],
+        "answerPractice": "Discuss the changing role of civil services in India. How can neutrality, responsiveness and accountability be balanced?",
+        "revisionPrompt": "Differentiate political neutrality from political indifference and explain the role of continuous training."
+      },
+      "test": [
+        {
+          "q": "The constitutional framework for All India Services is provided under:",
+          "o": [
+            "Article 312",
+            "Article 14 only",
+            "Article 368 only",
+            "Article 21 only"
+          ],
+          "a": 0,
+          "w": "Article 312 provides for the creation of All India Services."
+        },
+        {
+          "q": "Civil service neutrality primarily requires:",
+          "o": [
+            "Refusal to implement elected policy",
+            "Impartial performance of official duties within the law",
+            "Public campaigning for a party",
+            "Avoidance of professional advice"
+          ],
+          "a": 1,
+          "w": "Neutrality means impartial public service, not refusal to carry out lawful policy."
+        },
+        {
+          "q": "Capacity building includes:",
+          "o": [
+            "Only initial recruitment",
+            "Continuous development of skills and organisational capability",
+            "Only disciplinary action",
+            "Only seniority promotion"
+          ],
+          "a": 1,
+          "w": "Capacity building is continuous and includes technical and leadership competencies."
+        },
+        {
+          "q": "Good governance includes:",
+          "o": [
+            "Opacity and arbitrary decisions",
+            "Transparency, accountability and responsiveness",
+            "Exclusion of citizens",
+            "Absence of rule of law"
+          ],
+          "a": 1,
+          "w": "Good governance depends on accountability, transparency, participation and legality."
+        },
+        {
+          "q": "Administrative discretion should be:",
+          "o": [
+            "Unlimited",
+            "Exercised within legal limits with reasons and accountability",
+            "Secret and unreviewable",
+            "Based only on personal preference"
+          ],
+          "a": 1,
+          "w": "Discretion must remain within law and be transparent and accountable."
+        }
       ]
     },
     {
@@ -9242,6 +9770,138 @@
         "Finance Ministry in monetary and fiscal matters",
         "Accounting techniques and audit",
         "Controller General of Accounts and Comptroller and Auditor General"
+      ],
+      "lesson": {
+        "objective": "Understand public financial management, budgetary control, audit institutions and legislative oversight of public expenditure.",
+        "sections": [
+          {
+            "heading": "Budget as a political and administrative instrument",
+            "explanation": [
+              "A budget estimates government receipts and expenditure and expresses policy priorities. It is political because it distributes resources and administrative because it guides implementation and financial control.",
+              "Budgeting includes formulation, legislative approval, execution, accounting, reporting and audit."
+            ],
+            "example": "A larger allocation to public health signals a policy priority but does not by itself guarantee service outcomes."
+          },
+          {
+            "heading": "Parliamentary control of public expenditure",
+            "explanation": [
+              "Parliament authorises expenditure through the budget process and examines public spending through committees such as the Public Accounts Committee and Estimates Committee. Legislative oversight helps ensure that funds are used for approved purposes and with due economy.",
+              "Effective scrutiny requires timely information, clear accounts and follow-up on audit findings."
+            ],
+            "example": "A committee may examine whether a programme's expenditure complied with approvals and achieved intended outputs."
+          },
+          {
+            "heading": "Finance Ministry, fiscal and monetary matters",
+            "explanation": [
+              "The Ministry of Finance plays a central role in fiscal policy, taxation, expenditure management, borrowing and financial coordination. Monetary policy is conducted by the Reserve Bank of India within its statutory framework, with government coordination on broader economic policy.",
+              "A sound answer distinguishes fiscal policy—taxation and public spending—from monetary policy, which concerns money, credit and interest-rate conditions."
+            ],
+            "example": "A government tax change is fiscal policy, while a change in the policy repo rate is a monetary-policy decision."
+          },
+          {
+            "heading": "Accounting, audit and constitutional oversight",
+            "explanation": [
+              "Government accounting records receipts, expenditure, assets and liabilities. The Controller General of Accounts supports central government accounting and reporting, while the Comptroller and Auditor General audits public finances and reports to legislatures under the Constitution.",
+              "Audit supports legislative accountability; it does not replace executive responsibility for financial management."
+            ],
+            "example": "A CAG audit finding can inform parliamentary scrutiny and corrective administrative action."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Budget",
+            "meaning": "Annual statement and authorisation framework for government receipts and expenditure."
+          },
+          {
+            "term": "Fiscal policy",
+            "meaning": "Government decisions on taxation, expenditure and borrowing."
+          },
+          {
+            "term": "Monetary policy",
+            "meaning": "Policy affecting money, credit and interest-rate conditions, conducted by the RBI."
+          },
+          {
+            "term": "Public audit",
+            "meaning": "Independent examination of public accounts and compliance or performance."
+          },
+          {
+            "term": "CAG",
+            "meaning": "Comptroller and Auditor General of India, a constitutional audit authority."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Aaron Wildavsky",
+            "idea": "Studied budgeting as a political and administrative process."
+          },
+          {
+            "scholar": "V. Ramachandran",
+            "idea": "Contributed to Indian public administration and financial administration scholarship."
+          },
+          {
+            "scholar": "Second Administrative Reforms Commission",
+            "idea": "Addressed financial management and accountability reforms."
+          }
+        ],
+        "answerPractice": "Explain the budget cycle and examine the role of Parliament, the CAG and the Controller General of Accounts in financial accountability.",
+        "revisionPrompt": "Distinguish fiscal policy, monetary policy, accounting and audit."
+      },
+      "test": [
+        {
+          "q": "A government budget is primarily:",
+          "o": [
+            "A statement of estimated receipts and expenditure with legislative authorisation",
+            "Only a monetary policy report",
+            "A private company balance sheet",
+            "A court judgement"
+          ],
+          "a": 0,
+          "w": "The budget sets out public receipts and expenditure and provides the basis for legislative authorisation."
+        },
+        {
+          "q": "The Public Accounts Committee primarily examines:",
+          "o": [
+            "Public expenditure and audit findings",
+            "Judicial appointments",
+            "Foreign policy treaties",
+            "Election symbols"
+          ],
+          "a": 0,
+          "w": "The PAC examines public accounts and reports of the CAG."
+        },
+        {
+          "q": "Monetary policy in India is conducted by:",
+          "o": [
+            "Reserve Bank of India",
+            "Comptroller and Auditor General",
+            "Finance Commission",
+            "Election Commission"
+          ],
+          "a": 0,
+          "w": "The RBI conducts monetary policy within its statutory framework."
+        },
+        {
+          "q": "The Controller General of Accounts is primarily associated with:",
+          "o": [
+            "Central government accounting",
+            "Conducting general elections",
+            "Auditing private households",
+            "Judicial review"
+          ],
+          "a": 0,
+          "w": "The CGA supports central government accounting and reporting."
+        },
+        {
+          "q": "The Comptroller and Auditor General is:",
+          "o": [
+            "A constitutional audit authority",
+            "A private rating agency",
+            "A parliamentary political party",
+            "A state police agency"
+          ],
+          "a": 0,
+          "w": "The CAG is a constitutional authority responsible for audit of public finances."
+        }
       ]
     },
     {
