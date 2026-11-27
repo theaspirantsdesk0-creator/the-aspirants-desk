@@ -14146,5 +14146,707 @@
         }
       ]
     }
+  ],
+  "geography": [
+    {
+      "paper": "I",
+      "unit": "Geomorphology and the Earth's interior",
+      "topics": [
+        "Origin and evolution of the Earth",
+        "Interior of the Earth and seismic evidence",
+        "Continental drift, sea-floor spreading and plate tectonics",
+        "Folding, faulting, volcanism and earthquakes",
+        "Landforms produced by fluvial, aeolian, glacial and coastal processes"
+      ],
+      "notes": [
+        "Geomorphology explains landforms and the processes that shape them over time. Internal forces build and deform relief, while external processes weather, erode, transport and deposit material.",
+        "Earth's interior is inferred from seismic-wave behaviour, gravity, magnetism and the study of materials brought to the surface. The crust, mantle and core differ in composition and physical properties.",
+        "Plate tectonics explains the movement of lithospheric plates and the distribution of major belts of earthquakes, volcanoes, mountains and ocean basins."
+      ],
+      "lesson": {
+        "objective": "Build a beginner-level understanding of Earth's structure, tectonic processes and landform development.",
+        "sections": [
+          {
+            "heading": "Earth's structure",
+            "explanation": [
+              "The Earth is layered. The crust is the thin outer solid layer; the mantle lies beneath it; and the core is mainly metallic. The outer core is liquid and the inner core is solid under immense pressure.",
+              "Seismic P-waves travel through solids and liquids, while S-waves do not travel through liquids. The absence of S-waves through the outer core is important evidence that it is liquid."
+            ],
+            "example": "A global pattern of seismic-wave shadow zones helps scientists infer boundaries and physical states inside the Earth."
+          },
+          {
+            "heading": "Plate tectonics",
+            "explanation": [
+              "The lithosphere is broken into plates that move over the weaker asthenosphere. Their movement is associated with mantle dynamics, slab pull and ridge push.",
+              "At divergent boundaries plates move apart; at convergent boundaries they collide or one plate may descend beneath another; at transform boundaries they slide past each other."
+            ],
+            "example": "The Himalaya formed through convergence between the Indian and Eurasian plates; the Mid-Atlantic Ridge is a divergent boundary."
+          },
+          {
+            "heading": "Endogenic and exogenic processes",
+            "explanation": [
+              "Endogenic processes originate within the Earth and include tectonism, earthquakes and volcanism. They create or deform relief.",
+              "Exogenic processes operate at or near the surface. Weathering breaks down rock; erosion removes and transports material; deposition lays it down. Climate, rock type, slope and vegetation influence their effects."
+            ],
+            "example": "A river may erode a valley upstream and deposit sediments to build a floodplain and delta downstream."
+          },
+          {
+            "heading": "Reading landforms",
+            "explanation": [
+              "Landforms are outcomes of interacting processes rather than isolated shapes. A useful answer links process, material, structure, climate and time.",
+              "Geomorphologists use field observations, maps, remote sensing, sediment evidence and process models to interpret landscapes."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Lithosphere",
+            "meaning": "The rigid outer shell made up of the crust and uppermost mantle."
+          },
+          {
+            "term": "Asthenosphere",
+            "meaning": "A mechanically weaker zone of the upper mantle beneath the lithosphere."
+          },
+          {
+            "term": "Subduction",
+            "meaning": "Descent of one lithospheric plate beneath another at a convergent boundary."
+          },
+          {
+            "term": "Isostasy",
+            "meaning": "Gravitational balance between the lithosphere and the underlying mantle."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Alfred Wegener",
+            "idea": "Proposed continental drift, an important precursor to modern plate tectonic theory."
+          },
+          {
+            "scholar": "Arthur Holmes",
+            "idea": "Highlighted mantle convection as a possible mechanism for continental movement."
+          }
+        ],
+        "answerPractice": "Explain how plate tectonics helps account for the global distribution of earthquakes, volcanoes and fold mountains in 150–200 words.",
+        "revisionPrompt": "Draw a labelled cross-section of the Earth and a simple diagram of the three main plate-boundary types."
+      },
+      "test": [
+        {
+          "q": "Which seismic wave does not pass through a liquid outer core?",
+          "o": [
+            "P-wave",
+            "S-wave",
+            "Surface wave",
+            "All seismic waves"
+          ],
+          "a": 1,
+          "w": "S-waves require a material that can resist shear and therefore do not travel through liquids."
+        },
+        {
+          "q": "A divergent plate boundary is one where plates:",
+          "o": [
+            "Move apart",
+            "Move towards each other",
+            "Slide horizontally past each other",
+            "Remain fixed"
+          ],
+          "a": 0,
+          "w": "Divergent boundaries involve separation and commonly produce new crust."
+        },
+        {
+          "q": "The Himalaya are primarily associated with:",
+          "o": [
+            "A transform boundary",
+            "Convergence of the Indian and Eurasian plates",
+            "A mid-ocean ridge",
+            "A hot desert process"
+          ],
+          "a": 1,
+          "w": "The collision of the Indian and Eurasian plates produced the Himalayan mountain system."
+        },
+        {
+          "q": "Which is an exogenic process?",
+          "o": [
+            "Mantle melting",
+            "Folding",
+            "Weathering",
+            "Core differentiation"
+          ],
+          "a": 2,
+          "w": "Weathering acts at or near the surface and is an exogenic process."
+        },
+        {
+          "q": "The asthenosphere is best described as:",
+          "o": [
+            "The Earth's inner core",
+            "A weaker upper-mantle zone beneath the lithosphere",
+            "The oceanic crust only",
+            "The atmosphere's lowest layer"
+          ],
+          "a": 1,
+          "w": "The lithospheric plates move over the mechanically weaker asthenosphere."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Climatology and atmospheric processes",
+      "topics": [
+        "Composition and vertical structure of the atmosphere",
+        "Insolation, heat budget and temperature distribution",
+        "Atmospheric pressure, planetary winds and jet streams",
+        "Humidity, condensation, clouds and precipitation",
+        "Air masses, fronts, cyclones, monsoon and climate classification"
+      ],
+      "notes": [
+        "Climatology studies the atmosphere and long-term patterns of weather. Weather describes short-term atmospheric conditions; climate describes statistical patterns over longer periods.",
+        "Unequal heating creates temperature and pressure differences that help drive winds. Earth's rotation, land-sea contrasts and relief modify atmospheric circulation.",
+        "Monsoon systems involve seasonal circulation changes and interactions among land, ocean, pressure systems and topography."
+      ],
+      "lesson": {
+        "objective": "Understand the atmosphere's structure, energy balance, circulation, rainfall and monsoon basics.",
+        "sections": [
+          {
+            "heading": "Atmospheric structure and energy",
+            "explanation": [
+              "The atmosphere is commonly divided into the troposphere, stratosphere, mesosphere, thermosphere and exosphere. Most weather occurs in the troposphere.",
+              "Incoming solar radiation is shortwave energy. The surface absorbs energy and emits longwave radiation. The balance between incoming and outgoing energy is the Earth's heat budget."
+            ],
+            "example": "The ozone layer in the stratosphere absorbs much of the Sun's harmful ultraviolet radiation."
+          },
+          {
+            "heading": "Pressure and winds",
+            "explanation": [
+              "Air pressure is the force exerted by the weight of air. Differences in pressure create pressure-gradient forces that initiate air movement.",
+              "The Coriolis effect deflects moving air because of Earth's rotation. Friction and pressure patterns also shape near-surface winds; upper-air circulation includes jet streams."
+            ],
+            "example": "Winds generally move from high-pressure towards low-pressure areas, but their direction is modified by Earth's rotation."
+          },
+          {
+            "heading": "Humidity and precipitation",
+            "explanation": [
+              "Humidity describes water vapour in the air. When air cools to its dew point, condensation may occur if suitable nuclei are present.",
+              "Precipitation can be convectional, orographic or cyclonic/frontal. Relief can force moist air to rise, cool and produce rainfall on windward slopes."
+            ],
+            "example": "The Western Ghats produce orographic rainfall on their windward side during the southwest monsoon."
+          },
+          {
+            "heading": "Monsoon and climate",
+            "explanation": [
+              "A monsoon is a seasonal reversal or major seasonal shift in prevailing winds, often accompanied by marked rainfall contrasts.",
+              "The South Asian monsoon is influenced by land-sea thermal contrast, seasonal pressure changes, moisture supply, the position of the Inter-Tropical Convergence Zone, jet streams and regional topography.",
+              "Climate classification groups places using variables such as temperature and precipitation. Classifications are analytical tools and should be interpreted with local context."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Insolation",
+            "meaning": "Incoming solar radiation received by the Earth."
+          },
+          {
+            "term": "Coriolis effect",
+            "meaning": "Apparent deflection of moving air or water due to Earth's rotation."
+          },
+          {
+            "term": "Dew point",
+            "meaning": "The temperature to which air must cool, at given moisture content, for saturation."
+          },
+          {
+            "term": "Orographic rainfall",
+            "meaning": "Precipitation caused when moist air is forced to rise over relief."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Edmond Halley",
+            "idea": "An early contributor to explanations of global atmospheric circulation and trade winds."
+          },
+          {
+            "scholar": "Wladimir Köppen",
+            "idea": "Developed an influential empirical climate classification using temperature and precipitation patterns."
+          }
+        ],
+        "answerPractice": "Discuss the major factors influencing the Indian summer monsoon. Organise the answer into thermal, dynamic and geographical factors.",
+        "revisionPrompt": "Explain the heat budget in a flow diagram and distinguish convectional, orographic and frontal rainfall."
+      },
+      "test": [
+        {
+          "q": "Most weather phenomena occur in the:",
+          "o": [
+            "Stratosphere",
+            "Troposphere",
+            "Mesosphere",
+            "Exosphere"
+          ],
+          "a": 1,
+          "w": "The troposphere contains most atmospheric water vapour and is where most weather develops."
+        },
+        {
+          "q": "The Coriolis effect is caused by:",
+          "o": [
+            "Earth's rotation",
+            "Ocean salinity",
+            "Volcanic eruptions",
+            "The Moon's phases"
+          ],
+          "a": 0,
+          "w": "Earth's rotation produces the apparent deflection of moving air and water."
+        },
+        {
+          "q": "Orographic rainfall occurs when:",
+          "o": [
+            "Air descends and warms",
+            "Moist air is forced to rise over a mountain barrier",
+            "Cold currents evaporate",
+            "A cyclone moves over a desert"
+          ],
+          "a": 1,
+          "w": "Rising air cools and may condense, producing precipitation on the windward slope."
+        },
+        {
+          "q": "The dew point is associated with:",
+          "o": [
+            "Air saturation and condensation",
+            "Maximum wind speed",
+            "The Earth's core",
+            "Ocean tides"
+          ],
+          "a": 0,
+          "w": "Cooling air to its dew point can bring it to saturation and allow condensation."
+        },
+        {
+          "q": "Köppen's climate classification mainly uses:",
+          "o": [
+            "Language and religion",
+            "Temperature and precipitation",
+            "Soil ownership",
+            "Political boundaries"
+          ],
+          "a": 1,
+          "w": "Köppen's system classifies climates using temperature and precipitation patterns."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Oceanography and marine processes",
+      "topics": [
+        "Relief of ocean floors and ocean sediments",
+        "Temperature and salinity of ocean water",
+        "Ocean currents and circulation",
+        "Waves, tides and coastal processes",
+        "Coral reefs, marine resources and ocean-atmosphere interaction"
+      ],
+      "notes": [
+        "Oceanography examines ocean basins, water properties, circulation, marine ecosystems and interactions with the atmosphere and land.",
+        "Ocean temperature and salinity vary with latitude, depth, evaporation, precipitation, river inflow and currents. These variations influence density and circulation.",
+        "Waves, tides and currents shape coasts and influence marine environments and human activities."
+      ],
+      "lesson": {
+        "objective": "Learn the basic physical geography of oceans, including water properties, circulation, tides and coasts.",
+        "sections": [
+          {
+            "heading": "Ocean-floor relief",
+            "explanation": [
+              "The ocean floor includes continental shelves, continental slopes, abyssal plains, mid-ocean ridges, trenches and seamounts.",
+              "These features reflect tectonic history, sediment supply, volcanic activity and erosion. Bathymetric mapping helps describe underwater relief."
+            ],
+            "example": "Deep ocean trenches are commonly associated with subduction zones."
+          },
+          {
+            "heading": "Temperature, salinity and density",
+            "explanation": [
+              "Ocean temperature generally decreases with depth, though the pattern varies by region. A thermocline is a layer where temperature changes rapidly with depth.",
+              "Salinity is affected by evaporation, precipitation, river discharge, ice formation and melting. Temperature and salinity together influence seawater density."
+            ],
+            "example": "High evaporation in a semi-enclosed warm sea can increase salinity, while large river inflow can lower it near a delta."
+          },
+          {
+            "heading": "Ocean circulation",
+            "explanation": [
+              "Surface currents are driven mainly by winds and shaped by the Coriolis effect, continents and ocean-basin geometry. Deep circulation is strongly influenced by density differences.",
+              "Ocean currents redistribute heat and influence coastal climates, marine productivity and navigation. Upwelling brings nutrient-rich deeper water towards the surface."
+            ],
+            "example": "Upwelling along some western continental margins supports productive fisheries."
+          },
+          {
+            "heading": "Waves, tides and coasts",
+            "explanation": [
+              "Waves transfer energy through water; they are commonly generated by wind. Tides are periodic changes in sea level driven mainly by the gravitational attraction of the Moon and Sun.",
+              "Coastal landforms result from wave action, currents, tides, sediment supply, rock structure and sea-level change. Human structures can alter sediment movement along a coast."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Thermocline",
+            "meaning": "A water layer where temperature changes rapidly with depth."
+          },
+          {
+            "term": "Upwelling",
+            "meaning": "The rise of deeper, often nutrient-rich water towards the ocean surface."
+          },
+          {
+            "term": "Abyssal plain",
+            "meaning": "A broad, relatively flat deep-ocean floor region."
+          },
+          {
+            "term": "Tide",
+            "meaning": "A periodic rise and fall of sea level, mainly due to lunar and solar gravity."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Matthew Fontaine Maury",
+            "idea": "Pioneered systematic oceanographic charting and the study of winds and ocean currents."
+          },
+          {
+            "scholar": "Henry Stommel",
+            "idea": "Made foundational contributions to understanding ocean circulation and its dynamics."
+          }
+        ],
+        "answerPractice": "Explain how ocean currents influence regional climate and marine productivity, using suitable examples.",
+        "revisionPrompt": "Sketch an ocean-basin cross-section and label shelf, slope, abyssal plain, ridge and trench."
+      },
+      "test": [
+        {
+          "q": "A continental shelf is:",
+          "o": [
+            "A shallow, gently sloping submerged edge of a continent",
+            "The deepest part of an ocean trench",
+            "A mid-ocean volcanic island",
+            "A type of ocean current"
+          ],
+          "a": 0,
+          "w": "The continental shelf is the submerged, relatively shallow margin of a continent."
+        },
+        {
+          "q": "A thermocline is a zone of rapid change in:",
+          "o": [
+            "Water temperature with depth",
+            "Ocean colour with longitude",
+            "Tidal timing",
+            "Seafloor age only"
+          ],
+          "a": 0,
+          "w": "A thermocline is defined by a rapid vertical temperature gradient."
+        },
+        {
+          "q": "Upwelling often supports fisheries because it:",
+          "o": [
+            "Brings nutrient-rich water towards the surface",
+            "Removes all plankton",
+            "Stops photosynthesis",
+            "Raises ocean salinity everywhere"
+          ],
+          "a": 0,
+          "w": "Nutrients brought into sunlit waters can support phytoplankton and marine food webs."
+        },
+        {
+          "q": "The main astronomical causes of tides are the gravitational effects of:",
+          "o": [
+            "Mars and Venus",
+            "The Moon and the Sun",
+            "Jupiter alone",
+            "Earth's magnetic field"
+          ],
+          "a": 1,
+          "w": "Lunar and solar gravity are the principal astronomical drivers of tides."
+        },
+        {
+          "q": "Deep ocean trenches are commonly linked to:",
+          "o": [
+            "Subduction zones",
+            "River floodplains",
+            "Desert dunes",
+            "Glacial cirques"
+          ],
+          "a": 0,
+          "w": "Trenches commonly form where one tectonic plate descends beneath another."
+        }
+      ]
+    },
+    {
+      "paper": "I",
+      "unit": "Human geography: approaches, population and settlements",
+      "topics": [
+        "Nature and scope of human geography",
+        "Environmental determinism, possibilism and neo-determinism",
+        "Population distribution, density, growth and composition",
+        "Migration: causes, patterns and consequences",
+        "Rural and urban settlements, hierarchy and morphology"
+      ],
+      "notes": [
+        "Human geography studies spatial patterns of human activity and the relationships between people, places and environments.",
+        "Population geography examines distribution, density, composition, growth and migration. Settlement geography studies the location, form, function and hierarchy of settlements.",
+        "Theories of human-environment relationships have moved beyond simple one-way explanations towards more contextual and interactive approaches."
+      ],
+      "lesson": {
+        "objective": "Understand major approaches in human geography and the spatial patterns of population, migration and settlements.",
+        "sections": [
+          {
+            "heading": "What human geography studies",
+            "explanation": [
+              "Human geography examines how people organise space and how economic, political, cultural and social processes shape places and landscapes.",
+              "It uses concepts such as location, place, region, scale, distance, accessibility, networks and spatial interaction."
+            ],
+            "example": "A study of a growing city may connect employment, transport, housing markets, migration and environmental risk."
+          },
+          {
+            "heading": "Human-environment approaches",
+            "explanation": [
+              "Environmental determinism gives strong explanatory weight to the physical environment. Possibilism stresses that people make choices within environmental opportunities and constraints.",
+              "Neo-determinism or stop-and-go determinism recognises environmental limits while allowing development within ecological boundaries. Contemporary analysis also considers power, technology and inequality."
+            ],
+            "example": "Water availability constrains settlement, but institutions, technology and public investment shape how water is accessed and distributed."
+          },
+          {
+            "heading": "Population and migration",
+            "explanation": [
+              "Population distribution is uneven because of physical conditions, historical settlement, economic opportunities, infrastructure and political factors. Density is a ratio and must be interpreted with area and population quality in mind.",
+              "Migration involves movement across places. Push and pull factors may include livelihoods, education, conflict, family networks, services and environmental change. Migration can affect both origin and destination regions."
+            ],
+            "example": "Rural-to-urban migration may support city labour markets while also increasing demand for affordable housing and public services."
+          },
+          {
+            "heading": "Settlement geography",
+            "explanation": [
+              "Settlements vary by size, function, morphology and connectivity. Rural settlements are often closely linked to primary activities, while urban settlements contain diverse non-agricultural functions.",
+              "Settlement patterns may be nucleated, dispersed or linear. Urbanisation changes land use, commuting, service demand and relationships between cities and their hinterlands."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Possibilism",
+            "meaning": "The view that environments offer opportunities and constraints within which human choices matter."
+          },
+          {
+            "term": "Population density",
+            "meaning": "Population divided by a defined unit of area."
+          },
+          {
+            "term": "Migration",
+            "meaning": "A change of usual residence involving movement between places."
+          },
+          {
+            "term": "Settlement morphology",
+            "meaning": "The physical form and spatial layout of a settlement."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Friedrich Ratzel",
+            "idea": "Associated with early environmental and political-geographical thought, including environmental influences on societies."
+          },
+          {
+            "scholar": "Paul Vidal de la Blache",
+            "idea": "A leading possibilist thinker who emphasised ways of life and human choices within environmental settings."
+          },
+          {
+            "scholar": "Griffith Taylor",
+            "idea": "Associated with neo-determinism, often explained through the idea of environmental limits and adjustment."
+          }
+        ],
+        "answerPractice": "Compare environmental determinism, possibilism and neo-determinism. Add one contemporary example to show the relevance of each approach.",
+        "revisionPrompt": "Create a table comparing the three human-environment approaches and draw a simple rural-to-urban migration flow."
+      },
+      "test": [
+        {
+          "q": "Possibilism emphasises:",
+          "o": [
+            "The environment as the sole determinant",
+            "Human choices within environmental opportunities and constraints",
+            "The irrelevance of environment",
+            "Climate as the only cause of culture"
+          ],
+          "a": 1,
+          "w": "Possibilism recognises environmental conditions while emphasising human agency and choices."
+        },
+        {
+          "q": "Population density is calculated as:",
+          "o": [
+            "Area divided by rainfall",
+            "Population divided by area",
+            "Births minus deaths",
+            "Migration divided by income"
+          ],
+          "a": 1,
+          "w": "Density is a ratio of population to a specified area."
+        },
+        {
+          "q": "A push factor in migration is:",
+          "o": [
+            "A factor attracting migrants to a destination",
+            "A condition encouraging people to leave an origin",
+            "A type of urban land use",
+            "A measure of population density"
+          ],
+          "a": 1,
+          "w": "Push factors are conditions that encourage people to move away from a place."
+        },
+        {
+          "q": "A linear settlement commonly develops:",
+          "o": [
+            "Along a road, river or coastline",
+            "Only in circular city centres",
+            "Only on isolated mountain peaks",
+            "Without any spatial pattern"
+          ],
+          "a": 0,
+          "w": "Linear settlements often follow transport routes, valleys, rivers or coastlines."
+        },
+        {
+          "q": "Neo-determinism is commonly associated with:",
+          "o": [
+            "Ignoring ecological limits",
+            "Balancing development with environmental constraints",
+            "Claiming climate controls every decision",
+            "Rejecting human agency"
+          ],
+          "a": 1,
+          "w": "Neo-determinism recognises environmental limits while allowing human action within them."
+        }
+      ]
+    },
+    {
+      "paper": "II",
+      "unit": "Geography of India: physical setting and resources",
+      "topics": [
+        "India's location, structure and physiographic divisions",
+        "Drainage systems, climate and natural hazards",
+        "Soils, vegetation and biodiversity",
+        "Agricultural patterns and irrigation",
+        "Mineral, energy and water resources; regional distribution and sustainability"
+      ],
+      "notes": [
+        "India's physical geography is diverse, including the Himalaya, Northern Plains, Peninsular Plateau, coastal plains, islands and arid regions.",
+        "Monsoon rainfall, river systems, soils and relief shape agriculture, settlement and regional development. Their effects vary across space and season.",
+        "Resource geography considers not only the presence of resources but also access, technology, institutions, environmental costs and regional inequality."
+      ],
+      "lesson": {
+        "objective": "Connect India's physical setting with drainage, climate, soils, agriculture and resource distribution.",
+        "sections": [
+          {
+            "heading": "Location and physiographic divisions",
+            "explanation": [
+              "India occupies a central position in the northern Indian Ocean and includes mainland and island territories. Its location influences maritime connections and regional climate.",
+              "The major physiographic divisions include the Himalayan mountains, Northern Plains, Peninsular Plateau, Indian Desert, Coastal Plains and Islands. Each has distinctive geological and geomorphic characteristics."
+            ],
+            "example": "The Northern Plains are associated with extensive alluvial deposits, while much of the Peninsular Plateau consists of ancient crystalline rocks."
+          },
+          {
+            "heading": "Drainage and climate",
+            "explanation": [
+              "Himalayan rivers are generally perennial because they receive water from rainfall and snow or glacier melt. Many Peninsular rivers depend more strongly on seasonal rainfall, though there are important variations.",
+              "The Indian monsoon creates strong seasonal contrasts in rainfall. Relief, distance from the sea, wind direction and regional circulation influence the distribution of precipitation."
+            ],
+            "example": "The Western Ghats produce a strong windward-leeward rainfall contrast during the southwest monsoon."
+          },
+          {
+            "heading": "Soils, vegetation and agriculture",
+            "explanation": [
+              "Soil formation depends on parent material, climate, relief, organisms and time. India's major soil groups include alluvial, black, red, laterite, arid and forest or mountain soils.",
+              "Agricultural patterns reflect climate, soil, irrigation, technology, markets, landholding and policy. A crop's distribution cannot be explained by rainfall alone."
+            ],
+            "example": "Black soils in parts of the Deccan are associated with moisture retention and support cotton cultivation, alongside other crops."
+          },
+          {
+            "heading": "Resources and regional planning",
+            "explanation": [
+              "Minerals, energy, water and forests are unevenly distributed. Resource development must consider ecological sustainability, local livelihoods, infrastructure and fair access.",
+              "Regional planning connects resource potential with human development. It asks who benefits, who bears environmental costs and how services and opportunities can be distributed more evenly."
+            ]
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Physiography",
+            "meaning": "The description and study of the physical features of a region."
+          },
+          {
+            "term": "Drainage basin",
+            "meaning": "The area drained by a river and its tributaries."
+          },
+          {
+            "term": "Alluvium",
+            "meaning": "Sediment deposited by rivers and flowing water."
+          },
+          {
+            "term": "Resource geography",
+            "meaning": "Study of the spatial distribution, use, access and impacts of resources."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "R. L. Singh",
+            "idea": "A major Indian geographer associated with regional geography and systematic studies of India's geographical patterns."
+          },
+          {
+            "scholar": "S. P. Chatterjee",
+            "idea": "Contributed to the development of modern geographical scholarship and cartographic education in India."
+          }
+        ],
+        "answerPractice": "Explain how India's physiographic diversity influences agriculture and settlement patterns. Use at least three contrasting regions.",
+        "revisionPrompt": "Draw an outline map of India and mark the six major physiographic divisions, one major river system and one rain-shadow region."
+      },
+      "test": [
+        {
+          "q": "The Northern Plains of India are largely formed by:",
+          "o": [
+            "Glacial lava flows",
+            "Alluvial deposits of major river systems",
+            "Coral limestone alone",
+            "Wind-blown sand alone"
+          ],
+          "a": 1,
+          "w": "The Northern Plains are extensive alluvial plains built by the Indus, Ganga and Brahmaputra river systems and their tributaries."
+        },
+        {
+          "q": "A drainage basin is:",
+          "o": [
+            "An area drained by a river and its tributaries",
+            "A coastal sand dune",
+            "A mountain pass",
+            "A type of soil horizon"
+          ],
+          "a": 0,
+          "w": "A drainage basin is the catchment area from which water flows towards a river system."
+        },
+        {
+          "q": "The windward side of the Western Ghats generally receives:",
+          "o": [
+            "Less orographic rainfall than the leeward side",
+            "More orographic rainfall during the southwest monsoon",
+            "No rainfall throughout the year",
+            "Only winter snowfall"
+          ],
+          "a": 1,
+          "w": "Moist monsoon winds rise along the windward slopes and produce orographic rainfall."
+        },
+        {
+          "q": "Black soils are especially associated with:",
+          "o": [
+            "The Deccan region and basaltic parent material",
+            "Only the Himalayan snowfields",
+            "Coral islands exclusively",
+            "Recent desert dunes only"
+          ],
+          "a": 0,
+          "w": "Black soils are widespread in parts of the Deccan and are often associated with weathering of basaltic rocks."
+        },
+        {
+          "q": "A sound approach to resource planning should consider:",
+          "o": [
+            "Only extraction volume",
+            "Distribution, access, environmental effects and local livelihoods",
+            "Only international prices",
+            "Only physical occurrence"
+          ],
+          "a": 1,
+          "w": "Resource planning must include social, economic and environmental dimensions, not merely resource presence."
+        }
+      ]
+    }
   ]
 }
