@@ -944,8 +944,34 @@ def main() -> int:
               "Mains evaluation assets must use the existing authenticated Supabase client")
     check("assets/js/mains-evaluation.js" in sw_source_for_mains
           and "assets/css/mains-evaluation.css" in sw_source_for_mains
-          and "desk-v51-auth-session-safety" in sw_source_for_mains,
-          "Service worker must cache and version the Mains evaluation feature")
+          and "desk-v52-notes-studio" in sw_source_for_mains,
+          "Service worker must cache and version the Mains evaluation and Notes Studio features")
+
+    # Notes Studio content, browser module, sync hook and offline cache.
+    notes_data_path = ROOT / "data" / "notes" / "gs-foundations.json"
+    notes_js_path = ROOT / "assets" / "js" / "notes-studio.js"
+    notes_css_path = ROOT / "assets" / "css" / "notes-studio.css"
+    if notes_data_path.is_file():
+        try:
+            notes_pack = json.loads(notes_data_path.read_text(encoding="utf-8"))
+            check(len(notes_pack.get("chapters", [])) >= 6,
+                  "Notes Studio must include a useful foundation chapter set")
+            check(all(ch.get("title") and ch.get("sections") and ch.get("prelims") and ch.get("mains") and ch.get("recall") for ch in notes_pack.get("chapters", [])),
+                  "Every foundation note must include explanations, Prelims, Mains and active recall")
+        except (OSError, json.JSONDecodeError):
+            check(False, "Notes Studio foundation notes JSON must be valid")
+    else:
+        check(False, "Notes Studio foundation notes data is missing")
+    check(notes_js_path.is_file(), "Notes Studio browser module is missing")
+    check(notes_css_path.is_file(), "Notes Studio stylesheet is missing")
+    if notes_js_path.is_file():
+        run_node_check(notes_js_path.read_text(encoding="utf-8"), "assets/js/notes-studio.js")
+        check('tad:notesStudioChange' in index_html and 'assets/js/notes-studio.js' in index_html,
+              "Notes Studio must load and sync its notebook through signed-in study state")
+    if sw_path.is_file():
+        check("assets/js/notes-studio.js" in sw_source and "data/notes/gs-foundations.json" in sw_source
+              and "assets/css/notes-studio.css" in sw_source,
+              "Notes Studio assets and content must be precached for offline study")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
