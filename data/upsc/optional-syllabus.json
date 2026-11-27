@@ -8023,6 +8023,139 @@
         "Balance of power and deterrence",
         "Transnational actors and collective security",
         "World capitalist economy and globalisation"
+      ],
+      "notes": "Use core concepts of International Relations to analyse how states pursue security and influence in an interdependent world. National interest refers to objectives that a state considers important, such as territorial integrity, security, prosperity and diplomatic influence. Its meaning is debated and may change with domestic politics and international conditions. Security is broader than military defence. Contemporary discussions include economic, human, environmental, energy and cyber dimensions. Power may involve military capability, economic resources, technology, institutions and the ability to shape preferences. Balance of power describes a condition or policy in which capabilities are distributed so that no state can easily dominate others. States may balance through internal capacity-building or external partnerships. Deterrence seeks to prevent an action by communicating that its costs would outweigh expected gains. Credibility, capability, communication and the risk of miscalculation matter. Deterrence does not guarantee peace. International politics includes states as well as intergovernmental organisations, multinational corporations, civil-society networks, advocacy groups and other transnational actors. Collective security is based on the idea that aggression or threats to peace should concern the wider international community. Its effectiveness depends on shared commitments, institutional design and political agreement. The world capitalist economy connects production, trade, finance, technology and labour across borders. Benefits and vulnerabilities are distributed unevenly. Globalisation can increase investment and exchange while creating exposure to financial shocks, supply-chain disruptions and unequal bargaining power. Political economy asks who gains, who bears costs and how institutions shape outcomes.",
+      "lesson": {
+        "objective": "Use core concepts of International Relations to analyse how states pursue security and influence in an interdependent world.",
+        "sections": [
+          {
+            "heading": "National interest, security and power",
+            "explanation": [
+              "National interest refers to objectives that a state considers important, such as territorial integrity, security, prosperity and diplomatic influence. Its meaning is debated and may change with domestic politics and international conditions.",
+              "Security is broader than military defence. Contemporary discussions include economic, human, environmental, energy and cyber dimensions. Power may involve military capability, economic resources, technology, institutions and the ability to shape preferences."
+            ],
+            "example": "A country's energy policy can be analysed as an economic issue and as part of its national security."
+          },
+          {
+            "heading": "Balance of power and deterrence",
+            "explanation": [
+              "Balance of power describes a condition or policy in which capabilities are distributed so that no state can easily dominate others. States may balance through internal capacity-building or external partnerships.",
+              "Deterrence seeks to prevent an action by communicating that its costs would outweigh expected gains. Credibility, capability, communication and the risk of miscalculation matter. Deterrence does not guarantee peace."
+            ],
+            "example": "An alliance may be understood as an external balancing arrangement, while a credible defensive capability can contribute to deterrence."
+          },
+          {
+            "heading": "Transnational actors and collective security",
+            "explanation": [
+              "International politics includes states as well as intergovernmental organisations, multinational corporations, civil-society networks, advocacy groups and other transnational actors.",
+              "Collective security is based on the idea that aggression or threats to peace should concern the wider international community. Its effectiveness depends on shared commitments, institutional design and political agreement."
+            ],
+            "example": "A UN-authorised peace operation illustrates an institutional effort to respond collectively to conflict."
+          },
+          {
+            "heading": "World capitalist economy and globalisation",
+            "explanation": [
+              "The world capitalist economy connects production, trade, finance, technology and labour across borders. Benefits and vulnerabilities are distributed unevenly.",
+              "Globalisation can increase investment and exchange while creating exposure to financial shocks, supply-chain disruptions and unequal bargaining power. Political economy asks who gains, who bears costs and how institutions shape outcomes."
+            ],
+            "example": "A disruption in a critical supply chain can affect domestic prices, employment and foreign policy choices."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "National interest",
+            "meaning": "A state's perceived priorities in security, prosperity, autonomy and influence."
+          },
+          {
+            "term": "Balance of power",
+            "meaning": "A distribution or policy of capabilities intended to prevent domination by one actor."
+          },
+          {
+            "term": "Deterrence",
+            "meaning": "An attempt to prevent an action by making its expected costs appear unacceptable."
+          },
+          {
+            "term": "Collective security",
+            "meaning": "An arrangement in which threats to peace are treated as a shared concern."
+          },
+          {
+            "term": "Transnational actor",
+            "meaning": "An actor whose activities or influence cross national borders."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Hans Morgenthau",
+            "idea": "Classical realist analysis places power and national interest at the centre of international politics."
+          },
+          {
+            "scholar": "Kenneth Waltz",
+            "idea": "Structural realism explains state behaviour partly through the distribution of capabilities in the international system."
+          },
+          {
+            "scholar": "Joseph Nye",
+            "idea": "Distinguished hard power from soft power and developed the idea of smart power."
+          }
+        ],
+        "answerPractice": "Explain the relevance of national interest, balance of power and deterrence in contemporary international relations. Are non-state actors changing the nature of power?",
+        "revisionPrompt": "Prepare a concept map connecting national interest, security, power, balancing, deterrence and transnational actors."
+      },
+      "test": [
+        {
+          "q": "National interest most directly concerns:",
+          "o": [
+            "A state's perceived priorities and objectives",
+            "The preferences of one private firm only",
+            "The abolition of diplomacy",
+            "A fixed list that never changes"
+          ],
+          "a": 0,
+          "w": "National interest refers to objectives a state considers important; their interpretation can change."
+        },
+        {
+          "q": "External balancing usually involves:",
+          "o": [
+            "Building partnerships or alliances",
+            "Reducing every diplomatic relationship",
+            "Abolishing defence policy",
+            "Replacing national institutions"
+          ],
+          "a": 0,
+          "w": "External balancing uses partnerships or alliances to offset concentrations of power."
+        },
+        {
+          "q": "Deterrence aims primarily to:",
+          "o": [
+            "Prevent an action by influencing its expected costs",
+            "Guarantee that conflict is impossible",
+            "Remove all uncertainty from diplomacy",
+            "Replace communication between states"
+          ],
+          "a": 0,
+          "w": "Deterrence seeks to dissuade an actor by shaping its expectations about costs."
+        },
+        {
+          "q": "Collective security treats threats to peace as:",
+          "o": [
+            "A shared international concern",
+            "Only a domestic administrative matter",
+            "A private commercial dispute",
+            "An issue that no institution can discuss"
+          ],
+          "a": 0,
+          "w": "Collective security rests on the idea that threats to peace concern the wider community."
+        },
+        {
+          "q": "Soft power is most closely associated with:",
+          "o": [
+            "Attraction and persuasion",
+            "Only coercive military force",
+            "Territorial occupation",
+            "Economic isolation alone"
+          ],
+          "a": 0,
+          "w": "Joseph Nye uses soft power for influence through attraction and persuasion."
+        }
       ]
     },
     {
@@ -8034,6 +8167,139 @@
         "Non-Aligned Movement: aims and achievements",
         "Collapse of Soviet Union, unipolarity and American hegemony",
         "Contemporary relevance of non-alignment"
+      ],
+      "notes": "Trace the transformation of the international order from the Cold War to the post-Soviet era and assess the continuing relevance of non-alignment. After the Second World War, the United States and Soviet Union emerged as rival superpowers. Their competition shaped alliances, military planning, ideology and conflicts in different regions. Bipolarity refers to an international structure dominated by two major centres of power. The Cold War included arms competition, proxy conflicts, diplomacy and periods of détente. Nuclear weapons transformed strategic calculations because their destructive capacity raised the stakes of direct conflict. Deterrence became an important feature of superpower relations. Arms-control agreements seek to limit, regulate or reduce weapons and risks. They require verification, communication and political commitment; they do not automatically remove strategic rivalry. The Non-Aligned Movement emerged from the desire of many newly independent states to preserve foreign-policy autonomy rather than formally join either Cold War bloc. The 1955 Bandung Conference helped prepare the ground; the first NAM summit took place in Belgrade in 1961. Non-alignment was not simply neutrality or isolation. It involved anti-colonial solidarity, peaceful coexistence, disarmament, development and independent judgement on international issues. Its members did not always agree or act uniformly. The dissolution of the Soviet Union in 1991 ended the bipolar structure. The United States enjoyed a period of predominant influence, often described as unipolarity, but other powers and institutions continued to shape global politics. Contemporary debates include renewed great-power competition, regional groupings, economic interdependence and calls for strategic autonomy. The continuing relevance of non-alignment is debated in a more complex order.",
+      "lesson": {
+        "objective": "Trace the transformation of the international order from the Cold War to the post-Soviet era and assess the continuing relevance of non-alignment.",
+        "sections": [
+          {
+            "heading": "Bipolarity and the Cold War",
+            "explanation": [
+              "After the Second World War, the United States and Soviet Union emerged as rival superpowers. Their competition shaped alliances, military planning, ideology and conflicts in different regions.",
+              "Bipolarity refers to an international structure dominated by two major centres of power. The Cold War included arms competition, proxy conflicts, diplomacy and periods of détente."
+            ],
+            "example": "The formation of rival military alliances reflected the strategic division of the Cold War era."
+          },
+          {
+            "heading": "Nuclear threat and arms control",
+            "explanation": [
+              "Nuclear weapons transformed strategic calculations because their destructive capacity raised the stakes of direct conflict. Deterrence became an important feature of superpower relations.",
+              "Arms-control agreements seek to limit, regulate or reduce weapons and risks. They require verification, communication and political commitment; they do not automatically remove strategic rivalry."
+            ],
+            "example": "A bilateral arms-control agreement can reduce uncertainty by setting agreed limits and verification procedures."
+          },
+          {
+            "heading": "Non-Aligned Movement",
+            "explanation": [
+              "The Non-Aligned Movement emerged from the desire of many newly independent states to preserve foreign-policy autonomy rather than formally join either Cold War bloc. The 1955 Bandung Conference helped prepare the ground; the first NAM summit took place in Belgrade in 1961.",
+              "Non-alignment was not simply neutrality or isolation. It involved anti-colonial solidarity, peaceful coexistence, disarmament, development and independent judgement on international issues. Its members did not always agree or act uniformly."
+            ],
+            "example": "A non-aligned country could criticise a superpower's action while cooperating with it on another issue."
+          },
+          {
+            "heading": "End of bipolarity and contemporary order",
+            "explanation": [
+              "The dissolution of the Soviet Union in 1991 ended the bipolar structure. The United States enjoyed a period of predominant influence, often described as unipolarity, but other powers and institutions continued to shape global politics.",
+              "Contemporary debates include renewed great-power competition, regional groupings, economic interdependence and calls for strategic autonomy. The continuing relevance of non-alignment is debated in a more complex order."
+            ],
+            "example": "India's contemporary strategic autonomy can be assessed by examining issue-based partnerships and independent positions."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Bipolarity",
+            "meaning": "An international structure dominated by two major centres of power."
+          },
+          {
+            "term": "Détente",
+            "meaning": "A period or process of reduced tension between rival states."
+          },
+          {
+            "term": "Non-alignment",
+            "meaning": "A foreign-policy approach that preserves independent judgement rather than automatic bloc alignment."
+          },
+          {
+            "term": "Unipolarity",
+            "meaning": "An international structure in which one state has predominant capabilities."
+          },
+          {
+            "term": "Strategic autonomy",
+            "meaning": "The ability to make independent foreign-policy choices while engaging with partners."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Jawaharlal Nehru",
+            "idea": "A leading advocate of independent foreign policy, anti-colonial solidarity and non-alignment."
+          },
+          {
+            "scholar": "V. K. Krishna Menon",
+            "idea": "An influential Indian diplomat and advocate of non-alignment in international forums."
+          },
+          {
+            "scholar": "Kenneth Waltz",
+            "idea": "His structural approach helps explain how changes in the distribution of capabilities affect international order."
+          }
+        ],
+        "answerPractice": "Was non-alignment merely a Cold War strategy, or does it retain relevance in a changing international order? Discuss with reference to strategic autonomy.",
+        "revisionPrompt": "Create a timeline: 1945, Bandung 1955, NAM 1961, détente, 1991 dissolution of USSR, and contemporary multipolar debates."
+      },
+      "test": [
+        {
+          "q": "The first Non-Aligned Movement summit was held in:",
+          "o": [
+            "Belgrade in 1961",
+            "Bandung in 1945",
+            "New York in 1991",
+            "Geneva in 1975"
+          ],
+          "a": 0,
+          "w": "The first NAM summit took place in Belgrade in 1961; Bandung 1955 was an important precursor."
+        },
+        {
+          "q": "Bipolarity describes an international system dominated by:",
+          "o": [
+            "Two major centres of power",
+            "One city",
+            "Only non-state actors",
+            "An unlimited number of equal powers"
+          ],
+          "a": 0,
+          "w": "Bipolarity refers to two predominant centres of power."
+        },
+        {
+          "q": "The dissolution of the Soviet Union occurred in:",
+          "o": [
+            "1991",
+            "1961",
+            "1971",
+            "2001"
+          ],
+          "a": 0,
+          "w": "The Soviet Union dissolved in 1991, ending the Cold War bipolar structure."
+        },
+        {
+          "q": "Non-alignment is best distinguished from isolation because it:",
+          "o": [
+            "Allows independent engagement and issue-based positions",
+            "Requires ending all diplomacy",
+            "Prohibits international cooperation",
+            "Means automatic support for one bloc"
+          ],
+          "a": 0,
+          "w": "Non-alignment sought independent judgement and active engagement, not isolation."
+        },
+        {
+          "q": "Arms control agreements are intended to:",
+          "o": [
+            "Regulate or limit weapons and strategic risks",
+            "Guarantee the end of all rivalry",
+            "Replace all diplomatic channels",
+            "Eliminate the need for verification"
+          ],
+          "a": 0,
+          "w": "Arms control can reduce risks through agreed limits, procedures and verification."
+        }
       ]
     },
     {
@@ -8044,6 +8310,139 @@
         "Socialist economies and CMEA",
         "Third World demand for a New International Economic Order",
         "Globalisation of the world economy"
+      ],
+      "notes": "Understand the institutions and debates governing the global economy, including demands for a fairer international economic order. The 1944 Bretton Woods conference laid the foundations for the International Monetary Fund and the International Bank for Reconstruction and Development, which became part of the World Bank Group. The IMF focuses on international monetary cooperation, balance-of-payments support and macroeconomic stability. The World Bank Group supports long-term development and poverty reduction through financing, knowledge and institutional support. The General Agreement on Tariffs and Trade, established in 1947, provided a framework for successive rounds of trade negotiations. The WTO began in 1995 and provides a broader institutional framework for trade rules and dispute settlement. Trade rules address market access, non-discrimination and agreed exceptions. Debates concern policy space, agricultural support, intellectual property, development and unequal negotiating capacity. The Council for Mutual Economic Assistance, commonly known as Comecon or CMEA, was established in 1949 to coordinate economic cooperation among socialist states led by the Soviet Union. Its arrangements reflected a different model of economic coordination from the Bretton Woods-led system. The organisation was dissolved in 1991 as the socialist bloc underwent major political and economic change. Developing countries advocated a New International Economic Order (NIEO) in the 1970s, seeking fairer trade terms, greater control over natural resources, technology transfer and reform of global economic structures. Globalisation has expanded cross-border production and finance but has also intensified debates over inequality, debt, policy autonomy, technology access and climate responsibilities.",
+      "lesson": {
+        "objective": "Understand the institutions and debates governing the global economy, including demands for a fairer international economic order.",
+        "sections": [
+          {
+            "heading": "Bretton Woods institutions",
+            "explanation": [
+              "The 1944 Bretton Woods conference laid the foundations for the International Monetary Fund and the International Bank for Reconstruction and Development, which became part of the World Bank Group.",
+              "The IMF focuses on international monetary cooperation, balance-of-payments support and macroeconomic stability. The World Bank Group supports long-term development and poverty reduction through financing, knowledge and institutional support."
+            ],
+            "example": "A country facing external payment pressures may seek IMF support, while a long-term infrastructure programme may involve development-bank financing."
+          },
+          {
+            "heading": "GATT and the World Trade Organization",
+            "explanation": [
+              "The General Agreement on Tariffs and Trade, established in 1947, provided a framework for successive rounds of trade negotiations. The WTO began in 1995 and provides a broader institutional framework for trade rules and dispute settlement.",
+              "Trade rules address market access, non-discrimination and agreed exceptions. Debates concern policy space, agricultural support, intellectual property, development and unequal negotiating capacity."
+            ],
+            "example": "A dispute about a trade measure can be considered under the relevant WTO agreements and procedures."
+          },
+          {
+            "heading": "Socialist economies and CMEA",
+            "explanation": [
+              "The Council for Mutual Economic Assistance, commonly known as Comecon or CMEA, was established in 1949 to coordinate economic cooperation among socialist states led by the Soviet Union.",
+              "Its arrangements reflected a different model of economic coordination from the Bretton Woods-led system. The organisation was dissolved in 1991 as the socialist bloc underwent major political and economic change."
+            ],
+            "example": "A comparison of CMEA and the Bretton Woods institutions should examine membership, economic coordination and institutional purpose."
+          },
+          {
+            "heading": "New International Economic Order and globalisation",
+            "explanation": [
+              "Developing countries advocated a New International Economic Order (NIEO) in the 1970s, seeking fairer trade terms, greater control over natural resources, technology transfer and reform of global economic structures.",
+              "Globalisation has expanded cross-border production and finance but has also intensified debates over inequality, debt, policy autonomy, technology access and climate responsibilities."
+            ],
+            "example": "An answer on NIEO can connect historical demands with current debates on debt relief, climate finance and fair trade."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "Bretton Woods system",
+            "meaning": "The post-war institutional and monetary arrangements associated with the 1944 conference."
+          },
+          {
+            "term": "IMF",
+            "meaning": "International institution concerned with monetary cooperation and balance-of-payments stability."
+          },
+          {
+            "term": "WTO",
+            "meaning": "International organisation administering multilateral trade agreements and dispute procedures."
+          },
+          {
+            "term": "CMEA/Comecon",
+            "meaning": "An organisation for economic cooperation among socialist states, dissolved in 1991."
+          },
+          {
+            "term": "NIEO",
+            "meaning": "A 1970s programme of proposals for a more equitable international economic order."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Susan Strange",
+            "idea": "Her international political economy work analysed structural power in finance, production, security and knowledge."
+          },
+          {
+            "scholar": "Robert Gilpin",
+            "idea": "Examined the relationship between international political change and the global economy."
+          },
+          {
+            "scholar": "Raúl Prebisch",
+            "idea": "Influential in debates on centre-periphery relations and development, including the case for structural change in the world economy."
+          }
+        ],
+        "answerPractice": "Discuss the objectives of the New International Economic Order. To what extent do contemporary debates on debt, trade and climate finance reflect similar concerns?",
+        "revisionPrompt": "Compare IMF, World Bank, WTO and CMEA by origin, purpose, institutional approach and major criticisms."
+      },
+      "test": [
+        {
+          "q": "The Bretton Woods conference took place in:",
+          "o": [
+            "1944",
+            "1947",
+            "1961",
+            "1995"
+          ],
+          "a": 0,
+          "w": "The 1944 conference laid foundations for the post-war monetary institutions."
+        },
+        {
+          "q": "The WTO began operating in:",
+          "o": [
+            "1995",
+            "1944",
+            "1947",
+            "1991"
+          ],
+          "a": 0,
+          "w": "The WTO was established in 1995, succeeding the GATT framework."
+        },
+        {
+          "q": "The IMF is particularly associated with:",
+          "o": [
+            "Monetary cooperation and balance-of-payments support",
+            "Managing national school curricula",
+            "Administering domestic elections",
+            "Operating regional police forces"
+          ],
+          "a": 0,
+          "w": "The IMF supports international monetary cooperation and addresses balance-of-payments challenges."
+        },
+        {
+          "q": "Comecon/CMEA was associated with:",
+          "o": [
+            "Economic cooperation among socialist states",
+            "The creation of the European Union",
+            "The UN Security Council",
+            "The WTO dispute system"
+          ],
+          "a": 0,
+          "w": "CMEA coordinated economic cooperation among socialist states and was dissolved in 1991."
+        },
+        {
+          "q": "The NIEO proposals sought:",
+          "o": [
+            "A more equitable international economic order",
+            "A return to colonial rule",
+            "An end to all development cooperation",
+            "The abolition of international trade"
+          ],
+          "a": 0,
+          "w": "NIEO proposals sought changes to global economic structures and more equitable development conditions."
+        }
       ]
     },
     {
@@ -8053,6 +8452,139 @@
         "Envisaged role and actual record of the UN",
         "Specialised agencies: aims and functioning",
         "Need for UN reforms"
+      ],
+      "notes": "Evaluate the United Nations' purposes, institutional performance, specialised agencies and proposals for reform. The United Nations was established in 1945 after the Second World War. Its Charter identifies purposes including maintaining international peace and security, developing friendly relations, promoting cooperation and supporting human rights. The UN is an organisation of sovereign member states. Its work is shaped by the Charter, member-state consent, institutional mandates and political differences. The six principal organs are the General Assembly, Security Council, Economic and Social Council, International Court of Justice, Secretariat and Trusteeship Council. The Security Council has primary responsibility for international peace and security. Its five permanent members hold veto power on substantive decisions, a feature central to debates over representation and effectiveness. Specialised agencies are autonomous international organisations linked to the UN through agreements. Examples include WHO, ILO, UNESCO, FAO and ICAO, each with a distinct mandate. UN funds, programmes and specialised agencies should not be treated as identical. Their legal status, governance and funding arrangements differ, though coordination is important. The UN has supported diplomacy, peacekeeping, humanitarian assistance, development cooperation and the articulation of international norms. Its record is uneven and depends on member-state cooperation, resources and political context. Reform debates address Security Council representation, veto use, financing, peacekeeping accountability, transparency and coordination. Any reform requires political agreement among member states and, for Charter amendments, specified ratification procedures.",
+      "lesson": {
+        "objective": "Evaluate the United Nations' purposes, institutional performance, specialised agencies and proposals for reform.",
+        "sections": [
+          {
+            "heading": "Founding purposes and principles",
+            "explanation": [
+              "The United Nations was established in 1945 after the Second World War. Its Charter identifies purposes including maintaining international peace and security, developing friendly relations, promoting cooperation and supporting human rights.",
+              "The UN is an organisation of sovereign member states. Its work is shaped by the Charter, member-state consent, institutional mandates and political differences."
+            ],
+            "example": "A humanitarian programme must operate within its mandate and coordinate with relevant national authorities."
+          },
+          {
+            "heading": "Principal organs and decision-making",
+            "explanation": [
+              "The six principal organs are the General Assembly, Security Council, Economic and Social Council, International Court of Justice, Secretariat and Trusteeship Council.",
+              "The Security Council has primary responsibility for international peace and security. Its five permanent members hold veto power on substantive decisions, a feature central to debates over representation and effectiveness."
+            ],
+            "example": "The General Assembly provides a broad forum for debate, while binding Security Council decisions may be made under the Charter."
+          },
+          {
+            "heading": "Specialised agencies and wider UN system",
+            "explanation": [
+              "Specialised agencies are autonomous international organisations linked to the UN through agreements. Examples include WHO, ILO, UNESCO, FAO and ICAO, each with a distinct mandate.",
+              "UN funds, programmes and specialised agencies should not be treated as identical. Their legal status, governance and funding arrangements differ, though coordination is important."
+            ],
+            "example": "WHO works on international public health, while UNESCO works in education, science and culture."
+          },
+          {
+            "heading": "Performance and reform",
+            "explanation": [
+              "The UN has supported diplomacy, peacekeeping, humanitarian assistance, development cooperation and the articulation of international norms. Its record is uneven and depends on member-state cooperation, resources and political context.",
+              "Reform debates address Security Council representation, veto use, financing, peacekeeping accountability, transparency and coordination. Any reform requires political agreement among member states and, for Charter amendments, specified ratification procedures."
+            ],
+            "example": "A reform proposal should identify the representation gap it seeks to address and the institutional trade-offs involved."
+          }
+        ],
+        "keyTerms": [
+          {
+            "term": "UN Charter",
+            "meaning": "The treaty establishing the United Nations and setting out its purposes, principles and institutional framework."
+          },
+          {
+            "term": "Veto",
+            "meaning": "The power of a permanent Security Council member to block a substantive draft resolution."
+          },
+          {
+            "term": "Peacekeeping",
+            "meaning": "UN operations deployed with mandates to help maintain or restore peace under agreed principles."
+          },
+          {
+            "term": "Specialised agency",
+            "meaning": "An autonomous international organisation linked to the UN through a formal agreement."
+          },
+          {
+            "term": "Security Council reform",
+            "meaning": "Proposals to change the Council's membership, working methods or decision-making."
+          }
+        ],
+        "scholarLens": [
+          {
+            "scholar": "Inis Claude",
+            "idea": "Studied international organisations and the role of the United Nations in world politics."
+          },
+          {
+            "scholar": "Thomas G. Weiss",
+            "idea": "Analysed UN reform, global governance and the organisation's institutional performance."
+          },
+          {
+            "scholar": "Boutros Boutros-Ghali",
+            "idea": "As UN Secretary-General, advanced reform and peace-operation agendas, including An Agenda for Peace."
+          }
+        ],
+        "answerPractice": "The United Nations remains indispensable but constrained by great-power politics. Examine its achievements, limitations and the case for Security Council reform.",
+        "revisionPrompt": "Memorise the six principal organs, distinguish specialised agencies from funds/programmes, and prepare three arguments each for and against reform."
+      },
+      "test": [
+        {
+          "q": "The United Nations was established in:",
+          "o": [
+            "1945",
+            "1919",
+            "1944",
+            "1961"
+          ],
+          "a": 0,
+          "w": "The UN came into existence in 1945 after the Second World War."
+        },
+        {
+          "q": "Which is not one of the six principal organs of the UN?",
+          "o": [
+            "World Health Organization",
+            "Security Council",
+            "General Assembly",
+            "International Court of Justice"
+          ],
+          "a": 0,
+          "w": "WHO is a specialised agency, not one of the six principal organs."
+        },
+        {
+          "q": "The Security Council has how many permanent members?",
+          "o": [
+            "Five",
+            "Four",
+            "Six",
+            "Ten"
+          ],
+          "a": 0,
+          "w": "The five permanent members are China, France, Russia, the United Kingdom and the United States."
+        },
+        {
+          "q": "The International Court of Justice is located in:",
+          "o": [
+            "The Hague",
+            "Geneva",
+            "New York",
+            "Paris"
+          ],
+          "a": 0,
+          "w": "The ICJ is based at the Peace Palace in The Hague, Netherlands."
+        },
+        {
+          "q": "A central issue in Security Council reform debates is:",
+          "o": [
+            "Representation and veto power",
+            "The colour of the UN flag",
+            "The number of official languages alone",
+            "Replacing all specialised agencies"
+          ],
+          "a": 0,
+          "w": "Representation and the veto are central questions in reform proposals."
+        }
       ]
     },
     {
