@@ -34,3 +34,10 @@ All rows intentionally begin as `not_checked`. The official UPSC current and arc
 The current public UPSC index lists recent Civil Services Mains papers, while the archive index exposes older examination entries. Historical paper availability must therefore be checked year by year; never extrapolate a current subject list to earlier years. The tracker is not a claim that 2,575 PDFs are available.
 
 The static quality check validates inventory size, unique IDs, status values, and the rule that direct document links require verification metadata.
+
+
+## Supabase publication path
+
+The site reads the static, source-verified `questions.json` archive and also queries `public.pyq_questions` for live records. A database row is displayed only when both `is_published` and `source_verified` are true and `source_reference` is a direct HTTPS URL on `upsc.gov.in` or `www.upsc.gov.in`. Database answer keys remain separately permissioned; the public question view does not expose the admin-only answer-key table.
+
+The database includes `question_number`, `source_verified_at`, and `source_verification_method` for auditability. Publishing is guarded by a database check requiring a verified UPSC-hosted source URL. Add and review question records through the authenticated admin workflow; never set publication flags to bypass source review. The public site does not treat generated or coaching questions as official PYQs.
