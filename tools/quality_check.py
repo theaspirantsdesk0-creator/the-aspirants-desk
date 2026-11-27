@@ -972,6 +972,12 @@ def main() -> int:
         check("assets/js/notes-studio.js" in sw_source and "data/notes/gs-foundations.json" in sw_source
               and "assets/css/notes-studio.css" in sw_source,
               "Notes Studio assets and content must be precached for offline study")
+    if notes_js_path.is_file() and index_path.is_file():
+        notes_js = notes_js_path.read_text(encoding="utf-8")
+        check("data-review" in notes_js and "nextReviewAt" in notes_js and "intervals=[1,3,7,14,30]" in notes_js,
+              "Notes Studio must schedule spaced revisions and advance review intervals")
+        check('id="nsRevisionQueue"' in index_html and 'id="nsDueCount"' in index_html,
+              "Notes Studio must display the due revision queue and count")
 
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
