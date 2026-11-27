@@ -95,3 +95,13 @@ th{font-weight:800}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+
+/* Keep the full navigation shell visible at desktop widths. */
+@media (min-width: 961px) {
+  #sidebar.sidebar {
+    display: flex;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
