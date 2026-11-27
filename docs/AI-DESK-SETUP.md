@@ -23,6 +23,8 @@ Open Supabase Dashboard → Project `theaspirantsdesk` → Edge Functions → Se
 - `GEMINI_API_KEY` — recommended primary provider key.
 - `GROQ_API_KEY` — optional fallback provider key.
 - `GEMINI_MODEL` — optional; default `gemini-2.5-flash`.
+
+Gemini is the primary provider whenever `GEMINI_API_KEY` is present. The admin-only **Test AI connection** action sends a small generation request and checks that Gemini actually returns text; an HTTP success without generated text is not counted as a successful test. The test is specifically for Gemini and does not report a Groq fallback as a Gemini success. In the Anbuu admin panel, the provider status identifies Gemini as primary and indicates when Groq is available only as fallback.
 - `GROQ_MODEL` — optional; default `llama-3.3-70b-versatile`.
 
 The Supabase runtime supplies the project's Supabase URL and server keys. Do not put provider keys, service-role keys, or private keys in `index.html`, `config.js`, GitHub commits, or browser storage.
