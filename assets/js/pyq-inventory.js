@@ -43,9 +43,9 @@
         if (itemOptional !== docOptional) return false;
       } else {
         const paperLabel = String(item.paper || "").toLowerCase();
-        if (/general studies|^gs\\b/.test(paperLabel) && doc.category !== "General Studies") return false;
+        if (/general studies|^gs\b/.test(paperLabel) && doc.category !== "General Studies") return false;
         if (/essay/.test(paperLabel) && doc.category !== "General") return false;
-        if (!/general studies|^gs\\b|essay/.test(paperLabel) && ["Optional","Literature"].includes(doc.category)) return false;
+        if (!/general studies|^gs\b|essay/.test(paperLabel) && ["Optional","Literature"].includes(doc.category)) return false;
       }
       const itemPaper = paperNumber(item.paper);
       const docPaper = paperNumber(doc.paper);
