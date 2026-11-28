@@ -47,7 +47,7 @@ function normaliseQuestionKey(value){return String(value||"").toLocaleLowerCase(
 function isHttpsSource(value){const u=String(value||"").trim();return u.startsWith("https://")&&!/\s/.test(u)?u:null;}
 async function loadHistory(){
  const panel=$("qReviewHistory");if(!panel)return;
- if(!activeId){panel.innerHTML='<p class="mock-save">Open a saved question to see its version history and activity.</p>';return;}
+ if(!activeId){currentVersions=[];renderVersionComparison();panel.innerHTML='<p class="mock-save">Open a saved question to see its version history and activity.</p>';return;}
  panel.innerHTML='<p class="mock-save">Loading version snapshots and reviewer activity…</p>';
  const [vResult,aResult]=await Promise.all([
   sb.from("practice_question_versions").select("question_key,version_no,event_type,snapshot,actor_id,created_at").eq("question_key",activeId).order("version_no",{ascending:false}).limit(30),
@@ -318,6 +318,7 @@ async function importBulk(){
 }
 function resetEditor(){
  activeId=null;
+ currentVersions=[];renderVersionComparison();
  $("qReviewEditorTitle").textContent="Create practice question";
  $("qReviewForm").reset();
  CHECKS.forEach(k=>$("qReviewCheck_"+k).checked=false);
@@ -373,7 +374,6 @@ async function boot(){
  $("qReviewBulkPreviewBtn").addEventListener("click",previewBulk);
  $("qReviewBulkImport").addEventListener("click",importBulk);
  $("qReviewBulkExport").addEventListener("click",exportBulkReport);
- $("qReviewBulkJson").addEventListener("input",()=>resetBulkPreview("Input changed. Preview again before importing."));
  $("qReviewBatchRefresh").addEventListener("click",loadImportBatches);
  $("qReviewBulkJson").addEventListener("input",()=>{bulkFileName="";resetBulkPreview("Input changed. Preview again before importing.");});
  $("qReviewBulkFile").addEventListener("change",async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{$("qReviewBulkJson").value=await file.text();bulkFileName=file.name;resetBulkPreview("File loaded. Choose Preview import to validate every row.");status("Loaded "+file.name+". Preview it before importing.");}catch(error){status("Could not read that file: "+error.message,"mock-warning");}});
