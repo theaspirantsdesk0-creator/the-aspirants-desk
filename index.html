@@ -3440,6 +3440,43 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     { subject: "Environment", title: "Project Tiger & NTCA", body: "Launched in 1973; National Tiger Conservation Authority (NTCA) was given statutory status under the Wildlife Protection Amendment Act, 2006." }
   ];
 
+  let PRACTICE_BANK_LOAD = { added: 0, files: 0, failed: 0, loaded: false };
+  async function loadQuestionBankFiles() {
+    const paths = [
+      "ancient-history.json","art-and-culture.json","banking-awareness.json","csat.json","defence.json",
+      "economy-batch1.json","economy.json","environment-batch2.json","environment.json","ethics.json",
+      "geography-batch1.json","geography.json","history.json","indian-society-batch2.json","indian-society.json",
+      "internal-security-batch2.json","internal-security.json","international-relations.json","medieval-history.json",
+      "modern-history-batch1.json","modern-history.json","polity-batch1.json","polity.json","science-batch2.json",
+      "science.json","ssc.json","tnpsc.json","world-history.json"
+    ];
+    const bank = Array.isArray(window.TAD && window.TAD.BANK) ? window.TAD.BANK : [];
+    const seen = new Set(bank.map(row => String(row[0] || "").trim().toLowerCase() + "|" + String(row[1] || "").trim().toLowerCase().replace(/\\s+/g, " ")));
+    const results = await Promise.allSettled(paths.map(async file => {
+      const response = await fetch("data/questions/" + file, { cache: "no-store" });
+      if (!response.ok) throw new Error(file + " (" + response.status + ")");
+      const rows = await response.json();
+      if (!Array.isArray(rows)) throw new Error(file + " has an invalid format");
+      return rows;
+    }));
+    results.forEach(result => {
+      if (result.status !== "fulfilled") { PRACTICE_BANK_LOAD.failed++; return; }
+      PRACTICE_BANK_LOAD.files++;
+      result.value.forEach(q => {
+        if (!q || q.status !== "published" || !q.subject || !q.q || !q.a ||
+            !Array.isArray(q.w) || q.w.length !== 3 || !q.e ||
+            !["easy", "medium", "hard"].includes(String(q.difficulty || "").toLowerCase())) return;
+        const key = String(q.subject).trim().toLowerCase() + "|" + String(q.q).trim().toLowerCase().replace(/\\s+/g, " ");
+        if (seen.has(key)) return;
+        seen.add(key);
+        bank.push([q.subject, q.q, q.a, ...q.w, q.e, String(q.difficulty).toLowerCase()]);
+        PRACTICE_BANK_LOAD.added++;
+      });
+    });
+    window.TAD.BANK = bank;
+    PRACTICE_BANK_LOAD.loaded = true;
+  }
+
   function renderPracticeBank() {
     const host = $("pyqContainer");
     const bank = Array.isArray(window.TAD && window.TAD.BANK) ? window.TAD.BANK : [];
@@ -3461,7 +3498,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
       const matchesQuery = !query || [row[0], row[1], row[6]].join(" ").toLowerCase().includes(query);
       return matchesSubject && matchesDifficulty && matchesQuery;
     });
-    host.innerHTML = '<p class="muted" style="font-size:.82rem">' + rows.length + ' matching practice questions · Showing up to 30 at a time. Answers and explanations are expandable.</p>' +
+    host.innerHTML = '<p class="muted" style="font-size:.82rem">' + rows.length + ' matching practice questions · Showing up to 30 at a time. ' + (PRACTICE_BANK_LOAD.loaded ? (PRACTICE_BANK_LOAD.added + ' additional published questions loaded from ' + PRACTICE_BANK_LOAD.files + ' topic files' + (PRACTICE_BANK_LOAD.failed ? '; ' + PRACTICE_BANK_LOAD.failed + ' files unavailable' : '') + '. ') : '') + 'Answers and explanations are expandable.</p>' +
       (rows.length ? rows.slice(0, 30).map((row, index) => {
         const options = [row[2], ...row.slice(3, 6)];
         return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row[0]) + '</span><span class="pill">' + esc(row[7] || "medium") + '</span><span class="pill">Practice question</span></div>' +
@@ -3760,6 +3797,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
 
     await loadDailyFeeds();
 
+    await loadQuestionBankFiles();
     renderPracticeBank();
     await loadOfficialPyqs();
   }
