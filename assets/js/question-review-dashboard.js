@@ -7,7 +7,7 @@ const sb=window.TAD_SUPABASE;
 const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const CHECKS=["answer","distractors","explanation","metadata","duplicates"];
 const CHECK_LABELS={answer:"Correct answer checked against source",distractors:"All three distractors checked",explanation:"Explanation checked against source",metadata:"Subject, topic and difficulty checked",duplicates:"Duplicate and near-duplicate search completed"};
-let user=null,rows=[],activeId=null,loading=false;
+let user=null,rows=[],activeId=null,loading=false,bulkPreview=[];
 const status=(message,kind)=>{const el=$("qReviewStatus");if(el){el.textContent=message;el.className="mock-save"+(kind?" "+kind:"");}};
 const readForm=()=>({
  subject:$("qReviewSubject").value.trim(),
@@ -18,7 +18,7 @@ const readForm=()=>({
  explanation:$("qReviewExplanation").value.trim(),
  difficulty:$("qReviewDifficulty").value,
  source_title:$("qReviewSourceTitle").value.trim(),
-   source_url:isHttpsSource(rawRow.source_url),
+  source_url:$("qReviewSourceUrl").value.trim(),
  review_checks:Object.fromEntries(CHECKS.map(k=>[k,$("qReviewCheck_"+k).checked]))
 });
 function validate(d,stage){
@@ -73,57 +73,157 @@ function parseBulkRecords(raw){
  if(parsed&&Array.isArray(parsed.records))return parsed.records;
  throw new Error("JSON must be an array or an object containing a questions or records array.");
 }
-async function importBulk(){
- const result=$("qReviewBulkResult"),raw=$("qReviewBulkJson").value.trim();
+function similarScore(a,b){
+ const aa=new Set(normaliseQuestionKey(a).split(" ").filter(Boolean));
+ const bb=new Set(normaliseQuestionKey(b).split(" ").filter(Boolean));
+ if(!aa.size||!bb.size)return 0;
+ let shared=0;aa.forEach(token=>{if(bb.has(token))shared++;});
+ return shared/(aa.size+bb.size-shared);
+}
+function resetBulkPreview(message){
+ bulkPreview=[];
+ $("qReviewBulkPreview").innerHTML="";
+ $("qReviewBulkSummary").textContent=message||"Choose a JSON file or paste questions, then preview before importing.";
+ $("qReviewBulkImport").disabled=true;
+ $("qReviewBulkExport").disabled=true;
+}
+function paintBulkPreview(){
+ const ready=bulkPreview.filter(x=>x.state==="ready"||x.state==="similar").length;
+ const duplicates=bulkPreview.filter(x=>x.state==="duplicate").length;
+ const invalid=bulkPreview.filter(x=>x.state==="invalid").length;
+ const similar=bulkPreview.filter(x=>x.state==="similar").length;
+ $("qReviewBulkSummary").textContent=bulkPreview.length+" rows · "+ready+" eligible draft(s) · "+duplicates+" duplicate(s) · "+invalid+" invalid · "+similar+" similar-question warning(s)";
+ $("qReviewBulkImport").disabled=ready===0;
+ $("qReviewBulkExport").disabled=bulkPreview.length===0;
+ $("qReviewBulkPreview").innerHTML=bulkPreview.length?'<div class="qreview-preview-table-wrap"><table class="qreview-preview-table"><thead><tr><th>Row</th><th>Result</th><th>Subject</th><th>Question</th><th>Validation details</th></tr></thead><tbody>'+
+  bulkPreview.map(x=>'<tr><td>'+x.row+'</td><td><span class="qreview-preview-status qreview-preview-'+esc(x.state)+'">'+esc(x.state==="ready"?"Ready":x.state==="similar"?"Similar":x.state==="duplicate"?"Duplicate":x.state==="imported"?"Imported":x.state==="failed"?"Failed":"Invalid")+'</span></td><td>'+esc(x.item?.subject||"—")+'</td><td>'+esc(x.item?.question_text||x.rawQuestion||"")+'</td><td>'+esc([...(x.issues||[]),...(x.warnings||[]),x.duplicateOf||""].filter(Boolean).join(" · ")||"Passed checks")+'</td></tr>').join("")+
+  '</tbody></table></div>':'';
+}
+async function previewBulk(){
+ resetBulkPreview("Checking records and comparing them with the saved question bank…");
+ const raw=$("qReviewBulkJson").value.trim();
  if(!raw){status("Choose a JSON file or paste a question array first.","mock-warning");return;}
  let incoming;
- try{incoming=parseBulkRecords(raw);}catch(error){status("Import JSON error: "+error.message,"mock-warning");return;}
+ try{incoming=parseBulkRecords(raw);}catch(error){resetBulkPreview("The JSON could not be read.");status("Import JSON error: "+error.message,"mock-warning");return;}
  if(!incoming.length){status("The import file has no question records.","mock-warning");return;}
  if(incoming.length>100){status("Import is limited to 100 questions per batch. Split the file into smaller batches.","mock-warning");return;}
- const existingResult=await sb.from("practice_question_bank").select("subject,question_text").limit(5000);
- if(existingResult.error){status("Could not check existing questions before import: "+existingResult.error.message,"mock-warning");return;}
- const known=new Set((existingResult.data||[]).map(x=>normaliseQuestionKey(x.subject)+"|"+normaliseQuestionKey(x.question_text)));
- const prepared=[],seen=new Set();let invalid=0,duplicate=0;
- for(const rawRow of incoming){
-  if(!rawRow||typeof rawRow!=="object"||Array.isArray(rawRow)){invalid++;continue;}
+ const existing=[];
+ for(let offset=0;;offset+=1000){
+  const response=await sb.from("practice_question_bank").select("id,subject,question_text,status").range(offset,offset+999);
+  if(response.error){resetBulkPreview("Could not load existing records for duplicate checking.");status("Duplicate check failed: "+response.error.message,"mock-warning");return;}
+  existing.push(...(response.data||[]));
+  if(!response.data||response.data.length<1000)break;
+ }
+ const known=new Map();
+ existing.forEach(row=>{
+  const key=normaliseQuestionKey(row.subject)+"|"+normaliseQuestionKey(row.question_text);
+  if(!known.has(key))known.set(key,row);
+ });
+ const seen=new Set(),preview=[];
+ incoming.forEach((rawRow,index)=>{
+  const entry={row:index+1,rawQuestion:"",item:null,state:"invalid",issues:[],warnings:[],duplicateOf:null};
+  if(!rawRow||typeof rawRow!=="object"||Array.isArray(rawRow)){
+   entry.issues.push("Each record must be a JSON object.");
+   preview.push(entry);return;
+  }
   const wrong=Array.isArray(rawRow.wrong_options)?rawRow.wrong_options:rawRow.w;
+  const rawDifficulty=String(rawRow.difficulty||"medium").toLowerCase();
+  entry.rawQuestion=String(rawRow.question_text||rawRow.q||"");
   const item={
    subject:String(rawRow.subject||"").trim(),
    topic:String(rawRow.topic||"").trim(),
-   question_text:String(rawRow.question_text||rawRow.q||"").trim(),
+   question_text:entry.rawQuestion.trim(),
    correct_answer:String(rawRow.correct_answer||rawRow.a||"").trim(),
    wrong_options:Array.isArray(wrong)?wrong.map(x=>String(x).trim()):[],
    explanation:String(rawRow.explanation||rawRow.e||"").trim(),
-   difficulty:["easy","medium","hard"].includes(String(rawRow.difficulty||"").toLowerCase())?String(rawRow.difficulty).toLowerCase():"medium",
+   difficulty:["easy","medium","hard"].includes(rawDifficulty)?rawDifficulty:"medium",
    source_url:isHttpsSource(rawRow.source_url),
    source_title:String(rawRow.source_title||"").trim()||null,
    status:"draft",
    review_checks:{answer:false,distractors:false,explanation:false,metadata:false,duplicates:false},
    reviewed_by:null,reviewed_at:null,created_by:user.id
   };
-  const issues=validate(item,"draft");
-  if(issues.length||item.wrong_options.length!==3||item.wrong_options.some(x=>!x)){invalid++;continue;}
-  if(new Set([item.correct_answer,...item.wrong_options].map(x=>x.toLocaleLowerCase())).size!==4){invalid++;continue;}
+  entry.item=item;
+  entry.issues=validate(item,"draft");
+  if(rawRow.difficulty&&!["easy","medium","hard"].includes(rawDifficulty))entry.issues.push("Difficulty must be easy, medium or hard.");
+  if(rawRow.source_url&&!item.source_url)entry.issues.push("Optional source URL must use HTTPS.");
+  if(item.wrong_options.length!==3||item.wrong_options.some(x=>!x))entry.issues.push("Provide exactly three non-empty wrong options.");
+  if(new Set([item.correct_answer,...item.wrong_options].map(x=>x.toLocaleLowerCase())).size!==4)entry.issues.push("The correct answer and three wrong options must be distinct.");
+  if(entry.issues.length){entry.state="invalid";preview.push(entry);return;}
   const key=normaliseQuestionKey(item.subject)+"|"+normaliseQuestionKey(item.question_text);
-  if(known.has(key)||seen.has(key)){duplicate++;continue;}
-  known.add(key);seen.add(key);prepared.push(item);
- }
- if(!prepared.length){result.textContent="Imported 0 · duplicates "+duplicate+" · invalid "+invalid;status("Nothing was imported. Check the duplicate and validation counts.","mock-warning");return;}
+  if(known.has(key)){
+   const match=known.get(key);
+   entry.state="duplicate";
+   entry.duplicateOf=(match.subject||"")+(match.status?" · "+match.status:"");
+   entry.warnings.push("Exact match already exists in the question bank.");
+   preview.push(entry);return;
+  }
+  if(seen.has(key)){
+   entry.state="duplicate";
+   entry.duplicateOf="Earlier row in this import";
+   entry.warnings.push("Same subject and question already appears earlier in this file.");
+   preview.push(entry);return;
+  }
+  seen.add(key);
+  const subjectKey=normaliseQuestionKey(item.subject);
+  const nearExisting=existing.find(row=>normaliseQuestionKey(row.subject)===subjectKey&&similarScore(row.question_text,item.question_text)>=0.86);
+  const nearEarlier=preview.find(row=>row.item&&normaliseQuestionKey(row.item.subject)===subjectKey&&similarScore(row.item.question_text,item.question_text)>=0.86);
+  if(nearExisting){
+   entry.state="similar";
+   entry.duplicateOf="Similar saved question: "+String(nearExisting.question_text||"").slice(0,110);
+   entry.warnings.push("Similar wording detected. Confirm it is not a duplicate before formal review.");
+  }else if(nearEarlier){
+   entry.state="similar";
+   entry.duplicateOf="Similar to row "+nearEarlier.row+" in this import";
+   entry.warnings.push("Similar wording detected in this file. Check both records before formal review.");
+  }else entry.state="ready";
+  preview.push(entry);
+ });
+ bulkPreview=preview;
+ paintBulkPreview();
+ status("Preview ready. Only eligible rows can be imported, and every imported record will be saved as a draft.");
+}
+function csvCell(value){
+ const textValue=String(value??"");
+ return '"'+textValue.replace(/"/g,'""')+'"';
+}
+function exportBulkReport(){
+ if(!bulkPreview.length)return;
+ const header=["row","result","subject","topic","question","correct_answer","wrong_options","explanation","difficulty","source_title","source_url","duplicate_or_similar_to","validation_issues","warnings"];
+ const lines=[header.map(csvCell).join(",")];
+ bulkPreview.forEach(x=>{
+  const d=x.item||{};
+  lines.push([x.row,x.state,d.subject,d.topic,d.question_text,d.correct_answer,(d.wrong_options||[]).join(" | "),d.explanation,d.difficulty,d.source_title,d.source_url,x.duplicateOf,(x.issues||[]).join(" | "),(x.warnings||[]).join(" | ")].map(csvCell).join(","));
+ });
+ const blob=new Blob(["\uFEFF"+lines.join("\r\n")],{type:"text/csv;charset=utf-8"});
+ const url=URL.createObjectURL(blob),link=document.createElement("a");
+ link.href=url;link.download="aspirants-desk-question-import-review.csv";
+ document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+}
+async function importBulk(){
+ const result=$("qReviewBulkResult");
+ const prepared=bulkPreview.filter(x=>x.state==="ready"||x.state==="similar");
+ if(!bulkPreview.length){status("Preview the JSON file before importing.","mock-warning");return;}
+ if(!prepared.length){status("No eligible questions are available. Correct invalid rows or remove duplicates.","mock-warning");return;}
+ $("qReviewBulkImport").disabled=true;
  let inserted=0,failed=0;
  for(let i=0;i<prepared.length;i+=20){
   const batch=prepared.slice(i,i+20);
-  const response=await sb.from("practice_question_bank").insert(batch);
-  if(!response.error){inserted+=batch.length;continue;}
-  // A database unique-index conflict can occur if another owner import lands
-  // between the preflight check and insert; retry records independently.
-  for(const item of batch){
-   const one=await sb.from("practice_question_bank").insert(item);
-   if(one.error)failed++;else inserted++;
+  const response=await sb.from("practice_question_bank").insert(batch.map(x=>x.item));
+  if(!response.error){
+   inserted+=batch.length;
+   batch.forEach(x=>x.state="imported");
+   continue;
+  }
+  for(const entry of batch){
+   const one=await sb.from("practice_question_bank").insert(entry.item);
+   if(one.error){failed++;entry.state="failed";entry.issues.push(one.error.code==="23505"?"Duplicate appeared after preview; database rejected it.":one.error.message);}
+   else{inserted++;entry.state="imported";}
   }
  }
- result.textContent="Imported "+inserted+" draft(s) · duplicates skipped "+duplicate+" · invalid skipped "+invalid+" · database conflicts "+failed;
- $("qReviewBulkJson").value="";
- status("Bulk import finished. All imported questions were saved as drafts; none were published.");
+ paintBulkPreview();
+ result.textContent="Imported "+inserted+" draft(s) · duplicates skipped "+bulkPreview.filter(x=>x.state==="duplicate").length+" · invalid skipped "+bulkPreview.filter(x=>x.state==="invalid").length+" · failed "+failed+". Export the report to retain these results.";
+ status("Bulk import completed. Imported questions remain drafts and are not visible to learners.");
  await load();
 }
 function resetEditor(){
@@ -180,8 +280,11 @@ async function boot(){
  $("qReviewFilter").addEventListener("change",paint);
  $("qReviewSearch").addEventListener("input",paint);
  $("qReviewNew").addEventListener("click",resetEditor);
+ $("qReviewBulkPreviewBtn").addEventListener("click",previewBulk);
  $("qReviewBulkImport").addEventListener("click",importBulk);
- $("qReviewBulkFile").addEventListener("change",async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{$("qReviewBulkJson").value=await file.text();status("Loaded "+file.name+". Review the JSON then choose Import as drafts.");}catch(error){status("Could not read that file: "+error.message,"mock-warning");}});
+ $("qReviewBulkExport").addEventListener("click",exportBulkReport);
+ $("qReviewBulkJson").addEventListener("input",()=>resetBulkPreview("Input changed. Preview again before importing."));
+ $("qReviewBulkFile").addEventListener("change",async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{$("qReviewBulkJson").value=await file.text();resetBulkPreview("File loaded. Choose Preview import to validate every row.");status("Loaded "+file.name+". Preview it before importing.");}catch(error){status("Could not read that file: "+error.message,"mock-warning");}});
  $("qReviewReload").addEventListener("click",load);
  $("qReviewSaveDraft").addEventListener("click",()=>save("draft"));
  $("qReviewSendReview").addEventListener("click",()=>save("review"));
