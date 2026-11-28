@@ -64,7 +64,42 @@ aiCheck.addEventListener("click",async()=>{
  }catch(error){status.textContent=error instanceof Error?error.message:"Could not test AI connection.";aiCheck.textContent="Test AI connection again";}
  finally{aiCheck.disabled=false;}
 });
-function say(text,who){const el=document.createElement("div");el.className="tad-ai-msg "+(who==="user"?"tad-ai-user":"tad-ai-assistant");el.textContent=text;messages.append(el);messages.scrollTop=messages.scrollHeight;}
+function normaliseAIText(value){
+ return String(value??"").replace(/\\([\\\x60*_{}\[\]()#+.!>|~-])/g,"$1").replace(/&#x20;|&#32;/gi," ").replace(/&nbsp;/gi," ").replace(/\r\n?/g,"\n");
+}
+function escapeAIHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+function inlineAI(text){
+ let out=escapeAIHtml(text);
+ out=out.replace(/\x60([^\x60]+)\x60/g,"<code>$1</code>");
+ out=out.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/__(.+?)__/g,"<strong>$1</strong>");
+ out=out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g,"$1<em>$2</em>").replace(/(^|[^_])_([^_\n]+)_(?!_)/g,"$1<em>$2</em>");
+ return out;
+}
+function renderAIMarkdown(value){
+ const text=normaliseAIText(value).trim();if(!text)return "";
+ const lines=text.split("\n"),html=[];let paragraph=[],listType="",listItems=[],quote=[];
+ const flushParagraph=()=>{if(paragraph.length){html.push("<p>"+inlineAI(paragraph.join(" "))+"</p>");paragraph=[];}};
+ const flushList=()=>{if(listItems.length){html.push("<"+listType+">"+listItems.map(x=>"<li>"+inlineAI(x)+"</li>").join("")+"</"+listType+">");listItems=[];listType="";}};
+ const flushQuote=()=>{if(quote.length){html.push("<blockquote>"+quote.map(x=>"<p>"+inlineAI(x)+"</p>").join("")+"</blockquote>");quote=[];}};
+ for(let i=0;i<lines.length;i++){
+  const line=lines[i],trim=line.trim();
+  if(/^\x60{3,}/.test(trim)){flushParagraph();flushList();flushQuote();const code=[];i++;while(i<lines.length&&!/^\x60{3,}/.test(lines[i].trim())){code.push(lines[i]);i++;}html.push("<pre><code>"+escapeAIHtml(code.join("\n"))+"</code></pre>");continue;}
+  if(!trim){flushParagraph();flushList();flushQuote();continue;}
+  const heading=trim.match(/^(#{1,4})\s+(.+)$/);
+  if(heading){flushParagraph();flushList();flushQuote();const level=Math.min(heading[1].length+1,5);html.push("<h"+level+">"+inlineAI(heading[2])+"</h"+level+">");continue;}
+  if(/^(---+|___+|\*\*\*+)$/.test(trim)){flushParagraph();flushList();flushQuote();html.push("<hr>");continue;}
+  const q=trim.match(/^>\s?(.*)$/);if(q){flushParagraph();flushList();quote.push(q[1]);continue;}else flushQuote();
+  const ul=trim.match(/^[-*+]\s+(.+)$/),ol=trim.match(/^\d+[.)]\s+(.+)$/);
+  if(ul||ol){flushParagraph();const type=ul?"ul":"ol";if(listType&&listType!==type)flushList();listType=type;listItems.push((ul||ol)[1]);continue;}else flushList();
+  paragraph.push(trim);
+ }
+ flushParagraph();flushList();flushQuote();return html.join("");
+}
+function say(text,who){
+ const el=document.createElement("div");el.className="tad-ai-msg "+(who==="user"?"tad-ai-user":"tad-ai-assistant");
+ if(who==="user")el.textContent=String(text??"");else el.innerHTML=renderAIMarkdown(text);
+ messages.append(el);messages.scrollTop=messages.scrollHeight;
+}
 function renderRevisionTasks(tasks){
  const host=$("#tadAiLessonRevisionTasks");if(!host)return;host.replaceChildren();
  const rows=(Array.isArray(tasks)?tasks:[]).filter(item=>item&&typeof item.id==="string");
