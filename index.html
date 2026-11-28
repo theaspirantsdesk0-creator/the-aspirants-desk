@@ -1838,7 +1838,37 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         <div class="mock-exam-layout"><div class="mock-question-card"><div id="mockQuestionBody"></div><div class="mock-actions" style="margin-top:1.2rem"><button class="btn" id="mockPrevBtn">Previous</button><button class="btn" id="mockMarkBtn">Mark for review</button><button class="btn primary" id="mockNextBtn">Next</button></div></div><aside class="mock-side"><b>Question palette</b><p class="mock-save" id="mockAnsweredCount"></p><div class="mock-qgrid" id="mockQuestionGrid" role="group" aria-label="Question navigation palette"></div><div class="mock-save">Blue = answered · yellow outline = review</div><div class="mock-actions" style="margin-top:1rem"><button class="btn" id="mockExitBtn">Save & exit</button><button class="btn bad" id="mockSubmitBtn">Submit exam</button></div></aside></div>
       </div>
       <div id="mockResultView" class="mock-hidden"></div>
-      <div id="mockAdminPanel" class="card mock-admin mock-hidden"><h2>Owner · Mock paper publishing</h2><p class="muted">Import a complete paper as JSON. Correct answers and explanations are stored separately from learner-visible questions. Importing a paper with the same code replaces its existing question set.</p><label for="mockImportJson">Paper JSON</label><textarea id="mockImportJson" placeholder='{"code":"UPSC-MAINS-GS1","title":"GS Paper I Mock 01","exam_stage":"mains","paper_type":"GS I","duration_minutes":180,"total_marks":250,"optional_subject":null,"questions":[{"section_key":"history","question_no":1,"question_type":"written","prompt":"Discuss...","marks":10,"word_limit":150,"rubric":["..."],"model_answer":"..."}]}'></textarea><div class="mock-actions"><button class="btn primary" id="mockImportBtn">Import question paper</button><input id="mockPublishCode" placeholder="Paper code to publish" style="max-width:240px"><button class="btn" id="mockPublishBtn">Publish paper</button></div><p class="mock-save">Prelims MCQ fields: options as [{"key":"A","text":"..."}], correct_answer:"A", marks:2, negative_marks:0.66. Mains written questions use question_type:"written", word_limit and rubric. Only publish after verifying every question, key and source.</p></div>
+      <div id="mockAdminPanel" class="card mock-admin mock-hidden"><h2>Owner · Mock paper publishing</h2><p class="muted">Import a complete paper as JSON. Correct answers and explanations are stored separately from learner-visible questions. Importing a paper with the same code replaces its existing question set.</p><label for="mockImportJson">Paper JSON</label><textarea id="mockImportJson" placeholder='{"code":"UPSC-MAINS-GS1","title":"GS Paper I Mock 01","exam_stage":"mains","paper_type":"GS I","duration_minutes":180,"total_marks":250,"optional_subject":null,"questions":[{"section_key":"history","question_no":1,"question_type":"written","prompt":"Discuss...","marks":10,"word_limit":150,"rubric":["..."],"model_answer":"..."}]}'></textarea><div class="mock-actions"><button class="btn primary" id="mockImportBtn">Import question paper</button><input id="mockPublishCode" placeholder="Paper code to publish" style="max-width:240px"><button class="btn" id="mockPublishBtn">Publish paper</button></div><p class="mock-save">Prelims MCQ fields: options as [{"key":"A","text":"..."}], correct_answer:"A", marks:2, negative_marks:0.66. Mains written questions use question_type:"written", word_limit and rubric. 
+Only publish after verifying every question, key and source.</p>
+<section id="questionReviewAdmin" class="qreview-admin" hidden>
+  <div class="qreview-heading"><div><span class="eyebrow">OWNER WORKSPACE</span><h2>Practice Question Review</h2><p class="muted">Create questions, record source checks and approve publication. Only published records appear to learners.</p></div><button type="button" class="btn" id="qReviewReload">Refresh</button></div>
+  <div id="qReviewStats" class="qreview-stats" aria-live="polite"></div>
+  <div class="qreview-toolbar"><input id="qReviewSearch" type="search" placeholder="Search subject, topic or question" aria-label="Search review questions"><select id="qReviewFilter" aria-label="Filter question status"><option value="all">All statuses</option><option value="draft">Draft</option><option value="review">Review</option><option value="published">Published</option><option value="archived">Archived</option></select><button type="button" class="btn primary" id="qReviewNew">New question</button></div>
+  <div id="qReviewCount" class="mock-save"></div><div id="qReviewList" class="qreview-list" aria-live="polite"><p class="mock-save">Checking owner permissions…</p></div>
+  <div id="qReviewEditor" class="qreview-editor">
+    <h3 id="qReviewEditorTitle">Create practice question</h3><p id="qReviewRecordMeta" class="mock-save">New question · saved as draft until reviewed</p>
+    <form id="qReviewForm">
+      <div class="qreview-form-grid">
+        <label>Subject<input id="qReviewSubject" required maxlength="120" placeholder="e.g. Indian Polity"></label>
+        <label>Topic<input id="qReviewTopic" maxlength="160" placeholder="e.g. Fundamental Rights"></label>
+        <label class="qreview-full">Question<textarea id="qReviewQuestion" required rows="3" maxlength="3000" placeholder="Write the question clearly…"></textarea></label>
+        <label class="qreview-full">Correct answer<textarea id="qReviewAnswer" required rows="2" maxlength="1000"></textarea></label>
+        <label class="qreview-full">Three incorrect options <small>Enter exactly three, one per line.</small><textarea id="qReviewWrong" required rows="3" placeholder="Incorrect option 1&#10;Incorrect option 2&#10;Incorrect option 3"></textarea></label>
+        <label class="qreview-full">Explanation<textarea id="qReviewExplanation" required rows="3" maxlength="5000"></textarea></label>
+        <label>Difficulty<select id="qReviewDifficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></label>
+        <label>Source title<input id="qReviewSourceTitle" maxlength="250" placeholder="Book, official document or source title"></label>
+        <label class="qreview-full">Source URL<input id="qReviewSourceUrl" type="url" placeholder="https://…" required></label>
+      </div>
+      <div class="qreview-checks"><h4>Human verification checklist</h4><p class="muted">Tick each item only after personally checking it against the cited source.</p>
+        <label><input type="checkbox" id="qReviewCheck_answer"> Correct answer checked against source</label><label><input type="checkbox" id="qReviewCheck_distractors"> All three distractors checked</label><label><input type="checkbox" id="qReviewCheck_explanation"> Explanation checked against source</label><label><input type="checkbox" id="qReviewCheck_metadata"> Subject, topic and difficulty checked</label><label><input type="checkbox" id="qReviewCheck_duplicates"> Duplicate and near-duplicate search completed</label>
+      </div>
+      <p id="qReviewDuplicate" class="mock-save">Exact duplicate check will run against saved records.</p>
+      <div class="qreview-actions"><button type="button" class="btn" id="qReviewSaveDraft">Save draft</button><button type="button" class="btn" id="qReviewSendReview">Move to review</button><button type="button" class="btn primary" id="qReviewPublish">Publish approved question</button><button type="button" class="btn" id="qReviewArchive">Archive</button></div>
+    </form>
+  </div>
+  <p id="qReviewStatus" class="mock-save" role="status" aria-live="polite">Owner access is being checked…</p>
+</section>
+</div>
     </div>
   </section>
 </main>
@@ -5005,6 +5035,7 @@ document.querySelectorAll(".sidebar .nav-link").forEach(function (a) {
   <script src="assets/js/owner-learner-workspaces.js" defer></script>
   <script src="assets/js/ai-desk.js" defer></script>
   <script src="assets/js/mock-exams.js" defer></script>
+  <script src="assets/js/question-review-dashboard.js" defer></script>
   <script src="assets/js/notes-studio.js" defer></script>
 
 
