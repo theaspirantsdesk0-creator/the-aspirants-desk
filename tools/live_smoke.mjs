@@ -230,6 +230,32 @@ try {
   if (reportDownload.suggestedFilename() !== 'aspirants-desk-question-import-review.csv') {
     throw new Error('Question import review report filename was unexpected: ' + reportDownload.suggestedFilename());
   }
+  const batchCard = reviewFixture.locator('.qreview-batch-card');
+  if (await batchCard.count() !== 1 || !(await batchCard.innerText()).includes('Imported 2')) {
+    throw new Error('Import batch history did not preserve the imported totals');
+  }
+  await reviewFixture.locator('[data-qreview-edit="inserted-0-0"]').click();
+  await reviewFixture.waitForFunction(() => document.querySelector('#qReviewCompareResult')?.textContent.includes('Highlighted rows changed'));
+  const compareAudit = await reviewFixture.evaluate(() => ({
+    selectors: Boolean(document.querySelector('#qReviewCompareLeft') && document.querySelector('#qReviewCompareRight')),
+    changedRows: document.querySelectorAll('#qReviewCompareResult .qreview-field-changed').length,
+    questionText: document.querySelector('#qReviewCompareResult').innerText.includes('Which institution conducts national elections in India?')
+  }));
+  if (!compareAudit.selectors || compareAudit.changedRows < 1 || !compareAudit.questionText) {
+    throw new Error('Side-by-side version comparison did not highlight changed question fields: ' + JSON.stringify(compareAudit));
+  }
+  const rollbackButton = reviewFixture.locator('.qreview-rollback');
+  if (await rollbackButton.count() !== 1) throw new Error('Eligible import batch did not expose its rollback control');
+  await rollbackButton.click();
+  await reviewFixture.waitForFunction(() => document.querySelector('.qreview-batch-status')?.textContent.includes('rolled back'));
+  const rollbackAudit = await reviewFixture.evaluate(() => ({
+    batchStatus: document.querySelector('.qreview-batch-status')?.textContent.trim(),
+    archived: window.__reviewInserted.length === 2 && window.__reviewInserted.every(row => row.status === 'archived'),
+    rollbackMessage: document.querySelector('.qreview-batch-card')?.innerText.includes('2 question(s) archived')
+  }));
+  if (rollbackAudit.batchStatus !== 'rolled back' || !rollbackAudit.archived || !rollbackAudit.rollbackMessage) {
+    throw new Error('Import batch rollback did not archive only its draft records: ' + JSON.stringify(rollbackAudit));
+  }
   await reviewFixture.close();
 
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
