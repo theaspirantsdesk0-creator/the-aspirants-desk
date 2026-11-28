@@ -4358,6 +4358,26 @@ Only publish after verifying every question, key and source.</p>
   }
   if($("tadWeeklyReviewRefresh")&&!$("tadWeeklyReviewRefresh").dataset.bound){$("tadWeeklyReviewRefresh").dataset.bound="1";$("tadWeeklyReviewRefresh").addEventListener("click",()=>renderWeeklyReview());}
 
+  // Combine section evidence across recent attempts; never infer a stable weakness from one small sample.
+  function tadBuildMockSectionEvidence(attempts,paperMap){
+    const groups=new Map();
+    (Array.isArray(attempts)?attempts:[]).forEach(attempt=>{
+      const paper=paperMap?.get(attempt.paper_id);if(!paper)return;
+      Object.entries(attempt.analytics?.section_breakdown||{}).forEach(([section,values])=>{
+        const correct=Math.max(0,Number(values?.correct)||0),wrong=Math.max(0,Number(values?.wrong)||0),answered=correct+wrong;
+        if(!answered)return;
+        const key=paper.id+"::"+section;
+        const row=groups.get(key)||{topic:String(paper.title||"Mock")+" · "+section,correct:0,wrong:0,attempts:0,latest:""};
+        row.correct+=correct;row.wrong+=wrong;row.attempts++;
+        if(Date.parse(attempt.submitted_at||"")>Date.parse(row.latest||""))row.latest=attempt.submitted_at||"";
+        groups.set(key,row);
+      });
+    });
+    return [...groups.values()].map(row=>({...row,answered:row.correct+row.wrong,accuracy:row.correct+row.wrong?row.correct/(row.correct+row.wrong)*100:0,
+      confidence:row.attempts>=2&&row.correct+row.wrong>=10?"repeat-evidence":"early-signal"}))
+      .sort((a,b)=>a.accuracy-b.accuracy||b.answered-a.answered);
+  }
+
   let tadRevisionEngineRun = 0;
   async function renderWeaknessEngine() {
     const summary=$("tadWeaknessSummary"),host=$("tadWeaknessQueue");if(!summary||!host)return;
@@ -4391,20 +4411,11 @@ Only publish after verifying every question, key and source.</p>
       const payload=ur.data?.payload&&typeof ur.data.payload==="object"?ur.data.payload:{};
       evals=Array.isArray(payload.answerEvaluations)?payload.answerEvaluations:Array.isArray(state.answerEvaluations)?state.answerEvaluations:Array.isArray(state.mainsEvaluations)?state.mainsEvaluations:[];
     }catch(error){console.warn("Revision engine could not load all cloud signals:",error.message);}
-    const mockWeak=[];
-    attempts.forEach(attempt=>{
-      const paper=paperMap.get(attempt.paper_id);if(!paper)return;
-      const breakdown=attempt.analytics?.section_breakdown||{};
-      Object.entries(breakdown).forEach(([section,values])=>{
-        const correct=Number(values.correct||0),wrong=Number(values.wrong||0),total=correct+wrong;
-        if(!total)return;
-        const accuracy=correct/total*100;
-        if(accuracy<65)mockWeak.push({topic:paper.title+" · "+section,accuracy,wrong,total,date:attempt.submitted_at||"",paper});
-      });
-    });
-    const weakestByTopic=new Map();
-    mockWeak.forEach(x=>{const old=weakestByTopic.get(x.topic);if(!old||x.accuracy<old.accuracy)weakestByTopic.set(x.topic,x);});
-    [...weakestByTopic.values()].sort((a,b)=>a.accuracy-b.accuracy).slice(0,6).forEach(x=>add("mock",x.topic,"Mock accuracy "+Math.round(x.accuracy)+"% · "+x.wrong+" incorrect of "+x.total,100,{accuracy:x.accuracy}));
+    const mockEvidence=tadBuildMockSectionEvidence(attempts,paperMap);
+    const mockWeak=mockEvidence.filter(x=>x.accuracy<65&&x.confidence==="repeat-evidence");
+    const earlyMockSignals=mockEvidence.filter(x=>x.accuracy<65&&x.confidence==="early-signal");
+    mockWeak.slice(0,6).forEach(x=>add("mock",x.topic,"Combined accuracy "+Math.round(x.accuracy)+"% across "+x.attempts+" attempts · "+x.wrong+" incorrect of "+x.answered,100,{accuracy:x.accuracy,attempts:x.attempts}));
+    earlyMockSignals.slice(0,4).forEach(x=>add("mock_signal",x.topic,"Early signal only: "+Math.round(x.accuracy)+"% from "+x.attempts+" attempt(s) and "+x.answered+" answered question(s). Take another mock before treating this as a confirmed weakness.",72,{accuracy:x.accuracy,attempts:x.attempts}));
     const weaknessTags=new Map();
     evals.slice(0,20).forEach(e=>{
       const raw=[...(Array.isArray(e.priorityWeaknesses)?e.priorityWeaknesses:[]),...(Array.isArray(e.improvements)?e.improvements:[])];
@@ -4464,12 +4475,12 @@ Only publish after verifying every question, key and source.</p>
     }
     paintMission();
     const activeDue=due.filter(x=>x.dueAt<=tadDateAfterDays(0)).length;
-    summary.innerHTML=[[mistakes.length,"Saved mistakes"],[mockWeak.length,"Weak mock sections"],[weaknessTags.size,"Mains feedback signals"],[activeDue,"Due / overdue revisions"]].map(x=>'<div class="tad-review-metric"><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></div>').join("");
-    const labels={mock:"Mock result",answer:"Mains feedback",mistake:"Recorded mistake",revision:"Scheduled revision",syllabus:"Syllabus priority"};
+    summary.innerHTML=[[mistakes.length,"Saved mistakes"],[mockWeak.length,"Confirmed mock patterns"],[earlyMockSignals.length,"Early signals to verify"],[activeDue,"Due / overdue revisions"]].map(x=>'<div class="tad-review-metric"><strong>'+esc(x[0])+'</strong><span>'+esc(x[1])+'</span></div>').join("");
+    const labels={mock:"Repeated mock evidence",mock_signal:"Early mock signal",answer:"Mains feedback",mistake:"Recorded mistake",revision:"Scheduled revision",syllabus:"Syllabus priority"};
     host.innerHTML=(tasks.length?'<div class="tad-revision-engine-summary"><b>Today’s adaptive priorities</b><span>Ranked using your saved evidence. Syllabus suggestions are learning prompts, not inferred weaknesses.</span></div><ol class="tad-review-priorities">'+tasks.slice(0,12).map((x,i)=>{
       const status=mastery[x.key]?.status||"not_started",exact=(SYLLABI[selectedExam]||[]).find(t=>t.toLowerCase()===x.topic.toLowerCase());
       return '<li class="tad-revision-priority tad-revision-'+esc(x.kind)+'"><div class="tad-revision-priority-head"><b>'+esc(x.topic)+'</b><span>'+esc(labels[x.kind]||"Study task")+'</span></div><span>'+esc(x.detail)+' · Stage: '+esc(status.replace("_"," "))+'</span><div class="tad-weakness-actions"><button type="button" class="btn" data-weakness-practise="'+i+'">Mark practising</button><button type="button" class="btn" data-weakness-revise="'+i+'">Schedule revision</button>'+(exact?'<a href="#tracker" data-nav="tracker">Open syllabus topic</a>':'')+'</div></li>';
-    }).join("")+'</ol>':'<p class="muted">No revision signals are recorded yet. Log study progress, complete a mock test or evaluate a Mains answer to build your schedule.</p>')+'<p class="tad-revision-source-note">Sources: your latest 12 completed mock attempts, saved Mains feedback, tagged mistakes, syllabus completion and scheduled revisions. No scores or weaknesses are invented.</p>';
+    }).join("")+'</ol>':'<p class="muted">No revision signals are recorded yet. Log study progress, complete a mock test or evaluate a Mains answer to build your schedule.</p>')+'<p class="tad-revision-source-note">Sources: your latest 12 completed mock attempts, saved Mains feedback, tagged mistakes, syllabus completion and scheduled revisions. A mock section is a confirmed pattern only after at least 2 attempts and 10 answered questions; smaller samples are labelled early signals.</p>';
     host.querySelectorAll("[data-weakness-practise]").forEach(btn=>btn.addEventListener("click",()=>{const x=tasks[Number(btn.dataset.weaknessPractise)];if(!x)return;state.topicMastery=state.topicMastery||{};state.topicMastery[x.key]={status:"practised",updatedAt:new Date().toISOString(),source:x.kind};saveUserState();toast("Practice stage saved as your self-assessment.");}));
     host.querySelectorAll("[data-weakness-revise]").forEach(btn=>btn.addEventListener("click",()=>{const x=tasks[Number(btn.dataset.weaknessRevise)];if(!x)return;state.topicRevisionSchedule=state.topicRevisionSchedule||{};const topic=x.topic,key=selectedExam+"::"+topic,existing=state.topicRevisionSchedule[x.existingKey||key];state.topicRevisionSchedule[key]={exam:selectedExam,topic,createdAt:existing?.createdAt||new Date().toISOString(),intervalIndex:0,dueAt:tadDateAfterDays(1),reviewCount:0,snoozeCount:0,completed:false,source:"adaptive_revision",signal:x.kind,accuracy:x.accuracy??null};saveUserState();toast("Added to your one-day revision schedule.");renderWeaknessEngine();}));
   }
