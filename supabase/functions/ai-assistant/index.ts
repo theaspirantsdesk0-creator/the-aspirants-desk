@@ -16,7 +16,7 @@ const URL = Deno.env.get("SUPABASE_URL") ?? "";
 const ANON = Deno.env.get("SUPABASE_ANON_KEY") || defaultKeyFromMap("SUPABASE_PUBLISHABLE_KEYS");
 const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const GEMINI_KEY = Deno.env.get("GEMINI_API_KEY") ?? "";
-const GEMINI_MODEL = "gemini-2.5-flash-lite"; // Stable free-tier model only; paid-model overrides are disabled.
+const GEMINI_MODEL = "gemini-3.5-flash-lite"; // Current free-tier model; paid-model overrides are disabled.
 const ALLOWED_ORIGINS = new Set([
   "https://theaspirantsdesk0-creator.github.io",
   "http://localhost:5500",
@@ -42,7 +42,7 @@ function providerStatusHint(provider: string, status: number): string {
   if (status === 400) return provider + " rejected the request. Check the configured model name and request compatibility.";
   if (status === 401) return provider + " did not accept the API key. Check that the secret is correct and has not been revoked.";
   if (status === 403) return provider + " denied access to the free tier. AI is paused; the site will not upgrade to paid usage.";
-  if (status === 404) return provider + " could not find the configured model. Check the model name and availability for this key.";
+  if (status === 404) return provider + " cannot access the configured model for this API key. The function now uses Gemini 3.5 Flash-Lite; confirm this key belongs to a Google AI Studio project with Gemini API access. No paid fallback is enabled.";
   if (status === 429) return "Gemini free quota or rate limit has been reached. Anbuu is paused until the free quota resets. No paid fallback will be used.";
   if (status >= 500) return provider + " is temporarily experiencing a service problem. No automatic retry or paid fallback will be used; try again later.";
   return provider + " returned HTTP " + status + ". Check its API configuration.";
