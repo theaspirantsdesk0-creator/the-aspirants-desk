@@ -5,6 +5,24 @@
   }[ch]));
   let busy = false;
 
+  function readableValue(value, key) {
+    if (value === null || value === undefined || value === '') return '<span class="muted">Not provided</span>';
+    if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+    if (typeof value === 'number') return esc(value);
+    if (typeof value === 'string') {
+      const s = value.trim();
+      if ((s.startsWith('{') && s.endsWith('}')) || (s.startsWith('[') && s.endsWith(']'))) { try { return readableValue(JSON.parse(s), key); } catch (_) {} }
+      if (/(created_at|updated_at|attempted_at|completed_at|date)$/i.test(key || '') && !Number.isNaN(Date.parse(value))) return esc(new Date(value).toLocaleString());
+      return esc(value).replace(/\\n/g, '<br>');
+    }
+    if (Array.isArray(value)) return value.length ? '<ol class="owner-workspace-list">' + value.map(v => '<li>' + readableValue(v, '') + '</li>').join('') + '</ol>' : '<span class="muted">None recorded</span>';
+    if (typeof value === 'object') {
+      const entries = Object.entries(value);
+      return entries.length ? '<dl class="owner-workspace-fields">' + entries.map(([k, v]) => '<div><dt>' + esc(k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]/g, ' ')) + '</dt><dd>' + readableValue(v, k) + '</dd></div>').join('') + '</dl>' : '<span class="muted">No details saved</span>';
+    }
+    return esc(value);
+  }
+
   function ensurePanel() {
     const admin = document.getElementById("admin");
     if (!admin || document.getElementById("ownerLearnerWorkspace")) return;
@@ -83,8 +101,8 @@
           AnbuuMentorState: mentor
         };
         const details = record || tests.length || attempts.length || lessons.length || mentor
-          ? JSON.stringify(workspace, null, 2)
-          : "No cloud workspace records have been saved for this account yet.";
+          ? readableValue(workspace, 'workspace')
+          : '<p class="muted">No cloud workspace records have been saved for this account yet.</p>';
         const lastSaved = [record && record.updated_at, tests[0] && tests[0].created_at, attempts[0] && attempts[0].attempted_at, lessons[0] && lessons[0].updated_at, mentor && mentor.updated_at].filter(Boolean).sort().reverse()[0];
         return '<tr><td><b>' + esc(profile.display_name || "Learner") + '</b><br><small>' + esc(profile.target_exam || "UPSC CSE") + '</small></td>' +
           '<td>' + esc(profile.role || "learner") + '</td>' +
@@ -92,7 +110,7 @@
           '<td>' + esc([optional.language, optional.level].filter(Boolean).join(" · ") || "—") + '</td>' +
           '<td>' + tests.length + ' tests · ' + attempts.length + ' PYQ attempts · ' + lessons.length + ' lessons</td>' +
           '<td>' + esc(lastSaved ? new Date(lastSaved).toLocaleString() : "Not synced") + '</td>' +
-          '<td><details><summary>Open saved workspace</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto;padding:.75rem;background:var(--surface-alt);border:1px solid var(--line);border-radius:10px;font-size:.75rem">' + esc(details) + '</pre></details></td></tr>';
+          '<td><details class="owner-workspace-details"><summary>View saved workspace</summary><div class="owner-workspace-content">' + details + '</div></details></td></tr>';
       }).join("") || '<tr><td colspan="7">No learner accounts found.</td></tr>';
       status.textContent = profiles.length + " account(s) · owner-only read view · recent activity capped at 500 rows per activity table.";
     } catch (error) {
