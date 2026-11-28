@@ -18,7 +18,7 @@ const readForm=()=>({
  explanation:$("qReviewExplanation").value.trim(),
  difficulty:$("qReviewDifficulty").value,
  source_title:$("qReviewSourceTitle").value.trim(),
- source_url:$("qReviewSourceUrl").value.trim(),
+   source_url:isHttpsSource(rawRow.source_url),
  review_checks:Object.fromEntries(CHECKS.map(k=>[k,$("qReviewCheck_"+k).checked]))
 });
 function validate(d,stage){
@@ -43,7 +43,8 @@ function duplicateWarning(d){
  const match=rows.find(r=>r.id!==activeId&&String(r.subject).toLocaleLowerCase()===d.subject.toLocaleLowerCase()&&String(r.question_text).toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim()===q);
  return match?"Possible exact duplicate in "+match.subject+" · "+match.status+" (record "+match.id.slice(0,8)+"). Check before approval.":"";
 }
-function normaliseQuestionKey(value){return String(value||"").toLocaleLowerCase().replace(/[^\\p{L}\\p{N}]+/gu," ").trim().replace(/\\s+/g," ");}
+function normaliseQuestionKey(value){return String(value||"").toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim().replace(/\s+/g," ");}
+function isHttpsSource(value){const u=String(value||"").trim();return u.startsWith("https://")&&!/\s/.test(u)?u:null;}
 async function loadHistory(){
  const panel=$("qReviewHistory");if(!panel)return;
  if(!activeId){panel.innerHTML='<p class="mock-save">Open a saved question to see its version history and activity.</p>';return;}
@@ -94,7 +95,7 @@ async function importBulk(){
    wrong_options:Array.isArray(wrong)?wrong.map(x=>String(x).trim()):[],
    explanation:String(rawRow.explanation||rawRow.e||"").trim(),
    difficulty:["easy","medium","hard"].includes(String(rawRow.difficulty||"").toLowerCase())?String(rawRow.difficulty).toLowerCase():"medium",
-   source_url:/^https:\\/\\/[^\\s]+$/i.test(String(rawRow.source_url||""))?String(rawRow.source_url).trim():null,
+   source_url:isHttpsSource(rawRow.source_url),
    source_title:String(rawRow.source_title||"").trim()||null,
    status:"draft",
    review_checks:{answer:false,distractors:false,explanation:false,metadata:false,duplicates:false},
