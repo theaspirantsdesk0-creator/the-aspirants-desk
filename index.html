@@ -2195,11 +2195,14 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     saveUserState();
   });
 
-  window.addEventListener("tad:notesStudioChange", (event) => {
+  window.addEventListener("tad:notesStudioChange", async (event) => {
     const next = event && event.detail;
     if (!Array.isArray(next)) return;
     state.notesStudio = next.slice(-300);
-    saveUserState();
+    const synced = await saveUserState();
+    window.dispatchEvent(new CustomEvent("tad:userStateSyncStatus", {
+      detail: { key: "notesStudio", synced, at: new Date().toISOString() }
+    }));
   });
 
   window.addEventListener("tad:optionalPrepSave", (event) => {
@@ -2220,7 +2223,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
     renderKPIs();
     renderStudyCommandCentre();
     if (window._tadKpi) window._tadKpi();
-    if (!supabase || !requestedUserId) return;
+    if (!supabase || !requestedUserId) return false;
     try {
       const savedAt = new Date().toISOString();
       const { error: userDataError } = await supabase.from("user_data").upsert({
@@ -2243,8 +2246,10 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
         updated_at: savedAt
       });
       if (progressError) throw progressError;
+      return true;
     } catch (e) {
       console.warn("Cloud sync queued offline:", e.message);
+      return false;
     }
   }
 

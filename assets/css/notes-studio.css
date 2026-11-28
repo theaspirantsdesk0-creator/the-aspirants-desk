@@ -2,3 +2,32 @@
 .ns-revision{margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.ns-revision-list{display:grid;gap:.55rem;margin-top:.7rem}.ns-due-item{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem .8rem;border:1px solid var(--line);border-radius:10px;background:var(--surface-alt)}.ns-due-item small{display:block;color:var(--muted);margin-top:.2rem}@media(max-width:520px){.ns-due-item{align-items:flex-start;flex-direction:column}}
 
 .ns-progress-panel{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.ns-progress-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}.ns-progress-top h3{margin:0}.ns-progress-top p{margin:.2rem 0}.ns-progress-top strong{font:800 1.6rem "Bricolage Grotesque",sans-serif;color:var(--accent)}.ns-progress-track{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:.7rem 0}.ns-progress-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .2s}.ns-progress-tag{display:inline-block;margin:.2rem .25rem .2rem 0;padding:.12rem .5rem;border:1px solid var(--line);border-radius:99px;font-size:.72rem;font-weight:700;color:var(--muted)}.ns-status-complete{color:var(--ok);border-color:var(--ok)}.ns-status-revision{color:var(--warn);border-color:var(--warn)}.ns-status-started{color:var(--accent);border-color:var(--accent)}.ns-progress-actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+
+/* Responsive notebook layout for phones, tablets and desktop browsers. */
+#notesStudio{min-width:0}
+#notesStudio .ns-intro>div{min-width:0;flex:1 1 18rem}
+#notesStudio .ns-controls input,#notesStudio .ns-editor input,#notesStudio .ns-editor select,#notesStudio .ns-editor textarea,#notesStudio #nsVaultSearch{min-width:0;max-width:100%;box-sizing:border-box}
+#notesStudio .ns-vault-item>div:first-child{min-width:0;flex:1 1 18rem}
+#notesStudio .ns-vault-item .btn-row{display:flex;flex-wrap:wrap;gap:.45rem}
+#notesStudio .ns-note-content{max-height: min(55vh, 34rem);overflow:auto;overscroll-behavior:contain;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+#notesStudio .ns-chapter-body,#notesStudio .ns-section{min-width:0;overflow-wrap:anywhere}
+#notesStudio button,#notesStudio input,#notesStudio select,#notesStudio textarea{touch-action:manipulation}
+@media(max-width:760px){
+ #notesStudio .ns-intro{align-items:stretch}
+ #notesStudio .ns-intro>.pill{align-self:flex-start}
+ #notesStudio .ns-progress-top{align-items:flex-start;flex-wrap:wrap}
+ #notesStudio .ns-vault-item{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch}
+ #notesStudio .ns-vault-item>div:first-child{width:100%}
+ #notesStudio .ns-vault-item .btn-row{width:100%}
+ #notesStudio .ns-vault-item .btn-row .btn{flex:1 1 auto}
+ #notesStudio .ns-due-item{display:grid;grid-template-columns:minmax(0,1fr) auto}
+ #notesStudio .ns-editor-grid{grid-template-columns:minmax(0,1fr)}
+ #notesStudio .ns-editor .ns-wide{grid-column:auto}
+}
+@media(max-width:420px){
+ #notesStudio .ns-intro,#notesStudio .ns-editor,#notesStudio .ns-vault,#notesStudio .ns-chapter{padding:.75rem}
+ #notesStudio .ns-controls{grid-template-columns:minmax(0,1fr)}
+ #notesStudio .ns-due-item{grid-template-columns:minmax(0,1fr)}
+ #notesStudio .ns-due-item .btn{width:100%}
+ #notesStudio .ns-progress-top strong{font-size:1.35rem}
+}
