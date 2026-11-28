@@ -39,7 +39,14 @@
       if (String(doc.stage || "").toLowerCase() !== String(item.stage || "").toLowerCase()) return false;
       const itemOptional = String(item.optional_subject || "").trim().toLowerCase();
       const docOptional = String(doc.subject || doc.optional_subject || "").trim().toLowerCase();
-      if (itemOptional && itemOptional !== docOptional) return false;
+      if (itemOptional) {
+        if (itemOptional !== docOptional) return false;
+      } else {
+        const paperLabel = String(item.paper || "").toLowerCase();
+        if (/general studies|^gs\\b/.test(paperLabel) && doc.category !== "General Studies") return false;
+        if (/essay/.test(paperLabel) && doc.category !== "General") return false;
+        if (!/general studies|^gs\\b|essay/.test(paperLabel) && ["Optional","Literature"].includes(doc.category)) return false;
+      }
       const itemPaper = paperNumber(item.paper);
       const docPaper = paperNumber(doc.paper);
       if (itemPaper && docPaper && itemPaper !== docPaper) return false;
