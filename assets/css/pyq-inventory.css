@@ -22,3 +22,7 @@
 .pyq-tracker-pagination button:disabled{opacity:.45;cursor:not-allowed}
 .pyq-tracker-note{font-size:.78rem;margin:.5rem 0 0}
 @media(max-width:720px){.pyq-explorer-heading{display:grid}.pyq-explorer-total{justify-self:start}.pyq-explorer-filters{grid-template-columns:1fr 1fr}.pyq-explorer-filters label:first-child{grid-column:1/-1}.pyq-tracker-summary{grid-template-columns:1fr 1fr}.pyq-tracker-pagination{align-items:flex-start;flex-direction:column}.pyq-tracker-pagination>div{width:100%}.pyq-tracker-pagination button{flex:1}}
+
+.pyq-source-pending{display:inline-block;color:var(--muted);font-size:.76rem;white-space:nowrap}
+.pyq-tracker-table td a{font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.pyq-tracker-table td a:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:3px}
