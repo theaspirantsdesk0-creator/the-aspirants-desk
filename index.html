@@ -3503,6 +3503,31 @@ Only publish after verifying every question, key and source.</p>
         PRACTICE_BANK_LOAD.added++;
       });
     });
+    // Supabase is the live owner-published practice-question source.
+    // RLS returns only published rows to learners; admin drafts remain private.
+    const liveClient = window.TAD_SUPABASE;
+    if (liveClient) {
+      const { data: liveRows, error: liveError } = await liveClient
+        .from("practice_question_bank")
+        .select("id,subject,topic,question_text,correct_answer,wrong_options,explanation,difficulty")
+        .eq("status", "published")
+        .order("created_at", { ascending: false })
+        .limit(500);
+      if (liveError) {
+        PRACTICE_BANK_LOAD.databaseFailed = true;
+      } else {
+        (liveRows || []).forEach(q => {
+          if (!q || !q.subject || !q.question_text || !q.correct_answer ||
+              !Array.isArray(q.wrong_options) || q.wrong_options.length !== 3 ||
+              !q.explanation || !["easy", "medium", "hard"].includes(String(q.difficulty || "").toLowerCase())) return;
+          const key = String(q.subject).trim().toLowerCase() + "|" + String(q.question_text).trim().toLowerCase().replace(/\\s+/g, " ");
+          if (seen.has(key)) return;
+          seen.add(key);
+          bank.push([q.subject, q.question_text, q.correct_answer, ...q.wrong_options, q.explanation, String(q.difficulty).toLowerCase()]);
+          PRACTICE_BANK_LOAD.databaseAdded = (PRACTICE_BANK_LOAD.databaseAdded || 0) + 1;
+        });
+      }
+    }
     window.TAD.BANK = bank;
     PRACTICE_BANK_LOAD.loaded = true;
   }
@@ -3528,7 +3553,7 @@ Only publish after verifying every question, key and source.</p>
       const matchesQuery = !query || [row[0], row[1], row[6]].join(" ").toLowerCase().includes(query);
       return matchesSubject && matchesDifficulty && matchesQuery;
     });
-    host.innerHTML = '<p class="muted" style="font-size:.82rem">' + rows.length + ' matching practice questions · Showing up to 30 at a time. ' + (PRACTICE_BANK_LOAD.loaded ? (PRACTICE_BANK_LOAD.added + ' additional published questions loaded from ' + PRACTICE_BANK_LOAD.files + ' topic files' + (PRACTICE_BANK_LOAD.failed ? '; ' + PRACTICE_BANK_LOAD.failed + ' files unavailable' : '') + '. ') : '') + 'Answers and explanations are expandable.</p>' +
+    host.innerHTML = '<p class="muted" style="font-size:.82rem">' + rows.length + ' matching practice questions · Showing up to 30 at a time. ' + (PRACTICE_BANK_LOAD.loaded ? (PRACTICE_BANK_LOAD.added + ' additional published questions loaded from ' + PRACTICE_BANK_LOAD.files + ' topic files' + ((PRACTICE_BANK_LOAD.databaseAdded || 0) ? '; ' + PRACTICE_BANK_LOAD.databaseAdded + ' owner-approved live questions' : '') + (PRACTICE_BANK_LOAD.databaseFailed ? '; live question database unavailable' : '') + (PRACTICE_BANK_LOAD.failed ? '; ' + PRACTICE_BANK_LOAD.failed + ' files unavailable' : '') + '. ') : '') + 'Answers and explanations are expandable.</p>' +
       (rows.length ? rows.slice(0, 30).map((row, index) => {
         const options = [row[2], ...row.slice(3, 6)];
         return '<article class="card" style="margin:.7rem 0"><div class="btn-row"><span class="pill">' + esc(row[0]) + '</span><span class="pill">' + esc(row[7] || "medium") + '</span><span class="pill">Practice question</span></div>' +
