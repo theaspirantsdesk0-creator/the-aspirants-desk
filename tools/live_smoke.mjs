@@ -61,6 +61,19 @@ try {
   }
   if (!publishedVersionReady) throw new Error('Latest build did not appear on Pages within ten minutes; HTTP=' + (response?.status() ?? 'no response') + '; DOM=' + JSON.stringify(lastDomAudit));
   await page.waitForTimeout(4000);
+  // Public practice-bank API must expose published questions only; owner tools
+  // remain hidden in the guest session used by this smoke test.
+  const practiceBankAccess = await page.evaluate(async () => {
+    const client = window.TAD_SUPABASE;
+    if (!client) return { error: 'Supabase browser client missing', statuses: [] };
+    const { data, error } = await client.from('practice_question_bank').select('status').limit(50);
+    return { error: error?.message || null, statuses: (data || []).map(row => row.status) };
+  });
+  if (practiceBankAccess.error || practiceBankAccess.statuses.some(status => status !== 'published')) {
+    throw new Error('Public practice bank access policy failed: ' + JSON.stringify(practiceBankAccess));
+  }
+  const guestReviewDashboard = await page.locator('#questionReviewAdmin').evaluate(el => el.hidden);
+  if (!guestReviewDashboard) throw new Error('Owner question review dashboard must remain hidden for guests');
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
   // against unverified question records becoming publicly available.
