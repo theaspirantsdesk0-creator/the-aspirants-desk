@@ -214,3 +214,58 @@ input,select,textarea{border-radius:10px}
 
 /* Adaptive topic practice recommendations */
 .tad-adaptive-practice{margin:1rem 0 1.2rem;padding:1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface-alt)}.tad-adaptive-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;flex-wrap:wrap}.tad-adaptive-head h3{margin:.2rem 0}.tad-adaptive-recommendations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.8rem}.tad-adaptive-card{padding:.85rem;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.tad-adaptive-card>div{display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start}.tad-adaptive-card>div strong{font-size:.8rem;text-align:right}.tad-adaptive-rank{font-size:.65rem;font-weight:800;letter-spacing:.08em;color:var(--accent)}.tad-adaptive-card h4{margin:.6rem 0 .25rem}.tad-adaptive-card p{font-size:.82rem;margin:.25rem 0}.tad-adaptive-card small{display:block;color:var(--muted);font-size:.7rem;line-height:1.5;margin:.45rem 0}.tad-adaptive-card button{margin-top:.25rem}@media(max-width:700px){.tad-adaptive-recommendations{grid-template-columns:1fr}}
+
+
+/* Prep Tracker card layout repair: prevent nested controls from forcing
+   grid columns wider than their cards and wrapping text character-by-character. */
+#tracker #tadSyllabusTopicList{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  align-items:stretch;
+}
+#tracker .tad-syllabus-topic{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:start;
+  gap:.45rem;
+  min-width:0;
+  width:100%;
+  max-width:100%;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+#tracker .tad-syllabus-topic>*{min-width:0;max-width:100%}
+#tracker .tad-syllabus-topic strong,
+#tracker .tad-syllabus-status,
+#tracker .tad-mastery-updated{
+  display:block;
+  min-width:0;
+  overflow-wrap:break-word;
+  word-break:normal;
+  line-height:1.5;
+}
+#tracker .tad-mastery-control{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  width:100%;
+  min-width:0;
+  gap:.35rem;
+  margin-top:.35rem;
+}
+#tracker .tad-mastery-control>span{min-width:0;line-height:1.45}
+#tracker .tad-mastery-control select{
+  display:block;
+  grid-column:1;
+  grid-row:auto;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+}
+#tracker .tad-mastery-updated{grid-column:1}
+#tracker .tad-syllabus-progress,
+#tracker .tad-syllabus-topic-list,
+#tracker .tad-syllabus-topic{box-sizing:border-box}
+@media(max-width:700px){
+  #tracker #tadSyllabusTopicList{grid-template-columns:minmax(0,1fr)}
+  #tracker .tad-syllabus-progress{min-width:0}
+  #tracker .tad-syllabus-controls{grid-template-columns:minmax(0,1fr)}
+}
