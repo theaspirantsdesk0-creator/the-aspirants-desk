@@ -455,12 +455,13 @@ try {
       rhythmInsight: Boolean(document.querySelector('#tadRhythmInsight')),
       editorialStyles: [...document.styleSheets].some(sheet => sheet.href && sheet.href.includes('dashboard-editorial.css')),
       includesTodayEndBoundary: scripts.includes('todayEnd'),
-      guestReportIsPrivate: Boolean(report && /sign in to view your private study report/i.test(report.textContent))
+      guestHasNoPersonalStudyRows: Boolean(report && report.querySelectorAll('.tad-week-day').length === 0 &&
+        document.querySelector('#tadSubjectMix')?.querySelectorAll('.tad-subject-mix-row').length === 0)
     };
   });
   if (!learningAnalyticsAudit.intelligence || !learningAnalyticsAudit.subjectMix ||
       !learningAnalyticsAudit.rhythmInsight || !learningAnalyticsAudit.editorialStyles ||
-      !learningAnalyticsAudit.includesTodayEndBoundary || !learningAnalyticsAudit.guestReportIsPrivate) {
+      !learningAnalyticsAudit.includesTodayEndBoundary || !learningAnalyticsAudit.guestHasNoPersonalStudyRows) {
     throw new Error('Personal learning analytics UI/privacy/date-boundary audit failed: ' + JSON.stringify(learningAnalyticsAudit));
   }
   // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
