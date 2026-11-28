@@ -85,18 +85,22 @@ try {
     if (!reviewScriptSource.includes(required)) throw new Error('Question import preview feature is missing: ' + required);
   }
   const reviewFixture = await browser.newPage({ acceptDownloads: true });
+  reviewFixture.on('dialog', dialog => dialog.accept());
   await reviewFixture.setContent([
     '<section id="questionReviewAdmin" hidden>',
     '<p id="qReviewStatus"></p><input id="qReviewFilter" value="all"><input id="qReviewSearch">',
     '<button id="qReviewNew"></button><button id="qReviewReload"></button>',
     '<button id="qReviewSaveDraft"></button><button id="qReviewSendReview"></button>',
     '<button id="qReviewPublish"></button><button id="qReviewArchive"></button>',
-    '<form id="qReviewForm"><input id="qReviewQuestion"></form>',
-    '<div id="qReviewStats"></div><div id="qReviewCount"></div><div id="qReviewList"></div>',
+    '<form id="qReviewForm"><input id="qReviewSubject"><input id="qReviewTopic"><input id="qReviewQuestion"><input id="qReviewAnswer"><textarea id="qReviewWrong"></textarea><input id="qReviewExplanation"><input id="qReviewDifficulty"><input id="qReviewSourceTitle"><input id="qReviewSourceUrl"><input id="qReviewRecordMeta"><input id="qReviewEditorTitle"><div id="qReviewDuplicate"></div>',
+    '<input type="checkbox" id="qReviewCheck_answer"><input type="checkbox" id="qReviewCheck_distractors"><input type="checkbox" id="qReviewCheck_explanation"><input type="checkbox" id="qReviewCheck_metadata"><input type="checkbox" id="qReviewCheck_duplicates"></form>',
+    '<div id="qReviewEditor"></div><div id="qReviewStats"></div><div id="qReviewCount"></div><div id="qReviewList"></div>',
     '<input id="qReviewBulkFile" type="file"><textarea id="qReviewBulkJson"></textarea>',
     '<button id="qReviewBulkPreviewBtn"></button><button id="qReviewBulkImport" disabled></button>',
     '<button id="qReviewBulkExport" disabled></button><div id="qReviewBulkSummary"></div>',
     '<div id="qReviewBulkPreview"></div><div id="qReviewBulkResult"></div>',
+    '<button id="qReviewBatchRefresh"></button><div id="qReviewBatchList"></div>',
+    '<section id="qReviewHistory"></section><section id="qReviewVersionCompare"></section>',
     '</section>'
   ].join(''));
   await reviewFixture.evaluate(() => {
@@ -113,25 +117,54 @@ try {
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     }];
+    const batchRows=[];
+    const snapshots=[
+      {question_key:'inserted-0-0',version_no:2,event_type:'updated',snapshot:{subject:'Polity',topic:'Elections',question_text:'Which body conducts national elections in India?',correct_answer:'Election Commission of India',wrong_options:['Union Cabinet','Supreme Court','Finance Commission'],explanation:'Updated explanation text.',difficulty:'easy',status:'draft',source_title:'',source_url:'',review_checks:{}},actor_id:null,created_at:new Date().toISOString()},
+      {question_key:'inserted-0-0',version_no:1,event_type:'created',snapshot:{subject:'Polity',topic:'Elections',question_text:'Which institution conducts national elections in India?',correct_answer:'Election Commission of India',wrong_options:['Union Cabinet','Supreme Court','Finance Commission'],explanation:'Initial explanation text.',difficulty:'medium',status:'draft',source_title:'',source_url:'',review_checks:{}},actor_id:null,created_at:new Date(Date.now()-60000).toISOString()}
+    ];
     window.__reviewInserted = [];
+    window.__reviewBatchRows = batchRows;
     window.TAD_SUPABASE = {
       auth: { getSession: async () => ({ data: { session: { user: { id: 'owner-fixture' } } } }) },
+      rpc: async (name,args) => {
+        if(name!=='rollback_practice_question_import_batch')return {data:null,error:{message:'Unexpected RPC'}};
+        const batch=batchRows.find(x=>x.id===args.p_batch_id);
+        if(!batch)return {data:null,error:{message:'Batch not found'}};
+        if(batch.status==='rolled_back')return {data:null,error:{message:'Already rolled back'}};
+        const rows=bankRows.filter(row=>row.import_batch_id===args.p_batch_id);
+        if(rows.some(row=>row.status!=='draft'))return {data:null,error:{message:'Rollback blocked because a question moved beyond Draft'}};
+        rows.forEach(row=>row.status='archived');
+        batch.status='rolled_back';batch.rollback_count=rows.length;batch.rolled_back_at=new Date().toISOString();
+        return {data:{records_archived:rows.length,status:'rolled_back'},error:null};
+      },
       from: table => {
         const query = {
+          pendingInsert:null,pendingUpdate:null,filterId:null,
           select() { return this; },
-          eq() { return this; },
+          eq(column,value) { if(column==='id')this.filterId=value;return this; },
+          in: async () => ({data:[],error:null}),
           order() { return this; },
           maybeSingle: async () => ({ data: { role: 'admin' }, error: null }),
-          limit: async () => ({ data: bankRows, error: null }),
+          limit: async () => ({ data: table==='practice_question_bank'?bankRows:table==='practice_question_import_batches'?batchRows:table==='practice_question_versions'?snapshots:[], error: null }),
           range: async (start, end) => ({ data: bankRows.slice(start, end + 1), error: null }),
-          insert: async values => {
-            const rows = (Array.isArray(values) ? values : [values]).map((row, index) => ({
-              ...row, id: 'inserted-' + window.__reviewInserted.length + '-' + index,
-              created_at: new Date().toISOString(), updated_at: new Date().toISOString()
-            }));
-            window.__reviewInserted.push(...rows);
-            bankRows.push(...rows);
-            return { error: null };
+          insert(values) {
+            if(table==='practice_question_import_batches'){this.pendingInsert=values;return this;}
+            const added=(Array.isArray(values)?values:[values]).map((row,index)=>({...row,id:'inserted-'+window.__reviewInserted.length+'-'+index,created_at:new Date().toISOString(),updated_at:new Date().toISOString()}));
+            window.__reviewInserted.push(...added);bankRows.push(...added);
+            return Promise.resolve({error:null});
+          },
+          single: async () => {
+            const row={...this.pendingInsert,id:'batch-'+(batchRows.length+1),created_at:new Date().toISOString(),rolled_back_at:null,rollback_count:0};
+            batchRows.push(row);return {data:{id:row.id},error:null};
+          },
+          update(values) { this.pendingUpdate=values;return this; },
+          then(resolve,reject) {
+            if(table==='practice_question_import_batches'&&this.pendingUpdate){
+              const row=batchRows.find(x=>x.id===this.filterId);
+              if(row)Object.assign(row,this.pendingUpdate);
+              return Promise.resolve({error:null}).then(resolve,reject);
+            }
+            return Promise.resolve({error:null}).then(resolve,reject);
           }
         };
         return query;
