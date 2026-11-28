@@ -61,3 +61,13 @@
 #upsc-2027 .roadmap-shortcuts a:hover{border-color:var(--accent);color:var(--accent)}
 @media(max-width:600px){#upsc-2027 .roadmap-shortcuts a{flex:1 1 calc(50% - .45rem);text-align:center}#upsc-2027 #upsc2027Checklist label{padding:.7rem}}
 @media(prefers-reduced-motion:reduce){#upsc-2027 #upsc2027Checklist label,#upsc-2027 .roadmap-progress-track .bar-fill{transition:none}}
+
+
+#home .tad-subject-mix{display:grid;gap:.65rem;margin:.35rem 0 .8rem}
+#home .tad-subject-mix-row{display:grid;gap:.3rem}
+#home .tad-subject-mix-row>div:first-child{display:flex;justify-content:space-between;gap:.7rem;font-size:.78rem}
+#home .tad-subject-mix-row span{min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+#home .tad-subject-mix-row b{flex:0 0 auto;font-variant-numeric:tabular-nums;color:var(--muted);font-size:.74rem}
+#home .tad-subject-mix-track{height:7px;border-radius:99px;overflow:hidden;background:var(--surface-alt);border:1px solid var(--dash-line)}
+#home .tad-subject-mix-track i{display:block;height:100%;min-width:2px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--gold))}
+#home .tad-rhythm-insight{margin:.75rem 0 0;padding:.7rem .8rem;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;background:var(--surface-alt);font-size:.78rem;line-height:1.55;color:var(--muted)}
