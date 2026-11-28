@@ -76,6 +76,129 @@ try {
     Boolean(el.querySelector('#mockAdminPanel') || el.querySelector('#questionReviewAdmin'))
   );
   if (guestOwnerControls) throw new Error('Owner question publishing controls must not exist in the guest examination workspace');
+  // Exercise the owner-only bulk-import preview in an isolated browser fixture.
+  // The fake Supabase client is in-memory: this test creates no real database rows.
+  const reviewScriptResponse = await page.request.get(base + 'assets/js/question-review-dashboard.js');
+  if (!reviewScriptResponse.ok()) throw new Error('Question review client script could not be fetched');
+  const reviewScriptSource = await reviewScriptResponse.text();
+  for (const required of ['function previewBulk()', 'function exportBulkReport()', 'qReviewBulkPreviewBtn', 'qReviewBulkExport']) {
+    if (!reviewScriptSource.includes(required)) throw new Error('Question import preview feature is missing: ' + required);
+  }
+  const reviewFixture = await browser.newPage({ acceptDownloads: true });
+  await reviewFixture.setContent([
+    '<section id="questionReviewAdmin" hidden>',
+    '<p id="qReviewStatus"></p><input id="qReviewFilter" value="all"><input id="qReviewSearch">',
+    '<button id="qReviewNew"></button><button id="qReviewReload"></button>',
+    '<button id="qReviewSaveDraft"></button><button id="qReviewSendReview"></button>',
+    '<button id="qReviewPublish"></button><button id="qReviewArchive"></button>',
+    '<form id="qReviewForm"><input id="qReviewQuestion"></form>',
+    '<div id="qReviewStats"></div><div id="qReviewCount"></div><div id="qReviewList"></div>',
+    '<input id="qReviewBulkFile" type="file"><textarea id="qReviewBulkJson"></textarea>',
+    '<button id="qReviewBulkPreviewBtn"></button><button id="qReviewBulkImport" disabled></button>',
+    '<button id="qReviewBulkExport" disabled></button><div id="qReviewBulkSummary"></div>',
+    '<div id="qReviewBulkPreview"></div><div id="qReviewBulkResult"></div>',
+    '</section>'
+  ].join(''));
+  await reviewFixture.evaluate(() => {
+    const bankRows = [{
+      id: 'existing-question',
+      subject: 'Polity',
+      topic: 'President',
+      question_text: 'The President is elected by an electoral college consisting of elected members of both Houses of Parliament and elected members of State Legislative Assemblies within India.',
+      correct_answer: 'Electoral college',
+      wrong_options: ['Cabinet', 'Supreme Court', 'Election Commission'],
+      explanation: 'A constitutional electoral college elects the President.',
+      difficulty: 'medium',
+      status: 'published',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }];
+    window.__reviewInserted = [];
+    window.TAD_SUPABASE = {
+      auth: { getSession: async () => ({ data: { session: { user: { id: 'owner-fixture' } } } }) },
+      from: table => {
+        const query = {
+          select() { return this; },
+          eq() { return this; },
+          order() { return this; },
+          maybeSingle: async () => ({ data: { role: 'admin' }, error: null }),
+          limit: async () => ({ data: bankRows, error: null }),
+          range: async (start, end) => ({ data: bankRows.slice(start, end + 1), error: null }),
+          insert: async values => {
+            const rows = (Array.isArray(values) ? values : [values]).map((row, index) => ({
+              ...row, id: 'inserted-' + window.__reviewInserted.length + '-' + index,
+              created_at: new Date().toISOString(), updated_at: new Date().toISOString()
+            }));
+            window.__reviewInserted.push(...rows);
+            bankRows.push(...rows);
+            return { error: null };
+          }
+        };
+        return query;
+      }
+    };
+  });
+  await reviewFixture.addScriptTag({ content: reviewScriptSource });
+  const reviewRows = [
+    {
+      subject: 'Polity', topic: 'Elections',
+      q: 'Which body conducts national elections in India?',
+      a: 'Election Commission of India',
+      w: ['Union Cabinet', 'Supreme Court', 'Finance Commission'],
+      e: 'The Election Commission supervises and conducts elections.'
+    },
+    {
+      subject: 'Polity', topic: 'Elections',
+      q: 'Which body conducts national elections in India?',
+      a: 'Election Commission of India',
+      w: ['Union Cabinet', 'Supreme Court', 'Finance Commission'],
+      e: 'The Election Commission supervises and conducts elections.'
+    },
+    { subject: '', q: 'Too short', a: '', w: [], e: 'No valid content' },
+    {
+      subject: 'Polity', topic: 'President',
+      q: 'The President is elected by an electoral college consisting of elected members of both Houses of Parliament and elected members of State Legislative Assemblies across India.',
+      a: 'Electoral college',
+      w: ['Union Cabinet', 'Supreme Court', 'Election Commission'],
+      e: 'The President is elected by a constitutional electoral college.'
+    }
+  ];
+  await reviewFixture.locator('#qReviewBulkJson').fill(JSON.stringify(reviewRows));
+  await reviewFixture.locator('#qReviewBulkPreviewBtn').click();
+  await reviewFixture.waitForFunction(() => document.querySelector('#qReviewBulkSummary')?.textContent.includes('4 rows'));
+  const previewAudit = await reviewFixture.evaluate(() => ({
+    summary: document.querySelector('#qReviewBulkSummary').textContent,
+    badges: [...document.querySelectorAll('#qReviewBulkPreview .qreview-preview-status')].map(el => el.textContent.trim()),
+    importEnabled: !document.querySelector('#qReviewBulkImport').disabled,
+    reportEnabled: !document.querySelector('#qReviewBulkExport').disabled
+  }));
+  if (!previewAudit.summary.includes('1 duplicate(s)') || !previewAudit.summary.includes('1 invalid') ||
+      !previewAudit.summary.includes('1 similar-question warning(s)') ||
+      previewAudit.badges.join('|') !== 'Ready|Duplicate|Invalid|Similar' ||
+      !previewAudit.importEnabled || !previewAudit.reportEnabled) {
+    throw new Error('Question bulk import preview validation mismatch: ' + JSON.stringify(previewAudit));
+  }
+  await reviewFixture.locator('#qReviewBulkImport').click();
+  await reviewFixture.waitForFunction(() => document.querySelector('#qReviewBulkResult')?.textContent.includes('Imported 2 draft(s)'));
+  const importAudit = await reviewFixture.evaluate(() => ({
+    insertedCount: window.__reviewInserted.length,
+    statuses: window.__reviewInserted.map(row => row.status),
+    checks: window.__reviewInserted.map(row => row.review_checks),
+    badges: [...document.querySelectorAll('#qReviewBulkPreview .qreview-preview-status')].map(el => el.textContent.trim())
+  }));
+  if (importAudit.insertedCount !== 2 || importAudit.statuses.some(value => value !== 'draft') ||
+      importAudit.checks.some(value => Object.values(value || {}).some(Boolean)) ||
+      importAudit.badges.join('|') !== 'Imported|Duplicate|Invalid|Imported') {
+    throw new Error('Question bulk import did not preserve draft-only and validation rules: ' + JSON.stringify(importAudit));
+  }
+  const reportDownloadPromise = reviewFixture.waitForEvent('download');
+  await reviewFixture.locator('#qReviewBulkExport').click();
+  const reportDownload = await reportDownloadPromise;
+  if (reportDownload.suggestedFilename() !== 'aspirants-desk-question-import-review.csv') {
+    throw new Error('Question import review report filename was unexpected: ' + reportDownload.suggestedFilename());
+  }
+  await reviewFixture.close();
+
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
   // against unverified question records becoming publicly available.
