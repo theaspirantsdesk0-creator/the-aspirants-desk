@@ -1002,6 +1002,19 @@ def main() -> int:
                   f"Question import preview/report feature is missing: {required}")
         check('source_url:$("qReviewSourceUrl").value.trim()' in review_js,
               "Question editor must read the source URL field without referencing an import row")
+        for required in ("async function loadImportBatches()", "async function rollbackImportBatch(batchId)", "rollback_practice_question_import_batch", "function renderVersionComparison()", "function paintVersionComparison()", "import_batch_id:batchId"):
+            check(required in review_js, f"Import batch/rollback/version comparison feature is missing: {required}")
+        review_migration = ROOT / "supabase" / "migrations" / "20261128100746_practice_question_import_batch_tracking_and_rollback.sql"
+        if review_migration.is_file():
+            migration_sql = review_migration.read_text(encoding="utf-8")
+            check("enable row level security" in migration_sql.lower() and "security invoker" in migration_sql.lower()
+                  and "status <> 'draft'" in migration_sql and "rolled_back" in migration_sql,
+                  "Import batch migration must protect access and reject rollback after review/publication")
+        else:
+            check(False, "Import batch rollback migration is missing from the repository")
+        index_html = (ROOT / "index.html").read_text(encoding="utf-8")
+        for required in ('id="qReviewBatchList"', 'id="qReviewVersionCompare"', 'id="qReviewBatchRefresh"'):
+            check(required in index_html, f"Import batch or version comparison UI is missing: {required}")
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
     if ERRORS:
