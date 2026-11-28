@@ -1002,7 +1002,7 @@ def main() -> int:
                   f"Question import preview/report feature is missing: {required}")
         check('source_url:$("qReviewSourceUrl").value.trim()' in review_js,
               "Question editor must read the source URL field without referencing an import row")
-        for required in ("async function loadImportBatches()", "async function rollbackImportBatch(batchId)", "rollback_practice_question_import_batch", "function renderVersionComparison()", "function paintVersionComparison()", "import_batch_id:batchId"):
+        for required in ("async function loadImportBatches()", "async function rollbackImportBatch(batchId)", "rollback_practice_question_import_batch", "function renderVersionComparison()", "function paintVersionComparison()", "import_batch_id:batchId", "every remaining question", "spreadsheetSafe"):
             check(required in review_js, f"Import batch/rollback/version comparison feature is missing: {required}")
         review_migration = ROOT / "supabase" / "migrations" / "20261128100746_practice_question_import_batch_tracking_and_rollback.sql"
         if review_migration.is_file():
