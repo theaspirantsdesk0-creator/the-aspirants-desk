@@ -1,9 +1,9 @@
-#tadFounderMascot{position:fixed;right:18px;bottom:18px;z-index:80;width:112px;padding:9px 8px 8px;border:1px solid rgba(148,163,184,.35);border-radius:18px;background:linear-gradient(155deg,#172554,#0f172a 72%);color:#fff;box-shadow:0 12px 34px rgba(2,6,23,.3);text-align:center;cursor:pointer;font:inherit;transition:width .2s,transform .2s}
-#tadFounderMascot:hover{transform:translateY(-3px)}#tadFounderMascot .mascot-stage{height:124px;display:flex;align-items:center;justify-content:center;overflow:hidden}#tadFounderMascot .mascot-stage img{display:block;width:100%;height:100%;object-fit:contain;border-radius:10px}
+#tadFounderMascot{position:fixed;right:18px;bottom:18px;z-index:80;width:172px;padding:9px 8px 8px;border:1px solid rgba(148,163,184,.35);border-radius:18px;background:linear-gradient(155deg,#172554,#0f172a 72%);color:#fff;box-shadow:0 12px 34px rgba(2,6,23,.3);text-align:center;cursor:pointer;font:inherit;transition:width .2s,transform .2s}
+#tadFounderMascot:hover{transform:translateY(-3px)}#tadFounderMascot .mascot-stage{height:154px;display:flex;align-items:center;justify-content:center;overflow:hidden}#tadFounderMascot .mascot-stage img{display:block;width:100%;height:100%;object-fit:contain;border-radius:10px}
 #tadFounderMascot .mascot-stage img{max-width:100%;max-height:100%}
 #tadFounderMascot .mascot-role{display:block;font-size:.72rem;font-weight:800;line-height:1.25;margin-top:4px}
 #tadFounderMascot .mascot-credit{display:none;font-size:.68rem;color:#cbd5e1;margin-top:5px}
-#tadFounderMascot.mascot-expanded{width:160px}#tadFounderMascot.mascot-expanded .mascot-credit{display:block}
+#tadFounderMascot.mascot-expanded{width:min(320px,calc(100vw - 24px))}#tadFounderMascot.mascot-expanded .mascot-stage{height:auto;aspect-ratio:1/1}#tadFounderMascot.mascot-expanded .mascot-credit{display:block}
 #tadFounderMascot.is-blinking .mascot-stage img{opacity:.72;filter:brightness(.88)}
-@media(max-width:600px){#tadFounderMascot{right:10px;bottom:12px;width:86px;padding:6px;border-radius:14px}#tadFounderMascot .mascot-stage{height:96px}#tadFounderMascot .mascot-stage img{max-width:100%;max-height:100%}#tadFounderMascot .mascot-role{font-size:.64rem}#tadFounderMascot.mascot-expanded{width:132px}}
+@media(max-width:600px){#tadFounderMascot{right:10px;bottom:12px;width:132px;padding:6px;border-radius:14px}#tadFounderMascot .mascot-stage{height:118px}#tadFounderMascot .mascot-stage img{max-width:100%;max-height:100%}#tadFounderMascot .mascot-role{font-size:.64rem}#tadFounderMascot.mascot-expanded{width:min(260px,calc(100vw - 20px))}}
 @media(prefers-reduced-motion:reduce){#tadFounderMascot{transition:none}#tadFounderMascot:hover{transform:none}}

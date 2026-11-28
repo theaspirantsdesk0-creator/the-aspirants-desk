@@ -49,7 +49,7 @@ try {
         url: location.href,
         mentor: document.querySelectorAll('#mentor').length,
         practiceBank: document.querySelectorAll('#pyqSearch').length,
-        anbuuAnchor: document.querySelectorAll('a[data-nav="anbuu"]').length,
+        anbuuAnchor: document.querySelectorAll('#sidebar a.nav-link[data-nav="anbuu"]').length,
         bodyStart: document.body?.innerText?.slice(0, 220) || ''
       }));
       if (lastDomAudit.mentor === 1 && lastDomAudit.practiceBank === 1 && lastDomAudit.anbuuAnchor === 1) {
@@ -250,7 +250,7 @@ try {
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
   // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
   await page.waitForTimeout(350);
-  const anbuuNav = page.locator('a[data-nav="anbuu"]');
+  const anbuuNav = page.locator('#sidebar a.nav-link[data-nav="anbuu"]');
   if (await anbuuNav.count() !== 1) {
     throw new Error('Anbuu main-navigation tab is missing from the sidebar');
   }
