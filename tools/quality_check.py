@@ -993,6 +993,15 @@ def main() -> int:
         check("function recordRecall" in notes_js and 'data-recall="confident"' in notes_js and 'data-recall="review"' in notes_js and "nextReviewAt" in notes_js,
               "Active recall outcomes must update topic mastery and spaced revision dates")
 
+    review_js_path = ROOT / "assets" / "js" / "question-review-dashboard.js"
+    if review_js_path.is_file():
+        review_js = review_js_path.read_text(encoding="utf-8")
+        run_node_check(review_js, "assets/js/question-review-dashboard.js")
+        for required in ("qReviewBulkPreviewBtn", "qReviewBulkSummary", "qReviewBulkPreview", "qReviewBulkExport", "function previewBulk()", "function exportBulkReport()", "state===\"duplicate\"", "state===\"similar\"", "status:\"draft\""):
+            check(required in review_js or required in (ROOT / "index.html").read_text(encoding="utf-8"),
+                  f"Question import preview/report feature is missing: {required}")
+        check('source_url:$("qReviewSourceUrl").value.trim()' in review_js,
+              "Question editor must read the source URL field without referencing an import row")
     print(f"Quality checks executed: {CHECKS}")
     print(f"Question IDs inspected: {len(all_ids)}")
     if ERRORS:
