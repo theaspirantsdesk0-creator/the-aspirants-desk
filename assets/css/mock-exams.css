@@ -55,3 +55,26 @@
 .qreview-preview-duplicate,.qreview-preview-invalid,.qreview-preview-failed{color:var(--danger,#a33434)}
 .qreview-preview-similar{color:var(--warning,#96620d)}
 .qreview-bulk button:disabled{opacity:.48;cursor:not-allowed}
+
+/* Question import history and version comparison */
+.qreview-batch-history,.qreview-version-compare{margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--line)}
+.qreview-batch-heading,.qreview-batch-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.qreview-batch-heading h4,.qreview-version-compare h4{margin:.2rem 0 .55rem}
+.qreview-batch-card{padding:.75rem;margin:.55rem 0;border:1px solid var(--line);border-radius:10px;background:var(--surface-alt)}
+.qreview-batch-card p{margin:.35rem 0;font-size:.74rem;overflow-wrap:anywhere}
+.qreview-batch-counts{display:flex;gap:.4rem .8rem;flex-wrap:wrap;margin:.55rem 0;font-size:.7rem;color:var(--muted)}
+.qreview-batch-status{font-size:.68rem;font-weight:800;padding:.18rem .5rem;border-radius:99px;border:1px solid var(--line);text-transform:capitalize}
+.qreview-batch-rolled_back{color:var(--danger,#a33434)}.qreview-batch-completed{color:var(--success,#16734b)}.qreview-batch-partial,.qreview-batch-failed{color:var(--warning,#96620d)}
+.qreview-compare-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) auto;align-items:end;gap:.65rem;margin:.6rem 0}
+.qreview-compare-controls label{display:flex;flex-direction:column;gap:.3rem;font-size:.74rem;font-weight:700;min-width:0}
+.qreview-compare-controls select{min-width:0;max-width:100%;padding:.55rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.qreview-compare-caption{font-size:.72rem;color:var(--muted);margin:.5rem 0}
+.qreview-compare-table-wrap{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:9px}
+.qreview-compare-table{width:100%;min-width:660px;border-collapse:collapse;font-size:.73rem}
+.qreview-compare-table th,.qreview-compare-table td{padding:.55rem .65rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.qreview-compare-table thead th{background:var(--surface-alt)}
+.qreview-compare-table tbody th{width:125px}
+.qreview-compare-table pre{font:inherit;white-space:pre-wrap;margin:0;max-width:420px}
+.qreview-compare-table tr.qreview-field-changed{background:color-mix(in srgb,var(--warning,#96620d) 8%,transparent)}
+.qreview-compare-table tr.qreview-field-changed th span{display:inline-block;margin-left:.25rem;font-size:.6rem;color:var(--warning,#96620d);text-transform:uppercase}
+@media(max-width:660px){.qreview-compare-controls{grid-template-columns:1fr}.qreview-compare-controls button{justify-self:start}}
