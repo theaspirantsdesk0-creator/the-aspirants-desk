@@ -61,6 +61,14 @@ The owner-only **Practice Question Review** dashboard is available inside Mock E
 
 The checklist records human attestations. It does not independently establish factual accuracy; the reviewer must actually inspect the cited material.
 
+## Version history, activity and bulk import
+
+The live owner dashboard also includes an immutable version timeline and a reviewer activity log. Question content/status changes create a database snapshot and activity event; the owner-only history tables cannot be written directly through the browser API. Archived/deleted question records retain their history reference.
+
+Bulk JSON import accepts an array, or an object with a `questions` or `records` array. It supports the same compact fields used by the topic JSON files (`subject`, `q`, `a`, `w`, `e`, `difficulty`) and expanded names (`question_text`, `correct_answer`, `wrong_options`, `explanation`). Each import is limited to 100 questions. Every imported question is saved as a draft, with all five review checks reset to false; input status and reviewer flags are ignored. Exact active duplicates are rejected by a database unique index as a final safeguard.
+
+The version and activity records are retained by database triggers and are readable only by the owner/admin role. They are not exposed to anonymous visitors or learner accounts.
+
 ## Official PYQ source
 
 Use the [UPSC Previous Year Question Papers archive](https://www.upsc.gov.in/examinations/previous-question-papers) and its [archived question-paper collection](https://www.upsc.gov.in/archived-exam-documents/question-papers/). The presence of a PDF link in a discovery manifest is only `source_found`; it is not proof that question text has been checked or is ready for publication.
