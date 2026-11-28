@@ -7,7 +7,7 @@ const sb=window.TAD_SUPABASE;
 const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const CHECKS=["answer","distractors","explanation","metadata","duplicates"];
 const CHECK_LABELS={answer:"Correct answer checked against source",distractors:"All three distractors checked",explanation:"Explanation checked against source",metadata:"Subject, topic and difficulty checked",duplicates:"Duplicate and near-duplicate search completed"};
-let user=null,rows=[],activeId=null,loading=false,bulkPreview=[];
+let user=null,rows=[],activeId=null,loading=false,bulkPreview=[],currentVersions=[],bulkFileName='';
 const status=(message,kind)=>{const el=$("qReviewStatus");if(el){el.textContent=message;el.className="mock-save"+(kind?" "+kind:"");}};
 const readForm=()=>({
  subject:$("qReviewSubject").value.trim(),
@@ -59,12 +59,55 @@ async function loadHistory(){
  if(actors.length){const p=await sb.from("profiles").select("id,display_name").in("id",actors);(p.data||[]).forEach(x=>names[x.id]=x.display_name||"Owner");}
  const when=value=>{const d=new Date(value);return Number.isNaN(d.getTime())?"Date unavailable":d.toLocaleString();};
  const who=id=>id?(names[id]||"Account "+id.slice(0,8)):"System";
- const versions=vResult.data||[],events=aResult.data||[];
+ currentVersions=vResult.data||[];
+ const versions=currentVersions,events=aResult.data||[];
  panel.innerHTML='<div class="qreview-history-grid"><section><h4>Version snapshots ('+versions.length+')</h4>'+
   (versions.length?versions.map(v=>'<article class="qreview-history-card"><div class="qreview-history-top"><strong>Version '+v.version_no+' · '+esc(v.event_type.replace(/_/g," "))+'</strong><small>'+esc(when(v.created_at))+'</small></div><p>'+esc(v.snapshot.subject||"")+' · '+esc(v.snapshot.status||"")+' · '+esc(v.snapshot.difficulty||"")+'</p><p>'+esc(v.snapshot.question_text||"")+'</p><small>Changed by '+esc(who(v.actor_id))+'</small><details><summary>View saved answer and source</summary><p><b>Answer:</b> '+esc(v.snapshot.correct_answer||"")+'</p><p><b>Explanation:</b> '+esc(v.snapshot.explanation||"")+'</p><p><b>Source:</b> '+esc(v.snapshot.source_title||"Not recorded")+(v.snapshot.source_url?' · <a href="'+esc(v.snapshot.source_url)+'" target="_blank" rel="noopener">Open source</a>':'')+'</p></details></article>').join(""):'<p class="mock-save">No saved versions yet.</p>')+
   '</section><section><h4>Reviewer activity ('+events.length+')</h4>'+
   (events.length?events.map(e=>'<article class="qreview-history-card"><div class="qreview-history-top"><strong>'+esc(e.event_type.replace(/_/g," "))+'</strong><small>'+esc(when(e.created_at))+'</small></div><p>'+esc(e.details.subject||"")+' · '+esc(e.details.from_status||"new")+' → '+esc(e.details.to_status||"")+'</p><p>'+esc(e.details.question_preview||"")+'</p><small>Actor: '+esc(who(e.actor_id))+' · Version '+esc(e.details.version_no||"—")+'</small></article>').join(""):'<p class="mock-save">No activity recorded yet.</p>')+
   '</section></div>';
+ renderVersionComparison();
+}
+function versionFieldValue(snapshot,key){
+ const value=snapshot?.[key];
+ if(value===null||value===undefined||value==="")return "—";
+ if(Array.isArray(value))return value.map((item,index)=>(index+1)+". "+item).join("\n");
+ if(typeof value==="object")return Object.entries(value).map(([k,v])=>k+": "+(v?"Yes":"No")).join("\n");
+ return String(value);
+}
+function renderVersionComparison(){
+ const host=$("qReviewVersionCompare");if(!host)return;
+ if(currentVersions.length<2){
+  host.innerHTML='<p class="mock-save">At least two saved versions are needed for a side-by-side comparison.</p>';
+  return;
+ }
+ const options=currentVersions.map(v=>'<option value="'+v.version_no+'">Version '+v.version_no+' · '+esc(v.event_type.replace(/_/g," "))+' · '+esc(new Date(v.created_at).toLocaleString())+'</option>').join("");
+ host.innerHTML='<div class="qreview-compare-controls"><label>Older / left version<select id="qReviewCompareLeft">'+options+'</select></label><label>Newer / right version<select id="qReviewCompareRight">'+options+'</select></label><button type="button" class="btn" id="qReviewCompareButton">Compare versions</button></div><div id="qReviewCompareResult" class="qreview-compare-result"></div>';
+ const left=$("qReviewCompareLeft"),right=$("qReviewCompareRight");
+ left.value=String(currentVersions[1].version_no);
+ right.value=String(currentVersions[0].version_no);
+ $("qReviewCompareButton").addEventListener("click",paintVersionComparison);
+ paintVersionComparison();
+}
+function paintVersionComparison(){
+ const output=$("qReviewCompareResult");if(!output)return;
+ const left=currentVersions.find(v=>v.version_no===Number($("qReviewCompareLeft").value));
+ const right=currentVersions.find(v=>v.version_no===Number($("qReviewCompareRight").value));
+ if(!left||!right){output.textContent="Select two saved versions.";return;}
+ if(left.version_no===right.version_no){output.textContent="Choose two different versions.";return;}
+ const fields=[
+  ["Subject","subject"],["Topic","topic"],["Question","question_text"],
+  ["Correct answer","correct_answer"],["Wrong options","wrong_options"],
+  ["Explanation","explanation"],["Difficulty","difficulty"],["Status","status"],
+  ["Source title","source_title"],["Source URL","source_url"],["Review checks","review_checks"]
+ ];
+ output.innerHTML='<div class="qreview-compare-caption">Version '+left.version_no+' compared with Version '+right.version_no+'. Highlighted rows changed.</div><div class="qreview-compare-table-wrap"><table class="qreview-compare-table"><thead><tr><th>Field</th><th>Version '+left.version_no+'</th><th>Version '+right.version_no+'</th></tr></thead><tbody>'+
+  fields.map(([label,key])=>{
+   const a=versionFieldValue(left.snapshot,key),b=versionFieldValue(right.snapshot,key);
+   const changed=JSON.stringify(left.snapshot?.[key]??null)!==JSON.stringify(right.snapshot?.[key]??null);
+   return '<tr class="'+(changed?'qreview-field-changed':'')+'"><th>'+esc(label)+(changed?' <span>Changed</span>':'')+'</th><td><pre>'+esc(a)+'</pre></td><td><pre>'+esc(b)+'</pre></td></tr>';
+  }).join("")+
+  '</tbody></table></div>';
 }
 function parseBulkRecords(raw){
  const parsed=JSON.parse(raw);
@@ -200,31 +243,78 @@ function exportBulkReport(){
  link.href=url;link.download="aspirants-desk-question-import-review.csv";
  document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
 }
+async function loadImportBatches(){
+ const host=$("qReviewBatchList");if(!host)return;
+ host.innerHTML='<p class="mock-save">Loading import history…</p>';
+ const {data,error}=await sb.from("practice_question_import_batches").select("id,batch_name,file_name,source_total,inserted_count,duplicate_count,invalid_count,failed_count,status,created_at,rolled_back_at,rollback_count").order("created_at",{ascending:false}).limit(30);
+ if(error){host.innerHTML='<p class="mock-warning">Import history could not load: '+esc(error.message)+'</p>';return;}
+ if(!data?.length){host.innerHTML='<p class="mock-save">No import batches have been saved yet.</p>';return;}
+ host.innerHTML=data.map(batch=>{
+  const canRollback=batch.inserted_count>0&&batch.status!=="rolled_back"&&batch.status!=="importing";
+  return '<article class="qreview-batch-card"><div class="qreview-batch-top"><strong>'+esc(batch.batch_name||"Question import")+'</strong><span class="qreview-batch-status qreview-batch-'+esc(batch.status)+'">'+esc(batch.status.replace(/_/g," "))+'</span></div><p>'+esc(batch.file_name||"Pasted JSON")+' · '+esc(new Date(batch.created_at).toLocaleString())+'</p><div class="qreview-batch-counts"><span>Rows '+batch.source_total+'</span><span>Imported '+batch.inserted_count+'</span><span>Duplicates '+batch.duplicate_count+'</span><span>Invalid '+batch.invalid_count+'</span><span>Failed '+batch.failed_count+'</span></div>'+(batch.status==="rolled_back"?'<p class="mock-save">Rollback completed · '+batch.rollback_count+' question(s) archived</p>':canRollback?'<button type="button" class="btn qreview-rollback" data-batch-id="'+esc(batch.id)+'">Roll back this batch</button>':'<p class="mock-save">This batch has no eligible imported draft records to roll back.</p>')+'</article>';
+ }).join("");
+ host.querySelectorAll("[data-batch-id]").forEach(button=>button.addEventListener("click",()=>rollbackImportBatch(button.dataset.batchId)));
+}
+async function rollbackImportBatch(batchId){
+ if(!confirm("Roll back this import batch? This archives its questions only if every remaining question in the batch is still in Draft. Any question moved to Review or Published will block the entire rollback."))return;
+ status("Checking batch eligibility and archiving imported drafts…");
+ const {data,error}=await sb.rpc("rollback_practice_question_import_batch",{p_batch_id:batchId});
+ if(error){status("Rollback blocked or failed: "+error.message,"mock-warning");await loadImportBatches();return;}
+ const archived=Number(data?.records_archived||0);
+ status("Batch rolled back. "+archived+" imported draft question(s) were archived.");
+ await Promise.all([loadImportBatches(),load()]);
+}
 async function importBulk(){
  const result=$("qReviewBulkResult");
  const prepared=bulkPreview.filter(x=>x.state==="ready"||x.state==="similar");
  if(!bulkPreview.length){status("Preview the JSON file before importing.","mock-warning");return;}
  if(!prepared.length){status("No eligible questions are available. Correct invalid rows or remove duplicates.","mock-warning");return;}
  $("qReviewBulkImport").disabled=true;
+ const duplicateCount=bulkPreview.filter(x=>x.state==="duplicate").length;
+ const invalidCount=bulkPreview.filter(x=>x.state==="invalid").length;
+ const batchName=(bulkFileName?bulkFileName.replace(/\.[^.]+$/,""):"Manual JSON import").slice(0,160)||"Question import";
+ const batchCreate=await sb.from("practice_question_import_batches").insert({
+  batch_name:batchName,file_name:bulkFileName||null,source_total:bulkPreview.length,
+  inserted_count:0,duplicate_count:duplicateCount,invalid_count:invalidCount,failed_count:0,
+  status:"importing",created_by:user.id,
+  import_summary:{similar_count:bulkPreview.filter(x=>x.state==="similar").length}
+ }).select("id").single();
+ if(batchCreate.error){
+  $("qReviewBulkImport").disabled=false;
+  status("Import stopped because the batch could not be registered: "+batchCreate.error.message,"mock-warning");
+  return;
+ }
+ const batchId=batchCreate.data.id;
  let inserted=0,failed=0;
  for(let i=0;i<prepared.length;i+=20){
   const batch=prepared.slice(i,i+20);
-  const response=await sb.from("practice_question_bank").insert(batch.map(x=>x.item));
+  const payload=batch.map(entry=>({...entry.item,import_batch_id:batchId,import_batch_row:entry.row}));
+  const response=await sb.from("practice_question_bank").insert(payload);
   if(!response.error){
    inserted+=batch.length;
    batch.forEach(x=>x.state="imported");
    continue;
   }
-  for(const entry of batch){
-   const one=await sb.from("practice_question_bank").insert(entry.item);
+  // A concurrent import can win the exact-duplicate race after preview.
+  for(let n=0;n<batch.length;n++){
+   const entry=batch[n],one=await sb.from("practice_question_bank").insert(payload[n]);
    if(one.error){failed++;entry.state="failed";entry.issues.push(one.error.code==="23505"?"Duplicate appeared after preview; database rejected it.":one.error.message);}
    else{inserted++;entry.state="imported";}
   }
  }
+ const finalStatus=inserted===0?"failed":failed>0?"partial":"completed";
+ const batchUpdate=await sb.from("practice_question_import_batches").update({
+  inserted_count:inserted,duplicate_count:duplicateCount,invalid_count:invalidCount,
+  failed_count:failed,status:finalStatus,
+  import_summary:{similar_count:bulkPreview.filter(x=>x.state==="similar"||x.state==="imported"&&x.warnings.length).length,imported_rows:prepared.filter(x=>x.state==="imported").map(x=>x.row)}
+ }).eq("id",batchId);
  paintBulkPreview();
- result.textContent="Imported "+inserted+" draft(s) · duplicates skipped "+bulkPreview.filter(x=>x.state==="duplicate").length+" · invalid skipped "+bulkPreview.filter(x=>x.state==="invalid").length+" · failed "+failed+". Export the report to retain these results.";
- status("Bulk import completed. Imported questions remain drafts and are not visible to learners.");
- await load();
+ result.textContent="Imported "+inserted+" draft(s) · duplicates skipped "+duplicateCount+" · invalid skipped "+invalidCount+" · failed "+failed+". Batch ID: "+batchId;
+ if(batchUpdate.error)status("Questions imported, but batch totals did not update: "+batchUpdate.error.message,"mock-warning");
+ else status("Import batch "+finalStatus+". Imported questions remain drafts and are not visible to learners.");
+ $("qReviewBulkJson").value="";
+ bulkFileName="";
+ await Promise.all([load(),loadImportBatches()]);
 }
 function resetEditor(){
  activeId=null;
@@ -284,7 +374,9 @@ async function boot(){
  $("qReviewBulkImport").addEventListener("click",importBulk);
  $("qReviewBulkExport").addEventListener("click",exportBulkReport);
  $("qReviewBulkJson").addEventListener("input",()=>resetBulkPreview("Input changed. Preview again before importing."));
- $("qReviewBulkFile").addEventListener("change",async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{$("qReviewBulkJson").value=await file.text();resetBulkPreview("File loaded. Choose Preview import to validate every row.");status("Loaded "+file.name+". Preview it before importing.");}catch(error){status("Could not read that file: "+error.message,"mock-warning");}});
+ $("qReviewBatchRefresh").addEventListener("click",loadImportBatches);
+ $("qReviewBulkJson").addEventListener("input",()=>{bulkFileName="";resetBulkPreview("Input changed. Preview again before importing.");});
+ $("qReviewBulkFile").addEventListener("change",async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{$("qReviewBulkJson").value=await file.text();bulkFileName=file.name;resetBulkPreview("File loaded. Choose Preview import to validate every row.");status("Loaded "+file.name+". Preview it before importing.");}catch(error){status("Could not read that file: "+error.message,"mock-warning");}});
  $("qReviewReload").addEventListener("click",load);
  $("qReviewSaveDraft").addEventListener("click",()=>save("draft"));
  $("qReviewSendReview").addEventListener("click",()=>save("review"));
@@ -293,6 +385,7 @@ async function boot(){
  $("qReviewForm").addEventListener("submit",e=>e.preventDefault());
  $("qReviewQuestion").addEventListener("input",()=>{const d=readForm();const warning=duplicateWarning(d);$("qReviewDuplicate").textContent=warning||"Exact duplicate check will run against saved records.";});
  await load();
+ await loadImportBatches();
 }
 async function save(stage){
  const d=readForm(),issues=validate(d,stage);
