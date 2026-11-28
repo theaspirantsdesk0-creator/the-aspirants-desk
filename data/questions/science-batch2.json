@@ -11,7 +11,7 @@
    "Enzyme"
   ],
   "e": "A gene is a segment of DNA associated with a functional product or hereditary trait.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -27,7 +27,7 @@
    "Lysosome"
   ],
   "e": "Mitochondria generate much of the cell's usable energy through cellular respiration.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -43,7 +43,7 @@
    "Radio waves"
   ],
   "e": "Gamma rays occupy the shortest-wavelength, highest-frequency part of the electromagnetic spectrum.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -59,7 +59,7 @@
    "Provide permanent immunity in every case"
   ],
   "e": "Vaccines stimulate immune memory and reduce the risk or severity of specific infections.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -75,7 +75,7 @@
    "BARC"
   ],
   "e": "The Indian Space Research Organisation leads India's civilian space programme.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -91,7 +91,7 @@
    "Dynamic nucleic acid"
   ],
   "e": "DNA is the molecule that carries hereditary information in most living organisms.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -107,7 +107,7 @@
    "Anemometer"
   ],
   "e": "A seismograph records ground motion caused by seismic waves.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -123,7 +123,7 @@
    "Watt"
   ],
   "e": "The ampere is the SI base unit of electric current.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -139,7 +139,7 @@
    "Hall effect"
   ],
   "e": "Photovoltaic cells generate electric voltage when light is absorbed by a semiconductor.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -155,7 +155,7 @@
    "Filter drinking water"
   ],
   "e": "Semiconductors have controllable electrical conductivity and form the basis of electronic components.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -171,7 +171,7 @@
    "Hydrogen"
   ],
   "e": "Liquid helium is widely used to cool superconducting MRI magnet systems.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -187,7 +187,7 @@
    "Destroy human cancer cells in all cases"
   ],
   "e": "Antibiotics act against bacteria and are not effective against viruses.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -203,7 +203,7 @@
    "Haemophilia"
   ],
   "e": "Malaria parasites are transmitted to humans through infected female Anopheles mosquitoes.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -219,7 +219,7 @@
    "Computing without physical hardware"
   ],
   "e": "Quantum computers use quantum bits and quantum phenomena to process information.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -235,7 +235,7 @@
    "Monitor"
   ],
   "e": "The ALU is the CPU component responsible for arithmetic and logical operations.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -251,7 +251,7 @@
    "Astrosat"
   ],
   "e": "Aditya-L1 is India's solar observatory mission positioned near the Sun-Earth L1 point.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -267,7 +267,7 @@
    "Conduct deep-sea mining"
   ],
   "e": "Remote sensing satellites observe land, oceans and atmosphere using sensors.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -283,7 +283,7 @@
    "Helium"
   ],
   "e": "Some hydrofluorocarbons are potent greenhouse gases used in refrigeration and other applications.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -299,7 +299,7 @@
    "Create magnetic resonance images"
   ],
   "e": "CRISPR-Cas systems can be adapted to target and modify specific DNA sequences.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -315,7 +315,7 @@
    "Rubber"
   ],
   "e": "Silicon's electrical properties make it a widely used semiconductor material.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -331,7 +331,7 @@
    "Ensure a satellite completes one orbit in 90 minutes"
   ],
   "e": "A geostationary satellite has an orbital period matching Earth's rotation and appears stationary.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -347,7 +347,7 @@
    "NITI Aayog"
   ],
   "e": "NavIC is India's regional satellite navigation system developed by ISRO.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -363,7 +363,7 @@
    "Operate national hospitals directly"
   ],
   "e": "WHO coordinates international public health work and provides technical guidance.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -379,7 +379,7 @@
    "Thermal expansion"
   ],
   "e": "Optical fibres guide light by repeated total internal reflection at the core-cladding boundary.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -395,7 +395,7 @@
    "A computer without an operating system"
   ],
   "e": "AI refers to systems designed to perform tasks such as pattern recognition, prediction or language processing.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -411,7 +411,7 @@
    "A robot operates only through fixed mechanical switches"
   ],
   "e": "Machine learning is a subset of AI that uses data-driven methods to improve task performance.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -427,7 +427,7 @@
    "Replace the operating system"
   ],
   "e": "A firewall filters network traffic to reduce unauthorised access.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -443,7 +443,7 @@
    "Magnetic levitation"
   ],
   "e": "Blockchain maintains a shared ledger using cryptographic links between records.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -459,7 +459,7 @@
    "Stop all side reactions"
   ],
   "e": "A catalyst provides an alternative reaction pathway with lower activation energy.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -475,7 +475,7 @@
    "Neutrino"
   ],
   "e": "Electrons carry a negative elementary electric charge.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -491,7 +491,7 @@
    "Conversion of sound into electricity"
   ],
   "e": "Fission releases energy when a heavy nucleus splits into smaller nuclei.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -507,7 +507,7 @@
    "Dengue"
   ],
   "e": "Hypertension is not transmitted from person to person.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -523,7 +523,7 @@
    "All microbes become harmless"
   ],
   "e": "Resistance makes infections harder to treat because medicines become less effective.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -539,7 +539,7 @@
    "Gaganyaan"
   ],
   "e": "Chandrayaan-3 achieved a soft landing in the lunar south polar region in August 2023.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -555,7 +555,7 @@
    "Produce commercial nuclear fuel"
   ],
   "e": "The LHC accelerates and collides particles to investigate fundamental physics.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -571,7 +571,7 @@
    "It works only against bacterial infections"
   ],
   "e": "mRNA vaccines deliver temporary genetic instructions that prompt cells to make an antigen.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -587,7 +587,7 @@
    "Hydrogen mixed with natural gas in every case"
   ],
   "e": "Green hydrogen is typically produced by electrolysis powered by renewable electricity.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -603,7 +603,7 @@
    "Inkjet printing"
   ],
   "e": "Bluetooth is a short-range wireless communication standard.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -619,7 +619,7 @@
    "Launch a global navigation system"
   ],
   "e": "Gaganyaan aims to demonstrate India's capability to send humans to low Earth orbit and return them safely.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -635,7 +635,7 @@
    "A machine that converts heat into sound"
   ],
   "e": "Biosensors combine a biological recognition element with a signal-transduction system.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with NCERT Science/Physics/Chemistry/Biology and official ISRO, WHO, MeitY/CERT-In or other relevant agency material.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  }
