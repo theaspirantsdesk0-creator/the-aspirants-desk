@@ -102,6 +102,9 @@ def main() -> int:
         check('src="assets/js/question-review-dashboard.js" defer' in html, "Question review dashboard script is not included")
         check('id="questionReviewAdmin"' in html and 'from("practice_question_bank")' in html,
               "Owner question review interface or live learner-bank integration is missing")
+        for required in ('id="qReviewBulkImport"', 'id="qReviewHistory"', 'from("practice_question_versions")', 'from("practice_question_activity")'):
+            check(required in html or required in (ROOT / "assets/js/question-review-dashboard.js").read_text(encoding="utf-8"),
+                  f"Question review bulk import or history feature is missing: {required}")
         check('href="assets/css/ai-desk.css"' in html, "AI Desk stylesheet is not included")
         for src in parser.external:
             check((ROOT / src).is_file(), f"Local script referenced by index.html is missing: {src}")
