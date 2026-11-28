@@ -43,3 +43,15 @@
 .qreview-history-top{display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start;flex-wrap:wrap}.qreview-history-top strong{font-size:.8rem;text-transform:capitalize}.qreview-history-top small,.qreview-history-card>small{font-size:.68rem;color:var(--muted)}
 .qreview-history-card p{font-size:.77rem;line-height:1.45;margin:.4rem 0}.qreview-history-card details{font-size:.75rem;margin-top:.45rem}.qreview-history-card summary{cursor:pointer;font-weight:700}
 @media(max-width:650px){.qreview-history-grid{grid-template-columns:1fr}}
+
+/* Bulk import validation preview and export report */
+.qreview-bulk-preview{margin:.7rem 0;max-width:100%}.qreview-preview-table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:9px}
+.qreview-preview-table{width:100%;border-collapse:collapse;min-width:680px;font-size:.72rem}
+.qreview-preview-table th,.qreview-preview-table td{padding:.55rem .6rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.4}
+.qreview-preview-table th{position:sticky;top:0;background:var(--surface-alt);font-weight:800}
+.qreview-preview-table td:nth-child(4){min-width:220px;max-width:350px;overflow-wrap:anywhere}
+.qreview-preview-status{display:inline-block;padding:.16rem .42rem;border-radius:99px;font-size:.65rem;font-weight:800;background:var(--surface-alt);border:1px solid var(--line)}
+.qreview-preview-ready,.qreview-preview-imported{color:var(--success,#16734b)}
+.qreview-preview-duplicate,.qreview-preview-invalid,.qreview-preview-failed{color:var(--danger,#a33434)}
+.qreview-preview-similar{color:var(--warning,#96620d)}
+.qreview-bulk button:disabled{opacity:.48;cursor:not-allowed}
