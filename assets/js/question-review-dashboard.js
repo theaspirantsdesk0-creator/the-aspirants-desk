@@ -167,7 +167,7 @@ async function previewBulk(){
   seen.add(key);
   const subjectKey=normaliseQuestionKey(item.subject);
   const nearExisting=existing.find(row=>normaliseQuestionKey(row.subject)===subjectKey&&similarScore(row.question_text,item.question_text)>=0.86);
-  const nearEarlier=preview.find(row=>row.item&&normaliseQuestionKey(row.item.subject)===subjectKey&&similarScore(row.item.question_text,item.question_text)>=0.86);
+  const nearEarlier=preview.find(row=>row.item&&["ready","similar"].includes(row.state)&&normaliseQuestionKey(row.item.subject)===subjectKey&&similarScore(row.item.question_text,item.question_text)>=0.86);
   if(nearExisting){
    entry.state="similar";
    entry.duplicateOf="Similar saved question: "+String(nearExisting.question_text||"").slice(0,110);
