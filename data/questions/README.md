@@ -36,6 +36,19 @@ Eight topic batch files contained records whose `review_note` explicitly said th
 
 These records are retained for review and are not certified as factually wrong; their previous publication status was unsupported by their own review notes. They should only be republished after the checks above are completed.
 
+
+## Human review workflow
+
+The repository includes two helper tools:
+
+- `python tools/question_bank_audit.py` checks JSON structure, duplicate IDs, possible duplicate wording, status values, source URLs, review metadata and publication readiness. Add `--json` for machine-readable output or `--output report.json` to save a report. The GitHub quality workflow uploads this report as the `question-bank-audit` artifact.
+- `python tools/question_bank_review.py data/questions/<file>.json --id <question-id> --reviewer "<reviewer>" --source-url "https://..." --check-answer --check-distractors --check-explanation --check-metadata --check-duplicates` records a human review and moves a draft into `review`.
+- After a separate final inspection, run the same command again with `--publish` to move a `review` record into `published`.
+
+The five check flags are explicit human attestations, not automated fact checks. The reviewer must open the source, verify that it supports the answer and explanation, inspect distractors and metadata, and search for duplicates. Never run the publish step just to make a question appear in the learner interface. Keep uncertain records in `draft` or `review`.
+
+The audit report flags published records without an HTTPS source, all five recorded checks, reviewer identity/timestamp, or where the review note still says verification is pending. A clean structural audit does not prove factual accuracy.
+
 ## Official PYQ source
 
 Use the [UPSC Previous Year Question Papers archive](https://www.upsc.gov.in/examinations/previous-question-papers) and its [archived question-paper collection](https://www.upsc.gov.in/archived-exam-documents/question-papers/). The presence of a PDF link in a discovery manifest is only `source_found`; it is not proof that question text has been checked or is ready for publication.
