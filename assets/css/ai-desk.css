@@ -213,3 +213,16 @@
 .tad-ai-assistant pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:.8em;border-radius:9px;background:#0f172a;color:#e2e8f0;overflow:auto}
 .tad-ai-assistant code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
 .tad-ai-assistant :not(pre)>code{padding:.1em .3em;border-radius:4px;background:var(--surface,#fff)}
+
+
+/* Owner saved-workspace readable view */
+.owner-workspace-details{min-width:220px}
+.owner-workspace-details>summary{cursor:pointer;color:var(--accent);font-weight:800;font-size:.78rem;padding:.45rem 0}
+.owner-workspace-content{max-height:520px;overflow:auto;min-width:220px;padding:.8rem;border:1px solid var(--line);border-radius:10px;background:var(--surface-alt);font-size:.78rem;line-height:1.55}
+.owner-workspace-fields{display:grid;gap:.55rem;margin:0}
+.owner-workspace-fields>div{padding:.5rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.owner-workspace-fields dt{margin:0 0 .2rem;color:var(--muted);font-size:.67rem;font-weight:800;text-transform:capitalize;letter-spacing:.02em}
+.owner-workspace-fields dd{margin:0;overflow-wrap:anywhere}
+.owner-workspace-fields dl{margin:.35rem 0 0;padding-left:.65rem;border-left:2px solid var(--line)}
+.owner-workspace-list{margin:.25rem 0;padding-left:1.25rem}
+.owner-workspace-list li{margin:.25rem 0;overflow-wrap:anywhere}
