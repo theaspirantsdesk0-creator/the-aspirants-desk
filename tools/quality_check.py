@@ -997,7 +997,7 @@ def main() -> int:
     if review_js_path.is_file():
         review_js = review_js_path.read_text(encoding="utf-8")
         run_node_check(review_js, "assets/js/question-review-dashboard.js")
-        for required in ("qReviewBulkPreviewBtn", "qReviewBulkSummary", "qReviewBulkPreview", "qReviewBulkExport", "function previewBulk()", "function exportBulkReport()", "state===\"duplicate\"", "state===\"similar\"", "status:\"draft\""):
+        for required in ("qReviewBulkPreviewBtn", "qReviewBulkSummary", "qReviewBulkPreview", "qReviewBulkExport", "function previewBulk()", "function exportBulkReport()", "entry.state=\"duplicate\"", "entry.state=\"similar\"", "status:\"draft\""):
             check(required in review_js or required in (ROOT / "index.html").read_text(encoding="utf-8"),
                   f"Question import preview/report feature is missing: {required}")
         check('source_url:$("qReviewSourceUrl").value.trim()' in review_js,
