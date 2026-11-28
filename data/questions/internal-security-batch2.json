@@ -11,7 +11,7 @@
    "Residuary powers"
   ],
   "e": "Police is listed in the State List, although Union agencies and laws also have roles in internal security.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -27,7 +27,7 @@
    "National Human Rights Commission"
   ],
   "e": "The NIA investigates and prosecutes scheduled offences under the NIA Act.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -43,7 +43,7 @@
    "Manage national highways"
   ],
   "e": "The BSF is a central armed police force tasked with border guarding on designated borders.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -59,7 +59,7 @@
    "Central Vigilance Commission"
   ],
   "e": "The Research and Analysis Wing is India's external intelligence agency.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -75,7 +75,7 @@
    "National Disaster Response Force"
   ],
   "e": "The Intelligence Bureau is the principal domestic intelligence organisation.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -91,7 +91,7 @@
    "Set rules for municipal elections"
   ],
   "e": "UAPA is India's principal legislation addressing specified unlawful and terrorist activities.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -107,7 +107,7 @@
    "Railway Protection Force"
   ],
   "e": "The Coast Guard protects maritime interests and enforces relevant laws in India's maritime zones.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -123,7 +123,7 @@
    "National Disaster Response Force"
   ],
   "e": "CISF provides security to designated public-sector and other critical installations.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -139,7 +139,7 @@
    "Conduct population census"
   ],
   "e": "NCIIPC is the national nodal agency for protecting critical information infrastructure.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -155,7 +155,7 @@
    "NABARD"
   ],
   "e": "CERT-In performs incident response functions under the Information Technology Act framework.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -171,7 +171,7 @@
    "A process for increasing internet speed"
   ],
   "e": "Cyber hygiene includes practices such as updates, strong authentication and cautious handling of links.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -187,7 +187,7 @@
    "Load balancing"
   ],
   "e": "Phishing attempts to trick people into disclosing information or taking unsafe actions.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -203,7 +203,7 @@
    "Guarantee that a device cannot be stolen"
   ],
   "e": "MFA combines independent factors such as knowledge, possession or inherence.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -219,7 +219,7 @@
    "Competition Act, 2002"
   ],
   "e": "The IT Act, 2000 provides legal recognition to electronic records and addresses specified cyber offences.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -235,7 +235,7 @@
    "Every website on the internet"
   ],
   "e": "Critical infrastructure includes systems whose disruption can seriously affect essential services or national security.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -251,7 +251,7 @@
    "A normal seasonal migration"
   ],
   "e": "Non-traditional threats include cyber risks, pandemics, climate risks and other challenges beyond conventional military threats.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -267,7 +267,7 @@
    "Regulate satellite frequencies"
   ],
   "e": "The NDMA is the apex body for disaster management policy under the Disaster Management Act, 2005.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -283,7 +283,7 @@
    "Ministry of Education"
   ],
   "e": "The Ministry of Home Affairs handles internal security among its major responsibilities.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -299,7 +299,7 @@
    "Protection of forests from fires"
   ],
   "e": "The NSG is a specialised federal contingency force with designated counter-terrorism roles.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -315,7 +315,7 @@
    "Sashastra Seema Bal"
   ],
   "e": "ITBP is deployed along the India-China border and performs other assigned duties.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -331,7 +331,7 @@
    "National Security Guard"
   ],
   "e": "SSB guards India's borders with Nepal and Bhutan.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -347,7 +347,7 @@
    "Operate all civil airports"
   ],
   "e": "CRPF supports state police and performs internal security duties, including counter-insurgency.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -363,7 +363,7 @@
    "Ordinary electoral campaigning"
   ],
   "e": "The term refers to armed extremist movements that seek political change through violence.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -379,7 +379,7 @@
    "Restrict public access to emergency services"
   ],
   "e": "Community policing emphasises partnership, communication and local problem-solving.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -395,7 +395,7 @@
    "Measuring rainfall over mountains"
   ],
   "e": "Maritime domain awareness integrates information about vessels, activities and conditions at sea.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -411,7 +411,7 @@
    "University Grants Commission"
   ],
   "e": "I4C supports coordination among law-enforcement agencies and cybercrime response mechanisms.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -427,7 +427,7 @@
    "Prevent all forms of malware"
   ],
   "e": "Encryption protects confidentiality by making information unreadable without the appropriate key.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -443,7 +443,7 @@
    "A software update from a trusted vendor"
   ],
   "e": "Insider threats arise when people with legitimate access misuse it or unintentionally create risk.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -459,7 +459,7 @@
    "Disable all audit logs"
   ],
   "e": "Least privilege limits access rights to what is needed for a role.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -475,7 +475,7 @@
    "Publish confidential credentials"
   ],
   "e": "A security audit evaluates whether safeguards and processes are appropriate and effective.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -491,7 +491,7 @@
    "A routine government notification"
   ],
   "e": "Disinformation is intentionally deceptive, unlike misinformation which may be shared without intent to deceive.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -507,7 +507,7 @@
    "Govern public procurement exclusively"
   ],
   "e": "The Act addresses unauthorised communication of specified official information and related offences.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -523,7 +523,7 @@
    "Article 368"
   ],
   "e": "Article 312 provides for creation of All India Services under the specified parliamentary procedure.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -539,7 +539,7 @@
    "Restrict all public reporting of crime"
   ],
   "e": "Intelligence-led policing uses assessed information to allocate attention and resources more effectively.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -555,7 +555,7 @@
    "Promote unregulated cross-border trade"
   ],
   "e": "Border-area programmes seek to improve essential infrastructure and livelihoods in strategically important remote areas.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -571,7 +571,7 @@
    "Participating in a lawful election"
   ],
   "e": "In this context the term concerns movement toward support for violence, not ordinary political or religious belief.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -587,7 +587,7 @@
    "Central Zoo Authority"
   ],
   "e": "The CBI investigates specified corruption offences and other cases within its jurisdiction.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -603,7 +603,7 @@
    "Unreviewable use of force"
   ],
   "e": "Internal security measures must operate within constitutional and legal safeguards.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -619,7 +619,7 @@
    "Conduct environmental impact assessments"
   ],
   "e": "CERT teams help coordinate detection, response and mitigation of cybersecurity incidents.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  },
@@ -635,7 +635,7 @@
    "Converting one lawful currency into another"
   ],
   "e": "Money laundering disguises the source or ownership of proceeds from unlawful activity.",
-  "status": "published",
+  "status": "draft",
   "reference_hint": "Review with MHA annual reports, India Code, official CAPF/agency pages, CERT-In and NCIIPC material as relevant.",
   "review_note": "Draft only: verify the answer and explanation against the reference before approval."
  }
