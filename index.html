@@ -3470,7 +3470,7 @@ Only publish after verifying every question, key and source.</p>
     { subject: "Environment", title: "Project Tiger & NTCA", body: "Launched in 1973; National Tiger Conservation Authority (NTCA) was given statutory status under the Wildlife Protection Amendment Act, 2006." }
   ];
 
-  let PRACTICE_BANK_LOAD = { added: 0, files: 0, failed: 0, loaded: false };
+  let PRACTICE_BANK_LOAD = { added: 0, databaseAdded: 0, files: 0, failed: 0, databaseFailed: false, loaded: false };
   async function loadQuestionBankFiles() {
     const paths = [
       "ancient-history.json","art-and-culture.json","banking-awareness.json","csat.json","defence.json",
