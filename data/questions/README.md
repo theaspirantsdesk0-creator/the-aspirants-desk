@@ -49,6 +49,18 @@ The five check flags are explicit human attestations, not automated fact checks.
 
 The audit report flags published records without an HTTPS source, all five recorded checks, reviewer identity/timestamp, or where the review note still says verification is pending. A clean structural audit does not prove factual accuracy.
 
+## Supabase owner review dashboard
+
+The owner-only **Practice Question Review** dashboard is available inside Mock Examinations → Owner · Mock paper publishing. It stores new and reviewed practice questions in `public.practice_question_bank` rather than requiring JSON edits.
+
+- Drafts and review-stage records are visible only to the owner/admin account.
+- Learners and anonymous visitors can read published records only.
+- The database requires a traceable HTTPS source, source title, reviewer identity/time and all five manual review checks before review or publication.
+- Publication requires a separate transition from `review` to `published`; published content must be moved back to draft before its content can be edited.
+- Published database records are loaded into the learner-facing practice bank. The official UPSC PYQ archive remains separate.
+
+The checklist records human attestations. It does not independently establish factual accuracy; the reviewer must actually inspect the cited material.
+
 ## Official PYQ source
 
 Use the [UPSC Previous Year Question Papers archive](https://www.upsc.gov.in/examinations/previous-question-papers) and its [archived question-paper collection](https://www.upsc.gov.in/archived-exam-documents/question-papers/). The presence of a PDF link in a discovery manifest is only `source_found`; it is not proof that question text has been checked or is ready for publication.
