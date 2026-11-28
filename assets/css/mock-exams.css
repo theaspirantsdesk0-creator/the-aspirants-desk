@@ -29,3 +29,17 @@
 .qreview-checks{margin:.9rem 0;padding:.8rem;border:1px solid var(--line);border-radius:10px}.qreview-checks h4{margin:0 0 .3rem}.qreview-checks label{display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;font-size:.8rem}.qreview-checks input{margin-top:.15rem}
 .qreview-actions{justify-content:flex-start;margin:.8rem 0}.qreview-admin [hidden]{display:none!important}
 @media(max-width:560px){.qreview-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.qreview-form-grid{grid-template-columns:1fr}.qreview-full{grid-column:auto}.qreview-row{align-items:flex-start}.qreview-row>.btn{flex:0 0 auto}}
+
+
+/* Question bank import, immutable versions and reviewer activity */
+.qreview-bulk{margin:1rem 0;padding:.85rem;border:1px solid var(--line);border-radius:11px;background:var(--surface-alt)}
+.qreview-bulk summary{font-weight:800;cursor:pointer}.qreview-bulk label{display:block;margin:.65rem 0 .25rem;font-size:.78rem;font-weight:700}
+.qreview-bulk input[type=file],.qreview-bulk textarea{box-sizing:border-box;width:100%;max-width:100%;padding:.65rem;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:inherit}
+.qreview-bulk textarea{resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem}
+.qreview-history{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}.qreview-history h3{margin:0 0 .75rem}
+.qreview-history-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.qreview-history-grid>section{min-width:0}
+.qreview-history-grid h4{margin:.2rem 0 .6rem}
+.qreview-history-card{padding:.7rem;margin:.45rem 0;border:1px solid var(--line);border-radius:9px;background:var(--surface-alt);overflow-wrap:anywhere}
+.qreview-history-top{display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start;flex-wrap:wrap}.qreview-history-top strong{font-size:.8rem;text-transform:capitalize}.qreview-history-top small,.qreview-history-card>small{font-size:.68rem;color:var(--muted)}
+.qreview-history-card p{font-size:.77rem;line-height:1.45;margin:.4rem 0}.qreview-history-card details{font-size:.75rem;margin-top:.45rem}.qreview-history-card summary{cursor:pointer;font-weight:700}
+@media(max-width:650px){.qreview-history-grid{grid-template-columns:1fr}}
