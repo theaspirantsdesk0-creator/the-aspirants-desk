@@ -466,6 +466,29 @@ try {
       !learningAnalyticsAudit.includesTodayEndBoundary || !learningAnalyticsAudit.privacyDisclosure || !learningAnalyticsAudit.noThirdPartyVisitorTracker) {
     throw new Error('Personal learning analytics UI/privacy/date-boundary audit failed: ' + JSON.stringify(learningAnalyticsAudit));
   }
+  // Validate evidence aggregation: repeated attempts are pooled; one small sample stays an early signal.
+  const evidenceAudit = await page.evaluate(() => {
+    if (typeof window.tadBuildMockSectionEvidence !== 'function') return { error: 'evidence helper missing' };
+    const paper = { id: 'fixture-paper', title: 'Fixture Mock' };
+    const attempts = [
+      { paper_id: 'fixture-paper', submitted_at: '2026-11-20T10:00:00Z', analytics: { section_breakdown: { Polity: { correct: 3, wrong: 4 } } } },
+      { paper_id: 'fixture-paper', submitted_at: '2026-11-21T10:00:00Z', analytics: { section_breakdown: { Polity: { correct: 4, wrong: 2 } } } },
+      { paper_id: 'fixture-paper', submitted_at: '2026-11-22T10:00:00Z', analytics: { section_breakdown: { History: { correct: 2, wrong: 3 } } } }
+    ];
+    const rows = window.tadBuildMockSectionEvidence(attempts, new Map([[paper.id, paper]]));
+    const polity = rows.find(row => row.topic.endsWith('Polity'));
+    const history = rows.find(row => row.topic.endsWith('History'));
+    return {
+      polity: polity && { attempts: polity.attempts, answered: polity.answered, accuracy: polity.accuracy, confidence: polity.confidence },
+      history: history && { attempts: history.attempts, answered: history.answered, confidence: history.confidence }
+    };
+  });
+  if (evidenceAudit.error || evidenceAudit.polity?.attempts !== 2 ||
+      evidenceAudit.polity?.answered !== 13 || Math.abs(evidenceAudit.polity?.accuracy - (7 / 13 * 100)) > 0.01 ||
+      evidenceAudit.polity?.confidence !== 'repeat-evidence' ||
+      evidenceAudit.history?.confidence !== 'early-signal') {
+    throw new Error('Mock evidence aggregation test failed: ' + JSON.stringify(evidenceAudit));
+  }
   // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
   await page.waitForTimeout(350);
   const anbuuNav = page.locator('#sidebar a.nav-link[data-nav="anbuu"]');
