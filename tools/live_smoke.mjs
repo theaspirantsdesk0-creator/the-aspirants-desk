@@ -72,8 +72,10 @@ try {
   if (practiceBankAccess.error || practiceBankAccess.statuses.some(status => status !== 'published')) {
     throw new Error('Public practice bank access policy failed: ' + JSON.stringify(practiceBankAccess));
   }
-  const guestReviewDashboard = await page.locator('#questionReviewAdmin').evaluate(el => el.hidden);
-  if (!guestReviewDashboard) throw new Error('Owner question review dashboard must remain hidden for guests');
+  const guestOwnerControls = await page.locator('#mockExamRoot').evaluate(el =>
+    Boolean(el.querySelector('#mockAdminPanel') || el.querySelector('#questionReviewAdmin'))
+  );
+  if (guestOwnerControls) throw new Error('Owner question publishing controls must not exist in the guest examination workspace');
   // Audit the published PYQ catalogue and its paper-level tracker. This guards
   // against a verified PDF being counted without a matching tracker row, and
   // against unverified question records becoming publicly available.
