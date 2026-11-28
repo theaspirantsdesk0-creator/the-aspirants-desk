@@ -83,12 +83,14 @@ def main() -> int:
     ai_js = ROOT / "assets/js/ai-desk.js"
     ai_css = ROOT / "assets/css/ai-desk.css"
     ai_ts = ROOT / "supabase/functions/ai-assistant/index.ts"
+    qreview_js = ROOT / "assets/js/question-review-dashboard.js"
 
     check(index.is_file(), "index.html is missing")
     check(config.is_file(), "config.js is missing")
     check(ai_js.is_file(), "AI Desk JavaScript is missing")
     check(ai_css.is_file(), "AI Desk CSS is missing")
     check(ai_ts.is_file(), "AI assistant Edge Function source is missing")
+    check(qreview_js.is_file(), "Owner question review dashboard JavaScript is missing")
 
     if index.is_file():
         html = index.read_text(encoding="utf-8")
@@ -97,6 +99,9 @@ def main() -> int:
         check('src="config.js"' in html, "index.html does not load config.js")
         check("cdn.jsdelivr.net/npm/@supabase/supabase-js@2" in html, "Supabase browser SDK is missing")
         check('src="assets/js/ai-desk.js" defer' in html, "AI Desk script is not included")
+        check('src="assets/js/question-review-dashboard.js" defer' in html, "Question review dashboard script is not included")
+        check('id="questionReviewAdmin"' in html and 'from("practice_question_bank")' in html,
+              "Owner question review interface or live learner-bank integration is missing")
         check('href="assets/css/ai-desk.css"' in html, "AI Desk stylesheet is not included")
         for src in parser.external:
             check((ROOT / src).is_file(), f"Local script referenced by index.html is missing: {src}")
@@ -111,6 +116,8 @@ def main() -> int:
 
     if ai_js.is_file():
         run_node_check(ai_js.read_text(encoding="utf-8"), "assets/js/ai-desk.js")
+    if qreview_js.is_file():
+        run_node_check(qreview_js.read_text(encoding="utf-8"), "assets/js/question-review-dashboard.js")
 
 
     # PWA offline shell: core learner scripts/styles must be precached and syntax-valid.
@@ -127,7 +134,7 @@ def main() -> int:
             "index.html", "offline.html", "manifest.webmanifest",
             "assets/css/ai-desk.css", "assets/css/design-system.css",
             "assets/js/ai-desk.js", "assets/js/owner-learner-workspaces.js", "assets/js/learning-hub.js",
-            "assets/js/pyq-inventory.js", "assets/js/courses.js"
+            "assets/js/pyq-inventory.js", "assets/js/courses.js", "assets/js/question-review-dashboard.js"
         )
         for asset in required_assets:
             check("'" + asset + "'" in sw_source or '"'+asset+'"' in sw_source,
