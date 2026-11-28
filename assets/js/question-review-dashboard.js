@@ -228,7 +228,7 @@ async function previewBulk(){
 }
 function csvCell(value){
  const textValue=String(value??"");
- const spreadsheetSafe=/^[\\u0000-\\u0020]*[=+\\-@]/.test(textValue)?"'":"";
+ const spreadsheetSafe="=+-@".includes(textValue.trimStart().charAt(0))?"'":"";
  return '"'+spreadsheetSafe+textValue.replace(/"/g,'""')+'"';
 }
 function exportBulkReport(){
