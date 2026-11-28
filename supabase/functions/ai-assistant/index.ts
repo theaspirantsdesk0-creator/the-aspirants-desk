@@ -16,9 +16,7 @@ const URL = Deno.env.get("SUPABASE_URL") ?? "";
 const ANON = Deno.env.get("SUPABASE_ANON_KEY") || defaultKeyFromMap("SUPABASE_PUBLISHABLE_KEYS");
 const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const GEMINI_KEY = Deno.env.get("GEMINI_API_KEY") ?? "";
-const GROQ_KEY = Deno.env.get("GROQ_API_KEY") ?? "";
-const GEMINI_MODEL = Deno.env.get("GEMINI_MODEL") ?? "gemini-3.8-flash";
-const GROQ_MODEL = Deno.env.get("GROQ_MODEL") ?? "llama-3.3-70b-versatile";
+const GEMINI_MODEL = "gemini-3.8-flash"; // Free-tier model only; paid-model overrides are disabled.
 const ALLOWED_ORIGINS = new Set([
   "https://theaspirantsdesk0-creator.github.io",
   "http://localhost:5500",
@@ -43,10 +41,10 @@ function corsOrigin(req: Request): string {
 function providerStatusHint(provider: string, status: number): string {
   if (status === 400) return provider + " rejected the request. Check the configured model name and request compatibility.";
   if (status === 401) return provider + " did not accept the API key. Check that the secret is correct and has not been revoked.";
-  if (status === 403) return provider + " denied access. Check API access, account permissions and billing settings.";
+  if (status === 403) return provider + " denied access to the free tier. AI is paused; the site will not upgrade to paid usage.";
   if (status === 404) return provider + " could not find the configured model. Check the model name and availability for this key.";
-  if (status === 429) return provider + " rate limit or quota was reached. Check the provider quota and retry window.";
-  if (status >= 500) return provider + " is temporarily experiencing a service problem. Retry later.";
+  if (status === 429) return "Gemini free quota or rate limit has been reached. Anbuu is paused until the free quota resets. No paid fallback will be used.";
+  if (status >= 500) return provider + " is temporarily experiencing a service problem. No automatic retry or paid fallback will be used; try again later.";
   return provider + " returned HTTP " + status + ". Check its API configuration.";
 }
 
@@ -274,31 +272,6 @@ async function gemini(messages: Array<{role:string;content:string}>, role: strin
   return answer;
 }
 
-async function groq(messages: Array<{role:string;content:string}>, role: string, learnerContext = "") {
-  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${GROQ_KEY}` },
-    signal: AbortSignal.timeout(25000),
-    body: JSON.stringify({
-      model: GROQ_MODEL,
-      temperature: 0.35,
-      max_tokens: 1400,
-      messages: [
-        { role: "system", content: rolePrompt(role) + (learnerContext ? "\n\n" + learnerContext : "") },
-        ...messages,
-      ],
-    }),
-  });
-  if (!response.ok) {
-    const error = new Error(`Groq HTTP ${response.status}`) as Error & { status?: number };
-    error.status = response.status;
-    throw error;
-  }
-  const data = await response.json();
-  const answer = data?.choices?.[0]?.message?.content?.trim();
-  if (!answer) throw new Error("Groq returned an empty response");
-  return answer;
-}
 
 function mentorStateFallback() {
   return { active_study_plan: null, doubt_log: [], pending_tasks: [] };
@@ -383,15 +356,13 @@ Deno.serve(async (req: Request) => {
   if (body.action === "get_ai_status") {
     if (profile.role !== "admin") return json({ error: "AI configuration status is available to the site owner only." }, 403, origin);
     return json({
-      configured: Boolean(GEMINI_KEY || GROQ_KEY),
-      primaryProvider: GEMINI_KEY ? "Gemini" : GROQ_KEY ? "Groq fallback (Gemini is not configured)" : "None",
-      providers: { gemini: Boolean(GEMINI_KEY), groq: Boolean(GROQ_KEY) },
-      models: { gemini: GEMINI_MODEL, groq: GROQ_MODEL },
+      configured: Boolean(GEMINI_KEY),
+      primaryProvider: GEMINI_KEY ? "Gemini free tier" : "None",
+      providers: { gemini: Boolean(GEMINI_KEY), groq: false },
+      models: { gemini: GEMINI_MODEL },
       message: GEMINI_KEY
-        ? "Gemini is configured as Anbuu's primary AI provider."
-        : GROQ_KEY
-          ? "Gemini is not configured. Groq is available only as a fallback."
-          : "No AI provider secret is configured. Add GEMINI_API_KEY in Supabase Edge Function Secrets."
+        ? "Free-tier Gemini is configured as Anbuu's only AI provider. No paid fallback is enabled."
+        : "Free-tier Gemini is not configured. Add GEMINI_API_KEY in Supabase Edge Function Secrets."
     }, 200, origin);
   }
 
@@ -402,7 +373,7 @@ Deno.serve(async (req: Request) => {
         ok: false,
         configured: false,
         provider: "Gemini",
-        message: "Gemini is not configured. Add GEMINI_API_KEY in Supabase → Edge Functions → Secrets. Groq, if configured, remains only a fallback and is not used for this Gemini connection test."
+        message: "Gemini is not configured. Add GEMINI_API_KEY in Supabase → Edge Functions → Secrets. Only the free-tier Gemini model is enabled."
       }, 503, origin);
     }
     try {
@@ -458,7 +429,7 @@ Deno.serve(async (req: Request) => {
         ![10, 15].includes(marks) || ![150, 250].includes(wordLimit)) {
       return json({ error: "Provide a question, an answer of at least 40 characters, and a valid 10- or 15-mark target." }, 400, origin);
     }
-    if (!GEMINI_KEY && !GROQ_KEY) return json({ error: "AI evaluation is not configured. Please contact the site owner." }, 503, origin);
+    if (!GEMINI_KEY) return json({ error: "Free Gemini AI is not configured. The site owner must configure GEMINI_API_KEY. No paid provider fallback is enabled." }, 503, origin);
     const { data: quota, error: quotaError } = await adminClient.rpc("consume_ai_daily_quota", {
       p_user_id: authData.user.id,
       p_daily_limit: 20,
@@ -504,25 +475,9 @@ Required JSON schema:
 Score each criterion from 0 to 4. Use the criterion scores to inform the estimated mark, then scale fairly to the requested maximum marks. Do not inflate marks. Keep every list to at most four concise items. If the answer is incomplete or too short, say so plainly. `;
 
     try {
-      let raw = "";
-      let provider = "";
-      if (GEMINI_KEY) {
-        try {
-          raw = await gemini([{ role: "user", content: evaluationPrompt }], "evaluation",
-            "EVALUATION MODE: Follow the user's requested JSON schema exactly. Return JSON only. Do not append mentor-state tags.");
-          provider = "Gemini";
-        } catch (error) {
-          const status = (error as Error & { status?: number }).status;
-          if (GROQ_KEY) {
-            console.warn("Gemini Mains evaluation failed" + (status ? " (HTTP " + status + ")" : "") + "; trying configured Groq fallback.");
-          } else throw error;
-        }
-      }
-      if (!raw && GROQ_KEY) {
-        raw = await groq([{ role: "user", content: evaluationPrompt }], "evaluation",
-          "EVALUATION MODE: Follow the user's requested JSON schema exactly. Return JSON only. Do not append mentor-state tags.");
-        provider = "Groq";
-      }
+      const raw = await gemini([{ role: "user", content: evaluationPrompt }], "evaluation",
+        "EVALUATION MODE: Follow the user's requested JSON schema exactly. Return JSON only. Do not append mentor-state tags.");
+      const provider = "Gemini (free tier)";
       const match = raw.match(/\{[\s\S]*\}/);
       if (!match) throw new Error("AI response did not contain a JSON evaluation");
       const parsed = JSON.parse(match[0]) as Record<string, unknown>;
@@ -573,7 +528,9 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
       console.error("Mains answer evaluation failed:", error instanceof Error ? error.message : "unknown error");
       const { data: restoredRemaining, error: refundError } = await adminClient.rpc("release_ai_daily_quota", { p_user_id: authData.user.id, p_daily_limit: 20 });
       if (refundError) console.error("Mains evaluation quota refund failed:", refundError.message);
-      return json({ error: "Anbuu could not produce a reliable evaluation this time. Your daily allowance was restored when possible; please retry once or save your answer and try later.", remaining: refundError ? quota[0].remaining : restoredRemaining }, 502, origin);
+      const status = (error as Error & { status?: number }).status;
+      const message = typeof status === "number" ? providerFailure("Gemini", error) : "Anbuu could not produce a reliable evaluation this time. Your daily allowance was restored when possible; please try again later.";
+      return json({ error: message, remaining: refundError ? quota[0].remaining : restoredRemaining }, status === 429 ? 429 : 502, origin);
     }
   }
 
@@ -902,7 +859,7 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
   }
   history.push({ role: "user", content: body.message.trim() });
 
-  if (!GEMINI_KEY && !GROQ_KEY) return json({ code: "AI_PROVIDER_NOT_CONFIGURED", error: "AI provider setup is incomplete. The administrator must configure GEMINI_API_KEY or GROQ_API_KEY in Supabase Edge Function Secrets." }, 503, origin);
+  if (!GEMINI_KEY) return json({ code: "AI_PROVIDER_NOT_CONFIGURED", error: "Free Gemini AI is not configured. The administrator must configure GEMINI_API_KEY in Supabase Edge Function Secrets. No paid provider fallback is enabled." }, 503, origin);
   const retrievedContext = await buildGroundedContext(body.message.trim());
 
 
@@ -999,31 +956,10 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     return json({ error: "You have reached today's AI Desk limit of 20 messages. Please try again tomorrow.", remaining: 0 }, 429, origin);
   }
 
-  const providerFailures: string[] = [];
   try {
-    let answer = "";
-    let provider = "";
     const context = [learnerContext, retrievedContext].filter(Boolean).join("\n\n");
-    if (GEMINI_KEY) {
-      try {
-        answer = await gemini(history, profile.role, context);
-        provider = "Gemini";
-      } catch (error) {
-        providerFailures.push(providerFailure("Gemini", error));
-        if (GROQ_KEY) console.warn("Gemini request failed; trying configured Groq fallback.");
-        else throw new Error(providerFailures.join(" "));
-      }
-    }
-    if (!answer && GROQ_KEY) {
-      try {
-        answer = await groq(history, profile.role, context);
-        provider = "Groq";
-      } catch (error) {
-        providerFailures.push(providerFailure("Groq", error));
-        throw new Error(providerFailures.join(" "));
-      }
-    }
-    if (!answer) throw new Error(providerFailures.join(" ") || "No AI provider returned an answer.");
+    const answer = await gemini(history, profile.role, context);
+    const provider = "Gemini (free tier)";
     let visibleAnswer = answer;
     if (profile.role === "learner") {
       const extracted = extractMentorState(answer);
@@ -1051,9 +987,9 @@ Score each criterion from 0 to 4. Use the criterion scores to inform the estimat
     console.error("AI provider request failed:", String(error).slice(0, 800));
     const { data: restoredRemaining, error: refundError } = await adminClient.rpc("release_ai_daily_quota", { p_user_id: authData.user.id, p_daily_limit: 20 });
     if (refundError) console.error("AI chat quota refund failed:", refundError.message);
-    const message = providerFailures.length
-      ? providerFailures.join(" ")
-      : "Anbuu encountered an internal service error. Your daily allowance was restored when possible; please retry later.";
-    return json({ code: "AI_PROVIDER_REQUEST_FAILED", error: message, remaining: refundError ? quota[0].remaining : restoredRemaining }, 502, origin);
+    const status = (error as Error & { status?: number }).status;
+    const message = typeof status === "number" ? providerFailure("Gemini", error)
+      : "Anbuu encountered an internal service error. Your daily allowance was restored when possible; please try again later.";
+    return json({ code: "AI_PROVIDER_REQUEST_FAILED", error: message, remaining: refundError ? quota[0].remaining : restoredRemaining }, status === 429 ? 429 : 502, origin);
   }
 });
