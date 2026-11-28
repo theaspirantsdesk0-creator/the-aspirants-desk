@@ -4702,6 +4702,16 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before { tr
   const EXAMOF = { TNPSC: "TNPSC", SSC: "SSC", Defence: "Defence", "Banking awareness": "Banking" };
   const BANKQ = T.BANK.map((r) => ({ t: r[0], q: r[1], a: r[2], w: [r[3], r[4], r[5]], e: r[6], d: r[7] || "medium", x: r[8] || EXAMOF[r[0]] || "UPSC" }));
   $("quizArea").insertAdjacentHTML("beforebegin", `<div class="form-grid" style="margin-bottom:1rem"><div><label for="dtSubj">Subject</label><select id="dtSubj"><option value="">All subjects</option>${[...new Set(BANKQ.map((x) => x.t))].map((s) => `<option>${esc(s)}</option>`).join("")}</select></div><div><label for="dtExam">Exam</label><select id="dtExam"><option value="">All exams</option><option>UPSC</option><option>TNPSC</option><option>SSC</option><option>Banking</option><option>Defence</option></select></div><div><label for="dtDiff">Difficulty</label><select id="dtDiff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></div><div><label for="dtCount">Questions</label><select id="dtCount"><option>5</option><option selected>10</option><option>20</option><option>25</option></select></div><div style="align-self:end"><button type="button" class="btn navy" id="dtBuild" style="width:100%">Generate test from question bank (${BANKQ.length})</button></div></div>`);
+  $("quizArea").insertAdjacentHTML("beforebegin", '<p id="dtBankSummary" class="muted" role="status" aria-live="polite" style="margin:-.35rem 0 1rem"></p>');
+  const renderBankSummary = () => {
+    const subject = $("dtSubj").value, exam = $("dtExam").value, difficulty = $("dtDiff").value;
+    const matches = BANKQ.filter(x => (!subject || x.t === subject) && (!exam || x.x === exam) && (!difficulty || x.d === difficulty));
+    const counts = ["easy","medium","hard"].map(level => level[0].toUpperCase()+level.slice(1)+": "+matches.filter(x => x.d === level).length);
+    $("dtBankSummary").textContent = matches.length+" practice questions match your filters · "+counts.join(" · ")+". These are practice questions, not official UPSC PYQs.";
+    $("dtBuild").disabled = matches.length === 0;
+  };
+  ["dtSubj","dtExam","dtDiff"].forEach(id => $(id).addEventListener("change", renderBankSummary));
+  renderBankSummary();
   $("dtBuild").addEventListener("click", () => {
     const s = $("dtSubj").value, n = +$("dtCount").value;
     const ex = $("dtExam").value, df = $("dtDiff").value;
