@@ -16,7 +16,7 @@ const URL = Deno.env.get("SUPABASE_URL") ?? "";
 const ANON = Deno.env.get("SUPABASE_ANON_KEY") || defaultKeyFromMap("SUPABASE_PUBLISHABLE_KEYS");
 const SERVICE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || Deno.env.get("SUPABASE_SECRET_KEY") || defaultKeyFromMap("SUPABASE_SECRET_KEYS");
 const GEMINI_KEY = Deno.env.get("GEMINI_API_KEY") ?? "";
-const GEMINI_MODEL = "gemini-3.8-flash"; // Free-tier model only; paid-model overrides are disabled.
+const GEMINI_MODEL = "gemini-2.5-flash-lite"; // Stable free-tier model only; paid-model overrides are disabled.
 const ALLOWED_ORIGINS = new Set([
   "https://theaspirantsdesk0-creator.github.io",
   "http://localhost:5500",
