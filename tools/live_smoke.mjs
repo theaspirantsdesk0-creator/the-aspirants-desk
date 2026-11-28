@@ -445,6 +445,24 @@ try {
   }
   const title = await page.title();
   if (!title.includes("The Aspirant")) throw new Error('Unexpected page title: ' + title);
+  // Personal learning analytics must be present, styled, and private in guest mode.
+  const learningAnalyticsAudit = await page.evaluate(() => {
+    const scripts = [...document.scripts].map(script => script.textContent || '').join('\\n');
+    const report = document.querySelector('#tadWeeklyStudyReport');
+    return {
+      intelligence: Boolean(document.querySelector('#tadIntelligenceTitle')),
+      subjectMix: Boolean(document.querySelector('#tadSubjectMix')),
+      rhythmInsight: Boolean(document.querySelector('#tadRhythmInsight')),
+      editorialStyles: [...document.styleSheets].some(sheet => sheet.href && sheet.href.includes('dashboard-editorial.css')),
+      includesTodayEndBoundary: scripts.includes('todayEnd'),
+      guestReportIsPrivate: Boolean(report && /sign in to view your private study report/i.test(report.textContent))
+    };
+  });
+  if (!learningAnalyticsAudit.intelligence || !learningAnalyticsAudit.subjectMix ||
+      !learningAnalyticsAudit.rhythmInsight || !learningAnalyticsAudit.editorialStyles ||
+      !learningAnalyticsAudit.includesTodayEndBoundary || !learningAnalyticsAudit.guestReportIsPrivate) {
+    throw new Error('Personal learning analytics UI/privacy/date-boundary audit failed: ' + JSON.stringify(learningAnalyticsAudit));
+  }
   // Allow the desktop sidebar's responsive transform to settle after the mobile-layout check.
   await page.waitForTimeout(350);
   const anbuuNav = page.locator('#sidebar a.nav-link[data-nav="anbuu"]');
