@@ -1,5 +1,5 @@
 /* The Aspirant's Desk service worker — resilient offline shell and Web Push. */
-var VERSION = 'desk-v71-tracker-card-layout-fix';;
+var VERSION = 'desk-v72-rendered-newline-fix';;
 var CORE_ASSETS = [
   './', 'index.html', 'offline.html', 'manifest.webmanifest', 'config.js',
   'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
